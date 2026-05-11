@@ -1,7 +1,7 @@
 /**
  * OpenRouter Proxy Server Commands
  * Standalone proxy server that translates Anthropic API calls to OpenRouter
- * Enables 85-98% cost savings with Claude Code integration
+ * Enables 85-98% cost savings with OpenClaw integration
  * NEW in v2.6.0 - Full integration with agentic-flow v1.5.5+
  */
 
@@ -54,7 +54,7 @@ export async function proxyCommand(subArgs, flags) {
  */
 async function startProxy(subArgs, flags) {
   printSuccess('🚀 Starting OpenRouter proxy server...');
-  console.log('This proxy enables Claude Code to use OpenRouter models');
+  console.log('This proxy enables OpenClaw to use OpenRouter models');
   console.log('Potential cost savings: 85-98% vs direct Anthropic API\n');
 
   try {
@@ -85,7 +85,7 @@ async function startProxy(subArgs, flags) {
     console.log('\n📋 Next steps:');
     console.log('  1. Set environment variable:');
     console.log(`     export ANTHROPIC_BASE_URL=http://localhost:${flags.port || 8080}`);
-    console.log('  2. Configure Claude Code to use the proxy');
+    console.log('  2. Configure OpenClaw to use the proxy');
     console.log('  3. Your OpenRouter key will be used automatically');
     console.log('  4. Check status: claude-flow proxy status');
     console.log('\n💰 Cost Savings:');
@@ -154,7 +154,7 @@ async function getProxyStatus(subArgs, flags) {
       console.log('  Translation: Anthropic API → OpenRouter API');
       console.log('\n📝 Usage:');
       console.log('  1. export ANTHROPIC_BASE_URL=http://localhost:8080');
-      console.log('  2. Use Claude Code normally');
+      console.log('  2. Use OpenClaw normally');
       console.log('  3. All requests route through OpenRouter');
     }
   } catch (error) {
@@ -241,7 +241,7 @@ async function configureProxy(subArgs, flags) {
   console.log('\n🔑 API Key Setup:');
   console.log('  export OPENROUTER_API_KEY="sk-or-v1-..."');
 
-  console.log('\n🌐 Claude Code Integration:');
+  console.log('\n🌐 OpenClaw Integration:');
   console.log('  export ANTHROPIC_BASE_URL="http://localhost:8080"');
 
   console.log('\n💡 Recommended Models:');
@@ -258,7 +258,7 @@ async function configureProxy(subArgs, flags) {
   console.log('  1. claude-flow agent config set OPENROUTER_API_KEY sk-or-v1-...');
   console.log('  2. claude-flow proxy start --daemon');
   console.log('  3. export ANTHROPIC_BASE_URL=http://localhost:8080');
-  console.log('  4. Use Claude Code normally → automatic 90% savings!');
+  console.log('  4. Use OpenClaw normally → automatic 90% savings!');
 
   if (flags.test) {
     printSuccess('\n🧪 Testing proxy connection...');
@@ -282,7 +282,7 @@ OpenRouter Proxy Server Commands
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Standalone proxy server that translates Anthropic API calls to OpenRouter.
-Enables 85-98% cost savings with Claude Code integration.
+Enables 85-98% cost savings with OpenClaw integration.
 
 USAGE:
   claude-flow proxy <command> [options]
@@ -311,7 +311,7 @@ EXAMPLES:
   claude-flow proxy start
   claude-flow proxy start --port 8080 --daemon
 
-  # Configure Claude Code to use proxy
+  # Configure OpenClaw to use proxy
   export ANTHROPIC_BASE_URL=http://localhost:8080
 
   # Check status
@@ -339,10 +339,10 @@ SETUP GUIDE:
   3. Start proxy server:
      claude-flow proxy start --daemon
 
-  4. Configure Claude Code:
+  4. Configure OpenClaw:
      export ANTHROPIC_BASE_URL=http://localhost:8080
 
-  5. Use Claude Code normally - all requests route through OpenRouter!
+  5. Use OpenClaw normally - all requests route through OpenRouter!
 
 COST SAVINGS:
   ┌────────────────────────────────────────────────────────┐
@@ -369,7 +369,7 @@ FREE MODELS:
 
 FEATURES:
   ✅ Transparent API translation (Anthropic → OpenRouter)
-  ✅ Works with Claude Code out of the box
+  ✅ Works with OpenClaw out of the box
   ✅ Automatic model mapping
   ✅ Request/response logging
   ✅ Error handling and retries

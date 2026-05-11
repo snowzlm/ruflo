@@ -12,14 +12,14 @@
 The V3 worker daemon (`WorkerDaemon`) currently runs 12 background workers that perform metrics collection, security auditing, and optimization tasks. These workers execute **local logic** (file scanning, JSON generation).
 
 By integrating `CLAUDE_CODE_HEADLESS` mode, workers can:
-1. **Invoke Claude Code** for intelligent analysis (not just file scanning)
+1. **Invoke OpenClaw** for intelligent analysis (not just file scanning)
 2. **Execute in sandboxed environments** per worker type
 3. **Scale across containers** for parallel AI execution
-4. **Chain worker outputs** to Claude Code prompts
+4. **Chain worker outputs** to OpenClaw prompts
 
 ## Decision
 
-Extend the existing `WorkerDaemon` with a new `HeadlessWorkerExecutor` that enables workers to invoke Claude Code headlessly with configurable sandbox profiles.
+Extend the existing `WorkerDaemon` with a new `HeadlessWorkerExecutor` that enables workers to invoke OpenClaw headlessly with configurable sandbox profiles.
 
 ---
 
@@ -45,7 +45,7 @@ Extend the existing `WorkerDaemon` with a new `HeadlessWorkerExecutor` that enab
 │  └─────────────────────────────────────────────────────────────┘   │
 │                                ▼                                    │
 │  ┌─────────────────────────────────────────────────────────────┐   │
-│  │                  Claude Code (Headless)                      │   │
+│  │                  OpenClaw (Headless)                      │   │
 │  │  CLAUDE_CODE_HEADLESS=true                                   │   │
 │  │  CLAUDE_CODE_SANDBOX_MODE=<per-worker>                       │   │
 │  └─────────────────────────────────────────────────────────────┘   │
@@ -84,7 +84,7 @@ export interface HeadlessWorkerConfig extends WorkerConfig {
 
   // Headless-specific options
   headless?: {
-    // Prompt template for Claude Code
+    // Prompt template for OpenClaw
     promptTemplate: string;
 
     // Sandbox profile
@@ -256,7 +256,7 @@ export const HEADLESS_WORKERS: HeadlessWorkerConfig[] = [
       sandbox: 'strict',
       model: 'opus',  // Deep analysis
       outputFormat: 'json',
-      contextPatterns: ['**/*.ts', '**/CLAUDE.md', '**/README.md'],
+      contextPatterns: ['**/*.ts', '**/OPENCLAW.md', '**/README.md'],
     },
   },
   {
@@ -378,7 +378,7 @@ export class HeadlessWorkerExecutor extends EventEmitter {
     // Build the full prompt
     const fullPrompt = this.buildPrompt(headless.promptTemplate, context);
 
-    // Execute Claude Code headlessly
+    // Execute OpenClaw headlessly
     const result = await this.executeClaudeCode(fullPrompt, {
       sandbox: headless.sandbox,
       model: headless.model,
@@ -453,7 +453,7 @@ Analyze the above codebase and provide your response.`;
   }
 
   /**
-   * Execute Claude Code in headless mode
+   * Execute OpenClaw in headless mode
    */
   private async executeClaudeCode(
     prompt: string,
@@ -511,7 +511,7 @@ Analyze the above codebase and provide your response.`;
   }
 
   /**
-   * Check if Claude Code is available
+   * Check if OpenClaw is available
    */
   async isAvailable(): Promise<boolean> {
     try {
@@ -547,7 +547,7 @@ export class WorkerDaemon extends EventEmitter {
   }
 
   /**
-   * Initialize headless executor if Claude Code is available
+   * Initialize headless executor if OpenClaw is available
    */
   private async initHeadlessExecutor(): Promise<void> {
     this.headlessExecutor = new HeadlessWorkerExecutor(this.projectRoot, {
@@ -557,9 +557,9 @@ export class WorkerDaemon extends EventEmitter {
     this.headlessAvailable = await this.headlessExecutor.isAvailable();
 
     if (this.headlessAvailable) {
-      this.log('info', 'Claude Code headless mode available - AI workers enabled');
+      this.log('info', 'OpenClaw headless mode available - AI workers enabled');
     } else {
-      this.log('warn', 'Claude Code not found - AI workers will run in local mode');
+      this.log('warn', 'OpenClaw not found - AI workers will run in local mode');
     }
   }
 
@@ -580,7 +580,7 @@ export class WorkerDaemon extends EventEmitter {
       case 'map':
         return this.runMapWorker();
       case 'audit':
-        return this.runAuditWorkerLocal(); // Fallback if no Claude Code
+        return this.runAuditWorkerLocal(); // Fallback if no OpenClaw
       // ... other workers ...
     }
   }
@@ -597,7 +597,7 @@ export class WorkerDaemon extends EventEmitter {
         envFilesProtected: true,
         gitIgnoreExists: true,
       },
-      note: 'Install Claude Code for AI-powered security analysis',
+      note: 'Install OpenClaw for AI-powered security analysis',
     };
   }
 }
@@ -611,16 +611,16 @@ export class WorkerDaemon extends EventEmitter {
 
 ```bash
 # Start daemon with headless workers
-npx claude-flow@v3alpha daemon start --headless
+ruflo daemon start --headless
 
 # Start with specific sandbox mode for all workers
-npx claude-flow@v3alpha daemon start --sandbox strict
+ruflo daemon start --sandbox strict
 
 # Trigger headless worker manually
-npx claude-flow@v3alpha daemon trigger -w audit --headless
+ruflo daemon trigger -w audit --headless
 
 # Show worker modes
-npx claude-flow@v3alpha daemon status --show-modes
+ruflo daemon status --show-modes
 ```
 
 ### Output Example
@@ -632,7 +632,7 @@ npx claude-flow@v3alpha daemon status --show-modes
 │ Status: ● RUNNING (background)                      │
 │ PID: 12345                                          │
 │ Started: 2026-01-07T23:00:00Z                       │
-│ Claude Code: ✓ Available (headless enabled)        │
+│ OpenClaw: ✓ Available (headless enabled)        │
 │ Workers: 5 enabled (3 headless, 2 local)            │
 └─────────────────────────────────────────────────────┘
 
@@ -676,7 +676,7 @@ export class ContainerWorkerPool {
     try {
       // Mount workspace and execute
       const result = await container.exec([
-        'npx', 'claude-flow@v3alpha', 'daemon', 'trigger',
+        'npx', 'ruflo@v3alpha', 'daemon', 'trigger',
         '-w', worker.type,
         '--headless',
         '--sandbox', worker.headless?.sandbox || 'strict',
@@ -706,7 +706,7 @@ version: '3.8'
 
 services:
   worker-pool:
-    image: ghcr.io/ruvnet/claude-flow-headless:latest
+    image: ghcr.io/snowzlm/ruflo-headless:latest
     deploy:
       replicas: 3
       resources:
@@ -723,7 +723,7 @@ services:
     command: daemon start --foreground --workers audit,optimize,testgaps
 
   queue-manager:
-    image: ghcr.io/ruvnet/claude-flow-headless:latest
+    image: ghcr.io/snowzlm/ruflo-headless:latest
     environment:
       - REDIS_URL=redis://redis:6379
     depends_on:
@@ -772,7 +772,7 @@ volumes:
 ### Phase 1: Core Integration (Week 1) ✅ COMPLETE
 1. ✅ Add `HeadlessWorkerExecutor` to existing daemon
 2. ✅ Create headless worker configurations
-3. ✅ Implement graceful fallback for missing Claude Code
+3. ✅ Implement graceful fallback for missing OpenClaw
 4. ✅ Add `--headless` flag to CLI
 
 ### Phase 2: Sandbox Profiles (Week 2) ✅ COMPLETE
@@ -783,7 +783,7 @@ volumes:
 
 ### Phase 3: Container Pool (Week 3) ✅ COMPLETE
 1. ✅ Create `ContainerWorkerPool` (src/services/container-worker-pool.ts)
-2. ✅ Docker image with pre-installed Claude Code (docker/Dockerfile.headless)
+2. ✅ Docker image with pre-installed OpenClaw (docker/Dockerfile.headless)
 3. ✅ Docker Compose for local development (docker/docker-compose.workers.yml)
 4. ⏳ Kubernetes manifests for production (future enhancement)
 
@@ -802,7 +802,7 @@ volumes:
 1. **AI-Powered Workers** - Intelligent analysis beyond pattern matching
 2. **Sandboxed Execution** - Security-first worker execution
 3. **Scalable** - Container pools for high throughput
-4. **Graceful Degradation** - Works without Claude Code (local mode)
+4. **Graceful Degradation** - Works without OpenClaw (local mode)
 5. **Unified System** - Single daemon manages all worker types
 
 ### Negative
@@ -823,7 +823,7 @@ volumes:
 - ADR-019: @claude-flow/headless Runtime Package
 - ADR-014: Workers System
 - V3 Worker Daemon: `src/services/worker-daemon.ts`
-- Claude Code Environment Variables
+- OpenClaw Environment Variables
 
 ---
 

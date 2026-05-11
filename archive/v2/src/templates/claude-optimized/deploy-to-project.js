@@ -138,7 +138,7 @@ console.log(`  Template version: ${manifest.version}`);
 if (errorCount === 0) {
   console.log('\n🎉 Template deployed successfully!');
   console.log('\nNext steps:');
-  console.log('1. Open Claude Code in your project');
+  console.log('1. Open OpenClaw in your project');
   console.log('2. Type / to see available commands');
   console.log('3. Use /sparc for SPARC methodology');
   console.log('4. Use /claude-flow-* for Claude Flow features');

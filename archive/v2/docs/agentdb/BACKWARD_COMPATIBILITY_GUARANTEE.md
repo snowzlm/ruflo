@@ -2,7 +2,7 @@
 
 ## ✅ 100% Backward Compatibility Confirmed
 
-The AgentDB v1.3.9 integration (PR #830) maintains **100% backward compatibility** with existing claude-flow installations. No existing code will break.
+The AgentDB v1.3.9 integration (PR #830) maintains **100% backward compatibility** with existing ruflo installations. No existing code will break.
 
 ---
 
@@ -33,18 +33,18 @@ The AgentDB v1.3.9 integration (PR #830) maintains **100% backward compatibility
 ```
 
 **Legacy Commands Still Work:**
-- `claude-flow memory store <key> <value>`
-- `claude-flow memory query <search>`
-- `claude-flow memory list`
-- `claude-flow memory export`
-- `claude-flow memory import`
-- `claude-flow memory stats`
+- `ruflo memory store <key> <value>`
+- `ruflo memory query <search>`
+- `ruflo memory list`
+- `ruflo memory export`
+- `ruflo memory import`
+- `ruflo memory stats`
 - All SPARC, hooks, and swarm commands unchanged
 
 **New Commands (Optional):**
-- `claude-flow memory vector-search <query>` (requires AgentDB)
-- `claude-flow memory store-vector <key> <value>` (requires AgentDB)
-- `claude-flow memory agentdb-info` (informational only)
+- `ruflo memory vector-search <query>` (requires AgentDB)
+- `ruflo memory store-vector <key> <value>` (requires AgentDB)
+- `ruflo memory agentdb-info` (informational only)
 
 ---
 
@@ -91,11 +91,11 @@ import { LegacyDataBridge } from 'claude-flow/memory';
 ### MCP Tools ✅
 
 **All Existing MCP Tools Unchanged:**
-- `mcp__claude-flow__memory_usage` - Works exactly as before
-- `mcp__claude-flow__memory_search` - Works exactly as before
-- `mcp__claude-flow__swarm_init` - Works exactly as before
-- `mcp__claude-flow__agent_spawn` - Works exactly as before
-- `mcp__claude-flow__task_orchestrate` - Works exactly as before
+- `mcp__ruflo__memory_usage` - Works exactly as before
+- `mcp__ruflo__memory_search` - Works exactly as before
+- `mcp__ruflo__swarm_init` - Works exactly as before
+- `mcp__ruflo__agent_spawn` - Works exactly as before
+- `mcp__ruflo__task_orchestrate` - Works exactly as before
 - All 100+ MCP tools remain functional
 
 **No MCP Tool Changes:**
@@ -283,8 +283,8 @@ const memory = new AgentDBMemoryAdapter({
 ## 🚨 What Will NOT Break
 
 ### ✅ Existing Installations
-- **npm install claude-flow** - Works exactly as before
-- **npx claude-flow@latest** - All commands work
+- **npm install ruflo** - Works exactly as before
+- **ruflo** - All commands work
 - **Existing projects** - No code changes needed
 - **CI/CD pipelines** - No workflow changes needed
 
@@ -411,7 +411,7 @@ const memory = new AgentDBMemoryAdapter({
 - ✅ Safe to upgrade immediately
 
 **Bottom Line:**
-> Existing claude-flow installations will **NOT** break. AgentDB integration is an **optional enhancement** that existing users can adopt at their own pace. All legacy functionality is preserved and will continue to work exactly as before.
+> Existing ruflo installations will **NOT** break. AgentDB integration is an **optional enhancement** that existing users can adopt at their own pace. All legacy functionality is preserved and will continue to work exactly as before.
 
 ---
 

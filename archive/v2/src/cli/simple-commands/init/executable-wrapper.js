@@ -52,10 +52,10 @@ npx claude-flow@latest %*
         console.log('    You can now use: claude-flow instead of npx claude-flow');
       }
     } else {
-      // Check if we're in development mode (claude-code-flow repo)
-      const isDevelopment = workingDir.includes('claude-code-flow');
+      // Check if we're in development mode (openclaw-flow repo)
+      const isDevelopment = workingDir.includes('openclaw-flow');
       const devBinPath = isDevelopment
-        ? workingDir.split('claude-code-flow')[0] + 'claude-code-flow/bin/claude-flow'
+        ? workingDir.split('openclaw-flow')[0] + 'openclaw-flow/bin/claude-flow'
         : '';
 
       // Create Unix/Linux/Mac shell script

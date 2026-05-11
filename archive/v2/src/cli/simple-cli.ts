@@ -124,7 +124,7 @@ USAGE:
 
 🔗 INTEGRATION & COMPATIBILITY:
   • Node.js 20+ optimization for enterprise environments
-  • Complete Claude Code integration with enhanced capabilities
+  • Complete OpenClaw integration with enhanced capabilities
   • Multi-platform support (Windows, macOS, Linux)
   • Enterprise security with access control and audit logging
   • Cross-package synchronization and dependency management
@@ -146,7 +146,7 @@ COMMON OPTIONS:
   --parallel                           Enable parallel execution (default for swarms)
   --monitor                            Real-time monitoring and performance tracking
 
-📚 Documentation: https://github.com/ruvnet/claude-code-flow
+📚 Documentation: https://github.com/ruvnet/openclaw-flow
 🐝 ruv-swarm: https://github.com/ruvnet/ruv-FANN/tree/main/ruv-swarm
 
 🚀 Enterprise-Grade AI Agent Orchestration - Built with ❤️ by rUv for the Claude community
@@ -2518,7 +2518,7 @@ Shortcuts:
 
 // Helper functions for init command
 function createMinimalClaudeMd() {
-  return `# Claude Code Integration
+  return `# OpenClaw Integration
 
 This file provides guidance to Claude when working with this codebase.
 
@@ -2537,7 +2537,7 @@ This file provides guidance to Claude when working with this codebase.
 }
 
 function createFullClaudeMd() {
-  return `# Claude Code Integration Guide
+  return `# OpenClaw Integration Guide
 
 This document provides comprehensive guidance to Claude when working with this codebase.
 
@@ -3047,12 +3047,12 @@ You can customize this environment by:
 - Creating mode-specific templates in \`templates/\`
 - Adding project-specific configurations in \`configs/\`
 
-For more information, see: https://github.com/ruvnet/claude-code-flow/docs/sparc.md
+For more information, see: https://github.com/ruvnet/openclaw-flow/docs/sparc.md
 `;
 }
 
 function createSparcClaudeMd() {
-  return `# Claude Code Configuration - SPARC Development Environment
+  return `# OpenClaw Configuration - SPARC Development Environment
 
 ## Project Overview
 This project uses the SPARC (Specification, Pseudocode, Architecture, Refinement, Completion) methodology for systematic Test-Driven Development with AI assistance through Claude-Flow orchestration.
@@ -3295,7 +3295,7 @@ This SPARC-enabled project follows a systematic development approach:
 - Document architectural decisions in memory for future reference
 - Regular security reviews for any authentication or data handling code
 
-For more information about SPARC methodology, see: https://github.com/ruvnet/claude-code-flow/docs/sparc.md
+For more information about SPARC methodology, see: https://github.com/ruvnet/openclaw-flow/docs/sparc.md
 `;
 }
 

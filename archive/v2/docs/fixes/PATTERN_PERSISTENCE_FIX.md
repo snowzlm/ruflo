@@ -12,7 +12,7 @@ Three MCP pattern-related operations were not working correctly:
 
 ### 1. Pattern Storage Not Persisting
 
-**File**: `/workspaces/claude-code-flow/src/mcp/mcp-server.js` (lines 1288-1314)
+**File**: `/workspaces/openclaw-flow/src/mcp/mcp-server.js` (lines 1288-1314)
 
 **Issue**: The `neural_train` handler generated training results but did not store them in the memory system.
 
@@ -31,7 +31,7 @@ case 'neural_train':
 
 ### 2. Neural Patterns Handler Missing
 
-**File**: `/workspaces/claude-code-flow/src/mcp/mcp-server.js`
+**File**: `/workspaces/openclaw-flow/src/mcp/mcp-server.js`
 
 **Issue**: While `neural_patterns` tool was defined in the schema (lines 208-221), there was NO handler case in the `executeTool()` method.
 
@@ -223,7 +223,7 @@ case 'stats':
 ### Integration Tests
 
 Created comprehensive test suite at:
-`/workspaces/claude-code-flow/tests/integration/mcp-pattern-persistence.test.js`
+`/workspaces/openclaw-flow/tests/integration/mcp-pattern-persistence.test.js`
 
 **Test Coverage**:
 - ✅ Pattern storage persistence
@@ -244,21 +244,21 @@ To test manually using the MCP tools, users can now:
 
 ```bash
 # Train a neural pattern (will persist automatically)
-npx claude-flow hooks neural-train --pattern-type coordination --epochs 50
+npx ruflo hooks neural-train --pattern-type coordination --epochs 50
 
 # Retrieve pattern statistics
-npx claude-flow hooks neural-patterns --action stats --pattern-type coordination
+npx ruflo hooks neural-patterns --action stats --pattern-type coordination
 
 # List all patterns
-npx claude-flow hooks neural-patterns --action analyze
+npx ruflo hooks neural-patterns --action analyze
 
 # Make predictions
-npx claude-flow hooks neural-patterns --action predict --pattern-type coordination
+npx ruflo hooks neural-patterns --action predict --pattern-type coordination
 ```
 
 ## Files Modified
 
-1. **`/workspaces/claude-code-flow/src/mcp/mcp-server.js`**
+1. **`/workspaces/openclaw-flow/src/mcp/mcp-server.js`**
    - Lines 1288-1391: Enhanced `neural_train` handler
    - Lines 1393-1614: New `neural_patterns` handler
 
@@ -303,13 +303,13 @@ After deploying this fix, verify functionality with:
 npm run build
 
 # 2. Train a pattern and verify storage
-npx claude-flow hooks neural-train --pattern-type coordination --epochs 50
+npx ruflo hooks neural-train --pattern-type coordination --epochs 50
 
 # 3. Check if pattern was stored
-npx claude-flow hooks neural-patterns --action analyze
+npx ruflo hooks neural-patterns --action analyze
 
 # 4. Verify statistics
-npx claude-flow hooks neural-patterns --action stats --pattern-type coordination
+npx ruflo hooks neural-patterns --action stats --pattern-type coordination
 ```
 
 ## Summary

@@ -22,7 +22,7 @@ This security audit identified **7 high-priority vulnerabilities**, **13 depende
 **Location:** `package.json`
 **Severity:** HIGH
 **CVE/Advisory:**
-- **@anthropic-ai/claude-code** (v2.0.1): GHSA-7mv8-j34q-vp7q - Sed Command Validation Bypass (CWE-78)
+- **@anthropic-ai/openclaw** (v2.0.1): GHSA-7mv8-j34q-vp7q - Sed Command Validation Bypass (CWE-78)
 - **@modelcontextprotocol/sdk** (v1.0.4): GHSA-w48q-cv73-mx4w - DNS Rebinding vulnerability (CWE-350, CWE-1188)
 
 **Impact:**
@@ -33,7 +33,7 @@ This security audit identified **7 high-priority vulnerabilities**, **13 depende
 **Recommendation:**
 ```bash
 # Immediate fix required
-npm update @anthropic-ai/claude-code@^2.0.31
+npm update @anthropic-ai/openclaw@^2.0.31
 npm update @modelcontextprotocol/sdk@^1.24.0
 npm audit fix --force
 ```
@@ -167,7 +167,7 @@ const child = spawn('npx', ['ruv-swarm', 'hook', ...args], {
 **Attack Vector:**
 ```bash
 # Attacker-controlled input could inject commands
-claude-flow hook pre-task --description "test; whoami; echo"
+ruflo hook pre-task --description "test; whoami; echo"
 ```
 
 **Recommendation:**
@@ -246,8 +246,8 @@ if (query.search) {
 **Attack Vector:**
 ```bash
 # Read sensitive files
-claude-flow task workflow ../../../etc/passwd
-claude-flow task workflow ~/.ssh/id_rsa
+ruflo task workflow ../../../etc/passwd
+ruflo task workflow ~/.ssh/id_rsa
 ```
 
 **Recommendation:**
@@ -336,10 +336,10 @@ process.env.TOKEN = 'secret-token';
 **Attack Vector:**
 ```bash
 # Overwrite critical config
-claude-flow config set "authConfig.jwtSecret" "hacked"
+ruflo config set "authConfig.jwtSecret" "hacked"
 
 # Prototype pollution
-claude-flow config set "__proto__.isAdmin" "true"
+ruflo config set "__proto__.isAdmin" "true"
 ```
 
 **Recommendation:**
@@ -479,7 +479,7 @@ private async authenticateOAuth(credentials: unknown): Promise<AuthResult> {
 
 1. **Fix Critical Vulnerabilities:**
    ```bash
-   npm update @anthropic-ai/claude-code@^2.0.31
+   npm update @anthropic-ai/openclaw@^2.0.31
    npm update @modelcontextprotocol/sdk@^1.24.0
    npm audit fix --force
    ```
@@ -649,7 +649,7 @@ git-secrets --scan
 truffleHog --regex --entropy=False .
 
 # 4. Container scanning (if using Docker)
-trivy image claude-flow:latest
+trivy image ruflo:latest
 
 # 5. Dynamic testing
 npm run test:security
@@ -702,7 +702,7 @@ The Claude-Flow codebase shows **strong security foundations** in some areas (ti
 
 For security vulnerabilities, please contact:
 - **Security Team:** security@claude-flow.io
-- **GitHub Security Advisories:** https://github.com/ruvnet/claude-code-flow/security/advisories
+- **GitHub Security Advisories:** https://github.com/ruvnet/openclaw-flow/security/advisories
 
 **Report Format:**
 1. Description of vulnerability

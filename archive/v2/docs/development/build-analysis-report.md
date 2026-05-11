@@ -1,8 +1,8 @@
--can # Build Analysis Report - Claude Code Flow Project
+-can # Build Analysis Report - OpenClaw Flow Project
 
 ## Executive Summary
 
-The claude-code-flow project has **CRITICAL BUILD FAILURES** that prevent compilation. There are 7,739 total issues (1,111 errors, 6,628 warnings) that must be systematically addressed to achieve a clean build.
+The openclaw-flow project has **CRITICAL BUILD FAILURES** that prevent compilation. There are 7,739 total issues (1,111 errors, 6,628 warnings) that must be systematically addressed to achieve a clean build.
 
 ## 🚨 Critical Issues Analysis
 
@@ -249,4 +249,4 @@ Phase 3: Optimization (Dependent on Phase 2)
 
 ---
 
-*This analysis covers 7,739 total issues across 322 TypeScript files in the claude-code-flow project. The systematic approach ensures a stable, maintainable codebase while minimizing risk of introducing new issues.*
+*This analysis covers 7,739 total issues across 322 TypeScript files in the openclaw-flow project. The systematic approach ensures a stable, maintainable codebase while minimizing risk of introducing new issues.*

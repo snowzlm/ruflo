@@ -23,7 +23,7 @@ mkdir -p .claude/checkpoints
 mkdir -p .claude/helpers
 
 # Copy settings
-if [ -f ".claude/settings.json" ]; then
+if [ -f ".openclaw/settings.json" ]; then
     echo "⚠️  Backing up existing settings.json to settings.json.backup"
     cp .claude/settings.json .claude/settings.json.backup
 fi
@@ -70,6 +70,6 @@ echo "  - List checkpoints:  git tag -l 'checkpoint-*'"
 echo "  - Rollback:         git reset --hard <checkpoint-tag>"
 echo "  - View changes:     git diff <checkpoint-tag>"
 echo ""
-echo "🛠️  Advanced management: ./.claude/helpers/checkpoint-manager.sh help"
+echo "🛠️  Advanced management: ./.openclaw/helpers/checkpoint-manager.sh help"
 echo ""
 echo "📖 Full documentation: docs/GIT_CHECKPOINT_HOOKS.md"

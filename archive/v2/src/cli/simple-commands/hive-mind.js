@@ -86,7 +86,7 @@ ${chalk.bold('SUBCOMMANDS:')}
   ${chalk.green('consensus')}    View consensus decisions
   ${chalk.green('memory')}       Manage collective memory
   ${chalk.green('metrics')}      View performance metrics
-  ${chalk.green('wizard')}       Interactive hive mind wizard with Claude Code spawning
+  ${chalk.green('wizard')}       Interactive hive mind wizard with OpenClaw spawning
 
 ${chalk.bold('EXAMPLES:')}
   ${chalk.gray('# Initialize hive mind')}
@@ -101,13 +101,13 @@ ${chalk.bold('EXAMPLES:')}
   ${chalk.gray('# View current status')}
   claude-flow hive-mind status
 
-  ${chalk.gray('# Interactive wizard with Claude Code spawning')}
+  ${chalk.gray('# Interactive wizard with OpenClaw spawning')}
   claude-flow hive-mind wizard
 
-  ${chalk.gray('# Spawn with Claude Code coordination')}
+  ${chalk.gray('# Spawn with OpenClaw coordination')}
   claude-flow hive-mind spawn "Build REST API" --claude
 
-  ${chalk.gray('# Auto-spawn coordinated Claude Code instances')}
+  ${chalk.gray('# Auto-spawn coordinated OpenClaw instances')}
   claude-flow hive-mind spawn "Research AI trends" --auto-spawn --verbose
 
   ${chalk.gray('# List all sessions')}
@@ -135,13 +135,13 @@ ${chalk.bold('OPTIONS:')}
   --encryption           Enable encrypted communication
   --monitor              Real-time monitoring dashboard
   --verbose              Detailed logging
-  --claude               Generate Claude Code spawn commands with coordination
+  --claude               Generate OpenClaw spawn commands with coordination
   --spawn                Alias for --claude
-  --auto-spawn           Automatically spawn Claude Code instances
-  --execute              Execute Claude Code spawn commands immediately
+  --auto-spawn           Automatically spawn OpenClaw instances
+  --execute              Execute OpenClaw spawn commands immediately
 
 ${chalk.bold('For more information:')}
-${chalk.blue('https://github.com/ruvnet/claude-flow/tree/main/docs/hive-mind')}
+${chalk.blue('https://github.com/snowzlm/ruflo/tree/main/docs/hive-mind')}
 `);
 }
 
@@ -466,7 +466,7 @@ async function spawnSwarmWizard() {
     {
       type: 'confirm',
       name: 'spawnClaude',
-      message: 'Spawn Claude Code instance with hive-mind coordination?',
+      message: 'Spawn OpenClaw instance with hive-mind coordination?',
       default: true,
     },
   ]);
@@ -488,7 +488,7 @@ async function spawnSwarmWizard() {
     spawnClaude: answers.spawnClaude, // Pass the Claude spawning preference
   });
 
-  // If Claude Code spawning was requested, launch it using the same function as --claude flag
+  // If OpenClaw spawning was requested, launch it using the same function as --claude flag
   if (answers.spawnClaude && swarmResult && swarmResult.swarmId) {
     // Create workers array in the same format expected by spawnClaudeCodeInstances
     const workers = answers.workerTypes.map((type, index) => ({
@@ -975,7 +975,7 @@ async function spawnSwarm(args, flags) {
     process.on('SIGINT', sigintHandler);
     process.on('SIGTERM', sigintHandler);
 
-    // Offer to spawn Claude Code instances with coordination instructions
+    // Offer to spawn OpenClaw instances with coordination instructions
     // Spawn Claude if --claude or --spawn flag is set
     if (flags.claude || flags.spawn) {
       await spawnClaudeCodeInstances(swarmId, hiveMind.config.name, objective, workers, flags);
@@ -983,7 +983,7 @@ async function spawnSwarm(args, flags) {
       console.log(
         '\n' +
           chalk.blue('💡 Pro Tip:') +
-          ' Add --claude to spawn coordinated Claude Code instances',
+          ' Add --claude to spawn coordinated OpenClaw instances',
       );
       console.log(chalk.gray('   claude-flow hive-mind spawn "objective" --claude'));
     }
@@ -2151,10 +2151,10 @@ async function getActiveSessionId(swarmId) {
 }
 
 /**
- * Spawn Claude Code with Hive Mind coordination instructions
+ * Spawn OpenClaw with Hive Mind coordination instructions
  */
 async function spawnClaudeCodeInstances(swarmId, swarmName, objective, workers, flags) {
-  console.log('\n' + chalk.bold('🚀 Launching Claude Code with Hive Mind Coordination'));
+  console.log('\n' + chalk.bold('🚀 Launching OpenClaw with Hive Mind Coordination'));
   console.log(chalk.gray('─'.repeat(60)));
 
   const spinner = ora('Preparing Hive Mind coordination prompt...').start();
@@ -2202,20 +2202,20 @@ async function spawnClaudeCodeInstances(swarmId, swarmName, objective, workers, 
         execSync('which claude', { stdio: 'ignore' });
         claudeAvailable = true;
       } catch {
-        console.log(chalk.yellow('\n⚠️  Claude Code CLI not found in PATH'));
-        console.log(chalk.gray('Install it with: npm install -g @anthropic-ai/claude-code'));
+        console.log(chalk.yellow('\n⚠️  OpenClaw CLI not found in PATH'));
+        console.log(chalk.gray('Install it with: npm install -g @anthropic-ai/openclaw'));
         console.log(chalk.gray('\nFalling back to displaying instructions...'));
       }
 
       if (claudeAvailable && !flags.dryRun) {
-        // Inject memory coordination protocol into CLAUDE.md
+        // Inject memory coordination protocol into OPENCLAW.md
         try {
           const { injectMemoryProtocol, enhanceHiveMindPrompt } = await import('./inject-memory-protocol.js');
           await injectMemoryProtocol();
           
           // Enhance the prompt with memory coordination instructions
           hiveMindPrompt = enhanceHiveMindPrompt(hiveMindPrompt, workers);
-          console.log(chalk.green('📝 Memory coordination protocol injected into CLAUDE.md'));
+          console.log(chalk.green('📝 Memory coordination protocol injected into OPENCLAW.md'));
         } catch (err) {
           // If injection module not available, continue with original prompt
           console.log(chalk.yellow('⚠️  Memory protocol injection not available, using standard prompt'));
@@ -2270,10 +2270,10 @@ async function spawnClaudeCodeInstances(swarmId, swarmName, objective, workers, 
           if (isExiting) return;
           isExiting = true;
 
-          console.log('\n\n' + chalk.yellow('⏸️  Pausing session and terminating Claude Code...'));
+          console.log('\n\n' + chalk.yellow('⏸️  Pausing session and terminating OpenClaw...'));
           
           try {
-            // Terminate Claude Code process
+            // Terminate OpenClaw process
             if (claudeProcess && !claudeProcess.killed) {
               claudeProcess.kill('SIGTERM');
             }
@@ -2285,7 +2285,7 @@ async function spawnClaudeCodeInstances(swarmId, swarmName, objective, workers, 
                 swarmId,
                 objective,
                 status: 'paused_by_user',
-                reason: 'User pressed Ctrl+C during Claude Code execution',
+                reason: 'User pressed Ctrl+C during OpenClaw execution',
                 claudePid: claudeProcess.pid,
               };
               
@@ -2333,20 +2333,20 @@ async function spawnClaudeCodeInstances(swarmId, swarmName, objective, workers, 
           }
 
           if (code === 0) {
-            console.log(chalk.green('\n✓ Claude Code completed successfully'));
+            console.log(chalk.green('\n✓ OpenClaw completed successfully'));
           } else if (code !== null) {
-            console.log(chalk.red(`\n✗ Claude Code exited with code ${code}`));
+            console.log(chalk.red(`\n✗ OpenClaw exited with code ${code}`));
           }
         });
 
-        console.log(chalk.green('\n✓ Claude Code launched with Hive Mind coordination'));
+        console.log(chalk.green('\n✓ OpenClaw launched with Hive Mind coordination'));
         console.log(chalk.blue('  The Queen coordinator will orchestrate all worker agents'));
         console.log(
           chalk.blue('  Use MCP tools for collective intelligence and task distribution'),
         );
         console.log(chalk.gray(`  Prompt file saved at: ${promptFile}`));
       } else if (flags.dryRun) {
-        console.log(chalk.blue('\nDry run - would execute Claude Code with prompt:'));
+        console.log(chalk.blue('\nDry run - would execute OpenClaw with prompt:'));
         console.log(chalk.gray('Prompt length:'), hiveMindPrompt.length, 'characters');
         console.log(chalk.gray('\nFirst 500 characters of prompt:'));
         console.log(chalk.yellow(hiveMindPrompt.substring(0, 500) + '...'));
@@ -2355,8 +2355,8 @@ async function spawnClaudeCodeInstances(swarmId, swarmName, objective, workers, 
         // Claude not available - show instructions with already saved prompt
         console.log(chalk.yellow('\n📋 Manual Execution Instructions:'));
         console.log(chalk.gray('─'.repeat(50)));
-        console.log(chalk.gray('1. Install Claude Code:'));
-        console.log(chalk.green('   npm install -g @anthropic-ai/claude-code'));
+        console.log(chalk.gray('1. Install OpenClaw:'));
+        console.log(chalk.green('   npm install -g @anthropic-ai/openclaw'));
         console.log(chalk.gray('\n2. Run with the saved prompt:'));
         console.log(chalk.green(`   claude < ${promptFile}`));
         console.log(chalk.gray('\n3. Or copy the prompt manually:'));
@@ -2365,13 +2365,13 @@ async function spawnClaudeCodeInstances(swarmId, swarmName, objective, workers, 
         console.log(chalk.green(`   claude --dangerously-skip-permissions < ${promptFile}`));
       }
     } catch (error) {
-      console.error(chalk.red('\nFailed to launch Claude Code:'), error.message);
+      console.error(chalk.red('\nFailed to launch OpenClaw:'), error.message);
 
       // Save prompt as fallback
       const promptFile = `hive-mind-prompt-${swarmId}-fallback.txt`;
       await writeFile(promptFile, hiveMindPrompt, 'utf8');
       console.log(chalk.green(`\n✓ Prompt saved to: ${promptFile}`));
-      console.log(chalk.yellow('\nYou can run Claude Code manually with the saved prompt'));
+      console.log(chalk.yellow('\nYou can run OpenClaw manually with the saved prompt'));
     }
 
     console.log('\n' + chalk.bold('💡 Pro Tips:'));
@@ -2381,13 +2381,13 @@ async function spawnClaudeCodeInstances(swarmId, swarmName, objective, workers, 
     console.log('• Monitor with: claude-flow hive-mind status');
     console.log('• Share memories: mcp__ruv-swarm__memory_usage');
   } catch (error) {
-    spinner.fail('Failed to prepare Claude Code coordination');
+    spinner.fail('Failed to prepare OpenClaw coordination');
     console.error(chalk.red('Error:'), error.message);
   }
 }
 
 /**
- * Generate comprehensive Hive Mind prompt for Claude Code
+ * Generate comprehensive Hive Mind prompt for OpenClaw
  */
 function generateHiveMindPrompt(swarmId, swarmName, objective, workers, workerGroups, flags) {
   console.log(chalk.cyan(`\n🔍 generateHiveMindPrompt received objective: "${objective}"`));
@@ -2449,7 +2449,7 @@ ${workerTypes.map((type) => `• ${type}: ${workerGroups[type].length} agents`).
 
 As the Queen coordinator, you must:
 
-1. **INITIALIZE THE HIVE** (CRITICAL: Use Claude Code's Task Tool for Agents):
+1. **INITIALIZE THE HIVE** (CRITICAL: Use OpenClaw's Task Tool for Agents):
    
    Step 1: Optional MCP Coordination Setup (Single Message):
    [MCP Tools - Coordination Only]:
@@ -2458,8 +2458,8 @@ As the Queen coordinator, you must:
    mcp__claude-flow__memory_store { "key": "hive/queen", "value": "${queenType}" }
    mcp__claude-flow__swarm_think { "topic": "initial_strategy" }
    
-   Step 2: REQUIRED - Spawn ACTUAL Agents with Claude Code's Task Tool (Single Message):
-   [Claude Code Task Tool - CONCURRENT Agent Execution]:
+   Step 2: REQUIRED - Spawn ACTUAL Agents with OpenClaw's Task Tool (Single Message):
+   [OpenClaw Task Tool - CONCURRENT Agent Execution]:
    ${workerTypes.map((type) => `   Task("${type.charAt(0).toUpperCase() + type.slice(1)} Agent", "You are a ${type} in the hive. Coordinate via hooks. ${getWorkerTypeInstructions(type).split('\n')[0]}", "${type}")`).join('\n')}
    
    Step 3: Batch ALL Todos Together (Single TodoWrite Call):
@@ -2562,7 +2562,7 @@ For the objective: "${objective}"
 
 ⚡ CRITICAL: CONCURRENT EXECUTION WITH CLAUDE CODE'S TASK TOOL:
 
-The Hive Mind MUST use Claude Code's Task tool for actual agent execution:
+The Hive Mind MUST use OpenClaw's Task tool for actual agent execution:
 
 ✅ CORRECT Pattern:
 [Single Message - All Agents Spawned Concurrently]:
@@ -2579,7 +2579,7 @@ Message 3: TodoWrite { single todo }
 // This breaks parallel coordination!
 
 Remember:
-- Use Claude Code's Task tool to spawn ALL agents in ONE message
+- Use OpenClaw's Task tool to spawn ALL agents in ONE message
 - MCP tools are ONLY for coordination setup, not agent execution
 - Batch ALL TodoWrite operations (5-10+ todos minimum)
 - Execute ALL file operations concurrently
@@ -2593,7 +2593,7 @@ Remember: You are not just coordinating agents - you are orchestrating a collect
 }
 
 /**
- * Generate comprehensive coordination instructions for Claude Code instances
+ * Generate comprehensive coordination instructions for OpenClaw instances
  */
 function generateCoordinationInstructions(swarmId, swarmName, objective, workers) {
   return {
@@ -2638,7 +2638,7 @@ function groupWorkersByType(workers) {
 }
 
 /**
- * Create Claude Code spawn command with coordination context
+ * Create OpenClaw spawn command with coordination context
  */
 function createClaudeCodeSpawnCommand(
   swarmId,
@@ -2904,20 +2904,20 @@ async function resumeSession(args, flags) {
 
     sessionManager.close();
 
-    // Offer to spawn Claude Code with restored context
+    // Offer to spawn OpenClaw with restored context
     if (flags.claude || flags.spawn) {
-      console.log('\n' + chalk.yellow('🚀 Launching Claude Code with restored context...'));
+      console.log('\n' + chalk.yellow('🚀 Launching OpenClaw with restored context...'));
 
       // Generate prompt with session context
       const restoredPrompt = generateRestoredSessionPrompt(resumedSession);
 
-      // Launch Claude Code with restored context
+      // Launch OpenClaw with restored context
       await launchClaudeWithContext(restoredPrompt, flags, sessionId);
     } else {
       console.log(
         '\n' +
           chalk.blue('💡 Pro Tip:') +
-          ' Add --claude to spawn Claude Code with restored context',
+          ' Add --claude to spawn OpenClaw with restored context',
       );
       console.log(chalk.gray('   claude-flow hive-mind resume ' + sessionId + ' --claude'));
     }
@@ -3148,7 +3148,7 @@ Resume the hive mind operation with full context awareness and continue working 
 }
 
 /**
- * Launch Claude Code with context
+ * Launch OpenClaw with context
  */
 async function launchClaudeWithContext(prompt, flags, sessionId) {
   try {
@@ -3167,15 +3167,15 @@ async function launchClaudeWithContext(prompt, flags, sessionId) {
       execSync('which claude', { stdio: 'ignore' });
       claudeAvailable = true;
     } catch {
-      console.log(chalk.yellow('\n⚠️  Claude Code CLI not found'));
-      console.log(chalk.gray('Install Claude Code: npm install -g @anthropic-ai/claude-code'));
+      console.log(chalk.yellow('\n⚠️  OpenClaw CLI not found'));
+      console.log(chalk.gray('Install OpenClaw: npm install -g @anthropic-ai/openclaw'));
       console.log(chalk.gray(`Run with: claude < ${promptFile}`));
       return;
     }
 
     if (claudeAvailable && !flags.dryRun) {
       // Debug logging to track spawn calls
-      console.log(chalk.blue('\n🔍 Debug: About to spawn Claude Code process...'));
+      console.log(chalk.blue('\n🔍 Debug: About to spawn OpenClaw process...'));
       console.log(chalk.gray(`  Session ID: ${sessionId}`));
       console.log(chalk.gray(`  Process ID: ${process.pid}`));
       
@@ -3219,10 +3219,10 @@ async function launchClaudeWithContext(prompt, flags, sessionId) {
         if (isExiting) return;
         isExiting = true;
 
-        console.log('\n\n' + chalk.yellow('⏸️  Pausing session and terminating Claude Code...'));
+        console.log('\n\n' + chalk.yellow('⏸️  Pausing session and terminating OpenClaw...'));
         
         try {
-          // Terminate Claude Code process if still running
+          // Terminate OpenClaw process if still running
           if (claudeProcess && !claudeProcess.killed) {
             claudeProcess.kill('SIGTERM');
           }
@@ -3248,7 +3248,7 @@ async function launchClaudeWithContext(prompt, flags, sessionId) {
       // Handle process exit (same as initial spawn)
       claudeProcess.on('exit', async (code, signal) => {
         if (!isExiting) {
-          console.log('\n' + chalk.yellow('Claude Code has exited'));
+          console.log('\n' + chalk.yellow('OpenClaw has exited'));
           
           // Clean up signal handlers
           process.removeListener('SIGINT', sigintHandler);
@@ -3261,11 +3261,11 @@ async function launchClaudeWithContext(prompt, flags, sessionId) {
         }
       });
 
-      console.log(chalk.green('\n✓ Claude Code launched with restored session context'));
+      console.log(chalk.green('\n✓ OpenClaw launched with restored session context'));
       console.log(chalk.gray(`  Prompt file saved at: ${promptFile}`));
     }
   } catch (error) {
-    console.error(chalk.red('Failed to launch Claude Code:'), error.message);
+    console.error(chalk.red('Failed to launch OpenClaw:'), error.message);
   }
 }
 

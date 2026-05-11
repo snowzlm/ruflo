@@ -28,33 +28,33 @@ Before starting with Claude-Flow, ensure you have:
 
 - **Node.js** ≥ 20.0.0 ([Download](https://nodejs.org/))
 - **npm** ≥ 9.0.0 (comes with Node.js)
-- **Claude Code** ([Setup guide](https://claude.ai/code))
+- **OpenClaw** ([Setup guide](https://claude.ai/code))
 - **API Keys** for your preferred AI providers
 
 ### Quick Installation
 
 ```bash
 # Option 1: Use npx (recommended for first-time users)
-npx claude-flow@alpha --help
+ruflo --help
 
 # Option 2: Global installation
-npm install -g claude-flow@alpha
+npm install -g github:snowzlm/ruflo
 
 # Option 3: Project-specific installation
-npm install claude-flow@alpha
+npm install ruflo@alpha
 ```
 
 ### Initial Setup
 
 ```bash
 # Initialize Claude-Flow in your project
-npx claude-flow@alpha init --force
+ruflo init --force
 
 # Verify installation
-npx claude-flow@alpha version
+ruflo version
 
 # Run health check
-npx claude-flow@alpha health
+ruflo health
 ```
 
 ### First Command
@@ -63,7 +63,7 @@ Try your first Claude-Flow command:
 
 ```bash
 # Simple task execution
-npx claude-flow@alpha swarm "create a simple Hello World application"
+ruflo swarm "create a simple Hello World application"
 ```
 
 ---
@@ -93,7 +93,7 @@ Persistent knowledge storage:
 #### 4. MCP Integration
 Model Context Protocol tools:
 - **87 available tools**
-- Seamless Claude Code integration
+- Seamless OpenClaw integration
 - Real-time coordination
 
 ### Agent Types Overview
@@ -163,16 +163,16 @@ For straightforward development tasks:
 
 ```bash
 # Code generation
-npx claude-flow@alpha swarm "create a REST API for user management"
+ruflo swarm "create a REST API for user management"
 
 # Bug fixing
-npx claude-flow@alpha swarm "fix all TypeScript errors in the project"
+ruflo swarm "fix all TypeScript errors in the project"
 
 # Documentation
-npx claude-flow@alpha swarm "generate comprehensive API documentation"
+ruflo swarm "generate comprehensive API documentation"
 
 # Testing
-npx claude-flow@alpha swarm "create unit tests for all service classes"
+ruflo swarm "create unit tests for all service classes"
 ```
 
 #### 2. Project-Based Development
@@ -180,18 +180,18 @@ For larger projects requiring coordination:
 
 ```bash
 # Initialize project swarm
-npx claude-flow@alpha hive-mind spawn "e-commerce platform" \
+ruflo hive-mind spawn "e-commerce platform" \
   --agents architect,backend-dev,frontend-dev,tester \
   --topology hierarchical
 
 # Continue development in same session
-npx claude-flow@alpha swarm "implement user authentication" --continue-session
+ruflo swarm "implement user authentication" --continue-session
 
 # Add new features
-npx claude-flow@alpha swarm "add payment processing integration"
+ruflo swarm "add payment processing integration"
 
 # Monitor progress
-npx claude-flow@alpha swarm status --watch
+ruflo swarm status --watch
 ```
 
 #### 3. SPARC Development Methodology
@@ -199,15 +199,15 @@ Structured development using Specification → Pseudocode → Architecture → R
 
 ```bash
 # Full SPARC pipeline
-npx claude-flow@alpha sparc pipeline "user management system"
+ruflo sparc pipeline "user management system"
 
 # Individual SPARC phases
-npx claude-flow@alpha sparc spec "define requirements for authentication"
-npx claude-flow@alpha sparc architecture "design microservices structure"
-npx claude-flow@alpha sparc code "implement user service"
+ruflo sparc spec "define requirements for authentication"
+ruflo sparc architecture "design microservices structure"
+ruflo sparc code "implement user service"
 
 # Test-driven development
-npx claude-flow@alpha sparc tdd "payment processing module"
+ruflo sparc tdd "payment processing module"
 ```
 
 ### Operational Workflows
@@ -215,37 +215,37 @@ npx claude-flow@alpha sparc tdd "payment processing module"
 #### 1. Code Review and Quality
 ```bash
 # Comprehensive code review
-npx claude-flow@alpha swarm "perform security audit and code review" \
+ruflo swarm "perform security audit and code review" \
   --agents security-analyst,reviewer,code-quality-checker
 
 # Performance optimization
-npx claude-flow@alpha swarm "analyze and optimize application performance" \
+ruflo swarm "analyze and optimize application performance" \
   --agents performance-analyst,optimizer
 ```
 
 #### 2. DevOps and Deployment
 ```bash
 # CI/CD setup
-npx claude-flow@alpha swarm "setup complete CI/CD pipeline" \
+ruflo swarm "setup complete CI/CD pipeline" \
   --agents devops-engineer,cicd-specialist
 
 # Container deployment
-npx claude-flow@alpha swarm "containerize application with Docker" \
+ruflo swarm "containerize application with Docker" \
   --agents docker-specialist,devops-engineer
 
 # Kubernetes deployment
-npx claude-flow@alpha swarm "deploy to Kubernetes cluster" \
+ruflo swarm "deploy to Kubernetes cluster" \
   --agents k8s-specialist,devops-engineer
 ```
 
 #### 3. Documentation and Maintenance
 ```bash
 # Generate documentation
-npx claude-flow@alpha swarm "create comprehensive project documentation" \
+ruflo swarm "create comprehensive project documentation" \
   --agents technical-writer,api-docs-generator
 
 # Code maintenance
-npx claude-flow@alpha swarm "refactor legacy code and improve maintainability" \
+ruflo swarm "refactor legacy code and improve maintainability" \
   --agents refactoring-specialist,code-quality-checker
 ```
 
@@ -262,7 +262,7 @@ mkdir my-api-project
 cd my-api-project
 
 # Initialize Claude-Flow
-npx claude-flow@alpha init --force
+ruflo init --force
 
 # Initialize npm project
 npm init -y
@@ -271,32 +271,32 @@ npm init -y
 #### Step 2: Define Requirements
 ```bash
 # Use SPARC specification mode
-npx claude-flow@alpha sparc spec "REST API for task management with CRUD operations, authentication, and data validation"
+ruflo sparc spec "REST API for task management with CRUD operations, authentication, and data validation"
 ```
 
 #### Step 3: Create Architecture
 ```bash
 # Generate system architecture
-npx claude-flow@alpha sparc architecture "Node.js Express API with PostgreSQL database, JWT authentication, and comprehensive error handling"
+ruflo sparc architecture "Node.js Express API with PostgreSQL database, JWT authentication, and comprehensive error handling"
 ```
 
 #### Step 4: Implement Code
 ```bash
 # Generate implementation
-npx claude-flow@alpha sparc code "implement the complete task management API based on the architecture"
+ruflo sparc code "implement the complete task management API based on the architecture"
 ```
 
 #### Step 5: Add Tests
 ```bash
 # Create comprehensive tests
-npx claude-flow@alpha swarm "create unit tests, integration tests, and API endpoint tests" \
+ruflo swarm "create unit tests, integration tests, and API endpoint tests" \
   --agents tester,test-automation-specialist
 ```
 
 #### Step 6: Setup DevOps
 ```bash
 # Add CI/CD and deployment
-npx claude-flow@alpha swarm "setup GitHub Actions CI/CD and Docker deployment" \
+ruflo swarm "setup GitHub Actions CI/CD and Docker deployment" \
   --agents devops-engineer,cicd-specialist
 ```
 
@@ -305,7 +305,7 @@ npx claude-flow@alpha swarm "setup GitHub Actions CI/CD and Docker deployment" \
 #### Step 1: Project Planning
 ```bash
 # Initialize large project swarm
-npx claude-flow@alpha hive-mind spawn "full-stack social media application" \
+ruflo hive-mind spawn "full-stack social media application" \
   --agents architect,planner,backend-dev,frontend-dev,mobile-dev,tester,devops-engineer \
   --topology hierarchical \
   --max-agents 12
@@ -314,35 +314,35 @@ npx claude-flow@alpha hive-mind spawn "full-stack social media application" \
 #### Step 2: Architecture Design
 ```bash
 # Create comprehensive architecture
-npx claude-flow@alpha swarm "design microservices architecture with event-driven communication" \
+ruflo swarm "design microservices architecture with event-driven communication" \
   --agents system-architect,backend-architect,frontend-architect
 ```
 
 #### Step 3: Backend Development
 ```bash
 # Develop backend services
-npx claude-flow@alpha swarm "implement user service, post service, and notification service" \
+ruflo swarm "implement user service, post service, and notification service" \
   --agents backend-dev,api-developer,database-specialist
 ```
 
 #### Step 4: Frontend Development
 ```bash
 # Create frontend applications
-npx claude-flow@alpha swarm "build React web app and React Native mobile app" \
+ruflo swarm "build React web app and React Native mobile app" \
   --agents frontend-dev,mobile-dev,ui-ux-specialist
 ```
 
 #### Step 5: Testing and Quality Assurance
 ```bash
 # Comprehensive testing
-npx claude-flow@alpha swarm "create automated test suites and perform security audit" \
+ruflo swarm "create automated test suites and perform security audit" \
   --agents tester,security-analyst,qa-specialist
 ```
 
 #### Step 6: Deployment and Monitoring
 ```bash
 # Deploy and monitor
-npx claude-flow@alpha swarm "deploy to cloud and setup monitoring" \
+ruflo swarm "deploy to cloud and setup monitoring" \
   --agents devops-engineer,cloud-specialist,monitoring-specialist
 ```
 
@@ -351,7 +351,7 @@ npx claude-flow@alpha swarm "deploy to cloud and setup monitoring" \
 #### Step 1: Define Feature Requirements
 ```bash
 # Start TDD cycle
-npx claude-flow@alpha sparc tdd "user authentication with email verification" \
+ruflo sparc tdd "user authentication with email verification" \
   --test-framework jest \
   --coverage 95
 ```
@@ -359,26 +359,26 @@ npx claude-flow@alpha sparc tdd "user authentication with email verification" \
 #### Step 2: Write Tests First
 ```bash
 # Create test specifications
-npx claude-flow@alpha swarm "write comprehensive test cases for authentication flow" \
+ruflo swarm "write comprehensive test cases for authentication flow" \
   --agents test-architect,tdd-specialist
 ```
 
 #### Step 3: Implement Minimal Code
 ```bash
 # Implement just enough to pass tests
-npx claude-flow@alpha sparc code "implement minimal authentication logic to pass tests"
+ruflo sparc code "implement minimal authentication logic to pass tests"
 ```
 
 #### Step 4: Refactor and Optimize
 ```bash
 # Improve implementation
-npx claude-flow@alpha sparc refinement "optimize authentication performance and security"
+ruflo sparc refinement "optimize authentication performance and security"
 ```
 
 #### Step 5: Add Integration Tests
 ```bash
 # Create integration tests
-npx claude-flow@alpha swarm "add integration tests for complete authentication flow" \
+ruflo swarm "add integration tests for complete authentication flow" \
   --agents integration-tester,api-tester
 ```
 
@@ -573,27 +573,27 @@ Define custom agent combinations for specific use cases:
 #### Basic MCP Setup
 ```bash
 # Start MCP server
-npx claude-flow@alpha mcp start --port 3000
+ruflo mcp start --port 3000
 
 # Configure MCP tools
-npx claude-flow@alpha mcp config --tools all
+ruflo mcp config --tools all
 
 # Add custom MCP server
-npx claude-flow@alpha mcp add-server \
+ruflo mcp add-server \
   --name "custom-tools" \
   --command "node custom-mcp-server.js"
 ```
 
-#### MCP Integration with Claude Code
+#### MCP Integration with OpenClaw
 ```bash
-# Add Claude-Flow MCP server to Claude Code
-claude mcp add claude-flow npx claude-flow@alpha mcp start
+# Add Claude-Flow MCP server to OpenClaw
+openclaw mcp add ruflo ruflo mcp start
 
 # List available MCP tools
-npx claude-flow@alpha mcp tools --list
+ruflo mcp tools --list
 
 # Test MCP connection
-npx claude-flow@alpha mcp test --tool swarm_init
+ruflo mcp test --tool swarm_init
 ```
 
 ---
@@ -607,7 +607,7 @@ npx claude-flow@alpha mcp test --tool swarm_init
 **Issue: npm install fails with permission errors**
 ```bash
 # Solution 1: Use npx instead
-npx claude-flow@alpha --help
+ruflo --help
 
 # Solution 2: Fix npm permissions
 npm config set prefix ~/.npm-global
@@ -639,37 +639,37 @@ npm install --no-optional
 **Issue: "Agent not found" error**
 ```bash
 # Check available agents
-npx claude-flow@alpha agents list
+ruflo agents list
 
 # Verify agent spelling
-npx claude-flow@alpha agents info coder
+ruflo agents info coder
 
 # Use default agent if uncertain
-npx claude-flow@alpha swarm "your task" --agent coder
+ruflo swarm "your task" --agent coder
 ```
 
 **Issue: Memory-related errors**
 ```bash
 # Check memory usage
-npx claude-flow@alpha memory stats
+ruflo memory stats
 
 # Clear memory cache
-npx claude-flow@alpha memory clear --cache
+ruflo memory clear --cache
 
 # Optimize memory settings
-npx claude-flow@alpha config set memory.cacheSizeMB 256
+ruflo config set memory.cacheSizeMB 256
 ```
 
 **Issue: API rate limiting**
 ```bash
 # Check API status
-npx claude-flow@alpha health --api
+ruflo health --api
 
 # Configure rate limiting
-npx claude-flow@alpha config set providers.anthropic.rateLimit 60
+ruflo config set providers.anthropic.rateLimit 60
 
 # Use multiple providers
-npx claude-flow@alpha config set providers.fallback openai
+ruflo config set providers.fallback openai
 ```
 
 #### Performance Issues
@@ -677,25 +677,25 @@ npx claude-flow@alpha config set providers.fallback openai
 **Issue: Slow task execution**
 ```bash
 # Run diagnostics
-npx claude-flow@alpha diagnostics --performance
+ruflo diagnostics --performance
 
 # Optimize configuration
-npx claude-flow@alpha optimize --auto
+ruflo optimize --auto
 
 # Monitor real-time performance
-npx claude-flow@alpha monitor --interval 5s
+ruflo monitor --interval 5s
 ```
 
 **Issue: High memory usage**
 ```bash
 # Check memory breakdown
-npx claude-flow@alpha memory analyze
+ruflo memory analyze
 
 # Enable compression
-npx claude-flow@alpha config set memory.compressionEnabled true
+ruflo config set memory.compressionEnabled true
 
 # Reduce cache size
-npx claude-flow@alpha config set memory.cacheSizeMB 128
+ruflo config set memory.cacheSizeMB 128
 ```
 
 ### Debug Mode
@@ -708,41 +708,41 @@ export CLAUDE_FLOW_DEBUG=true
 export CLAUDE_FLOW_LOG_LEVEL=debug
 
 # Run with verbose output
-npx claude-flow@alpha swarm "your task" --verbose
+ruflo swarm "your task" --verbose
 
 # Generate diagnostic report
-npx claude-flow@alpha diagnostics --full --output debug-report.json
+ruflo diagnostics --full --output debug-report.json
 ```
 
 ### Log Analysis
 
 ```bash
 # View recent logs
-npx claude-flow@alpha logs --tail 100
+ruflo logs --tail 100
 
 # Filter logs by level
-npx claude-flow@alpha logs --level error
+ruflo logs --level error
 
 # Search logs
-npx claude-flow@alpha logs --grep "swarm"
+ruflo logs --grep "swarm"
 
 # Export logs
-npx claude-flow@alpha logs --export logs.json
+ruflo logs --export logs.json
 ```
 
 ### Health Checks
 
 ```bash
 # Comprehensive health check
-npx claude-flow@alpha health --comprehensive
+ruflo health --comprehensive
 
 # Check specific components
-npx claude-flow@alpha health --component memory
-npx claude-flow@alpha health --component agents
-npx claude-flow@alpha health --component mcp
+ruflo health --component memory
+ruflo health --component agents
+ruflo health --component mcp
 
 # Automated health monitoring
-npx claude-flow@alpha health --monitor --interval 60s
+ruflo health --monitor --interval 60s
 ```
 
 ---
@@ -764,29 +764,29 @@ npx claude-flow@alpha health --monitor --interval 60s
 
 ```bash
 # Configure memory limits
-npx claude-flow@alpha config set memory.cacheSizeMB 512
-npx claude-flow@alpha config set memory.maxMemoryMB 2048
+ruflo config set memory.cacheSizeMB 512
+ruflo config set memory.maxMemoryMB 2048
 
 # Enable compression
-npx claude-flow@alpha config set memory.compressionEnabled true
-npx claude-flow@alpha config set memory.indexingEnabled true
+ruflo config set memory.compressionEnabled true
+ruflo config set memory.indexingEnabled true
 
 # Set retention policies
-npx claude-flow@alpha config set memory.retentionDays 30
-npx claude-flow@alpha config set memory.autoCleanup true
+ruflo config set memory.retentionDays 30
+ruflo config set memory.autoCleanup true
 ```
 
 #### Agent Pool Optimization
 
 ```bash
 # Configure agent pools
-npx claude-flow@alpha config set orchestrator.maxConcurrentAgents 50
-npx claude-flow@alpha config set orchestrator.agentPoolSize 20
+ruflo config set orchestrator.maxConcurrentAgents 50
+ruflo config set orchestrator.agentPoolSize 20
 
 # Enable auto-scaling
-npx claude-flow@alpha config set swarm.autoScaling true
-npx claude-flow@alpha config set swarm.minAgents 2
-npx claude-flow@alpha config set swarm.maxAgents 100
+ruflo config set swarm.autoScaling true
+ruflo config set swarm.minAgents 2
+ruflo config set swarm.maxAgents 100
 ```
 
 ### Task Optimization
@@ -794,14 +794,14 @@ npx claude-flow@alpha config set swarm.maxAgents 100
 #### Batch Processing
 ```bash
 # Process multiple tasks in parallel
-npx claude-flow@alpha swarm batch \
+ruflo swarm batch \
   "create user service" \
   "create product service" \
   "create order service" \
   --parallel
 
 # Use agent profiles for efficiency
-npx claude-flow@alpha swarm "build microservices" \
+ruflo swarm "build microservices" \
   --profile backend-development \
   --optimize-for speed
 ```
@@ -809,37 +809,37 @@ npx claude-flow@alpha swarm "build microservices" \
 #### Caching Strategy
 ```bash
 # Enable aggressive caching
-npx claude-flow@alpha config set performance.cacheEnabled true
-npx claude-flow@alpha config set performance.cacheStrategy aggressive
+ruflo config set performance.cacheEnabled true
+ruflo config set performance.cacheStrategy aggressive
 
 # Pre-warm caches
-npx claude-flow@alpha cache warm --agents common
-npx claude-flow@alpha cache warm --tools frequent
+ruflo cache warm --agents common
+ruflo cache warm --tools frequent
 ```
 
 ### Network Optimization
 
 ```bash
 # Configure connection pooling
-npx claude-flow@alpha config set network.connectionPooling true
-npx claude-flow@alpha config set network.maxConnections 100
+ruflo config set network.connectionPooling true
+ruflo config set network.maxConnections 100
 
 # Enable compression
-npx claude-flow@alpha config set network.compressionEnabled true
-npx claude-flow@alpha config set network.timeout 30000
+ruflo config set network.compressionEnabled true
+ruflo config set network.timeout 30000
 ```
 
 ### Monitoring and Metrics
 
 ```bash
 # Real-time performance monitoring
-npx claude-flow@alpha monitor --dashboard
+ruflo monitor --dashboard
 
 # Generate performance report
-npx claude-flow@alpha performance report --period 7d
+ruflo performance report --period 7d
 
 # Set up performance alerts
-npx claude-flow@alpha alerts configure \
+ruflo alerts configure \
   --cpu-threshold 80 \
   --memory-threshold 85 \
   --response-time-threshold 5000
@@ -854,10 +854,10 @@ npx claude-flow@alpha alerts configure \
 #### Setup
 ```bash
 # Initialize GitHub integration
-npx claude-flow@alpha github init --token YOUR_GITHUB_TOKEN
+ruflo github init --token YOUR_GITHUB_TOKEN
 
 # Configure repository
-npx claude-flow@alpha github config \
+ruflo github config \
   --repo "username/repository" \
   --default-branch main
 ```
@@ -865,19 +865,19 @@ npx claude-flow@alpha github config \
 #### Common GitHub Workflows
 ```bash
 # Pull Request Management
-npx claude-flow@alpha github pr-manager \
+ruflo github pr-manager \
   "review and merge pending PRs" \
   --auto-merge \
   --require-reviews 2
 
 # Issue Management
-npx claude-flow@alpha github issue-tracker \
+ruflo github issue-tracker \
   "analyze and categorize open issues" \
   --auto-label \
   --assign-to-team
 
 # Release Management
-npx claude-flow@alpha github release-manager \
+ruflo github release-manager \
   "prepare v2.1.0 release" \
   --generate-changelog \
   --create-release-notes
@@ -886,13 +886,13 @@ npx claude-flow@alpha github release-manager \
 #### Advanced GitHub Features
 ```bash
 # Automated code review
-npx claude-flow@alpha github code-review \
+ruflo github code-review \
   --pr-number 123 \
   --agents security-analyst,code-reviewer \
   --auto-comment
 
 # Repository analysis
-npx claude-flow@alpha github analyze-repo \
+ruflo github analyze-repo \
   --metrics code-quality,security,performance \
   --generate-report
 ```
@@ -902,18 +902,18 @@ npx claude-flow@alpha github analyze-repo \
 #### Container Management
 ```bash
 # Containerize application
-npx claude-flow@alpha docker containerize \
+ruflo docker containerize \
   --app-type node \
   --multi-stage \
   --optimize-size
 
 # Build and push images
-npx claude-flow@alpha docker build-push \
+ruflo docker build-push \
   --registry docker.io \
   --tags latest,v2.0.0
 
 # Container orchestration
-npx claude-flow@alpha docker compose \
+ruflo docker compose \
   --services api,database,redis \
   --environment production
 ```
@@ -923,19 +923,19 @@ npx claude-flow@alpha docker compose \
 #### Cluster Management
 ```bash
 # Deploy to Kubernetes
-npx claude-flow@alpha k8s deploy \
+ruflo k8s deploy \
   --cluster production \
   --namespace default \
   --replicas 3
 
 # Manage services
-npx claude-flow@alpha k8s services \
+ruflo k8s services \
   "setup load balancer and ingress" \
   --ssl-enabled \
   --auto-scaling
 
 # Monitor cluster
-npx claude-flow@alpha k8s monitor \
+ruflo k8s monitor \
   --real-time \
   --alerts \
   --dashboard
@@ -946,14 +946,14 @@ npx claude-flow@alpha k8s monitor \
 #### GitHub Actions
 ```bash
 # Setup CI/CD pipeline
-npx claude-flow@alpha cicd github-actions \
+ruflo cicd github-actions \
   "create complete CI/CD workflow" \
   --tests \
   --security-scan \
   --deploy-staging
 
 # Custom workflows
-npx claude-flow@alpha cicd custom \
+ruflo cicd custom \
   --provider github-actions \
   --stages "lint,test,build,deploy" \
   --environments "staging,production"
@@ -962,7 +962,7 @@ npx claude-flow@alpha cicd custom \
 #### Jenkins Integration
 ```bash
 # Jenkins pipeline
-npx claude-flow@alpha cicd jenkins \
+ruflo cicd jenkins \
   "setup Jenkins pipeline with parallel stages" \
   --agents 4 \
   --parallel-tests
@@ -973,13 +973,13 @@ npx claude-flow@alpha cicd jenkins \
 #### AWS Integration
 ```bash
 # Deploy to AWS
-npx claude-flow@alpha aws deploy \
+ruflo aws deploy \
   --service ecs \
   --region us-east-1 \
   --auto-scaling
 
 # Infrastructure as Code
-npx claude-flow@alpha aws infrastructure \
+ruflo aws infrastructure \
   "create complete AWS infrastructure" \
   --terraform \
   --best-practices
@@ -988,7 +988,7 @@ npx claude-flow@alpha aws infrastructure \
 #### Azure Integration
 ```bash
 # Azure deployment
-npx claude-flow@alpha azure deploy \
+ruflo azure deploy \
   --service app-service \
   --resource-group production \
   --scaling-rules
@@ -997,7 +997,7 @@ npx claude-flow@alpha azure deploy \
 #### Google Cloud Integration
 ```bash
 # GCP deployment
-npx claude-flow@alpha gcp deploy \
+ruflo gcp deploy \
   --service cloud-run \
   --region us-central1 \
   --auto-scaling
@@ -1015,8 +1015,8 @@ A: Claude-Flow is an enterprise-grade AI agent orchestration platform that enabl
 **Q: How is Claude-Flow different from other AI tools?**
 A: Claude-Flow provides true multi-agent coordination with swarm intelligence, persistent memory management, and enterprise-grade features like security, monitoring, and scalability.
 
-**Q: Do I need Claude Code to use Claude-Flow?**
-A: While Claude-Flow can work independently, Claude Code integration provides the best experience with full MCP protocol support and seamless agent coordination.
+**Q: Do I need OpenClaw to use Claude-Flow?**
+A: While Claude-Flow can work independently, OpenClaw integration provides the best experience with full MCP protocol support and seamless agent coordination.
 
 ### Installation and Setup
 
@@ -1024,7 +1024,7 @@ A: While Claude-Flow can work independently, Claude Code integration provides th
 A: Claude-Flow requires Node.js ≥ 20.0.0. We recommend using the latest LTS version for best performance and security.
 
 **Q: Can I use Claude-Flow without global installation?**
-A: Yes! Using `npx claude-flow@alpha` is actually recommended as it always uses the latest version without requiring global installation.
+A: Yes! Using `ruflo` is actually recommended as it always uses the latest version without requiring global installation.
 
 **Q: How do I handle API key configuration?**
 A: Set your API keys as environment variables or in the `.claude-flow.json` configuration file. Never commit API keys to version control.
@@ -1072,10 +1072,10 @@ A: Yes, Claude-Flow is designed for enterprise use with security features, audit
 ### Troubleshooting
 
 **Q: What should I do if an agent fails?**
-A: Claude-Flow includes automatic fault recovery. You can also check logs with `npx claude-flow@alpha logs` and restart failed tasks.
+A: Claude-Flow includes automatic fault recovery. You can also check logs with `ruflo logs` and restart failed tasks.
 
 **Q: How do I debug performance issues?**
-A: Use the built-in diagnostics: `npx claude-flow@alpha diagnostics --performance` and monitor real-time metrics.
+A: Use the built-in diagnostics: `ruflo diagnostics --performance` and monitor real-time metrics.
 
 **Q: Where can I get help if I'm stuck?**
 A: Check this guide, review the comprehensive documentation, search GitHub issues, or join our Discord community.
@@ -1097,9 +1097,9 @@ A: Claude-Flow includes enterprise-grade security features including input valid
 
 ### Getting Help
 
-- **📖 Documentation**: [Complete Documentation](https://github.com/ruvnet/claude-flow/docs)
+- **📖 Documentation**: [Complete Documentation](https://github.com/snowzlm/ruflo/docs)
 - **💬 Discord Community**: [Join Discord](https://discord.gg/claude-flow)
-- **🐛 Issue Tracker**: [GitHub Issues](https://github.com/ruvnet/claude-flow/issues)
+- **🐛 Issue Tracker**: [GitHub Issues](https://github.com/snowzlm/ruflo/issues)
 - **📧 Email Support**: support@claude-flow.ai
 
 ### Contributing
@@ -1117,7 +1117,7 @@ We welcome contributions! Please see our [Contributing Guide](../CONTRIBUTING.md
 - 🐦 **Twitter/X**: [@claudeflow](https://twitter.com/claudeflow)
 - 📰 **Blog**: [blog.claude-flow.ai](https://blog.claude-flow.ai)
 - 📺 **YouTube**: [Claude-Flow Channel](https://youtube.com/@claudeflow)
-- 🌟 **GitHub**: [Star the Repository](https://github.com/ruvnet/claude-flow)
+- 🌟 **GitHub**: [Star the Repository](https://github.com/snowzlm/ruflo)
 
 ---
 

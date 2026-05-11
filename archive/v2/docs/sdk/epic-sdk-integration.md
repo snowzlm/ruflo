@@ -6,7 +6,7 @@
 Integrate Claude Agent SDK as Foundation Layer - Migrate from Custom Implementations to SDK Primitives
 
 ### Description
-Refactor Claude-Flow to leverage Claude Agent SDK (@anthropic-ai/claude-code) as the foundation layer, eliminating redundant custom implementations of retry logic, artifact management, and checkpoint systems. Position Claude-Flow as the premier multi-agent orchestration layer built on top of the SDK.
+Refactor Claude-Flow to leverage Claude Agent SDK (@anthropic-ai/openclaw) as the foundation layer, eliminating redundant custom implementations of retry logic, artifact management, and checkpoint systems. Position Claude-Flow as the premier multi-agent orchestration layer built on top of the SDK.
 
 ### Value Proposition
 **"Claude Agent SDK handles single agents brilliantly. Claude-Flow makes them work as a swarm."**
@@ -29,13 +29,13 @@ Refactor Claude-Flow to leverage Claude Agent SDK (@anthropic-ai/claude-code) as
 
 ```bash
 # Implementation Steps
-npm install @anthropic-ai/claude-code@latest
-npm install --save-dev @types/claude-code
+npm install @anthropic-ai/openclaw@latest
+npm install --save-dev @types/openclaw
 ```
 
 **Configuration File**: `src/sdk/sdk-config.ts`
 ```typescript
-import { ClaudeCodeSDK } from '@anthropic-ai/claude-code';
+import { ClaudeCodeSDK } from '@anthropic-ai/openclaw';
 
 export interface SDKConfiguration {
   apiKey: string;
@@ -86,7 +86,7 @@ export class ClaudeFlowSDKAdapter {
 **Tests**: `src/sdk/__tests__/sdk-config.test.ts`
 ```typescript
 import { ClaudeFlowSDKAdapter } from '../sdk-config';
-import { ClaudeCodeSDK } from '@anthropic-ai/claude-code';
+import { ClaudeCodeSDK } from '@anthropic-ai/openclaw';
 
 describe('SDK Configuration', () => {
   it('should initialize SDK with default configuration', () => {
@@ -228,7 +228,7 @@ export class ClaudeClient extends EventEmitter {
 **New Implementation** (using SDK):
 ```typescript
 // src/api/claude-client-v3.ts (AFTER)
-import { ClaudeCodeSDK } from '@anthropic-ai/claude-code';
+import { ClaudeCodeSDK } from '@anthropic-ai/openclaw';
 import { ClaudeFlowSDKAdapter } from '../sdk/sdk-config';
 
 export class ClaudeClientV3 extends EventEmitter {
@@ -323,7 +323,7 @@ migrateRetryLogic();
 
 **File**: `src/swarm/executor-sdk.ts`
 ```typescript
-import { ClaudeCodeSDK } from '@anthropic-ai/claude-code';
+import { ClaudeCodeSDK } from '@anthropic-ai/openclaw';
 import { TaskExecutor } from './executor';
 import { TaskDefinition, AgentState, ExecutionResult } from './types';
 
@@ -408,7 +408,7 @@ export class MemoryManager {
 **New Implementation** (using SDK Artifacts):
 ```typescript
 // src/swarm/memory-manager-sdk.ts (AFTER)
-import { ClaudeCodeSDK } from '@anthropic-ai/claude-code';
+import { ClaudeCodeSDK } from '@anthropic-ai/openclaw';
 
 export class MemoryManagerSDK {
   private sdk: ClaudeCodeSDK;
@@ -472,7 +472,7 @@ export class MemoryManagerSDK {
 ```typescript
 import { MemoryManager } from '../memory-manager';
 import { MemoryManagerSDK } from '../memory-manager-sdk';
-import { ClaudeCodeSDK } from '@anthropic-ai/claude-code';
+import { ClaudeCodeSDK } from '@anthropic-ai/openclaw';
 
 describe('Memory Manager Migration', () => {
   let oldManager: MemoryManager;
@@ -522,7 +522,7 @@ describe('Memory Manager Migration', () => {
 **New Checkpoint Manager**:
 ```typescript
 // src/verification/checkpoint-manager-sdk.ts
-import { ClaudeCodeSDK } from '@anthropic-ai/claude-code';
+import { ClaudeCodeSDK } from '@anthropic-ai/openclaw';
 import {
   Checkpoint,
   StateSnapshot,
@@ -554,7 +554,7 @@ export class CheckpointManagerSDK {
       metadata: {
         scope,
         ...swarmData,
-        createdBy: 'claude-flow',
+        createdBy: 'ruflo',
         version: '3.0.0'
       }
     });
@@ -630,7 +630,7 @@ export class CheckpointManagerSDK {
 **New Hook System with SDK**:
 ```typescript
 // src/services/hook-manager-sdk.ts
-import { ClaudeCodeSDK } from '@anthropic-ai/claude-code';
+import { ClaudeCodeSDK } from '@anthropic-ai/openclaw';
 
 export class HookManagerSDK {
   private sdk: ClaudeCodeSDK;
@@ -981,8 +981,8 @@ const id = await checkpoints.createCheckpoint(description, scope);
 
 ### Step 1: Update Dependencies
 ```bash
-npm install @anthropic-ai/claude-code@latest
-npm update claude-flow@3.0.0-alpha.130
+npm install @anthropic-ai/openclaw@latest
+npm update ruflo@3.0.0-alpha.130
 ```
 
 ### Step 2: Update Configuration
@@ -1036,7 +1036,7 @@ The following features are deprecated and will be removed in v4.0.0:
 ## Support
 
 For migration assistance:
-- GitHub Issues: https://github.com/ruvnet/claude-flow/issues
+- GitHub Issues: https://github.com/snowzlm/ruflo/issues
 - Migration Guide: https://docs.claude-flow.dev/migration/v3
 - Discord: https://discord.gg/claude-flow
 ```
@@ -1095,7 +1095,7 @@ async function migrateToV3() {
 }
 
 async function installSDK() {
-  await exec('npm install @anthropic-ai/claude-code@latest');
+  await exec('npm install @anthropic-ai/openclaw@latest');
 }
 
 async function updateImports() {
@@ -1120,7 +1120,7 @@ async function updateImports() {
 }
 
 async function migrateConfig() {
-  const configPath = path.join(process.cwd(), 'claude-flow.config.js');
+  const configPath = path.join(process.cwd(), 'ruflo.config.js');
 
   if (await fileExists(configPath)) {
     let config = await fs.readFile(configPath, 'utf8');
@@ -1251,7 +1251,7 @@ export class MigrationMetrics {
 ### Rollback Plan
 ```bash
 # If issues arise, rollback to v2.x
-npm install claude-flow@2.0.0-alpha.129
+npm install ruflo@2.0.0-alpha.129
 npm run rollback:v2
 ```
 

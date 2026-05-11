@@ -44,7 +44,7 @@ Cost tracking commands:
 6. Calculate estimated savings for each recommendation
 7. Display: recommendation, current cost, projected cost, savings, impact assessment
 
-**`cost track`** -- Auto-capture token usage for the active Claude Code session and persist to the `cost-tracking` namespace. Run after significant work or at session end so `cost report` has real data.
+**`cost track`** -- Auto-capture token usage for the active OpenClaw session and persist to the `cost-tracking` namespace. Run after significant work or at session end so `cost report` has real data.
 1. Invoke `node plugins/ruflo-cost-tracker/scripts/track.mjs` (no flags = current cwd's most-recent session)
 2. Print: total cost, per-model and per-tier breakdown, persisted memory key
 3. Sets the `cost-tracking` namespace record at key `session-<sessionId>` (consumed by `cost-report` step 1)
@@ -92,8 +92,8 @@ Cost tracking commands:
 6. Smoke step 23 fails the build if `winRate < 0.80`. See `cost-benchmark` skill for env-var overrides.
 
 **`cost workers`** -- Inspect the `optimize` and `benchmark` background workers consumed from ruflo-loop-workers.
-1. Call `mcp__claude-flow__hooks_worker-status --worker optimize` -- report last-run timestamp, outcome, and any pending recommendations
-2. Call `mcp__claude-flow__hooks_worker-status --worker benchmark` -- report last-run timestamp, outcome, and any pending benchmark deltas
+1. Call `mcp__ruflo__hooks_worker-status --worker optimize` -- report last-run timestamp, outcome, and any pending recommendations
+2. Call `mcp__ruflo__hooks_worker-status --worker benchmark` -- report last-run timestamp, outcome, and any pending benchmark deltas
 3. Cross-link [ruflo-loop-workers ADR-0001 §"12-worker trigger map"](../../ruflo-loop-workers/docs/adrs/0001-loop-workers-contract.md) — the contract this command honors
 4. Display: worker name, status, last-run timestamp, outcome, last-summary
 

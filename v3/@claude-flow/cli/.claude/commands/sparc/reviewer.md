@@ -5,9 +5,9 @@ Code review using batch file analysis for comprehensive reviews.
 
 ## Activation
 
-### Option 1: Using MCP Tools (Preferred in Claude Code)
+### Option 1: Using MCP Tools (Preferred in OpenClaw)
 ```javascript
-mcp__claude-flow__sparc_mode {
+mcp__ruflo__sparc_mode {
   mode: "reviewer",
   task_description: "review pull request #123",
   options: {
@@ -20,15 +20,15 @@ mcp__claude-flow__sparc_mode {
 ### Option 2: Using NPX CLI (Fallback when MCP not available)
 ```bash
 # Use when running from terminal or MCP tools unavailable
-npx claude-flow sparc run reviewer "review pull request #123"
+npx ruflo sparc run reviewer "review pull request #123"
 
 # For alpha features
-npx claude-flow@alpha sparc run reviewer "review pull request #123"
+ruflo sparc run reviewer "review pull request #123"
 ```
 
 ### Option 3: Local Installation
 ```bash
-# If claude-flow is installed locally
+# If ruflo is installed locally
 ./claude-flow sparc run reviewer "review pull request #123"
 ```
 

@@ -1,4 +1,4 @@
-# Claude Flow V3 Helper System Installation Guide
+# Ruflo V3 Helper System Installation Guide
 
 This guide covers installing the V3 helper system across all supported platforms.
 
@@ -7,11 +7,11 @@ This guide covers installing the V3 helper system across all supported platforms
 ### For New Projects
 ```bash
 # Copy the entire helper system to your project
-cp -r /path/to/claude-flow/v3/helpers/ your-project/.claude/helpers/
+cp -r /path/to/claude-flow/v3/helpers/ your-project/.openclaw/helpers/
 
 # Make scripts executable (Linux/macOS)
-chmod +x your-project/.claude/helpers/*.sh
-chmod +x your-project/.claude/helpers/templates/*.sh
+chmod +x your-project/.openclaw/helpers/*.sh
+chmod +x your-project/.openclaw/helpers/templates/*.sh
 ```
 
 ### For Existing Projects
@@ -26,7 +26,7 @@ mkdir -p .claude/helpers
 cp -r /path/to/claude-flow/v3/helpers/* .claude/helpers/
 
 # Initialize
-./.claude/helpers/claude-flow-v3.sh init
+./.openclaw/helpers/claude-flow-v3.sh init
 ```
 
 ## 🌍 Platform-Specific Setup
@@ -52,10 +52,10 @@ cp -r v3/helpers/ .claude/helpers/
 chmod +x .claude/helpers/*.sh .claude/helpers/templates/*.sh
 
 # Initialize project
-./.claude/helpers/claude-flow-v3.sh init
+./.openclaw/helpers/claude-flow-v3.sh init
 
 # Validate setup
-./.claude/helpers/claude-flow-v3.sh validate
+./.openclaw/helpers/claude-flow-v3.sh validate
 ```
 
 ### macOS
@@ -78,10 +78,10 @@ cp -r v3/helpers/ .claude/helpers/
 chmod +x .claude/helpers/*.sh .claude/helpers/templates/*.sh
 
 # Initialize project
-./.claude/helpers/claude-flow-v3.sh init
+./.openclaw/helpers/claude-flow-v3.sh init
 
 # Validate setup
-./.claude/helpers/claude-flow-v3.sh validate
+./.openclaw/helpers/claude-flow-v3.sh validate
 ```
 
 ### Windows
@@ -123,25 +123,25 @@ cp -r v3/helpers/ .claude/helpers/
 chmod +x .claude/helpers/*.sh .claude/helpers/templates/*.sh
 
 # Initialize project
-./.claude/helpers/claude-flow-v3.sh init
+./.openclaw/helpers/claude-flow-v3.sh init
 ```
 
 ## 📋 Configuration
 
 ### Settings.json Integration
-Add to your `.claude/settings.json`:
+Add to your `.openclaw/settings.json`:
 
 ```json
 {
   "helpers": {
-    "directory": ".claude/helpers",
+    "directory": ".openclaw/helpers",
     "enabled": true,
     "platform": "auto-detect",
     "scripts": {
-      "master": ".claude/helpers/claude-flow-v3",
-      "progressManager": ".claude/helpers/templates/progress-manager",
-      "statusDisplay": ".claude/helpers/templates/status-display",
-      "configValidator": ".claude/helpers/templates/config-validator"
+      "master": ".openclaw/helpers/claude-flow-v3",
+      "progressManager": ".openclaw/helpers/templates/progress-manager",
+      "statusDisplay": ".openclaw/helpers/templates/status-display",
+      "configValidator": ".openclaw/helpers/templates/config-validator"
     }
   },
   "v3Configuration": {
@@ -164,7 +164,7 @@ Add to your `.claude/settings.json`:
           {
             "type": "command",
             "timeout": 3000,
-            "command": ".claude/helpers/templates/checkpoint-manager auto-checkpoint \"File edit: $TOOL_INPUT_file_path\""
+            "command": ".openclaw/helpers/templates/checkpoint-manager auto-checkpoint \"File edit: $TOOL_INPUT_file_path\""
           }
         ]
       }
@@ -191,8 +191,8 @@ $env:CLAUDE_FLOW_PLATFORM = "auto"
 ### Basic Functionality Test
 ```bash
 # Linux/macOS
-./.claude/helpers/claude-flow-v3.sh platform-info
-./.claude/helpers/claude-flow-v3.sh status
+./.openclaw/helpers/claude-flow-v3.sh platform-info
+./.openclaw/helpers/claude-flow-v3.sh status
 
 # Windows
 .\.claude\helpers\claude-flow-v3.ps1 platform-info
@@ -202,7 +202,7 @@ $env:CLAUDE_FLOW_PLATFORM = "auto"
 ### Full Validation
 ```bash
 # Run comprehensive validation
-./.claude/helpers/claude-flow-v3.sh validate
+./.openclaw/helpers/claude-flow-v3.sh validate
 
 # Expected output: "All checks passed! V3 development environment is ready."
 ```
@@ -210,7 +210,7 @@ $env:CLAUDE_FLOW_PLATFORM = "auto"
 ## 🛠️ Customization
 
 ### Adding Custom Helpers
-1. Create your custom helper in `.claude/helpers/custom/`
+1. Create your custom helper in `.openclaw/helpers/custom/`
 2. Follow the naming convention: `custom-helper-name.sh/.ps1`
 3. Add to settings.json configuration
 4. Test across platforms
@@ -236,7 +236,7 @@ Add custom hooks to automate your workflow:
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/helpers/custom/pre-task-validation.sh \"$TOOL_INPUT_prompt\""
+            "command": ".openclaw/helpers/custom/pre-task-validation.sh \"$TOOL_INPUT_prompt\""
           }
         ]
       }
@@ -269,10 +269,10 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
 ```bash
 # Verify helper paths
 ls -la .claude/helpers/
-./.claude/helpers/claude-flow-v3.sh platform-info
+./.openclaw/helpers/claude-flow-v3.sh platform-info
 
 # Add helpers to PATH (optional)
-export PATH="$PATH:$(pwd)/.claude/helpers"
+export PATH="$PATH:$(pwd)/.openclaw/helpers"
 ```
 
 ### Missing Dependencies
@@ -299,13 +299,13 @@ cp -r .claude/helpers .claude/helpers.backup
 cp -r /path/to/new/v3/helpers/* .claude/helpers/
 
 # Re-initialize
-./.claude/helpers/claude-flow-v3.sh init
+./.openclaw/helpers/claude-flow-v3.sh init
 ```
 
 ### Version Management
 ```bash
 # Check helper version
-./.claude/helpers/claude-flow-v3.sh --version
+./.openclaw/helpers/claude-flow-v3.sh --version
 
 # View changelog
 cat .claude/helpers/CHANGELOG.md

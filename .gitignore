@@ -56,7 +56,7 @@
 .agentic-flow/
 .cache/
 .claude-flow/
-.claude/settings.local.json
+.openclaw/settings.local.json
 .deno/
 .env
 .env.*.local
@@ -124,7 +124,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # Claude Flow generated files
-.claude/settings.local.json
+.openclaw/settings.local.json
 .mcp.json
 claude-flow.config.json
 .swarm/

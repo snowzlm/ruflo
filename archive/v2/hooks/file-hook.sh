@@ -20,7 +20,7 @@ SHOULD_MODIFY=false
 MODIFICATION_NOTE=""
 
 # 1. ROOT FOLDER PROTECTION - Never save working files to root
-# Allow: package.json, tsconfig.json, .gitignore, .env.example, README.md, CLAUDE.md, LICENSE
+# Allow: package.json, tsconfig.json, .gitignore, .env.example, README.md, OPENCLAW.md, LICENSE
 # Disallow: test files, temporary files, code files in root
 if [[ "$FILE_PATH" =~ ^[^/]*\.(js|ts|jsx|tsx|py|java|go|rs|cpp|c|h)$ ]] || \
    [[ "$FILE_PATH" =~ ^test.*\.(txt|log|tmp|json|md)$ ]] || \
@@ -61,7 +61,7 @@ if [ "$SHOULD_MODIFY" = true ]; then
   PARENT_DIR=$(dirname "$MODIFIED_PATH")
   if [ "$PARENT_DIR" != "." ] && [ "$PARENT_DIR" != "/" ]; then
     # Create directory structure if needed
-    mkdir -p "/workspaces/claude-code-flow/$PARENT_DIR" 2>/dev/null || true
+    mkdir -p "/workspaces/openclaw-flow/$PARENT_DIR" 2>/dev/null || true
   fi
 fi
 

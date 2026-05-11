@@ -1,7 +1,7 @@
 # Swarm-Benchmark CLI Usage Guide
 
 ## Overview
-The `swarm-benchmark` CLI provides comprehensive benchmarking for Claude Flow with real command execution.
+The `swarm-benchmark` CLI provides comprehensive benchmarking for Ruflo with real command execution.
 
 ## Installation
 ```bash
@@ -12,7 +12,7 @@ pip install -e .
 ## Commands
 
 ### Real Execution (Production)
-Execute actual claude-flow commands and measure real performance:
+Execute actual ruflo commands and measure real performance:
 
 ```bash
 # Basic swarm benchmark

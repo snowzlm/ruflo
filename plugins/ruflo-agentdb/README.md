@@ -7,7 +7,7 @@ The substrate plugin for Ruflo memory. Wraps three CLI MCP families — `agentdb
 ## Install
 
 ```
-/plugin marketplace add ruvnet/ruflo
+/plugin marketplace add snowzlm/ruflo
 /plugin install ruflo-agentdb@ruflo
 ```
 
@@ -87,7 +87,7 @@ This plugin owns the namespace convention that downstream plugins consume. Follo
 | Namespace | Owned by | Source |
 |---|---|---|
 | `pattern` | ReasoningBank fallback writes here | `agentdb-tools.ts:144` |
-| `claude-memories` | Claude Code auto-memory bridge target | bridge |
+| `claude-memories` | OpenClaw auto-memory bridge target | bridge |
 | `default` | `memory_store` default | `memory-tools.ts` |
 
 ### Where namespace strings actually apply
@@ -109,14 +109,14 @@ This plugin **does not** GC namespaces. Consumer plugins that want lifecycle (e.
 
 A namespace SHOULD NOT contain `:` (collides with key-internal delimiters used in the bridge), MUST be ≤200 chars, and MUST pass `validateIdentifier` (the same validator already used in `agentdb-tools.ts:122`).
 
-## How Claude Code populates AgentDB
+## How OpenClaw populates AgentDB
 
-The `claude-memories` reserved namespace is filled by Claude Code's own auto-memory bridge, not by direct user calls. Two mechanisms:
+The `claude-memories` reserved namespace is filled by OpenClaw's own auto-memory bridge, not by direct user calls. Two mechanisms:
 
 | Mechanism | Trigger | What it writes |
 |---|---|---|
-| `memory_import_claude` MCP tool | Manual or hook-driven | Reads `~/.claude/projects/*/memory/*.md`, parses YAML frontmatter, splits sections, stores with 384-dim embeddings. `allProjects: true` imports from ALL Claude projects. |
-| `.claude/helpers/auto-memory-hook.mjs` | `SessionStart` (import) and `SessionEnd` (sync) — wired in `.claude/settings.json` | `import` → calls into the bridge for the current project; `sync` → flows AgentDB insights back to `~/.claude/projects/*/memory/MEMORY.md` |
+| `memory_import_claude` MCP tool | Manual or hook-driven | Reads `~/.openclaw/projects/*/memory/*.md`, parses YAML frontmatter, splits sections, stores with 384-dim embeddings. `allProjects: true` imports from ALL Claude projects. |
+| `.openclaw/helpers/auto-memory-hook.mjs` | `SessionStart` (import) and `SessionEnd` (sync) — wired in `.openclaw/settings.json` | `import` → calls into the bridge for the current project; `sync` → flows AgentDB insights back to `~/.openclaw/projects/*/memory/MEMORY.md` |
 
 To inspect or refresh:
 
@@ -124,7 +124,7 @@ To inspect or refresh:
 # What's in the bridge right now?
 mcp tool call memory_bridge_status --json
 
-# Force a re-import from Claude Code's project memory
+# Force a re-import from OpenClaw's project memory
 mcp tool call memory_import_claude --json -- '{"allProjects": true}'
 
 # Cross-namespace search across claude-memories + auto-memory + patterns + tasks + feedback
@@ -137,12 +137,12 @@ mcp tool call memory_search_unified --json -- '{"query": "your query"}'
 
 ## Hook integration convention
 
-Several Claude Code hooks fire writes into AgentDB. Consumer plugins should know which namespaces accumulate state automatically vs. by explicit call, so they don't rebuild what the hook system already provides.
+Several OpenClaw hooks fire writes into AgentDB. Consumer plugins should know which namespaces accumulate state automatically vs. by explicit call, so they don't rebuild what the hook system already provides.
 
 | Hook | Tool invoked | Target namespace | Notes |
 |------|--------------|------------------|-------|
-| `SessionStart` | `memory_import_claude` (via auto-memory-hook.mjs) | `claude-memories` | Imports `~/.claude/projects/*/memory/*.md` into AgentDB on every session start |
-| `SessionEnd` | `auto-memory-hook.mjs sync` | bridge → `MEMORY.md` | Flows AgentDB insights back to Claude Code's MEMORY.md |
+| `SessionStart` | `memory_import_claude` (via auto-memory-hook.mjs) | `claude-memories` | Imports `~/.openclaw/projects/*/memory/*.md` into AgentDB on every session start |
+| `SessionEnd` | `auto-memory-hook.mjs sync` | bridge → `MEMORY.md` | Flows AgentDB insights back to OpenClaw's MEMORY.md |
 | `post-task --train-neural` | `agentdb_pattern-store` (ReasoningBank) | `pattern` (with `memory-store-fallback` if registry unavailable) | Stores task-completion patterns for SONA distillation |
 | `pretrain` (one-shot) | `memory_store` | `patterns` (plural) | Bootstrap learning corpus |
 | `trajectory-begin/step/end` (ruvector hooks) | ruvector substrate (separate plugin) | sona/agentdb namespaces handled by `ruflo-ruvector` | See `plugins/ruflo-ruvector/docs/adrs/0001-pin-ruvector-0.2.25.md` |

@@ -106,7 +106,7 @@ const stats = await PerfUtils.benchmark('operation', async () => {
 
 ### Enable verbose output
 ```bash
-DEBUG=claude-flow:* npm run test:integration
+DEBUG=ruflo:* npm run test:integration
 ```
 
 ### Run in watch mode with specific test
@@ -235,7 +235,7 @@ npm run test:coverage:integration
 - Read test file comments for specific integration details
 - Check `/v3/__tests__/integration/README.md` for full documentation
 - Review `/v3/docs/architecture/` for ADR decisions
-- See `/CLAUDE.md` for development guidelines
+- See `/OPENCLAW.md` for development guidelines
 
 ## Next Steps
 

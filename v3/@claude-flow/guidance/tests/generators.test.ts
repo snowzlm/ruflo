@@ -15,7 +15,7 @@ import type {
 } from '../src/generators.js';
 
 // ============================================================================
-// CLAUDE.md Generator
+// OPENCLAW.md Generator
 // ============================================================================
 
 describe('generateClaudeMd', () => {
@@ -173,10 +173,10 @@ describe('generateClaudeMd', () => {
   it('includes @imports', () => {
     const md = generateClaudeMd({
       ...minimal,
-      imports: ['~/.claude/my_instructions.md'],
+      imports: ['~/.openclaw/my_instructions.md'],
     });
     expect(md).toContain('## Individual Preferences');
-    expect(md).toContain('@~/.claude/my_instructions.md');
+    expect(md).toContain('@~/.openclaw/my_instructions.md');
   });
 
   it('handles Python language', () => {
@@ -222,7 +222,7 @@ describe('generateClaudeMd', () => {
 });
 
 // ============================================================================
-// CLAUDE.local.md Generator
+// OPENCLAW.local.md Generator
 // ============================================================================
 
 describe('generateClaudeLocalMd', () => {
@@ -504,28 +504,28 @@ describe('generateAgentIndex', () => {
 // ============================================================================
 
 describe('scaffold', () => {
-  it('generates CLAUDE.md', () => {
+  it('generates OPENCLAW.md', () => {
     const result = scaffold({
       project: { name: 'test-app', languages: ['typescript'] },
     });
-    expect(result.files.has('CLAUDE.md')).toBe(true);
-    expect(result.files.get('CLAUDE.md')).toContain('# test-app');
+    expect(result.files.has('OPENCLAW.md')).toBe(true);
+    expect(result.files.get('OPENCLAW.md')).toContain('# test-app');
   });
 
-  it('generates CLAUDE.local.md when local profile provided', () => {
+  it('generates OPENCLAW.local.md when local profile provided', () => {
     const result = scaffold({
       project: { name: 'test-app', languages: ['typescript'] },
       local: { developer: 'Alice', preferences: ['Verbose output'] },
     });
-    expect(result.files.has('CLAUDE.local.md')).toBe(true);
-    expect(result.files.get('CLAUDE.local.md')).toContain('Alice');
+    expect(result.files.has('OPENCLAW.local.md')).toBe(true);
+    expect(result.files.get('OPENCLAW.local.md')).toContain('Alice');
   });
 
-  it('does not generate CLAUDE.local.md when not provided', () => {
+  it('does not generate OPENCLAW.local.md when not provided', () => {
     const result = scaffold({
       project: { name: 'test-app', languages: ['typescript'] },
     });
-    expect(result.files.has('CLAUDE.local.md')).toBe(false);
+    expect(result.files.has('OPENCLAW.local.md')).toBe(false);
   });
 
   it('generates custom agents in correct paths', () => {
@@ -540,8 +540,8 @@ describe('scaffold', () => {
         },
       ],
     });
-    expect(result.files.has('.claude/agents/custom/my-agent.md')).toBe(true);
-    expect(result.files.has('.claude/agents/index.yaml')).toBe(true);
+    expect(result.files.has('.openclaw/agents/custom/my-agent.md')).toBe(true);
+    expect(result.files.has('.openclaw/agents/index.yaml')).toBe(true);
   });
 
   it('generates custom skills in correct paths', () => {
@@ -556,7 +556,7 @@ describe('scaffold', () => {
         },
       ],
     });
-    expect(result.files.has('.claude/skills/my-skill/SKILL.md')).toBe(true);
+    expect(result.files.has('.openclaw/skills/my-skill/SKILL.md')).toBe(true);
   });
 
   it('includes default agents when requested', () => {
@@ -564,11 +564,11 @@ describe('scaffold', () => {
       project: { name: 'test-app', languages: ['typescript'] },
       includeDefaultAgents: true,
     });
-    expect(result.files.has('.claude/agents/core/coordinator.md')).toBe(true);
-    expect(result.files.has('.claude/agents/core/coder.md')).toBe(true);
-    expect(result.files.has('.claude/agents/core/tester.md')).toBe(true);
-    expect(result.files.has('.claude/agents/core/reviewer.md')).toBe(true);
-    expect(result.files.has('.claude/agents/index.yaml')).toBe(true);
+    expect(result.files.has('.openclaw/agents/core/coordinator.md')).toBe(true);
+    expect(result.files.has('.openclaw/agents/core/coder.md')).toBe(true);
+    expect(result.files.has('.openclaw/agents/core/tester.md')).toBe(true);
+    expect(result.files.has('.openclaw/agents/core/reviewer.md')).toBe(true);
+    expect(result.files.has('.openclaw/agents/index.yaml')).toBe(true);
   });
 
   it('includes security agent when guidance control plane is enabled', () => {
@@ -580,7 +580,7 @@ describe('scaffold', () => {
       },
       includeDefaultAgents: true,
     });
-    expect(result.files.has('.claude/agents/security/security-auditor.md')).toBe(true);
+    expect(result.files.has('.openclaw/agents/security/security-auditor.md')).toBe(true);
   });
 
   it('includes default skills when requested', () => {
@@ -588,8 +588,8 @@ describe('scaffold', () => {
       project: { name: 'test-app', languages: ['typescript'] },
       includeDefaultSkills: true,
     });
-    expect(result.files.has('.claude/skills/build-and-test/SKILL.md')).toBe(true);
-    expect(result.files.has('.claude/skills/code-review/SKILL.md')).toBe(true);
+    expect(result.files.has('.openclaw/skills/build-and-test/SKILL.md')).toBe(true);
+    expect(result.files.has('.openclaw/skills/code-review/SKILL.md')).toBe(true);
   });
 
   it('includes guidance skill when control plane is enabled', () => {
@@ -601,7 +601,7 @@ describe('scaffold', () => {
       },
       includeDefaultSkills: true,
     });
-    expect(result.files.has('.claude/skills/guidance-enforcement/SKILL.md')).toBe(true);
+    expect(result.files.has('.openclaw/skills/guidance-enforcement/SKILL.md')).toBe(true);
   });
 
   it('merges custom and default agents', () => {
@@ -611,11 +611,11 @@ describe('scaffold', () => {
       includeDefaultAgents: true,
     });
     // Custom agent
-    expect(result.files.has('.claude/agents/core/custom-bot.md')).toBe(true);
+    expect(result.files.has('.openclaw/agents/core/custom-bot.md')).toBe(true);
     // Default agents
-    expect(result.files.has('.claude/agents/core/coordinator.md')).toBe(true);
+    expect(result.files.has('.openclaw/agents/core/coordinator.md')).toBe(true);
     // Index includes all
-    const index = result.files.get('.claude/agents/index.yaml')!;
+    const index = result.files.get('.openclaw/agents/index.yaml')!;
     expect(index).toContain('custom-bot');
     expect(index).toContain('coordinator');
   });
@@ -641,7 +641,7 @@ describe('scaffold', () => {
         guidanceControlPlane: true,
         wasmKernel: true,
         swarm: { topology: 'hierarchical', maxAgents: 8, strategy: 'specialized' },
-        imports: ['~/.claude/my_prefs.md'],
+        imports: ['~/.openclaw/my_prefs.md'],
       },
       local: {
         developer: 'Alice',
@@ -659,8 +659,8 @@ describe('scaffold', () => {
     // Count files
     expect(result.files.size).toBeGreaterThanOrEqual(10);
 
-    // CLAUDE.md has all sections
-    const claudeMd = result.files.get('CLAUDE.md')!;
+    // OPENCLAW.md has all sections
+    const claudeMd = result.files.get('OPENCLAW.md')!;
     expect(claudeMd).toContain('# enterprise-app');
     expect(claudeMd).toContain('SaaS application');
     expect(claudeMd).toContain('PEP 8');
@@ -674,10 +674,10 @@ describe('scaffold', () => {
     expect(claudeMd).toContain('## Guidance Control Plane');
     expect(claudeMd).toContain('WASM kernel');
     expect(claudeMd).toContain('## Swarm Configuration');
-    expect(claudeMd).toContain('@~/.claude/my_prefs.md');
+    expect(claudeMd).toContain('@~/.openclaw/my_prefs.md');
 
-    // CLAUDE.local.md
-    const localMd = result.files.get('CLAUDE.local.md')!;
+    // OPENCLAW.local.md
+    const localMd = result.files.get('OPENCLAW.local.md')!;
     expect(localMd).toContain('Alice');
     expect(localMd).toContain('http://localhost:4000');
     expect(localMd).toContain('postgres://localhost/dev');

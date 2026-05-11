@@ -74,7 +74,7 @@ export function setupCommands(cli: CLI): void {
             short: 't',
             description: 'Target directory',
             type: 'string',
-            defaultValue: '.claude/agents/neural',
+            defaultValue: '.openclaw/agents/neural',
           },
         ],
         action: async (ctx: CommandContext) => {
@@ -108,7 +108,7 @@ export function setupCommands(cli: CLI): void {
             short: 't',
             description: 'Target directory',
             type: 'string',
-            defaultValue: '.claude/agents/goal',
+            defaultValue: '.openclaw/agents/goal',
           },
         ],
         action: async (ctx: CommandContext) => {
@@ -125,7 +125,7 @@ export function setupCommands(cli: CLI): void {
   // Init command
   cli.command({
     name: 'init',
-    description: 'Initialize Claude Code integration files',
+    description: 'Initialize OpenClaw integration files',
     options: [
       {
         name: 'force',
@@ -141,13 +141,13 @@ export function setupCommands(cli: CLI): void {
       },
       {
         name: 'flow-nexus',
-        description: 'Initialize with Flow Nexus commands, agents, and CLAUDE.md only',
+        description: 'Initialize with Flow Nexus commands, agents, and OPENCLAW.md only',
         type: 'boolean',
       },
     ],
     action: async (ctx: CommandContext) => {
       try {
-        success('Initializing Claude Code integration files...');
+        success('Initializing OpenClaw integration files...');
 
         const force = (ctx.flags.force as boolean) || (ctx.flags.f as boolean);
         const minimal = (ctx.flags.minimal as boolean) || (ctx.flags.m as boolean);
@@ -157,28 +157,28 @@ export function setupCommands(cli: CLI): void {
         if (flowNexus) {
           success('Initializing Flow Nexus minimal setup...');
           
-          // Create Flow Nexus CLAUDE.md with integrated section
+          // Create Flow Nexus OPENCLAW.md with integrated section
           const flowNexusClaudeMd = createFlowNexusClaudeMd();
           const { writeFile, mkdir } = await import('fs/promises');
-          await writeFile('CLAUDE.md', flowNexusClaudeMd);
-          console.log('  ✓ Created CLAUDE.md with Flow Nexus integration');
+          await writeFile('OPENCLAW.md', flowNexusClaudeMd);
+          console.log('  ✓ Created OPENCLAW.md with Flow Nexus integration');
           
           // Create .claude/commands/flow-nexus directory and copy commands
-          await mkdir('.claude/commands/flow-nexus', { recursive: true });
+          await mkdir('.openclaw/commands/flow-nexus', { recursive: true });
           
           // Create .claude/agents/flow-nexus directory and copy agents
-          await mkdir('.claude/agents/flow-nexus', { recursive: true });
+          await mkdir('.openclaw/agents/flow-nexus', { recursive: true });
           
           success('Flow Nexus initialization complete!');
-          console.log('📚 Created: CLAUDE.md with Flow Nexus documentation');
+          console.log('📚 Created: OPENCLAW.md with Flow Nexus documentation');
           console.log('📁 Created: .claude/commands/flow-nexus/ directory structure');  
           console.log('🤖 Created: .claude/agents/flow-nexus/ directory structure');
-          console.log('💡 Use MCP Flow Nexus tools in Claude Code for full functionality');
+          console.log('💡 Use MCP Flow Nexus tools in OpenClaw for full functionality');
           return;
         }
 
         // Check if files already exist for full init
-        const files = ['CLAUDE.md', 'memory-bank.md', 'coordination.md'];
+        const files = ['OPENCLAW.md', 'memory-bank.md', 'coordination.md'];
         const existingFiles = [];
 
         for (const file of files) {
@@ -197,11 +197,11 @@ export function setupCommands(cli: CLI): void {
           return;
         }
 
-        // Create CLAUDE.md
+        // Create OPENCLAW.md
         const claudeMd = minimal ? createMinimalClaudeMd() : createFullClaudeMd();
         const { writeFile } = await import('fs/promises');
-        await writeFile('CLAUDE.md', claudeMd);
-        console.log('  ✓ Created CLAUDE.md');
+        await writeFile('OPENCLAW.md', claudeMd);
+        console.log('  ✓ Created OPENCLAW.md');
 
         // Create memory-bank.md
         const memoryBankMd = minimal ? createMinimalMemoryBankMd() : createFullMemoryBankMd();
@@ -259,7 +259,7 @@ export function setupCommands(cli: CLI): void {
         await writeFile('memory/claude-flow-data.json', JSON.stringify(initialData, null, 2));
         console.log('  ✓ Created memory/claude-flow-data.json (persistence database)');
 
-        success('Claude Code integration files initialized successfully!');
+        success('OpenClaw integration files initialized successfully!');
         console.log('\nNext steps:');
         console.log('1. Review and customize the generated files for your project');
         console.log("2. Run 'npx claude-flow start' to begin the orchestration system");
@@ -1791,12 +1791,12 @@ Now, please proceed with the task: ${task}`;
       },
       {
         name: 'claude',
-        description: 'Launch Claude Code with swarm coordination prompt',
+        description: 'Launch OpenClaw with swarm coordination prompt',
         type: 'boolean',
       },
       {
         name: 'executor',
-        description: 'Use built-in executor instead of Claude Code',
+        description: 'Use built-in executor instead of OpenClaw',
         type: 'boolean',
       },
     ],
@@ -2136,7 +2136,7 @@ Now, please proceed with the task: ${task}`;
       if (command === 'claude') {
         console.log(bold(blue('Claude Instance Management')));
         console.log();
-        console.log('Spawn and manage Claude Code instances with specific configurations.');
+        console.log('Spawn and manage OpenClaw instances with specific configurations.');
         console.log();
         console.log(bold('Subcommands:'));
         console.log('  spawn <task>    Spawn Claude with specific configuration');
@@ -2166,7 +2166,7 @@ Now, please proceed with the task: ${task}`;
         console.log(`  ${blue('claude-flow claude batch')} workflow.json --dry-run`);
         console.log();
         console.log(
-          'For more information, see: https://github.com/ruvnet/claude-code-flow/docs/11-claude-spawning.md',
+          'For more information, see: https://github.com/ruvnet/openclaw-flow/docs/11-claude-spawning.md',
         );
       } else if (command === 'swarm' || command === 'swarm-ui') {
         console.log(bold(blue('Claude Swarm Mode')));
@@ -2214,8 +2214,8 @@ Now, please proceed with the task: ${task}`;
         console.log(`  - ${blue('claude-flow swarm')} <objective> --ui`);
         console.log();
         console.log('For more information, see:');
-        console.log('  - https://github.com/ruvnet/claude-code-flow/docs/12-swarm.md');
-        console.log('  - https://github.com/ruvnet/claude-code-flow/SWARM_TTY_SOLUTION.md');
+        console.log('  - https://github.com/ruvnet/openclaw-flow/docs/12-swarm.md');
+        console.log('  - https://github.com/ruvnet/openclaw-flow/SWARM_TTY_SOLUTION.md');
       } else if (command === 'sparc') {
         console.log(bold(blue('SPARC Development Mode')));
         console.log();
@@ -2264,7 +2264,7 @@ Now, please proceed with the task: ${task}`;
         );
         console.log();
         console.log(
-          'For more information, see: https://github.com/ruvnet/claude-code-flow/docs/sparc.md',
+          'For more information, see: https://github.com/ruvnet/openclaw-flow/docs/sparc.md',
         );
       } else if (command === 'start') {
         console.log(bold(blue('Enhanced Start Command')));
@@ -2563,7 +2563,7 @@ function getDefaultPromptForType(type: string): string {
 
 // Template creation functions
 function createMinimalClaudeMd(): string {
-  return `# Claude Code Configuration
+  return `# OpenClaw Configuration
 
 ## Build Commands
 - \`npm run build\`: Build the project
@@ -2582,7 +2582,7 @@ This is a Claude-Flow AI agent orchestration system.
 
 
 function createFullClaudeMd(): string {
-  return `# Claude Code Configuration
+  return `# OpenClaw Configuration
 
 ## Build Commands
 - \`npm run build\`: Build the project using Deno compile

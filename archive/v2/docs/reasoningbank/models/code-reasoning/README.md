@@ -431,11 +431,11 @@ To add new patterns to this model:
 
 ## 📄 License
 
-This model is part of the claude-flow project and follows the same license.
+This model is part of the ruflo project and follows the same license.
 
 ## 🔗 Integration Examples
 
-See `/workspaces/claude-code-flow/docs/reasoningbank/examples/` for:
+See `/workspaces/openclaw-flow/docs/reasoningbank/examples/` for:
 - Code generation with pattern guidance
 - Automated code review
 - Refactoring suggestions

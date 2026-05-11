@@ -2,11 +2,11 @@
 
 **Status**: Accepted
 **Date**: 2026-02-09
-**Authors**: Claude Flow Team
+**Authors**: Ruflo Team
 
 ## Context
 
-The memory system has three powerful modules — AutoMemoryBridge (storage), MemoryGraph (PageRank + community detection), LearningBridge (confidence tracking) — all shipped and tested (219 tests, published as `@claude-flow/memory@3.0.0-alpha.8`). But they are not wired into the hook system that runs during Claude Code sessions.
+The memory system has three powerful modules — AutoMemoryBridge (storage), MemoryGraph (PageRank + community detection), LearningBridge (confidence tracking) — all shipped and tested (219 tests, published as `@claude-flow/memory@3.0.0-alpha.8`). But they are not wired into the hook system that runs during OpenClaw sessions.
 
 The result is a gap:
 
@@ -49,7 +49,7 @@ Self-contained CJS implementations (~60 lines each):
 
 ### Why CJS, not ESM?
 
-Hooks are short-lived Node.js processes invoked by Claude Code. `hook-handler.cjs` uses `require()`. ESM dynamic `import()` is async and adds ~50ms overhead per invocation. The memory package (`@claude-flow/memory`) is ESM-only. The intelligence layer must be CJS for synchronous, fast loading.
+Hooks are short-lived Node.js processes invoked by OpenClaw. `hook-handler.cjs` uses `require()`. ESM dynamic `import()` is async and adds ~50ms overhead per invocation. The memory package (`@claude-flow/memory`) is ESM-only. The intelligence layer must be CJS for synchronous, fast loading.
 
 ### Why file-based persistence?
 
@@ -100,8 +100,8 @@ All within existing hook timeouts (10-15s).
 
 | Action | File | Lines |
 |--------|------|-------|
-| CREATE | `cli/.claude/helpers/intelligence.cjs` | ~560 |
+| CREATE | `cli/.openclaw/helpers/intelligence.cjs` | ~560 |
 | CREATE | `v3/implementation/adrs/ADR-050-intelligence-loop.md` | ~150 |
-| MODIFY | `cli/.claude/helpers/hook-handler.cjs` | +30 |
-| MODIFY | `cli/.claude/helpers/session.js` | +6 |
+| MODIFY | `cli/.openclaw/helpers/hook-handler.cjs` | +30 |
+| MODIFY | `cli/.openclaw/helpers/session.js` | +6 |
 | MODIFY | `cli/src/init/executor.ts` | +1 |

@@ -1,4 +1,4 @@
-# Claude Flow V3 Statusline Daemon System
+# Ruflo V3 Statusline Daemon System
 
 ## Overview
 
@@ -8,7 +8,7 @@ Real-time statusline updates powered by SQLite-backed daemon processes that moni
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    Claude Code Session                       │
+│                    OpenClaw Session                       │
 ├─────────────────────────────────────────────────────────────┤
 │  SessionStart Hook                                           │
 │  └─> daemon-manager.sh start                                │
@@ -33,16 +33,16 @@ Central control for all background processes.
 
 ```bash
 # Start all daemons
-.claude/helpers/daemon-manager.sh start [swarm_interval] [metrics_interval]
+`.openclaw/helpers/daemon-manager.sh start [swarm_interval] [metrics_interval]
 
 # Stop all daemons
-.claude/helpers/daemon-manager.sh stop
+`.openclaw/helpers/daemon-manager.sh stop
 
 # Restart daemons
-.claude/helpers/daemon-manager.sh restart
+`.openclaw/helpers/daemon-manager.sh restart
 
 # Check status
-.claude/helpers/daemon-manager.sh status
+`.openclaw/helpers/daemon-manager.sh status
 ```
 
 ### 2. Metrics Database (`metrics-db.mjs`)
@@ -125,22 +125,22 @@ Real-time process detection for active agents.
 
 ```bash
 # Single check
-.claude/helpers/swarm-monitor.sh check
+`.openclaw/helpers/swarm-monitor.sh check
 
 # Continuous monitoring
-.claude/helpers/swarm-monitor.sh monitor [interval]
+`.openclaw/helpers/swarm-monitor.sh monitor [interval]
 
 # Show status
-.claude/helpers/swarm-monitor.sh status
+`.openclaw/helpers/swarm-monitor.sh status
 ```
 
 ### 4. Statusline (`statusline.sh`)
 
-On-demand status display for Claude Code.
+On-demand status display for OpenClaw.
 
 **Output Format:**
 ```
-▊ Claude Flow V3 ● agentic-flow@alpha  │  ⎇ v3
+▊ Ruflo V3 ● agentic-flow@alpha  │  ⎇ v3
 ─────────────────────────────────────────────────────
 🏗️  DDD Domains    [●●●●●]  5/5    ⚡ 1.0x → 2.49x-7.47x
 🤖 Swarm Agents    ◉ [ 2/15]      🟢 CVE 3/3    💾 0%
@@ -169,7 +169,7 @@ SQLite provides **10.5x faster** metrics synchronization.
 
 ## Hook Configuration
 
-In `.claude/settings.json`:
+In `.openclaw/settings.json`:
 
 ```json
 {
@@ -180,7 +180,7 @@ In `.claude/settings.json`:
           {
             "type": "command",
             "timeout": 3000,
-            "command": ".claude/helpers/daemon-manager.sh start 3 30"
+            "command": ".openclaw/helpers/daemon-manager.sh start 3 30"
           }
         ]
       }
@@ -191,7 +191,7 @@ In `.claude/settings.json`:
           {
             "type": "command",
             "timeout": 2000,
-            "command": ".claude/helpers/daemon-manager.sh stop"
+            "command": ".openclaw/helpers/daemon-manager.sh stop"
           }
         ]
       }
@@ -199,7 +199,7 @@ In `.claude/settings.json`:
   },
   "statusLine": {
     "type": "command",
-    "command": "/workspaces/claude-flow/.claude/statusline.sh"
+    "command": "/workspaces/claude-flow/.openclaw/statusline.sh"
   }
 }
 ```
@@ -208,11 +208,11 @@ In `.claude/settings.json`:
 
 | File | Purpose |
 |------|---------|
-| `.claude/helpers/daemon-manager.sh` | Daemon lifecycle management |
-| `.claude/helpers/metrics-db.mjs` | SQLite metrics engine |
-| `.claude/helpers/swarm-monitor.sh` | Process detection |
-| `.claude/helpers/sync-v3-metrics.sh` | Legacy bash sync (deprecated) |
-| `.claude/statusline.sh` | Status display |
+| `.openclaw/helpers/daemon-manager.sh` | Daemon lifecycle management |
+| `.openclaw/helpers/metrics-db.mjs` | SQLite metrics engine |
+| `.openclaw/helpers/swarm-monitor.sh` | Process detection |
+| `.openclaw/helpers/sync-v3-metrics.sh` | Legacy bash sync (deprecated) |
+| `.openclaw/statusline.sh` | Status display |
 | `.claude-flow/metrics.db` | SQLite database |
 | `.claude-flow/metrics/*.json` | Exported JSON (compatibility) |
 | `.claude-flow/pids/*.pid` | Daemon PID files |
@@ -251,7 +251,7 @@ cat .claude-flow/logs/daemon.log
 cat .claude-flow/logs/metrics-daemon.log
 
 # Manual start
-.claude/helpers/daemon-manager.sh start
+`.openclaw/helpers/daemon-manager.sh start
 ```
 
 ### Stale metrics
@@ -260,7 +260,7 @@ cat .claude-flow/logs/metrics-daemon.log
 node .claude/helpers/metrics-db.mjs sync
 
 # Restart daemons
-.claude/helpers/daemon-manager.sh restart
+`.openclaw/helpers/daemon-manager.sh restart
 ```
 
 ### Database corruption

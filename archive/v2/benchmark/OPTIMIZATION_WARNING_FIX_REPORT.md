@@ -14,7 +14,7 @@ The "Optimizations not available" warning has been successfully eliminated by im
 - The warning appeared every time the benchmark engine was imported
 
 ### Solution Implemented
-1. **Created Real Optimization Module**: `/workspaces/claude-code-flow/benchmark/src/swarm_benchmark/optimization/`
+1. **Created Real Optimization Module**: `/workspaces/openclaw-flow/benchmark/src/swarm_benchmark/optimization/`
 2. **Fixed Import Path**: Updated `optimized_benchmark_engine.py` to use local optimization module
 3. **Implemented Actual Optimizations**: Not just stubs, but real performance enhancements
 
@@ -72,12 +72,12 @@ Cache hit rate:   14.29% (eliminates redundant work)
 ## 📁 Files Created/Modified
 
 ### New Files:
-- `/workspaces/claude-code-flow/benchmark/src/swarm_benchmark/optimization/__init__.py`
-- `/workspaces/claude-code-flow/benchmark/src/swarm_benchmark/optimization/engine.py`
-- `/workspaces/claude-code-flow/benchmark/examples/optimization_demo.py`
+- `/workspaces/openclaw-flow/benchmark/src/swarm_benchmark/optimization/__init__.py`
+- `/workspaces/openclaw-flow/benchmark/src/swarm_benchmark/optimization/engine.py`
+- `/workspaces/openclaw-flow/benchmark/examples/optimization_demo.py`
 
 ### Modified Files:
-- `/workspaces/claude-code-flow/benchmark/src/swarm_benchmark/core/optimized_benchmark_engine.py`
+- `/workspaces/openclaw-flow/benchmark/src/swarm_benchmark/core/optimized_benchmark_engine.py`
   - Fixed import path from `src.swarm.optimizations` to `..optimization`
   - Removed sys.path manipulation
   - Now imports successfully without warnings

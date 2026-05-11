@@ -1,6 +1,6 @@
 /**
  * Real Token Usage Tracking for Claude API Calls
- * Tracks actual token consumption from Claude Code interactions
+ * Tracks actual token consumption from OpenClaw interactions
  */
 
 import { promises as fs } from 'fs';
@@ -141,7 +141,7 @@ export async function getRealTokenUsage(agentFilter = 'all') {
   
   // If no data tracked yet, check for Claude API logs
   if (tokenCache.totals.total === 0) {
-    // Try to read from Claude Code's own tracking if available
+    // Try to read from OpenClaw's own tracking if available
     const claudeTokens = await getClaudeCodeTokenUsage();
     if (claudeTokens) {
       return claudeTokens;
@@ -176,7 +176,7 @@ export async function getRealTokenUsage(agentFilter = 'all') {
 }
 
 /**
- * Try to get token usage from Claude Code's own tracking
+ * Try to get token usage from OpenClaw's own tracking
  */
 async function getClaudeCodeTokenUsage() {
   try {
@@ -200,7 +200,7 @@ async function getClaudeCodeTokenUsage() {
             input: tokens.input || tokens.prompt_tokens || 0,
             output: tokens.output || tokens.completion_tokens || 0,
             byAgent: {},
-            source: 'claude-code'
+            source: 'openclaw'
           };
         }
       } catch (e) {
@@ -248,7 +248,7 @@ export function generateOptimizationSuggestions(tokenData) {
   
   // Check if there's actual data
   if (tokenData.total === 0) {
-    return ['No token usage data available. Start using Claude Code to track tokens.'];
+    return ['No token usage data available. Start using OpenClaw to track tokens.'];
   }
   
   // Analyze input/output ratio

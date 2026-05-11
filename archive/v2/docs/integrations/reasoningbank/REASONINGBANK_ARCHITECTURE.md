@@ -4,7 +4,7 @@
 
 ```
 ┌──────────────────────────────────────────────────────────────────┐
-│                     claude-flow v2.7.0                           │
+│                     ruflo v2.7.0                           │
 │                                                                  │
 │  ┌────────────────┐         ┌─────────────────┐                │
 │  │  CLI Layer     │────────▶│  Agent Executor │                │
@@ -79,7 +79,7 @@
                            │
                            ▼
 ┌──────────────────────────────────────────────────────────────────┐
-│  claude-flow agent run coder "Build REST API" --enable-memory   │
+│  ruflo agent run coder "Build REST API" --enable-memory   │
 └──────────────────────────┬───────────────────────────────────────┘
                            │
                            ▼
@@ -288,9 +288,9 @@ For each candidate memory:
                          │
                          ▼
 ┌────────────────────────────────────────────────────────────────┐
-│  Layer 2: User Configuration (~/.claude/settings.json)        │
+│  Layer 2: User Configuration (~/.openclaw/settings.json)        │
 │  {                                                             │
-│    "claude-flow": {                                            │
+│    "ruflo": {                                            │
 │      "execution": {                                            │
 │        "reasoningbank": {                                      │
 │          "enabled": true,                                      │
@@ -325,7 +325,7 @@ Resolution Order:
 3. If not set, use defaults
 
 Example:
-  $ claude-flow agent run coder "task" --memory-k 5
+  $ ruflo agent run coder "task" --memory-k 5
 
   Resolved config:
   {
@@ -471,5 +471,5 @@ Import from backup if available
 5. Test and iterate
 
 **Questions?**
-- GitHub: https://github.com/ruvnet/claude-code-flow/issues
+- GitHub: https://github.com/ruvnet/openclaw-flow/issues
 - Discord: https://discord.gg/claude-flow

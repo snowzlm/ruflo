@@ -412,7 +412,7 @@ export class ValidationTestRunner {
   async createTestFiles() {
     try {
       await fs.mkdir(`${this.workingDir}/test-temp`, { recursive: true });
-      await fs.writeFile(`${this.workingDir}/test-temp/CLAUDE.md`, '# Test CLAUDE.md', 'utf8');
+      await fs.writeFile(`${this.workingDir}/test-temp/OPENCLAW.md`, '# Test OPENCLAW.md', 'utf8');
       await fs.writeFile(`${this.workingDir}/test-temp/memory-bank.md`, '# Test Memory Bank', 'utf8');
     } catch {
       // Test files creation failed - not critical for testing

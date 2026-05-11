@@ -2,7 +2,7 @@
 
 ## ✅ Implementation Complete
 
-Three new modification hooks have been added to Claude Flow that leverage Claude Code v2.0.10+ PreToolUse input modification capability.
+Three new modification hooks have been added to Ruflo that leverage OpenClaw v2.0.10+ PreToolUse input modification capability.
 
 ## 🎯 New Hooks
 
@@ -16,7 +16,7 @@ Three new modification hooks have been added to Claude Flow that leverage Claude
 
 **Example:**
 ```bash
-echo '{"tool_input":{"command":"rm test.txt"}}' | npx claude-flow@alpha hooks modify-bash
+echo '{"tool_input":{"command":"rm test.txt"}}' | ruflo hooks modify-bash
 # Output: {"tool_input":{"command":"rm -i test.txt"}, "modification_notes":"[Safety: Added -i flag]"}
 ```
 
@@ -33,7 +33,7 @@ echo '{"tool_input":{"command":"rm test.txt"}}' | npx claude-flow@alpha hooks mo
 
 **Example:**
 ```bash
-echo '{"tool_input":{"file_path":"test.js"}}' | npx claude-flow@alpha hooks modify-file
+echo '{"tool_input":{"file_path":"test.js"}}' | ruflo hooks modify-file
 # Output: {"tool_input":{"file_path":"src/test.js"}, "modification_notes":"[Organization: Moved to /src/]"}
 ```
 
@@ -42,11 +42,11 @@ echo '{"tool_input":{"file_path":"test.js"}}' | npx claude-flow@alpha hooks modi
 **Features:**
 - **Conventional Commits**: Auto-adds type prefixes (`[feat]`, `[fix]`, `[docs]`, etc.)
 - **Ticket Extraction**: Extracts JIRA tickets from branch names (e.g., `feature/PROJ-123` → `(PROJ-123)`)
-- **Co-Author**: Adds Claude Flow co-author footer
+- **Co-Author**: Adds Ruflo co-author footer
 
 **Example:**
 ```bash
-echo '{"tool_input":{"command":"git commit -m \"fix auth bug\""}}' | npx claude-flow@alpha hooks modify-git-commit
+echo '{"tool_input":{"command":"git commit -m \"fix auth bug\""}}' | ruflo hooks modify-git-commit
 # Output: Formats as "[fix] fix auth bug" with co-author
 ```
 
@@ -54,7 +54,7 @@ echo '{"tool_input":{"command":"git commit -m \"fix auth bug\""}}' | npx claude-
 
 Both hook configuration files have been updated:
 
-### `.claude-plugin/hooks/hooks.json`
+### `.openclaw-plugin/hooks/hooks.json`
 ```json
 {
   "hooks": {
@@ -63,14 +63,14 @@ Both hook configuration files have been updated:
         "matcher": "Bash",
         "hooks": [{
           "type": "command",
-          "command": "cat | npx claude-flow@alpha hooks modify-bash"
+          "command": "cat | ruflo hooks modify-bash"
         }]
       },
       {
         "matcher": "Write|Edit|MultiEdit",
         "hooks": [{
           "type": "command",
-          "command": "cat | npx claude-flow@alpha hooks modify-file"
+          "command": "cat | ruflo hooks modify-file"
         }]
       }
     ]
@@ -78,7 +78,7 @@ Both hook configuration files have been updated:
 }
 ```
 
-### `.claude/settings.json`
+### `.openclaw/settings.json`
 Same configuration applied for local development.
 
 ## 🧪 Testing
@@ -100,7 +100,7 @@ echo '{"tool_input":{"file_path":"test.js"}}' | ./bin/claude-flow hooks modify-f
 
 # Test git commit formatting
 echo '{"tool_input":{"command":"git commit -m \"fix bug\""}}' | ./bin/claude-flow hooks modify-git-commit
-# ✅ Outputs: [fix] fix bug with Co-Authored-By: claude-flow <noreply@ruv.io>
+# ✅ Outputs: [fix] fix bug with Co-Authored-By: ruflo <noreply@ruv.io>
 
 # Test help display (no input)
 ./bin/claude-flow hooks modify-bash
@@ -111,20 +111,20 @@ echo '{"tool_input":{"command":"git commit -m \"fix bug\""}}' | ./bin/claude-flo
 
 ## 🚀 Usage
 
-The hooks are automatically invoked by Claude Code v2.0.10+ when using the PreToolUse feature.
+The hooks are automatically invoked by OpenClaw v2.0.10+ when using the PreToolUse feature.
 
 To use manually:
 ```bash
-npx claude-flow@alpha hooks modify-bash  # For bash commands
-npx claude-flow@alpha hooks modify-file  # For file operations
-npx claude-flow@alpha hooks modify-git-commit  # For git commits
+ruflo hooks modify-bash  # For bash commands
+ruflo hooks modify-file  # For file operations
+ruflo hooks modify-git-commit  # For git commits
 ```
 
 ## 📖 Help
 
 View all hooks:
 ```bash
-npx claude-flow@alpha hooks --help
+ruflo hooks --help
 ```
 
 ## 🎉 Benefits
@@ -136,11 +136,11 @@ npx claude-flow@alpha hooks --help
 
 ## 📦 Version
 
-- **Claude Flow**: 2.5.0-alpha.140
-- **Requires**: Claude Code >= v2.0.10
+- **Ruflo**: 2.5.0-alpha.140
+- **Requires**: OpenClaw >= v2.0.10
 - **Feature**: PreToolUse input modification
 
 ---
 
-**Author**: claude-flow
-**Co-Author**: claude-flow <noreply@ruv.io>
+**Author**: ruflo
+**Co-Author**: ruflo <noreply@ruv.io>

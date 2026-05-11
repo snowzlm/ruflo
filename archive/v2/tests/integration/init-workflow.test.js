@@ -39,8 +39,8 @@ describe('Init Workflow Integration Tests', () => {
 
       // Verify core files were created
       const coreFiles = [
-        'CLAUDE.md',
-        '.claude/settings.json',
+        'OPENCLAW.md',
+        '.openclaw/settings.json',
         '.mcp.json',
         'memory/claude-flow@alpha-data.json',
       ];
@@ -56,7 +56,7 @@ describe('Init Workflow Integration Tests', () => {
         'memory/sessions',
         'coordination',
         '.claude',
-        '.claude/commands',
+        '.openclaw/commands',
         '.swarm',
         '.hive-mind',
       ];
@@ -69,20 +69,20 @@ describe('Init Workflow Integration Tests', () => {
 
     it('should handle force overwrite correctly', async () => {
       // Create initial files
-      await fs.writeFile('CLAUDE.md', '# Initial content');
+      await fs.writeFile('OPENCLAW.md', '# Initial content');
 
       // Run init without force (should skip)
       await initCommand([], {});
 
-      const contentBefore = await fs.readFile('CLAUDE.md', 'utf8');
+      const contentBefore = await fs.readFile('OPENCLAW.md', 'utf8');
       expect(contentBefore).toBe('# Initial content');
 
       // Run init with force (should overwrite)
       await initCommand(['--force'], { force: true });
 
-      const contentAfter = await fs.readFile('CLAUDE.md', 'utf8');
+      const contentAfter = await fs.readFile('OPENCLAW.md', 'utf8');
       expect(contentAfter).not.toBe('# Initial content');
-      expect(contentAfter).toContain('Claude Code Configuration');
+      expect(contentAfter).toContain('OpenClaw Configuration');
     });
 
     it('should create valid JSON configuration files', async () => {
@@ -95,7 +95,7 @@ describe('Init Workflow Integration Tests', () => {
       expect(mcpData.mcpServers).toHaveProperty('claude-flow@alpha');
 
       // Test settings configuration
-      const settingsConfig = await fs.readFile('.claude/settings.json', 'utf8');
+      const settingsConfig = await fs.readFile('.openclaw/settings.json', 'utf8');
       const settingsData = JSON.parse(settingsConfig);
       expect(settingsData).toHaveProperty('hooks');
 
@@ -120,11 +120,11 @@ describe('Init Workflow Integration Tests', () => {
       await initCommand(['--roo'], { roo: true });
 
       // Verify SPARC-specific content
-      const claudeMd = await fs.readFile('CLAUDE.md', 'utf8');
+      const claudeMd = await fs.readFile('OPENCLAW.md', 'utf8');
       expect(claudeMd).toContain('SPARC');
 
       // Verify slash commands directory exists
-      const stat = await fs.stat('.claude/commands');
+      const stat = await fs.stat('.openclaw/commands');
       expect(stat.isDirectory()).toBe(true);
     });
   });
@@ -146,8 +146,8 @@ describe('Init Workflow Integration Tests', () => {
         expect(stat.isDirectory()).toBe(true);
 
         // Verify core files in each project
-        const claudeMd = await fs.readFile(`${project}/CLAUDE.md`, 'utf8');
-        expect(claudeMd).toContain('Claude Code Configuration');
+        const claudeMd = await fs.readFile(`${project}/OPENCLAW.md`, 'utf8');
+        expect(claudeMd).toContain('OpenClaw Configuration');
       }
     });
 
@@ -189,7 +189,7 @@ describe('Init Workflow Integration Tests', () => {
       await initCommand([], {});
 
       // Corrupt a file to trigger validation failure
-      await fs.writeFile('CLAUDE.md', 'invalid content');
+      await fs.writeFile('OPENCLAW.md', 'invalid content');
 
       const validationResult = await runFullValidation(TEST_DIR, {
         postInit: true,
@@ -237,14 +237,14 @@ describe('Init Workflow Integration Tests', () => {
       await initCommand([], {});
 
       // Verify files were created with correct paths
-      const stat = await fs.stat('.claude/commands');
+      const stat = await fs.stat('.openclaw/commands');
       expect(stat.isDirectory()).toBe(true);
     });
 
     it('should handle different line endings', async () => {
       await initCommand([], {});
 
-      const claudeMd = await fs.readFile('CLAUDE.md', 'utf8');
+      const claudeMd = await fs.readFile('OPENCLAW.md', 'utf8');
       // Should not contain mixed line endings
       expect(claudeMd.includes('\r\n')).toBe(false);
     });
@@ -313,7 +313,7 @@ describe('Init Workflow Integration Tests', () => {
 
       await initCommand([], {});
 
-      const stat = await fs.stat('CLAUDE.md');
+      const stat = await fs.stat('OPENCLAW.md');
       expect(stat.isFile()).toBe(true);
     });
 
@@ -324,13 +324,13 @@ describe('Init Workflow Integration Tests', () => {
       await initCommand([], {});
 
       // Try to make a file readonly and then overwrite
-      await fs.chmod('CLAUDE.md', 0o444);
+      await fs.chmod('OPENCLAW.md', 0o444);
 
       try {
         await initCommand(['--force'], { force: true });
       } finally {
         // Restore permissions for cleanup
-        await fs.chmod('CLAUDE.md', 0o644);
+        await fs.chmod('OPENCLAW.md', 0o644);
       }
     });
   });

@@ -7,13 +7,13 @@
 
 ## Executive Summary
 
-Successfully integrated AgentDB v1.3.9 into claude-flow with **100% backward compatibility**. All existing memory operations continue to work unchanged while adding powerful vector search capabilities.
+Successfully integrated AgentDB v1.3.9 into ruflo with **100% backward compatibility**. All existing memory operations continue to work unchanged while adding powerful vector search capabilities.
 
 ## Implementation Overview
 
 ### Components Implemented
 
-#### 1. **AgentDBMemoryAdapter** (`/workspaces/claude-code-flow/src/memory/agentdb-adapter.js`)
+#### 1. **AgentDBMemoryAdapter** (`/workspaces/openclaw-flow/src/memory/agentdb-adapter.js`)
 - **Lines of Code**: 387
 - **Purpose**: Extends EnhancedMemory with vector capabilities
 - **Key Features**:
@@ -23,7 +23,7 @@ Successfully integrated AgentDB v1.3.9 into claude-flow with **100% backward com
   - New vector search methods: `vectorSearch()`, `storeWithEmbedding()`, `semanticRetrieve()`
   - Enhanced knowledge management with embeddings
 
-#### 2. **AgentDBBackend** (`/workspaces/claude-code-flow/src/memory/backends/agentdb.js`)
+#### 2. **AgentDBBackend** (`/workspaces/openclaw-flow/src/memory/backends/agentdb.js`)
 - **Lines of Code**: 318
 - **Purpose**: Direct AgentDB v1.3.9 integration layer
 - **Key Features**:
@@ -33,7 +33,7 @@ Successfully integrated AgentDB v1.3.9 into claude-flow with **100% backward com
   - Batch import/export
   - Statistics and optimization
 
-#### 3. **LegacyDataBridge** (`/workspaces/claude-code-flow/src/memory/migration/legacy-bridge.js`)
+#### 3. **LegacyDataBridge** (`/workspaces/openclaw-flow/src/memory/migration/legacy-bridge.js`)
 - **Lines of Code**: 291
 - **Purpose**: Safe migration utilities
 - **Key Features**:
@@ -43,12 +43,12 @@ Successfully integrated AgentDB v1.3.9 into claude-flow with **100% backward com
   - Progress tracking and reporting
   - Smart embedding detection
 
-#### 4. **Updated Memory Index** (`/workspaces/claude-code-flow/src/memory/index.js`)
+#### 4. **Updated Memory Index** (`/workspaces/openclaw-flow/src/memory/index.js`)
 - **Changes**: Added exports and createMemory enhancement
 - **Backward Compatibility**: All existing imports work unchanged
 - **New Exports**: `AgentDBMemoryAdapter`, `AgentDBBackend`, `LegacyDataBridge`
 
-#### 5. **Documentation** (`/workspaces/claude-code-flow/src/memory/README-AGENTDB.md`)
+#### 5. **Documentation** (`/workspaces/openclaw-flow/src/memory/README-AGENTDB.md`)
 - **Lines of Code**: 400+
 - **Purpose**: Comprehensive integration guide
 - **Coverage**: Usage, migration, troubleshooting, examples
@@ -251,19 +251,19 @@ const results = await memory.vectorSearch(queryVector, { k: 10 });
 
 ### Pre-Task Hook
 ```bash
-npx claude-flow@alpha hooks pre-task \
+ruflo hooks pre-task \
   --description "Agent 1: Implementing AgentDB v1.3.9 core integration"
 ```
 
 ### Post-Task Hook
 ```bash
-npx claude-flow@alpha hooks post-task \
+ruflo hooks post-task \
   --task-id "task-1761196356300-ic918qh9k"
 ```
 
 ### Notification
 ```bash
-npx claude-flow@alpha hooks notify \
+ruflo hooks notify \
   --message "Agent 1: AgentDB v1.3.9 integration complete - 100% backward compatible"
 ```
 
@@ -313,9 +313,9 @@ npx claude-flow@alpha hooks notify \
 
 ## References
 
-- **Implementation Plan**: `/workspaces/claude-code-flow/docs/AGENTDB_INTEGRATION_PLAN.md`
+- **Implementation Plan**: `/workspaces/openclaw-flow/docs/AGENTDB_INTEGRATION_PLAN.md`
 - **AgentDB Docs**: https://github.com/ruvnet/agentdb
-- **Memory System**: `/workspaces/claude-code-flow/src/memory/`
+- **Memory System**: `/workspaces/openclaw-flow/src/memory/`
 
 ## Conclusion
 

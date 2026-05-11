@@ -397,7 +397,7 @@ const hooks: Partial<Record<HookEvent, HookCallbackMatcher[]>> = {
 // src/security/swarm-permission-manager.ts
 export class SwarmPermissionManager {
   async configurePermissionHierarchy() {
-    // Level 1: User-level (~/.claude/settings.json)
+    // Level 1: User-level (~/.openclaw/settings.json)
     // Most restrictive - applies to all projects
     await this.updatePermissions({
       type: 'addRules',
@@ -505,7 +505,7 @@ Replace stdio-based MCP transport with in-process SDK server for **ZERO IPC over
 
 ```typescript
 // src/mcp/claude-flow-swarm-server.ts
-import { createSdkMcpServer, tool } from '@anthropic-ai/claude-code/sdk';
+import { createSdkMcpServer, tool } from '@anthropic-ai/openclaw/sdk';
 import { z } from 'zod';
 import { SwarmCoordinator } from '../swarm/coordinator';
 import { SwarmMemory } from '../swarm/memory';

@@ -7,7 +7,7 @@ This guide shows how to leverage the Domain Expert ReasoningBank model for exper
 ### 1. Test the Model
 
 ```bash
-cd /workspaces/claude-code-flow/docs/reasoningbank/models/domain-expert
+cd /workspaces/openclaw-flow/docs/reasoningbank/models/domain-expert
 
 # Query the database directly
 sqlite3 memory.db "SELECT problem, solution, confidence FROM patterns WHERE domain = 'DevOps & Infrastructure' LIMIT 1;"
@@ -382,9 +382,9 @@ sqlite3 memory.db.backup "SELECT COUNT(*) FROM patterns;" | head -1
 
 ## Support & Feedback
 
-- **Issues**: Report bugs or request features at https://github.com/ruvnet/claude-flow/issues
-- **Documentation**: https://github.com/ruvnet/claude-flow
-- **Community**: Join the Claude Flow Discord
+- **Issues**: Report bugs or request features at https://github.com/snowzlm/ruflo/issues
+- **Documentation**: https://github.com/snowzlm/ruflo
+- **Community**: Join the Ruflo Discord
 
 ---
 

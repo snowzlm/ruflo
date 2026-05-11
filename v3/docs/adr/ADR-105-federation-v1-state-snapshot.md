@@ -43,7 +43,7 @@ Single source of truth for "where is federation today, what works, what's deferr
 |---|---|---|
 | `@claude-flow/plugin-agent-federation` | `alpha` | `1.0.0-alpha.9` |
 | `@claude-flow/cli` | `alpha`/`latest`/`v3alpha` | `3.7.0-alpha.20` |
-| `claude-flow` | `alpha`/`latest`/`v3alpha` | `3.7.0-alpha.20` |
+| `ruflo` | `alpha`/`latest`/`v3alpha` | `3.7.0-alpha.20` |
 | `ruflo` | `alpha`/`latest`/`v3alpha` | `3.7.0-alpha.20` |
 | `agentic-flow` (companion fix) | `fix` | `2.0.12-fix.2` (until [ruvnet/agentic-flow#153](https://github.com/ruvnet/agentic-flow/pull/153) merges) |
 

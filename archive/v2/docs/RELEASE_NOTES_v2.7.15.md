@@ -39,7 +39,7 @@ This point release updates critical dependencies to their latest versions, bring
 ## 🔧 Fixes
 
 ### Memory Command Fix
-**Issue:** `npx claude-flow memory status` failed with "Cannot find package 'onnxruntime-node'"
+**Issue:** `npx ruflo memory status` failed with "Cannot find package 'onnxruntime-node'"
 
 **Resolution:**
 - ✅ Added `onnxruntime-node` to `optionalDependencies`
@@ -191,8 +191,8 @@ onnxruntime-node@1.23.0 ✅ (optional)
 
 ### Migration Notes
 - Memory commands work with local installation
-- Use `node_modules/.bin/claude-flow` instead of `npx claude-flow` for memory commands
-- Or use MCP tools: `mcp__claude-flow__memory_usage()`
+- Use `node_modules/.bin/claude-flow` instead of `npx ruflo` for memory commands
+- Or use MCP tools: `mcp__ruflo__memory_usage()`
 
 ---
 
@@ -214,13 +214,13 @@ onnxruntime-node@1.23.0 ✅ (optional)
 npm run build:esm
 
 # Agent Booster
-npx claude-flow agent booster benchmark
+npx ruflo agent booster benchmark
 
 # Memory
 node_modules/.bin/claude-flow memory stats
 
 # MCP
-# Via Claude Code:
+# Via OpenClaw:
 mcp__ruv-swarm__swarm_status()
 ```
 
@@ -288,14 +288,14 @@ mcp__ruv-swarm__swarm_status()
 
 ## 👥 Contributors
 
-- Claude Code (Claude Sonnet 4.5) - Dependency updates, testing, documentation
+- OpenClaw (Claude Sonnet 4.5) - Dependency updates, testing, documentation
 
 ---
 
 ## 📞 Support
 
-**Documentation:** https://github.com/ruvnet/claude-flow
-**Issues:** https://github.com/ruvnet/claude-flow/issues
+**Documentation:** https://github.com/snowzlm/ruflo
+**Issues:** https://github.com/snowzlm/ruflo/issues
 **Discord:** https://discord.agentics.org
 
 ---
@@ -322,7 +322,7 @@ mcp__ruv-swarm__swarm_status()
 
 ---
 
-**Release Manager:** Claude Code
+**Release Manager:** OpenClaw
 **QA Status:** ✅ VALIDATED
 **Production Ready:** ✅ YES
 **Recommended Update:** ✅ YES (Low risk, high benefit)

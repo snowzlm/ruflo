@@ -6,12 +6,12 @@ export async function createDirectoryStructure(): Promise<void> {
   // Define directory structure
   const directories = [
     '.claude',
-    '.claude/commands',
-    '.claude/commands/swarm',
-    '.claude/commands/sparc',
-    '.claude/logs',
-    '.claude/memory',
-    '.claude/configs',
+    '.openclaw/commands',
+    '.openclaw/commands/swarm',
+    '.openclaw/commands/sparc',
+    '.openclaw/logs',
+    '.openclaw/memory',
+    '.openclaw/configs',
     'memory',
     'memory/agents',
     'memory/sessions',

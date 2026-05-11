@@ -259,22 +259,22 @@ Test 2: Check command format
 
 ✅ **Agent Listing**
 ```bash
-claude-flow agent agents  # Lists all 66+ available agents
+ruflo agent agents  # Lists all 66+ available agents
 ```
 
 ✅ **Agent Execution** (with valid API keys)
 ```bash
 # Anthropic (highest quality)
-claude-flow agent run coder "Build REST API" --provider anthropic
+ruflo agent run coder "Build REST API" --provider anthropic
 
 # OpenRouter (99% cost savings)
-claude-flow agent run researcher "AI trends" --provider openrouter
+ruflo agent run researcher "AI trends" --provider openrouter
 
 # ONNX (local, free, private)
-claude-flow agent run reviewer "Code audit" --provider onnx
+ruflo agent run reviewer "Code audit" --provider onnx
 
 # Gemini (free tier)
-claude-flow agent run planner "Project plan" --provider gemini
+ruflo agent run planner "Project plan" --provider gemini
 ```
 
 ✅ **Provider Configuration**
@@ -341,14 +341,14 @@ npx agentic-flow mcp list            # List MCP tools
 ### Example 1: Quick Agent Execution
 ```bash
 # List available agents
-$ claude-flow agent agents
+$ ruflo agent agents
 
 # Run coder agent with Anthropic
-$ claude-flow agent run coder "Create a user authentication system" \
+$ ruflo agent run coder "Create a user authentication system" \
   --provider anthropic
 
 # Run with OpenRouter for cost savings
-$ claude-flow agent run coder "Create a user authentication system" \
+$ ruflo agent run coder "Create a user authentication system" \
   --provider openrouter \
   --model "meta-llama/llama-3.1-8b-instruct"
 ```
@@ -356,7 +356,7 @@ $ claude-flow agent run coder "Create a user authentication system" \
 ### Example 2: Advanced Configuration
 ```bash
 # Run with custom settings
-$ claude-flow agent run researcher \
+$ ruflo agent run researcher \
   "Research quantum computing trends 2025" \
   --provider anthropic \
   --model claude-sonnet-4-5-20250929 \
@@ -370,13 +370,13 @@ $ claude-flow agent run researcher \
 ### Example 3: Multi-Provider Workflow
 ```bash
 # Step 1: Research with OpenRouter (cheap)
-$ claude-flow agent run researcher "AI trends" --provider openrouter
+$ ruflo agent run researcher "AI trends" --provider openrouter
 
 # Step 2: Code with Anthropic (quality)
-$ claude-flow agent run coder "Implement findings" --provider anthropic
+$ ruflo agent run coder "Implement findings" --provider anthropic
 
 # Step 3: Review with ONNX (local/private)
-$ claude-flow agent run reviewer "Security audit" --provider onnx
+$ ruflo agent run reviewer "Security audit" --provider onnx
 ```
 
 ---
@@ -461,7 +461,7 @@ The agentic-flow execution layer is now **fully functional** and properly aligne
 - ✅ Production use
 - ✅ Real agent execution (with API keys)
 - ✅ Multi-provider workflows
-- ✅ Integration with existing claude-flow features
+- ✅ Integration with existing ruflo features
 
 **The known limitation from v2.6.0-alpha.1 is now resolved in v2.6.0-alpha.2!** 🎉
 

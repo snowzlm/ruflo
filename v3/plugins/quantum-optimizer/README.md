@@ -1,7 +1,7 @@
 # @claude-flow/plugin-quantum-optimizer
 
 [![npm version](https://img.shields.io/npm/v/@claude-flow/plugin-quantum-optimizer.svg)](https://www.npmjs.com/package/@claude-flow/plugin-quantum-optimizer)
-[![license](https://img.shields.io/npm/l/@claude-flow/plugin-quantum-optimizer.svg)](https://github.com/ruvnet/claude-flow/blob/main/LICENSE)
+[![license](https://img.shields.io/npm/l/@claude-flow/plugin-quantum-optimizer.svg)](https://github.com/snowzlm/ruflo/blob/main/LICENSE)
 [![downloads](https://img.shields.io/npm/dm/@claude-flow/plugin-quantum-optimizer.svg)](https://www.npmjs.com/package/@claude-flow/plugin-quantum-optimizer)
 
 An exotic optimization plugin implementing quantum-inspired algorithms including Quantum Annealing simulation, QAOA (Quantum Approximate Optimization Algorithm) emulation, and Grover-inspired search acceleration. The plugin provides dramatic speedups for dependency resolution, optimal scheduling, and constraint satisfaction while running entirely on classical WASM-accelerated hardware.
@@ -17,7 +17,7 @@ npm install @claude-flow/plugin-quantum-optimizer
 ### CLI
 
 ```bash
-npx claude-flow plugins install --name @claude-flow/plugin-quantum-optimizer
+npx ruflo plugins install --name @claude-flow/plugin-quantum-optimizer
 ```
 
 ## Quick Start

@@ -1,8 +1,8 @@
-# Session Persistence in Claude Code
+# Session Persistence in OpenClaw
 
 ## Overview
 
-Claude Code provides sophisticated session persistence that goes beyond simple conversation history. It maintains complete development environment state including background processes, file contexts, permissions, and working directories.
+OpenClaw provides sophisticated session persistence that goes beyond simple conversation history. It maintains complete development environment state including background processes, file contexts, permissions, and working directories.
 
 ## Session Commands
 
@@ -266,7 +266,7 @@ Even if a session is partially corrupted:
 
 ### Auto-Cleanup
 
-Claude Code automatically manages sessions:
+OpenClaw automatically manages sessions:
 - Old sessions pruned after time limit
 - Configurable retention period
 - Automatic compression for large sessions
@@ -333,10 +333,10 @@ The following features have been tested and verified:
 ## Related Documentation
 
 - [Background Commands Guide](./background-commands.md)
-- [Claude Code CLI Reference](https://docs.anthropic.com/claude-code/cli)
+- [OpenClaw CLI Reference](https://docs.anthropic.com/openclaw/cli)
 - [MCP Tools Documentation](./mcp-tools.md)
 
 ---
 
 *Last updated: August 2025*
-*Verified with Claude Code latest version*
+*Verified with OpenClaw latest version*

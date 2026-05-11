@@ -37,7 +37,7 @@ pre_edit_checkpoint() {
         
         # Store metadata
         mkdir -p .claude/checkpoints
-        cat > ".claude/checkpoints/$(date +%s).json" <<EOF
+        cat > ".openclaw/checkpoints/$(date +%s).json" <<EOF
 {
   "branch": "$checkpoint_branch",
   "file": "$file",
@@ -89,7 +89,7 @@ Automatic checkpoint created by Claude
                 # Store metadata
                 mkdir -p .claude/checkpoints
                 local diff_stats=$(git diff HEAD~1 --stat | tr '\\n' ' ' | sed 's/"/\\\\"/g')
-                cat > ".claude/checkpoints/$(date +%s).json" <<EOF
+                cat > ".openclaw/checkpoints/$(date +%s).json" <<EOF
 {
   "tag": "$tag_name",
   "file": "$file",
@@ -142,7 +142,7 @@ git checkout $checkpoint_name
         
         # Store metadata
         mkdir -p .claude/checkpoints
-        cat > ".claude/checkpoints/task-$(date +%s).json" <<EOF
+        cat > ".openclaw/checkpoints/task-$(date +%s).json" <<EOF
 {
   "checkpoint": "$checkpoint_name",
   "task": "$task",
@@ -159,7 +159,7 @@ EOF
 # Function to handle session end with GitHub summary
 session_end_checkpoint() {
     local session_id="session-$(date +%Y%m%d-%H%M%S)"
-    local summary_file=".claude/checkpoints/summary-$session_id.md"
+    local summary_file=".openclaw/checkpoints/summary-$session_id.md"
     
     mkdir -p .claude/checkpoints
     
@@ -297,7 +297,7 @@ async function createGitHubSettingsJson() {
         'Bash(echo *)',
         'Bash(npx claude-flow@alpha *)',
         'Bash(./claude-flow *)',
-        'Bash(./.claude/helpers/*)'
+        'Bash(./.openclaw/helpers/*)'
       ],
       deny: [
         'Bash(rm -rf /)',
@@ -385,7 +385,7 @@ async function createGitHubSettingsJson() {
           hooks: [
             {
               type: 'command',
-              command: '/bin/bash -c \'INPUT=$(cat); CUSTOM=$(echo "$INPUT" | jq -r ".custom_instructions // \"\""); echo "🔄 PreCompact Guidance:"; echo "📋 IMPORTANT: Review CLAUDE.md in project root for:"; echo "   • 54 available agents and concurrent usage patterns"; echo "   • Swarm coordination strategies (hierarchical, mesh, adaptive)"; echo "   • SPARC methodology workflows with batchtools optimization"; echo "   • Critical concurrent execution rules (GOLDEN RULE: 1 MESSAGE = ALL OPERATIONS)"; if [ -n "$CUSTOM" ]; then echo "🎯 Custom compact instructions: $CUSTOM"; fi; echo "✅ Ready for compact operation"\''
+              command: '/bin/bash -c \'INPUT=$(cat); CUSTOM=$(echo "$INPUT" | jq -r ".custom_instructions // \"\""); echo "🔄 PreCompact Guidance:"; echo "📋 IMPORTANT: Review OPENCLAW.md in project root for:"; echo "   • 54 available agents and concurrent usage patterns"; echo "   • Swarm coordination strategies (hierarchical, mesh, adaptive)"; echo "   • SPARC methodology workflows with batchtools optimization"; echo "   • Critical concurrent execution rules (GOLDEN RULE: 1 MESSAGE = ALL OPERATIONS)"; if [ -n "$CUSTOM" ]; then echo "🎯 Custom compact instructions: $CUSTOM"; fi; echo "✅ Ready for compact operation"\''
             }
           ]
         },
@@ -394,7 +394,7 @@ async function createGitHubSettingsJson() {
           hooks: [
             {
               type: 'command',
-              command: '/bin/bash -c \'echo "🔄 Auto-Compact Guidance (Context Window Full):"; echo "📋 CRITICAL: Before compacting, ensure you understand:"; echo "   • All 54 agents available in .claude/agents/ directory"; echo "   • Concurrent execution patterns from CLAUDE.md"; echo "   • Batchtools optimization for 300% performance gains"; echo "   • Swarm coordination strategies for complex tasks"; echo "⚡ Apply GOLDEN RULE: Always batch operations in single messages"; echo "✅ Auto-compact proceeding with full agent context"\''
+              command: '/bin/bash -c \'echo "🔄 Auto-Compact Guidance (Context Window Full):"; echo "📋 CRITICAL: Before compacting, ensure you understand:"; echo "   • All 54 agents available in .claude/agents/ directory"; echo "   • Concurrent execution patterns from OPENCLAW.md"; echo "   • Batchtools optimization for 300% performance gains"; echo "   • Swarm coordination strategies for complex tasks"; echo "⚡ Apply GOLDEN RULE: Always batch operations in single messages"; echo "✅ Auto-compact proceeding with full agent context"\''
             }
           ]
         }

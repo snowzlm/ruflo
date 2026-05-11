@@ -258,7 +258,7 @@ export const agentTools: MCPTool[] = [
         createdAt: agent.createdAt,
         note: 'Agent registered for coordination. Three execution paths: ' +
           '(1) call agent_execute(agentId, prompt) — direct LLM call via Anthropic Messages API (requires ANTHROPIC_API_KEY); ' +
-          '(2) Claude Code Task tool — spawns a real subagent; ' +
+          '(2) OpenClaw Task tool — spawns a real subagent; ' +
           '(3) claude -p — headless background instance.',
       };
 

@@ -5,9 +5,9 @@ Test-driven development with TodoWrite planning and comprehensive testing.
 
 ## Activation
 
-### Option 1: Using MCP Tools (Preferred in Claude Code)
+### Option 1: Using MCP Tools (Preferred in OpenClaw)
 ```javascript
-mcp__claude-flow__sparc_mode {
+mcp__ruflo__sparc_mode {
   mode: "tdd",
   task_description: "shopping cart feature",
   options: {
@@ -20,15 +20,15 @@ mcp__claude-flow__sparc_mode {
 ### Option 2: Using NPX CLI (Fallback when MCP not available)
 ```bash
 # Use when running from terminal or MCP tools unavailable
-npx claude-flow sparc run tdd "shopping cart feature"
+npx ruflo sparc run tdd "shopping cart feature"
 
 # For alpha features
-npx claude-flow@alpha sparc run tdd "shopping cart feature"
+ruflo sparc run tdd "shopping cart feature"
 ```
 
 ### Option 3: Local Installation
 ```bash
-# If claude-flow is installed locally
+# If ruflo is installed locally
 ./claude-flow sparc run tdd "shopping cart feature"
 ```
 

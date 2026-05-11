@@ -2,7 +2,7 @@
   "name": "@claude-flow/cli",
   "version": "3.7.0-alpha.20",
   "type": "module",
-  "description": "Ruflo CLI - Enterprise AI agent orchestration with 60+ specialized agents, swarm coordination, MCP server, self-learning hooks, and vector memory for Claude Code",
+  "description": "Ruflo CLI - Enterprise AI agent orchestration with 60+ specialized agents, swarm coordination, MCP server, self-learning hooks, and vector memory for OpenClaw",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "sideEffects": false,
@@ -11,18 +11,18 @@
     "claude-flow": "./bin/cli.js",
     "claude-flow-mcp": "./bin/mcp-server.js"
   },
-  "homepage": "https://github.com/ruvnet/claude-flow#readme",
+  "homepage": "https://github.com/snowzlm/ruflo#readme",
   "bugs": {
-    "url": "https://github.com/ruvnet/claude-flow/issues"
+    "url": "https://github.com/snowzlm/ruflo/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ruvnet/claude-flow.git",
+    "url": "https://github.com/snowzlm/ruflo.git",
     "directory": "v3/@claude-flow/cli"
   },
   "keywords": [
     "claude",
-    "claude-code",
+    "openclaw",
     "anthropic",
     "ai-agents",
     "multi-agent",

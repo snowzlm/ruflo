@@ -1,23 +1,23 @@
-# API Reference - Claude Flow Benchmark System
+# API Reference - Ruflo Benchmark System
 
 ## Overview
-This document provides comprehensive API documentation for the Claude Flow Benchmark System, including the new CLAUDE.md optimizer, MLE-STAR integration, and advanced metrics collection.
+This document provides comprehensive API documentation for the Ruflo Benchmark System, including the new OPENCLAW.md optimizer, MLE-STAR integration, and advanced metrics collection.
 
 ## Module Structure
 
 ### Core Modules
 - `swarm_benchmark.core` - Core benchmarking functionality
-- `swarm_benchmark.claude_optimizer` - CLAUDE.md configuration optimization
+- `swarm_benchmark.claude_optimizer` - OPENCLAW.md configuration optimization
 - `swarm_benchmark.mle_star` - MLE-STAR ensemble learning integration
 - `swarm_benchmark.automation` - Non-interactive automation systems
 - `swarm_benchmark.advanced_metrics` - Advanced performance metrics
 - `swarm_benchmark.collective` - Collective intelligence benchmarking
 
-## CLAUDE.md Optimizer API
+## OPENCLAW.md Optimizer API
 
 ### ClaudeMdOptimizer
 
-The main class for generating optimized CLAUDE.md configurations.
+The main class for generating optimized OPENCLAW.md configurations.
 
 ```python
 from swarm_benchmark.claude_optimizer import ClaudeMdOptimizer
@@ -43,7 +43,7 @@ generate_optimized_config(
 ) -> str
 ```
 
-Generate an optimized CLAUDE.md configuration for a specific use case.
+Generate an optimized OPENCLAW.md configuration for a specific use case.
 
 **Parameters:**
 - `use_case` (str): Type of development project
@@ -52,7 +52,7 @@ Generate an optimized CLAUDE.md configuration for a specific use case.
 - `performance_targets` (PerformanceTargets): Performance optimization goals
 
 **Returns:**
-- `str`: Complete optimized CLAUDE.md configuration content
+- `str`: Complete optimized OPENCLAW.md configuration content
 
 **Raises:**
 - `ValueError`: If use_case is not supported
@@ -97,10 +97,10 @@ async benchmark_config_effectiveness(
 ) -> BenchmarkMetrics
 ```
 
-Benchmark the effectiveness of a CLAUDE.md configuration.
+Benchmark the effectiveness of a OPENCLAW.md configuration.
 
 **Parameters:**
-- `claude_md_content` (str): The CLAUDE.md configuration to test
+- `claude_md_content` (str): The OPENCLAW.md configuration to test
 - `test_tasks` (List[str]): List of tasks to run for benchmarking
 - `iterations` (int, optional): Number of benchmark iterations. Default: 3
 
@@ -185,7 +185,7 @@ class BenchmarkMetrics:
 
 ### TemplateEngine
 
-Generates CLAUDE.md files from configuration dictionaries.
+Generates OPENCLAW.md files from configuration dictionaries.
 
 ```python
 from swarm_benchmark.claude_optimizer import TemplateEngine
@@ -199,13 +199,13 @@ from swarm_benchmark.claude_optimizer import TemplateEngine
 generate_claude_md(config: Dict[str, Any]) -> str
 ```
 
-Generate a complete CLAUDE.md file from configuration.
+Generate a complete OPENCLAW.md file from configuration.
 
 **Parameters:**
 - `config` (Dict[str, Any]): Configuration dictionary containing all settings
 
 **Returns:**
-- `str`: Complete CLAUDE.md content as string
+- `str`: Complete OPENCLAW.md content as string
 
 **Example:**
 ```python
@@ -224,7 +224,7 @@ claude_md = template_engine.generate_claude_md(config)
 
 ### OptimizationRulesEngine
 
-Apply optimization rules to CLAUDE.md configurations.
+Apply optimization rules to OPENCLAW.md configurations.
 
 ```python
 from swarm_benchmark.claude_optimizer import OptimizationRulesEngine
@@ -396,7 +396,7 @@ The benchmark system provides a comprehensive CLI for running benchmarks and opt
 # Run a basic benchmark
 python -m swarm_benchmark benchmark --task "Create API" --strategy development
 
-# Generate optimized CLAUDE.md
+# Generate optimized OPENCLAW.md
 python -m swarm_benchmark optimize --use-case api_development --output claude.md
 
 # Run performance analysis
@@ -430,7 +430,7 @@ python -m swarm_benchmark optimize [OPTIONS]
 - `--team-size INTEGER`: Team size
 - `--complexity CHOICE`: Project complexity level
 - `--priority CHOICE`: Optimization priority (speed, accuracy, tokens, memory)
-- `--output PATH`: Output file for optimized CLAUDE.md
+- `--output PATH`: Output file for optimized OPENCLAW.md
 
 ##### analyze
 
@@ -439,7 +439,7 @@ python -m swarm_benchmark analyze [OPTIONS]
 ```
 
 **Options:**
-- `--config-file PATH`: CLAUDE.md configuration file
+- `--config-file PATH`: OPENCLAW.md configuration file
 - `--tasks PATH`: File containing test tasks
 - `--iterations INTEGER`: Number of benchmark iterations
 - `--report-format CHOICE`: Output report format (json, html, markdown)
@@ -594,4 +594,4 @@ async def optimize_for_project():
 asyncio.run(optimize_for_project())
 ```
 
-This API reference provides comprehensive documentation for using the Claude Flow Benchmark System's optimization and benchmarking capabilities. For additional examples and advanced usage patterns, see the examples directory and user guides.
+This API reference provides comprehensive documentation for using the Ruflo Benchmark System's optimization and benchmarking capabilities. For additional examples and advanced usage patterns, see the examples directory and user guides.

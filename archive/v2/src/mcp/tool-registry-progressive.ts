@@ -32,16 +32,16 @@ async function getSDK() {
   sdkLoadAttempted = true;
 
   try {
-    const sdk = await import('@anthropic-ai/claude-code/sdk');
+    const sdk = await import('@anthropic-ai/openclaw/sdk');
     const zodModule = await import('zod');
     sdkCache = {
       tool: sdk.tool,
       createSdkMcpServer: sdk.createSdkMcpServer,
       z: zodModule.z,
     };
-    logger.info('Claude Code SDK loaded successfully');
+    logger.info('OpenClaw SDK loaded successfully');
   } catch (error) {
-    logger.info('Claude Code SDK not available, operating without SDK integration');
+    logger.info('OpenClaw SDK not available, operating without SDK integration');
     sdkCache = null;
   }
 

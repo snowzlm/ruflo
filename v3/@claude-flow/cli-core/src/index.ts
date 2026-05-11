@@ -121,7 +121,7 @@ Storage:
 Programmatic use:
   import { JsonMemoryBackend, runMemoryCommand } from '@claude-flow/cli-core';
 
-Track progress: https://github.com/ruvnet/ruflo/issues/1760`);
+Track progress: https://github.com/snowzlm/ruflo/issues/1760`);
     process.exit(0);
   }
 

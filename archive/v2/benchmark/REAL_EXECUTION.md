@@ -1,7 +1,7 @@
-# Real Claude Flow Execution Configuration
+# Real Ruflo Execution Configuration
 
 ## Overview
-The benchmark system is configured to use real claude-flow commands without any simulations.
+The benchmark system is configured to use real ruflo commands without any simulations.
 
 ## Current Status
 
@@ -31,7 +31,7 @@ swarm-benchmark real swarm "Create API" --strategy development
 
 To install Claude CLI:
 ```bash
-npm install -g @anthropic-ai/claude-code
+npm install -g @anthropic-ai/openclaw
 ```
 
 #### Hive-Mind Command
@@ -55,7 +55,7 @@ class RealClaudeFlowExecutor:
 ```
 
 ### Command Execution
-All commands use real claude-flow binary at `/workspaces/claude-code-flow/claude-flow`
+All commands use real ruflo binary at `/workspaces/openclaw-flow/claude-flow`
 
 ## Testing Real Execution
 
@@ -77,7 +77,7 @@ cat ./my-reports/sparc_tdd_*.json
 ## No Simulations
 The system has been updated to:
 - ❌ Remove all simulation/fallback code
-- ✅ Always use real claude-flow commands
+- ✅ Always use real ruflo commands
 - ✅ Report actual command output
 - ✅ Track real execution metrics
 

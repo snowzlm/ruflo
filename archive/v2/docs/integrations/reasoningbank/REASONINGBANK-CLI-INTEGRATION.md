@@ -213,7 +213,7 @@ sqlite3 .swarm/memory.db < src/reasoningbank/migrations/001_reasoningbank_schema
 
 ### Step 3: Configure Hooks (Optional)
 
-Add to `.claude/settings.json`:
+Add to `.openclaw/settings.json`:
 
 ```json
 {

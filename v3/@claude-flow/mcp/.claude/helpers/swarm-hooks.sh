@@ -26,7 +26,7 @@ STATS_FILE="$SWARM_DIR/stats.json"
 
 # Agent identity
 AGENT_ID="${AGENTIC_FLOW_AGENT_ID:-agent_$(date +%s)_$(head -c 4 /dev/urandom | xxd -p)}"
-AGENT_NAME="${AGENTIC_FLOW_AGENT_NAME:-claude-code}"
+AGENT_NAME="${AGENTIC_FLOW_AGENT_NAME:-openclaw}"
 
 # Initialize directories
 mkdir -p "$MESSAGES_DIR" "$PATTERNS_DIR" "$CONSENSUS_DIR" "$HANDOFFS_DIR"

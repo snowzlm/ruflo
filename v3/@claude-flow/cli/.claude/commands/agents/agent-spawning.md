@@ -1,10 +1,10 @@
 # agent-spawning
 
-Guide to spawning agents with Claude Code's Task tool.
+Guide to spawning agents with OpenClaw's Task tool.
 
-## Using Claude Code's Task Tool
+## Using OpenClaw's Task Tool
 
-**CRITICAL**: Always use Claude Code's Task tool for actual agent execution:
+**CRITICAL**: Always use OpenClaw's Task tool for actual agent execution:
 
 ```javascript
 // Spawn ALL agents in ONE message
@@ -17,8 +17,8 @@ Task("Tester", "Create tests...", "tester")
 
 MCP tools are ONLY for coordination:
 ```javascript
-mcp__claude-flow__swarm_init { topology: "mesh" }
-mcp__claude-flow__agent_spawn { type: "researcher" }
+mcp__ruflo__swarm_init { topology: "mesh" }
+mcp__ruflo__agent_spawn { type: "researcher" }
 ```
 
 ## Best Practices

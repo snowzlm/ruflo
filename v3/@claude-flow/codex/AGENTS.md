@@ -4,7 +4,7 @@
 
 ## Project Overview
 
-A Claude Flow powered project
+A Ruflo powered project
 
 **Tech Stack**: TypeScript, Node.js
 **Architecture**: Domain-Driven Design with bounded contexts
@@ -103,7 +103,7 @@ Use `$skill-name` syntax to invoke:
 
 [optional body]
 
-Co-Authored-By: claude-flow <ruv@ruv.net>
+Co-Authored-By: ruflo <ruv@ruv.net>
 ```
 
 Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `chore`
@@ -141,5 +141,5 @@ npx @claude-flow/cli memory search \
 
 ## Links
 
-- Documentation: https://github.com/ruvnet/claude-flow
-- Issues: https://github.com/ruvnet/claude-flow/issues
+- Documentation: https://github.com/snowzlm/ruflo
+- Issues: https://github.com/snowzlm/ruflo/issues

@@ -177,7 +177,7 @@ npx @claude-flow/cli@latest memory init --force  # Overwrite existing
 
 **Locations:**
 - `.swarm/memory.db` - Primary database
-- `.claude/memory.db` - Sync location for Claude Code hooks
+- `.openclaw/memory.db` - Sync location for OpenClaw hooks
 
 ---
 

@@ -1,6 +1,6 @@
-# Claude Flow Benchmark System v2.0
+# Ruflo Benchmark System v2.0
 
-A production-ready benchmarking system for Claude Flow that executes **real commands** and measures **actual performance metrics**.
+A production-ready benchmarking system for Ruflo that executes **real commands** and measures **actual performance metrics**.
 
 ## 🚀 Quick Start
 
@@ -23,7 +23,7 @@ python run_real_benchmarks.py --mode comprehensive
 - **Authentic Metrics**: Token usage, execution time, and resource consumption from real runs
 - **No Simulations**: 100% real execution, no mocks or placeholders
 - **MLE-STAR Integration**: Ensemble learning benchmarks
-- **CLAUDE.md Optimizer**: Generate optimized configurations for specific use cases
+- **OPENCLAW.md Optimizer**: Generate optimized configurations for specific use cases
 
 ## 📊 Supported Commands
 
@@ -54,7 +54,7 @@ benchmark/
 │   ├── scenarios/
 │   │   └── real_benchmarks.py            # Real benchmark scenarios
 │   ├── mle_star/                         # MLE-STAR ensemble integration
-│   ├── claude_optimizer/                 # CLAUDE.md optimization
+│   ├── claude_optimizer/                 # OPENCLAW.md optimization
 │   ├── automation/                       # Batch processing & pipelines
 │   └── advanced_metrics/                 # Token & performance metrics
 ├── examples/                              # Working examples
@@ -87,7 +87,7 @@ python examples/verify_real_integration.py
 ## 📚 Documentation
 
 - [API Reference](docs/api_reference.md)
-- [CLAUDE.md Optimizer Guide](docs/claude_optimizer_guide.md)
+- [OPENCLAW.md Optimizer Guide](docs/claude_optimizer_guide.md)
 - [Real Benchmarks Guide](REAL_BENCHMARKS_README.md)
 - [Architecture Overview](docs/real-benchmark-architecture.md)
 
@@ -115,7 +115,7 @@ print(f"Agents spawned: {result.metrics['agents_spawned']}")
 
 ## 🔧 Configuration
 
-The system uses real Claude Flow commands with these flags:
+The system uses real Ruflo commands with these flags:
 - `--non-interactive`: Automation mode
 - `--output-format stream-json`: Structured output
 - `--dangerously-skip-permissions`: Skip prompts
@@ -123,7 +123,7 @@ The system uses real Claude Flow commands with these flags:
 
 ## 📊 Performance
 
-Validated with Claude Flow v2.0.0-alpha.87:
+Validated with Ruflo v2.0.0-alpha.87:
 - Real token usage tracking
 - Actual execution timing
 - Live resource monitoring
@@ -132,7 +132,7 @@ Validated with Claude Flow v2.0.0-alpha.87:
 ## 🤝 Contributing
 
 This is a production system designed for real benchmarking. All contributions must:
-1. Use real Claude Flow commands
+1. Use real Ruflo commands
 2. Parse actual responses
 3. Measure genuine metrics
 4. Include comprehensive tests

@@ -18,7 +18,7 @@ V3 needs a robust background worker system for:
 4. Git status tracking and swarm coordination
 5. Cache cleanup and resource management
 
-V2 relies on shell scripts (`.claude/helpers/`) which are:
+V2 relies on shell scripts (`.openclaw/helpers/`) which are:
 - Platform-specific (Linux/macOS only)
 - Difficult to test
 - Not integrated with the TypeScript codebase
@@ -42,7 +42,7 @@ A cross-platform worker system with:
 @claude-flow/hooks/src/workers/
 ├── index.ts           # WorkerManager, all worker implementations
 ├── mcp-tools.ts       # MCP tool definitions for workers
-├── session-hook.ts    # Claude Code session integration
+├── session-hook.ts    # OpenClaw session integration
 └── __tests__/         # Comprehensive test suite
     └── workers.test.ts
 ```
@@ -113,7 +113,7 @@ const DEFAULT_THRESHOLDS = {
 
 ### 6. MCP Tools
 
-8 MCP tools for Claude Code integration:
+8 MCP tools for OpenClaw integration:
 - `worker/run` - Run specific worker
 - `worker/status` - Get worker status
 - `worker/alerts` - Get recent alerts
@@ -249,7 +249,7 @@ console.log(formatSessionStartOutput(result));
 
 ## References
 
-- V2 Shell Scripts: `.claude/helpers/worker-manager.sh`
+- V2 Shell Scripts: `.openclaw/helpers/worker-manager.sh`
 - ADR-002: Domain-Driven Design Structure
 - ADR-006: Unified Memory Service
 - ADR-012: MCP Security Features
@@ -285,22 +285,22 @@ In addition to the original system workers, the CLI exposes 12 trigger-based wor
 
 ```bash
 # List all available workers
-claude-flow hooks worker list
+ruflo hooks worker list
 
 # Detect triggers from prompt text (<5ms target)
-claude-flow hooks worker detect --prompt "optimize performance"
+ruflo hooks worker detect --prompt "optimize performance"
 
 # Auto-dispatch when triggers match (confidence ≥0.6)
-claude-flow hooks worker detect --prompt "deep dive" --auto-dispatch --min-confidence 0.6
+ruflo hooks worker detect --prompt "deep dive" --auto-dispatch --min-confidence 0.6
 
 # Manually dispatch a worker
-claude-flow hooks worker dispatch --trigger refactor --context "auth module"
+ruflo hooks worker dispatch --trigger refactor --context "auth module"
 
 # Check worker status
-claude-flow hooks worker status
+ruflo hooks worker status
 
 # Cancel a running worker
-claude-flow hooks worker cancel --id worker_refactor_1_abc123
+ruflo hooks worker cancel --id worker_refactor_1_abc123
 ```
 
 #### MCP Tools Added
@@ -314,7 +314,7 @@ claude-flow hooks worker cancel --id worker_refactor_1_abc123
 
 #### UserPromptSubmit Integration
 
-Workers are automatically triggered via the `UserPromptSubmit` hook in `.claude/settings.json`:
+Workers are automatically triggered via the `UserPromptSubmit` hook in `.openclaw/settings.json`:
 
 ```json
 {
@@ -324,7 +324,7 @@ Workers are automatically triggered via the `UserPromptSubmit` hook in `.claude/
       "hooks": [{
         "type": "command",
         "timeout": 6000,
-        "command": "claude-flow hooks worker detect --prompt \"$USER_PROMPT\" --auto-dispatch --min-confidence 0.6"
+        "command": "ruflo hooks worker detect --prompt \"$USER_PROMPT\" --auto-dispatch --min-confidence 0.6"
       }]
     }]
   }
@@ -352,7 +352,7 @@ Fixed nested subcommand routing in `parser.ts` to support 3 levels of subcommand
 
 ### Daemon Service Architecture
 
-Extended the worker system with a full Node.js daemon service in `@claude-flow/cli/src/services/worker-daemon.ts`. This replaces the shell-based helpers in `.claude/helpers/` with a cross-platform TypeScript implementation.
+Extended the worker system with a full Node.js daemon service in `@claude-flow/cli/src/services/worker-daemon.ts`. This replaces the shell-based helpers in `.openclaw/helpers/` with a cross-platform TypeScript implementation.
 
 #### Key Components
 
@@ -367,22 +367,22 @@ Extended the worker system with a full Node.js daemon service in `@claude-flow/c
 
 ```bash
 # Start the daemon (runs workers on intervals)
-npx claude-flow@v3alpha daemon start
-npx claude-flow@v3alpha daemon start --quiet  # Run once and exit
+ruflo daemon start
+ruflo daemon start --quiet  # Run once and exit
 
 # Stop the daemon
-npx claude-flow@v3alpha daemon stop
+ruflo daemon stop
 
 # Check status and worker history
-npx claude-flow@v3alpha daemon status
+ruflo daemon status
 
 # Manually trigger a worker
-npx claude-flow@v3alpha daemon trigger <worker>
-npx claude-flow@v3alpha daemon trigger map --force
+ruflo daemon trigger <worker>
+ruflo daemon trigger map --force
 
 # Enable/disable workers
-npx claude-flow@v3alpha daemon enable map audit optimize
-npx claude-flow@v3alpha daemon enable --all
+ruflo daemon enable map audit optimize
+ruflo daemon enable --all
 ```
 
 #### Worker Intervals (5 Enabled by Default)
@@ -440,7 +440,7 @@ interface DaemonState {
 hooks.SessionStart = [{
   hooks: [{
     type: 'command',
-    command: 'npx claude-flow@v3alpha daemon start --quiet 2>/dev/null || true',
+    command: 'ruflo daemon start --quiet 2>/dev/null || true',
     timeout: 5000,
     continueOnError: true,
   }]
@@ -458,13 +458,13 @@ hooks.SessionStart = [{
 
 #### Package Integration
 
-The root `package.json` now links `claude-flow@v3alpha` to the V3 CLI:
+The root `package.json` now links `ruflo@v3alpha` to the V3 CLI:
 
 ```json
 {
-  "name": "claude-flow",
+  "name": "ruflo",
   "bin": {
-    "claude-flow": "./v3/@claude-flow/cli/bin/cli.js"
+    "ruflo": "./v3/@claude-flow/cli/bin/cli.js"
   },
   "publishConfig": {
     "access": "public",
@@ -474,9 +474,9 @@ The root `package.json` now links `claude-flow@v3alpha` to the V3 CLI:
 ```
 
 This means all V3 CLI commands (including `daemon`) are available via:
-- `npx claude-flow@v3alpha daemon start`
-- `npx claude-flow@v3alpha daemon status`
-- `npx claude-flow@v3alpha hooks ...`
+- `ruflo daemon start`
+- `ruflo daemon status`
+- `ruflo hooks ...`
 - etc.
 
 ---

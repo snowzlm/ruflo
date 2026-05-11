@@ -3,7 +3,7 @@
  * MCP Server entry point that uses the wrapper by default
  */
 
-import { ClaudeCodeMCPWrapper } from './claude-code-wrapper.js';
+import { ClaudeCodeMCPWrapper } from './openclaw-wrapper.js';
 
 // Check if we should use the legacy server
 const useLegacy =
@@ -23,7 +23,7 @@ async function main() {
       process.exit(1);
     }
   } else {
-    console.error('Starting Claude-Flow MCP with Claude Code wrapper...');
+    console.error('Starting Claude-Flow MCP with OpenClaw wrapper...');
     const wrapper = new ClaudeCodeMCPWrapper();
     await wrapper.run();
   }

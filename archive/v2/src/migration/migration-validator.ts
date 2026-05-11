@@ -11,11 +11,11 @@ import { glob } from 'glob';
 
 export class MigrationValidator {
   private requiredFiles = [
-    '.claude/commands/sparc.md',
-    '.claude/commands/claude-flow-help.md',
-    '.claude/commands/claude-flow-memory.md',
-    '.claude/BATCHTOOLS_GUIDE.md',
-    '.claude/BATCHTOOLS_BEST_PRACTICES.md',
+    '.openclaw/commands/sparc.md',
+    '.openclaw/commands/claude-flow-help.md',
+    '.openclaw/commands/claude-flow-memory.md',
+    '.openclaw/BATCHTOOLS_GUIDE.md',
+    '.openclaw/BATCHTOOLS_BEST_PRACTICES.md',
   ];
 
   private requiredCommands = [
@@ -77,7 +77,7 @@ export class MigrationValidator {
     const commandsPath = path.join(claudePath, 'commands');
     if (!(await fs.pathExists(commandsPath))) {
       check.passed = false;
-      result.errors.push('.claude/commands directory not found');
+      result.errors.push('.openclaw/commands directory not found');
     }
 
     // Check required files
@@ -98,7 +98,7 @@ export class MigrationValidator {
       passed: true,
     };
 
-    const commandsPath = path.join(projectPath, '.claude/commands');
+    const commandsPath = path.join(projectPath, '.openclaw/commands');
 
     if (await fs.pathExists(commandsPath)) {
       for (const command of this.requiredCommands) {
@@ -174,14 +174,14 @@ export class MigrationValidator {
       passed: true,
     };
 
-    // Check CLAUDE.md
-    const claudeMdPath = path.join(projectPath, 'CLAUDE.md');
+    // Check OPENCLAW.md
+    const claudeMdPath = path.join(projectPath, 'OPENCLAW.md');
     if (await fs.pathExists(claudeMdPath)) {
       const content = await fs.readFile(claudeMdPath, 'utf-8');
 
       // Check for SPARC configuration
       if (!content.includes('SPARC')) {
-        result.warnings.push('CLAUDE.md may not include SPARC configuration');
+        result.warnings.push('OPENCLAW.md may not include SPARC configuration');
       }
 
       // Check for key sections
@@ -189,11 +189,11 @@ export class MigrationValidator {
 
       for (const section of requiredSections) {
         if (!content.includes(section)) {
-          result.warnings.push(`CLAUDE.md missing section: ${section}`);
+          result.warnings.push(`OPENCLAW.md missing section: ${section}`);
         }
       }
     } else {
-      result.warnings.push('CLAUDE.md not found');
+      result.warnings.push('OPENCLAW.md not found');
     }
 
     // Check .roomodes

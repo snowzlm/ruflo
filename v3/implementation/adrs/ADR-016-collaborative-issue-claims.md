@@ -538,36 +538,36 @@ const config: AutoAssignConfig = {
 
 ```bash
 # View available issues
-claude-flow issues list --available
+ruflo issues list --available
 
 # Claim an issue (as current user/agent)
-claude-flow issues claim 123
+ruflo issues claim 123
 
 # Release a claim
-claude-flow issues release 123
+ruflo issues release 123
 
 # Request handoff to specific agent/human
-claude-flow issues handoff 123 --to agent:coder-1
-claude-flow issues handoff 123 --to human:alice
+ruflo issues handoff 123 --to agent:coder-1
+ruflo issues handoff 123 --to human:alice
 
 # Update status
-claude-flow issues status 123 --blocked "Waiting for API spec"
-claude-flow issues status 123 --review-requested
+ruflo issues status 123 --blocked "Waiting for API spec"
+ruflo issues status 123 --review-requested
 
 # View who's working on what
-claude-flow issues board
+ruflo issues board
 
 # Work stealing commands
-claude-flow issues stealable              # List stealable issues
-claude-flow issues steal 123              # Steal an issue
-claude-flow issues mark-stealable 123     # Mark your claim as stealable
-claude-flow issues contest 123            # Contest a steal
+ruflo issues stealable              # List stealable issues
+ruflo issues steal 123              # Steal an issue
+ruflo issues mark-stealable 123     # Mark your claim as stealable
+ruflo issues contest 123            # Contest a steal
 
 # Load balancing
-claude-flow issues load                   # View agent load distribution
-claude-flow issues load --agent coder-1   # View specific agent load
-claude-flow issues rebalance              # Trigger swarm rebalancing
-claude-flow issues rebalance --dry-run    # Preview rebalancing without applying
+ruflo issues load                   # View agent load distribution
+ruflo issues load --agent coder-1   # View specific agent load
+ruflo issues rebalance              # Trigger swarm rebalancing
+ruflo issues rebalance --dry-run    # Preview rebalancing without applying
 ```
 
 ## MCP Tools
@@ -661,16 +661,16 @@ const claimTools = [
 
 ```bash
 # Issue claim commands (10 subcommands)
-claude-flow issues list          # List all claims
-claude-flow issues claim <id>    # Claim an issue
-claude-flow issues release <id>  # Release a claim
-claude-flow issues handoff       # Request handoff
-claude-flow issues status <id>   # Get claim status
-claude-flow issues stealable     # List stealable issues
-claude-flow issues steal <id>    # Steal an issue
-claude-flow issues load          # View agent load
-claude-flow issues rebalance     # Rebalance swarm
-claude-flow issues board         # Visual claim board
+ruflo issues list          # List all claims
+ruflo issues claim <id>    # Claim an issue
+ruflo issues release <id>  # Release a claim
+ruflo issues handoff       # Request handoff
+ruflo issues status <id>   # Get claim status
+ruflo issues stealable     # List stealable issues
+ruflo issues steal <id>    # Steal an issue
+ruflo issues load          # View agent load
+ruflo issues rebalance     # Rebalance swarm
+ruflo issues board         # Visual claim board
 ```
 
 ### Key Features

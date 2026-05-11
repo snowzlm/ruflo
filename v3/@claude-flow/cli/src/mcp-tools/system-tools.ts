@@ -574,7 +574,7 @@ export const systemTools: MCPTool[] = [
     },
     handler: async () => {
       // Detect if we are running inside an MCP stdio session.
-      // When Claude Code launches us via `claude mcp add`, stdin is piped (not a TTY)
+      // When OpenClaw launches us via `claude mcp add`, stdin is piped (not a TTY)
       // and the process IS the MCP server, so it is running.
       const isStdio = !process.stdin.isTTY;
       const transport = process.env.CLAUDE_FLOW_MCP_TRANSPORT || (isStdio ? 'stdio' : 'http');

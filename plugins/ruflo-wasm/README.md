@@ -5,7 +5,7 @@ Sandboxed WASM agent creation, execution, and gallery sharing.
 ## Install
 
 ```
-/plugin marketplace add ruvnet/ruflo
+/plugin marketplace add snowzlm/ruflo
 /plugin install ruflo-wasm@ruflo
 ```
 

@@ -5,9 +5,9 @@ Documentation with batch file operations for comprehensive docs.
 
 ## Activation
 
-### Option 1: Using MCP Tools (Preferred in Claude Code)
+### Option 1: Using MCP Tools (Preferred in OpenClaw)
 ```javascript
-mcp__claude-flow__sparc_mode {
+mcp__ruflo__sparc_mode {
   mode: "documenter",
   task_description: "create API documentation",
   options: {
@@ -20,15 +20,15 @@ mcp__claude-flow__sparc_mode {
 ### Option 2: Using NPX CLI (Fallback when MCP not available)
 ```bash
 # Use when running from terminal or MCP tools unavailable
-npx claude-flow sparc run documenter "create API documentation"
+npx ruflo sparc run documenter "create API documentation"
 
 # For alpha features
-npx claude-flow@alpha sparc run documenter "create API documentation"
+ruflo sparc run documenter "create API documentation"
 ```
 
 ### Option 3: Local Installation
 ```bash
-# If claude-flow is installed locally
+# If ruflo is installed locally
 ./claude-flow sparc run documenter "create API documentation"
 ```
 

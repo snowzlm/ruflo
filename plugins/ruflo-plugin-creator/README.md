@@ -1,11 +1,11 @@
 # ruflo-plugin-creator
 
-Scaffold, validate, and publish new Claude Code plugins with proper structure, MCP tool wiring, AND the canonical plugin contract (ADR + smoke + Compatibility + namespace coordination).
+Scaffold, validate, and publish new OpenClaw plugins with proper structure, MCP tool wiring, AND the canonical plugin contract (ADR + smoke + Compatibility + namespace coordination).
 
 ## Install
 
 ```
-/plugin marketplace add ruvnet/ruflo
+/plugin marketplace add snowzlm/ruflo
 /plugin install ruflo-plugin-creator@ruflo
 ```
 
@@ -18,7 +18,7 @@ Scaffold, validate, and publish new Claude Code plugins with proper structure, M
 
 ## Commands
 
-- `/create-plugin` -- Interactively scaffold a new Claude Code plugin
+- `/create-plugin` -- Interactively scaffold a new OpenClaw plugin
 
 ## Skills
 
@@ -36,7 +36,7 @@ Every plugin scaffolded by this plugin inherits the same shape every other plugi
 
 ```
 plugins/<name>/
-├── .claude-plugin/plugin.json     # version, keywords, mcp keyword
+├── .openclaw-plugin/plugin.json     # version, keywords, mcp keyword
 ├── skills/<skill>/SKILL.md         # name + description + allowed-tools (no wildcards)
 ├── commands/<command>.md           # name + description + dispatch logic
 ├── agents/<agent>.md               # name + description + model

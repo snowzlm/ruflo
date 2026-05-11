@@ -52,7 +52,7 @@ export const commandRegistry = new Map();
 export function registerCoreCommands() {
   commandRegistry.set('init', {
     handler: initCommand,
-    description: 'Initialize Claude Code integration files and SPARC development environment',
+    description: 'Initialize OpenClaw integration files and SPARC development environment',
     usage: 'init [--force] [--minimal] [--sparc]',
     examples: [
       'npx claude-flow@latest init --sparc  # Recommended: Full SPARC setup',
@@ -63,7 +63,7 @@ export function registerCoreCommands() {
     details: `
 The --sparc flag creates a complete development environment:
   • .roomodes file containing 17 specialized SPARC modes
-  • CLAUDE.md for AI-readable project instructions
+  • OPENCLAW.md for AI-readable project instructions
   • Pre-configured modes: architect, code, tdd, debug, security, and more
   • Ready for TDD workflows and automated code generation
   
@@ -226,7 +226,7 @@ See 'claude-flow help agent' for full documentation.`,
 OpenRouter Proxy Features:
   • Transparent API translation (Anthropic → OpenRouter)
   • 85-98% cost savings vs direct Anthropic API
-  • Works with Claude Code out of the box
+  • Works with OpenClaw out of the box
   • Zero code changes required
   • Supports all OpenRouter models
 
@@ -240,7 +240,7 @@ Setup:
   2. claude-flow agent config set OPENROUTER_API_KEY sk-or-xxx
   3. claude-flow proxy start --daemon
   4. export ANTHROPIC_BASE_URL=http://localhost:8080
-  5. Use Claude Code normally → automatic savings!
+  5. Use OpenClaw normally → automatic savings!
 
 Commands:
   start        - Start proxy server
@@ -575,7 +575,7 @@ Enables automated preparation & cleanup, performance tracking, and coordination 
     usage: 'hook-safety <command> [options]',
     examples: [
       'hook-safety validate                           # Check for dangerous hook configurations',
-      'hook-safety validate --config ~/.claude/settings.json',
+      'hook-safety validate --config ~/.openclaw/settings.json',
       'hook-safety status                             # View safety status and context',
       'hook-safety reset                              # Reset circuit breakers',
       'hook-safety safe-mode                          # Enable safe mode (skip all hooks)',
@@ -587,7 +587,7 @@ Enables automated preparation & cleanup, performance tracking, and coordination 
   • Make your system unresponsive
 
 Hook Safety commands:
-  • validate: Check Claude Code settings for dangerous patterns
+  • validate: Check OpenClaw settings for dangerous patterns
   • status: Show current safety status and execution context
   • reset: Reset circuit breakers and execution counters  
   • safe-mode: Enable/disable safe mode (skips all hooks)
@@ -598,7 +598,7 @@ SAFE ALTERNATIVES:
   • Use 'claude --skip-hooks' for manual updates
   • Create conditional execution scripts
 
-For more information: https://github.com/ruvnet/claude-flow/issues/166`,
+For more information: https://github.com/snowzlm/ruflo/issues/166`,
   });
 
   commandRegistry.set('migrate-hooks', migrateHooksCommandConfig);
@@ -849,10 +849,10 @@ Options:
     --debug              Enable debug mode
 
 🔄 STREAM CHAINING
-    Chains multiple Claude Code calls with context preservation:
+    Chains multiple OpenClaw calls with context preservation:
     • Step 1 outputs stream-json → Step 2 receives context → Step 3...
     • 100% context preservation between steps
-    • Real execution with Claude Code (not simulated)
+    • Real execution with OpenClaw (not simulated)
 
 🚀 PIPELINES
     analysis  - Analyze → Identify issues → Generate report

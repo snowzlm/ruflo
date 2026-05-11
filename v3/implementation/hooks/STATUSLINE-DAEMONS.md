@@ -8,7 +8,7 @@ The V3 hooks system integrates with background daemons and statusline displays t
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                        Claude Code Session                               │
+│                        OpenClaw Session                               │
 ├─────────────────────────────────────────────────────────────────────────┤
 │  SessionStart Hook                                                       │
 │  └─> .claude/helpers/daemon-manager.sh start                            │
@@ -42,19 +42,19 @@ Central control for all background processes with hooks integration.
 
 ```bash
 # Start all daemons (called by SessionStart hook)
-.claude/helpers/daemon-manager.sh start [swarm_interval] [metrics_interval] [hooks_interval]
+`.openclaw/helpers/daemon-manager.sh start [swarm_interval] [metrics_interval] [hooks_interval]
 
 # Default intervals: swarm=3s, metrics=30s, hooks=60s
-.claude/helpers/daemon-manager.sh start 3 30 60
+`.openclaw/helpers/daemon-manager.sh start 3 30 60
 
 # Stop all daemons (called by SessionEnd hook)
-.claude/helpers/daemon-manager.sh stop
+`.openclaw/helpers/daemon-manager.sh stop
 
 # Restart with new configuration
-.claude/helpers/daemon-manager.sh restart
+`.openclaw/helpers/daemon-manager.sh restart
 
 # Check daemon status
-.claude/helpers/daemon-manager.sh status
+`.openclaw/helpers/daemon-manager.sh status
 ```
 
 **PID Management:**
@@ -142,13 +142,13 @@ Real-time process detection with hooks event emission.
 
 ```bash
 # Single check (returns JSON)
-.claude/helpers/swarm-monitor.sh check
+`.openclaw/helpers/swarm-monitor.sh check
 
 # Continuous monitoring with hooks notification
-.claude/helpers/swarm-monitor.sh monitor [interval]
+`.openclaw/helpers/swarm-monitor.sh monitor [interval]
 
 # Status with hooks metrics
-.claude/helpers/swarm-monitor.sh status --include-hooks
+`.openclaw/helpers/swarm-monitor.sh status --include-hooks
 ```
 
 **Output:**
@@ -196,7 +196,7 @@ node .claude/helpers/hooks-daemon.mjs export --format json
 ### Format
 
 ```
-▊ Claude Flow V3 ● agentic-flow@alpha  │  ⎇ v3
+▊ Ruflo V3 ● agentic-flow@alpha  │  ⎇ v3
 ─────────────────────────────────────────────────────
 🏗️  DDD Domains    [●●●●●]  5/5    ⚡ 1.0x → 2.49x-7.47x
 🤖 Swarm Agents    ◉ [ 5/15]      🟢 CVE 3/3    💾 156 patterns
@@ -214,7 +214,7 @@ node .claude/helpers/hooks-daemon.mjs export --format json
 # Read from SQLite if available
 if [ -f ".claude-flow/metrics.db" ]; then
   METRICS=$(node -e "
-    const db = require('.claude/helpers/metrics-db.mjs');
+    const db = require('.openclaw/helpers/metrics-db.mjs');
     console.log(JSON.stringify(db.getStatuslineData()));
   " 2>/dev/null)
 
@@ -228,7 +228,7 @@ if [ -f ".claude-flow/metrics.db" ]; then
 fi
 
 # Format output
-printf "▊ Claude Flow V3 ● agentic-flow@alpha  │  ⎇ v3\n"
+printf "▊ Ruflo V3 ● agentic-flow@alpha  │  ⎇ v3\n"
 printf "─────────────────────────────────────────────────────\n"
 printf "🏗️  DDD Domains    %s  │  ⚡ Performance targets active\n" "$DDD_PROGRESS"
 printf "🤖 Swarm Agents    ◉ [%2d/15]      🟢 CVE %s    💾 %d patterns\n" "$ACTIVE_AGENTS" "$CVE_STATUS" "$PATTERNS"
@@ -247,7 +247,7 @@ printf "────────────────────────
 
 ## Hook Configuration
 
-### Claude Settings (`~/.claude/settings.json`)
+### Claude Settings (`~/.openclaw/settings.json`)
 
 ```json
 {
@@ -258,7 +258,7 @@ printf "────────────────────────
           {
             "type": "command",
             "timeout": 5000,
-            "command": "/workspaces/claude-flow/.claude/helpers/daemon-manager.sh start 3 30 60"
+            "command": "/workspaces/claude-flow/.openclaw/helpers/daemon-manager.sh start 3 30 60"
           }
         ]
       }
@@ -269,7 +269,7 @@ printf "────────────────────────
           {
             "type": "command",
             "timeout": 3000,
-            "command": "/workspaces/claude-flow/.claude/helpers/daemon-manager.sh stop"
+            "command": "/workspaces/claude-flow/.openclaw/helpers/daemon-manager.sh stop"
           }
         ]
       }
@@ -288,7 +288,7 @@ printf "────────────────────────
   },
   "statusLine": {
     "type": "command",
-    "command": "/workspaces/claude-flow/.claude/statusline.sh"
+    "command": "/workspaces/claude-flow/.openclaw/statusline.sh"
   }
 }
 ```
@@ -444,7 +444,7 @@ SessionEnd Hook Triggered
 
 ```bash
 # Check daemon status
-.claude/helpers/daemon-manager.sh status
+`.openclaw/helpers/daemon-manager.sh status
 
 # View logs
 tail -f .claude-flow/logs/daemon.log
@@ -454,7 +454,7 @@ ls -la .claude-flow/pids/
 
 # Manual cleanup and restart
 rm .claude-flow/pids/*.pid
-.claude/helpers/daemon-manager.sh start
+`.openclaw/helpers/daemon-manager.sh start
 ```
 
 ### Statusline Not Updating
@@ -487,16 +487,16 @@ node .claude/helpers/hooks-daemon.mjs rebuild-index
 
 ```bash
 # Increase daemon intervals
-.claude/helpers/daemon-manager.sh restart 10 60 120
+`.openclaw/helpers/daemon-manager.sh restart 10 60 120
 
 # Disable non-essential daemons
-.claude/helpers/daemon-manager.sh start --no-hooks-daemon
+`.openclaw/helpers/daemon-manager.sh start --no-hooks-daemon
 ```
 
 ## Files Reference
 
 ```
-.claude/
+`.openclaw/
 ├── statusline.sh                    # Main statusline script
 ├── settings.json                    # Claude settings with hooks
 └── helpers/

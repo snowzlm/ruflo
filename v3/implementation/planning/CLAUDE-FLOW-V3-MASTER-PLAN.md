@@ -100,7 +100,7 @@ Claude-Flow v2.7.47
 #### CVE-1: Vulnerable Dependencies
 ```bash
 # Immediate fix required
-npm update @anthropic-ai/claude-code@^2.0.31
+npm update @anthropic-ai/openclaw@^2.0.31
 npm update @modelcontextprotocol/sdk@^1.24.0
 npm audit fix --force
 ```
@@ -468,9 +468,9 @@ dist-cjs/
 
 | Directory | Size | Issues |
 |-----------|------|--------|
-| `.claude/` | 11MB | 9 settings variants, 3,720 checkpoints |
+| `.openclaw/` | 11MB | 9 settings variants, 3,720 checkpoints |
 | `.claude-flow/` | 2.5MB | Stale training data |
-| `.claude-plugin/` | 81KB | Hook duplication |
+| `.openclaw-plugin/` | 81KB | Hook duplication |
 | `.hive-mind/` | 20KB | Separate database |
 | `.swarm/` | 272KB | Separate database |
 | `.ruv-swarm/` | 9.5KB | Old benchmark |
@@ -479,7 +479,7 @@ dist-cjs/
 ### 6.2 v3 Optimized Structure (3.5MB target)
 
 ```
-.claude/
+`.openclaw/
 ├── config.json                    # Single source of truth
 ├── settings.prod.json             # Production (from settings-enhanced)
 ├── settings.dev.json              # Development with debug
@@ -684,9 +684,9 @@ commands/
 ### 7.4 Hooks Consolidation
 
 **Problem**: Hooks defined in 3 places
-- `.claude/settings-enhanced.json`
-- `.claude/settings-complete.json`
-- `.claude-plugin/hooks/hooks.json`
+- `.openclaw/settings-enhanced.json`
+- `.openclaw/settings-complete.json`
+- `.openclaw-plugin/hooks/hooks.json`
 
 **v3 Solution**: Single source in `config.json`
 
@@ -698,23 +698,23 @@ commands/
     "PreToolUse": [
       {
         "matcher": "Bash",
-        "commands": ["npx claude-flow hooks pre-tool --tool=$TOOL_NAME"]
+        "commands": ["npx ruflo hooks pre-tool --tool=$TOOL_NAME"]
       }
     ],
     "PostToolUse": [
       {
         "matcher": "*",
-        "commands": ["npx claude-flow hooks post-tool --tool=$TOOL_NAME"]
+        "commands": ["npx ruflo hooks post-tool --tool=$TOOL_NAME"]
       }
     ],
     "PreCompact": [
       {
-        "commands": ["npx claude-flow hooks pre-compact --session=$SESSION_ID"]
+        "commands": ["npx ruflo hooks pre-compact --session=$SESSION_ID"]
       }
     ],
     "Stop": [
       {
-        "commands": ["npx claude-flow hooks session-end --export-metrics true"]
+        "commands": ["npx ruflo hooks session-end --export-metrics true"]
       }
     ]
   },
@@ -829,7 +829,7 @@ export async function migrateConfig(v2Config: V2Config): Promise<V3Config> {
 
 // Auto-migration on first run
 export async function autoMigrate(): Promise<void> {
-  const configPath = '.claude/config.json';
+  const configPath = '.openclaw/config.json';
   const config = await loadConfig(configPath);
 
   if (!config.version || config.version < '3.0.0') {
@@ -1099,11 +1099,11 @@ dist-cjs/ (remove from git)
 claude-flow-wiki/
 
 # Duplicate settings
-.claude/settings-complete.json
-.claude/settings-enhanced.json (merge into settings.prod.json)
-.claude/settings-checkpoint-*.json
-.claude/settings.reasoningbank-*.json
-.claude/settings-npx-hooks.json
+`.openclaw/settings-complete.json
+`.openclaw/settings-enhanced.json (merge into settings.prod.json)
+`.openclaw/settings-checkpoint-*.json
+`.openclaw/settings.reasoningbank-*.json
+`.openclaw/settings-npx-hooks.json
 ```
 
 ### Files to Modify
@@ -1111,7 +1111,7 @@ claude-flow-wiki/
 ```
 package.json                    # Add sql.js, update agentic-flow
 .gitignore                      # Add dist-cjs, cleanup duplicates
-.claude/config.json             # Add v3 structure, unified hooks
+`.openclaw/config.json             # Add v3 structure, unified hooks
 tsconfig.json                   # Add v3 paths
 ```
 
@@ -1132,7 +1132,7 @@ npm audit fix --force
 ./scripts/cleanup-v3.sh
 
 # Run migration
-npx claude-flow migrate --to v3
+npx ruflo migrate --to v3
 
 # Verify backward compatibility
 npm run test:compatibility
@@ -1160,7 +1160,7 @@ npm run build:v3
 
 ```typescript
 // v3 with backward compatibility
-import { SwarmCoordinator } from 'claude-flow';  // v2 API still works
+import { SwarmCoordinator } from 'ruflo';  // v2 API still works
 
 // v3 native
 import { AgenticFlowAdapter } from 'claude-flow/v3';

@@ -51,7 +51,7 @@ Claude-Flow v2.x implements its own agent orchestration, coordination, and execu
 ```
 Functionality Overlap:
 ┌─────────────────────────────────────┐
-│  claude-flow   │   agentic-flow     │
+│  ruflo   │   agentic-flow     │
 ├─────────────────────────────────────┤
 │ SwarmCoordinator │ Swarm System    │ 80% overlap
 │ AgentManager     │ Agent Lifecycle │ 70% overlap
@@ -62,7 +62,7 @@ Functionality Overlap:
 
 ### Decision
 
-**We will adopt agentic-flow as the core foundation for v3, building claude-flow as a specialized extension rather than a parallel implementation.**
+**We will adopt agentic-flow as the core foundation for v3, building ruflo as a specialized extension rather than a parallel implementation.**
 
 Specifically:
 1. Use agentic-flow's Agent base class for all agents
@@ -111,7 +111,7 @@ Specifically:
 import { Agent as AgenticFlowAgent } from 'agentic-flow';
 
 export class ClaudeFlowAgent extends AgenticFlowAgent {
-  // Add claude-flow specific capabilities
+  // Add ruflo specific capabilities
   async handleClaudeFlowTask(task: ClaudeTask): Promise<TaskResult> {
     // Claude-specific logic
   }
@@ -131,7 +131,7 @@ export class ClaudeFlowAgent extends AgenticFlowAgent {
 
 ### Success Metrics
 
-- [ ] <5,000 lines of orchestration code in claude-flow (vs 15,000+ currently)
+- [ ] <5,000 lines of orchestration code in ruflo (vs 15,000+ currently)
 - [ ] 100% feature parity with v2
 - [ ] <10% performance regression (ideally improvement)
 - [ ] All tests passing
@@ -519,7 +519,7 @@ await core.initialize();
 
 ### Context
 
-v2 CLI commands contain business logic, making it hard to use claude-flow programmatically or via other interfaces.
+v2 CLI commands contain business logic, making it hard to use ruflo programmatically or via other interfaces.
 
 ### Decision
 

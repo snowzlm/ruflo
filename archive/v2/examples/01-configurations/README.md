@@ -1,6 +1,6 @@
 # Configuration Examples
 
-This directory contains configuration files for Claude Flow system settings and orchestration, organized by complexity and use case.
+This directory contains configuration files for Ruflo system settings and orchestration, organized by complexity and use case.
 
 ## Directory Structure
 

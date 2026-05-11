@@ -1,10 +1,10 @@
 # ruflo-rag-memory
 
-Retrieval-Augmented Generation memory with HNSW vector search, AgentDB persistence, and Claude Code memory bridge.
+Retrieval-Augmented Generation memory with HNSW vector search, AgentDB persistence, and OpenClaw memory bridge.
 
 ## Overview
 
-Provides semantic store/search/recall over AgentDB with HNSW-indexed vector search (150x-12,500x faster than brute force). Bridges Claude Code's native auto-memory into AgentDB with 384-dim ONNX embeddings for unified cross-session semantic retrieval.
+Provides semantic store/search/recall over AgentDB with HNSW-indexed vector search (150x-12,500x faster than brute force). Bridges OpenClaw's native auto-memory into AgentDB with 384-dim ONNX embeddings for unified cross-session semantic retrieval.
 
 ## Installation
 
@@ -27,7 +27,7 @@ claude --plugin-dir plugins/ruflo-rag-memory
 | Skill | Usage | Description |
 |-------|-------|-------------|
 | `memory-search` | `/memory-search <query>` | Semantic vector search across all namespaces |
-| `memory-bridge` | `/memory-bridge [--all-projects]` | Import Claude Code auto-memory into AgentDB |
+| `memory-bridge` | `/memory-bridge [--all-projects]` | Import OpenClaw auto-memory into AgentDB |
 
 ## Commands
 
@@ -54,7 +54,7 @@ recall "how did we handle rate limiting?"
 ## Architecture
 
 ```
-Claude Code Auto-Memory (~/.claude/projects/*/memory/*.md)
+OpenClaw Auto-Memory (~/.openclaw/projects/*/memory/*.md)
         │
         ▼ (ONNX all-MiniLM-L6-v2, 384-dim)
     Memory Bridge
@@ -93,11 +93,11 @@ Verify gate state with `ruflo doctor -c encryption`. Off by default; flipping it
 | `solutions` | Bug fixes and solutions | `fix-race-condition` |
 | `feedback` | User feedback and corrections | `feedback-test-style` |
 | `security` | Vulnerability patterns | `vuln-sql-injection` |
-| `claude-memories` | Bridged Claude Code memories | `auto-imported` |
+| `claude-memories` | Bridged OpenClaw memories | `auto-imported` |
 
 ## Claude Memory Bridge
 
-Auto-imports Claude Code's native `~/.claude/projects/*/memory/*.md` files into AgentDB on session start with ONNX vector embeddings.
+Auto-imports OpenClaw's native `~/.openclaw/projects/*/memory/*.md` files into AgentDB on session start with ONNX vector embeddings.
 
 ```bash
 # Manual import (current project)
@@ -110,7 +110,7 @@ Auto-imports Claude Code's native `~/.claude/projects/*/memory/*.md` files into 
 # Via MCP: memory_bridge_status({})
 ```
 
-Results include source attribution: `claude-code`, `auto-memory`, or `agentdb`.
+Results include source attribution: `openclaw`, `auto-memory`, or `agentdb`.
 
 ## SmartRetrieval (ADR-090)
 
@@ -127,7 +127,7 @@ Results include source attribution: `claude-code`, `auto-memory`, or `agentdb`.
 npx @claude-flow/cli@latest memory search --query "auth patterns" --smart --limit 10
 
 # MCP
-mcp__claude-flow__memory_search({ query: "auth patterns", smart: true, limit: 10 })
+mcp__ruflo__memory_search({ query: "auth patterns", smart: true, limit: 10 })
 ```
 
 Best for multi-session recall, temporal queries ("what did we decide last week?"), and diverse result sets.
@@ -169,7 +169,7 @@ When `ruflo-ruvector` is also loaded, rag-memory delegates to ruvector's backend
 This plugin is the **canonical user-facing consumer** of the `claude-memories` reserved namespace defined in [ruflo-agentdb ADR-0001 §"Namespace convention"](../ruflo-agentdb/docs/adrs/0001-agentdb-optimization.md). The auto-import flow:
 
 ```
-Claude Code SessionStart hook
+OpenClaw SessionStart hook
   → memory_import_claude (MCP)
   → claude-memories namespace (reserved, ruflo-agentdb owned)
   → exposed by this plugin's memory-bridge skill + memory_search_unified

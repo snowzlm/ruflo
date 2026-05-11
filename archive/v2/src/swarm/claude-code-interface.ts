@@ -1,7 +1,7 @@
 /**
- * Claude Code Coordination Interface
+ * OpenClaw Coordination Interface
  * 
- * This module provides the interface layer for coordinating with Claude Code
+ * This module provides the interface layer for coordinating with OpenClaw
  * instances, managing agent spawning through the claude CLI, handling process
  * lifecycle, and enabling seamless communication between the swarm system
  * and individual Claude agents.
@@ -146,15 +146,15 @@ export class ClaudeCodeInterface extends EventEmitter {
   }
 
   /**
-   * Initialize the Claude Code interface
+   * Initialize the OpenClaw interface
    */
   async initialize(): Promise<void> {
     if (this.isInitialized) {
-      this.logger.warn('Claude Code interface already initialized');
+      this.logger.warn('OpenClaw interface already initialized');
       return;
     }
 
-    this.logger.info('Initializing Claude Code interface...');
+    this.logger.info('Initializing OpenClaw interface...');
 
     try {
       // Verify Claude executable exists
@@ -172,7 +172,7 @@ export class ClaudeCodeInterface extends EventEmitter {
       this.startHealthChecks();
 
       this.isInitialized = true;
-      this.logger.info('Claude Code interface initialized successfully', {
+      this.logger.info('OpenClaw interface initialized successfully', {
         poolSize: this.processPool.idle.length,
         maxConcurrent: this.config.maxConcurrentAgents,
       });
@@ -180,7 +180,7 @@ export class ClaudeCodeInterface extends EventEmitter {
       this.emit('initialized');
 
     } catch (error) {
-      this.logger.error('Failed to initialize Claude Code interface', error);
+      this.logger.error('Failed to initialize OpenClaw interface', error);
       throw error;
     }
   }
@@ -191,7 +191,7 @@ export class ClaudeCodeInterface extends EventEmitter {
   async shutdown(): Promise<void> {
     if (!this.isInitialized) return;
 
-    this.logger.info('Shutting down Claude Code interface...');
+    this.logger.info('Shutting down OpenClaw interface...');
 
     try {
       // Stop health checks
@@ -212,11 +212,11 @@ export class ClaudeCodeInterface extends EventEmitter {
       await this.taskExecutor.shutdown();
 
       this.isInitialized = false;
-      this.logger.info('Claude Code interface shut down successfully');
+      this.logger.info('OpenClaw interface shut down successfully');
       this.emit('shutdown');
 
     } catch (error) {
-      this.logger.error('Error during Claude Code interface shutdown', error);
+      this.logger.error('Error during OpenClaw interface shutdown', error);
       throw error;
     }
   }

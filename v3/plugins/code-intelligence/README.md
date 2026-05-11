@@ -25,7 +25,7 @@ npm install @claude-flow/plugin-code-intelligence
 ### CLI
 
 ```bash
-npx claude-flow plugins install --name @claude-flow/plugin-code-intelligence
+npx ruflo plugins install --name @claude-flow/plugin-code-intelligence
 ```
 
 ## Quick Start
@@ -336,7 +336,7 @@ const rateLimits = {
 - **VS Code Extension**: Real-time analysis and suggestions
 - **JetBrains Plugin**: IntelliJ, WebStorm, PyCharm support
 - **CLI**: CI/CD pipeline integration
-- **MCP**: Direct Claude Code integration
+- **MCP**: Direct OpenClaw integration
 
 ## Dependencies
 
@@ -360,7 +360,7 @@ const rateLimits = {
 
 MIT License
 
-Copyright (c) 2026 Claude Flow
+Copyright (c) 2026 Ruflo
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

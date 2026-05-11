@@ -1,4 +1,4 @@
-// init/index.js - Initialize Claude Code integration files
+// init/index.js - Initialize OpenClaw integration files
 import { printSuccess, printError, printWarning, exit } from '../../utils.js';
 import { existsSync } from 'fs';
 import process from 'process';
@@ -83,7 +83,7 @@ import {
 } from './hive-mind-init.js';
 
 /**
- * Check if Claude Code CLI is installed
+ * Check if OpenClaw CLI is installed
  */
 function isClaudeCodeInstalled() {
   try {
@@ -95,10 +95,10 @@ function isClaudeCodeInstalled() {
 }
 
 /**
- * Set up MCP servers in Claude Code
+ * Set up MCP servers in OpenClaw
  */
 async function setupMcpServers(dryRun = false) {
-  console.log('\n🔌 Setting up MCP servers for Claude Code...');
+  console.log('\n🔌 Setting up MCP servers for OpenClaw...');
 
   const servers = [
     {
@@ -217,10 +217,10 @@ export async function initCommand(subArgs, flags) {
   }
 
   try {
-    printSuccess('Initializing Claude Code integration files...');
+    printSuccess('Initializing OpenClaw integration files...');
 
     // Check if files already exist in the working directory
-    const files = ['CLAUDE.md', 'memory-bank.md', 'coordination.md'];
+    const files = ['OPENCLAW.md', 'memory-bank.md', 'coordination.md'];
     const existingFiles = [];
 
     for (const file of files) {
@@ -250,21 +250,21 @@ export async function initCommand(subArgs, flags) {
       pair: initPair,
     };
 
-    // If verification flags are set, always use generated templates for CLAUDE.md and settings.json
+    // If verification flags are set, always use generated templates for OPENCLAW.md and settings.json
     if (initVerify || initPair) {
       console.log('  📁 Creating verification-focused configuration...');
       
-      // Create verification CLAUDE.md
+      // Create verification OPENCLAW.md
       if (!initDryRun) {
         const { createVerificationClaudeMd, createVerificationSettingsJson } = await import('./templates/verification-claude-md.js');
-        await fs.writeFile(`${workingDir}/CLAUDE.md`, createVerificationClaudeMd(), 'utf8');
+        await fs.writeFile(`${workingDir}/OPENCLAW.md`, createVerificationClaudeMd(), 'utf8');
         
         // Create .claude directory and settings
         await fs.mkdir(`${workingDir}/.claude`, { recursive: true });
-        await fs.writeFile(`${workingDir}/.claude/settings.json`, createVerificationSettingsJson(), 'utf8');
-        console.log('  ✅ Created verification-focused CLAUDE.md and settings.json');
+        await fs.writeFile(`${workingDir}/.openclaw/settings.json`, createVerificationSettingsJson(), 'utf8');
+        console.log('  ✅ Created verification-focused OPENCLAW.md and settings.json');
       } else {
-        console.log('  [DRY RUN] Would create verification-focused CLAUDE.md and settings.json');
+        console.log('  [DRY RUN] Would create verification-focused OPENCLAW.md and settings.json');
       }
       
       // Copy other template files from repository if available
@@ -281,7 +281,7 @@ export async function initCommand(subArgs, flags) {
       // Also create standard memory and coordination files
       const copyResults = await copyTemplates(workingDir, {
         ...templateOptions,
-        skipClaudeMd: true,  // Don't overwrite the verification CLAUDE.md
+        skipClaudeMd: true,  // Don't overwrite the verification OPENCLAW.md
         skipSettings: true   // Don't overwrite the verification settings.json
       });
       
@@ -409,12 +409,12 @@ export async function initCommand(subArgs, flags) {
       console.log(
         `  • Template type: ${initOptimized ? 'Optimized for parallel processing' : 'Standard'}`,
       );
-      console.log('  • Core files: CLAUDE.md, memory-bank.md, coordination.md');
+      console.log('  • Core files: OPENCLAW.md, memory-bank.md, coordination.md');
       console.log('  • Directory structure: memory/, coordination/, .claude/');
       console.log('  • Local executable: ./claude-flow@alpha');
       if (initSparc) {
         console.log(
-          `  • Claude Code slash commands: ${selectedModes ? selectedModes.length : 'All'} SPARC mode commands`,
+          `  • OpenClaw slash commands: ${selectedModes ? selectedModes.length : 'All'} SPARC mode commands`,
         );
         console.log('  • SPARC environment with all development modes');
       }
@@ -424,7 +424,7 @@ export async function initCommand(subArgs, flags) {
       }
       console.log('\n🚀 To proceed with initialization, run the same command without --dry-run');
     } else {
-      printSuccess('🎉 Claude Code integration files initialized successfully!');
+      printSuccess('🎉 OpenClaw integration files initialized successfully!');
 
       if (initOptimized) {
         console.log('\n⚡ Batchtools Optimization Enabled!');
@@ -435,7 +435,7 @@ export async function initCommand(subArgs, flags) {
 
       console.log('\n📋 What was created:');
       console.log(
-        `  ✅ CLAUDE.md (${initOptimized ? 'Batchtools-optimized' : initSparc ? 'SPARC-enhanced' : 'Standard configuration'})`,
+        `  ✅ OPENCLAW.md (${initOptimized ? 'Batchtools-optimized' : initSparc ? 'SPARC-enhanced' : 'Standard configuration'})`,
       );
       console.log(
         `  ✅ memory-bank.md (${initOptimized ? 'With parallel processing' : 'Standard memory system'})`,
@@ -450,7 +450,7 @@ export async function initCommand(subArgs, flags) {
 
       if (initSparc) {
         const modeCount = selectedModes ? selectedModes.length : '20+';
-        console.log(`  ✅ Claude Code slash commands (${modeCount} SPARC modes)`);
+        console.log(`  ✅ OpenClaw slash commands (${modeCount} SPARC modes)`);
         console.log('  ✅ Complete SPARC development environment');
       }
 
@@ -462,7 +462,7 @@ export async function initCommand(subArgs, flags) {
 
       if (initSparc) {
         console.log(
-          '5. Use Claude Code slash commands: /sparc, /sparc-architect, /sparc-tdd, etc.',
+          '5. Use OpenClaw slash commands: /sparc, /sparc-architect, /sparc-tdd, etc.',
         );
         console.log("6. Explore SPARC modes with './claude-flow@alpha sparc modes'");
         console.log('7. Try TDD workflow with \'./claude-flow@alpha sparc tdd "your task"\'');
@@ -487,7 +487,7 @@ export async function initCommand(subArgs, flags) {
       }
 
       console.log('\n💡 Tips:');
-      console.log("  • Type '/' in Claude Code to see all available slash commands");
+      console.log("  • Type '/' in OpenClaw to see all available slash commands");
       console.log("  • Use './claude-flow@alpha status' to check system health");
       console.log("  • Store important context with './claude-flow@alpha memory store'");
 
@@ -547,9 +547,9 @@ export async function initCommand(subArgs, flags) {
         console.log(`  ⚠️  Hive-mind setup skipped: ${err.message}`);
       }
 
-      // Check for Claude Code and set up MCP servers (always enabled by default)
+      // Check for OpenClaw and set up MCP servers (always enabled by default)
       if (!initDryRun && isClaudeCodeInstalled()) {
-        console.log('\n🔍 Claude Code CLI detected!');
+        console.log('\n🔍 OpenClaw CLI detected!');
         const skipMcp = subArgs && subArgs.includes && subArgs.includes('--skip-mcp');
 
         if (!skipMcp) {
@@ -558,8 +558,8 @@ export async function initCommand(subArgs, flags) {
           console.log('  ℹ️  Skipping MCP setup (--skip-mcp flag used)');
         }
       } else if (!initDryRun && !isClaudeCodeInstalled()) {
-        console.log('\n⚠️  Claude Code CLI not detected!');
-        console.log('  📥 Install with: npm install -g @anthropic-ai/claude-code');
+        console.log('\n⚠️  OpenClaw CLI not detected!');
+        console.log('  📥 Install with: npm install -g @anthropic-ai/openclaw');
         console.log('  📋 Then add MCP servers manually with:');
         console.log('     claude mcp add claude-flow@alpha npx claude-flow@alpha mcp start');
         console.log('     claude mcp add ruv-swarm npx ruv-swarm mcp start');
@@ -973,7 +973,7 @@ async function createInitialFiles(options, workingDir, dryRun = false) {
       : options.minimal
         ? createMinimalClaudeMd()
         : createFullClaudeMd();
-    await fs.writeFile(`${workingDir}/CLAUDE.md`, claudeMd, 'utf8');
+    await fs.writeFile(`${workingDir}/OPENCLAW.md`, claudeMd, 'utf8');
 
     const memoryBankMd = options.minimal ? createMinimalMemoryBankMd() : createFullMemoryBankMd();
     await fs.writeFile(`${workingDir}/memory-bank.md`, memoryBankMd, 'utf8');
@@ -995,8 +995,8 @@ async function createDirectoryStructure(workingDir, dryRun = false) {
     'coordination/subtasks',
     'coordination/orchestration',
     '.claude',
-    '.claude/commands',
-    '.claude/logs',
+    '.openclaw/commands',
+    '.openclaw/logs',
   ];
 
   if (!dryRun) {
@@ -1079,7 +1079,7 @@ async function setupMonitoring(workingDir) {
         claudeCode: {
           env: 'CLAUDE_CODE_ENABLE_TELEMETRY',
           value: '1',
-          description: 'Enable Claude Code OpenTelemetry metrics'
+          description: 'Enable OpenClaw OpenTelemetry metrics'
         }
       },
       tracking: {
@@ -1106,14 +1106,14 @@ async function setupMonitoring(workingDir) {
 export CLAUDE_CODE_ENABLE_TELEMETRY=1
 
 # Optional: Set custom metrics path
-# export CLAUDE_METRICS_PATH="$HOME/.claude/metrics"
+# export CLAUDE_METRICS_PATH="$HOME/.openclaw/metrics"
 `;
     
     const envPath = path.join(trackingDir, 'env-setup.sh');
     await fs.writeFile(envPath, envSnippet.trim());
     printSuccess('  ✓ Created environment setup script');
     
-    console.log('\n  📋 To enable Claude Code telemetry:');
+    console.log('\n  📋 To enable OpenClaw telemetry:');
     console.log('     1. Add to your shell profile: export CLAUDE_CODE_ENABLE_TELEMETRY=1');
     console.log('     2. Or run: source .claude-flow@alpha/env-setup.sh');
     console.log('\n  💡 Token usage will be tracked in .claude-flow@alpha/token-usage.json');
@@ -1147,8 +1147,8 @@ async function enhancedClaudeFlowInit(flags, subArgs = []) {
     // Check existing files
     const existingFiles = [];
     const filesToCheck = [
-      'CLAUDE.md',
-      '.claude/settings.json',
+      'OPENCLAW.md',
+      '.openclaw/settings.json',
       '.mcp.json',
       // Removed claude-flow@alpha.config.json per user request
     ];
@@ -1165,12 +1165,12 @@ async function enhancedClaudeFlowInit(flags, subArgs = []) {
       return;
     }
 
-    // Create CLAUDE.md
+    // Create OPENCLAW.md
     if (!dryRun) {
-      await fs.writeFile(`${workingDir}/CLAUDE.md`, createOptimizedSparcClaudeMd(), 'utf8');
-      printSuccess('✓ Created CLAUDE.md (Claude Flow v2.0.0 - Optimized)');
+      await fs.writeFile(`${workingDir}/OPENCLAW.md`, createOptimizedSparcClaudeMd(), 'utf8');
+      printSuccess('✓ Created OPENCLAW.md (Claude Flow v2.0.0 - Optimized)');
     } else {
-      console.log('[DRY RUN] Would create CLAUDE.md (Claude Flow v2.0.0 - Optimized)');
+      console.log('[DRY RUN] Would create OPENCLAW.md (Claude Flow v2.0.0 - Optimized)');
     }
 
     // Create .claude directory structure
@@ -1310,7 +1310,7 @@ ${commands.map((cmd) => `- [${cmd}](./${cmd}.md)`).join('\n')}
       'coordination/orchestration',
       '.swarm', // Add .swarm directory for shared memory
       '.hive-mind', // Add .hive-mind directory for hive-mind system
-      '.claude/checkpoints', // Add checkpoints directory for Git checkpoint system
+      '.openclaw/checkpoints', // Add checkpoints directory for Git checkpoint system
     ];
 
     for (const dir of standardDirs) {
@@ -1421,13 +1421,13 @@ ${commands.map((cmd) => `- [${cmd}](./${cmd}.md)`).join('\n')}
 
     // Create Claude slash commands for SPARC
     if (sparcInitialized && !dryRun) {
-      console.log('\n📝 Creating Claude Code slash commands...');
+      console.log('\n📝 Creating OpenClaw slash commands...');
       await createClaudeSlashCommands(workingDir);
     }
 
-    // Check for Claude Code and set up MCP servers (always enabled by default)
+    // Check for OpenClaw and set up MCP servers (always enabled by default)
     if (!dryRun && isClaudeCodeInstalled()) {
-      console.log('\n🔍 Claude Code CLI detected!');
+      console.log('\n🔍 OpenClaw CLI detected!');
       const skipMcp =
         (options && options['skip-mcp']) ||
         (subArgs && subArgs.includes && subArgs.includes('--skip-mcp'));
@@ -1445,9 +1445,9 @@ ${commands.map((cmd) => `- [${cmd}](./${cmd}.md)`).join('\n')}
         console.log('\n  💡 MCP servers are defined in .mcp.json (project scope)');
       }
     } else if (!dryRun && !isClaudeCodeInstalled()) {
-      console.log('\n⚠️  Claude Code CLI not detected!');
-      console.log('\n  📥 To install Claude Code:');
-      console.log('     npm install -g @anthropic-ai/claude-code');
+      console.log('\n⚠️  OpenClaw CLI not detected!');
+      console.log('\n  📥 To install OpenClaw:');
+      console.log('     npm install -g @anthropic-ai/openclaw');
       console.log('\n  📋 After installing, add MCP servers:');
       console.log('     claude mcp add claude-flow npx claude-flow@alpha mcp start');
       console.log('     claude mcp add ruv-swarm npx ruv-swarm@latest mcp start');
@@ -1527,12 +1527,12 @@ ${commands.map((cmd) => `- [${cmd}](./${cmd}.md)`).join('\n')}
       console.log('1. View available commands: ls .claude/commands/');
       console.log('2. Start a swarm: npx claude-flow@alpha swarm "your objective" --claude');
       console.log('3. Use hive-mind: npx claude-flow@alpha hive-mind spawn "command" --claude');
-      console.log('4. Use MCP tools in Claude Code for enhanced coordination');
+      console.log('4. Use MCP tools in OpenClaw for enhanced coordination');
       if (hiveMindStatus.configured) {
         console.log('5. Initialize first swarm: npx claude-flow@alpha hive-mind init');
       }
     } else {
-      console.log('1. Install Claude Code: npm install -g @anthropic-ai/claude-code');
+      console.log('1. Install OpenClaw: npm install -g @anthropic-ai/openclaw');
       console.log('2. Add MCP servers (see instructions above)');
       console.log('3. View available commands: ls .claude/commands/');
       console.log('4. Start a swarm: npx claude-flow@alpha swarm "your objective" --claude');
@@ -1544,7 +1544,7 @@ ${commands.map((cmd) => `- [${cmd}](./${cmd}.md)`).join('\n')}
     console.log('\n💡 Tips:');
     console.log('• Check .claude/commands/ for detailed documentation');
     console.log('• Use --help with any command for options');
-    console.log('• Run commands with --claude flag for best Claude Code integration');
+    console.log('• Run commands with --claude flag for best OpenClaw integration');
     console.log('• Enable GitHub integration with .claude/helpers/github-setup.sh');
     console.log('• Git checkpoints are automatically enabled in settings.json');
     console.log('• Use .claude/helpers/checkpoint-manager.sh for easy rollback');
@@ -1570,7 +1570,7 @@ ${commands.map((cmd) => `- [${cmd}](./${cmd}.md)`).join('\n')}
 }
 
 /**
- * Flow Nexus minimal initialization - only creates Flow Nexus CLAUDE.md, commands, and agents
+ * Flow Nexus minimal initialization - only creates Flow Nexus OPENCLAW.md, commands, and agents
  */
 async function flowNexusMinimalInit(flags, subArgs) {
   console.log('🌐 Flow Nexus: Initializing minimal setup...');
@@ -1582,22 +1582,22 @@ async function flowNexusMinimalInit(flags, subArgs) {
     const { createFlowNexusClaudeMd } = await import('./templates/claude-md.js');
     const { promises: fs } = await import('fs');
     
-    // Create Flow Nexus CLAUDE.md
-    console.log('📝 Creating Flow Nexus CLAUDE.md...');
+    // Create Flow Nexus OPENCLAW.md
+    console.log('📝 Creating Flow Nexus OPENCLAW.md...');
     const flowNexusClaudeMd = createFlowNexusClaudeMd();
-    await fs.writeFile('CLAUDE.md', flowNexusClaudeMd);
-    console.log('  ✅ Created CLAUDE.md with Flow Nexus integration');
+    await fs.writeFile('OPENCLAW.md', flowNexusClaudeMd);
+    console.log('  ✅ Created OPENCLAW.md with Flow Nexus integration');
     
     // Create .claude/commands/flow-nexus directory and copy commands
     console.log('📁 Setting up Flow Nexus commands...');
-    await fs.mkdir('.claude/commands/flow-nexus', { recursive: true });
+    await fs.mkdir('.openclaw/commands/flow-nexus', { recursive: true });
     
     // Copy Flow Nexus command files
     const { fileURLToPath } = await import('url');
     const { dirname, join } = await import('path');
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = dirname(__filename);
-    const sourceCommandsDir = join(__dirname, '../../../../.claude/commands/flow-nexus');
+    const sourceCommandsDir = join(__dirname, '../../../../.openclaw/commands/flow-nexus');
     try {
       const commandFiles = await fs.readdir(sourceCommandsDir);
       let copiedCommands = 0;
@@ -1605,7 +1605,7 @@ async function flowNexusMinimalInit(flags, subArgs) {
       for (const file of commandFiles) {
         if (file.endsWith('.md')) {
           const sourcePath = `${sourceCommandsDir}/${file}`;
-          const destPath = `.claude/commands/flow-nexus/${file}`;
+          const destPath = `.openclaw/commands/flow-nexus/${file}`;
           const content = await fs.readFile(sourcePath, 'utf8');
           await fs.writeFile(destPath, content);
           copiedCommands++;
@@ -1619,10 +1619,10 @@ async function flowNexusMinimalInit(flags, subArgs) {
     
     // Create .claude/agents/flow-nexus directory and copy agents
     console.log('🤖 Setting up Flow Nexus agents...');
-    await fs.mkdir('.claude/agents/flow-nexus', { recursive: true });
+    await fs.mkdir('.openclaw/agents/flow-nexus', { recursive: true });
     
     // Copy Flow Nexus agent files
-    const sourceAgentsDir = join(__dirname, '../../../../.claude/agents/flow-nexus');
+    const sourceAgentsDir = join(__dirname, '../../../../.openclaw/agents/flow-nexus');
     try {
       const agentFiles = await fs.readdir(sourceAgentsDir);
       let copiedAgents = 0;
@@ -1630,7 +1630,7 @@ async function flowNexusMinimalInit(flags, subArgs) {
       for (const file of agentFiles) {
         if (file.endsWith('.md')) {
           const sourcePath = `${sourceAgentsDir}/${file}`;
-          const destPath = `.claude/agents/flow-nexus/${file}`;
+          const destPath = `.openclaw/agents/flow-nexus/${file}`;
           const content = await fs.readFile(sourcePath, 'utf8');
           await fs.writeFile(destPath, content);
           copiedAgents++;
@@ -1643,7 +1643,7 @@ async function flowNexusMinimalInit(flags, subArgs) {
     }
     
     console.log('\n🎉 Flow Nexus minimal initialization complete!');
-    console.log('📚 Created: CLAUDE.md with Flow Nexus documentation');
+    console.log('📚 Created: OPENCLAW.md with Flow Nexus documentation');
     console.log('📁 Created: .claude/commands/flow-nexus/ directory with command documentation');
     console.log('🤖 Created: .claude/agents/flow-nexus/ directory with specialized agents');
     console.log('');
@@ -1652,7 +1652,7 @@ async function flowNexusMinimalInit(flags, subArgs) {
     console.log('  2. Login: mcp__flow-nexus__user_login({ email, password })');
     console.log('  3. Deploy: mcp__flow-nexus__swarm_init({ topology: "mesh", maxAgents: 5 })');
     console.log('');
-    console.log('🔗 Use Flow Nexus MCP tools in Claude Code for full functionality');
+    console.log('🔗 Use Flow Nexus MCP tools in OpenClaw for full functionality');
     
   } catch (err) {
     console.log(`❌ Flow Nexus initialization failed: ${err.message}`);

@@ -114,7 +114,7 @@ describe('resolveAgentMemoryDir', () => {
     process.env.USERPROFILE = originalUserProfile;
   });
 
-  it('should resolve project scope to gitRoot/.claude/agent-memory/name/', () => {
+  it('should resolve project scope to gitRoot/.openclaw/agent-memory/name/', () => {
     mockExistsSync.mockImplementation((p: string) => {
       return String(p) === path.join('/workspaces/my-project', '.git');
     });
@@ -125,7 +125,7 @@ describe('resolveAgentMemoryDir', () => {
     );
   });
 
-  it('should resolve local scope to gitRoot/.claude/agent-memory-local/name/', () => {
+  it('should resolve local scope to gitRoot/.openclaw/agent-memory-local/name/', () => {
     mockExistsSync.mockImplementation((p: string) => {
       return String(p) === path.join('/workspaces/my-project', '.git');
     });
@@ -136,7 +136,7 @@ describe('resolveAgentMemoryDir', () => {
     );
   });
 
-  it('should resolve user scope to ~/.claude/agent-memory/name/', () => {
+  it('should resolve user scope to ~/.openclaw/agent-memory/name/', () => {
     process.env.HOME = '/home/testuser';
 
     const result = resolveAgentMemoryDir('planner', 'user');

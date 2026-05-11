@@ -205,7 +205,7 @@ export class MCPServerManager extends EventEmitter {
 
     if (!pid) {
       // No PID file found. Detect if we are running in stdio mode
-      // (e.g., launched by Claude Code via `claude mcp add`).
+      // (e.g., launched by OpenClaw via `claude mcp add`).
       const isStdio = !process.stdin.isTTY;
       const envTransport = process.env.CLAUDE_FLOW_MCP_TRANSPORT;
       if (isStdio || envTransport === 'stdio' || this.options.transport === 'stdio') {

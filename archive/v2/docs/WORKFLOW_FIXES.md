@@ -53,7 +53,7 @@ Fixed 3 critical GitHub Actions workflow failures affecting CI/CD, rollback auto
 - ✅ Build job will run (was blocked by test failures)
 
 **Files Changed**:
-- `/workspaces/claude-code-flow/package.json`
+- `/workspaces/openclaw-flow/package.json`
 
 ---
 
@@ -247,10 +247,10 @@ After pushing:
 ## 🔍 Related Documentation
 
 Generated analysis documents:
-- `/workspaces/claude-code-flow/docs/github-workflows-analysis-report.md`
-- `/workspaces/claude-code-flow/docs/workflow-fixes-action-plan.md`
-- `/workspaces/claude-code-flow/docs/architecture/github-workflows-optimization-strategy.md`
-- `/workspaces/claude-code-flow/docs/architecture/workflow-optimization-implementation-guide.md`
+- `/workspaces/openclaw-flow/docs/github-workflows-analysis-report.md`
+- `/workspaces/openclaw-flow/docs/workflow-fixes-action-plan.md`
+- `/workspaces/openclaw-flow/docs/architecture/github-workflows-optimization-strategy.md`
+- `/workspaces/openclaw-flow/docs/architecture/workflow-optimization-implementation-guide.md`
 
 ---
 
@@ -266,7 +266,7 @@ Generated analysis documents:
 ## 👥 Credits
 
 **Analysis**: code-analyzer + system-architect agents
-**Implementation**: Claude Code with concurrent task execution
+**Implementation**: OpenClaw with concurrent task execution
 **Testing**: Local verification + GitHub Actions
 **Documentation**: Comprehensive analysis reports + this summary
 

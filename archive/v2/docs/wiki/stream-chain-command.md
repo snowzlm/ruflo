@@ -6,11 +6,11 @@ The `stream-chain` command enables you to connect multiple Claude instances via 
 
 ## Installation
 
-The stream-chain command is included in Claude Flow and registered in the command registry:
+The stream-chain command is included in Ruflo and registered in the command registry:
 
 ```bash
 # Access stream-chain command
-npx claude-flow stream-chain help
+npx ruflo stream-chain help
 
 # Or with the local CLI
 ./claude-flow stream-chain help
@@ -136,7 +136,7 @@ $ ./claude-flow stream-chain monitor
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 🔗 stream_1755021020133
-   Command: npx claude-flow stream-chain demo
+   Command: npx ruflo stream-chain demo
    PID: 366567
    Started: 2025-08-12T17:50:20.135Z
    Status: 🟢 Running
@@ -215,14 +215,14 @@ Stream chains use newline-delimited JSON (NDJSON) for communication:
 
 ## Integration with Background Commands
 
-The stream-chain command fully integrates with Claude Code's background command system:
+The stream-chain command fully integrates with OpenClaw's background command system:
 
 ### Using with /bashes Command
 
 Background stream chains appear in the `/bashes` interactive menu:
 
 ```bash
-# In Claude Code interactive mode
+# In OpenClaw interactive mode
 /bashes
 
 # Shows all background processes including stream chains
@@ -324,13 +324,13 @@ Background processes are tracked in:
 ```json
 {
   "stream_1234567890": {
-    "command": "npx claude-flow stream-chain demo",
+    "command": "npx ruflo stream-chain demo",
     "pid": 12345,
     "startTime": "2025-08-12T17:50:20.135Z",
     "status": "running"
   },
   "stream_9876543210": {
-    "command": "npx claude-flow stream-chain pipeline analysis",
+    "command": "npx ruflo stream-chain pipeline analysis",
     "pid": 67890,
     "startTime": "2025-08-12T18:00:00.000Z",
     "status": "killed",
@@ -402,12 +402,12 @@ stream-chain run "task1" "task2" --verbose
 
 ## Advanced Usage
 
-### Combining with Other Claude Flow Features
+### Combining with Other Ruflo Features
 
 #### With Hive Mind
 ```bash
 # Start hive mind coordination
-npx claude-flow hive-mind spawn "coordinator"
+npx ruflo hive-mind spawn "coordinator"
 
 # Run stream chain managed by hive
 ./claude-flow stream-chain run \
@@ -433,7 +433,7 @@ npx claude-flow hive-mind spawn "coordinator"
 #### With MCP Tools
 ```bash
 # Initialize swarm with MCP
-npx claude-flow swarm init --topology mesh
+npx ruflo swarm init --topology mesh
 
 # Run stream chain with swarm coordination
 ./claude-flow stream-chain run \
@@ -462,7 +462,7 @@ npx claude-flow swarm init --topology mesh
 **Checks:**
 1. Check process file exists: `ls -la .claude-flow/stream-chains.json`
 2. Verify process started: Check terminal output for process ID
-3. Check system processes: `ps aux | grep claude-flow`
+3. Check system processes: `ps aux | grep ruflo`
 
 ### Chain Stops Unexpectedly
 
@@ -527,11 +527,11 @@ To contribute to the stream-chain command:
 ## Support
 
 For issues or questions:
-- GitHub Issues: [claude-flow/issues](https://github.com/ruvnet/claude-flow/issues)
-- Documentation: [Stream Chaining Docs](https://github.com/ruvnet/claude-flow/docs/stream-chaining.md)
-- Wiki: [Claude Flow Wiki](https://github.com/ruvnet/claude-flow/wiki)
+- GitHub Issues: [claude-flow/issues](https://github.com/snowzlm/ruflo/issues)
+- Documentation: [Stream Chaining Docs](https://github.com/snowzlm/ruflo/docs/stream-chaining.md)
+- Wiki: [Ruflo Wiki](https://github.com/snowzlm/ruflo/wiki)
 
 ---
 
 *Last updated: August 2025*
-*Claude Flow Version: Alpha 89*
+*Ruflo Version: Alpha 89*

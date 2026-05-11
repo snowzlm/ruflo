@@ -1,4 +1,4 @@
-# Alpha Tag Update - claude-flow@alpha
+# Alpha Tag Update - ruflo@alpha
 
 **Date**: 2025-10-22
 **Action**: Updated npm dist-tag `alpha` to point to v2.7.1
@@ -33,27 +33,27 @@ Users can now install using any of these methods:
 
 ### Install Latest Stable (Recommended)
 ```bash
-npm install -g claude-flow
+npm install -g ruflo
 # or
-npm install -g claude-flow@latest
+npm install -g ruflo@latest
 # Installs: v2.7.1
 ```
 
 ### Install Alpha (Same as Latest for v2.7.1)
 ```bash
-npm install -g claude-flow@alpha
+npm install -g github:snowzlm/ruflo
 # Installs: v2.7.1
 ```
 
 ### Install Specific Version
 ```bash
-npm install -g claude-flow@2.7.1
+npm install -g ruflo@2.7.1
 # Installs: v2.7.1
 ```
 
 ### Install Legacy Alpha
 ```bash
-npm install -g claude-flow@2.7.0-alpha.14
+npm install -g ruflo@2.7.0-alpha.14
 # Installs: v2.7.0-alpha.14 (previous alpha)
 ```
 
@@ -61,13 +61,13 @@ npm install -g claude-flow@2.7.0-alpha.14
 
 ### Check Installed Version
 ```bash
-npm view claude-flow@alpha version
+npm view ruflo@alpha version
 # Output: 2.7.1
 ```
 
 ### Check All Dist-Tags
 ```bash
-npm dist-tag ls claude-flow
+npm dist-tag ls ruflo
 # Output:
 # alpha-v2: 2.0.0-alpha.2
 # alpha: 2.7.1
@@ -76,16 +76,16 @@ npm dist-tag ls claude-flow
 
 ### Verify Installation
 ```bash
-npm install -g claude-flow@alpha
-claude-flow --version
+npm install -g github:snowzlm/ruflo
+ruflo --version
 # Should show: v2.7.1
 ```
 
 ## Why This Update?
 
 The `@alpha` tag is commonly used in the codebase and documentation:
-- Used in examples: `npx claude-flow@alpha`
-- Used in MCP setup: `claude mcp add claude-flow npx claude-flow@alpha mcp start`
+- Used in examples: `ruflo`
+- Used in MCP setup: `openclaw mcp add ruflo ruflo mcp start`
 - Used by developers testing latest features
 
 Since v2.7.1 is a stable release with critical bug fixes, we've updated the `@alpha` tag to point to this version so users get the latest stable code when using `@alpha`.
@@ -95,7 +95,7 @@ Since v2.7.1 is a stable release with critical bug fixes, we've updated the `@al
 **None** - This is purely a tag update:
 - Existing installations are NOT affected
 - Users must explicitly reinstall to get v2.7.1
-- Old versions remain available (e.g., `claude-flow@2.7.0-alpha.14`)
+- Old versions remain available (e.g., `ruflo@2.7.0-alpha.14`)
 
 ## Includes Critical Fixes
 
@@ -106,23 +106,23 @@ v2.7.1 includes these critical bug fixes:
 
 ## Recommended Action for Users
 
-If you're using `claude-flow@alpha`, update to get the critical fixes:
+If you're using `ruflo@alpha`, update to get the critical fixes:
 
 ```bash
 # Uninstall old version
-npm uninstall -g claude-flow
+npm uninstall -g ruflo
 
 # Install latest alpha (v2.7.1)
-npm install -g claude-flow@alpha
+npm install -g github:snowzlm/ruflo
 
 # Verify
-claude-flow --version
+ruflo --version
 # Should show: v2.7.1
 ```
 
 ## Registry Information
 
-- **Package**: claude-flow
+- **Package**: ruflo
 - **Registry**: https://www.npmjs.com/package/claude-flow
 - **Latest Version**: 2.7.1
 - **Alpha Tag**: 2.7.1 (updated 2025-10-22)
@@ -131,8 +131,8 @@ claude-flow --version
 ## Tag Update Command
 
 ```bash
-npm dist-tag add claude-flow@2.7.1 alpha
-# Output: +alpha: claude-flow@2.7.1
+npm dist-tag add ruflo@2.7.1 alpha
+# Output: +alpha: ruflo@2.7.1
 ```
 
 ## Verification Timestamp

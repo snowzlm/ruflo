@@ -3,7 +3,7 @@
 
 ## Summary
 
-Successfully integrated **100% real, SDK-powered features** into Claude Flow with **zero breaking changes**.
+Successfully integrated **100% real, SDK-powered features** into Ruflo with **zero breaking changes**.
 
 ---
 
@@ -153,26 +153,26 @@ Speed gain: 3x
 
 ```bash
 # Create checkpoint
-npx claude-flow checkpoint create <session-id> "Before deployment"
+npx ruflo checkpoint create <session-id> "Before deployment"
 
 # List checkpoints
-npx claude-flow checkpoint list <session-id>
+npx ruflo checkpoint list <session-id>
 
 # Rollback
-npx claude-flow checkpoint rollback <checkpoint-id>
+npx ruflo checkpoint rollback <checkpoint-id>
 
 # Get checkpoint info
-npx claude-flow checkpoint info <checkpoint-id>
+npx ruflo checkpoint info <checkpoint-id>
 ```
 
 ### 2. Enhanced Pause (Updated)
 
 ```bash
 # Pause now uses SDK for TRUE pause/resume
-npx claude-flow hive-mind pause -s <session-id>
+npx ruflo hive-mind pause -s <session-id>
 
 # State saved to disk - can resume across restarts!
-npx claude-flow hive-mind resume -s <session-id>
+npx ruflo hive-mind resume -s <session-id>
 ```
 
 ### 3. Swarm with Forking (Enhanced)
@@ -338,7 +338,7 @@ Features always enabled:
 
 **SDK Integration: COMPLETE AND VALIDATED ✅**
 
-Claude Flow now has:
+Ruflo now has:
 - ✅ Real session forking (not fake `Promise.allSettled`)
 - ✅ True pause/resume (not fake `interrupt()`)
 - ✅ Git-like checkpointing (instant time travel)

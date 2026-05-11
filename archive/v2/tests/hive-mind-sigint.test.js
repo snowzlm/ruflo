@@ -125,7 +125,7 @@ describe('Hive Mind SIGINT Handler', () => {
     });
   }, 30000);
 
-  it('should terminate Claude Code process when SIGINT is received', (done) => {
+  it('should terminate OpenClaw process when SIGINT is received', (done) => {
     // This test requires claude command to be available
     const { execSync } = require('child_process');
     let claudeAvailable = false;
@@ -154,7 +154,7 @@ describe('Hive Mind SIGINT Handler', () => {
     hiveMindProcess.stdout.on('data', (data) => {
       output += data.toString();
       
-      if (output.includes('Claude Code launched with Hive Mind coordination')) {
+      if (output.includes('OpenClaw launched with Hive Mind coordination')) {
         claudeLaunched = true;
         setTimeout(() => {
           hiveMindProcess.kill('SIGINT');
@@ -164,7 +164,7 @@ describe('Hive Mind SIGINT Handler', () => {
 
     hiveMindProcess.on('exit', (code) => {
       if (claudeLaunched) {
-        expect(output).toContain('Pausing session and terminating Claude Code...');
+        expect(output).toContain('Pausing session and terminating OpenClaw...');
       }
       expect(code).toBe(0);
       done();

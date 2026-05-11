@@ -8,10 +8,10 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { ParallelSwarmExecutor, type ParallelAgentConfig } from '../sdk/session-forking.js';
 import { RealTimeQueryController, type QueryControlCommand } from '../sdk/query-control.js';
-import { query, type Query } from '@anthropic-ai/claude-code/sdk';
+import { query, type Query } from '@anthropic-ai/openclaw/sdk';
 
 // Mock the SDK query function
-vi.mock('@anthropic-ai/claude-code/sdk', () => ({
+vi.mock('@anthropic-ai/openclaw/sdk', () => ({
   query: vi.fn()
 }));
 

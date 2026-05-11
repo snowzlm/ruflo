@@ -6,7 +6,7 @@
 
 ## Context
 
-The MCP bridge grew to 331+ tools from multiple backends (ruvector, ruflo, agentic-flow, Claude Code, Gemini, Codex). Exposing all tools simultaneously caused:
+The MCP bridge grew to 331+ tools from multiple backends (ruvector, ruflo, agentic-flow, OpenClaw, Gemini, Codex). Exposing all tools simultaneously caused:
 
 1. **Context flooding** — AI models struggle to select the right tool from 300+ options
 2. **Startup overhead** — loading all backends when only a subset is needed
@@ -29,7 +29,7 @@ Reorganize all tools into **12 logical groups** that can be independently enable
 | **browser** | ruflo | ~23 | disabled | `MCP_GROUP_BROWSER` |
 | **neural** | ruflo | ~20 | disabled | `MCP_GROUP_NEURAL` |
 | **agentic-flow** | agentic-flow@alpha | 15 | disabled | `MCP_GROUP_AGENTIC_FLOW` |
-| **claude-code** | claude mcp serve | varies | disabled | `MCP_GROUP_CLAUDE_CODE` |
+| **openclaw** | claude mcp serve | varies | disabled | `MCP_GROUP_CLAUDE_CODE` |
 | **gemini** | gemini-mcp-server | varies | disabled | `MCP_GROUP_GEMINI` |
 | **codex** | @openai/codex | varies | disabled | `MCP_GROUP_CODEX` |
 

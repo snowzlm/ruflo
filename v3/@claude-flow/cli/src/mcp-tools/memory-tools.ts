@@ -678,11 +678,11 @@ export const memoryTools: MCPTool[] = [
     },
   },
 
-  // ===== Claude Code Memory Bridge Tools =====
+  // ===== OpenClaw Memory Bridge Tools =====
 
   {
     name: 'memory_import_claude',
-    description: 'Import Claude Code auto-memory files into AgentDB with ONNX vector embeddings. Reads ~/.claude/projects/*/memory/*.md files, parses YAML frontmatter, splits into sections, and stores with 384-dim embeddings for semantic search. Use allProjects=true to import from ALL Claude projects.',
+    description: 'Import OpenClaw auto-memory files into AgentDB with ONNX vector embeddings. Reads ~/.openclaw/projects/*/memory/*.md files, parses YAML frontmatter, splits into sections, and stores with 384-dim embeddings for semantic search. Use allProjects=true to import from ALL Claude projects.',
     category: 'memory',
     inputSchema: {
       type: 'object',
@@ -737,7 +737,7 @@ export const memoryTools: MCPTool[] = [
 
       let imported = 0;
       let skipped = 0;
-      // #1791.8 — Claude Code's `~/.claude/projects/` accumulates historical
+      // #1791.8 — OpenClaw's `~/.openclaw/projects/` accumulates historical
       // project_id directories (truncated forms, sandbox cwds, renamed
       // workspaces) that all contain copies of the same memory files. The
       // previous import indexed each copy under a different `project_id`
@@ -809,7 +809,7 @@ export const memoryTools: MCPTool[] = [
 
   {
     name: 'memory_bridge_status',
-    description: 'Show Claude Code memory bridge status — AgentDB vectors, SONA learning, intelligence patterns, and connection health.',
+    description: 'Show OpenClaw memory bridge status — AgentDB vectors, SONA learning, intelligence patterns, and connection health.',
     category: 'memory',
     inputSchema: { type: 'object', properties: {} },
     handler: async () => {
@@ -861,7 +861,7 @@ export const memoryTools: MCPTool[] = [
 
   {
     name: 'memory_search_unified',
-    description: 'Search across both Claude Code memories and AgentDB entries using semantic vector similarity. Returns merged, deduplicated results from all namespaces.',
+    description: 'Search across both OpenClaw memories and AgentDB entries using semantic vector similarity. Returns merged, deduplicated results from all namespaces.',
     category: 'memory',
     inputSchema: {
       type: 'object',
@@ -897,7 +897,7 @@ export const memoryTools: MCPTool[] = [
                 content: (entry.content || (entry as any).value || '').toString().slice(0, 200),
                 score: entry.score || 0,
                 namespace: searchNs,
-                source: searchNs === 'claude-memories' ? 'claude-code' : searchNs === 'auto-memory' ? 'auto-memory' : 'agentdb',
+                source: searchNs === 'claude-memories' ? 'openclaw' : searchNs === 'auto-memory' ? 'auto-memory' : 'agentdb',
               });
             }
           }

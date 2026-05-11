@@ -16,7 +16,7 @@ The repo ships **two parallel implementations** of the MCP hooks surface:
 
 | Path | Used by |
 |---|---|
-| `v3/mcp/tools/hooks-tools.ts` | Standalone `mcp` package (not loaded by the `claude-flow` MCP server) |
+| `v3/mcp/tools/hooks-tools.ts` | Standalone `mcp` package (not loaded by the `ruflo` MCP server) |
 | `v3/@claude-flow/cli/src/mcp-tools/hooks-tools.ts` | **Actual CLI MCP server** (`npx @claude-flow/cli mcp start`) |
 
 The 3.6.13 fix for #1686 (adding `dbPath` to `createReasoningBank`) landed in the first file but the runtime uses the second. The `hooks_post-task` writer and the `hooks_metrics` reader in the second file persist via `memory-store.ts` not `ReasoningBank` — and the metrics reader filters entries by key substring (`pattern`, `route`, `task`) rather than by trajectory store, so post-task writes that don't match those substrings remain invisible.

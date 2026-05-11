@@ -1,11 +1,11 @@
 # Docker Validation Suite for Claude-Flow
 
-This directory contains Docker-based testing infrastructure to validate claude-flow functionality in a clean, isolated environment that simulates a remote deployment.
+This directory contains Docker-based testing infrastructure to validate ruflo functionality in a clean, isolated environment that simulates a remote deployment.
 
 ## 🎯 Purpose
 
 - **Clean Environment Testing**: Validates installation in a fresh environment without local dependencies
-- **Production Simulation**: Tests the actual user experience of installing and using claude-flow
+- **Production Simulation**: Tests the actual user experience of installing and using ruflo
 - **CI/CD Integration**: Can be used in automated testing pipelines
 - **Cross-Platform Validation**: Tests on Linux (Alpine) to ensure portability
 
@@ -233,7 +233,7 @@ The validation suite includes security tests:
 
 ## 🤝 Contributing
 
-When adding new features to claude-flow:
+When adding new features to ruflo:
 1. Add corresponding tests to `run-validation.sh`
 2. Update the test coverage section in this README
 3. Run full validation suite before submitting PR

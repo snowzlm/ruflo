@@ -15,7 +15,7 @@ import * as path from 'path';
 import * as os from 'os';
 
 // Import verification components
-import TruthScoreCalculator from '../../../../.claude/helpers/truth-score.js';
+import TruthScoreCalculator from '../../../../.openclaw/helpers/truth-score.js';
 
 interface PerformanceMetrics {
   operations: number;

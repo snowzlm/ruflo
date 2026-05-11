@@ -125,7 +125,7 @@ I recommend **PAUSING HERE** and:
    - Assign priorities
 
 3. **Implement MVP first**:
-   - Get basic `claude-flow agent run` working
+   - Get basic `ruflo agent run` working
    - Validate the architecture
    - Then expand based on learnings
 

@@ -80,7 +80,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - JSON Schema 1.1 validation (Draft 2020-12) with format support
   - Enhanced MCP server with dual-mode operation (2025-11 + legacy)
   - Server factory with automatic feature detection
-  - Enable with: `npx claude-flow mcp start --mcp2025`
+  - Enable with: `npx ruflo mcp start --mcp2025`
 - **Progressive Disclosure Pattern** - 98.7% token reduction (150k→2k tokens)
   - Filesystem-based tool discovery with lazy loading
   - Tools loaded on first invocation instead of at startup
@@ -250,13 +250,13 @@ docker run --rm test
 
 ```bash
 # NPX users (recommended)
-npx claude-flow@latest init
+ruflo init
 
 # Global installation
-npm install -g claude-flow@latest
+npm install -g ruflo@latest
 
 # Verify
-claude-flow --version  # v2.7.31
+ruflo --version  # v2.7.31
 ```
 
 ### 💡 CLI Features (via agentic-flow v1.9.4)
@@ -344,13 +344,13 @@ docker run --rm test
 
 ```bash
 # NPX users (recommended)
-npx claude-flow@latest init
+ruflo init
 
 # Global installation
-npm install -g claude-flow@latest
+npm install -g ruflo@latest
 
 # Verify
-claude-flow --version  # v2.7.30
+ruflo --version  # v2.7.30
 ```
 
 ### 🔗 Related Issues
@@ -377,7 +377,7 @@ Fixed critical installation blocker by removing `@xenova/transformers@^3.2.0` an
 
 ### 🐛 Bug Fixed
 
-**Issue**: Users unable to install claude-flow due to non-existent dependency
+**Issue**: Users unable to install ruflo due to non-existent dependency
 ```
 npm error Could not resolve dependency:
 npm error optional @xenova/transformers@"^3.2.0"
@@ -432,13 +432,13 @@ docker run --rm claude-flow-v2.7.29-test
 
 ```bash
 # NPX users (recommended)
-npx claude-flow@latest init
+ruflo init
 
 # Global installation
-npm install -g claude-flow@latest
+npm install -g ruflo@latest
 
 # Verify
-claude-flow --version  # v2.7.29
+ruflo --version  # v2.7.29
 ```
 
 ### 📝 Affected Versions
@@ -473,7 +473,7 @@ Removed automatic installation of `agentic-payments` MCP server from the init pr
 #### 1. **Removed from setupMcpServers Function** (`src/cli/simple-commands/init/index.js:104-120`)
    - Removed agentic-payments server configuration
    - Reduced automatic MCP servers from 4 to 3:
-     - ✅ claude-flow (core)
+     - ✅ ruflo (core)
      - ✅ ruv-swarm (coordination)
      - ✅ flow-nexus (advanced features)
      - ❌ agentic-payments (removed)
@@ -526,7 +526,7 @@ Removed automatic installation of `agentic-payments` MCP server from the init pr
 3. ✅ Correct MCP server count (3)
 4. ✅ Actual init execution
 5. ✅ .mcp.json validation
-6. ✅ CLAUDE.md verification
+6. ✅ OPENCLAW.md verification
 
 **Run Tests**:
 ```bash
@@ -544,14 +544,14 @@ docker run --rm claude-flow-init-test:v2.7.28
 **Manual Installation**:
 ```bash
 # After running init, add agentic-payments manually
-claude mcp add agentic-payments npx agentic-payments@latest mcp
+openclaw mcp add agentic-payments npx agentic-payments@latest mcp
 ```
 
 **Or Add to .mcp.json**:
 ```json
 {
   "mcpServers": {
-    "claude-flow@alpha": { ... },
+    "ruflo@alpha": { ... },
     "ruv-swarm": { ... },
     "flow-nexus": { ... },
     "agentic-payments": {
@@ -610,7 +610,7 @@ Created:
 
 #### Why Not Make All Optional?
 
-- **claude-flow**: Core orchestration - always needed
+- **ruflo**: Core orchestration - always needed
 - **ruv-swarm**: Enhanced coordination - core feature
 - **flow-nexus**: Advanced features - commonly used
 - **agentic-payments**: Specialized use case - opt-in
@@ -620,20 +620,20 @@ Created:
 #### NPX Users (Automatic)
 ```bash
 # Next run uses v2.7.28
-npx claude-flow@latest init
+ruflo init
 ```
 
 #### Global Install Users
 ```bash
-npm update -g claude-flow
+npm update -g ruflo
 
 # Verify version
-claude-flow --version  # Should show v2.7.28
+ruflo --version  # Should show v2.7.28
 ```
 
 ### 🔗 Related Documentation
 
-- **Issue**: [#857 - Remove automatic agentic-payments installation](https://github.com/ruvnet/claude-flow/issues/857)
+- **Issue**: [#857 - Remove automatic agentic-payments installation](https://github.com/snowzlm/ruflo/issues/857)
 - **Previous Version**: v2.7.27 (NPX ENOTEMPTY fix)
 - **Docker Tests**: `tests/docker/Dockerfile.init-test`
 
@@ -644,11 +644,11 @@ claude-flow --version  # Should show v2.7.28
 > **🐛 Critical Bug Fix**: NPX ENOTEMPTY error fix with automatic retry and cache cleanup
 
 ### Summary
-Fixed NPM ENOTEMPTY errors occurring during npx claude-flow execution, particularly after recent agentic-flow module updates. Implemented automatic retry logic with exponential backoff and intelligent cache cleanup.
+Fixed NPM ENOTEMPTY errors occurring during npx ruflo execution, particularly after recent agentic-flow module updates. Implemented automatic retry logic with exponential backoff and intelligent cache cleanup.
 
 ### 🐛 Bug Fixed
 
-**Issue**: NPM encounters ENOTEMPTY errors when npx tries to install claude-flow
+**Issue**: NPM encounters ENOTEMPTY errors when npx tries to install ruflo
 - Error: `npm error ENOTEMPTY: directory not empty, rename '/home/codespace/.npm/_npx/.../node_modules/agentic-flow'`
 - Occurred frequently after v2.7.26 updates
 - Caused by concurrent NPX executions and cache conflicts
@@ -724,14 +724,14 @@ docker run --rm claude-flow-npx-test:v2.7.27
 
 ```bash
 # NPX users (always latest)
-npx claude-flow@latest --version  # Should show v2.7.27
+ruflo --version  # Should show v2.7.27
 
 # Global install users
-npm update -g claude-flow
-claude-flow --version  # Should show v2.7.27
+npm update -g ruflo
+ruflo --version  # Should show v2.7.27
 
 # Verify the fix
-npx claude-flow@latest init
+ruflo init
 # Should complete without ENOTEMPTY errors
 ```
 
@@ -754,7 +754,7 @@ npx claude-flow@latest init
 
 ### 🔗 Related Documentation
 
-- **Issue**: [#856 - NPX ENOTEMPTY error after v2.7.26 updates](https://github.com/ruvnet/claude-flow/issues/856)
+- **Issue**: [#856 - NPX ENOTEMPTY error after v2.7.26 updates](https://github.com/snowzlm/ruflo/issues/856)
 - **Previous Version**: v2.7.26
 - **Docker Tests**: `tests/docker/Dockerfile.npx-test`
 
@@ -794,12 +794,12 @@ This release COMPLETELY resolves the MCP stdio mode stdout corruption issue. The
 ### 📝 Technical Details
 ```bash
 # Before v2.7.8 - stdout was corrupted:
-$ npx claude-flow@2.7.7 mcp start
-✅ Starting Claude Flow MCP server...  # <- ON STDOUT (BAD!)
+$ npx ruflo@2.7.7 mcp start
+✅ Starting Ruflo MCP server...  # <- ON STDOUT (BAD!)
 {"jsonrpc":"2.0",...}
 
 # After v2.7.8 - stdout is clean:
-$ npx claude-flow@2.7.8 mcp start
+$ npx ruflo@2.7.8 mcp start
 {"jsonrpc":"2.0",...}  # <- ONLY JSON-RPC (GOOD!)
 # All startup messages go to stderr
 ```
@@ -974,8 +974,8 @@ $ npx claude-flow@2.7.8 mcp start
 
 ### 📦 Distribution
 
-- ✅ All 6 AgentDB skills included in `.claude/skills/` directory
-- ✅ Skills distributed with npm package via `.claude/` in files array
+- ✅ All 6 AgentDB skills included in `.openclaw/skills/` directory
+- ✅ Skills distributed with npm package via `.openclaw/` in files array
 - ✅ Total: ~2,520 lines of comprehensive documentation
 - ✅ All skills follow skill-builder specification with proper YAML frontmatter
 - ✅ Progressive disclosure structure (4 levels)
@@ -1004,15 +1004,15 @@ $ npx claude-flow@2.7.8 mcp start
 #### **Skills System Initialization**
 - **Fixed**: Skills copier path resolution in both `bin/init/skills-copier.js` and `src/cli/simple-commands/init/skills-copier.js`
   - Skills now copy correctly from npm package installations (global and local)
-  - All 21 built-in skills properly initialize during `npx claude-flow init`
+  - All 21 built-in skills properly initialize during `npx ruflo init`
   - Tested and verified in Docker environment
-  - Resolves issue where `.claude/skills/` directory remained empty after init
+  - Resolves issue where `.openclaw/skills/` directory remained empty after init
 
 #### **Statusline Script Creation**
 - **Fixed**: Statusline script creation with proper bash variable escaping and missing imports
   - Escaped bash variables (`${MEM_COLOR}`, `${CPU_COLOR}`, `${SUCCESS_COLOR}`) to prevent JavaScript template literal conflicts
   - Added missing `path` and `os` module imports in `enhancedClaudeFlowInit()` function
-  - Script now creates successfully with executable permissions (755) in both `.claude/` and `~/.claude/`
+  - Script now creates successfully with executable permissions (755) in both `.openclaw/` and `~/.openclaw/`
   - Resolves "⚠️ Could not create statusline script, skipping..." warning during init
   - Verified in Docker with proper file permissions: `-rwxr-xr-x`
 
@@ -1051,36 +1051,36 @@ $ npx claude-flow@2.7.8 mcp start
 
 - **New**: `docs/COMMANDS_TO_SKILLS_MIGRATION.md` - Migration guide from commands to skills
 - **New**: `docs/FINAL_INIT_STRUCTURE.md` - Complete init system documentation
-- **New**: `.claude/skills/` directory structure for project skills
+- **New**: `.openclaw/skills/` directory structure for project skills
 - **New**: `bin/init/skills-copier.js` - Automated skills installation
 
 #### **Init System Enhancements**
-- **Skills Integration**: `npx claude-flow init` now copies 21 built-in skills to `.claude/skills/`
+- **Skills Integration**: `npx ruflo init` now copies 21 built-in skills to `.openclaw/skills/`
 - **Folder Structure**: Organized `bin/init/` with separate help and skills modules
 - **Auto-Setup**: Skills automatically available after init command
 
 ### 🔄 Changes
 
 #### **Commands → Skills Migration**
-- **Removed**: 68 command files from `.claude/commands/` (migrated to skills)
+- **Removed**: 68 command files from `.openclaw/commands/` (migrated to skills)
   - Deleted: analysis, flow-nexus, github, hive-mind, hooks, memory, pair, sparc, stream-chain, swarm, truth, verify commands
   - **Reason**: Commands are now integrated as skills via MCP server (more efficient, better discovery)
 
 - **Migration Path**: All functionality preserved in skills system
-  - Old: `.claude/commands/swarm/research.md`
+  - Old: `.openclaw/commands/swarm/research.md`
   - New: `swarm-orchestration` skill (auto-discovered)
 
 ### 📚 Documentation Updates
 
-- **Updated**: `.gitignore` to exclude `.claude/skills/` from version control
+- **Updated**: `.gitignore` to exclude `.openclaw/skills/` from version control
 - **Updated**: `README.md` references to skills system
-- **Updated**: Integration guide for claude-flow + agentic-flow
+- **Updated**: Integration guide for ruflo + agentic-flow
 
 ### 🏗️ Architecture Improvements
 
 **Skills Discovery Flow:**
 ```
-1. Personal Skills (~/.claude/skills/) - User custom skills
+1. Personal Skills (~/.openclaw/skills/) - User custom skills
 2. Project Skills (.claude/skills/) - Team shared skills
 3. Built-In Skills (MCP server) - 21 pre-configured skills
 4. Skill Activation - Claude matches description → loads content
@@ -1088,8 +1088,8 @@ $ npx claude-flow@2.7.8 mcp start
 
 **Integration Architecture:**
 ```
-Claude Code
-  ├─ claude-flow Skills (21 Built-In)
+OpenClaw
+  ├─ ruflo Skills (21 Built-In)
   ├─ agentic-flow Skills (Custom Created)
   └─ MCP Integration Layer
       ├─ 213+ coordination tools
@@ -1115,32 +1115,32 @@ Claude Code
 3. `bin/init/index.js` - Added skills copier integration
 4. `bin/init/skills-copier.js` - New: Skills installation module
 5. `src/cli/simple-commands/init/index.js` - Updated init command
-6. `.gitignore` - Added `.claude/skills/` exclusion
+6. `.gitignore` - Added `.openclaw/skills/` exclusion
 
 **New Files:**
 - `docs/skills/skills-tutorial.md` (3000+ lines comprehensive guide)
 - `docs/COMMANDS_TO_SKILLS_MIGRATION.md`
 - `docs/FINAL_INIT_STRUCTURE.md`
-- `.claude/skills/` directory structure
+- `.openclaw/skills/` directory structure
 - `bin/init/skills-copier.js`
-- `.claude/settings.reasoningbank-example.json`
-- `.claude/settings.reasoningbank-minimal.json`
+- `.openclaw/settings.reasoningbank-example.json`
+- `.openclaw/settings.reasoningbank-minimal.json`
 
 **Removed Files:**
-- 68 command files from `.claude/commands/` (migrated to skills)
+- 68 command files from `.openclaw/commands/` (migrated to skills)
 
 ### 🚀 Usage
 
 **Installation:**
 ```bash
-# Install claude-flow
-npm install -g claude-flow@alpha
+# Install ruflo
+npm install -g github:snowzlm/ruflo
 
 # Setup MCP server (enables 21 skills)
-claude mcp add claude-flow npx claude-flow@alpha mcp start
+openclaw mcp add ruflo ruflo mcp start
 
 # Initialize project with skills
-npx claude-flow init
+npx ruflo init
 
 # Skills are now auto-discovered!
 ```
@@ -1159,16 +1159,16 @@ Claude (automatically):
 ### 📝 Upgrade Notes
 
 **For Existing Users:**
-1. Update to alpha.11: `npm install -g claude-flow@alpha`
-2. Run init: `npx claude-flow init` (copies skills to `.claude/skills/`)
-3. MCP server: `claude mcp add claude-flow npx claude-flow@alpha mcp start`
+1. Update to alpha.11: `npm install -g github:snowzlm/ruflo`
+2. Run init: `npx ruflo init` (copies skills to `.openclaw/skills/`)
+3. MCP server: `openclaw mcp add ruflo ruflo mcp start`
 4. Skills activate automatically - no code changes needed!
 
 **Breaking Changes:**
 - None - old commands removed but functionality preserved in skills
 
 **Deprecations:**
-- `.claude/commands/` - Use skills system instead
+- `.openclaw/commands/` - Use skills system instead
 
 ---
 
@@ -1254,14 +1254,14 @@ Claude (automatically):
 
 **Before (alpha.9):**
 ```bash
-$ npx claude-flow@alpha memory query "config" --namespace semantic --reasoningbank
+$ ruflo memory query "config" --namespace semantic --reasoningbank
 [INFO] No memory candidates found
 ⚠️ No results found
 ```
 
 **After (alpha.10):**
 ```bash
-$ npx claude-flow@alpha memory query "config" --namespace semantic --reasoningbank
+$ ruflo memory query "config" --namespace semantic --reasoningbank
 [INFO] Found 3 candidates
 [INFO] Retrieval complete: 3 memories in 2ms
 ✅ Found 3 results (semantic search):
@@ -1277,15 +1277,15 @@ $ npx claude-flow@alpha memory query "config" --namespace semantic --reasoningba
 
 ```bash
 # Update to latest alpha
-npm install -g claude-flow@alpha
+npm install -g github:snowzlm/ruflo
 
 # Or use npx (always latest)
-npx claude-flow@alpha --version
+ruflo --version
 # Output: v2.7.0-alpha.10
 
 # Verify semantic search works
-npx claude-flow@alpha memory store test "validation data" --namespace semantic --reasoningbank
-npx claude-flow@alpha memory query "validation" --namespace semantic --reasoningbank
+ruflo memory store test "validation data" --namespace semantic --reasoningbank
+ruflo memory query "validation" --namespace semantic --reasoningbank
 # ✅ Should return stored memory
 ```
 
@@ -1319,9 +1319,9 @@ All existing commands continue to work as before, but now return correct results
 
 ### 🔗 Links
 
-- **npm Package**: [claude-flow@2.7.0-alpha.10](https://www.npmjs.com/package/claude-flow/v/2.7.0-alpha.10)
+- **npm Package**: [ruflo@2.7.0-alpha.10](https://www.npmjs.com/package/claude-flow/v/2.7.0-alpha.10)
 - **Release Notes**: [docs/RELEASE-NOTES-v2.7.0-alpha.10.md](./docs/RELEASE-NOTES-v2.7.0-alpha.10.md)
-- **GitHub Issues**: [Report bugs](https://github.com/ruvnet/claude-flow/issues)
+- **GitHub Issues**: [Report bugs](https://github.com/snowzlm/ruflo/issues)
 
 ---
 
@@ -1331,20 +1331,20 @@ All existing commands continue to work as before, but now return correct results
 
 ### 🗑️ Removed
 - **Sublinear-time-solver Integration**: Removed sublinear-time-solver MCP server from initialization
-  - Deleted `.claude/agents/sublinear/` folder creation during init
+  - Deleted `.openclaw/agents/sublinear/` folder creation during init
   - Removed `--sublinear` flag from init command
   - Removed sublinear MCP server setup and configuration
-  - Simplified initialization to focus on core MCP servers (claude-flow, ruv-swarm, flow-nexus)
+  - Simplified initialization to focus on core MCP servers (ruflo, ruv-swarm, flow-nexus)
   - Updated help documentation to remove sublinear references
 
 ### ✨ Improved
-- **Cleaner Initialization**: `npx claude-flow init` now sets up only core, stable MCP servers
+- **Cleaner Initialization**: `npx ruflo init` now sets up only core, stable MCP servers
 - **Streamlined Documentation**: Removed experimental sublinear references from templates
 - **Simplified Configuration**: Reduced complexity in MCP server setup
 
 ### 🔧 Technical Changes
 - Removed `sublinear-copier.js` and related initialization code
-- Updated CLAUDE.md templates with claude-flow MCP tools instead of sublinear examples
+- Updated OPENCLAW.md templates with ruflo MCP tools instead of sublinear examples
 - Cleaned up help text and example commands
 
 ## [2.0.0-alpha.110] - 2025-09-18
@@ -1354,12 +1354,12 @@ All existing commands continue to work as before, but now return correct results
 ### ✨ Changed
 
 #### 🎯 Simplified Module Initialization
-- **Neural Module**: `npx claude-flow@alpha neural init` now creates only the essential `safla-neural.md` agent file
+- **Neural Module**: `ruflo neural init` now creates only the essential `safla-neural.md` agent file
   - Removed unnecessary `config.json` generation
   - Removed unnecessary `README.md` generation
   - Cleaner, simpler initialization focused on the agent definition
 
-- **Goal Module**: `npx claude-flow@alpha goal init` now creates only the essential `goal-planner.md` agent file
+- **Goal Module**: `ruflo goal init` now creates only the essential `goal-planner.md` agent file
   - Removed unnecessary `config.json` generation
   - Removed unnecessary `README.md` generation
   - Streamlined initialization for immediate use
@@ -1371,19 +1371,19 @@ All existing commands continue to work as before, but now return correct results
 - **Clearer Instructions**: Simplified documentation to reflect the streamlined initialization process
 
 ### 🔧 Technical Details
-- Both commands now create only the agent markdown file in `.claude/agents/[module]/`
+- Both commands now create only the agent markdown file in `.openclaw/agents/[module]/`
 - Configuration is built into the agent definitions themselves
 - Reduced file clutter while maintaining full functionality
 
 ## [2.0.0-alpha.91] - 2025-08-21
 
-> **🚀 Claude Code Task Tool Integration Update**: Enhanced integration with Claude Code's Task tool for concurrent agent execution. Clear separation between MCP coordination tools and Claude Code's execution capabilities, with comprehensive documentation and examples for parallel agent spawning.
+> **🚀 OpenClaw Task Tool Integration Update**: Enhanced integration with OpenClaw's Task tool for concurrent agent execution. Clear separation between MCP coordination tools and OpenClaw's execution capabilities, with comprehensive documentation and examples for parallel agent spawning.
 
 ### ✨ New Features
 
-#### 🎯 Claude Code Task Tool Integration
-- **Enhanced CLAUDE.md Templates**: Updated initialization templates with clear guidance
-  - Explicit instructions that Claude Code's Task tool spawns agents for actual work
+#### 🎯 OpenClaw Task Tool Integration
+- **Enhanced OPENCLAW.md Templates**: Updated initialization templates with clear guidance
+  - Explicit instructions that OpenClaw's Task tool spawns agents for actual work
   - MCP tools clearly marked as coordination-only, not for execution
   - Step-by-step workflow: Optional MCP setup → Required Task tool execution
   - Comprehensive examples of concurrent agent spawning patterns
@@ -1397,7 +1397,7 @@ All existing commands continue to work as before, but now return correct results
 - **Enhanced Hive Mind Prompts**: Restructured hive-mind spawn prompts
   - Three-step process clearly documented in prompts
   - Step 1: Optional MCP coordination setup
-  - Step 2: REQUIRED Claude Code Task tool for agent spawning
+  - Step 2: REQUIRED OpenClaw Task tool for agent spawning
   - Step 3: Batch ALL todos in single TodoWrite call (8-10 todos)
 
 #### 📋 Batch Operation Emphasis
@@ -1414,7 +1414,7 @@ All existing commands continue to work as before, but now return correct results
 
 #### 📚 Documentation Improvements
 - **Clear Separation of Concerns**:
-  - ✅ Claude Code handles: Task tool, file operations, code generation, execution
+  - ✅ OpenClaw handles: Task tool, file operations, code generation, execution
   - ❌ MCP tools handle: Coordination setup, memory, performance tracking only
   - Visual formatting with emojis and boxes for clarity
 
@@ -1448,7 +1448,7 @@ All existing commands continue to work as before, but now return correct results
 ### 📁 Files Modified
 
 #### Core Files Updated
-- `src/cli/simple-commands/init/templates/claude-md.js` - CLAUDE.md template generation
+- `src/cli/simple-commands/init/templates/claude-md.js` - OPENCLAW.md template generation
 - `src/cli/simple-commands/hive-mind.js` - generateHiveMindPrompt() function
 - `src/cli/simple-commands/swarm.js` - swarm prompt generation
 - `package.json` - Version bump to 2.0.0-alpha.91
@@ -1460,9 +1460,9 @@ All existing commands continue to work as before, but now return correct results
 
 #### Complete Command File Generation
 - **Fixed Init Command**: Now creates ALL 91 command documentation files
-  - 10 swarm command files in `.claude/commands/swarm/`
-  - 12 hive-mind command files in `.claude/commands/hive-mind/`
-  - 5 agents documentation files in `.claude/commands/agents/`
+  - 10 swarm command files in `.openclaw/commands/swarm/`
+  - 12 hive-mind command files in `.openclaw/commands/hive-mind/`
+  - 5 agents documentation files in `.openclaw/commands/agents/`
   - All standard command documentation properly organized
 
 - **Enhanced Template Structure**: Updated `enhanced-templates.js`
@@ -1472,21 +1472,21 @@ All existing commands continue to work as before, but now return correct results
 
 ### 📁 File Organization Rules
 - **Never save to root folder**: All files properly organized in subdirectories
-- Clear directory structure guidance in CLAUDE.md
+- Clear directory structure guidance in OPENCLAW.md
 - Proper organization for `/src`, `/tests`, `/docs`, `/config` directories
 
 ### 🎯 Key Takeaways for Users
 
-1. **Always use Claude Code's Task tool** to spawn agents that do actual work
+1. **Always use OpenClaw's Task tool** to spawn agents that do actual work
 2. **MCP tools are ONLY** for coordination setup, not execution
 3. **Batch everything**: Spawn ALL agents in ONE message
 4. **TodoWrite must batch**: Always include 5-10+ todos in ONE call
-5. **Use coordination hooks**: Every agent must use claude-flow hooks
+5. **Use coordination hooks**: Every agent must use ruflo hooks
 6. **Proper file organization**: Never save files to root directory
 
 This release ensures users understand the critical distinction between:
 - **MCP tools**: Coordinate and plan (the "brain")
-- **Claude Code Task tool**: Execute and implement (the "hands")
+- **OpenClaw Task tool**: Execute and implement (the "hands")
 
 ## [2.0.0-alpha.90] - 2025-08-16
 
@@ -1595,32 +1595,32 @@ This release ensures users understand the critical distinction between:
 
 ### 📦 Installation
 ```bash
-npm install -g claude-flow@alpha
+npm install -g github:snowzlm/ruflo
 ```
 
 ### 🔗 Links
 - [npm Package](https://www.npmjs.com/package/claude-flow/v/2.0.0-alpha.90)
-- [Pull Request #661](https://github.com/ruvnet/claude-flow/pull/661)
-- [Issue #660](https://github.com/ruvnet/claude-flow/issues/660)
+- [Pull Request #661](https://github.com/snowzlm/ruflo/pull/661)
+- [Issue #660](https://github.com/snowzlm/ruflo/issues/660)
 
 ---
 
 ## [2.0.0-alpha.89] - 2025-08-13
 
-> **Highlights**: Working auto-fix implementation for pair programming with real command execution, complete command documentation system, real Claude Code stream chaining with background execution, enhanced help system with emojis, comprehensive pair programming features with guidance modes, and complete removal of simulation mode in training.
+> **Highlights**: Working auto-fix implementation for pair programming with real command execution, complete command documentation system, real OpenClaw stream chaining with background execution, enhanced help system with emojis, comprehensive pair programming features with guidance modes, and complete removal of simulation mode in training.
 
 ### ✨ New Features
 
-#### 🔗 Stream Chain Command - Real Claude Code Execution
+#### 🔗 Stream Chain Command - Real OpenClaw Execution
 - **Complete Implementation**: Fixed missing `stream-chain` command (Issue #642)
   - Added full command handler in `/src/cli/simple-commands/stream-chain.js`
   - Registered in command registry with all subcommands
   - Implemented `run`, `demo`, `pipeline`, and `test` subcommands
   - Four pipeline types: `analysis`, `refactor`, `test`, `optimize`
-  - Full integration with Claude Code's stream-json output format
+  - Full integration with OpenClaw's stream-json output format
 
-- **Real Claude Code Integration**: Stream-chain now uses actual Claude Code execution
-  - Fixed stream-json format compatibility with Claude Code
+- **Real OpenClaw Integration**: Stream-chain now uses actual OpenClaw execution
+  - Fixed stream-json format compatibility with OpenClaw
   - Proper context preservation between chained steps
   - Extracts assistant responses from stream-json output
   - Transforms output into context for next step
@@ -1718,7 +1718,7 @@ npm install -g claude-flow@alpha
   - **Pattern Suggestions**: Design pattern recommendations
 
 #### 📚 Command Documentation System
-- **Complete Documentation Structure**: Created comprehensive docs in `.claude/commands/`
+- **Complete Documentation Structure**: Created comprehensive docs in `.openclaw/commands/`
   - **Stream Chain Documentation** (`/stream-chain/`):
     - `README.md` - Overview with background execution integration
     - `pipeline.md` - Predefined pipeline documentation
@@ -1788,10 +1788,10 @@ npm install -g claude-flow@alpha
   - Background execution properly tracked
   - Monitor and kill commands functional
 
-- **Claude Code Integration Fixed**: Resolved multiple issues with real execution
+- **OpenClaw Integration Fixed**: Resolved multiple issues with real execution
   - Fixed "Expected message type 'user' got 'system'" error
   - Implemented proper stream-json message filtering
-  - Fixed timeout issues with Claude Code execution
+  - Fixed timeout issues with OpenClaw execution
   - Resolved `--input-format` and `--output-format` compatibility
   - Working context preservation between chained steps
 
@@ -1836,7 +1836,7 @@ npm install -g claude-flow@alpha
 ### 📚 Documentation
 
 #### New Documentation
-- **Command Documentation System**: Complete docs in `.claude/commands/`
+- **Command Documentation System**: Complete docs in `.openclaw/commands/`
   - Stream chain with background execution integration
   - Pair programming with 7 comprehensive guides
   - Verification system documentation
@@ -1847,7 +1847,7 @@ npm install -g claude-flow@alpha
   - Complete command reference with all subcommands
   - Background execution guide
   - Performance characteristics
-  - Integration with other Claude Flow features
+  - Integration with other Ruflo features
   - Troubleshooting section
 
 - **Training Pipeline Documentation**: `/docs/training-pipeline-real-only.md`
@@ -1856,7 +1856,7 @@ npm install -g claude-flow@alpha
   - Task complexity levels
   - Learning mechanisms
 
-- **Performance Validation**: `/workspaces/claude-code-flow/performance-validation.md`
+- **Performance Validation**: `/workspaces/openclaw-flow/performance-validation.md`
   - Validation of training improvements
   - Agent profile analysis
   - Stream chaining integration
@@ -1903,25 +1903,25 @@ npm install -g claude-flow@alpha
 - `/claude-flow-wiki/Stream-Chain-Command.md` - Wiki documentation
 - `/docs/training-pipeline-real-only.md` - Real training documentation
 - `/performance-validation.md` - Performance validation report
-- `.claude/commands/stream-chain/README.md` - Stream chain main documentation
-- `.claude/commands/stream-chain/pipeline.md` - Pipeline documentation
-- `.claude/commands/stream-chain/run.md` - Run command documentation
-- `.claude/commands/pair/README.md` - Pair programming overview
-- `.claude/commands/pair/start.md` - Starting sessions guide
-- `.claude/commands/pair/modes.md` - Collaboration modes guide
-- `.claude/commands/pair/session.md` - Session management guide
-- `.claude/commands/pair/config.md` - Configuration reference
-- `.claude/commands/pair/commands.md` - Command reference
-- `.claude/commands/pair/examples.md` - Real-world examples
-- `.claude/commands/verify/README.md` - Verification documentation
-- `.claude/commands/truth/README.md` - Truth metrics documentation
+- `.openclaw/commands/stream-chain/README.md` - Stream chain main documentation
+- `.openclaw/commands/stream-chain/pipeline.md` - Pipeline documentation
+- `.openclaw/commands/stream-chain/run.md` - Run command documentation
+- `.openclaw/commands/pair/README.md` - Pair programming overview
+- `.openclaw/commands/pair/start.md` - Starting sessions guide
+- `.openclaw/commands/pair/modes.md` - Collaboration modes guide
+- `.openclaw/commands/pair/session.md` - Session management guide
+- `.openclaw/commands/pair/config.md` - Configuration reference
+- `.openclaw/commands/pair/commands.md` - Command reference
+- `.openclaw/commands/pair/examples.md` - Real-world examples
+- `.openclaw/commands/verify/README.md` - Verification documentation
+- `.openclaw/commands/truth/README.md` - Truth metrics documentation
 
 #### Modified Files
 - `/src/cli/command-registry.js` - Updated pair command to use new pair.js
 - `/src/cli/simple-commands/training-pipeline.js` - Removed simulation mode
 - `/src/cli/simple-commands/verification.js` - Enhanced verification features
 - `/.claude-flow/agents/profiles.json` - Updated with real execution metrics
-- `/CLAUDE.md` - Updated with stream chain examples
+- `/OPENCLAW.md` - Updated with stream chain examples
 - `/CHANGELOG.md` - Updated with alpha-89 release notes
 
 ### 🚀 Migration Notes
@@ -2065,15 +2065,15 @@ npm install -g claude-flow@alpha
 ## [2.0.0-alpha.83] - 2025-02-01
 
 ### 🔧 Bug Fixes
-- **Fixed CLAUDE.md Template Generation**: 
+- **Fixed OPENCLAW.md Template Generation**: 
   - Updated init command template to use correct agent names
   - Replaced legacy agent names (analyst, coordinator, etc.) with proper mappings
-  - Ensures all generated CLAUDE.md files use valid agent types
+  - Ensures all generated OPENCLAW.md files use valid agent types
   - Fixes issue #557: "Agent type 'analyst' not found" error
 
 ### 🛠️ Technical Improvements
 - **Agent Name Mapping**: Enhanced backward compatibility with legacy agent names
-- **Template Updates**: Updated 18 instances of agent names in CLAUDE.md template
+- **Template Updates**: Updated 18 instances of agent names in OPENCLAW.md template
 - **Agent Loader**: Maintains support for legacy names while using correct internal types
 
 ### 📦 Package Notes
@@ -2085,28 +2085,28 @@ npm install -g claude-flow@alpha
 
 ### ✨ New Features
 - **Real Token Usage Tracking**: Track actual Claude API token consumption instead of simulated data
-  - Integrates with Claude Code's OpenTelemetry metrics
+  - Integrates with OpenClaw's OpenTelemetry metrics
   - Accurate cost calculations based on Anthropic pricing
   - Agent-level token breakdown showing usage by agent type
   - CSV export for detailed billing and analysis reports
   - Smart optimization recommendations to reduce costs
 
 - **Real Performance Analytics**: ALL analysis commands now use real data
-  - `claude-flow analysis performance-report` - Real task execution metrics
-  - `claude-flow analysis bottleneck-detect` - Actual system bottleneck detection
+  - `ruflo analysis performance-report` - Real task execution metrics
+  - `ruflo analysis bottleneck-detect` - Actual system bottleneck detection
   - Automatic performance tracking for all commands
   - System resource monitoring (CPU, memory)
   - Agent performance metrics by type
   - Trend analysis comparing periods
 
 - **Enhanced Analytics Command**: 
-  - `claude-flow analysis token-usage --breakdown --cost-analysis`
+  - `ruflo analysis token-usage --breakdown --cost-analysis`
   - Real-time token consumption metrics
   - Cost projections with current Anthropic pricing
   - Filter by agent type with `--agent <type>`
 
 - **Optional Monitoring During Init**:
-  - `claude-flow init --monitoring` sets up token tracking
+  - `ruflo init --monitoring` sets up token tracking
   - Creates `.claude-flow/` directory with tracking configuration
   - Generates environment setup script for telemetry
   - Adds token tracking hooks to Claude settings
@@ -2124,7 +2124,7 @@ npm install -g claude-flow@alpha
 ### 📊 Monitoring Features
 - **Token Usage Tracking**:
   - OpenTelemetry metrics (when `CLAUDE_CODE_ENABLE_TELEMETRY=1`)
-  - Local Claude Code metrics (`~/.claude/metrics/usage.json`)
+  - Local OpenClaw metrics (`~/.openclaw/metrics/usage.json`)
   - Project-specific tracking (`.claude-flow/token-usage.json`)
 - **Performance Tracking**:
   - Task execution metrics (duration, success rate)
@@ -2226,11 +2226,11 @@ npm install -g claude-flow@alpha
 ## [2.0.0-alpha.69] - 2025-01-22
 
 ### 🔧 Critical Fix
-- **Init Template**: Fixed `claude-flow init` creating broken settings.json with xargs quote errors
+- **Init Template**: Fixed `ruflo init` creating broken settings.json with xargs quote errors
   - Updated template to use `printf '%s\0'` instead of problematic `cat | jq | xargs -I` pipeline
   - Changed to `xargs -0` with single quotes around `{}` placeholders  
   - Removed non-existent `--train-neural` flag from post-edit hooks
-  - All new projects initialized with `claude-flow init` now have working hooks
+  - All new projects initialized with `ruflo init` now have working hooks
 
 ### 🛠️ Template Improvements
 - **Safer Command Execution**: Printf-based approach prevents quote parsing issues
@@ -2260,15 +2260,15 @@ npm install -g claude-flow@alpha
 ## [2.0.0-alpha.67] - 2025-01-21
 
 ### 🐝 Hive Mind Enhancement
-- **Hive Mind Integration**: Fixed settings.json validation errors for Claude Code compatibility
+- **Hive Mind Integration**: Fixed settings.json validation errors for OpenClaw compatibility
 - **Configuration Fix**: Removed unrecognized fields (checkpoints, memory, neural, github, optimization)
-- **Hook Names**: Corrected invalid hook names to match Claude Code 1.0.51+ format
+- **Hook Names**: Corrected invalid hook names to match OpenClaw 1.0.51+ format
   - `user-prompt-submit` → `UserPromptSubmit`
   - Removed invalid `checkpoint` and `error` hooks
 
 ### 🔧 Infrastructure
 - **Settings Validation**: Now passes `/doctor` command validation
-- **Claude Code Compatibility**: Full compatibility with Claude Code 1.0.51+ settings format
+- **OpenClaw Compatibility**: Full compatibility with OpenClaw 1.0.51+ settings format
 - **Version Update**: Bumped to alpha.67 across all version references
 
 ### 📚 Documentation
@@ -2345,7 +2345,7 @@ npm install -g claude-flow@alpha
 - Fixed copyRevisedTemplates to include SPARC files
 
 ### 📚 Documentation
-- Updated CLAUDE.md template with comprehensive MCP/NPX usage examples
+- Updated OPENCLAW.md template with comprehensive MCP/NPX usage examples
 - Added fallback guidance to all command documentation
 - Enhanced GitHub integration documentation with gh CLI usage
 
@@ -2530,7 +2530,7 @@ npm install -g claude-flow@alpha
 - **Session persistence** across swarm operations with automatic tracking
 - **Auto-save system** with 30-second intervals and critical event saves
 - **Resume capabilities** with full context restoration and progress tracking
-- **Claude Code integration** for seamless continuation of paused sessions
+- **OpenClaw integration** for seamless continuation of paused sessions
 - **Session management commands**: `sessions`, `resume <session-id>`
 - **Comprehensive testing** with end-to-end test coverage
 - **Complete documentation** in `docs/hive-mind-resume.md`
@@ -2546,7 +2546,7 @@ npm install -g claude-flow@alpha
 - **Session ID tracking** in spawn command output
 - **Auto-save timing** for consistent 30-second intervals
 - **Error recovery** for corrupted session data
-- **Claude Code prompt** generation for resumed sessions
+- **OpenClaw prompt** generation for resumed sessions
 
 ### Performance
 - **Minimal overhead**: < 1% CPU usage for auto-save
@@ -2567,7 +2567,7 @@ npm install -g claude-flow@alpha
 - **WASM-powered neural processing** with SIMD optimization support
 
 #### **GitHub Workflow Automation**
-- **6 specialized command modes** in `.claude/commands/github/`:
+- **6 specialized command modes** in `.openclaw/commands/github/`:
   - `pr-manager`: Automated pull request management with swarm coordination
   - `issue-tracker`: Intelligent issue management and progress tracking
   - `sync-coordinator`: Cross-package synchronization and version alignment
@@ -2588,7 +2588,7 @@ npm install -g claude-flow@alpha
 - **Security hardening** with non-root containers and best practices implementation
 
 #### **Enhanced CLI Capabilities**
-- **Advanced swarm coordination commands** with `npx claude-flow swarm`
+- **Advanced swarm coordination commands** with `npx ruflo swarm`
 - **GitHub integration commands** accessible through enhanced CLI interface
 - **Improved error handling** and validation with detailed error messages
 - **Enhanced UI** with `--ui` flag support for interactive management
@@ -2627,7 +2627,7 @@ npm install -g claude-flow@alpha
 - **Improved code examples** and usage documentation
 
 #### **Configuration**
-- **New `.claude/commands/github/` directory** structure for GitHub workflow commands
+- **New `.openclaw/commands/github/` directory** structure for GitHub workflow commands
 - **Enhanced npm publishing** configuration with automated workflows
 - **Improved package metadata** for better npm registry presentation
 - **Updated build targets** for Node.js 20+ compatibility
@@ -2641,7 +2641,7 @@ npm install -g claude-flow@alpha
 - **Enhanced package installation** reliability
 
 #### **Version Compatibility**
-- **Aligned Node.js requirements** across claude-code-flow and ruv-swarm
+- **Aligned Node.js requirements** across openclaw-flow and ruv-swarm
 - **Fixed better-sqlite3 version** conflicts for cross-platform compatibility
 - **Resolved npm installation** issues in Docker environments
 - **Enhanced cross-platform** compatibility validation
@@ -2723,42 +2723,42 @@ npm install -g claude-flow@alpha
 
 1. **Uninstall previous version** (if installed globally):
    ```bash
-   npm uninstall -g claude-flow
+   npm uninstall -g ruflo
    ```
 
 2. **Install v2.0.0**:
    ```bash
-   npm install -g claude-flow@2.0.0
+   npm install -g ruflo@2.0.0
    ```
 
 3. **Verify installation**:
    ```bash
-   claude-flow --version  # Should show 2.0.0
-   claude-flow --help     # Verify all commands available
+   ruflo --version  # Should show 2.0.0
+   ruflo --help     # Verify all commands available
    ```
 
 ### Configuration Updates
 
 1. **Initialize new features**:
    ```bash
-   npx claude-flow init --sparc
+   npx ruflo init --sparc
    ```
 
 2. **Test swarm capabilities**:
    ```bash
-   npx claude-flow swarm init
+   npx ruflo swarm init
    ```
 
 3. **Explore GitHub integration**:
    ```bash
-   npx claude-flow github --help
+   npx ruflo github --help
    ```
 
 ### Breaking Changes
 
 #### Command Structure
 - **All commands** now support swarm coordination
-- **New GitHub commands** available in `.claude/commands/github/`
+- **New GitHub commands** available in `.openclaw/commands/github/`
 - **Enhanced error handling** may change error message formats
 - **Existing commands** remain backward compatible
 
@@ -2768,7 +2768,7 @@ npm install -g claude-flow@alpha
 - **Node.js 20+** is required for optimal performance
 
 #### Configuration
-- **New configuration files** in `.claude/commands/github/`
+- **New configuration files** in `.openclaw/commands/github/`
 - **Enhanced MCP integration** requires ruv-swarm setup
 - **Updated package metadata** for npm publishing
 
@@ -2777,26 +2777,26 @@ npm install -g claude-flow@alpha
 #### Swarm Coordination
 ```bash
 # Initialize swarm
-npx claude-flow swarm init
+npx ruflo swarm init
 
 # Spawn agents
-npx claude-flow agent spawn researcher
-npx claude-flow agent spawn coder
+npx ruflo agent spawn researcher
+npx ruflo agent spawn coder
 
 # Orchestrate tasks
-npx claude-flow task orchestrate "complex development task"
+npx ruflo task orchestrate "complex development task"
 ```
 
 #### GitHub Integration
 ```bash
 # Automated PR management
-npx claude-flow github pr-manager "review and merge feature branch"
+npx ruflo github pr-manager "review and merge feature branch"
 
 # Issue tracking
-npx claude-flow github issue-tracker "manage project issues"
+npx ruflo github issue-tracker "manage project issues"
 
 # Release coordination
-npx claude-flow github release-manager "prepare v2.0.0 release"
+npx ruflo github release-manager "prepare v2.0.0 release"
 ```
 
 #### Docker Development
@@ -2814,16 +2814,16 @@ After migration, verify functionality:
 
 ```bash
 # Basic functionality
-claude-flow --version
-claude-flow --help
-claude-flow status
+ruflo --version
+ruflo --help
+ruflo status
 
 # Swarm features
-claude-flow swarm init
-claude-flow agent list
+ruflo swarm init
+ruflo agent list
 
 # GitHub integration
-claude-flow github --help
+ruflo github --help
 
 # Docker testing
 cd infrastructure/docker && docker-compose up
@@ -2848,12 +2848,12 @@ cd infrastructure/docker && docker-compose up
 ## [1.0.0] - 2025-01-01
 
 ### Added
-- Initial release of claude-flow
+- Initial release of ruflo
 - Basic AI agent orchestration
 - CLI interface for agent management
 - Core workflow automation
-- Integration with Claude Code
+- Integration with OpenClaw
 
 ---
 
-*For older versions, see the [releases page](https://github.com/ruvnet/claude-code-flow/releases).*
+*For older versions, see the [releases page](https://github.com/ruvnet/openclaw-flow/releases).*

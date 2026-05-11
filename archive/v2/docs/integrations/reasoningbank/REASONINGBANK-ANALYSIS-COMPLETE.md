@@ -2,14 +2,14 @@
 
 ## 🎯 Mission Accomplished
 
-Successfully analyzed ReasoningBank tools and created comprehensive documentation for building custom reasoning agents with claude-flow and agentic-flow integration.
+Successfully analyzed ReasoningBank tools and created comprehensive documentation for building custom reasoning agents with ruflo and agentic-flow integration.
 
 ## 📊 What Was Delivered
 
 ### 1. Comprehensive Documentation Created
 
 #### A. REASONINGBANK-AGENT-CREATION-GUIDE.md (`~60KB`)
-**Location**: `/workspaces/claude-code-flow/docs/REASONINGBANK-AGENT-CREATION-GUIDE.md`
+**Location**: `/workspaces/openclaw-flow/docs/REASONINGBANK-AGENT-CREATION-GUIDE.md`
 
 **Contents**:
 - Complete ReasoningBank architecture overview
@@ -29,10 +29,10 @@ Successfully analyzed ReasoningBank tools and created comprehensive documentatio
 - 🚀 Quick start template
 
 #### B. AGENTIC-FLOW-INTEGRATION-GUIDE.md (`~55KB`)
-**Location**: `/workspaces/claude-code-flow/docs/AGENTIC-FLOW-INTEGRATION-GUIDE.md`
+**Location**: `/workspaces/openclaw-flow/docs/AGENTIC-FLOW-INTEGRATION-GUIDE.md`
 
 **Contents**:
-- Complete command reference for claude-flow agent commands
+- Complete command reference for ruflo agent commands
 - Multi-provider support documentation
 - Model optimization guide (85-98% savings)
 - ReasoningBank memory system usage
@@ -48,7 +48,7 @@ Successfully analyzed ReasoningBank tools and created comprehensive documentatio
 - 📈 Best practices for memory organization
 
 #### C. Example Reasoning Agent Template
-**Location**: `.claude/agents/reasoning/example-reasoning-agent-template.md`
+**Location**: `.openclaw/agents/reasoning/example-reasoning-agent-template.md`
 
 **Contents**:
 - Complete template structure for custom agents
@@ -284,29 +284,29 @@ REASONINGBANK_DELTA=0.3
 7. ✅ Best practices compilation
 
 ### Integration Points Mapped
-1. ✅ `claude-flow agent run` → `npx agentic-flow`
-2. ✅ `claude-flow agent memory` → `npx agentic-flow reasoningbank`
-3. ✅ `claude-flow agent config` → `npx agentic-flow config`
-4. ✅ `claude-flow agent mcp` → `npx agentic-flow mcp`
-5. ✅ `claude-flow agent create` → `npx agentic-flow agent create`
-6. ✅ `claude-flow agent info` → `npx agentic-flow agent info`
+1. ✅ `ruflo agent run` → `npx agentic-flow`
+2. ✅ `ruflo agent memory` → `npx agentic-flow reasoningbank`
+3. ✅ `ruflo agent config` → `npx agentic-flow config`
+4. ✅ `ruflo agent mcp` → `npx agentic-flow mcp`
+5. ✅ `ruflo agent create` → `npx agentic-flow agent create`
+6. ✅ `ruflo agent info` → `npx agentic-flow agent info`
 
 ## 📁 Files Modified/Created
 
 ### Created Files
-1. `/workspaces/claude-code-flow/docs/REASONINGBANK-AGENT-CREATION-GUIDE.md` (60KB)
-2. `/workspaces/claude-code-flow/docs/AGENTIC-FLOW-INTEGRATION-GUIDE.md` (55KB)
-3. `/workspaces/claude-code-flow/.claude/agents/reasoning/example-reasoning-agent-template.md` (10KB)
-4. `/workspaces/claude-code-flow/docs/REASONINGBANK-ANALYSIS-COMPLETE.md` (this file)
+1. `/workspaces/openclaw-flow/docs/REASONINGBANK-AGENT-CREATION-GUIDE.md` (60KB)
+2. `/workspaces/openclaw-flow/docs/AGENTIC-FLOW-INTEGRATION-GUIDE.md` (55KB)
+3. `/workspaces/openclaw-flow/.openclaw/agents/reasoning/example-reasoning-agent-template.md` (10KB)
+4. `/workspaces/openclaw-flow/docs/REASONINGBANK-ANALYSIS-COMPLETE.md` (this file)
 
 ### Files Analyzed
-1. `/workspaces/claude-code-flow/src/cli/simple-commands/agent.js` (1250 lines)
-2. `/workspaces/claude-code-flow/node_modules/agentic-flow/dist/reasoningbank/index.js`
-3. `/workspaces/claude-code-flow/node_modules/agentic-flow/dist/reasoningbank/core/retrieve.js`
-4. `/workspaces/claude-code-flow/node_modules/agentic-flow/dist/reasoningbank/core/judge.js`
-5. `/workspaces/claude-code-flow/node_modules/agentic-flow/dist/reasoningbank/core/distill.js`
-6. `/workspaces/claude-code-flow/.claude/agents/reasoning/README.md`
-7. `/workspaces/claude-code-flow/.claude/agents/reasoning/goal-planner.md`
+1. `/workspaces/openclaw-flow/src/cli/simple-commands/agent.js` (1250 lines)
+2. `/workspaces/openclaw-flow/node_modules/agentic-flow/dist/reasoningbank/index.js`
+3. `/workspaces/openclaw-flow/node_modules/agentic-flow/dist/reasoningbank/core/retrieve.js`
+4. `/workspaces/openclaw-flow/node_modules/agentic-flow/dist/reasoningbank/core/judge.js`
+5. `/workspaces/openclaw-flow/node_modules/agentic-flow/dist/reasoningbank/core/distill.js`
+6. `/workspaces/openclaw-flow/.openclaw/agents/reasoning/README.md`
+7. `/workspaces/openclaw-flow/.openclaw/agents/reasoning/goal-planner.md`
 
 ### Demo Executed
 - `/tmp/reasoningbank-analysis/.swarm/memory.db` (created)
@@ -317,13 +317,13 @@ REASONINGBANK_DELTA=0.3
 ### Quick Start
 ```bash
 # 1. Initialize ReasoningBank
-claude-flow agent memory init
+ruflo agent memory init
 
 # 2. Run your first reasoning-enabled agent
-claude-flow agent run coder "Build REST API" --enable-memory
+ruflo agent run coder "Build REST API" --enable-memory
 
 # 3. Check what was learned
-claude-flow agent memory status
+ruflo agent memory status
 ```
 
 ### Build Custom Reasoning Agent
@@ -336,7 +336,7 @@ cp .claude/agents/reasoning/example-reasoning-agent-template.md \
 # Edit: name, description, domains, capabilities
 
 # 3. Use your agent
-claude-flow agent run my-reasoning-agent "Task description" \
+ruflo agent run my-reasoning-agent "Task description" \
   --enable-memory \
   --memory-domain custom/my-domain
 ```
@@ -344,13 +344,13 @@ claude-flow agent run my-reasoning-agent "Task description" \
 ### Progressive Learning Workflow
 ```bash
 # Day 1: First task (cold start)
-claude-flow agent run coder "Build feature A" --enable-memory
+ruflo agent run coder "Build feature A" --enable-memory
 
 # Day 2: Related task (benefits from Day 1)
-claude-flow agent run coder "Build feature B" --enable-memory --memory-k 5
+ruflo agent run coder "Build feature B" --enable-memory --memory-k 5
 
 # Day 3: Another related task (benefits from Days 1-2)
-claude-flow agent run coder "Build feature C" --enable-memory --memory-k 10
+ruflo agent run coder "Build feature C" --enable-memory --memory-k 10
 
 # Result: Each iteration faster and more consistent
 ```
@@ -378,8 +378,8 @@ claude-flow agent run coder "Build feature C" --enable-memory --memory-k 10
 ## 🎯 Next Steps for Users
 
 ### Immediate Actions
-1. **Initialize ReasoningBank**: `claude-flow agent memory init`
-2. **Run demo**: `claude-flow agent memory demo`
+1. **Initialize ReasoningBank**: `ruflo agent memory init`
+2. **Run demo**: `ruflo agent memory demo`
 3. **Read guides**: Check `docs/AGENTIC-FLOW-INTEGRATION-GUIDE.md`
 
 ### Short-Term Goals
@@ -397,12 +397,12 @@ claude-flow agent run coder "Build feature C" --enable-memory --memory-k 10
 
 ### For Users
 - **Start here**: `docs/AGENTIC-FLOW-INTEGRATION-GUIDE.md`
-- **Quick reference**: `claude-flow agent --help`
-- **Reasoning agents**: `.claude/agents/reasoning/README.md`
+- **Quick reference**: `ruflo agent --help`
+- **Reasoning agents**: `.openclaw/agents/reasoning/README.md`
 
 ### For Developers
 - **Create agents**: `docs/REASONINGBANK-AGENT-CREATION-GUIDE.md`
-- **Template**: `.claude/agents/reasoning/example-reasoning-agent-template.md`
+- **Template**: `.openclaw/agents/reasoning/example-reasoning-agent-template.md`
 - **API reference**: `node_modules/agentic-flow/dist/reasoningbank/index.js`
 
 ### For Advanced Users
@@ -439,15 +439,15 @@ claude-flow agent run coder "Build feature C" --enable-memory --memory-k 10
 ### Official Documentation
 - ReasoningBank Paper: https://arxiv.org/html/2509.25140v1
 - Agentic-Flow: https://github.com/ruvnet/agentic-flow
-- Claude-Flow: https://github.com/ruvnet/claude-flow
+- Claude-Flow: https://github.com/snowzlm/ruflo
 
 ### Created Documentation
 - Agent Creation Guide: `docs/REASONINGBANK-AGENT-CREATION-GUIDE.md`
 - Integration Guide: `docs/AGENTIC-FLOW-INTEGRATION-GUIDE.md`
-- Example Template: `.claude/agents/reasoning/example-reasoning-agent-template.md`
+- Example Template: `.openclaw/agents/reasoning/example-reasoning-agent-template.md`
 
 ### Existing Documentation
-- Reasoning Agents: `.claude/agents/reasoning/README.md`
+- Reasoning Agents: `.openclaw/agents/reasoning/README.md`
 - Init Command: `src/cli/simple-commands/init/index.js` (lines 1698-1742)
 - Agent Command: `src/cli/simple-commands/agent.js` (1250 lines)
 
@@ -460,11 +460,11 @@ claude-flow agent run coder "Build feature C" --enable-memory --memory-k 10
 1. **60KB Agent Creation Guide** with complete API reference
 2. **55KB Integration Guide** with 40+ commands documented
 3. **Example templates** and real-world workflows
-4. **Deep analysis** of ReasoningBank architecture and claude-flow integration
+4. **Deep analysis** of ReasoningBank architecture and ruflo integration
 
 Users can now:
 - ✅ Create custom reasoning agents that learn from experience
-- ✅ Use 66+ agentic-flow agents via claude-flow commands
+- ✅ Use 66+ agentic-flow agents via ruflo commands
 - ✅ Leverage ReasoningBank for progressive improvement
 - ✅ Build domain-specific knowledge bases
 - ✅ Optimize costs with intelligent model selection

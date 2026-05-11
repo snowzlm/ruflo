@@ -232,10 +232,10 @@ SUPABASE_ACCESS_TOKEN=eyJ...[REDACTED]
 
 ### CLI Commands Tested
 ```bash
-✅ claude-flow --version (v2.6.0-alpha.1)
-✅ claude-flow --help (shows integration)
-✅ claude-flow agent (shows new commands)
-✅ claude-flow agent agents (lists 66+ agents)
+✅ ruflo --version (v2.6.0-alpha.1)
+✅ ruflo --help (shows integration)
+✅ ruflo agent (shows new commands)
+✅ ruflo agent agents (lists 66+ agents)
 ✅ npx agentic-flow agent list (direct access)
 ```
 
@@ -259,14 +259,14 @@ npx agentic-flow execute --agent coder --task "..." --provider openrouter
 **Actual:** MCP server + proxy model
 ```bash
 npx agentic-flow mcp start [server]  # Start MCP servers
-npx agentic-flow proxy               # Run proxy for Claude Code
-npx agentic-flow claude-code         # Spawn Claude Code with proxy
+npx agentic-flow proxy               # Run proxy for OpenClaw
+npx agentic-flow openclaw         # Spawn OpenClaw with proxy
 ```
 
 **Impact:**
 - Our `agent run` command needs to be updated to use the correct API
 - Integration should focus on MCP server coordination
-- Agent execution happens through Claude Code proxy, not direct CLI
+- Agent execution happens through OpenClaw proxy, not direct CLI
 
 ### 2. Integration Architecture Update Needed
 
@@ -282,7 +282,7 @@ npx agentic-flow claude-code         # Spawn Claude Code with proxy
 // Should use:
 // npx agentic-flow mcp start
 // Then coordinate through MCP tools
-// Or use proxy mode for Claude Code integration
+// Or use proxy mode for OpenClaw integration
 ```
 
 ---
@@ -303,7 +303,7 @@ npx agentic-flow claude-code         # Spawn Claude Code with proxy
 
 ### Future Enhancements
 1. Deep integration with agentic-flow MCP servers
-2. Proxy mode for Claude Code workflows
+2. Proxy mode for OpenClaw workflows
 3. Multi-agent coordination via MCP tools
 4. ReasoningBank learning memory integration
 

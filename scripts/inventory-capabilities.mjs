@@ -117,7 +117,7 @@ function extractPlugins() {
     .filter(d => statSync(join(PLUGINS_DIR, d)).isDirectory());
 
   for (const dir of dirs) {
-    const manifestPath = join(PLUGINS_DIR, dir, '.claude-plugin', 'plugin.json');
+    const manifestPath = join(PLUGINS_DIR, dir, '.openclaw-plugin', 'plugin.json');
     if (!existsSync(manifestPath)) continue;
     try {
       const m = JSON.parse(readFileSync(manifestPath, 'utf-8'));

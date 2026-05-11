@@ -40,7 +40,7 @@ Successfully created a pre-trained ReasoningBank model with **1500 expert-level 
 ## 📁 Deliverables
 
 ### 1. Trained Model
-- **Location**: `/workspaces/claude-code-flow/docs/reasoningbank/models/domain-expert/memory.db`
+- **Location**: `/workspaces/openclaw-flow/docs/reasoningbank/models/domain-expert/memory.db`
 - **Size**: 2.39 MB
 - **Format**: SQLite database with full-text search and embeddings
 
@@ -282,5 +282,5 @@ The Domain Expert model training was a complete success. All quality criteria me
 **Training Agent**: Domain Expert Model Training Agent
 **Training Date**: 2025-10-15
 **Model Version**: 1.0.0
-**Database**: `/workspaces/claude-code-flow/docs/reasoningbank/models/domain-expert/memory.db`
+**Database**: `/workspaces/openclaw-flow/docs/reasoningbank/models/domain-expert/memory.db`
 **Status**: ✅ COMPLETE

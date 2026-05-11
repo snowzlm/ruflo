@@ -4,11 +4,11 @@ version: 1.0.0
 description: Comprehensive GitHub code review with AI-powered swarm coordination
 category: github
 tags: [code-review, github, swarm, pr-management, automation]
-author: Claude Code Flow
+author: OpenClaw Flow
 requires:
   - github-cli
   - ruv-swarm
-  - claude-flow
+  - ruflo
 capabilities:
   - Multi-agent code review
   - Automated PR management
@@ -1012,11 +1012,11 @@ fi
 
 ---
 
-## 🔗 Integration with Claude Code
+## 🔗 Integration with OpenClaw
 
 ### Workflow Pattern
 
-1. **Claude Code** reads PR diff and context
+1. **OpenClaw** reads PR diff and context
 2. **Swarm** coordinates review approach based on PR type
 3. **Agents** work in parallel on different review aspects
 4. **Progress** updates posted to PR automatically
@@ -1027,10 +1027,10 @@ fi
 ```javascript
 [Single Message - Parallel Execution]:
   // Initialize coordination
-  mcp__claude-flow__swarm_init { topology: "hierarchical", maxAgents: 5 }
-  mcp__claude-flow__agent_spawn { type: "reviewer", name: "Senior Reviewer" }
-  mcp__claude-flow__agent_spawn { type: "tester", name: "QA Engineer" }
-  mcp__claude-flow__agent_spawn { type: "coordinator", name: "Merge Coordinator" }
+  mcp__ruflo__swarm_init { topology: "hierarchical", maxAgents: 5 }
+  mcp__ruflo__agent_spawn { type: "reviewer", name: "Senior Reviewer" }
+  mcp__ruflo__agent_spawn { type: "tester", name: "QA Engineer" }
+  mcp__ruflo__agent_spawn { type: "coordinator", name: "Merge Coordinator" }
 
   // Create and manage PR using gh CLI
   Bash("gh pr create --title 'Feature: Add authentication' --base main")
@@ -1120,7 +1120,7 @@ npx ruv-swarm github review-init --pr 123 --parallel --cache-results
 ### Documentation
 - [GitHub CLI Documentation](https://cli.github.com/manual/)
 - [RUV Swarm Guide](https://github.com/ruvnet/ruv-swarm)
-- [Claude Flow Integration](https://github.com/ruvnet/claude-flow)
+- [Ruflo Integration](https://github.com/snowzlm/ruflo)
 
 ### Support
 - GitHub Issues: Report bugs and request features
@@ -1131,10 +1131,10 @@ npx ruv-swarm github review-init --pr 123 --parallel --cache-results
 
 ## 📄 License
 
-This skill is part of the Claude Code Flow project and is licensed under the MIT License.
+This skill is part of the OpenClaw Flow project and is licensed under the MIT License.
 
 ---
 
 **Last Updated:** 2025-10-19
 **Version:** 1.0.0
-**Maintainer:** Claude Code Flow Team
+**Maintainer:** OpenClaw Flow Team

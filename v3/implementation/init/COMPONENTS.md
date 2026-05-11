@@ -6,10 +6,10 @@ Detailed documentation for each component created by the V3 init system.
 
 ```
 project/
-├── .claude/                    # Claude Code integration
+├── .claude/                    # OpenClaw integration
 │   ├── settings.json           # Hooks and permissions
-│   ├── skills/                 # Claude Code skills
-│   ├── commands/               # Claude Code commands
+│   ├── skills/                 # OpenClaw skills
+│   ├── commands/               # OpenClaw commands
 │   ├── agents/                 # Agent definitions
 │   ├── helpers/                # Utility scripts
 │   ├── statusline.sh           # Unix/macOS statusline
@@ -28,7 +28,7 @@ project/
 
 ## Skills
 
-Skills are installed to `.claude/skills/` and provide specialized capabilities.
+Skills are installed to `.openclaw/skills/` and provide specialized capabilities.
 
 ### Core Skills
 | Skill | Description |
@@ -77,7 +77,7 @@ Skills are installed to `.claude/skills/` and provide specialized capabilities.
 
 ## Commands
 
-Commands are installed to `.claude/commands/` and provide quick actions.
+Commands are installed to `.openclaw/commands/` and provide quick actions.
 
 ### Core Commands
 - `claude-flow-help.md` - Help documentation
@@ -97,7 +97,7 @@ Commands are installed to `.claude/commands/` and provide quick actions.
 
 ## Agents
 
-Agent definitions are installed to `.claude/agents/`.
+Agent definitions are installed to `.openclaw/agents/`.
 
 ### Core Agents
 - coder - Code generation and implementation
@@ -118,7 +118,7 @@ Agent definitions are installed to `.claude/agents/`.
 
 ## Helpers
 
-Helper scripts are installed to `.claude/helpers/`.
+Helper scripts are installed to `.openclaw/helpers/`.
 
 ### Cross-Platform Scripts (Node.js)
 | Script | Description |
@@ -157,7 +157,7 @@ Advanced bash script showing:
 - Model and branch info
 
 ### statusline.mjs (ESM Module)
-Claude Code statusline module showing:
+OpenClaw statusline module showing:
 - Model name
 - Token usage
 - Cost tracking
@@ -171,7 +171,7 @@ Claude Code statusline module showing:
 ```json
 {
   "mcpServers": {
-    "claude-flow": {
+    "ruflo": {
       "command": "npx",
       "args": ["@claude-flow/cli", "mcp", "start"],
       "env": {

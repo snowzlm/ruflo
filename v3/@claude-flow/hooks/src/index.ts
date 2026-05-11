@@ -81,7 +81,7 @@ export {
   type MCPTool,
 } from './mcp/index.js';
 
-// Official Claude Code Hooks Bridge
+// Official OpenClaw Hooks Bridge
 export {
   OfficialHooksBridge,
   V3_TO_OFFICIAL_HOOK_MAP,

@@ -42,4 +42,4 @@ npm test
 
 ## License
 
-MIT — Claude Flow Team.
+MIT — Ruflo Team.

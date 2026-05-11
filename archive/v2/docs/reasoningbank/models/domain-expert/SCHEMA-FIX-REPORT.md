@@ -2,7 +2,7 @@
 # Schema Compatibility Fix Report: Domain Expert
 
 **Date**: 2025-10-15T12:37:56.031Z
-**Database**: /workspaces/claude-code-flow/docs/reasoningbank/models/domain-expert/memory.db
+**Database**: /workspaces/openclaw-flow/docs/reasoningbank/models/domain-expert/memory.db
 
 ## Summary
 
@@ -52,9 +52,9 @@
 **Status**: ✅ FULLY COMPATIBLE
 
 This model can now be used with:
-- ✅ `npx claude-flow@alpha memory store` - General memory commands
-- ✅ `npx claude-flow@alpha memory query` - Memory queries
-- ✅ `npx claude-flow@alpha memory query --reasoningbank` - ReasoningBank patterns
+- ✅ `ruflo memory store` - General memory commands
+- ✅ `ruflo memory query` - Memory queries
+- ✅ `ruflo memory query --reasoningbank` - ReasoningBank patterns
 - ✅ Hive-mind swarm operations
 - ✅ Session tracking and metrics
 

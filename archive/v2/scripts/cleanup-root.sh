@@ -37,7 +37,7 @@ mv -v deployment-audit.log archive/reports/ 2>/dev/null || true
 # Keep only essential files in root:
 # - README.md (main documentation)
 # - CHANGELOG.md (version history)
-# - CLAUDE.md (Claude Code integration guide)
+# - OPENCLAW.md (OpenClaw integration guide)
 # - LICENSE
 # - package.json, package-lock.json
 # - configuration files
@@ -47,7 +47,7 @@ echo ""
 echo "✅ Essential files kept in root:"
 echo "- README.md (main documentation)"
 echo "- CHANGELOG.md (version history)"
-echo "- CLAUDE.md (Claude Code integration)"
+echo "- OPENCLAW.md (OpenClaw integration)"
 echo "- LICENSE"
 echo "- package.json & package-lock.json"
 echo "- Configuration files (.gitignore, .npmignore, etc.)"

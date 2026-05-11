@@ -9,7 +9,7 @@
  * - Monitor agent status in real-time
  */
 
-import { type Query, type PermissionMode, type ModelInfo } from '@anthropic-ai/claude-code/sdk';
+import { type Query, type PermissionMode, type ModelInfo } from '@anthropic-ai/openclaw/sdk';
 import { EventEmitter } from 'events';
 import { Logger } from '../core/logger.js';
 

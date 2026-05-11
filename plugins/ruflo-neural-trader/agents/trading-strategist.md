@@ -80,7 +80,7 @@ neural-trader's anomaly engine computes per-dimension Z-scores on OHLCV series:
 
 neural-trader exposes 112+ MCP tools. Add as MCP server for direct tool access:
 ```bash
-claude mcp add neural-trader -- npx neural-trader mcp start
+openclaw mcp add neural-trader -- npx neural-trader mcp start
 ```
 
 Key MCP tool categories: market data, strategy management, backtesting, risk, portfolio, accounting.

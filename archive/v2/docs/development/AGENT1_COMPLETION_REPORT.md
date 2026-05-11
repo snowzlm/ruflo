@@ -13,7 +13,7 @@
 ## 🎯 Tasks Completed
 
 ### ✅ 1. Dependency Installation
-**File**: `/workspaces/claude-code-flow/package.json` (Line 124)
+**File**: `/workspaces/openclaw-flow/package.json` (Line 124)
 
 ```bash
 npm install agentdb@1.3.9 --save --legacy-peer-deps
@@ -25,7 +25,7 @@ npm install agentdb@1.3.9 --save --legacy-peer-deps
 - No breaking changes to existing dependencies
 
 ### ✅ 2. AgentDBMemoryAdapter Implementation
-**File**: `/workspaces/claude-code-flow/src/memory/agentdb-adapter.js`
+**File**: `/workspaces/openclaw-flow/src/memory/agentdb-adapter.js`
 **Size**: 11 KB (387 lines)
 
 **Features Implemented**:
@@ -51,7 +51,7 @@ npm install agentdb@1.3.9 --save --legacy-peer-deps
 - New methods are opt-in only
 
 ### ✅ 3. AgentDBBackend Implementation
-**File**: `/workspaces/claude-code-flow/src/memory/backends/agentdb.js`
+**File**: `/workspaces/openclaw-flow/src/memory/backends/agentdb.js`
 **Size**: 9 KB (318 lines)
 
 **Features Implemented**:
@@ -81,7 +81,7 @@ npm install agentdb@1.3.9 --save --legacy-peer-deps
 - Graceful degradation
 
 ### ✅ 4. LegacyDataBridge Implementation
-**File**: `/workspaces/claude-code-flow/src/memory/migration/legacy-bridge.js`
+**File**: `/workspaces/openclaw-flow/src/memory/migration/legacy-bridge.js`
 **Size**: 9.8 KB (291 lines)
 
 **Features Implemented**:
@@ -104,7 +104,7 @@ npm install agentdb@1.3.9 --save --legacy-peer-deps
 - Smart embedding detection
 
 ### ✅ 5. Memory Index Update
-**File**: `/workspaces/claude-code-flow/src/memory/index.js`
+**File**: `/workspaces/openclaw-flow/src/memory/index.js`
 
 **Changes Made**:
 ```javascript
@@ -129,8 +129,8 @@ if (options.type === 'agentdb' || options.mode) {
 
 ### ✅ 6. Documentation
 **Files Created**:
-1. `/workspaces/claude-code-flow/src/memory/README-AGENTDB.md` (400+ lines)
-2. `/workspaces/claude-code-flow/docs/agentdb-integration-summary.md` (This report)
+1. `/workspaces/openclaw-flow/src/memory/README-AGENTDB.md` (400+ lines)
+2. `/workspaces/openclaw-flow/docs/agentdb-integration-summary.md` (This report)
 
 **Coverage**:
 - Installation guide
@@ -352,7 +352,7 @@ npm run test:performance -- hnsw-benchmark
 
 ### Pre-Task Hook
 ```bash
-npx claude-flow@alpha hooks pre-task \
+ruflo hooks pre-task \
   --description "Agent 1: Implementing AgentDB v1.3.9 core integration"
 ```
 ✅ **Status**: Executed successfully
@@ -360,7 +360,7 @@ npx claude-flow@alpha hooks pre-task \
 
 ### Post-Task Hook
 ```bash
-npx claude-flow@alpha hooks post-task \
+ruflo hooks post-task \
   --task-id "task-1761196356300-ic918qh9k"
 ```
 ✅ **Status**: Executed successfully
@@ -368,7 +368,7 @@ npx claude-flow@alpha hooks post-task \
 
 ### Notification Hook
 ```bash
-npx claude-flow@alpha hooks notify \
+ruflo hooks notify \
   --message "Agent 1: AgentDB v1.3.9 integration complete - 100% backward compatible"
 ```
 ✅ **Status**: Notification sent to swarm

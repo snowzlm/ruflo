@@ -5,7 +5,7 @@ Documentation generation, drift detection, and API docs automation.
 ## Install
 
 ```
-/plugin marketplace add ruvnet/ruflo
+/plugin marketplace add snowzlm/ruflo
 /plugin install ruflo-docs@ruflo
 ```
 
@@ -30,7 +30,7 @@ Documentation generation, drift detection, and API docs automation.
 
 ## Document-worker contract
 
-Drives the `document` background worker (one of 12 workers in CLAUDE.md). Two invocation paths:
+Drives the `document` background worker (one of 12 workers in OPENCLAW.md). Two invocation paths:
 
 ```bash
 # CLI

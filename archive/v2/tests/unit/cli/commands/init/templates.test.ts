@@ -18,28 +18,28 @@ import {
 } from "../../../../../src/cli/simple-commands/init/templates/readme-files.js";
 
 describe("Template Generation Tests", () => {
-  describe("CLAUDE.md templates", () => {
-    it("should generate full CLAUDE.md with proper structure", () => {
+  describe("OPENCLAW.md templates", () => {
+    it("should generate full OPENCLAW.md with proper structure", () => {
       const content = createFullClaudeMd();
       
-      expect(content).toContain("# Claude Code Configuration");
+      expect(content).toContain("# OpenClaw Configuration");
       expect(content).toContain("CRITICAL: CONCURRENT EXECUTION");
       expect(content).toContain("MANDATORY CONCURRENT PATTERNS");
       expect(content).toContain("TodoWrite");
     });
 
-    it("should generate minimal CLAUDE.md with basic info", () => {
+    it("should generate minimal OPENCLAW.md with basic info", () => {
       const content = createMinimalClaudeMd();
       
-      expect(content).toContain("# Claude Code Configuration");
-      expect(content).toContain("Claude Code Configuration");
+      expect(content).toContain("# OpenClaw Configuration");
+      expect(content).toContain("OpenClaw Configuration");
       
       // Should be shorter than full version
       const fullContent = createFullClaudeMd();
       expect(content.length).toBeLessThan(fullContent.length);
     });
 
-    it("should generate SPARC-enhanced CLAUDE.md", () => {
+    it("should generate SPARC-enhanced OPENCLAW.md", () => {
       const content = createSparcClaudeMd();
       
       expect(content).toContain("SPARC Development Environment");
@@ -158,7 +158,7 @@ describe("Template Generation Tests", () => {
       // Check for file extensions in examples
       expect(sparcTemplate).toContain(".json");
       expect(sparcTemplate).toContain(".md");
-      expect(sparcTemplate).toContain("CLAUDE.md");
+      expect(sparcTemplate).toContain("OPENCLAW.md");
     });
   });
 

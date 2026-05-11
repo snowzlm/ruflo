@@ -2,25 +2,25 @@
 
 [![npm version](https://img.shields.io/npm/v/@claude-flow/guidance.svg?style=flat-square&label=npm)](https://www.npmjs.com/package/@claude-flow/guidance)
 [![npm downloads](https://img.shields.io/npm/dm/@claude-flow/guidance.svg?style=flat-square&label=downloads)](https://www.npmjs.com/package/@claude-flow/guidance)
-[![license](https://img.shields.io/npm/l/@claude-flow/guidance.svg?style=flat-square)](https://github.com/ruvnet/claude-flow/blob/main/LICENSE)
-[![tests](https://img.shields.io/badge/tests-1%2C328%20passing-brightgreen?style=flat-square)](https://github.com/ruvnet/claude-flow)
+[![license](https://img.shields.io/npm/l/@claude-flow/guidance.svg?style=flat-square)](https://github.com/snowzlm/ruflo/blob/main/LICENSE)
+[![tests](https://img.shields.io/badge/tests-1%2C328%20passing-brightgreen?style=flat-square)](https://github.com/snowzlm/ruflo)
 [![node](https://img.shields.io/badge/node-%3E%3D20-blue?style=flat-square)](https://nodejs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3+-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![GitHub stars](https://img.shields.io/github/stars/ruvnet/claude-flow?style=flat-square&logo=github)](https://github.com/ruvnet/claude-flow)
-[![claude-flow](https://img.shields.io/npm/v/claude-flow.svg?style=flat-square&label=claude-flow&color=blueviolet)](https://www.npmjs.com/package/claude-flow)
+[![GitHub stars](https://img.shields.io/github/stars/snowzlm/ruflo?style=flat-square&logo=github)](https://github.com/snowzlm/ruflo)
+[![ruflo](https://img.shields.io/npm/v/claude-flow.svg?style=flat-square&label=ruflo&color=blueviolet)](https://www.npmjs.com/package/claude-flow)
 [![ruvbot](https://img.shields.io/npm/v/ruvbot.svg?style=flat-square&label=ruvbot&color=orange)](https://www.npmjs.com/package/ruvbot)
 
-**Long-horizon governance for Claude Code agents.**
+**Long-horizon governance for OpenClaw agents.**
 
 AI coding agents are powerful for short tasks, but they break down over long sessions. They forget rules, repeat mistakes, run in circles, corrupt their own memory, and eventually need a human to step in. The longer the session, the worse it gets.
 
-`@claude-flow/guidance` fixes this. It takes the memory files Claude Code already uses — `CLAUDE.md` and `CLAUDE.local.md` — and turns them into a structured control plane that compiles rules, enforces them through gates the agent cannot bypass, proves every decision cryptographically, and evolves the rule set over time based on what actually works.
+`@claude-flow/guidance` fixes this. It takes the memory files OpenClaw already uses — `OPENCLAW.md` and `OPENCLAW.local.md` — and turns them into a structured control plane that compiles rules, enforces them through gates the agent cannot bypass, proves every decision cryptographically, and evolves the rule set over time based on what actually works.
 
 The result: agents that can operate for days instead of minutes.
 
 ## The Problem
 
-Claude Code agents load `CLAUDE.md` into their context at session start. That's the entire governance mechanism — a text file that the model reads once and then gradually forgets. There is no enforcement, no audit trail, no memory protection, and no way to measure whether the rules are working.
+OpenClaw agents load `OPENCLAW.md` into their context at session start. That's the entire governance mechanism — a text file that the model reads once and then gradually forgets. There is no enforcement, no audit trail, no memory protection, and no way to measure whether the rules are working.
 
 | Problem | What happens | How often |
 |---------|-------------|-----------|
@@ -33,9 +33,9 @@ Claude Code agents load `CLAUDE.md` into their context at session start. That's 
 
 ## How This Package Is Different
 
-This is not a prompt engineering library. It is not a wrapper around `CLAUDE.md`. It is a runtime governance system with enforcement gates, cryptographic proofs, and feedback loops.
+This is not a prompt engineering library. It is not a wrapper around `OPENCLAW.md`. It is a runtime governance system with enforcement gates, cryptographic proofs, and feedback loops.
 
-| Capability | Plain CLAUDE.md | Prompt libraries | @claude-flow/guidance |
+| Capability | Plain OPENCLAW.md | Prompt libraries | @claude-flow/guidance |
 |-----------|:-:|:-:|:-:|
 | Rules loaded at session start | Yes | Yes | Yes |
 | Rules compiled into typed policy | | | Yes |
@@ -62,13 +62,13 @@ The gains are not "better answers." They are less rework, fewer runaway loops, a
 | Reliability (tool + memory) | Frequent silent failures | Failures surface early, writes blocked before corruption | **2x–5x higher** |
 | Rule compliance over time | Degrades after ~30 min | Enforced mechanically at every step | **Constant** |
 
-The most important gain: **Claude Flow can now say "no" to itself and survive.** Self-limiting behavior, self-correction, and self-preservation compound over time.
+The most important gain: **Ruflo can now say "no" to itself and survive.** Self-limiting behavior, self-correction, and self-preservation compound over time.
 
 ## How It Works
 
 The control plane operates in a 7-phase pipeline. Each phase builds on the previous one:
 
-1. **Compiles** `CLAUDE.md` + `CLAUDE.local.md` into a typed policy bundle — a constitution (always-loaded invariants) plus task-scoped rule shards
+1. **Compiles** `OPENCLAW.md` + `OPENCLAW.local.md` into a typed policy bundle — a constitution (always-loaded invariants) plus task-scoped rule shards
 2. **Retrieves** the right subset of rules at task start, based on intent classification
 3. **Enforces** rules through gates that cannot be bypassed — the model can forget a rule; the gate does not
 4. **Tracks trust** per agent — reliable agents earn faster throughput; unreliable ones get throttled
@@ -76,34 +76,34 @@ The control plane operates in a 7-phase pipeline. Each phase builds on the previ
 6. **Defends** against adversarial attacks — prompt injection, memory poisoning, inter-agent collusion
 7. **Evolves** the rule set through simulation, staged rollout, and automatic promotion of winning experiments
 
-## How Claude Code Memory Works
+## How OpenClaw Memory Works
 
-Claude Code uses two plain-text files as agent memory. Understanding them is essential because they are the input to the control plane.
+OpenClaw uses two plain-text files as agent memory. Understanding them is essential because they are the input to the control plane.
 
 | File | Scope | Purpose |
 |------|-------|---------|
-| **CLAUDE.md** | Team / repo | Shared guidance: architecture, workflows, build commands, coding standards, domain rules. Lives at `./CLAUDE.md` or `./.claude/CLAUDE.md`. Committed to git. |
-| **CLAUDE.local.md** | Individual / machine | Private notes: local sandbox URLs, test data, machine quirks, personal preferences. Auto-added to `.gitignore` by Claude Code. Stays local. |
+| **OPENCLAW.md** | Team / repo | Shared guidance: architecture, workflows, build commands, coding standards, domain rules. Lives at `./OPENCLAW.md` or `./.openclaw/OPENCLAW.md`. Committed to git. |
+| **OPENCLAW.local.md** | Individual / machine | Private notes: local sandbox URLs, test data, machine quirks, personal preferences. Auto-added to `.gitignore` by OpenClaw. Stays local. |
 
-**How they get loaded:** Claude Code searches upward from the current working directory and loads every `CLAUDE.md` and `CLAUDE.local.md` it finds on the path. In monorepos and nested projects, child directories can have their own files that layer on top of parent ones. It also discovers additional `CLAUDE.md` files in subtrees as it reads files there.
+**How they get loaded:** OpenClaw searches upward from the current working directory and loads every `OPENCLAW.md` and `OPENCLAW.local.md` it finds on the path. In monorepos and nested projects, child directories can have their own files that layer on top of parent ones. It also discovers additional `OPENCLAW.md` files in subtrees as it reads files there.
 
-**The @import pattern:** For "local" instructions that work cleanly across multiple git worktrees, you can use `@` imports inside `CLAUDE.md` that point to a file in each developer's home directory:
+**The @import pattern:** For "local" instructions that work cleanly across multiple git worktrees, you can use `@` imports inside `OPENCLAW.md` that point to a file in each developer's home directory:
 
 ```markdown
 # Individual Preferences
-@~/.claude/my_project_instructions.md
+@~/.openclaw/my_project_instructions.md
 ```
 
-**Verification:** Run `/memory` in Claude Code to see which files were loaded. You can test by placing a unique rule in each file and asking Claude to restate both.
+**Verification:** Run `/memory` in OpenClaw to see which files were loaded. You can test by placing a unique rule in each file and asking Claude to restate both.
 
 ## Architecture
 
-The control plane is organized as a 7-phase pipeline. Each module is independently testable with a clean API boundary. The WASM kernel accelerates security-critical paths, and the generate/analyze layers provide tooling for creating and measuring CLAUDE.md quality.
+The control plane is organized as a 7-phase pipeline. Each module is independently testable with a clean API boundary. The WASM kernel accelerates security-critical paths, and the generate/analyze layers provide tooling for creating and measuring OPENCLAW.md quality.
 
 ```mermaid
 graph TB
   subgraph Compile["Phase 1: Compile"]
-    CLAUDE["CLAUDE.md"] --> GC["GuidanceCompiler"]
+    CLAUDE["OPENCLAW.md"] --> GC["GuidanceCompiler"]
     GC --> PB["PolicyBundle"]
     PB --> CONST["Constitution<br/>(always loaded)"]
     PB --> SHARDS["Shards<br/>(by intent)"]
@@ -163,15 +163,15 @@ graph TB
   style Evolve fill:#2d6a4f,stroke:#52b788,color:#e8e8e8
 ```
 
-## How CLAUDE.md Becomes Enforceable Policy
+## How OPENCLAW.md Becomes Enforceable Policy
 
 This is the core transformation: plain-text rules become compiled policy with runtime enforcement and cryptographic proof. The compiler runs once per session; the retriever and gates run per task.
 
 ```mermaid
 graph LR
     subgraph "Your repo"
-        A["CLAUDE.md<br/>(team rules)"]
-        B["CLAUDE.local.md<br/>(your overrides)"]
+        A["OPENCLAW.md<br/>(team rules)"]
+        B["OPENCLAW.local.md<br/>(your overrides)"]
     end
 
     subgraph "Compile (once per session)"
@@ -198,12 +198,12 @@ graph LR
     end
 ```
 
-The compiler splits `CLAUDE.md` into two parts:
+The compiler splits `OPENCLAW.md` into two parts:
 
 - **Constitution** — The first ~30-60 lines of always-loaded invariants. These are injected into every task regardless of intent.
 - **Shards** — Task-scoped rules tagged by intent (bug-fix, feature, refactor), risk class, domain, and tool class. Only relevant shards are retrieved per task, keeping context lean.
 
-`CLAUDE.local.md` overlays the root. The optimizer watches which local experiments reduce violations and promotes winners to root `CLAUDE.md`, generating an ADR for each change.
+`OPENCLAW.local.md` overlays the root. The optimizer watches which local experiments reduce violations and promotes winners to root `OPENCLAW.md`, generating an ADR for each change.
 
 ## What It Does
 
@@ -211,7 +211,7 @@ The package ships 31 modules organized in 9 layers, from compilation through enf
 
 | Layer | Component | Purpose |
 |-------|-----------|---------|
-| **Compile** | `GuidanceCompiler` | CLAUDE.md → constitution + task-scoped shards |
+| **Compile** | `GuidanceCompiler` | OPENCLAW.md → constitution + task-scoped shards |
 | **Retrieve** | `ShardRetriever` | Intent classification → relevant rules at task start |
 | **Enforce** | `EnforcementGates` | 4 gates: destructive ops, tool allowlist, diff size, secrets |
 | | `DeterministicToolGateway` | Idempotency, schema validation, budget metering |
@@ -239,10 +239,10 @@ The package ships 31 modules organized in 9 layers, from compilation through enf
 | **Bridge** | `RuvBotGuidanceBridge` | Wires ruvbot events to guidance hooks, AIDefence gate, memory adapter |
 | **WASM Kernel** | `guidance-kernel` | Rust→WASM policy kernel: SHA-256, HMAC, secret scanning, shard scoring |
 | | `WasmKernel` bridge | Auto-fallback host bridge with batch API for minimal boundary crossings |
-| **Generate** | `generateClaudeMd` | Scaffold CLAUDE.md from a project profile |
-| | `generateClaudeLocalMd` | Scaffold CLAUDE.local.md from a local profile |
+| **Generate** | `generateClaudeMd` | Scaffold OPENCLAW.md from a project profile |
+| | `generateClaudeLocalMd` | Scaffold OPENCLAW.local.md from a local profile |
 | | `generateSkillMd` / `generateAgentMd` | Scaffold skill definitions and agent manifests |
-| | `scaffold` | Full project scaffolding with CLAUDE.md, agents, and skills |
+| | `scaffold` | Full project scaffolding with OPENCLAW.md, agents, and skills |
 | **Analyze** | `analyze` | 6-dimension scoring: Structure, Coverage, Enforceability, Compilability, Clarity, Completeness |
 | | `autoOptimize` | Iterative score improvement with patch application |
 | | `optimizeForSize` | Context-size-aware optimization (compact / standard / full) |
@@ -291,11 +291,11 @@ const results = kernel.batchProcess([
 | Secret scan (clean) | 402k/s | 676k/s | 1.68x |
 | Secret scan (dirty) | 185k/s | 362k/s | 1.96x |
 
-## CLAUDE.md vs. CLAUDE.local.md — What Goes Where
+## OPENCLAW.md vs. OPENCLAW.local.md — What Goes Where
 
-Two files, two audiences. `CLAUDE.md` carries team-wide rules that every agent follows. `CLAUDE.local.md` carries individual experiments and machine-specific config. The optimizer watches local experiments and promotes winning ones to the shared file.
+Two files, two audiences. `OPENCLAW.md` carries team-wide rules that every agent follows. `OPENCLAW.local.md` carries individual experiments and machine-specific config. The optimizer watches local experiments and promotes winning ones to the shared file.
 
-### CLAUDE.md (team shared, committed to git)
+### OPENCLAW.md (team shared, committed to git)
 
 ```markdown
 # Architecture
@@ -314,7 +314,7 @@ Always run `npm test` before committing. Use `npm run build` to type-check.
 - API responses must include `requestId` for tracing.
 ```
 
-### CLAUDE.local.md (personal, stays local)
+### OPENCLAW.local.md (personal, stays local)
 
 ```markdown
 # My Environment
@@ -329,11 +329,11 @@ Always run `npm test` before committing. Use `npm run build` to type-check.
 
 ### The @import alternative
 
-If you use multiple git worktrees, `CLAUDE.local.md` gets awkward because each worktree needs its own copy. Use `@` imports instead:
+If you use multiple git worktrees, `OPENCLAW.local.md` gets awkward because each worktree needs its own copy. Use `@` imports instead:
 
 ```markdown
-# In your committed CLAUDE.md:
-@~/.claude/my_project_instructions.md
+# In your committed OPENCLAW.md:
+@~/.openclaw/my_project_instructions.md
 ```
 
 Each developer's personal file lives in their home directory and works across all worktrees.
@@ -412,7 +412,7 @@ import {
 
 // 1. Create and initialize the control plane
 const plane = createGuidanceControlPlane({
-  rootGuidancePath: './CLAUDE.md',
+  rootGuidancePath: './OPENCLAW.md',
 });
 await plane.initialize();
 
@@ -454,7 +454,7 @@ Each module is importable independently from its own subpath. The examples below
 ### Core Pipeline
 
 ```typescript
-// Compile CLAUDE.md into structured policy
+// Compile OPENCLAW.md into structured policy
 import { createCompiler } from '@claude-flow/guidance/compiler';
 const compiler = createCompiler();
 const bundle = compiler.compile(claudeMdContent);
@@ -660,7 +660,7 @@ const validation = governor.validateOptimizerAction({
 ```
 
 <details>
-<summary><strong>Tutorial: Wiring into Claude Code hooks</strong></summary>
+<summary><strong>Tutorial: Wiring into OpenClaw hooks</strong></summary>
 
 ```typescript
 import { createGuidanceHooks } from '@claude-flow/guidance';
@@ -830,9 +830,9 @@ if (rollout.currentStage === 'full' && rollout.divergence < 0.01) {
 
 </details>
 
-### Generators (CLAUDE.md Scaffolding)
+### Generators (OPENCLAW.md Scaffolding)
 
-Instead of writing CLAUDE.md from scratch, use the generators to scaffold high-scoring files from a project profile. The generated files follow best practices for structure, coverage, and enforceability.
+Instead of writing OPENCLAW.md from scratch, use the generators to scaffold high-scoring files from a project profile. The generated files follow best practices for structure, coverage, and enforceability.
 
 ```typescript
 import {
@@ -844,7 +844,7 @@ import {
   scaffold,
 } from '@claude-flow/guidance/generators';
 
-// Generate a CLAUDE.md from a project profile
+// Generate a OPENCLAW.md from a project profile
 const claudeMd = generateClaudeMd({
   name: 'my-api',
   stack: ['TypeScript', 'Node.js', 'PostgreSQL'],
@@ -856,7 +856,7 @@ const claudeMd = generateClaudeMd({
   domainRules: ['All API responses include requestId'],
 });
 
-// Generate a CLAUDE.local.md for local dev
+// Generate a OPENCLAW.local.md for local dev
 const localMd = generateClaudeLocalMd({
   name: 'Alice',
   localApiUrl: 'http://localhost:3001',
@@ -875,7 +875,7 @@ const result = scaffold({
 
 ### Analyzer (Scoring, Optimization, Validation)
 
-The analyzer answers a question most teams cannot: "Is our CLAUDE.md actually working?" It scores files across 6 dimensions, auto-optimizes them for higher scores, and empirically validates that higher scores produce better agent behavior using statistical correlation.
+The analyzer answers a question most teams cannot: "Is our OPENCLAW.md actually working?" It scores files across 6 dimensions, auto-optimizes them for higher scores, and empirically validates that higher scores produce better agent behavior using statistical correlation.
 
 | Dimension | Weight | What It Measures |
 |-----------|--------|------------------|
@@ -893,7 +893,7 @@ import {
   formatReport, formatBenchmark,
 } from '@claude-flow/guidance/analyzer';
 
-// 1. Score a CLAUDE.md file
+// 1. Score a OPENCLAW.md file
 const result = analyze(claudeMdContent);
 console.log(result.compositeScore); // 0-100
 console.log(result.grade);          // A/B/C/D/F
@@ -936,7 +936,7 @@ console.log(headless.delta);
 // 6. Empirical behavioral validation
 //    Proves that higher scores produce better agent behavior
 const validation = await validateEffect(originalMd, optimizedMd, {
-  executor: myContentAwareExecutor,  // varies behavior per CLAUDE.md
+  executor: myContentAwareExecutor,  // varies behavior per OPENCLAW.md
   trials: 3,                         // multi-run averaging
   proofKey: 'validation-key',        // tamper-evident audit trail
 });
@@ -950,7 +950,7 @@ console.log(validation.after.adherenceRate);      // improved compliance
 console.log(validation.report);                   // full formatted report
 ```
 
-**Content-aware executors** implement `IContentAwareExecutor` — they receive the CLAUDE.md content via `setContext()` before each validation phase, allowing their responses to vary based on the quality of guidance loaded. This is what makes the empirical proof meaningful.
+**Content-aware executors** implement `IContentAwareExecutor` — they receive the OPENCLAW.md content via `setContext()` before each validation phase, allowing their responses to vary based on the quality of guidance loaded. This is what makes the empirical proof meaningful.
 
 ```typescript
 import type { IContentAwareExecutor } from '@claude-flow/guidance/analyzer';
@@ -959,7 +959,7 @@ class MyExecutor implements IContentAwareExecutor {
   private rules: string[] = [];
 
   setContext(claudeMdContent: string): void {
-    // Parse loaded CLAUDE.md to determine how to behave
+    // Parse loaded OPENCLAW.md to determine how to behave
     this.rules = claudeMdContent.match(/\b(NEVER|ALWAYS|MUST)\b.+/g) || [];
   }
 
@@ -972,7 +972,7 @@ class MyExecutor implements IContentAwareExecutor {
 
 ### A/B Benchmark Harness
 
-The final proof: does the control plane actually help? The `abBenchmark()` function implements the Measurement Plan: run 20 real tasks drawn from Claude Flow repo history under two configs — **A** (no control plane) vs **B** (with Phase 1 guidance) — and compute KPIs, composite scores, and category shift detection.
+The final proof: does the control plane actually help? The `abBenchmark()` function implements the Measurement Plan: run 20 real tasks drawn from Ruflo repo history under two configs — **A** (no control plane) vs **B** (with Phase 1 guidance) — and compute KPIs, composite scores, and category shift detection.
 
 ```typescript
 import { abBenchmark, getDefaultABTasks } from '@claude-flow/guidance/analyzer';
@@ -1077,7 +1077,7 @@ npm run test:coverage   # with coverage
 
 | Test File | Tests | What It Validates |
 |-----------|------:|-------------------|
-| compiler | 11 | CLAUDE.md parsing, constitution extraction, shard splitting |
+| compiler | 11 | OPENCLAW.md parsing, constitution extraction, shard splitting |
 | retriever | 17 | Intent classification, weighted pattern matching, shard ranking |
 | gates | 32 | Destructive ops, tool allowlist, diff size limits, secret detection |
 | ledger | 22 | Event logging, evaluators, violation ranking, metrics |
@@ -1101,7 +1101,7 @@ npm run test:coverage   # with coverage
 | continue-gate | 42 | Decision paths, cooldown bypass, budget slope, rework ratio |
 | wasm-kernel | 15 | Output parity JS/WASM, 10k event throughput, batch API |
 | benchmark | 23 | Performance benchmarks across 11 modules |
-| generators | 68 | CLAUDE.md scaffolding, profiles, skills, agents, full scaffold |
+| generators | 68 | OPENCLAW.md scaffolding, profiles, skills, agents, full scaffold |
 | analyzer | 172 | 6-dimension scoring, optimization, headless benchmarking, empirical validation, Pearson/Spearman/Cohen's d, content-aware executors, A/B benchmark harness, proof chains |
 
 ## ADR Index
@@ -1144,7 +1144,7 @@ The control plane's value must be measurable. This section defines the A/B testi
 
 Run identical tasks through two configurations:
 
-- **A**: Current Claude Flow without the wired control plane
+- **A**: Current Ruflo without the wired control plane
 - **B**: With hook wiring, retriever injection, persisted ledger, and deterministic tool gateway
 
 ### KPIs Per Task Class
@@ -1175,21 +1175,21 @@ If B beats A by 0.2 on that score across three task classes, you have a category
 
 ### Benchmark
 
-Take 20 real Claude Flow tasks from repo history. Run A without control plane, run B with Phase 1 only. Success is B improves success rate and reduces tool calls per successful task, while producing replayable ledgers for every failure.
+Take 20 real Ruflo tasks from repo history. Run A without control plane, run B with Phase 1 only. Success is B improves success rate and reduces tool calls per successful task, while producing replayable ledgers for every failure.
 
 ## Links
 
 | Resource | URL |
 |----------|-----|
-| **GitHub** | [github.com/ruvnet/claude-flow](https://github.com/ruvnet/claude-flow) |
+| **GitHub** | [github.com/snowzlm/ruflo](https://github.com/snowzlm/ruflo) |
 | **npm: @claude-flow/guidance** | [npmjs.com/package/@claude-flow/guidance](https://www.npmjs.com/package/@claude-flow/guidance) |
-| **npm: claude-flow** | [npmjs.com/package/claude-flow](https://www.npmjs.com/package/claude-flow) |
+| **npm: ruflo** | [npmjs.com/package/claude-flow](https://www.npmjs.com/package/claude-flow) |
 | **npm: ruvbot** | [npmjs.com/package/ruvbot](https://www.npmjs.com/package/ruvbot) |
 | **ruv.io** | [ruv.io](https://ruv.io) |
-| **Issues** | [github.com/ruvnet/claude-flow/issues](https://github.com/ruvnet/claude-flow/issues) |
+| **Issues** | [github.com/snowzlm/ruflo/issues](https://github.com/snowzlm/ruflo/issues) |
 | **API Reference** | [docs/reference/api-quick-reference.md](docs/reference/api-quick-reference.md) |
 | **ADR Index** | [docs/adrs/](docs/adrs/) |
 
 ## License
 
-MIT — see [LICENSE](https://github.com/ruvnet/claude-flow/blob/main/LICENSE) for details.
+MIT — see [LICENSE](https://github.com/snowzlm/ruflo/blob/main/LICENSE) for details.

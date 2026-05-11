@@ -2,7 +2,7 @@
   "name": "claude-flow",
   "version": "2.7.47",
   "description": "Enterprise-grade AI agent orchestration with WASM-powered ReasoningBank memory and AgentDB vector database (always uses latest agentic-flow)",
-  "mcpName": "io.github.ruvnet/claude-flow",
+  "mcpName": "io.github.snowzlm/ruflo",
   "main": "cli.mjs",
   "bin": {
     "claude-flow": "bin/claude-flow.js"
@@ -84,12 +84,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ruvnet/claude-code-flow.git"
+    "url": "git+https://github.com/ruvnet/openclaw-flow.git"
   },
   "bugs": {
-    "url": "https://github.com/ruvnet/claude-code-flow/issues"
+    "url": "https://github.com/ruvnet/openclaw-flow/issues"
   },
-  "homepage": "https://github.com/ruvnet/claude-code-flow#readme",
+  "homepage": "https://github.com/ruvnet/openclaw-flow#readme",
   "engines": {
     "node": ">=20.0.0",
     "npm": ">=9.0.0"
@@ -107,7 +107,7 @@
     "bin/claude-flow-swarm-ui",
     "dist/",
     "src/",
-    ".claude/",
+    ".openclaw/",
     "docs/",
     "docker-test/",
     "scripts/",
@@ -117,7 +117,7 @@
     "DOCKER_TEST_REPORT.md"
   ],
   "dependencies": {
-    "@anthropic-ai/claude-code": "^2.0.1",
+    "@anthropic-ai/openclaw": "^2.0.1",
     "@anthropic-ai/sdk": "^0.65.0",
     "@modelcontextprotocol/sdk": "^1.0.4",
     "agentic-flow": "^1.9.4",

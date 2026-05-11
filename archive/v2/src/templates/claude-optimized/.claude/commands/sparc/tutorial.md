@@ -28,12 +28,12 @@ const tutorialTasks = [
   // Parallel collection of SPARC examples
   { tool: 'Grep', params: { pattern: 'sparc (run|tdd|spec)', include: '*.md' } },
   { tool: 'Glob', params: { pattern: 'examples/**/sparc-*.md' } },
-  { tool: 'Glob', params: { pattern: '.claude/commands/sparc/*.md' } },
+  { tool: 'Glob', params: { pattern: '.openclaw/commands/sparc/*.md' } },
 
   // Concurrent reading of existing documentation
   { tool: 'Read', params: { file_path: 'README.md' } },
   { tool: 'Read', params: { file_path: 'docs/sparc.md' } },
-  { tool: 'Read', params: { file_path: 'CLAUDE.md' } },
+  { tool: 'Read', params: { file_path: 'OPENCLAW.md' } },
 
   // Parallel analysis of mode configurations
   { tool: 'Read', params: { file_path: '.roomodes' } },
@@ -151,7 +151,7 @@ await batchtools.execute(advancedTutorial);
 
 To use this SPARC mode, you can:
 
-1. Run directly: `npx claude-flow sparc run tutorial "your task"`
+1. Run directly: `npx ruflo sparc run tutorial "your task"`
 2. Use in workflow: Include `tutorial` in your SPARC workflow
 3. Delegate tasks: Use `new_task` to assign work to this mode
 
@@ -159,13 +159,13 @@ To use this SPARC mode, you can:
 
 ```bash
 # Generate comprehensive SPARC tutorial with parallel content creation
-npx claude-flow sparc run tutorial "create full SPARC onboarding course with batch examples"
+npx ruflo sparc run tutorial "create full SPARC onboarding course with batch examples"
 
 # Build mode-specific tutorials simultaneously
-npx claude-flow sparc run tutorial "generate tutorials for all SPARC modes in parallel"
+npx ruflo sparc run tutorial "generate tutorials for all SPARC modes in parallel"
 
 # Create interactive workshop materials
-npx claude-flow sparc run tutorial "build hands-on SPARC workshop with concurrent exercises"
+npx ruflo sparc run tutorial "build hands-on SPARC workshop with concurrent exercises"
 ```
 
 ## Batchtools Best Practices for Tutorials

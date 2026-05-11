@@ -379,7 +379,7 @@ const config = await optimizer.getOptimization(
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    Claude Code Event                         │
+│                    OpenClaw Event                         │
 │                   (PreToolUse, etc.)                        │
 └─────────────────────┬───────────────────────────────────────┘
                       │
@@ -472,19 +472,19 @@ const result = await integration.completeTrajectory(trajectoryId, results);
 
 **Tier 1: Core (~2MB)**
 ```bash
-npm install claude-flow@3 agentic-flow@alpha
+npm install ruflo@3 agentic-flow@alpha
 # Includes: hooks, routing, basic learning
 ```
 
 **Tier 2: Learning (~8MB)**
 ```bash
-npx claude-flow enable-learning
+npx ruflo enable-learning
 # Adds: SONA, AgentDB, ReasoningBank
 ```
 
 **Tier 3: Full (~15MB)**
 ```bash
-npx claude-flow enable-swarm
+npx ruflo enable-swarm
 # Adds: QUIC, attention coordination, GNN
 ```
 
@@ -531,19 +531,19 @@ export async function initSwarmCoordination(config) {
 
 ```bash
 # Learning
-npx claude-flow learn status          # Show learning stats
-npx claude-flow learn force           # Force learning cycle
-npx claude-flow learn export <path>   # Export learned patterns
+npx ruflo learn status          # Show learning stats
+npx ruflo learn force           # Force learning cycle
+npx ruflo learn export <path>   # Export learned patterns
 
 # Hooks
-npx claude-flow hooks list            # List available hooks
-npx claude-flow hooks enable <hook>   # Enable specific hook
-npx claude-flow hooks metrics         # Show hook performance
+npx ruflo hooks list            # List available hooks
+npx ruflo hooks enable <hook>   # Enable specific hook
+npx ruflo hooks metrics         # Show hook performance
 
 # Swarm
-npx claude-flow swarm init <topology> # Initialize swarm
-npx claude-flow swarm status          # Show swarm status
-npx claude-flow swarm optimize        # Get optimization recommendations
+npx ruflo swarm init <topology> # Initialize swarm
+npx ruflo swarm status          # Show swarm status
+npx ruflo swarm optimize        # Get optimization recommendations
 ```
 
 ---
@@ -677,7 +677,7 @@ const core = new ClaudeFlowCore();
 
 #### @claude-flow/hooks
 
-**Purpose:** Claude Code event hooks for pre/post operations with intelligent routing.
+**Purpose:** OpenClaw event hooks for pre/post operations with intelligent routing.
 
 ```typescript
 // Package: @claude-flow/hooks
@@ -1087,7 +1087,7 @@ npm install @claude-flow/core
 ```bash
 npm install @claude-flow/hooks
 # Works standalone, no core required
-# 200KB, Claude Code hook integration
+# 200KB, OpenClaw hook integration
 ```
 
 #### Learning Stack
@@ -1104,7 +1104,7 @@ npm install @claude-flow/core @claude-flow/swarm @claude-flow/agents @claude-flo
 
 #### Full Installation
 ```bash
-npm install claude-flow
+npm install ruflo
 # Meta-package that includes all @claude-flow/* packages
 # 15MB, everything included
 ```
@@ -1761,10 +1761,10 @@ class Telemetry {
 }
 ```
 
-#### Claude Code Compatible Metrics
+#### OpenClaw Compatible Metrics
 
 ```typescript
-// Export format compatible with Claude Code telemetry
+// Export format compatible with OpenClaw telemetry
 interface ClaudeCodeMetrics {
   // Session metrics
   session_id: string;
@@ -1828,7 +1828,7 @@ class SwarmTracer {
 
 | v2 API | v3 API | Migration |
 |--------|--------|-----------|
-| `require('claude-flow')` | `import { ClaudeFlowCore } from '@claude-flow/core'` | ESM only |
+| `require('ruflo')` | `import { ClaudeFlowCore } from '@claude-flow/core'` | ESM only |
 | `claudeFlow.init()` | `new ClaudeFlowCore()` | Constructor-based |
 | `claudeFlow.swarm.create()` | `import { createSwarm } from '@claude-flow/swarm'` | Modular import |
 | `claudeFlow.memory.store()` | `memoryModule.store()` | Module instance |
@@ -1856,10 +1856,10 @@ export default function transformer(file, api) {
   const j = api.jscodeshift;
   const root = j(file.source);
 
-  // Transform: require('claude-flow') → import
+  // Transform: require('ruflo') → import
   root.find(j.CallExpression, {
     callee: { name: 'require' },
-    arguments: [{ value: 'claude-flow' }]
+    arguments: [{ value: 'ruflo' }]
   }).replaceWith(() =>
     j.importDeclaration(
       [j.importSpecifier(j.identifier('ClaudeFlowCore'))],
@@ -2006,7 +2006,7 @@ npm install @community/claude-flow-security
 1. **Programmatic** (highest) - `core.configure({ ... })`
 2. **CLI flags** - `--swarm-topology=mesh`
 3. **Environment variables** - `CLAUDE_FLOW_SWARM_TOPOLOGY=mesh`
-4. **Project config** - `.claude-flow.json` or `claude-flow.config.js`
+4. **Project config** - `.claude-flow.json` or `ruflo.config.js`
 5. **User config** - `~/.claude-flow/config.json`
 6. **Defaults** (lowest) - Built-in defaults
 
@@ -2300,7 +2300,7 @@ const DEFAULT_DEGRADED: DegradedModeConfig = {
 | Package | Purpose | Size | Standalone |
 |---------|---------|------|------------|
 | `@claude-flow/core` | Central connector | ~50KB | ✅ |
-| `@claude-flow/hooks` | Claude Code events | ~200KB | ✅ |
+| `@claude-flow/hooks` | OpenClaw events | ~200KB | ✅ |
 | `@claude-flow/learning` | Self-optimization | ~2MB | ✅ |
 | `@claude-flow/swarm` | Multi-agent coordination | ~1MB | ✅ |
 | `@claude-flow/memory` | Persistent storage | ~500KB | ✅ |
@@ -2323,7 +2323,7 @@ const DEFAULT_DEGRADED: DegradedModeConfig = {
 
 **Phase 1: Core Packages**
 - `@claude-flow/core` - Event bus, configuration, module registry
-- `@claude-flow/hooks` - Claude Code event mapping
+- `@claude-flow/hooks` - OpenClaw event mapping
 - `@claude-flow/cli` - Basic CLI with init/status
 
 **Phase 2: Learning Stack**
@@ -2344,8 +2344,8 @@ const DEFAULT_DEGRADED: DegradedModeConfig = {
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                         claude-flow (meta-package)                       │
-│                      npm install claude-flow@3                           │
+│                         ruflo (meta-package)                       │
+│                      npm install ruflo@3                           │
 ├─────────────────────────────────────────────────────────────────────────┤
 │  @claude-flow/*                                                          │
 │  ┌───────┬─────────┬───────┬────────┬────────┬──────┬──────┬─────────┐ │
@@ -2770,7 +2770,7 @@ export {
 
 ### 13.8 Integration with v3 Hooks
 
-Workers can be triggered from Claude Code hooks:
+Workers can be triggered from OpenClaw hooks:
 
 ```typescript
 import { HooksModule } from '@claude-flow/hooks';

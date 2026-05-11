@@ -1,4 +1,4 @@
-# ADR-G001: Guidance Control Plane -- A Parallel Enforcement Layer Beside Claude Code
+# ADR-G001: Guidance Control Plane -- A Parallel Enforcement Layer Beside OpenClaw
 
 ## Status
 Accepted
@@ -8,23 +8,23 @@ Accepted
 
 ## Context
 
-Claude Code loads `CLAUDE.md` into its context window as a system prompt at session start. This mechanism has three fundamental limitations:
+OpenClaw loads `OPENCLAW.md` into its context window as a system prompt at session start. This mechanism has three fundamental limitations:
 
-1. **No enforcement.** Rules in `CLAUDE.md` are advisory. The model can forget, ignore, or misinterpret them at any point during a long session. There is no gate that blocks a tool call when a rule is violated.
+1. **No enforcement.** Rules in `OPENCLAW.md` are advisory. The model can forget, ignore, or misinterpret them at any point during a long session. There is no gate that blocks a tool call when a rule is violated.
 
-2. **No retrieval.** Every rule in `CLAUDE.md` consumes tokens on every turn, regardless of whether the current task needs it. A 2,000-line guidance file wastes context on irrelevant rules while still missing edge cases because the model's attention degrades over long documents.
+2. **No retrieval.** Every rule in `OPENCLAW.md` consumes tokens on every turn, regardless of whether the current task needs it. A 2,000-line guidance file wastes context on irrelevant rules while still missing edge cases because the model's attention degrades over long documents.
 
 3. **No learning.** When the model violates a rule and a human corrects it, the correction is ephemeral. The same mistake recurs in the next session because there is no feedback loop from violations back to the rule set.
 
 These limitations compound in autonomous agent scenarios (swarms, long-running daemon tasks) where human oversight is intermittent and context windows are shared across sub-agents.
 
-The existing Claude Flow V3 infrastructure provides hooks (`pre-edit`, `pre-command`, `post-task`), a memory subsystem (AgentDB + HNSW), and a headless execution mode (`claude -p --output-format json`). A control plane can leverage all three without modifying Claude Code itself.
+The existing Ruflo V3 infrastructure provides hooks (`pre-edit`, `pre-command`, `post-task`), a memory subsystem (AgentDB + HNSW), and a headless execution mode (`claude -p --output-format json`). A control plane can leverage all three without modifying OpenClaw itself.
 
 ## Decision
 
-Build a separate package, `@claude-flow/guidance`, that runs **beside** Claude Code as a parallel control plane. The control plane has five components:
+Build a separate package, `@claude-flow/guidance`, that runs **beside** OpenClaw as a parallel control plane. The control plane has five components:
 
-1. **Compiler** (`GuidanceCompiler` in `src/compiler.ts`) -- Parses `CLAUDE.md` and optional `CLAUDE.local.md` into a `PolicyBundle` containing a constitution, rule shards, and a machine-readable manifest. The compiler extracts rule IDs, risk classes, tool classes, intent tags, repo scopes, domain tags, verifiers, and priority annotations using deterministic regex patterns.
+1. **Compiler** (`GuidanceCompiler` in `src/compiler.ts`) -- Parses `OPENCLAW.md` and optional `OPENCLAW.local.md` into a `PolicyBundle` containing a constitution, rule shards, and a machine-readable manifest. The compiler extracts rule IDs, risk classes, tool classes, intent tags, repo scopes, domain tags, verifiers, and priority annotations using deterministic regex patterns.
 
 2. **Retriever** (`ShardRetriever` in `src/retriever.ts`) -- Stores shards with embeddings and retrieves the top N shards per task by semantic similarity, boosted by intent match and risk class. Always includes the constitution. Resolves contradictions by preferring higher-priority rules.
 
@@ -49,19 +49,19 @@ The orchestrating class `GuidanceControlPlane` in `src/index.ts` wires these fiv
 ### Negative
 
 - **Added latency.** Each gate check adds approximately 1-5ms. Shard retrieval with embedding computation adds 5-15ms at task start.
-- **Operational surface.** The control plane is a separate process/module that must be initialized, configured, and kept in sync with `CLAUDE.md` changes.
+- **Operational surface.** The control plane is a separate process/module that must be initialized, configured, and kept in sync with `OPENCLAW.md` changes.
 - **Complexity.** A new abstraction layer (PolicyBundle, shards, constitution, gates, ledger, optimizer) that developers must understand.
 
 ## Alternatives Considered
 
-### 1. Improve CLAUDE.md formatting only
+### 1. Improve OPENCLAW.md formatting only
 Restructure the markdown to make rules more prominent. Rejected because formatting changes do not add enforcement, retrieval, or learning -- they only marginally improve attention within the context window.
 
 ### 2. Fine-tune the model on guidance rules
 Train guidance into model weights. Rejected because fine-tuning is slow (days), expensive, inflexible (cannot change rules without retraining), and unavailable for Claude models via the public API.
 
-### 3. Build enforcement inside Claude Code via monkey-patching
-Intercept tool calls within the Claude Code process. Rejected because it couples to Claude Code internals, breaks on updates, and is fragile. A parallel system is decoupled and version-independent.
+### 3. Build enforcement inside OpenClaw via monkey-patching
+Intercept tool calls within the OpenClaw process. Rejected because it couples to OpenClaw internals, breaks on updates, and is fragile. A parallel system is decoupled and version-independent.
 
 ### 4. Use MCP tools for all enforcement
 Route all enforcement through MCP server endpoints. Rejected for latency reasons (network round-trip per gate check) and because MCP tools are asynchronous -- gates must be synchronous to block tool calls before execution.

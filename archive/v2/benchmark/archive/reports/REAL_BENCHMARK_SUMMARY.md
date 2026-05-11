@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Real Benchmark Engine is a comprehensive system for benchmarking actual `claude-flow` command executions. It provides detailed performance metrics, resource usage monitoring, and quality assessments across all 17 SPARC modes and 6 swarm strategies with 5 coordination modes.
+The Real Benchmark Engine is a comprehensive system for benchmarking actual `ruflo` command executions. It provides detailed performance metrics, resource usage monitoring, and quality assessments across all 17 SPARC modes and 6 swarm strategies with 5 coordination modes.
 
 ## Key Components Implemented
 
@@ -15,7 +15,7 @@ The Real Benchmark Engine is a comprehensive system for benchmarking actual `cla
 - `SystemMonitor`: Overall system resource tracking
 
 **Key Features:**
-- Automatic `claude-flow` executable discovery
+- Automatic `ruflo` executable discovery
 - Subprocess-based command execution with full isolation
 - Real-time resource monitoring (CPU, memory, I/O)
 - Configurable parallel execution
@@ -201,4 +201,4 @@ python -m swarm_benchmark real "Build complete app" \
 
 ## Conclusion
 
-The Real Benchmark Engine provides a robust, production-ready system for systematically evaluating `claude-flow` performance. Its comprehensive monitoring, parallel execution capabilities, and detailed quality assessments make it an essential tool for understanding and optimizing claude-flow deployments.
+The Real Benchmark Engine provides a robust, production-ready system for systematically evaluating `ruflo` performance. Its comprehensive monitoring, parallel execution capabilities, and detailed quality assessments make it an essential tool for understanding and optimizing ruflo deployments.

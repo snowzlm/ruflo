@@ -125,16 +125,16 @@ REMEMBER: If you don't WRITE to memory, other agents can't coordinate with you!
 `;
 
 /**
- * Inject memory protocol into CLAUDE.md
+ * Inject memory protocol into OPENCLAW.md
  */
 export async function injectMemoryProtocol(projectPath = process.cwd()) {
-  const claudeMdPath = path.join(projectPath, 'CLAUDE.md');
+  const claudeMdPath = path.join(projectPath, 'OPENCLAW.md');
   
   try {
     let content = '';
     let hasProtocol = false;
     
-    // Check if CLAUDE.md exists
+    // Check if OPENCLAW.md exists
     if (existsSync(claudeMdPath)) {
       content = await fs.readFile(claudeMdPath, 'utf8');
       hasProtocol = content.includes('MANDATORY MEMORY COORDINATION PROTOCOL');
@@ -157,10 +157,10 @@ export async function injectMemoryProtocol(projectPath = process.cwd()) {
       }
       
       await fs.writeFile(claudeMdPath, content, 'utf8');
-      console.log('✅ Injected memory coordination protocol into CLAUDE.md');
+      console.log('✅ Injected memory coordination protocol into OPENCLAW.md');
       return true;
     } else {
-      console.log('✓ Memory coordination protocol already present in CLAUDE.md');
+      console.log('✓ Memory coordination protocol already present in OPENCLAW.md');
       return false;
     }
   } catch (error) {

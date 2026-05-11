@@ -1,5 +1,5 @@
 #!/bin/bash
-# Test ReasoningBank integration with Claude Code hooks
+# Test ReasoningBank integration with OpenClaw hooks
 
 set -e
 
@@ -91,7 +91,7 @@ echo ""
 echo "2. Or use minimal version for testing:"
 echo "   ${BLUE}cp .claude/settings.reasoningbank-minimal.json .claude/settings.json${NC}"
 echo ""
-echo "3. Restart Claude Code to load hooks"
+echo "3. Restart OpenClaw to load hooks"
 echo ""
 echo "4. Test by editing a file and check:"
 echo "   ${BLUE}npx claude-flow@alpha memory list --namespace code --reasoningbank${NC}"

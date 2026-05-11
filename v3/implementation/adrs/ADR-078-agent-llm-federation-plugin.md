@@ -6,7 +6,7 @@
 
 ## Context
 
-Claude Flow v3.5 operates within single installations. Agents spawned on one machine cannot collaborate with agents on another machine, user, or organization. As multi-agent AI development matures, the need for cross-installation coordination becomes critical -- organizations running separate Claude Flow installations need agents that can discover each other, share context safely, and coordinate work across trust boundaries without leaking PII or allowing prompt injection attacks from untrusted peers.
+Ruflo v3.5 operates within single installations. Agents spawned on one machine cannot collaborate with agents on another machine, user, or organization. As multi-agent AI development matures, the need for cross-installation coordination becomes critical -- organizations running separate Ruflo installations need agents that can discover each other, share context safely, and coordinate work across trust boundaries without leaking PII or allowing prompt injection attacks from untrusted peers.
 
 No existing multi-agent framework solves this with production-grade security. LangGraph, CrewAI, and AutoGen all assume a single trust domain. The novelty here is a **federated trust model with Byzantine fault tolerance, PII-gated data flow, and adversarial AI defence** -- treating remote agents as untrusted by default, with graduated trust via cryptographic attestation.
 
@@ -22,7 +22,7 @@ Every framework is scaling agents. Nobody is defining how they **negotiate trust
 - Cryptographic identity per node
 - Auditability as a first-class primitive
 
-If Claude Flow ships this, it becomes the reference implementation. Federation becomes the standard.
+If Ruflo ships this, it becomes the reference implementation. Federation becomes the standard.
 
 ### Architecture Evaluation
 
@@ -50,7 +50,7 @@ Enterprise compliance is the initial optimization target. Open network adoption 
 
 ## Decision
 
-Build `@claude-flow/plugin-agent-federation` as a first-class Claude Flow plugin that enables cross-installation agent collaboration with security-first design.
+Build `@claude-flow/plugin-agent-federation` as a first-class Ruflo plugin that enables cross-installation agent collaboration with security-first design.
 
 ---
 
@@ -63,7 +63,7 @@ The protocol operates in four phases:
 **Phase A: Discovery**
 - Each federation node publishes a **Federation Manifest** -- a signed JSON document containing the node's public key, capabilities, supported agent types, and a WebSocket/HTTP endpoint.
 - Discovery uses three mechanisms:
-  1. **Static peers** -- configured in `claude-flow.config.json` under `federation.peers[]`
+  1. **Static peers** -- configured in `ruflo.config.json` under `federation.peers[]`
   2. **DNS-SD** -- `_claude-federation._tcp` SRV records for LAN discovery
   3. **Registry** -- optional IPFS-pinned registry (extends existing Pinata infrastructure in `v3/@claude-flow/cli/src/plugins/store/discovery.ts`)
 
@@ -821,7 +821,7 @@ Phase 3: Recovery
 ## 12. Consequences
 
 **Positive:**
-- Claude Flow becomes the first multi-agent framework with production-grade federated security
+- Ruflo becomes the first multi-agent framework with production-grade federated security
 - Organizations can safely collaborate across trust boundaries
 - HIPAA/SOC2/GDPR compliance is built-in, not bolted-on
 - PII protection operates at the protocol level

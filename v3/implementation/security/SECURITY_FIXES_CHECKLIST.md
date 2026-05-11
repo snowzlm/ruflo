@@ -10,7 +10,7 @@ This checklist provides actionable steps to address all security vulnerabilities
 
 ```bash
 # Update critical vulnerabilities
-npm update @anthropic-ai/claude-code@^2.0.31
+npm update @anthropic-ai/openclaw@^2.0.31
 npm update @modelcontextprotocol/sdk@^1.24.0
 npm update body-parser@^2.2.1
 
@@ -231,11 +231,11 @@ async function executeHook(hookType: string, options: Record<string, any>): Prom
 **Verification:**
 ```bash
 # Should fail with error
-claude-flow hook pre-task --description "test; whoami"
-claude-flow hook pre-task --description "test && ls"
+ruflo hook pre-task --description "test; whoami"
+ruflo hook pre-task --description "test && ls"
 
 # Should succeed
-claude-flow hook pre-task --description "legitimate task description"
+ruflo hook pre-task --description "legitimate task description"
 ```
 
 ---
@@ -339,13 +339,13 @@ import { defaultPathValidator } from '../../utils/path-validator.js';
 **Verification:**
 ```bash
 # Should fail
-claude-flow task workflow ../../../etc/passwd
-claude-flow task workflow ~/.ssh/id_rsa
-claude-flow task workflow /etc/hosts
+ruflo task workflow ../../../etc/passwd
+ruflo task workflow ~/.ssh/id_rsa
+ruflo task workflow /etc/hosts
 
 # Should succeed
-claude-flow task workflow ./workflows/my-workflow.json
-claude-flow task workflow workflows/test.json
+ruflo task workflow ./workflows/my-workflow.json
+ruflo task workflow workflows/test.json
 ```
 
 ---
@@ -436,13 +436,13 @@ const PROTECTED_KEYS = [
 **Verification:**
 ```bash
 # Should fail
-claude-flow config set "authConfig.jwtSecret" "hacked"
-claude-flow config set "__proto__.isAdmin" "true"
-claude-flow config set "timeout" "999999999"
+ruflo config set "authConfig.jwtSecret" "hacked"
+ruflo config set "__proto__.isAdmin" "true"
+ruflo config set "timeout" "999999999"
 
 # Should succeed
-claude-flow config set "theme" "dark"
-claude-flow config set "timeout" "30000"
+ruflo config set "theme" "dark"
+ruflo config set "timeout" "30000"
 ```
 
 ---

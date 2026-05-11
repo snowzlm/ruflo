@@ -18,7 +18,7 @@ import {
  */
 export function createDualModeCommand(): Command {
   const cmd = new Command('dual')
-    .description('Run collaborative dual-mode swarms (Claude Code + Codex)')
+    .description('Run collaborative dual-mode swarms (OpenClaw + Codex)')
     .addCommand(createRunCommand())
     .addCommand(createTemplateCommand())
     .addCommand(createStatusCommand());
@@ -41,7 +41,7 @@ function createRunCommand(): Command {
     .action(async (options) => {
       console.log(chalk.cyan('═══════════════════════════════════════════════════════════════'));
       console.log(chalk.cyan.bold('  DUAL-MODE COLLABORATIVE EXECUTION'));
-      console.log(chalk.cyan('  Claude Code + Codex workers with shared memory'));
+      console.log(chalk.cyan('  OpenClaw + Codex workers with shared memory'));
       console.log(chalk.cyan('═══════════════════════════════════════════════════════════════'));
       console.log();
 

@@ -75,7 +75,7 @@ Build warnings: 3 (bytecode generation - normal)
 ### 3. Core Agent Commands ✅
 
 #### 3.1 Agent List
-**Command**: `claude-flow agent list`
+**Command**: `ruflo agent list`
 
 **Status**: ✅ Working
 
@@ -92,7 +92,7 @@ Build warnings: 3 (bytecode generation - normal)
 ---
 
 #### 3.2 Agent Run
-**Command**: `claude-flow agent run coder "test task" --dry-run`
+**Command**: `ruflo agent run coder "test task" --dry-run`
 
 **Status**: ✅ Working
 
@@ -103,7 +103,7 @@ Build warnings: 3 (bytecode generation - normal)
 ---
 
 #### 3.3 Agent Help
-**Command**: `claude-flow agent --help`
+**Command**: `ruflo agent --help`
 
 **Status**: ✅ Working
 
@@ -116,7 +116,7 @@ Build warnings: 3 (bytecode generation - normal)
 ### 4. Agent Booster Commands (NEW) ✅
 
 #### 4.1 Booster Help
-**Command**: `claude-flow agent booster help`
+**Command**: `ruflo agent booster help`
 
 **Status**: ✅ Working (58 lines of comprehensive help)
 
@@ -137,7 +137,7 @@ COMMANDS:
 ---
 
 #### 4.2 Booster Edit
-**Command**: `claude-flow agent booster edit tests/benchmark/test.js "Add JSDoc comments" --dry-run`
+**Command**: `ruflo agent booster edit tests/benchmark/test.js "Add JSDoc comments" --dry-run`
 
 **Status**: ✅ Working
 
@@ -154,7 +154,7 @@ COMMANDS:
 ---
 
 #### 4.3 Booster Benchmark
-**Command**: `claude-flow agent booster benchmark --iterations 5`
+**Command**: `ruflo agent booster benchmark --iterations 5`
 
 **Status**: ✅ Working
 
@@ -182,7 +182,7 @@ LLM API (estimated):
 
 ### 5. SPARC Commands ✅
 
-**Command**: `claude-flow sparc modes`
+**Command**: `ruflo sparc modes`
 
 **Status**: ✅ Expected behavior
 
@@ -195,7 +195,7 @@ LLM API (estimated):
 ### 6. Memory & Hooks Functionality ✅
 
 #### 6.1 Hooks
-**Command**: `claude-flow hooks --help`
+**Command**: `ruflo hooks --help`
 
 **Status**: ✅ Working
 
@@ -206,7 +206,7 @@ LLM API (estimated):
 ---
 
 #### 6.2 Memory
-**Command**: `claude-flow memory list`
+**Command**: `ruflo memory list`
 
 **Status**: ✅ Working
 
@@ -226,13 +226,13 @@ LLM API (estimated):
 
 **Verification**: All help sections properly organized
 
-**Main Help** (`claude-flow --help`):
+**Main Help** (`ruflo --help`):
 - ✅ Version displays correctly (v2.6.0-alpha.2)
 - ✅ Quick start section intact
 - ✅ Command structure preserved
 - ✅ No formatting issues
 
-**Agent Help** (`claude-flow agent --help`):
+**Agent Help** (`ruflo agent --help`):
 - ✅ Agent Booster section visible after rebuild
 - ✅ Proper emoji formatting (🚀)
 - ✅ Clear command descriptions
@@ -411,7 +411,7 @@ Branch: feature/agentic-flow-integration
 
 ### After Integration ✅
 - Agent Booster: Fully integrated CLI commands
-- CLI Access: `claude-flow agent booster <command>`
+- CLI Access: `ruflo agent booster <command>`
 - Help Text: Comprehensive, properly organized
 - Performance: 352x faster, validated with benchmarks
 - Cost: $0 (100% free)
@@ -466,19 +466,19 @@ npm test                                                  # 2 pre-existing failu
 npm run build                                             # ✅ Success (585 files)
 
 # Core commands
-claude-flow agent list                                    # ✅ Working
-claude-flow agent run coder "test task" --dry-run        # ✅ Working
-claude-flow hooks --help                                  # ✅ Working
-claude-flow memory list                                   # ✅ Working
+ruflo agent list                                    # ✅ Working
+ruflo agent run coder "test task" --dry-run        # ✅ Working
+ruflo hooks --help                                  # ✅ Working
+ruflo memory list                                   # ✅ Working
 
 # Agent Booster
-claude-flow agent booster help                            # ✅ Working (58 lines)
-claude-flow agent booster edit <file> --dry-run          # ✅ 0ms
-claude-flow agent booster benchmark --iterations 5        # ✅ 352x validated
+ruflo agent booster help                            # ✅ Working (58 lines)
+ruflo agent booster edit <file> --dry-run          # ✅ 0ms
+ruflo agent booster benchmark --iterations 5        # ✅ 352x validated
 
 # Help text
-claude-flow --help                                        # ✅ Working
-claude-flow agent --help                                  # ✅ Agent Booster visible
+ruflo --help                                        # ✅ Working
+ruflo agent --help                                  # ✅ Agent Booster visible
 ```
 
 ### Files Verified

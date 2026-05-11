@@ -6,7 +6,7 @@
 
 ## Overview
 
-ADR-003 mandates a **single canonical coordination engine** for claude-flow v3. This document tracks the implementation of consolidating `UnifiedSwarmCoordinator` + `SwarmHub` into a unified approach.
+ADR-003 mandates a **single canonical coordination engine** for ruflo v3. This document tracks the implementation of consolidating `UnifiedSwarmCoordinator` + `SwarmHub` into a unified approach.
 
 ## Architecture Decision
 

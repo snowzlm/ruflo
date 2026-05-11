@@ -56,8 +56,8 @@ Successfully created **5 production-ready ReasoningBank models** with **11,000+ 
 ## 🏆 Key Achievements
 
 ### Training Excellence
-- ✅ **5 agents trained in parallel** using Claude Code's Task tool
-- ✅ **Memory coordination** between agents via claude-flow
+- ✅ **5 agents trained in parallel** using OpenClaw's Task tool
+- ✅ **Memory coordination** between agents via ruflo
 - ✅ **11,000+ unique patterns** across all models
 - ✅ **Zero training failures** - all agents completed successfully
 
@@ -178,7 +178,7 @@ Successfully created **5 production-ready ReasoningBank models** with **11,000+ 
 ## 🔧 Technical Implementation
 
 ### Schema Compliance
-All models include **10 required tables** for full claude-flow compatibility:
+All models include **10 required tables** for full ruflo compatibility:
 
 **ReasoningBank Core:**
 - `patterns` - Core pattern storage
@@ -214,7 +214,7 @@ All models include **10 required tables** for full claude-flow compatibility:
 **Path**: 30 seconds
 1. Read `models/README.md` - Choose model
 2. Run install command: `cp model/memory.db ~/.swarm/`
-3. Query: `npx claude-flow@alpha memory query "your question"`
+3. Query: `ruflo memory query "your question"`
 **Result**: Instant access to expert patterns
 
 ### Intermediate: "I want to understand how models work"
@@ -248,7 +248,7 @@ All models include **10 required tables** for full claude-flow compatibility:
 cp docs/reasoningbank/models/safla/memory.db ~/.swarm/memory.db
 
 # Query patterns
-npx claude-flow@alpha memory query "API optimization"
+ruflo memory query "API optimization"
 
 # Expected: 2-3 relevant patterns in <2ms
 ```
@@ -385,7 +385,7 @@ docs/reasoningbank/models/
 ## 🎓 Training Methodology
 
 ### Parallel Agent Execution
-**Claude Code's Task Tool** spawned 5 independent agents:
+**OpenClaw's Task Tool** spawned 5 independent agents:
 1. SAFLA Training Agent
 2. Google Research Training Agent
 3. Code Reasoning Training Agent
@@ -393,7 +393,7 @@ docs/reasoningbank/models/
 5. Domain Expert Training Agent
 
 **Coordination**:
-- Memory coordination via `claude-flow@alpha memory store`
+- Memory coordination via `ruflo@alpha memory store`
 - Progress tracking via shared namespace
 - Hook-based notifications
 - Autonomous completion
@@ -443,8 +443,8 @@ Every model achieved:
 
 ## 🙏 Acknowledgments
 
-**Training Agents**: 5 parallel Claude Code agents
-**Coordination**: claude-flow@alpha memory system
+**Training Agents**: 5 parallel OpenClaw agents
+**Coordination**: ruflo@alpha memory system
 **Research Foundation**: Google Research (arXiv:2509.25140)
 **Backend**: agentic-flow@1.5.13
 **Database**: SQLite with better-sqlite3
@@ -459,7 +459,7 @@ Every model achieved:
 - Training Guide: [models/HOW-TO-TRAIN.md](./HOW-TO-TRAIN.md)
 - Navigation Index: [models/INDEX.md](./INDEX.md)
 
-**Issues**: [GitHub Issues](https://github.com/ruvnet/claude-flow/issues)
+**Issues**: [GitHub Issues](https://github.com/snowzlm/ruflo/issues)
 
 ---
 

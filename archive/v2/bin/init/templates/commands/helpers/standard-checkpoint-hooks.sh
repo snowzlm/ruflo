@@ -17,7 +17,7 @@ pre_edit_checkpoint() {
         
         # Store metadata
         mkdir -p .claude/checkpoints
-        cat > ".claude/checkpoints/$(date +%s).json" <<EOF
+        cat > ".openclaw/checkpoints/$(date +%s).json" <<EOF
 {
   "branch": "$checkpoint_branch",
   "file": "$file",
@@ -69,7 +69,7 @@ Automatic checkpoint created by Claude
                 # Store metadata
                 mkdir -p .claude/checkpoints
                 local diff_stats=$(git diff HEAD~1 --stat | tr '\n' ' ' | sed 's/"/\\"/g')
-                cat > ".claude/checkpoints/$(date +%s).json" <<EOF
+                cat > ".openclaw/checkpoints/$(date +%s).json" <<EOF
 {
   "tag": "$tag_name",
   "file": "$file",
@@ -102,7 +102,7 @@ task_checkpoint() {
         
         # Store metadata
         mkdir -p .claude/checkpoints
-        cat > ".claude/checkpoints/task-$(date +%s).json" <<EOF
+        cat > ".openclaw/checkpoints/task-$(date +%s).json" <<EOF
 {
   "checkpoint": "$checkpoint_name",
   "task": "$task",
@@ -118,7 +118,7 @@ EOF
 # Function to handle session end
 session_end_checkpoint() {
     local session_id="session-$(date +%Y%m%d-%H%M%S)"
-    local summary_file=".claude/checkpoints/summary-$session_id.md"
+    local summary_file=".openclaw/checkpoints/summary-$session_id.md"
     
     mkdir -p .claude/checkpoints
     

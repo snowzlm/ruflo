@@ -302,7 +302,7 @@ const db = await createDatabaseProvider(path, {
 
 ### 4.2 Configuration Options
 
-**User-Facing Configuration** (`claude-flow.config.js`):
+**User-Facing Configuration** (`ruflo.config.js`):
 ```javascript
 module.exports = {
   database: {
@@ -489,7 +489,7 @@ stmt.free(); // Release memory
 
 **Current Experience** (Windows):
 ```bash
-$ npm install claude-flow@alpha
+$ npm install ruflo@alpha
 ⚠️  Warning: On Windows, use pnpm to avoid native dependency issues
 ⚠️  better-sqlite3 compilation failed
 ✅ Falling back to JSON storage
@@ -497,7 +497,7 @@ $ npm install claude-flow@alpha
 
 **New Experience** (Windows):
 ```bash
-$ npm install claude-flow@alpha
+$ npm install ruflo@alpha
 ✅ Installed successfully
 ℹ️  Using sql.js database provider (cross-platform mode)
 ℹ️  For best performance, install build tools for native SQLite
@@ -833,5 +833,5 @@ Integrating sql.js as a fallback provider for Claude-Flow is **highly recommende
 ---
 
 **Research completed**: 2026-01-03
-**Researcher**: Claude Code Agent (Research Specialist)
+**Researcher**: OpenClaw Agent (Research Specialist)
 **Status**: Ready for implementation

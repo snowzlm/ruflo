@@ -1,5 +1,5 @@
 /**
- * ruv-swarm MCP tools wrapper for Claude Code integration
+ * ruv-swarm MCP tools wrapper for OpenClaw integration
  *
  * This module provides MCP tools that integrate with the external ruv-swarm
  * package to enable advanced swarm coordination and neural capabilities.
@@ -101,7 +101,7 @@ async function executeRuvSwarmCommand(
 }
 
 /**
- * Create ruv-swarm MCP tools for Claude Code integration
+ * Create ruv-swarm MCP tools for OpenClaw integration
  *
  * These tools provide access to the full ruv-swarm functionality including:
  * - Swarm initialization and management
@@ -602,7 +602,7 @@ export async function getRuvSwarmCapabilities(logger?: ILogger): Promise<any> {
 }
 
 /**
- * Initialize ruv-swarm with claude-code-flow integration
+ * Initialize ruv-swarm with openclaw-flow integration
  */
 export async function initializeRuvSwarmIntegration(
   workingDirectory: string,
@@ -634,7 +634,7 @@ export async function initializeRuvSwarmIntegration(
     data: {
       available: true,
       capabilities,
-      integration: 'claude-code-flow',
+      integration: 'openclaw-flow',
       sessionId: context.sessionId,
     },
     metadata: {

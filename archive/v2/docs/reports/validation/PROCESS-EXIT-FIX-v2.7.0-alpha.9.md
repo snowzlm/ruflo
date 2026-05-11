@@ -9,7 +9,7 @@
 After agentic-flow@1.5.13 integration, CLI commands would execute successfully but fail to exit:
 
 ```bash
-npx claude-flow@alpha memory store test_key "data" --reasoningbank
+ruflo memory store test_key "data" --reasoningbank
 # Output: ✅ Stored successfully in ReasoningBank
 # Process hangs indefinitely (requires Ctrl+C)
 ```
@@ -77,7 +77,7 @@ Added explicit exit after cleanup in CLI commands:
 
 ### Before Fix (alpha.8):
 ```bash
-$ timeout 10 npx claude-flow@alpha memory store test "data" --reasoningbank
+$ timeout 10 ruflo memory store test "data" --reasoningbank
 # Command timed out after 10s (process hanging)
 ```
 
@@ -136,10 +136,10 @@ None - this is a complete fix for the process hanging issue.
 
 ```bash
 # Install latest alpha
-npm install -g claude-flow@alpha
+npm install -g github:snowzlm/ruflo
 
 # Or use npx (always fetches latest)
-npx claude-flow@alpha --version
+ruflo --version
 # Should show: v2.7.0-alpha.9
 ```
 
@@ -149,6 +149,6 @@ npx claude-flow@alpha --version
 
 ---
 
-**Validated by**: Claude Code
+**Validated by**: OpenClaw
 **Validation Method**: Direct testing + SQLite verification
 **Result**: **100% PASS** ✅

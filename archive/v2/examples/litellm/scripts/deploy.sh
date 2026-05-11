@@ -151,7 +151,7 @@ show_info() {
     echo "  - Grafana: admin / (check .env file)"
     echo "  - PgAdmin: admin@litellm.local / (check .env file)"
     echo ""
-    echo "Configure Claude Code:"
+    echo "Configure OpenClaw:"
     echo "  export ANTHROPIC_BASE_URL=http://localhost:4000"
     echo "  export ANTHROPIC_AUTH_TOKEN=<your-master-key>"
     echo "  claude --model codex-mini \"Your prompt here\""

@@ -42,7 +42,7 @@ export class RollbackManager {
     // Backup critical files and directories
     const backupTargets = [
       '.claude',
-      'CLAUDE.md',
+      'OPENCLAW.md',
       '.roomodes',
       'package.json',
       'memory/memory-store.json',

@@ -1,13 +1,13 @@
 # @claude-flow/codex
 
 <p align="center">
-  <strong>OpenAI Codex CLI Adapter for Claude Flow V3</strong><br/>
+  <strong>OpenAI Codex CLI Adapter for Ruflo V3</strong><br/>
   <em>Self-learning multi-agent orchestration following the <a href="https://agentics.org">Agentics Foundation</a> standard</em>
 </p>
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@claude-flow/codex"><img src="https://img.shields.io/npm/v/@claude-flow/codex?label=npm&color=blue" alt="npm version"></a>
-  <a href="https://github.com/ruvnet/claude-flow"><img src="https://img.shields.io/badge/license-MIT-green" alt="license"></a>
+  <a href="https://github.com/snowzlm/ruflo"><img src="https://img.shields.io/badge/license-MIT-green" alt="license"></a>
   <a href="https://agentics.org"><img src="https://img.shields.io/badge/standard-Agentics-purple" alt="Agentics Standard"></a>
 </p>
 
@@ -15,7 +15,7 @@
 
 ## Why @claude-flow/codex?
 
-Transform OpenAI Codex CLI into a **self-improving AI development system**. While Codex executes code, claude-flow orchestrates, coordinates, and **learns from every interaction**.
+Transform OpenAI Codex CLI into a **self-improving AI development system**. While Codex executes code, ruflo orchestrates, coordinates, and **learns from every interaction**.
 
 | Traditional Codex | With Claude-Flow |
 |-------------------|------------------|
@@ -23,7 +23,7 @@ Transform OpenAI Codex CLI into a **self-improving AI development system**. Whil
 | Single-agent | Multi-agent swarms (up to 15) |
 | Manual coordination | Automatic orchestration |
 | No learning | Self-learning patterns (HNSW) |
-| One platform | Dual-mode (Claude Code + Codex) |
+| One platform | Dual-mode (OpenClaw + Codex) |
 
 ## Key Concept: Execution Model
 
@@ -64,13 +64,13 @@ Transform OpenAI Codex CLI into a **self-improving AI development system**. Whil
 
 ```bash
 # Initialize for Codex (recommended)
-npx claude-flow@alpha init --codex
+ruflo init --codex
 
 # Full setup with all 137+ skills
-npx claude-flow@alpha init --codex --full
+ruflo init --codex --full
 
-# Dual mode (both Claude Code and Codex)
-npx claude-flow@alpha init --dual
+# Dual mode (both OpenClaw and Codex)
+ruflo init --dual
 ```
 
 **That's it!** The MCP server is auto-registered, skills are installed, and your project is ready for self-learning development.
@@ -86,7 +86,7 @@ npx claude-flow@alpha init --dual
 | **MCP Integration** | Self-learning via memory and vector search |
 | **137+ Skills** | Invoke with `$skill-name` syntax |
 | **Vector Memory** | Semantic pattern search (384-dim embeddings) |
-| **Dual Platform** | Supports both Claude Code and Codex |
+| **Dual Platform** | Supports both OpenClaw and Codex |
 | **Auto-Registration** | MCP server registered during init |
 | **HNSW Search** | 150x-12,500x faster pattern matching |
 | **Self-Learning** | Learn from successes, remember patterns |
@@ -110,7 +110,7 @@ codex mcp list
 
 # Expected output:
 # Name         Command  Args                   Status
-# claude-flow  npx      claude-flow mcp start  enabled
+# ruflo  npx      ruflo mcp start  enabled
 ```
 
 ### Manual Registration
@@ -118,7 +118,7 @@ codex mcp list
 If MCP is not present, add manually:
 
 ```bash
-codex mcp add claude-flow -- npx claude-flow mcp start
+codex mcp add ruflo -- npx ruflo mcp start
 ```
 
 ### MCP Tools Reference
@@ -275,13 +275,13 @@ project/
 
 ```bash
 # Minimal (fastest init)
-npx claude-flow@alpha init --codex --minimal
+ruflo init --codex --minimal
 
 # Default
-npx claude-flow@alpha init --codex
+ruflo init --codex
 
 # Full (all skills)
-npx claude-flow@alpha init --codex --full
+ruflo init --codex --full
 ```
 
 ### Template Contents
@@ -309,12 +309,12 @@ npx claude-flow@alpha init --codex --full
 ---
 
 <details>
-<summary><b>Platform Comparison (Claude Code vs Codex)</b></summary>
+<summary><b>Platform Comparison (OpenClaw vs Codex)</b></summary>
 
-| Feature | Claude Code | OpenAI Codex |
+| Feature | OpenClaw | OpenAI Codex |
 |---------|-------------|--------------|
-| Config File | `CLAUDE.md` | `AGENTS.md` |
-| Skills Dir | `.claude/skills/` | `.agents/skills/` |
+| Config File | `OPENCLAW.md` | `AGENTS.md` |
+| Skills Dir | `.openclaw/skills/` | `.agents/skills/` |
 | Skill Syntax | `/skill-name` | `$skill-name` |
 | Settings | `settings.json` | `config.toml` |
 | MCP | Native | Via `codex mcp add` |
@@ -325,11 +325,11 @@ npx claude-flow@alpha init --codex --full
 Run `init --dual` to set up both platforms:
 
 ```bash
-npx claude-flow@alpha init --dual
+ruflo init --dual
 ```
 
 This creates:
-- `CLAUDE.md` for Claude Code users
+- `OPENCLAW.md` for OpenClaw users
 - `AGENTS.md` for Codex users
 - Shared `.claude-flow/` runtime
 - Cross-compatible skills
@@ -441,7 +441,7 @@ $performance-optimization
 | Skill | Syntax | Description |
 |-------|--------|-------------|
 | Pair Programming | `$pair-programming` | AI-assisted pair programming |
-| Skill Builder | `$skill-builder` | Create new Claude Code Skills |
+| Skill Builder | `$skill-builder` | Create new OpenClaw Skills |
 | Verification Quality | `$verification-quality` | Truth scoring and quality verification |
 | Performance Analysis | `$performance-analysis` | Bottleneck detection and optimization |
 | Agentic Jujutsu | `$agentic-jujutsu` | Quantum-resistant version control |
@@ -501,8 +501,8 @@ $performance-optimization
 
 | Skill | Syntax | Description |
 |-------|--------|-------------|
-| Dual Spawn | `$dual-spawn` | Spawn parallel Codex workers from Claude Code |
-| Dual Coordinate | `$dual-coordinate` | Coordinate Claude Code + Codex execution |
+| Dual Spawn | `$dual-spawn` | Spawn parallel Codex workers from OpenClaw |
+| Dual Coordinate | `$dual-coordinate` | Coordinate OpenClaw + Codex execution |
 | Dual Collect | `$dual-collect` | Collect results from parallel Codex instances |
 
 ### Custom Skills
@@ -529,11 +529,11 @@ Invoke with `$my-skill`
 ---
 
 <details>
-<summary><b>Dual-Mode Integration (Claude Code + Codex)</b></summary>
+<summary><b>Dual-Mode Integration (OpenClaw + Codex)</b></summary>
 
 ### Hybrid Execution Model
 
-Run Claude Code for interactive development and spawn headless Codex workers for parallel background tasks:
+Run OpenClaw for interactive development and spawn headless Codex workers for parallel background tasks:
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -549,17 +549,17 @@ Run Claude Code for interactive development and spawn headless Codex workers for
 
 ```bash
 # Initialize dual-mode
-npx claude-flow@alpha init --dual
+ruflo init --dual
 
 # Creates both:
-# - CLAUDE.md (Claude Code configuration)
+# - OPENCLAW.md (OpenClaw configuration)
 # - AGENTS.md (Codex configuration)
 # - Shared .claude-flow/ runtime
 ```
 
 ### Spawning Parallel Codex Workers
 
-From Claude Code, spawn headless Codex instances:
+From OpenClaw, spawn headless Codex instances:
 
 ```bash
 # Spawn workers in parallel (each runs independently)
@@ -575,7 +575,7 @@ wait  # Wait for all to complete
 |-------|----------|-------------|
 | `$dual-spawn` | Codex | Spawn parallel workers from orchestrator |
 | `$dual-coordinate` | Both | Coordinate cross-platform execution |
-| `$dual-collect` | Claude Code | Collect results from Codex workers |
+| `$dual-collect` | OpenClaw | Collect results from Codex workers |
 
 ### Dual-Mode Agents
 
@@ -590,15 +590,15 @@ wait  # Wait for all to complete
 | Task Complexity | Platform | Reason |
 |----------------|----------|--------|
 | Simple (1-2 files) | Codex Headless | Fast, parallel |
-| Medium (3-5 files) | Claude Code | Needs context |
-| Complex (architecture) | Claude Code | Reasoning required |
+| Medium (3-5 files) | OpenClaw | Needs context |
+| Complex (architecture) | OpenClaw | Reasoning required |
 | Bulk operations | Codex Workers | Parallelize |
-| Final review | Claude Code | Integration |
+| Final review | OpenClaw | Integration |
 
 ### Example Workflow
 
 ```
-1. Claude Code receives complex feature request
+1. OpenClaw receives complex feature request
 2. Designs architecture and creates plan
 3. Spawns 4 Codex workers:
    - Worker 1: Implement data models
@@ -606,8 +606,8 @@ wait  # Wait for all to complete
    - Worker 3: Write unit tests
    - Worker 4: Generate documentation
 4. Workers execute in parallel (headless)
-5. Claude Code collects and integrates results
-6. Final review and refinement in Claude Code
+5. OpenClaw collects and integrates results
+6. Final review and refinement in OpenClaw
 ```
 
 ### Memory Sharing
@@ -712,7 +712,7 @@ web_search = "cached"
 # MCP Servers
 [mcp_servers.claude-flow]
 command = "npx"
-args = ["claude-flow", "mcp", "start"]
+args = ["ruflo", "mcp", "start"]
 enabled = true
 
 # Skills
@@ -852,7 +852,7 @@ interface CodexInitOptions {
   skills?: string[];
   /** Overwrite existing files */
   force?: boolean;
-  /** Enable dual mode (Claude Code + Codex) */
+  /** Enable dual mode (OpenClaw + Codex) */
   dual?: boolean;
 }
 
@@ -908,15 +908,15 @@ if (result.warnings?.length) {
 ---
 
 <details>
-<summary><b>Migration from Claude Code</b></summary>
+<summary><b>Migration from OpenClaw</b></summary>
 
-### Convert CLAUDE.md to AGENTS.md
+### Convert OPENCLAW.md to AGENTS.md
 
 ```typescript
 import { migrate } from '@claude-flow/codex';
 
 const result = await migrate({
-  sourcePath: './CLAUDE.md',
+  sourcePath: './OPENCLAW.md',
   targetPath: './AGENTS.md',
   preserveComments: true,
   generateSkills: true,
@@ -928,21 +928,21 @@ console.log(`Skills generated: ${result.skillsGenerated.length}`);
 
 ### Manual Migration Checklist
 
-1. **Rename config file**: `CLAUDE.md` → `AGENTS.md`
-2. **Move skills**: `.claude/skills/` → `.agents/skills/`
+1. **Rename config file**: `OPENCLAW.md` → `AGENTS.md`
+2. **Move skills**: `.openclaw/skills/` → `.agents/skills/`
 3. **Update syntax**: `/skill-name` → `$skill-name`
 4. **Convert settings**: `settings.json` → `config.toml`
-5. **Register MCP**: `codex mcp add claude-flow -- npx claude-flow mcp start`
+5. **Register MCP**: `codex mcp add ruflo -- npx ruflo mcp start`
 
 ### Dual Mode Alternative
 
 Instead of migrating, use dual mode to support both:
 
 ```bash
-npx claude-flow@alpha init --dual
+ruflo init --dual
 ```
 
-This keeps both `CLAUDE.md` and `AGENTS.md` in sync.
+This keeps both `OPENCLAW.md` and `AGENTS.md` in sync.
 
 </details>
 
@@ -958,24 +958,24 @@ This keeps both `CLAUDE.md` and `AGENTS.md` in sync.
 codex mcp list
 
 # Re-register
-codex mcp remove claude-flow
-codex mcp add claude-flow -- npx claude-flow mcp start
+codex mcp remove ruflo
+codex mcp add ruflo -- npx ruflo mcp start
 
 # Test connection
-npx claude-flow mcp test
+npx ruflo mcp test
 ```
 
 ### Memory Search Returns Empty
 
 ```bash
 # Initialize memory database
-npx claude-flow memory init --force
+npx ruflo memory init --force
 
 # Check if entries exist
-npx claude-flow memory list
+npx ruflo memory list
 
 # Manually add a test pattern
-npx claude-flow memory store --key "test" --value "test pattern" --namespace patterns
+npx ruflo memory store --key "test" --value "test pattern" --namespace patterns
 ```
 
 ### Skills Not Loading
@@ -988,17 +988,17 @@ ls -la .agents/skills/
 cat .agents/config.toml | grep skills
 
 # Rebuild skills
-npx claude-flow@alpha init --codex --force
+ruflo init --codex --force
 ```
 
 ### Vector Search Slow
 
 ```bash
 # Check HNSW index
-npx claude-flow memory stats
+npx ruflo memory stats
 
 # Rebuild index
-npx claude-flow memory optimize --rebuild-index
+npx ruflo memory optimize --rebuild-index
 ```
 
 </details>
@@ -1010,7 +1010,7 @@ npx claude-flow memory optimize --rebuild-index
 | Package | Description |
 |---------|-------------|
 | [@claude-flow/cli](https://www.npmjs.com/package/@claude-flow/cli) | Main CLI (26 commands, 140+ subcommands) |
-| [claude-flow](https://www.npmjs.com/package/claude-flow) | Umbrella package |
+| [ruflo](https://www.npmjs.com/package/claude-flow) | Umbrella package |
 | [@claude-flow/memory](https://www.npmjs.com/package/@claude-flow/memory) | AgentDB with HNSW vector search |
 | [@claude-flow/security](https://www.npmjs.com/package/@claude-flow/security) | Security module |
 
@@ -1020,5 +1020,5 @@ MIT
 
 ## Support
 
-- Documentation: https://github.com/ruvnet/claude-flow
-- Issues: https://github.com/ruvnet/claude-flow/issues
+- Documentation: https://github.com/snowzlm/ruflo
+- Issues: https://github.com/snowzlm/ruflo/issues

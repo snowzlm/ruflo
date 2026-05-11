@@ -220,14 +220,14 @@ export class MigrationRunner {
   }
 
   private async mergeConfigurations(result: MigrationResult, analysis: any): Promise<void> {
-    // Merge CLAUDE.md
-    const claudeMdPath = path.join(this.options.projectPath, 'CLAUDE.md');
+    // Merge OPENCLAW.md
+    const claudeMdPath = path.join(this.options.projectPath, 'OPENCLAW.md');
     if (await fs.pathExists(claudeMdPath)) {
       const existingContent = await fs.readFile(claudeMdPath, 'utf-8');
       const newContent = await this.getMergedClaudeMd(existingContent);
 
       await fs.writeFile(claudeMdPath, newContent);
-      result.filesModified.push('CLAUDE.md');
+      result.filesModified.push('OPENCLAW.md');
     }
 
     // Merge .roomodes
@@ -243,7 +243,7 @@ export class MigrationRunner {
 
   private async copyRequiredFiles(result: MigrationResult): Promise<void> {
     const files = [
-      { source: 'CLAUDE.md', target: 'CLAUDE.md' },
+      { source: 'OPENCLAW.md', target: 'OPENCLAW.md' },
       { source: '.roomodes', target: '.roomodes' },
     ];
 
@@ -323,7 +323,7 @@ export class MigrationRunner {
       for (const file of files) {
         const content = await fs.readFile(path.join(claudePath, file), 'utf-8');
         backup.files.push({
-          path: `.claude/${file}`,
+          path: `.openclaw/${file}`,
           content,
           checksum: crypto.createHash('md5').update(content).digest('hex'),
         });
@@ -331,7 +331,7 @@ export class MigrationRunner {
     }
 
     // Backup other important files
-    const importantFiles = ['CLAUDE.md', '.roomodes', 'package.json'];
+    const importantFiles = ['OPENCLAW.md', '.roomodes', 'package.json'];
     for (const file of importantFiles) {
       const filePath = path.join(this.options.projectPath, file);
       if (await fs.pathExists(filePath)) {
@@ -509,8 +509,8 @@ export class MigrationRunner {
   }
 
   private async getMergedClaudeMd(existingContent: string): Promise<string> {
-    // Merge logic for CLAUDE.md
-    const templatePath = path.join(__dirname, '../../CLAUDE.md');
+    // Merge logic for OPENCLAW.md
+    const templatePath = path.join(__dirname, '../../OPENCLAW.md');
     const templateContent = await fs.readFile(templatePath, 'utf-8');
 
     // Simple merge: append custom content to template

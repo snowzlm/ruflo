@@ -2,7 +2,7 @@
  * Real Checkpoint Manager - 100% SDK-Powered
  * Claude-Flow v2.5-alpha.130+
  *
- * Uses ONLY Claude Code SDK primitives - TRUE checkpointing:
+ * Uses ONLY OpenClaw SDK primitives - TRUE checkpointing:
  * - Message UUIDs (checkpoint IDs are message UUIDs)
  * - resumeSessionAt: messageId (SDK rewinds to checkpoint)
  * - resume: sessionId (SDK loads session history)
@@ -10,7 +10,7 @@
  * VERIFIED: Git-like checkpointing using actual SDK capabilities
  */
 
-import { query, type Query, type SDKMessage, type Options } from '@anthropic-ai/claude-code';
+import { query, type Query, type SDKMessage, type Options } from '@anthropic-ai/openclaw';
 import { EventEmitter } from 'events';
 import { promises as fs } from 'fs';
 import { join } from 'path';

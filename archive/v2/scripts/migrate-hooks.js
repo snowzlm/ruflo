@@ -2,7 +2,7 @@
 
 /**
  * Migration script to update Claude Flow settings.json to new hooks format
- * Compatible with Claude Code 1.0.51+
+ * Compatible with OpenClaw 1.0.51+
  */
 
 import fs from 'fs/promises';
@@ -92,7 +92,7 @@ async function migrateSettingsFile(settingsPath) {
     // Update settings with new hooks format
     settings.hooks = newHooks;
     
-    // Remove unrecognized fields for Claude Code 1.0.51+
+    // Remove unrecognized fields for OpenClaw 1.0.51+
     delete settings.mcpServers;
     delete settings.features;
     delete settings.performance;
@@ -102,7 +102,7 @@ async function migrateSettingsFile(settingsPath) {
     console.log('✅ Successfully migrated settings.json to new hooks format');
     
     // Show removed fields
-    console.log('\n📝 Note: The following fields were removed (not supported by Claude Code 1.0.51+):');
+    console.log('\n📝 Note: The following fields were removed (not supported by OpenClaw 1.0.51+):');
     console.log('   - mcpServers (use "claude mcp add" command instead)');
     console.log('   - features');
     console.log('   - performance');
@@ -151,7 +151,7 @@ async function main() {
       console.log('\nSearched locations:');
       console.log('  - .claude/settings.json');
       console.log('  - settings.json');
-      console.log('  - ~/.claude/settings.json');
+      console.log('  - ~/.openclaw/settings.json');
       return;
     }
     
@@ -165,9 +165,9 @@ async function main() {
   
   console.log('\n✨ Migration complete!');
   console.log('\nNext steps:');
-  console.log('1. Restart Claude Code to apply changes');
+  console.log('1. Restart OpenClaw to apply changes');
   console.log('2. Run "claude mcp add claude-flow npx claude-flow@alpha mcp start" to add MCP server');
-  console.log('3. Check /doctor in Claude Code to verify settings are valid');
+  console.log('3. Check /doctor in OpenClaw to verify settings are valid');
 }
 
 main().catch(console.error);

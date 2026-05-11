@@ -38,7 +38,7 @@ Replace stdio-based MCP transport with in-process SDK server for **zero IPC over
 
 ```typescript
 // src/mcp/claude-flow-swarm-server.ts
-import { createSdkMcpServer, tool } from '@anthropic-ai/claude-code/sdk';
+import { createSdkMcpServer, tool } from '@anthropic-ai/openclaw/sdk';
 import { z } from 'zod';
 
 export const claudeFlowSwarmServer = createSdkMcpServer({
@@ -334,7 +334,7 @@ Implement **hierarchical permission system** for swarm governance.
 // src/security/swarm-permission-manager.ts
 export class SwarmPermissionManager {
   async setPermissions(config: PermissionConfig) {
-    // User-level: ~/.claude/settings.json
+    // User-level: ~/.openclaw/settings.json
     await this.updatePermissions({
       type: 'addRules',
       rules: config.userRules,
@@ -518,7 +518,7 @@ Deploy Claude-Flow swarms **in browser** via WebAssembly.
 
 ```typescript
 // Future: Browser-based swarm orchestration
-import { query } from '@anthropic-ai/claude-code/wasm';
+import { query } from '@anthropic-ai/openclaw/wasm';
 
 export class BrowserSwarmOrchestrator {
   async initializeBrowserSwarm(): Promise<void> {

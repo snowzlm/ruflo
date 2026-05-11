@@ -37,8 +37,8 @@ code --version  # VS Code for development
 
 ```bash
 # Clone the repository
-git clone https://github.com/ruvnet/claude-flow.git
-cd claude-flow
+git clone https://github.com/snowzlm/ruflo.git
+cd ruflo
 
 # Install dependencies (use pnpm on Windows)
 npm install
@@ -210,7 +210,7 @@ claude-flow/
 │   ├── checkpoints/       # Session checkpoints
 │   └── metrics/           # Performance metrics
 ├── bin/                    # Binary executables
-│   ├── claude-flow        # Main CLI binary
+│   ├── ruflo        # Main CLI binary
 │   ├── claude-flow-swarm  # Swarm-specific binary
 │   └── claude-flow-ui     # UI binary
 └── .github/                # GitHub workflows and templates
@@ -270,10 +270,10 @@ main                # Production-ready code
 git checkout -b feature/agent-improvements
 
 # Use SPARC for architecture
-npx claude-flow@alpha sparc run architect "Agent selection improvements"
+ruflo sparc run architect "Agent selection improvements"
 
 # Implement with TDD
-npx claude-flow@alpha sparc run tdd "Better agent selection algorithm"
+ruflo sparc run tdd "Better agent selection algorithm"
 
 # Start development mode
 npm run dev
@@ -283,7 +283,7 @@ npm run test:comprehensive
 npm run test:coverage
 
 # Security review
-npx claude-flow@alpha sparc run security-review "Review agent selection"
+ruflo sparc run security-review "Review agent selection"
 
 # Commit changes
 git add .
@@ -293,7 +293,7 @@ git commit -m "feat: improve agent selection algorithm"
 git push origin feature/agent-improvements
 
 # Create pull request with swarm review
-npx claude-flow@alpha swarm spawn code-review-swarm
+ruflo swarm spawn code-review-swarm
 gh pr create --title "Improve agent selection" --body "..."
 ```
 
@@ -357,7 +357,7 @@ Brief description of changes
 
 ```bash
 # List all available modes
-npx claude-flow@alpha sparc modes
+ruflo sparc modes
 
 # Available modes:
 # 🏗️ architect              - System architecture design
@@ -382,18 +382,18 @@ npx claude-flow@alpha sparc modes
 
 ```bash
 # Single mode execution
-npx claude-flow@alpha sparc run architect "Design user authentication system"
-npx claude-flow@alpha sparc run tdd "Implement user login functionality"
-npx claude-flow@alpha sparc run security-review "Review API endpoints"
+ruflo sparc run architect "Design user authentication system"
+ruflo sparc run tdd "Implement user login functionality"
+ruflo sparc run security-review "Review API endpoints"
 
 # Batch mode execution (multiple modes)
-npx claude-flow@alpha sparc batch architect,tdd,security-review "Build secure API"
+ruflo sparc batch architect,tdd,security-review "Build secure API"
 
 # Full pipeline execution
-npx claude-flow@alpha sparc pipeline "Complete user management system"
+ruflo sparc pipeline "Complete user management system"
 
 # TDD workflow
-npx claude-flow@alpha sparc tdd "User registration feature"
+ruflo sparc tdd "User registration feature"
 ```
 
 ### SPARC Development Workflow
@@ -420,18 +420,18 @@ graph TD
 
 ```bash
 # Initialize swarm with different topologies
-npx claude-flow@alpha swarm init --topology mesh --max-agents 10
-npx claude-flow@alpha swarm init --topology hierarchical --max-agents 15
-npx claude-flow@alpha swarm init --topology adaptive --max-agents 8
+ruflo swarm init --topology mesh --max-agents 10
+ruflo swarm init --topology hierarchical --max-agents 15
+ruflo swarm init --topology adaptive --max-agents 8
 
 # Spawn specialized agents
-npx claude-flow@alpha swarm spawn coder
-npx claude-flow@alpha swarm spawn reviewer
-npx claude-flow@alpha swarm spawn tester
-npx claude-flow@alpha swarm spawn system-architect
+ruflo swarm spawn coder
+ruflo swarm spawn reviewer
+ruflo swarm spawn tester
+ruflo swarm spawn system-architect
 
 # Coordinate multi-agent tasks
-npx claude-flow@alpha swarm coordinate "Build full-stack application"
+ruflo swarm coordinate "Build full-stack application"
 ```
 
 ### Available Agent Types (54 Total)
@@ -898,10 +898,10 @@ npm version prerelease --preid=alpha  # 2.0.0-alpha.88 -> 2.0.0-alpha.89
 
 # Clone your fork
 git clone https://github.com/YOUR_USERNAME/claude-flow.git
-cd claude-flow
+cd ruflo
 
 # Add upstream remote
-git remote add upstream https://github.com/ruvnet/claude-flow.git
+git remote add upstream https://github.com/snowzlm/ruflo.git
 
 # Keep your fork updated
 git fetch upstream
@@ -916,10 +916,10 @@ git merge upstream/main
 git checkout -b feature/your-feature
 
 # 2. Plan with SPARC architect
-npx claude-flow@alpha sparc run architect "Your feature description"
+ruflo sparc run architect "Your feature description"
 
 # 3. Implement with TDD
-npx claude-flow@alpha sparc run tdd "Feature implementation"
+ruflo sparc run tdd "Feature implementation"
 
 # 4. Make changes and test
 npm run dev
@@ -927,7 +927,7 @@ npm run test:comprehensive
 npm run lint
 
 # 5. Security review
-npx claude-flow@alpha sparc run security-review "Review changes"
+ruflo sparc run security-review "Review changes"
 
 # 6. Commit changes
 git add .
@@ -937,8 +937,8 @@ git commit -m "feat: add amazing feature"
 git push origin feature/your-feature
 
 # 8. Create pull request with swarm review
-npx claude-flow@alpha swarm spawn code-review-swarm
-gh pr create --repo ruvnet/claude-flow
+ruflo swarm spawn code-review-swarm
+gh pr create --repo snowzlm/ruflo
 ```
 
 ### Code Review Guidelines
@@ -1319,7 +1319,7 @@ npm update
 ### Community
 
 - [Discord Server](https://discord.gg/claude-flow)
-- [GitHub Discussions](https://github.com/ruvnet/claude-flow/discussions)
+- [GitHub Discussions](https://github.com/snowzlm/ruflo/discussions)
 - [Stack Overflow](https://stackoverflow.com/questions/tagged/claude-flow)
 
 ---

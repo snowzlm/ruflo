@@ -1116,7 +1116,7 @@ export async function checkAndMigrateLegacy(options: {
   // Check for legacy locations
   const legacyPaths = [
     path.join(process.cwd(), 'memory.db'),
-    path.join(process.cwd(), '.claude/memory.db'),
+    path.join(process.cwd(), '.openclaw/memory.db'),
     path.join(process.cwd(), 'data/memory.db'),
     path.join(process.cwd(), '.claude-flow/memory.db')
   ];

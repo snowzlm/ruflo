@@ -5,7 +5,7 @@ Agent teams, swarm coordination, Monitor streams, and worktree isolation.
 ## Install
 
 ```
-/plugin marketplace add ruvnet/ruflo
+/plugin marketplace add snowzlm/ruflo
 /plugin install ruflo-swarm@ruflo
 ```
 
@@ -36,9 +36,9 @@ Agent teams, swarm coordination, Monitor streams, and worktree isolation.
 
 Sources: `v3/@claude-flow/cli/src/mcp-tools/swarm-tools.ts:71, 145, 208, 270` and `agent-tools.ts:182, 287, 319, 356, 395, 451, 573, 651`.
 
-## Built-in Claude Code coordination tools
+## Built-in OpenClaw coordination tools
 
-This plugin pairs with Claude Code's native multi-agent tools (no MCP needed):
+This plugin pairs with OpenClaw's native multi-agent tools (no MCP needed):
 
 | Tool | Purpose |
 |------|---------|
@@ -48,7 +48,7 @@ This plugin pairs with Claude Code's native multi-agent tools (no MCP needed):
 | `Monitor` | Live-stream events from a long-running process (`persistent: true`) — primary wake signal for /loop |
 | `EnterWorktree / ExitWorktree` | Git worktree isolation per agent |
 
-## Anti-drift defaults (per CLAUDE.md)
+## Anti-drift defaults (per OPENCLAW.md)
 
 For coding swarms, the canonical defaults that prevent agent drift:
 

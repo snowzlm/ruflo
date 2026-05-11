@@ -1,6 +1,6 @@
 /**
  * Browser Skill Exports
- * Re-exports skill-related functionality for Claude Code integration
+ * Re-exports skill-related functionality for OpenClaw integration
  */
 
 export { browserTools } from '../mcp-tools/browser-tools.js';

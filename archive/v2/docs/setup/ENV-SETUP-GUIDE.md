@@ -2,14 +2,14 @@
 
 ## Overview
 
-The `.env` file is **required** for ReasoningBank memory capabilities in claude-flow. Without it, the system falls back to heuristic mode (simple regex pattern matching) with no actual learning.
+The `.env` file is **required** for ReasoningBank memory capabilities in ruflo. Without it, the system falls back to heuristic mode (simple regex pattern matching) with no actual learning.
 
 ## Quick Start
 
 ### 1. Generate .env Template
 
 ```bash
-claude-flow init --env
+ruflo init --env
 ```
 
 This creates a comprehensive `.env` template with:
@@ -41,7 +41,7 @@ GOOGLE_GEMINI_API_KEY=...
 
 When you run:
 ```bash
-claude-flow agent run coder "Build API" --enable-memory
+ruflo agent run coder "Build API" --enable-memory
 ```
 
 **Result:**
@@ -50,7 +50,7 @@ claude-flow agent run coder "Build API" --enable-memory
 
 📋 Setting up .env for ReasoningBank capabilities:
 1. Create .env file:
-   claude-flow init --env
+   ruflo init --env
 
 2. Add your API keys to .env:
    ANTHROPIC_API_KEY=sk-ant-...
@@ -141,7 +141,7 @@ reasoningbank:
 EOF
 
 # 3. Use memory with cost optimization
-claude-flow agent run coder "Build API" \
+ruflo agent run coder "Build API" \
   --enable-memory \
   --memory-domain api/authentication \
   --memory-k 5
@@ -157,13 +157,13 @@ If you don't want to use `.env`, you can:
 ```bash
 export ANTHROPIC_API_KEY="sk-ant-..."
 export OPENROUTER_API_KEY="sk-or-v1-..."
-claude-flow agent run coder "task" --enable-memory
+ruflo agent run coder "task" --enable-memory
 ```
 
 ### Option 2: Inline Environment Variables
 ```bash
 ANTHROPIC_API_KEY="sk-ant-..." \
-  claude-flow agent run coder "task" --enable-memory
+  ruflo agent run coder "task" --enable-memory
 ```
 
 ### Option 3: System-Wide Configuration
@@ -185,17 +185,17 @@ export OPENROUTER_API_KEY="sk-or-v1-..."
 
 ### Generate .env Template
 ```bash
-claude-flow init --env                # Create new .env
-claude-flow init --env --force        # Overwrite existing .env
+ruflo init --env                # Create new .env
+ruflo init --env --force        # Overwrite existing .env
 ```
 
 ### Using Memory with .env
 ```bash
 # Basic memory
-claude-flow agent run coder "task" --enable-memory
+ruflo agent run coder "task" --enable-memory
 
 # Advanced memory
-claude-flow agent run coder "task" \
+ruflo agent run coder "task" \
   --enable-memory \
   --memory-domain api/authentication \
   --memory-k 5 \
@@ -204,8 +204,8 @@ claude-flow agent run coder "task" \
 
 ### Check Help
 ```bash
-claude-flow init --help               # See all init options
-claude-flow agent --help              # See all agent options
+ruflo init --help               # See all init options
+ruflo agent --help              # See all agent options
 ```
 
 ## Evidence: Fake vs Real ReasoningBank
@@ -230,7 +230,7 @@ Database: 20 entries with embeddings
 ## Troubleshooting
 
 ### Problem: "Cannot use --enable-memory without .env file"
-**Solution:** Run `claude-flow init --env` and add API keys
+**Solution:** Run `ruflo init --env` and add API keys
 
 ### Problem: "No API keys found in .env file"
 **Solution:** Add at least one valid API key to `.env`
@@ -265,6 +265,6 @@ Total template size: ~150 lines with extensive documentation
 ## Support
 
 For issues or questions:
-- GitHub Issues: https://github.com/ruvnet/claude-flow/issues
-- Documentation: https://github.com/ruvnet/claude-flow
+- GitHub Issues: https://github.com/snowzlm/ruflo/issues
+- Documentation: https://github.com/snowzlm/ruflo
 - Agentic-Flow: https://github.com/ruvnet/agentic-flow

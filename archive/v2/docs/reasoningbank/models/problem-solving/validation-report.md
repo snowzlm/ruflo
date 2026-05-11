@@ -1,7 +1,7 @@
 # Validation Report: Problem Solving Model
 
 **Generated**: 2025-10-15T02:52:00.000Z
-**Model Path**: `/workspaces/claude-code-flow/docs/reasoningbank/models/problem-solving`
+**Model Path**: `/workspaces/openclaw-flow/docs/reasoningbank/models/problem-solving`
 **Database**: `memory.db`
 
 ## Executive Summary
@@ -247,8 +247,8 @@ Latency: 4ms ✅
 ### ✅ Model Ready for Production
 The model meets all quality criteria and is ready for:
 1. Integration with agentic-flow agents
-2. Claude Code agent reasoning augmentation
-3. MCP tool queries via claude-flow
+2. OpenClaw agent reasoning augmentation
+3. MCP tool queries via ruflo
 4. Multi-pattern reasoning chains
 5. Production problem-solving workflows
 

@@ -81,7 +81,7 @@ Detection Time: 0.04ms | 50+ Patterns | Self-Learning | HNSW Vector Search
 
 ### Security Integrations
 
-- **Claude Code** - CLI command and MCP tools
+- **OpenClaw** - CLI command and MCP tools
 - **AgentDB** - HNSW-indexed vector search (150x faster)
 - **Swarm Coordination** - Multi-agent security consensus
 - **Hooks System** - Pre/post operation scanning
@@ -393,7 +393,7 @@ await aidefence.endTrajectory('session-123', 'success');
 
 ## CLI Integration
 
-Use via Claude Flow CLI:
+Use via Ruflo CLI:
 
 ```bash
 # Basic threat scan
@@ -572,13 +572,13 @@ Pre-scan agent inputs automatically:
 
 ## Contributing
 
-Contributions are welcome! Please see our [Contributing Guide](https://github.com/ruvnet/claude-flow/blob/main/CONTRIBUTING.md).
+Contributions are welcome! Please see our [Contributing Guide](https://github.com/snowzlm/ruflo/blob/main/CONTRIBUTING.md).
 
 ### Development
 
 ```bash
 # Clone repository
-git clone https://github.com/ruvnet/claude-flow.git
+git clone https://github.com/snowzlm/ruflo.git
 cd claude-flow/v3/@claude-flow/aidefence
 
 # Install dependencies
@@ -620,11 +620,11 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 - [`@claude-flow/cli`](https://www.npmjs.com/package/@claude-flow/cli) - CLI with security commands
 - [`agentdb`](https://www.npmjs.com/package/agentdb) - HNSW vector database
-- [`claude-flow`](https://www.npmjs.com/package/claude-flow) - Full AI coordination system
+- [`ruflo`](https://www.npmjs.com/package/claude-flow) - Full AI coordination system
 
 ---
 
 <p align="center">
   <strong>Built with security in mind by <a href="https://ruv.io">rUv</a></strong><br>
-  <sub>Part of the Claude Flow ecosystem</sub>
+  <sub>Part of the Ruflo ecosystem</sub>
 </p>

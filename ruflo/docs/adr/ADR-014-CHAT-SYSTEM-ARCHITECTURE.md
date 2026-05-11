@@ -17,7 +17,7 @@ Conveyor AI requires a unified chat-based interface to interact with the entire 
 2. **Execute complex workflows** - Chain operations across Cloud Functions (case-manager, simulation-agent, db-query-agent, airtable-agent)
 3. **Leverage AI capabilities** - Use Gemini 2.5 Pro for intent classification, response generation, and context management
 4. **Perform client-side ML** - Run RL algorithms locally via WASM modules for low-latency predictions
-5. **Integrate with Claude** - Expose MCP Server for Claude Code integration and agent orchestration
+5. **Integrate with Claude** - Expose MCP Server for OpenClaw integration and agent orchestration
 6. **Real-time collaboration** - Support WebSocket connections for live updates and multi-user sessions
 
 The current architecture has isolated Cloud Functions without a unified conversational layer, requiring users to know specific API endpoints and request formats.
@@ -39,7 +39,7 @@ Implement a **Chat System Architecture** deployed on Google Cloud Run with the f
 |  |           CHAT INTERFACE                 |  |        MCP SERVER              |  |
 |  |  (ViteJS + HeroUI + WebSocket Client)   |  |    (Cloud Run Service)         |  |
 |  |                                          |  |                                |  |
-|  |  +------------------------------------+  |  |  - Claude Code Integration    |  |
+|  |  +------------------------------------+  |  |  - OpenClaw Integration    |  |
 |  |  | Chat Input / Message History       |  |  |  - Tool Registry              |  |
 |  |  | Command Palette / Quick Actions    |  |  |  - Session Management         |  |
 |  |  | WASM Module Runner (shared-ai)     |  |  |  - OAuth 2.0 Token Exchange   |  |
@@ -90,7 +90,7 @@ Implement a **Chat System Architecture** deployed on Google Cloud Run with the f
                     |                                   |
                     v                                   v
             +---------------+                  +-----------------+
-            | Web Interface |                  | Claude Code     |
+            | Web Interface |                  | OpenClaw     |
             | (chat-ui)     |                  | (MCP Protocol)  |
             +-------+-------+                  +--------+--------+
                     |                                   |
@@ -398,7 +398,7 @@ const server = new Server({
   version: '1.0.0',
 });
 
-// Register tools for Claude Code integration
+// Register tools for OpenClaw integration
 server.setRequestHandler('tools/list', async () => ({
   tools: [
     {
@@ -894,7 +894,7 @@ User Input
 2. **Natural Language** - Users interact via natural language without learning API syntax
 3. **Real-time Updates** - WebSocket integration enables live collaboration and notifications
 4. **Client-Side ML** - WASM modules provide instant predictions without server round-trips
-5. **Claude Integration** - MCP Server enables Claude Code to orchestrate Conveyor AI workflows
+5. **Claude Integration** - MCP Server enables OpenClaw to orchestrate Conveyor AI workflows
 6. **Context Preservation** - Conversation history enables follow-up queries and context-aware responses
 7. **Extensibility** - Command system allows easy addition of new functions
 
@@ -944,7 +944,7 @@ User Input
 - [ ] Deploy MCP Server on Cloud Run
 - [ ] Register Conveyor AI tools
 - [ ] Implement OAuth token exchange
-- [ ] Test Claude Code integration
+- [ ] Test OpenClaw integration
 
 ### Phase 4: Chat UI (Week 6-7) - COMPLETE
 - [x] Create ViteJS + HeroUI chat interface (HeroUI components, TailwindCSS)

@@ -31,7 +31,7 @@ const UTILITY_PACKAGES = new Set([
 const TARGETS = {
   CLI_COMMANDS: 28,
   MCP_TOOLS: 100,
-  HOOKS_SUBCOMMANDS: 27, // 27 hooks documented in CLAUDE.md
+  HOOKS_SUBCOMMANDS: 27, // 27 hooks documented in OPENCLAW.md
   PACKAGES: 17,
 };
 

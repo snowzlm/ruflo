@@ -9,10 +9,10 @@ import { createInProcessServer, InProcessMCPServer } from './in-process-server.j
 import { createClaudeFlowTools } from './claude-flow-tools.js';
 import { logger } from '../core/logger.js';
 import type { MCPTool } from '../utils/types.js';
-import type { McpSdkServerConfigWithInstance } from '@anthropic-ai/claude-code/sdk.d.ts';
+import type { McpSdkServerConfigWithInstance } from '@anthropic-ai/openclaw/sdk.d.ts';
 
 // Import SDK tool creation function
-import { tool, createSdkMcpServer } from '@anthropic-ai/claude-code/sdk';
+import { tool, createSdkMcpServer } from '@anthropic-ai/openclaw/sdk';
 import { z } from 'zod';
 
 export interface ToolRegistryConfig {

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Fix hook variable interpolation in Claude Code settings.json files
+ * Fix hook variable interpolation in OpenClaw settings.json files
  * Addresses issue #249 - ${file} and ${command} variables not working
  */
 
@@ -11,7 +11,7 @@ import { existsSync } from 'fs';
 import chalk from 'chalk';
 import { printSuccess, printError, printWarning } from '../utils.js';
 
-// Known working variable syntaxes based on Claude Code version
+// Known working variable syntaxes based on OpenClaw version
 const VARIABLE_SYNTAXES = {
   legacy: {
     pattern: /\$\{(\w+)\}/g,
@@ -26,7 +26,7 @@ const VARIABLE_SYNTAXES = {
   jq: {
     pattern: null,
     example: 'jq parsing of JSON input',
-    description: 'Official Claude Code approach using jq',
+    description: 'Official OpenClaw approach using jq',
   },
   wrapper: {
     pattern: null,
@@ -35,7 +35,7 @@ const VARIABLE_SYNTAXES = {
   },
 };
 
-// Mapping of our variables to Claude Code environment variables
+// Mapping of our variables to OpenClaw environment variables
 const VARIABLE_MAPPINGS = {
   file: ['CLAUDE_EDITED_FILE', 'CLAUDE_FILE', 'EDITED_FILE'],
   command: ['CLAUDE_COMMAND', 'COMMAND', 'CMD'],
@@ -43,11 +43,11 @@ const VARIABLE_MAPPINGS = {
 };
 
 /**
- * Detect which variable syntax works with current Claude Code version
+ * Detect which variable syntax works with current OpenClaw version
  */
 async function detectWorkingSyntax() {
-  // Based on official Claude Code documentation and testing,
-  // JQ parsing is the recommended approach for Claude Code 1.0.51+
+  // Based on official OpenClaw documentation and testing,
+  // JQ parsing is the recommended approach for OpenClaw 1.0.51+
   return 'jq';
 }
 
@@ -93,7 +93,7 @@ function transformHookCommand(command, fromSyntax, toSyntax) {
       : command.includes('pre-edit')
         ? 'pre-edit-hook.sh'
         : 'generic-hook.sh';
-    return `.claude/hooks/${scriptName}`;
+    return `.openclaw/hooks/${scriptName}`;
   }
 
   return command;
@@ -103,7 +103,7 @@ function transformHookCommand(command, fromSyntax, toSyntax) {
  * Create wrapper scripts for hooks
  */
 async function createWrapperScripts(commands) {
-  const hooksDir = '.claude/hooks';
+  const hooksDir = '.openclaw/hooks';
   await fs.mkdir(hooksDir, { recursive: true });
 
   const wrapperScripts = new Map();
@@ -112,7 +112,7 @@ async function createWrapperScripts(commands) {
     if (command.includes('post-edit')) {
       const script = `#!/bin/bash
 # Post-edit hook wrapper
-# Handles variable interpolation for Claude Code hooks
+# Handles variable interpolation for OpenClaw hooks
 
 # Try to get file from various sources
 FILE="$CLAUDE_EDITED_FILE"
@@ -126,7 +126,7 @@ else
 fi
 `;
       await fs.writeFile(path.join(hooksDir, 'post-edit-hook.sh'), script, { mode: 0o755 });
-      wrapperScripts.set('post-edit', '.claude/hooks/post-edit-hook.sh');
+      wrapperScripts.set('post-edit', '.openclaw/hooks/post-edit-hook.sh');
     }
   }
 
@@ -213,9 +213,9 @@ async function fixHookVariables(settingsPath, options = {}) {
  */
 async function findSettingsFiles() {
   const locations = [
-    '.claude/settings.json',
+    '.openclaw/settings.json',
     'settings.json',
-    '.vscode/.claude/settings.json',
+    '.vscode/.openclaw/settings.json',
     path.join(process.env.HOME || '', '.claude', 'settings.json'),
   ];
 
@@ -233,7 +233,7 @@ async function findSettingsFiles() {
  * Main command handler
  */
 export async function fixHookVariablesCommand(args = [], flags = {}) {
-  console.log(chalk.bold('\n🔧 Fixing Claude Code Hook Variables\n'));
+  console.log(chalk.bold('\n🔧 Fixing OpenClaw Hook Variables\n'));
 
   const options = {
     backup: !flags['no-backup'],
@@ -249,7 +249,7 @@ export async function fixHookVariablesCommand(args = [], flags = {}) {
     console.log('\nSearched locations:');
     console.log('  - .claude/settings.json');
     console.log('  - settings.json');
-    console.log('  - .vscode/.claude/settings.json');
+    console.log('  - .vscode/.openclaw/settings.json');
     console.log(`  - ${path.join(process.env.HOME || '', '.claude', 'settings.json')}`);
     return;
   }
@@ -283,9 +283,9 @@ export async function fixHookVariablesCommand(args = [], flags = {}) {
 
   if (totalChanges > 0) {
     console.log(chalk.yellow('\n⚠️  Important:'));
-    console.log('  1. Restart Claude Code for changes to take effect');
+    console.log('  1. Restart OpenClaw for changes to take effect');
     console.log('  2. Test your hooks to ensure they work correctly');
-    console.log('  3. Report any issues to: https://github.com/ruvnet/claude-flow/issues');
+    console.log('  3. Report any issues to: https://github.com/snowzlm/ruflo/issues');
   }
 
   // Test mode
@@ -317,19 +317,19 @@ async function createTestHook() {
   };
 
   await fs.mkdir('.claude', { recursive: true });
-  await fs.writeFile('.claude/test-settings.json', JSON.stringify(testSettings, null, 2));
+  await fs.writeFile('.openclaw/test-settings.json', JSON.stringify(testSettings, null, 2));
 
   console.log('Created test configuration at: .claude/test-settings.json');
   console.log('\nTo test:');
   console.log('  1. Copy .claude/test-settings.json to .claude/settings.json');
-  console.log('  2. Open Claude Code');
+  console.log('  2. Open OpenClaw');
   console.log('  3. Create or edit any file');
   console.log('  4. Check .claude/hook-test.log for output');
 }
 
 // Export command configuration
 export const fixHookVariablesCommandConfig = {
-  description: 'Fix variable interpolation in Claude Code hooks (${file} syntax)',
+  description: 'Fix variable interpolation in OpenClaw hooks (${file} syntax)',
   usage: 'fix-hook-variables [settings-file...]',
   options: [
     { flag: '--no-backup', description: 'Skip creating backup files' },
@@ -343,10 +343,10 @@ export const fixHookVariablesCommandConfig = {
     'claude-flow fix-hook-variables --test',
   ],
   details: `
-Fixes the \${file} and \${command} variable interpolation issue in Claude Code hooks.
+Fixes the \${file} and \${command} variable interpolation issue in OpenClaw hooks.
 
 This command will:
-  • Detect your Claude Code version
+  • Detect your OpenClaw version
   • Transform hook commands to use working variable syntax
   • Create wrapper scripts if needed
   • Backup original settings files
@@ -356,8 +356,8 @@ Available syntaxes:
   • jq: Use official jq JSON parsing approach (recommended)
   • wrapper: Create wrapper scripts to handle variables
 
-Note: The 'jq' syntax is based on official Claude Code documentation and is likely
-the most reliable approach for Claude Code 1.0.51+.
+Note: The 'jq' syntax is based on official OpenClaw documentation and is likely
+the most reliable approach for OpenClaw 1.0.51+.
 
-For more information: https://github.com/ruvnet/claude-flow/issues/249`,
+For more information: https://github.com/snowzlm/ruflo/issues/249`,
 };

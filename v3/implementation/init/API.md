@@ -168,7 +168,7 @@ const json = generateMCPJson(options);
 
 // Generate manual add commands
 const commands = generateMCPCommands(options);
-// ['claude mcp add claude-flow -- npx @claude-flow/cli mcp start', ...]
+// ['openclaw mcp add ruflo -- npx @claude-flow/cli mcp start', ...]
 ```
 
 ### Helpers Generator

@@ -37,21 +37,21 @@ Claude-Flow v2.0.0 provides comprehensive AI agent orchestration with 112 MCP to
 
 ```bash
 # Initialize with GitHub authentication (recommended)
-npx claude-flow@alpha github init
+ruflo github init
 
 # Or use API key
 export CLAUDE_FLOW_API_KEY="your-api-key"
-npx claude-flow@alpha config set --api-key $CLAUDE_FLOW_API_KEY
+ruflo config set --api-key $CLAUDE_FLOW_API_KEY
 ```
 
 ### MCP Integration
 
 ```javascript
 // Add Claude-Flow as MCP server
-claude mcp add claude-flow npx claude-flow@alpha mcp start
+openclaw mcp add ruflo ruflo mcp start
 
 // Available MCP servers:
-// - claude-flow: 87 native tools
+// - ruflo: 87 native tools
 // - ruv-swarm: 25 advanced coordination tools
 ```
 
@@ -59,10 +59,10 @@ claude mcp add claude-flow npx claude-flow@alpha mcp start
 
 ```bash
 # Generate session token
-npx claude-flow@alpha auth login
+ruflo auth login
 
 # Use token in API calls
-curl -H "Authorization: Bearer $(npx claude-flow@alpha auth token)" \
+curl -H "Authorization: Bearer $(ruflo auth token)" \
   https://api.claude-flow.ai/v2/agents
 ```
 
@@ -70,35 +70,35 @@ curl -H "Authorization: Bearer $(npx claude-flow@alpha auth token)" \
 
 ### Correct Command Format
 
-**IMPORTANT**: Always use `npx claude-flow@alpha` (not `npx claude-flow`)
+**IMPORTANT**: Always use `ruflo` (not `npx ruflo`)
 
 ```bash
 # ✅ CORRECT - Updated syntax
-npx claude-flow@alpha [command] [options]
+ruflo [command] [options]
 
 # ❌ OUTDATED - Do not use
-npx claude-flow [command] [options]
+npx ruflo [command] [options]
 ```
 
 ### Core Commands
 
 ```bash
 # Swarm operations
-npx claude-flow@alpha coordination swarm-init --topology hierarchical
-npx claude-flow@alpha coordination agent-spawn --type coder
-npx claude-flow@alpha coordination task-orchestrate --task "Build API"
+ruflo coordination swarm-init --topology hierarchical
+ruflo coordination agent-spawn --type coder
+ruflo coordination task-orchestrate --task "Build API"
 
 # Memory operations
-npx claude-flow@alpha memory usage --action store --key project/context
-npx claude-flow@alpha memory search --pattern "authentication"
+ruflo memory usage --action store --key project/context
+ruflo memory search --pattern "authentication"
 
 # Performance analysis
-npx claude-flow@alpha performance report --timeframe 24h
-npx claude-flow@alpha bottleneck analyze --component swarm
+ruflo performance report --timeframe 24h
+ruflo bottleneck analyze --component swarm
 
 # GitHub integration
-npx claude-flow@alpha github repo-analyze --repo owner/repo
-npx claude-flow@alpha github pr-manage --action create
+ruflo github repo-analyze --repo owner/repo
+ruflo github pr-manage --action create
 ```
 
 ## MCP Tools Reference
@@ -106,107 +106,107 @@ npx claude-flow@alpha github pr-manage --action create
 ### Claude-Flow Tools (87 Total)
 
 #### 🐝 Swarm Coordination (12 tools)
-- `mcp__claude-flow__swarm_init` - Initialize swarm with topology
-- `mcp__claude-flow__agent_spawn` - Create specialized agents
-- `mcp__claude-flow__task_orchestrate` - Coordinate task execution
-- `mcp__claude-flow__swarm_status` - Monitor swarm health
-- `mcp__claude-flow__agent_list` - List active agents
-- `mcp__claude-flow__agent_metrics` - Agent performance data
-- `mcp__claude-flow__swarm_monitor` - Real-time monitoring
-- `mcp__claude-flow__topology_optimize` - Optimize coordination
-- `mcp__claude-flow__load_balance` - Balance agent workload
-- `mcp__claude-flow__coordination_sync` - Synchronize agents
-- `mcp__claude-flow__swarm_scale` - Scale agent count
-- `mcp__claude-flow__swarm_destroy` - Terminate swarm
+- `mcp__ruflo__swarm_init` - Initialize swarm with topology
+- `mcp__ruflo__agent_spawn` - Create specialized agents
+- `mcp__ruflo__task_orchestrate` - Coordinate task execution
+- `mcp__ruflo__swarm_status` - Monitor swarm health
+- `mcp__ruflo__agent_list` - List active agents
+- `mcp__ruflo__agent_metrics` - Agent performance data
+- `mcp__ruflo__swarm_monitor` - Real-time monitoring
+- `mcp__ruflo__topology_optimize` - Optimize coordination
+- `mcp__ruflo__load_balance` - Balance agent workload
+- `mcp__ruflo__coordination_sync` - Synchronize agents
+- `mcp__ruflo__swarm_scale` - Scale agent count
+- `mcp__ruflo__swarm_destroy` - Terminate swarm
 
 #### 🧠 Neural Network (15 tools)
-- `mcp__claude-flow__neural_status` - Neural system status
-- `mcp__claude-flow__neural_train` - Train AI patterns
-- `mcp__claude-flow__neural_predict` - Make AI predictions
-- `mcp__claude-flow__neural_patterns` - Cognitive patterns
-- `mcp__claude-flow__model_load` - Load AI models
-- `mcp__claude-flow__model_save` - Save trained models
-- `mcp__claude-flow__wasm_optimize` - WASM performance
-- `mcp__claude-flow__inference_run` - Run AI inference
-- `mcp__claude-flow__pattern_recognize` - Pattern detection
-- `mcp__claude-flow__cognitive_analyze` - Cognitive analysis
-- `mcp__claude-flow__learning_adapt` - Adaptive learning
-- `mcp__claude-flow__neural_compress` - Model compression
-- `mcp__claude-flow__ensemble_create` - Ensemble models
-- `mcp__claude-flow__transfer_learn` - Transfer learning
-- `mcp__claude-flow__neural_explain` - AI explainability
+- `mcp__ruflo__neural_status` - Neural system status
+- `mcp__ruflo__neural_train` - Train AI patterns
+- `mcp__ruflo__neural_predict` - Make AI predictions
+- `mcp__ruflo__neural_patterns` - Cognitive patterns
+- `mcp__ruflo__model_load` - Load AI models
+- `mcp__ruflo__model_save` - Save trained models
+- `mcp__ruflo__wasm_optimize` - WASM performance
+- `mcp__ruflo__inference_run` - Run AI inference
+- `mcp__ruflo__pattern_recognize` - Pattern detection
+- `mcp__ruflo__cognitive_analyze` - Cognitive analysis
+- `mcp__ruflo__learning_adapt` - Adaptive learning
+- `mcp__ruflo__neural_compress` - Model compression
+- `mcp__ruflo__ensemble_create` - Ensemble models
+- `mcp__ruflo__transfer_learn` - Transfer learning
+- `mcp__ruflo__neural_explain` - AI explainability
 
 #### 💾 Memory & Persistence (12 tools)
-- `mcp__claude-flow__memory_usage` - Store/retrieve data
-- `mcp__claude-flow__memory_search` - Search memory entries
-- `mcp__claude-flow__memory_persist` - Persistent storage
-- `mcp__claude-flow__memory_namespace` - Namespace management
-- `mcp__claude-flow__memory_backup` - Backup memory data
-- `mcp__claude-flow__memory_restore` - Restore from backup
-- `mcp__claude-flow__memory_compress` - Compress data
-- `mcp__claude-flow__memory_sync` - Synchronize memory
-- `mcp__claude-flow__cache_manage` - Cache operations
-- `mcp__claude-flow__state_snapshot` - State snapshots
-- `mcp__claude-flow__context_restore` - Context restoration
-- `mcp__claude-flow__memory_analytics` - Memory analytics
+- `mcp__ruflo__memory_usage` - Store/retrieve data
+- `mcp__ruflo__memory_search` - Search memory entries
+- `mcp__ruflo__memory_persist` - Persistent storage
+- `mcp__ruflo__memory_namespace` - Namespace management
+- `mcp__ruflo__memory_backup` - Backup memory data
+- `mcp__ruflo__memory_restore` - Restore from backup
+- `mcp__ruflo__memory_compress` - Compress data
+- `mcp__ruflo__memory_sync` - Synchronize memory
+- `mcp__ruflo__cache_manage` - Cache operations
+- `mcp__ruflo__state_snapshot` - State snapshots
+- `mcp__ruflo__context_restore` - Context restoration
+- `mcp__ruflo__memory_analytics` - Memory analytics
 
 #### 📊 Analysis & Monitoring (13 tools)
-- `mcp__claude-flow__performance_report` - Performance reports
-- `mcp__claude-flow__bottleneck_analyze` - Bottleneck detection
-- `mcp__claude-flow__task_status` - Task monitoring
-- `mcp__claude-flow__task_results` - Task results
-- `mcp__claude-flow__benchmark_run` - Run benchmarks
-- `mcp__claude-flow__metrics_collect` - Collect metrics
-- `mcp__claude-flow__trend_analysis` - Trend analysis
-- `mcp__claude-flow__cost_analysis` - Cost tracking
-- `mcp__claude-flow__quality_assess` - Quality assessment
-- `mcp__claude-flow__error_analysis` - Error analysis
-- `mcp__claude-flow__usage_stats` - Usage statistics
-- `mcp__claude-flow__health_check` - System health
-- `mcp__claude-flow__token_usage` - Token tracking
+- `mcp__ruflo__performance_report` - Performance reports
+- `mcp__ruflo__bottleneck_analyze` - Bottleneck detection
+- `mcp__ruflo__task_status` - Task monitoring
+- `mcp__ruflo__task_results` - Task results
+- `mcp__ruflo__benchmark_run` - Run benchmarks
+- `mcp__ruflo__metrics_collect` - Collect metrics
+- `mcp__ruflo__trend_analysis` - Trend analysis
+- `mcp__ruflo__cost_analysis` - Cost tracking
+- `mcp__ruflo__quality_assess` - Quality assessment
+- `mcp__ruflo__error_analysis` - Error analysis
+- `mcp__ruflo__usage_stats` - Usage statistics
+- `mcp__ruflo__health_check` - System health
+- `mcp__ruflo__token_usage` - Token tracking
 
 #### 🔄 Workflow & Automation (11 tools)
-- `mcp__claude-flow__workflow_create` - Create workflows
-- `mcp__claude-flow__workflow_execute` - Execute workflows
-- `mcp__claude-flow__workflow_export` - Export workflows
-- `mcp__claude-flow__automation_setup` - Setup automation
-- `mcp__claude-flow__pipeline_create` - Create pipelines
-- `mcp__claude-flow__scheduler_manage` - Manage schedules
-- `mcp__claude-flow__trigger_setup` - Setup triggers
-- `mcp__claude-flow__workflow_template` - Workflow templates
-- `mcp__claude-flow__batch_process` - Batch processing
-- `mcp__claude-flow__parallel_execute` - Parallel execution
-- `mcp__claude-flow__sparc_mode` - SPARC workflows
+- `mcp__ruflo__workflow_create` - Create workflows
+- `mcp__ruflo__workflow_execute` - Execute workflows
+- `mcp__ruflo__workflow_export` - Export workflows
+- `mcp__ruflo__automation_setup` - Setup automation
+- `mcp__ruflo__pipeline_create` - Create pipelines
+- `mcp__ruflo__scheduler_manage` - Manage schedules
+- `mcp__ruflo__trigger_setup` - Setup triggers
+- `mcp__ruflo__workflow_template` - Workflow templates
+- `mcp__ruflo__batch_process` - Batch processing
+- `mcp__ruflo__parallel_execute` - Parallel execution
+- `mcp__ruflo__sparc_mode` - SPARC workflows
 
 #### 🐙 GitHub Integration (8 tools)
-- `mcp__claude-flow__github_repo_analyze` - Repository analysis
-- `mcp__claude-flow__github_pr_manage` - Pull request management
-- `mcp__claude-flow__github_issue_track` - Issue tracking
-- `mcp__claude-flow__github_release_coord` - Release coordination
-- `mcp__claude-flow__github_workflow_auto` - Workflow automation
-- `mcp__claude-flow__github_code_review` - Code review
-- `mcp__claude-flow__github_sync_coord` - Sync coordination
-- `mcp__claude-flow__github_metrics` - GitHub metrics
+- `mcp__ruflo__github_repo_analyze` - Repository analysis
+- `mcp__ruflo__github_pr_manage` - Pull request management
+- `mcp__ruflo__github_issue_track` - Issue tracking
+- `mcp__ruflo__github_release_coord` - Release coordination
+- `mcp__ruflo__github_workflow_auto` - Workflow automation
+- `mcp__ruflo__github_code_review` - Code review
+- `mcp__ruflo__github_sync_coord` - Sync coordination
+- `mcp__ruflo__github_metrics` - GitHub metrics
 
 #### 🤖 DAA (Dynamic Agent Architecture) (8 tools)
-- `mcp__claude-flow__daa_agent_create` - Create dynamic agents
-- `mcp__claude-flow__daa_capability_match` - Match capabilities
-- `mcp__claude-flow__daa_resource_alloc` - Resource allocation
-- `mcp__claude-flow__daa_lifecycle_manage` - Lifecycle management
-- `mcp__claude-flow__daa_communication` - Agent communication
-- `mcp__claude-flow__daa_consensus` - Consensus algorithms
-- `mcp__claude-flow__daa_fault_tolerance` - Fault tolerance
-- `mcp__claude-flow__daa_optimization` - Agent optimization
+- `mcp__ruflo__daa_agent_create` - Create dynamic agents
+- `mcp__ruflo__daa_capability_match` - Match capabilities
+- `mcp__ruflo__daa_resource_alloc` - Resource allocation
+- `mcp__ruflo__daa_lifecycle_manage` - Lifecycle management
+- `mcp__ruflo__daa_communication` - Agent communication
+- `mcp__ruflo__daa_consensus` - Consensus algorithms
+- `mcp__ruflo__daa_fault_tolerance` - Fault tolerance
+- `mcp__ruflo__daa_optimization` - Agent optimization
 
 #### 🛠️ System & Utilities (8 tools)
-- `mcp__claude-flow__terminal_execute` - Terminal execution
-- `mcp__claude-flow__config_manage` - Configuration management
-- `mcp__claude-flow__features_detect` - Feature detection
-- `mcp__claude-flow__security_scan` - Security scanning
-- `mcp__claude-flow__backup_create` - Create backups
-- `mcp__claude-flow__restore_system` - System restoration
-- `mcp__claude-flow__log_analysis` - Log analysis
-- `mcp__claude-flow__diagnostic_run` - Run diagnostics
+- `mcp__ruflo__terminal_execute` - Terminal execution
+- `mcp__ruflo__config_manage` - Configuration management
+- `mcp__ruflo__features_detect` - Feature detection
+- `mcp__ruflo__security_scan` - Security scanning
+- `mcp__ruflo__backup_create` - Create backups
+- `mcp__ruflo__restore_system` - System restoration
+- `mcp__ruflo__log_analysis` - Log analysis
+- `mcp__ruflo__diagnostic_run` - Run diagnostics
 
 ### Ruv-Swarm Tools (25 Total)
 
@@ -405,23 +405,23 @@ ws.send(JSON.stringify({
 
 ```bash
 # 1. Initialize project with GitHub integration
-npx claude-flow@alpha github init
+ruflo github init
 
 # 2. Set up swarm for development
-npx claude-flow@alpha coordination swarm-init \
+ruflo coordination swarm-init \
   --topology hierarchical \
   --max-agents 8 \
   --strategy adaptive
 
 # 3. Spawn development team (concurrent)
-npx claude-flow@alpha coordination agent-spawn --type system-architect --name "Lead Architect"
-npx claude-flow@alpha coordination agent-spawn --type backend-dev --name "API Developer"
-npx claude-flow@alpha coordination agent-spawn --type coder --name "Frontend Dev"
-npx claude-flow@alpha coordination agent-spawn --type tester --name "QA Engineer"
-npx claude-flow@alpha coordination agent-spawn --type code-analyzer --name "Code Reviewer"
+ruflo coordination agent-spawn --type system-architect --name "Lead Architect"
+ruflo coordination agent-spawn --type backend-dev --name "API Developer"
+ruflo coordination agent-spawn --type coder --name "Frontend Dev"
+ruflo coordination agent-spawn --type tester --name "QA Engineer"
+ruflo coordination agent-spawn --type code-analyzer --name "Code Reviewer"
 
 # 4. Store project context in memory
-npx claude-flow@alpha memory usage \
+ruflo memory usage \
   --action store \
   --key "project/architecture" \
   --value "Microservices with event sourcing and CQRS" \
@@ -429,22 +429,22 @@ npx claude-flow@alpha memory usage \
   --ttl 86400
 
 # 5. Orchestrate development task
-npx claude-flow@alpha coordination task-orchestrate \
+ruflo coordination task-orchestrate \
   --task "Build complete REST API with authentication and testing" \
   --strategy parallel \
   --priority high
 
 # 6. Monitor swarm performance
-npx claude-flow@alpha coordination swarm-status
-npx claude-flow@alpha performance report --timeframe 24h --format detailed
+ruflo coordination swarm-status
+ruflo performance report --timeframe 24h --format detailed
 
 # 7. Analyze GitHub repository
-npx claude-flow@alpha github repo-analyze \
+ruflo github repo-analyze \
   --repo "myorg/my-project" \
   --analysis-type code_quality
 
 # 8. Create workflow for automation
-npx claude-flow@alpha workflow create \
+ruflo workflow create \
   --name "full-stack-pipeline" \
   --steps '[
     {"type": "swarm_init", "topology": "hierarchical"},
@@ -458,21 +458,21 @@ npx claude-flow@alpha workflow create \
 
 ```bash
 # 1. Check neural system status
-npx claude-flow@alpha neural status
+ruflo neural status
 
 # 2. Train coordination patterns
-npx claude-flow@alpha neural train \
+ruflo neural train \
   --pattern-type coordination \
   --training-data "./data/coordination-patterns.json" \
   --epochs 100
 
 # 3. Make AI predictions
-npx claude-flow@alpha neural predict \
+ruflo neural predict \
   --model-id coordination_model_v1.2 \
   --input "complex microservices architecture with event sourcing"
 
 # 4. Analyze cognitive patterns
-npx claude-flow@alpha neural patterns \
+ruflo neural patterns \
   --pattern convergent \
   --analysis detailed
 ```
@@ -481,7 +481,7 @@ npx claude-flow@alpha neural patterns \
 
 ```bash
 # 1. Store complex project data
-npx claude-flow@alpha memory usage \
+ruflo memory usage \
   --action store \
   --key "decisions/architecture" \
   --value '{
@@ -494,18 +494,18 @@ npx claude-flow@alpha memory usage \
   --ttl 604800
 
 # 2. Search for related information
-npx claude-flow@alpha memory search \
+ruflo memory search \
   --pattern "microservices|architecture" \
   --namespace "project-alpha" \
   --limit 10
 
 # 3. Create memory backup
-npx claude-flow@alpha memory backup \
+ruflo memory backup \
   --namespace "project-alpha" \
   --format compressed
 
 # 4. Analyze memory usage
-npx claude-flow@alpha memory analytics \
+ruflo memory analytics \
   --timeframe 7d \
   --include-compression-stats
 ```
@@ -514,24 +514,24 @@ npx claude-flow@alpha memory analytics \
 
 ```bash
 # 1. Run comprehensive performance report
-npx claude-flow@alpha performance report \
+ruflo performance report \
   --timeframe 24h \
   --format detailed \
   --include-recommendations
 
 # 2. Identify bottlenecks
-npx claude-flow@alpha bottleneck analyze \
+ruflo bottleneck analyze \
   --component swarm_coordination \
   --metrics "response_time,throughput,error_rate" \
   --severity all
 
 # 3. Optimize swarm topology
-npx claude-flow@alpha topology optimize \
+ruflo topology optimize \
   --swarm-id "swarm_123" \
   --target-efficiency 0.95
 
 # 4. Health check all systems
-npx claude-flow@alpha health-check \
+ruflo health-check \
   --components '["swarm", "neural", "memory", "mcp"]' \
   --detailed true
 ```
@@ -579,20 +579,20 @@ npx claude-flow@alpha health-check \
 
 ```bash
 # Retry with backoff
-npx claude-flow@alpha coordination agent-spawn \
+ruflo coordination agent-spawn \
   --type coder \
   --retry-attempts 3 \
   --retry-delay 1000
 
 # Graceful degradation
-npx claude-flow@alpha coordination swarm-init \
+ruflo coordination swarm-init \
   --topology hierarchical \
   --fallback-topology mesh \
   --max-agents 8 \
   --min-agents 3
 
 # Error notification
-npx claude-flow@alpha hooks post-edit \
+ruflo hooks post-edit \
   --file "error.log" \
   --memory-key "errors/$(date +%s)" \
   --notify-on-failure true
@@ -605,29 +605,29 @@ npx claude-flow@alpha hooks post-edit \
 ```bash
 # Always batch agent operations
 # ✅ Good - Single message with multiple spawns
-npx claude-flow@alpha coordination agent-spawn --type architect &
-npx claude-flow@alpha coordination agent-spawn --type coder &
-npx claude-flow@alpha coordination agent-spawn --type tester &
+ruflo coordination agent-spawn --type architect &
+ruflo coordination agent-spawn --type coder &
+ruflo coordination agent-spawn --type tester &
 wait
 
 # ❌ Bad - Sequential spawning
-npx claude-flow@alpha coordination agent-spawn --type architect
-npx claude-flow@alpha coordination agent-spawn --type coder
-npx claude-flow@alpha coordination agent-spawn --type tester
+ruflo coordination agent-spawn --type architect
+ruflo coordination agent-spawn --type coder
+ruflo coordination agent-spawn --type tester
 ```
 
 ### 2. Memory Management
 
 ```bash
 # Use namespaces effectively
-npx claude-flow@alpha memory usage \
+ruflo memory usage \
   --action store \
   --key "config/database" \
   --namespace "project-$(date +%Y%m%d)" \
   --ttl 86400
 
 # Regular cleanup
-npx claude-flow@alpha memory compress \
+ruflo memory compress \
   --namespace "temporary" \
   --threshold 0.8
 ```
@@ -636,8 +636,8 @@ npx claude-flow@alpha memory compress \
 
 ```bash
 # Monitor before scaling
-npx claude-flow@alpha performance report --format summary
-npx claude-flow@alpha coordination swarm-scale --target-size 12
+ruflo performance report --format summary
+ruflo coordination swarm-scale --target-size 12
 
 # Use appropriate topologies
 # Complex tasks -> hierarchical
@@ -650,15 +650,15 @@ npx claude-flow@alpha coordination swarm-scale --target-size 12
 
 ```bash
 # Hook integration for automation
-npx claude-flow@alpha hooks pre-task \
+ruflo hooks pre-task \
   --description "Auto-spawn agents based on task complexity"
 
-npx claude-flow@alpha hooks post-edit \
+ruflo hooks post-edit \
   --file "src/**/*.js" \
   --memory-key "code-changes/$(date +%s)"
 
 # Workflow templates for reusability
-npx claude-flow@alpha workflow template \
+ruflo workflow template \
   --name "api-development" \
   --export "./templates/api-dev-workflow.json"
 ```
@@ -667,17 +667,17 @@ npx claude-flow@alpha workflow template \
 
 ```bash
 # Secure authentication
-npx claude-flow@alpha github init --secure-mode
-npx claude-flow@alpha config set --api-key-encryption enabled
+ruflo github init --secure-mode
+ruflo config set --api-key-encryption enabled
 
 # Resource limits
-npx claude-flow@alpha coordination swarm-init \
+ruflo coordination swarm-init \
   --max-agents 10 \
   --memory-limit "1GB" \
   --cpu-limit "4 cores"
 
 # Audit logging
-npx claude-flow@alpha log-analysis \
+ruflo log-analysis \
   --include-security-events \
   --format audit
 ```
@@ -687,7 +687,7 @@ npx claude-flow@alpha log-analysis \
 ## Support & Resources
 
 ### Documentation Links
-- [GitHub Repository](https://github.com/ruvnet/claude-flow)
+- [GitHub Repository](https://github.com/snowzlm/ruflo)
 - [Integration Guide](./INTEGRATION_GUIDE.md)
 - [Agent System Documentation](./agent-system-documentation.md)
 - [MCP Tools Reference](./mcp-tools-reference.md)
@@ -695,18 +695,18 @@ npx claude-flow@alpha log-analysis \
 ### CLI Help
 ```bash
 # Get help for any command
-npx claude-flow@alpha --help
-npx claude-flow@alpha coordination --help
-npx claude-flow@alpha github --help
+ruflo --help
+ruflo coordination --help
+ruflo github --help
 
 # Version information
-npx claude-flow@alpha --version
+ruflo --version
 ```
 
 ### Community
 - **Discord**: [Join our community](https://discord.gg/claude-flow)
-- **GitHub Issues**: [Report bugs](https://github.com/ruvnet/claude-flow/issues)
-- **Discussions**: [Feature requests](https://github.com/ruvnet/claude-flow/discussions)
+- **GitHub Issues**: [Report bugs](https://github.com/snowzlm/ruflo/issues)
+- **Discussions**: [Feature requests](https://github.com/snowzlm/ruflo/discussions)
 
 ---
 

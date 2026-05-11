@@ -2,10 +2,10 @@
 
 <div align="center">
 
-[![🌟 Star on GitHub](https://img.shields.io/github/stars/ruvnet/claude-flow?style=for-the-badge&logo=github&color=gold)](https://github.com/ruvnet/claude-flow)
+[![🌟 Star on GitHub](https://img.shields.io/github/stars/snowzlm/ruflo?style=for-the-badge&logo=github&color=gold)](https://github.com/snowzlm/ruflo)
 [![📈 Downloads](https://img.shields.io/npm/dt/claude-flow?style=for-the-badge&logo=npm&color=blue&label=Downloads)](https://www.npmjs.com/package/claude-flow)
 [![📦 Latest Release](https://img.shields.io/npm/v/claude-flow/alpha?style=for-the-badge&logo=npm&color=green&label=v2.7.0-alpha.10)](https://www.npmjs.com/package/claude-flow)
-[![⚡ Claude Code](https://img.shields.io/badge/Claude%20Code-SDK%20Integrated-green?style=for-the-badge&logo=anthropic)](https://github.com/ruvnet/claude-flow)
+[![⚡ OpenClaw](https://img.shields.io/badge/OpenClaw-SDK%20Integrated-green?style=for-the-badge&logo=anthropic)](https://github.com/snowzlm/ruflo)
 [![🏛️ Agentics Foundation](https://img.shields.io/badge/Agentics-Foundation-crimson?style=for-the-badge&logo=openai)](https://discord.com/invite/dfxmpwkG2D)
 [![🛡️ MIT License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge&logo=opensourceinitiative)](https://opensource.org/licenses/MIT)
 
@@ -44,11 +44,11 @@
 - **npm 9+** or equivalent package manager
 - **Windows users**: See [Windows Installation Guide](./docs/windows-installation.md) for special instructions
 
-⚠️ **IMPORTANT**: Claude Code must be installed first:
+⚠️ **IMPORTANT**: OpenClaw must be installed first:
 
 ```bash
-# 1. Install Claude Code globally
-npm install -g @anthropic-ai/claude-code
+# 1. Install OpenClaw globally
+npm install -g @anthropic-ai/openclaw
 
 # 2. (Optional) Skip permissions check for faster setup
 claude --dangerously-skip-permissions
@@ -58,12 +58,12 @@ claude --dangerously-skip-permissions
 
 ```bash
 # NPX (recommended - always latest)
-npx claude-flow@alpha init --force
-npx claude-flow@alpha --help
+ruflo init --force
+ruflo --help
 
 # Or install globally
-npm install -g claude-flow@alpha
-claude-flow --version
+npm install -g github:snowzlm/ruflo
+ruflo --version
 # v2.7.0-alpha.10
 ```
 
@@ -112,8 +112,8 @@ Critical bug fix for semantic search returning 0 results:
 
 ```bash
 # Semantic search now fully functional
-npx claude-flow@alpha memory store test "API configuration" --namespace semantic --reasoningbank
-npx claude-flow@alpha memory query "configuration" --namespace semantic --reasoningbank
+ruflo memory store test "API configuration" --namespace semantic --reasoningbank
+ruflo memory query "configuration" --namespace semantic --reasoningbank
 # ✅ Found 3 results (semantic search) in 2ms
 ```
 
@@ -131,15 +131,15 @@ npx claude-flow@alpha memory query "configuration" --namespace semantic --reason
 
 ```bash
 # Semantic vector search (understands meaning, not just keywords)
-npx claude-flow@alpha memory vector-search "user authentication flow" \
+ruflo memory vector-search "user authentication flow" \
   --k 10 --threshold 0.7 --namespace backend
 
 # Store with vector embedding for semantic search
-npx claude-flow@alpha memory store-vector api_design "REST endpoints" \
+ruflo memory store-vector api_design "REST endpoints" \
   --namespace backend --metadata '{"version":"v2"}'
 
 # Get AgentDB integration status and capabilities
-npx claude-flow@alpha memory agentdb-info
+ruflo memory agentdb-info
 
 # Installation (hybrid mode - 100% backward compatible)
 npm install agentdb@1.3.9
@@ -162,19 +162,19 @@ npm install agentdb@1.3.9
 
 ```bash
 # Store memories with pattern matching
-npx claude-flow@alpha memory store api_key "REST API configuration" \
+ruflo memory store api_key "REST API configuration" \
   --namespace backend --reasoningbank
 
 # Query with pattern search (2-3ms latency)
-npx claude-flow@alpha memory query "API config" \
+ruflo memory query "API config" \
   --namespace backend --reasoningbank
 # ✅ Found 3 results (pattern matching)
 
 # List all memories
-npx claude-flow@alpha memory list --namespace backend --reasoningbank
+ruflo memory list --namespace backend --reasoningbank
 
 # Check status and statistics
-npx claude-flow@alpha memory status --reasoningbank
+ruflo memory status --reasoningbank
 # ✅ Total memories: 30
 #    Embeddings: 30
 #    Storage: .swarm/memory.db
@@ -202,25 +202,25 @@ npx claude-flow@alpha memory status --reasoningbank
 
 ```bash
 # Quick task execution (recommended)
-npx claude-flow@alpha swarm "build REST API with authentication" --claude
+ruflo swarm "build REST API with authentication" --claude
 
 # Multi-agent coordination
-npx claude-flow@alpha swarm init --topology mesh --max-agents 5
-npx claude-flow@alpha swarm spawn researcher "analyze API patterns"
-npx claude-flow@alpha swarm spawn coder "implement endpoints"
-npx claude-flow@alpha swarm status
+ruflo swarm init --topology mesh --max-agents 5
+ruflo swarm spawn researcher "analyze API patterns"
+ruflo swarm spawn coder "implement endpoints"
+ruflo swarm status
 ```
 
 ### **Hive-Mind for Complex Projects**
 
 ```bash
 # Initialize hive-mind system
-npx claude-flow@alpha hive-mind wizard
-npx claude-flow@alpha hive-mind spawn "build enterprise system" --claude
+ruflo hive-mind wizard
+ruflo hive-mind spawn "build enterprise system" --claude
 
 # Session management
-npx claude-flow@alpha hive-mind status
-npx claude-flow@alpha hive-mind resume session-xxxxx
+ruflo hive-mind status
+ruflo hive-mind resume session-xxxxx
 ```
 
 **When to Use:**
@@ -238,14 +238,14 @@ npx claude-flow@alpha hive-mind resume session-xxxxx
 ### **Setup MCP Servers**
 
 ```bash
-# Add Claude Flow MCP server (required)
-claude mcp add claude-flow npx claude-flow@alpha mcp start
+# Add Ruflo MCP server (required)
+openclaw mcp add ruflo ruflo mcp start
 
 # Optional: Enhanced coordination
-claude mcp add ruv-swarm npx ruv-swarm mcp start
+openclaw mcp add ruv-swarm npx ruv-swarm mcp start
 
 # Optional: Cloud features (requires registration)
-claude mcp add flow-nexus npx flow-nexus@latest mcp start
+openclaw mcp add flow-nexus npx flow-nexus@latest mcp start
 ```
 
 ### **Available MCP Tools (100 Total)**
@@ -256,8 +256,8 @@ claude mcp add flow-nexus npx flow-nexus@latest mcp start
 - `neural_status`, `neural_train`, `neural_patterns`
 
 **Memory Tools:**
-- `mcp__claude-flow__memory_usage` - Store/retrieve persistent memory
-- `mcp__claude-flow__memory_search` - Pattern-based search
+- `mcp__ruflo__memory_usage` - Store/retrieve persistent memory
+- `mcp__ruflo__memory_search` - Pattern-based search
 
 **GitHub Tools:**
 - `github_repo_analyze`, `github_pr_manage`, `github_issue_track`
@@ -277,7 +277,7 @@ Claude-Flow automatically configures hooks for enhanced operations:
 
 ```bash
 # Auto-configures hooks during init
-npx claude-flow@alpha init --force
+ruflo init --force
 ```
 
 ### **Available Hooks**
@@ -304,35 +304,35 @@ npx claude-flow@alpha init --force
 ### **Pattern 1: Single Feature Development**
 ```bash
 # Initialize once per feature
-npx claude-flow@alpha init --force
-npx claude-flow@alpha hive-mind spawn "Implement authentication" --claude
+ruflo init --force
+ruflo hive-mind spawn "Implement authentication" --claude
 
 # Continue same feature (reuse hive)
-npx claude-flow@alpha memory query "auth" --recent
-npx claude-flow@alpha swarm "Add password reset" --continue-session
+ruflo memory query "auth" --recent
+ruflo swarm "Add password reset" --continue-session
 ```
 
 ### **Pattern 2: Multi-Feature Project**
 ```bash
 # Project initialization
-npx claude-flow@alpha init --force --project-name "my-app"
+ruflo init --force --project-name "my-app"
 
 # Feature 1: Authentication
-npx claude-flow@alpha hive-mind spawn "auth-system" --namespace auth --claude
+ruflo hive-mind spawn "auth-system" --namespace auth --claude
 
 # Feature 2: User management
-npx claude-flow@alpha hive-mind spawn "user-mgmt" --namespace users --claude
+ruflo hive-mind spawn "user-mgmt" --namespace users --claude
 ```
 
 ### **Pattern 3: Research & Analysis**
 ```bash
 # Start research session
-npx claude-flow@alpha hive-mind spawn "Research microservices" \
+ruflo hive-mind spawn "Research microservices" \
   --agents researcher,analyst --claude
 
 # Check learned knowledge
-npx claude-flow@alpha memory stats
-npx claude-flow@alpha memory query "microservices patterns" --reasoningbank
+ruflo memory stats
+ruflo memory query "microservices patterns" --reasoningbank
 ```
 
 ---
@@ -355,7 +355,7 @@ npx claude-flow@alpha memory query "microservices patterns" --reasoningbank
 
 ### **📖 Core Documentation**
 - **[Documentation Hub](./docs/)** - Complete documentation index with organized structure
-- **[Skills Tutorial](./docs/guides/skills-tutorial.md)** - Complete guide to 25 Claude Flow skills with natural language invocation
+- **[Skills Tutorial](./docs/guides/skills-tutorial.md)** - Complete guide to 25 Ruflo skills with natural language invocation
 - **[Installation Guide](./docs/INSTALLATION.md)** - Setup instructions
 - **[Memory System Guide](./docs/MEMORY-SYSTEM.md)** - ReasoningBank + AgentDB hybrid
 - **[MCP Tools Reference](./docs/MCP-TOOLS.md)** - Complete tool catalog
@@ -389,7 +389,7 @@ npx claude-flow@alpha memory query "microservices patterns" --reasoningbank
 - **[GitHub Integration](./docs/GITHUB-INTEGRATION.md)** - Repository automation
 
 ### **⚙️ Configuration & Setup**
-- **[CLAUDE.md Templates](./docs/CLAUDE-MD-TEMPLATES.md)** - Project configs
+- **[OPENCLAW.md Templates](./docs/CLAUDE-MD-TEMPLATES.md)** - Project configs
 - **[SPARC Methodology](./docs/SPARC.md)** - TDD patterns
 - **[Windows Installation](./docs/windows-installation.md)** - Windows setup
 
@@ -397,10 +397,10 @@ npx claude-flow@alpha memory query "microservices patterns" --reasoningbank
 
 ## 🤝 **Community & Support**
 
-- **GitHub Issues**: [Report bugs or request features](https://github.com/ruvnet/claude-flow/issues)
+- **GitHub Issues**: [Report bugs or request features](https://github.com/snowzlm/ruflo/issues)
 - **Discord**: [Join the Agentics Foundation community](https://discord.com/invite/dfxmpwkG2D)
-- **Documentation**: [Complete guides and tutorials](https://github.com/ruvnet/claude-flow/wiki)
-- **Examples**: [Real-world usage patterns](https://github.com/ruvnet/claude-flow/tree/main/examples)
+- **Documentation**: [Complete guides and tutorials](https://github.com/snowzlm/ruflo/wiki)
+- **Examples**: [Real-world usage patterns](https://github.com/snowzlm/ruflo/tree/main/examples)
 
 ---
 
@@ -430,11 +430,11 @@ npx claude-flow@alpha memory query "microservices patterns" --reasoningbank
 
 ## Star History
 
-<a href="https://www.star-history.com/#ruvnet/claude-flow&Date">
+<a href="https://www.star-history.com/#snowzlm/ruflo&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=ruvnet/claude-flow&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=ruvnet/claude-flow&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=ruvnet/claude-flow&type=Date" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=snowzlm/ruflo&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=snowzlm/ruflo&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=snowzlm/ruflo&type=Date" />
  </picture>
 </a>
 

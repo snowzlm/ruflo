@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 #
 # Ruflo Installer (formerly Claude Flow)
-# https://github.com/ruvnet/ruflo
+# https://github.com/snowzlm/ruflo
 #
 # Usage:
-#   curl -fsSL https://cdn.jsdelivr.net/gh/ruvnet/claude-flow@main/scripts/install.sh | bash
-#   curl -fsSL https://cdn.jsdelivr.net/gh/ruvnet/claude-flow@main/scripts/install.sh | bash -s -- --full
-#   curl -fsSL https://cdn.jsdelivr.net/gh/ruvnet/claude-flow@main/scripts/install.sh | bash -s -- --global
-#   curl -fsSL https://cdn.jsdelivr.net/gh/ruvnet/claude-flow@main/scripts/install.sh | bash -s -- --minimal
+#   curl -fsSL https://cdn.jsdelivr.net/gh/snowzlm/ruflo@main/scripts/install.sh | bash
+#   curl -fsSL https://cdn.jsdelivr.net/gh/snowzlm/ruflo@main/scripts/install.sh | bash -s -- --full
+#   curl -fsSL https://cdn.jsdelivr.net/gh/snowzlm/ruflo@main/scripts/install.sh | bash -s -- --global
+#   curl -fsSL https://cdn.jsdelivr.net/gh/snowzlm/ruflo@main/scripts/install.sh | bash -s -- --minimal
 #
 # Options (via arguments):
 #   --global              Global install (npm install -g)
@@ -87,7 +87,7 @@ while [[ $# -gt 0 ]]; do
             echo "Options:"
             echo "  --global, -g     Install globally (npm install -g ruflo)"
             echo "  --minimal, -m    Minimal install (skip optional deps)"
-            echo "  --setup-mcp      Auto-configure MCP server for Claude Code"
+            echo "  --setup-mcp      Auto-configure MCP server for OpenClaw"
             echo "  --doctor, -d     Run diagnostics after install"
             echo "  --no-init        Skip project initialization (enabled by default)"
             echo "  --full, -f       Full setup (global + mcp + doctor + init)"
@@ -115,7 +115,7 @@ spinner() {
 print_banner() {
     echo ""
     echo -e "${CYAN}╔═══════════════════════════════════════════════════════════╗${NC}"
-    echo -e "${CYAN}║${NC}  ${BOLD}Ruflo${NC} — AI Agent Orchestration for Claude Code     ${CYAN}║${NC}"
+    echo -e "${CYAN}║${NC}  ${BOLD}Ruflo${NC} — AI Agent Orchestration for OpenClaw     ${CYAN}║${NC}"
     echo -e "${CYAN}╚═══════════════════════════════════════════════════════════╝${NC}"
     echo ""
 }
@@ -179,23 +179,23 @@ check_requirements() {
         exit 1
     fi
 
-    # Check Claude Code CLI
+    # Check OpenClaw CLI
     if command -v claude &> /dev/null; then
         CLAUDE_VERSION=$(claude --version 2>/dev/null | head -1 || echo "installed")
-        print_substep "Claude Code ${GREEN}${CLAUDE_VERSION}${NC} ✓"
+        print_substep "OpenClaw ${GREEN}${CLAUDE_VERSION}${NC} ✓"
     else
-        print_warning "Claude Code CLI not found"
-        print_substep "Installing Claude Code CLI via npm..."
-        if npm install -g @anthropic-ai/claude-code 2>/dev/null; then
+        print_warning "OpenClaw CLI not found"
+        print_substep "Installing OpenClaw CLI via npm..."
+        if npm install -g @anthropic-ai/openclaw 2>/dev/null; then
             if command -v claude &> /dev/null; then
                 CLAUDE_VERSION=$(claude --version 2>/dev/null | head -1 || echo "installed")
-                print_substep "Claude Code ${GREEN}${CLAUDE_VERSION}${NC} ✓"
+                print_substep "OpenClaw ${GREEN}${CLAUDE_VERSION}${NC} ✓"
             else
                 print_substep "Installed. Restart terminal to use 'claude' command"
             fi
         else
             print_warning "npm install failed. Try manually:"
-            print_substep "${BOLD}npm install -g @anthropic-ai/claude-code${NC}"
+            print_substep "${BOLD}npm install -g @anthropic-ai/openclaw${NC}"
         fi
     fi
 
@@ -290,8 +290,8 @@ show_quickstart() {
         echo -e "  ${DIM}# Run system diagnostics${NC}"
         echo -e "  ${BOLD}ruflo doctor${NC}"
         echo ""
-        echo -e "  ${DIM}# Add as MCP server to Claude Code${NC}"
-        echo -e "  ${BOLD}claude mcp add ruflo -- ruflo mcp start${NC}"
+        echo -e "  ${DIM}# Add as MCP server to OpenClaw${NC}"
+        echo -e "  ${BOLD}openclaw mcp add ruflo -- ruflo mcp start${NC}"
     else
         echo -e "  ${DIM}# Initialize project${NC}"
         echo -e "  ${BOLD}npx ruflo@latest init --wizard${NC}"
@@ -299,13 +299,13 @@ show_quickstart() {
         echo -e "  ${DIM}# Run system diagnostics${NC}"
         echo -e "  ${BOLD}npx ruflo@latest doctor${NC}"
         echo ""
-        echo -e "  ${DIM}# Add as MCP server to Claude Code${NC}"
-        echo -e "  ${BOLD}claude mcp add ruflo -- npx -y ruflo@latest mcp start${NC}"
+        echo -e "  ${DIM}# Add as MCP server to OpenClaw${NC}"
+        echo -e "  ${BOLD}openclaw mcp add ruflo -- npx -y ruflo@latest mcp start${NC}"
     fi
 
     echo ""
-    echo -e "${DIM}Documentation: https://github.com/ruvnet/ruflo${NC}"
-    echo -e "${DIM}Issues: https://github.com/ruvnet/ruflo/issues${NC}"
+    echo -e "${DIM}Documentation: https://github.com/snowzlm/ruflo${NC}"
+    echo -e "${DIM}Issues: https://github.com/snowzlm/ruflo/issues${NC}"
     echo ""
 }
 
@@ -322,7 +322,7 @@ setup_mcp_server() {
     fi
 
     # Check if already configured
-    if claude mcp list 2>/dev/null | grep -q "ruflo\|claude-flow"; then
+    if openclaw mcp list 2>/dev/null | grep -q "ruflo\|claude-flow"; then
         print_substep "MCP server already configured ✓"
         return 0
     fi
@@ -330,13 +330,13 @@ setup_mcp_server() {
     # Add MCP server (pass CLAUDE_FLOW_CWD so tools resolve paths correctly
     # even when the MCP server is spawned with cwd='/')
     if [ "$GLOBAL" = "1" ]; then
-        claude mcp add ruflo -e CLAUDE_FLOW_CWD="$HOME" -- ruflo mcp start 2>/dev/null && \
+        openclaw mcp add ruflo -e CLAUDE_FLOW_CWD="$HOME" -- ruflo mcp start 2>/dev/null && \
             print_substep "MCP server configured ✓" || \
-            print_warning "MCP setup failed - run manually: claude mcp add ruflo -e CLAUDE_FLOW_CWD=\"\$HOME\" -- ruflo mcp start"
+            print_warning "MCP setup failed - run manually: openclaw mcp add ruflo -e CLAUDE_FLOW_CWD=\"\$HOME\" -- ruflo mcp start"
     else
-        claude mcp add ruflo -e CLAUDE_FLOW_CWD="$HOME" -- npx -y ruflo@${VERSION} mcp start 2>/dev/null && \
+        openclaw mcp add ruflo -e CLAUDE_FLOW_CWD="$HOME" -- npx -y ruflo@${VERSION} mcp start 2>/dev/null && \
             print_substep "MCP server configured ✓" || \
-            print_warning "MCP setup failed - run manually: claude mcp add ruflo -e CLAUDE_FLOW_CWD=\"\$HOME\" -- npx -y ruflo@latest mcp start"
+            print_warning "MCP setup failed - run manually: openclaw mcp add ruflo -e CLAUDE_FLOW_CWD=\"\$HOME\" -- npx -y ruflo@latest mcp start"
     fi
     echo ""
 }

@@ -125,7 +125,7 @@ const DEFAULT_CONFIG: Config = {
     enableHooks: true,
     enablePersistence: true,
     enableNeuralTraining: true,
-    configPath: '.claude/ruv-swarm-config.json',
+    configPath: '.openclaw/ruv-swarm-config.json',
   },
   claude: {
     model: 'claude-3-sonnet-20240229',

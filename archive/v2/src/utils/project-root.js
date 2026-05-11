@@ -38,7 +38,7 @@ export function findProjectRoot(startDir = process.cwd()) {
       // If we find .git and it has claude-flow structure, use it
       if (fs.existsSync(path.join(searchDir, 'bin/claude-flow')) ||
           fs.existsSync(path.join(searchDir, '.claude-flow')) ||
-          fs.existsSync(path.join(searchDir, 'CLAUDE.md'))) {
+          fs.existsSync(path.join(searchDir, 'OPENCLAW.md'))) {
         return searchDir;
       }
     }
@@ -57,7 +57,7 @@ export function findProjectRoot(startDir = process.cwd()) {
     if (fs.existsSync(path.join(searchDir, '.claude-flow')) ||
         fs.existsSync(path.join(searchDir, '.swarm'))) {
       // Additional check for main project markers
-      if (fs.existsSync(path.join(searchDir, 'CLAUDE.md')) ||
+      if (fs.existsSync(path.join(searchDir, 'OPENCLAW.md')) ||
           fs.existsSync(path.join(searchDir, 'bin/claude-flow'))) {
         return searchDir;
       }

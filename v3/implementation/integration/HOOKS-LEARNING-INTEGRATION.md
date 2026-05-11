@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-**Key Finding**: `agentic-flow@alpha` provides nearly everything needed for a self-optimizing learning system. Combined with Claude Code's hooks API, we have a complete solution.
+**Key Finding**: `agentic-flow@alpha` provides nearly everything needed for a self-optimizing learning system. Combined with OpenClaw's hooks API, we have a complete solution.
 
 ### What agentic-flow@alpha Already Provides
 
@@ -15,7 +15,7 @@
 | Attention Mechanisms | ✓ Ready | MoE, Flash, Graph, Hyperbolic |
 | Memory Compression | ✓ Ready | 50-97% memory savings |
 
-### What Claude Code Provides
+### What OpenClaw Provides
 
 | Capability | Status | Details |
 |------------|--------|---------|
@@ -117,11 +117,11 @@ await learnFromEpisode(
 
 ---
 
-## 3. Claude Code Hook Integration
+## 3. OpenClaw Hook Integration
 
 ### 3.1 Hook Event Mapping
 
-| Claude Code Event | agentic-flow Tool | Purpose |
+| OpenClaw Event | agentic-flow Tool | Purpose |
 |-------------------|-------------------|---------|
 | `PreToolUse` | `hook_pre_command`, `hook_pre_edit` | Predict & prevent errors |
 | `PostToolUse` | `hook_post_command`, `hook_post_edit` | Learn from outcomes |
@@ -211,7 +211,7 @@ agentic-flow@alpha includes automatic memory optimization:
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                    Claude Code Hook Events                       │
+│                    OpenClaw Hook Events                       │
 │  PreToolUse → SessionStart → UserPrompt → PostToolUse → Stop    │
 └───────────────────────────┬─────────────────────────────────────┘
                             │
@@ -309,8 +309,8 @@ npx agentic-flow@alpha hooks install --learning
 npm install agentic-flow@alpha
 npx agentic-flow@alpha hooks install --all --parallel
 
-# Configure Claude Code hooks
-cat >> ~/.claude/settings.json << 'EOF'
+# Configure OpenClaw hooks
+cat >> ~/.openclaw/settings.json << 'EOF'
 {
   "hooks": {
     "PreToolUse": [{"matcher": "Bash|Edit", "hooks": [{"type": "command", "command": "npx agentic-flow@alpha hooks pre-task"}]}],
@@ -337,7 +337,7 @@ EOF
 - [x] AST analysis, complexity metrics, security scanning
 
 ### Claude-Flow v3 Needs to Add:
-- [ ] Claude Code hook configuration adapter
+- [ ] OpenClaw hook configuration adapter
 - [ ] OpenTelemetry metric export wrapper
 - [ ] Cross-session learning persistence
 - [ ] Swarm coordination integration
@@ -357,7 +357,7 @@ The package already provides:
 - SQLite persistence (cross-session)
 
 Claude-Flow v3 should focus on:
-1. **Thin integration layer** - Connect Claude Code hooks to agentic-flow hooks
+1. **Thin integration layer** - Connect OpenClaw hooks to agentic-flow hooks
 2. **Configuration UI** - Let users customize learning parameters
 3. **Swarm coordination** - Use learning to optimize swarm topology selection
 4. **Metrics dashboard** - Visualize learning progress

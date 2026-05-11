@@ -298,7 +298,7 @@ async function tokenUsageCommand(subArgs, flags) {
   console.log(`💰 Include cost analysis: ${costAnalysis ? 'Yes' : 'No'}`);
 
   try {
-    // Get real token usage from Claude Code metrics
+    // Get real token usage from OpenClaw metrics
     const tokenData = await getRealTokenUsage(agent);
     
     printSuccess(`✅ Token usage analysis completed`);

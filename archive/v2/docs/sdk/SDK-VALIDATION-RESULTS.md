@@ -180,7 +180,7 @@ Features multiply (not just add):
 - Forking + Checkpoints = Safe parallel exploration (rollback bad forks)
 - Pause + Checkpoints = Resume from any historical point
 - In-Process + Forking = Fast parallel state management
-- All 3 + MCP tools = Full power Claude Flow orchestration
+- All 3 + MCP tools = Full power Ruflo orchestration
 
 **Total multiplier: 10-50x improvement in complex workflows**
 
@@ -246,9 +246,9 @@ if (forkA.getDiff().filesModified.length > 0) {
 
 ---
 
-## Claude Flow MCP Integration
+## Ruflo MCP Integration
 
-**How SDK Features Enhance Claude Flow MCP Tools:**
+**How SDK Features Enhance Ruflo MCP Tools:**
 
 ### Before (Fake Features):
 ```typescript
@@ -294,7 +294,7 @@ const rolledBack = query({
 
 ### Integration with MCP Tools:
 ```typescript
-// Use Claude Flow MCP tools WITH SDK features
+// Use Ruflo MCP tools WITH SDK features
 const session = new IntegratedClaudeFlowSession({
   enableSessionForking: true,
   enableCheckpoints: true,
@@ -303,8 +303,8 @@ const session = new IntegratedClaudeFlowSession({
 
 const q = await session.createIntegratedQuery(
   `
-  Use mcp__claude-flow__swarm_init to create mesh topology.
-  Use mcp__claude-flow__task_orchestrate to distribute work.
+  Use mcp__ruflo__swarm_init to create mesh topology.
+  Use mcp__ruflo__task_orchestrate to distribute work.
   Create checkpoints before each major step.
   `,
   'swarm-session'
@@ -352,7 +352,7 @@ await session.resumeFromCheckpoint(checkpointId, 'Continue deployment');
 - ✅ Features work together seamlessly
 - ✅ No state conflicts or race conditions
 - ✅ Complex workflows supported
-- ✅ Enhances Claude Flow MCP tools
+- ✅ Enhances Ruflo MCP tools
 
 ---
 
@@ -397,4 +397,4 @@ All SDK features are:
 - ✅ Provide real benefits (measurable gains)
 - ✅ Truly integrated (work together seamlessly)
 
-**Claude Flow can now deliver on its "10-20x faster" claims because the features are REAL, not marketing fluff.**
+**Ruflo can now deliver on its "10-20x faster" claims because the features are REAL, not marketing fluff.**

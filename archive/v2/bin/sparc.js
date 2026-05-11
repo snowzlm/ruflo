@@ -96,7 +96,7 @@ async function listSparcModes(subArgs) {
       console.log('This will create:');
       console.log('  • .roomodes file with 17+ SPARC development modes');
       console.log('  • .roo/ directory with templates and workflows');
-      console.log('  • SPARC-enhanced CLAUDE.md configuration');
+      console.log('  • SPARC-enhanced OPENCLAW.md configuration');
       return;
     }
 

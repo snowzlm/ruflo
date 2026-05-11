@@ -1,7 +1,7 @@
 {
   "$schema": "https://code.claude.com/schemas/hooks.json",
   "description": "Claude Flow hooks configuration — uses stdin-jq-xargs pattern to prevent shell-injection when tool inputs contain quotes / redirects / special chars (#1747).",
-  "_security_note": "All commands read the hook payload from stdin (Claude Code passes a JSON object), extract fields with jq, and pass them to npx as a single argv element via xargs -0. This bypasses shell re-parsing entirely. DO NOT inline $TOOL_INPUT_* / $PROMPT / $TOOL_NAME directly in a quoted command string — interpolation is not shell-safe (creates empty files at CWD when input contains '>' redirects).",
+  "_security_note": "All commands read the hook payload from stdin (OpenClaw passes a JSON object), extract fields with jq, and pass them to npx as a single argv element via xargs -0. This bypasses shell re-parsing entirely. DO NOT inline $TOOL_INPUT_* / $PROMPT / $TOOL_NAME directly in a quoted command string — interpolation is not shell-safe (creates empty files at CWD when input contains '>' redirects).",
   "hooks": {
     "PreToolUse": [
       {
@@ -203,7 +203,7 @@
     ]
   },
   "v3HookMapping": {
-    "_comment": "Maps V3 internal hook events to official Claude Code hooks",
+    "_comment": "Maps V3 internal hook events to official OpenClaw hooks",
     "PreToolUse": "PreToolUse",
     "PostToolUse": "PostToolUse",
     "PreEdit": "PreToolUse (matcher: Edit|Write)",

@@ -1,11 +1,11 @@
 # V3 Init System
 
-Comprehensive initialization system for Claude Code integration with claude-flow V3.
+Comprehensive initialization system for OpenClaw integration with ruflo V3.
 
 ## Overview
 
 The V3 init system creates a complete development environment including:
-- `.claude/` directory with settings, skills, commands, agents, and helpers
+- `.openclaw/` directory with settings, skills, commands, agents, and helpers
 - `.claude-flow/` runtime configuration
 - `.mcp.json` MCP server configuration
 - Cross-platform support (Windows, macOS, Linux)
@@ -59,7 +59,7 @@ The init system automatically detects:
 ### Component Selection
 
 Choose which components to install:
-- **Settings**: Claude Code hooks and permissions
+- **Settings**: OpenClaw hooks and permissions
 - **Skills**: Specialized capabilities (50+)
 - **Commands**: Quick action shortcuts
 - **Agents**: Agent definitions (25+)

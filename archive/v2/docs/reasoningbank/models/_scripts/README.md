@@ -6,7 +6,7 @@ This folder contains utility scripts for managing ReasoningBank models.
 
 ### Schema Management
 
-**`fix-schema-compatibility.cjs`** - Add claude-flow tables to models
+**`fix-schema-compatibility.cjs`** - Add ruflo tables to models
 - Adds missing memory tables (`memory`, `memory_entries`, `collective_memory`, etc.)
 - Creates automatic backups (`.backup` files)
 - Optimizes databases (indexes, ANALYZE, VACUUM)
@@ -175,7 +175,7 @@ npm install better-sqlite3
 
 Or use the scripts directly (they use the project's installed dependencies):
 ```bash
-cd /workspaces/claude-code-flow/docs/reasoningbank/models
+cd /workspaces/openclaw-flow/docs/reasoningbank/models
 node _scripts/fix-schema-compatibility.cjs
 ```
 

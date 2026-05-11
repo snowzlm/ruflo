@@ -39,7 +39,7 @@ A directory-level diff between upstream and local shows:
 - `stub/@reflink/reflink/index.js` — reflink stub
 - `.env` — populated local environment
 - `package-lock.json` — local lockfile
-- All ruflo-specific docs/CLAUDE.md guidance
+- All ruflo-specific docs/OPENCLAW.md guidance
 
 `package.json` is identical between local and upstream — no dependency changes required.
 
@@ -194,14 +194,14 @@ Mapped via Cloudflare DNS (CNAME unproxied so Google manages the cert):
 - `cloudbuild.yaml` deploy step strips its `--set-env-vars` / `--set-secrets` flags so subsequent rebuilds preserve manually configured env (DOTENV_LOCAL with `MODELS`, `OPENAI_BASE_URL`, etc.). Initial env config is now set out-of-band via `gcloud run services update`.
 - `DOCKER_BUILDKIT=1` env on the cloudbuild docker step (Dockerfile uses `COPY --link` BuildKit syntax).
 
-## Follow-Up Work (tracked separately in [issue #1689](https://github.com/ruvnet/ruflo/issues/1689))
+## Follow-Up Work (tracked separately in [issue #1689](https://github.com/snowzlm/ruflo/issues/1689))
 
 | Priority | Item | Notes |
 |----------|------|-------|
 | **P1** | **Make Web Worker mode default** | Currently opt-in (`?worker=1`). Blocked on bringing the worker's mock to parity with the main-thread mock (worker has 3 tools, main has 18) and on importing the real `rvagent_wasm.js` bundle into worker context. |
 | **P1** | **Persistent MongoDB** | Cloud Run filesystem is ephemeral — chat history evicts on cold starts. Options (cleanest first): MongoDB Atlas M0 free tier with `MONGODB_URL` from Secret Manager; Cloud Run multi-container with `mongo:8` sidecar + GCS volume mount; MongoDB on Compute Engine. |
 | **P1** | **Google OAuth login** | `OPENID_CLIENT_ID=""` today — anonymous sessions only. Wanted for admin diagnostics, per-user memory namespaces, and usage caps. Set `OPENID_CLIENT_ID`, `OPENID_CLIENT_SECRET`, `OPENID_SCOPES`. |
-| **P2** | **Parallel tool-call visualization parity with Claude Code task panel** | Server-side parallel execution works; UI renders one tool-call card per call but doesn't visually group them as a single "step" with collapsed thumbnails, lane layout, or per-tool durations. UX pass needed on `ChatMessage.svelte` and `ToolUpdate.svelte`. |
+| **P2** | **Parallel tool-call visualization parity with OpenClaw task panel** | Server-side parallel execution works; UI renders one tool-call card per call but doesn't visually group them as a single "step" with collapsed thumbnails, lane layout, or per-tool durations. UX pass needed on `ChatMessage.svelte` and `ToolUpdate.svelte`. |
 | **P2** | **Real `rvagent_wasm` wired into worker** | Static bundle (`static/wasm/rvagent_wasm.{js,wasm}`) ships at 588 KB. Currently the page bundle uses `createMockWasmModule()` because the real WASM isn't loaded into `app.html`. Need a `<script type="module">` block (or worker-level `import("/wasm/rvagent_wasm.js")`) that calls `init()` and exposes the constructors on the global before `loadWasm()` runs. |
 | **P3** | **Help-modal copy fix** | Quick Start section says "default: Gemini 2.5 Flash". Update to "default: Claude Sonnet 4.6" in `src/lib/components/RufloHelpModal.svelte`. |
 | **P3** | **LLM router (Omni mode)** | `LLM_ROUTER_ARCH_BASE_URL` is empty so the auto-routing alias model isn't created. Re-enable when an Arch-Router is hosted somewhere reachable; restore `LLM_ROUTER_ROUTES_PATH` and the related `LLM_ROUTER_*` env vars. |
@@ -211,8 +211,8 @@ Mapped via Cloudflare DNS (CNAME unproxied so Google manages the cert):
 - Upstream source: `https://github.com/ruvnet/ruvector` → `ui/ruvocal/`
 - Local target: `ruflo/src/ruvocal/`
 - Branch: `feat/ruvocal-wasm-mcp-integration` (squash-merged to `main`)
-- PR: https://github.com/ruvnet/ruflo/pull/1687
-- Follow-up issue: https://github.com/ruvnet/ruflo/issues/1689
+- PR: https://github.com/snowzlm/ruflo/pull/1687
+- Follow-up issue: https://github.com/snowzlm/ruflo/issues/1689
 - Cloud Build configs: `ruflo/src/ruvocal/cloudbuild.yaml`, `ruflo/src/ruvocal/mcp-bridge/cloudbuild.yaml`
 - `.gcloudignore` (CRITICAL — see resolved root cause): `ruflo/src/ruvocal/.gcloudignore`
 - Web Worker: `ruflo/src/ruvocal/src/lib/wasm/{wasm.worker.ts,workerClient.ts}`

@@ -884,7 +884,7 @@ export const hooksPostCommand: MCPTool = {
 
 export const hooksRoute: MCPTool = {
   name: 'hooks_route',
-  description: 'Get a 3-tier routing recommendation for a task: Tier 1 (Agent Booster, 0ms / $0 — for var-to-const, add-types, etc.), Tier 2 (Haiku — simple), Tier 3 (Sonnet/Opus — complex). Use this BEFORE spawning an agent to avoid sending simple transforms to Sonnet. Native tools have no equivalent — Claude Code does not introspect its own model-selection cost. Returns the recommended model + a `[AGENT_BOOSTER_AVAILABLE]` literal when the WASM bypass applies.',
+  description: 'Get a 3-tier routing recommendation for a task: Tier 1 (Agent Booster, 0ms / $0 — for var-to-const, add-types, etc.), Tier 2 (Haiku — simple), Tier 3 (Sonnet/Opus — complex). Use this BEFORE spawning an agent to avoid sending simple transforms to Sonnet. Native tools have no equivalent — OpenClaw does not introspect its own model-selection cost. Returns the recommended model + a `[AGENT_BOOSTER_AVAILABLE]` literal when the WASM bypass applies.',
   inputSchema: {
     type: 'object',
     properties: {
@@ -1975,7 +1975,7 @@ export const hooksSessionEnd: MCPTool = {
     return {
       sessionId,
       duration: 3600000, // 1 hour in ms
-      statePath: saveState ? `.claude/sessions/${sessionId}.json` : undefined,
+      statePath: saveState ? `.openclaw/sessions/${sessionId}.json` : undefined,
       daemon: { stopped: daemonStopped },
       sessionPersistence: sessionPersistence || { controller: 'none', persisted: false },
       summary: {
@@ -2094,8 +2094,8 @@ export const hooksInit: MCPTool = {
       path,
       template,
       created: {
-        settingsJson: `${path}/.claude/settings.json`,
-        hooksDir: `${path}/.claude/hooks`,
+        settingsJson: `${path}/.openclaw/settings.json`,
+        hooksDir: `${path}/.openclaw/hooks`,
       },
       hooks: {
         configured: hooksConfigured,

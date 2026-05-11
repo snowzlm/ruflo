@@ -8,7 +8,7 @@
 
 ```bash
 # THIS DOES NOT EXIST:
-npx claude-flow@alpha hooks swarm-init --topology adaptive --max-agents 6
+ruflo hooks swarm-init --topology adaptive --max-agents 6
 # Error: ❌ Unknown hooks command: swarm-init
 ```
 
@@ -18,11 +18,11 @@ npx claude-flow@alpha hooks swarm-init --topology adaptive --max-agents 6
 
 ## ✅ Correct Methods
 
-### Method 1: MCP Tools (In Claude Code)
+### Method 1: MCP Tools (In OpenClaw)
 
 **For ruv-swarm (WASM-powered):**
 ```javascript
-// Call this from within Claude Code:
+// Call this from within OpenClaw:
 mcp__ruv-swarm__swarm_init({
   topology: "mesh",        // mesh, hierarchical, ring, star
   maxAgents: 6,
@@ -30,10 +30,10 @@ mcp__ruv-swarm__swarm_init({
 })
 ```
 
-**For claude-flow MCP:**
+**For ruflo MCP:**
 ```javascript
-// Call this from within Claude Code:
-mcp__claude-flow__swarm_init({
+// Call this from within OpenClaw:
+mcp__ruflo__swarm_init({
   topology: "hierarchical",
   maxAgents: 8,
   strategy: "balanced"
@@ -67,11 +67,11 @@ mcp__claude-flow__swarm_init({
 
 **For task-based swarm deployment:**
 ```bash
-# Requires Claude Code CLI
-npx claude-flow@alpha swarm "Build a REST API with authentication" --max-agents 6
+# Requires OpenClaw CLI
+ruflo swarm "Build a REST API with authentication" --max-agents 6
 
 # With options:
-npx claude-flow@alpha swarm "Analyze codebase" \
+ruflo swarm "Analyze codebase" \
   --max-agents 6 \
   --strategy research \
   --mode mesh \
@@ -85,7 +85,7 @@ npx claude-flow@alpha swarm "Analyze codebase" \
 - `--parallel` - Enable parallel execution (2.8-4.4x speedup)
 - `--monitor` - Real-time swarm monitoring
 - `--background` - Run in background
-- `--claude` - Open Claude Code CLI
+- `--claude` - Open OpenClaw CLI
 - `--executor` - Use built-in executor
 - `--read-only` - Analysis mode (no code changes)
 
@@ -95,19 +95,19 @@ npx claude-flow@alpha swarm "Analyze codebase" \
 
 **Interactive wizard:**
 ```bash
-npx claude-flow@alpha hive-mind wizard
+ruflo hive-mind wizard
 ```
 
 **Direct spawn:**
 ```bash
-npx claude-flow@alpha hive-mind spawn "Build REST API with auth"
-npx claude-flow@alpha hive-mind spawn "Analyze security" --claude
+ruflo hive-mind spawn "Build REST API with auth"
+ruflo hive-mind spawn "Analyze security" --claude
 ```
 
 **Check status:**
 ```bash
-npx claude-flow@alpha hive-mind status
-npx claude-flow@alpha hive-mind metrics
+ruflo hive-mind status
+ruflo hive-mind metrics
 ```
 
 ---
@@ -115,7 +115,7 @@ npx claude-flow@alpha hive-mind metrics
 ## 🎯 When to Use Each Method
 
 ### Use MCP Tools When:
-- ✅ Working inside Claude Code
+- ✅ Working inside OpenClaw
 - ✅ Need low-level control over swarm topology
 - ✅ Want to integrate with other MCP operations
 - ✅ Building custom coordination workflows
@@ -141,27 +141,27 @@ npx claude-flow@alpha hive-mind metrics
 ### Available Hook Commands:
 ```bash
 # Before task starts
-npx claude-flow@alpha hooks pre-task \
+ruflo hooks pre-task \
   --description "Build API" \
   --task-id "task-123"
 
 # After task completes
-npx claude-flow@alpha hooks post-task \
+ruflo hooks post-task \
   --task-id "task-123" \
   --analyze-performance
 
 # Before file edit
-npx claude-flow@alpha hooks pre-edit \
+ruflo hooks pre-edit \
   --file "src/api.js" \
   --operation edit
 
 # After file edit
-npx claude-flow@alpha hooks post-edit \
+ruflo hooks post-edit \
   --file "src/api.js" \
   --memory-key "swarm/123/edits/api"
 
 # End of session
-npx claude-flow@alpha hooks session-end \
+ruflo hooks session-end \
   --export-metrics \
   --generate-summary
 ```
@@ -205,7 +205,7 @@ mcp__flow-nexus__task_orchestrate({
 
 | Method | Speed | Control | Complexity | Best For |
 |--------|-------|---------|------------|----------|
-| **MCP Tools** | Fast (1-2ms) | High | Low | Claude Code integration |
+| **MCP Tools** | Fast (1-2ms) | High | Low | OpenClaw integration |
 | **CLI Swarm** | Medium | Medium | Medium | Terminal workflows |
 | **Hive Mind** | Slower | High | High | Complex orchestration |
 | **Flow-Nexus** | Variable | Highest | High | Cloud deployment |
@@ -216,7 +216,7 @@ mcp__flow-nexus__task_orchestrate({
 
 ### Example 1: Simple Research Swarm
 ```bash
-npx claude-flow@alpha swarm "Research GraphQL best practices" \
+ruflo swarm "Research GraphQL best practices" \
   --strategy research \
   --max-agents 3 \
   --read-only
@@ -224,7 +224,7 @@ npx claude-flow@alpha swarm "Research GraphQL best practices" \
 
 ### Example 2: Development Swarm
 ```bash
-npx claude-flow@alpha swarm "Build authentication service" \
+ruflo swarm "Build authentication service" \
   --strategy development \
   --max-agents 5 \
   --parallel \
@@ -233,7 +233,7 @@ npx claude-flow@alpha swarm "Build authentication service" \
 
 ### Example 3: MCP-Based Swarm
 ```javascript
-// In Claude Code:
+// In OpenClaw:
 mcp__ruv-swarm__swarm_init({
   topology: "mesh",
   maxAgents: 4,
@@ -252,9 +252,9 @@ mcp__ruv-swarm__task_orchestrate({
 })
 ```
 
-### Example 4: Hive Mind with Claude Code
+### Example 4: Hive Mind with OpenClaw
 ```bash
-npx claude-flow@alpha hive-mind spawn \
+ruflo hive-mind spawn \
   "Build e-commerce platform" \
   --claude
 ```
@@ -264,17 +264,17 @@ npx claude-flow@alpha hive-mind spawn \
 ## 🐞 Troubleshooting
 
 ### Issue: "Unknown hooks command: swarm-init"
-**Solution:** Use `npx claude-flow@alpha swarm` or MCP tools instead
+**Solution:** Use `ruflo swarm` or MCP tools instead
 
 ### Issue: "Compiled swarm module not found"
 **Solution:** Either:
 1. Use MCP tools (recommended)
-2. Install Claude Code CLI
+2. Install OpenClaw CLI
 3. Use `--executor` flag for built-in execution
 
 ### Issue: Swarm initialization fails
 **Check:**
-1. MCP servers running: `claude mcp list`
+1. MCP servers running: `openclaw mcp list`
 2. Dependencies installed: `npm install`
 3. Memory available: Check `.swarm/memory.db`
 
@@ -288,15 +288,15 @@ npx claude-flow@alpha hive-mind spawn \
 - Integration Review: `/docs/AGENTIC_FLOW_INTEGRATION_REVIEW.md`
 
 **Skills:**
-- Swarm Orchestration: `.claude/skills/swarm-orchestration/SKILL.md`
-- Hive Mind Advanced: `.claude/skills/hive-mind-advanced/SKILL.md`
+- Swarm Orchestration: `.openclaw/skills/swarm-orchestration/SKILL.md`
+- Hive Mind Advanced: `.openclaw/skills/hive-mind-advanced/SKILL.md`
 
 **Official Guides:**
-- GitHub: https://github.com/ruvnet/claude-flow
-- Hive Mind: https://github.com/ruvnet/claude-flow/tree/main/docs/hive-mind
+- GitHub: https://github.com/snowzlm/ruflo
+- Hive Mind: https://github.com/snowzlm/ruflo/tree/main/docs/hive-mind
 
 ---
 
 **Created:** 2025-10-25
 **Updated:** 2025-10-25
-**Author:** Claude Code (Claude Sonnet 4.5)
+**Author:** OpenClaw (Claude Sonnet 4.5)

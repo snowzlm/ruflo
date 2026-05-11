@@ -1,7 +1,7 @@
 {
   "name": "claude-optimized-template",
   "version": "1.0.0",
-  "description": "Optimized Claude Code template with SPARC methodology and batch tools",
+  "description": "Optimized OpenClaw template with SPARC methodology and batch tools",
   "private": true,
   "scripts": {
     "install-template": "node install-template.js",
@@ -22,7 +22,7 @@
     "node": ">=14.0.0"
   },
   "files": [
-    ".claude/**/*",
+    ".openclaw/**/*",
     "manifest.json",
     "VERSION",
     "CHANGELOG.md",

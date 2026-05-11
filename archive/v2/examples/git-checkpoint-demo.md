@@ -1,12 +1,12 @@
 # Git Checkpoint System Demo
 
-This example demonstrates how to use the automatic Git checkpoint system with Claude Code.
+This example demonstrates how to use the automatic Git checkpoint system with OpenClaw.
 
 ## Quick Setup
 
 ```bash
 # Run the setup script
-./.claude/helpers/setup-checkpoints.sh
+./.openclaw/helpers/setup-checkpoints.sh
 
 # Choose option 1 for simple checkpoints or option 2 for advanced features
 ```
@@ -17,7 +17,7 @@ This example demonstrates how to use the automatic Git checkpoint system with Cl
 Before editing any file, Claude automatically creates a checkpoint:
 - Creates a Git stash of current changes
 - Creates a checkpoint branch
-- Stores metadata in `.claude/checkpoints/`
+- Stores metadata in `.openclaw/checkpoints/`
 
 ### 2. Post-Edit Checkpoints
 After editing a file, Claude:
@@ -40,7 +40,7 @@ When ending a Claude session:
 ## Example Workflow
 
 ```bash
-# 1. Start Claude Code with checkpoints enabled
+# 1. Start OpenClaw with checkpoints enabled
 claude --settings .claude/settings-checkpoint-simple.json
 
 # 2. Work on your project
@@ -50,54 +50,54 @@ claude --settings .claude/settings-checkpoint-simple.json
 git tag -l 'checkpoint-*' | sort -r
 
 # 4. View checkpoint details
-./.claude/helpers/checkpoint-manager.sh show checkpoint-20240130-143022
+./.openclaw/helpers/checkpoint-manager.sh show checkpoint-20240130-143022
 
 # 5. Compare current state with a checkpoint
-./.claude/helpers/checkpoint-manager.sh diff checkpoint-20240130-143022
+./.openclaw/helpers/checkpoint-manager.sh diff checkpoint-20240130-143022
 
 # 6. Rollback to a checkpoint if needed
-./.claude/helpers/checkpoint-manager.sh rollback checkpoint-20240130-143022
+./.openclaw/helpers/checkpoint-manager.sh rollback checkpoint-20240130-143022
 ```
 
 ## Checkpoint Manager Commands
 
 ```bash
 # List all checkpoints
-./.claude/helpers/checkpoint-manager.sh list
+./.openclaw/helpers/checkpoint-manager.sh list
 
 # Show checkpoint details
-./.claude/helpers/checkpoint-manager.sh show <checkpoint-name>
+./.openclaw/helpers/checkpoint-manager.sh show <checkpoint-name>
 
 # Rollback to checkpoint
-./.claude/helpers/checkpoint-manager.sh rollback <checkpoint-name> [--branch|--reset|--stash]
+./.openclaw/helpers/checkpoint-manager.sh rollback <checkpoint-name> [--branch|--reset|--stash]
 
 # Compare with checkpoint
-./.claude/helpers/checkpoint-manager.sh diff <checkpoint-name>
+./.openclaw/helpers/checkpoint-manager.sh diff <checkpoint-name>
 
 # Clean old checkpoints
-./.claude/helpers/checkpoint-manager.sh clean [days]
+./.openclaw/helpers/checkpoint-manager.sh clean [days]
 
 # Generate summary report
-./.claude/helpers/checkpoint-manager.sh summary
+./.openclaw/helpers/checkpoint-manager.sh summary
 ```
 
 ## Rollback Options
 
 1. **Branch Rollback** (safest):
    ```bash
-   ./.claude/helpers/checkpoint-manager.sh rollback checkpoint-20240130-143022 --branch
+   ./.openclaw/helpers/checkpoint-manager.sh rollback checkpoint-20240130-143022 --branch
    ```
    Creates a new branch from the checkpoint
 
 2. **Stash Rollback** (reversible):
    ```bash
-   ./.claude/helpers/checkpoint-manager.sh rollback checkpoint-20240130-143022 --stash
+   ./.openclaw/helpers/checkpoint-manager.sh rollback checkpoint-20240130-143022 --stash
    ```
    Stashes current changes before resetting
 
 3. **Hard Reset** (destructive):
    ```bash
-   ./.claude/helpers/checkpoint-manager.sh rollback checkpoint-20240130-143022 --reset
+   ./.openclaw/helpers/checkpoint-manager.sh rollback checkpoint-20240130-143022 --reset
    ```
    ⚠️ Permanently discards current changes
 
@@ -123,8 +123,8 @@ The system uses the `checkpoint-hooks.sh` script which can be customized:
 ## Tips
 
 1. **Regular Cleanup**: Use `checkpoint-manager.sh clean 7` to remove checkpoints older than 7 days
-2. **Session Summaries**: Check `.claude/checkpoints/summary-*.md` files for session overviews
-3. **Metadata**: All checkpoint metadata is stored in `.claude/checkpoints/*.json`
+2. **Session Summaries**: Check `.openclaw/checkpoints/summary-*.md` files for session overviews
+3. **Metadata**: All checkpoint metadata is stored in `.openclaw/checkpoints/*.json`
 4. **Git Integration**: All checkpoints are standard Git tags and branches
 
 ## Troubleshooting

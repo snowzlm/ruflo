@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document describes how the Quality Engineering (agentic-qe) plugin integrates with Claude Flow V3's existing domains: Security, Core, Memory, Integration, and Coordination.
+This document describes how the Quality Engineering (agentic-qe) plugin integrates with Ruflo V3's existing domains: Security, Core, Memory, Integration, and Coordination.
 
 ## Integration Architecture
 
@@ -13,7 +13,7 @@ This document describes how the Quality Engineering (agentic-qe) plugin integrat
 │                                                                                  │
 │   ┌─────────────────────────────────────────────────────────────────────────┐   │
 │   │                    Anti-Corruption Layer (ACL)                           │   │
-│   │   Translates between agentic-qe and claude-flow V3 domains              │   │
+│   │   Translates between agentic-qe and ruflo V3 domains              │   │
 │   └─────────────────────────────────────────────────────────────────────────┘   │
 │                                        │                                         │
 │     ┌──────────────┬──────────────────┼──────────────────┬──────────────┐       │

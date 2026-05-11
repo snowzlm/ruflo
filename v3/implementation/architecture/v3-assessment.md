@@ -468,8 +468,8 @@ CLI → Orchestrator → [TerminalManager, MemoryManager, CoordinationManager, M
 
 **Architecture Shift:**
 ```
-Current: claude-flow implements everything, integrates with agentic-flow
-   v3: agentic-flow provides core, claude-flow extends and specializes
+Current: ruflo implements everything, integrates with agentic-flow
+   v3: agentic-flow provides core, ruflo extends and specializes
 ```
 
 ---
@@ -1426,7 +1426,7 @@ Orchestrator (core/orchestrator.ts)
 - Swarm coordination from agentic-flow
 - Task graph execution from agentic-flow
 - Memory system from agentic-flow
-- Add claude-flow extensions via plugins
+- Add ruflo extensions via plugins
 ```
 
 ### Appendix D: Testing Strategy

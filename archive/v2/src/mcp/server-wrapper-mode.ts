@@ -2,10 +2,10 @@
 /**
  * Claude-Flow MCP Server - Wrapper Mode
  *
- * This version uses the Claude Code MCP wrapper approach instead of templates.
+ * This version uses the OpenClaw MCP wrapper approach instead of templates.
  */
 
-import { ClaudeCodeMCPWrapper } from './claude-code-wrapper.js';
+import { ClaudeCodeMCPWrapper } from './openclaw-wrapper.js';
 
 // Check if running as wrapper mode
 const isWrapperMode =

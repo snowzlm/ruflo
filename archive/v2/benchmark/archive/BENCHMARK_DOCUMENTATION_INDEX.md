@@ -1,7 +1,7 @@
 # 📚 Benchmark System Documentation Index
 
 ## Overview
-Complete documentation for the enhanced Claude Flow benchmark system with MLE-STAR integration, automation, and CLAUDE.md optimization.
+Complete documentation for the enhanced Ruflo benchmark system with MLE-STAR integration, automation, and OPENCLAW.md optimization.
 
 ## 📁 Documentation Structure
 
@@ -23,13 +23,13 @@ Complete documentation for the enhanced Claude Flow benchmark system with MLE-ST
 ### Technical Documentation (docs/)
 - **[docs/README.md](./docs/README.md)** - Documentation overview
 - **[docs/api_reference.md](./docs/api_reference.md)** - Complete API reference
-- **[docs/claude_optimizer_guide.md](./docs/claude_optimizer_guide.md)** - CLAUDE.md optimizer user guide
+- **[docs/claude_optimizer_guide.md](./docs/claude_optimizer_guide.md)** - OPENCLAW.md optimizer user guide
 - **[docs/quick-start.md](./docs/quick-start.md)** - Quick start guide
 - **[docs/best-practices.md](./docs/best-practices.md)** - Best practices and patterns
 - **[docs/optimization-guide.md](./docs/optimization-guide.md)** - Performance optimization guide
 - **[docs/coordination-modes.md](./docs/coordination-modes.md)** - Swarm coordination modes
 - **[docs/strategies.md](./docs/strategies.md)** - Benchmark strategies documentation
-- **[docs/integration_guide.md](./docs/integration_guide.md)** - Integration with Claude Flow
+- **[docs/integration_guide.md](./docs/integration_guide.md)** - Integration with Ruflo
 - **[docs/cli-reference.md](./docs/cli-reference.md)** - CLI command reference
 - **[docs/PARALLEL_EXECUTION.md](./docs/PARALLEL_EXECUTION.md)** - Parallel execution patterns
 - **[docs/real-benchmark-architecture.md](./docs/real-benchmark-architecture.md)** - Real benchmark architecture
@@ -67,7 +67,7 @@ Complete documentation for the enhanced Claude Flow benchmark system with MLE-ST
 2. Follow [docs/optimization-guide.md](./docs/optimization-guide.md)
 3. Review [PERFORMANCE_SUITE_README.md](./PERFORMANCE_SUITE_README.md)
 
-### For CLAUDE.md Optimization
+### For OPENCLAW.md Optimization
 1. Start with [docs/claude_optimizer_guide.md](./docs/claude_optimizer_guide.md)
 2. Review examples in implementation guide
 3. Check API reference for advanced usage
@@ -86,7 +86,7 @@ Complete documentation for the enhanced Claude Flow benchmark system with MLE-ST
 - Metrics collection in [docs/real_metrics_collection.md](./docs/real_metrics_collection.md)
 - Performance analysis in [OPTIMIZATION_ANALYSIS.md](./OPTIMIZATION_ANALYSIS.md)
 
-### CLAUDE.md Optimizer
+### OPENCLAW.md Optimizer
 - Complete guide in [docs/claude_optimizer_guide.md](./docs/claude_optimizer_guide.md)
 - Implementation examples throughout documentation
 
@@ -97,8 +97,8 @@ Complete documentation for the enhanced Claude Flow benchmark system with MLE-ST
 - **Memory Efficiency**: 28% improvement
 
 ## 🔗 External Resources
-- [GitHub Issue #599](https://github.com/ruvnet/claude-flow/issues/599) - Project tracking
-- [Claude Flow Repository](https://github.com/ruvnet/claude-flow) - Main project
+- [GitHub Issue #599](https://github.com/snowzlm/ruflo/issues/599) - Project tracking
+- [Ruflo Repository](https://github.com/snowzlm/ruflo) - Main project
 
 ---
 

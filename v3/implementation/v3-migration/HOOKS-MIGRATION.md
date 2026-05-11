@@ -53,8 +53,8 @@ v3/
 | post-command | `bin/hooks.js` | `hooks-tools.ts` | Outcome learning |
 | route | New in V3 | `hooks-tools.ts` | Pattern-based routing |
 | explain | New in V3 | `hooks-tools.ts` | Decision transparency |
-| pretrain | CLAUDE.md | `hooks-tools.ts` | Repository bootstrap |
-| metrics | CLAUDE.md | `hooks-tools.ts` | Learning dashboard |
+| pretrain | OPENCLAW.md | `hooks-tools.ts` | Repository bootstrap |
+| metrics | OPENCLAW.md | `hooks-tools.ts` | Learning dashboard |
 | list | New in V3 | `hooks-tools.ts` | Hook listing |
 
 ### CLI Hooks - Missing ❌
@@ -227,7 +227,7 @@ export class GitCommitHook {
     }
 
     // Add co-author
-    modified += '\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>';
+    modified += '\n\n🤖 Generated with [OpenClaw](https://claude.com/openclaw)\n\nCo-Authored-By: Claude <noreply@anthropic.com>';
 
     return { modified };
   }
@@ -379,28 +379,28 @@ registry.register({
 ### V2 Hooks CLI
 ```bash
 # V2 Commands
-npx claude-flow hooks pre-task --description "Task" --task-id ID
-npx claude-flow hooks post-task --task-id ID
-npx claude-flow hooks pre-edit --file path
-npx claude-flow hooks post-edit --file path --success true
-npx claude-flow hooks pre-command --command "npm test"
-npx claude-flow hooks post-command --command "npm test" --success true
-npx claude-flow hooks session-end
-npx claude-flow hooks session-restore --session-id latest
-npx claude-flow hooks notify --message "Done" --level success
+npx ruflo hooks pre-task --description "Task" --task-id ID
+npx ruflo hooks post-task --task-id ID
+npx ruflo hooks pre-edit --file path
+npx ruflo hooks post-edit --file path --success true
+npx ruflo hooks pre-command --command "npm test"
+npx ruflo hooks post-command --command "npm test" --success true
+npx ruflo hooks session-end
+npx ruflo hooks session-restore --session-id latest
+npx ruflo hooks notify --message "Done" --level success
 ```
 
 ### V3 Hooks CLI
 ```bash
 # V3 Commands (implemented)
-npx claude-flow hooks pre-edit <filePath>
-npx claude-flow hooks post-edit <filePath> --success true
-npx claude-flow hooks pre-command "<command>"
-npx claude-flow hooks post-command "<command>" --success true
-npx claude-flow hooks route "<task description>"
-npx claude-flow hooks explain "<task description>"
-npx claude-flow hooks pretrain
-npx claude-flow hooks metrics
+npx ruflo hooks pre-edit <filePath>
+npx ruflo hooks post-edit <filePath> --success true
+npx ruflo hooks pre-command "<command>"
+npx ruflo hooks post-command "<command>" --success true
+npx ruflo hooks route "<task description>"
+npx ruflo hooks explain "<task description>"
+npx ruflo hooks pretrain
+npx ruflo hooks metrics
 
 # Missing V3 commands:
 # - hooks pre-task

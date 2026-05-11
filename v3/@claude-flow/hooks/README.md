@@ -6,9 +6,9 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3+-blue.svg)](https://www.typescriptlang.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-20+-green.svg)](https://nodejs.org/)
 
-> Event-driven lifecycle hooks with ReasoningBank learning integration for Claude Flow V3
+> Event-driven lifecycle hooks with ReasoningBank learning integration for Ruflo V3
 
-The `@claude-flow/hooks` package provides a comprehensive hooks system for intercepting and extending Claude Flow operations. It enables intelligent task routing, pattern learning, background metrics collection, and real-time statusline integration.
+The `@claude-flow/hooks` package provides a comprehensive hooks system for intercepting and extending Ruflo operations. It enables intelligent task routing, pattern learning, background metrics collection, and real-time statusline integration.
 
 ## Features
 
@@ -16,7 +16,7 @@ The `@claude-flow/hooks` package provides a comprehensive hooks system for inter
 - ⚡ **Hook Executor** - Timeout handling, error recovery, and result aggregation
 - 🤖 **Background Daemons** - Metrics collection, swarm monitoring, pattern learning
 - 👷 **Background Workers** - 12 specialized workers for analysis, optimization, and automation
-- 📊 **Statusline Integration** - Real-time status display for Claude Code
+- 📊 **Statusline Integration** - Real-time status display for OpenClaw
 - 🧠 **ReasoningBank Learning** - Intelligent task routing based on learned patterns
 - 🔧 **MCP Tools** - 13 MCP tools for programmatic hooks access
 - 🔄 **V2 Compatibility** - Backward compatible with V2 hook commands
@@ -133,7 +133,7 @@ hooks-daemon notify-activity
 
 ### Statusline
 
-Generate statusline output for Claude Code integration.
+Generate statusline output for OpenClaw integration.
 
 ```bash
 # Display formatted statusline
@@ -151,7 +151,7 @@ statusline --help
 
 **Example Output:**
 ```
-▊ Claude Flow V3 ● agentic-flow@alpha  │  ⎇ v3
+▊ Ruflo V3 ● agentic-flow@alpha  │  ⎇ v3
 ─────────────────────────────────────────────────────
 🏗️  DDD Domains    [●●●●●]  5/5    ⚡ 1.0x → 2.49x-7.47x
 🤖 Swarm Agents    ◉ [ 5/15]      🟢 CVE 3/3    💾 156 patterns
@@ -220,22 +220,22 @@ The hooks system includes 12 specialized background workers that can be triggere
 
 ```bash
 # List all available workers
-claude-flow hooks worker list
+ruflo hooks worker list
 
 # Detect triggers from prompt text
-claude-flow hooks worker detect --prompt "optimize performance"
+ruflo hooks worker detect --prompt "optimize performance"
 
 # Auto-dispatch when triggers match (confidence ≥0.6)
-claude-flow hooks worker detect --prompt "deep dive into auth" --auto-dispatch --min-confidence 0.6
+ruflo hooks worker detect --prompt "deep dive into auth" --auto-dispatch --min-confidence 0.6
 
 # Manually dispatch a worker
-claude-flow hooks worker dispatch --trigger refactor --context "auth module"
+ruflo hooks worker dispatch --trigger refactor --context "auth module"
 
 # Check worker status
-claude-flow hooks worker status
+ruflo hooks worker status
 
 # Cancel a running worker
-claude-flow hooks worker cancel --id worker_refactor_1_abc123
+ruflo hooks worker cancel --id worker_refactor_1_abc123
 ```
 
 ### Performance Targets
@@ -258,7 +258,7 @@ Workers are automatically triggered via the `UserPromptSubmit` hook when prompt 
       "hooks": [{
         "type": "command",
         "timeout": 6000,
-        "command": "claude-flow hooks worker detect --prompt \"$USER_PROMPT\" --auto-dispatch --min-confidence 0.6"
+        "command": "ruflo hooks worker detect --prompt \"$USER_PROMPT\" --auto-dispatch --min-confidence 0.6"
       }]
     }]
   }
@@ -392,9 +392,9 @@ class StatuslineGenerator {
 | `CLAUDE_FLOW_SHOW_SWARM_ACTIVITY` | Show swarm in statusline | `true` |
 | `CLAUDE_FLOW_SHOW_PERFORMANCE` | Show performance targets | `true` |
 
-## Integration with Claude Code
+## Integration with OpenClaw
 
-Add to your Claude settings (`~/.claude/settings.json`):
+Add to your Claude settings (`~/.openclaw/settings.json`):
 
 ```json
 {
@@ -437,4 +437,4 @@ Add to your Claude settings (`~/.claude/settings.json`):
 
 ## License
 
-MIT © [Claude Flow Team](https://github.com/ruvnet/claude-flow)
+MIT © [Ruflo Team](https://github.com/snowzlm/ruflo)

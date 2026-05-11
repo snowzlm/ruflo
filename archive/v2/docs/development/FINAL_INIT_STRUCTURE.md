@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-After cleanup and migration, `npx claude-flow init` now generates a clean, organized structure with:
+After cleanup and migration, `npx ruflo init` now generates a clean, organized structure with:
 - **76 agent files** across 20 specialized categories
 - **81 command files** - simple CLI references only
 - **21 comprehensive skills** - complex workflows with YAML frontmatter
@@ -13,7 +13,7 @@ After cleanup and migration, `npx claude-flow init` now generates a clean, organ
 
 ## Complete Structure
 
-### 📁 `.claude/agents/` (76 files, 20 categories)
+### 📁 `.openclaw/agents/` (76 files, 20 categories)
 
 Specialized AI agents for different tasks:
 
@@ -45,7 +45,7 @@ agents/
 
 ---
 
-### 📁 `.claude/commands/` (81 files, 14 categories)
+### 📁 `.openclaw/commands/` (81 files, 14 categories)
 
 Simple CLI command references (all <100 lines):
 
@@ -165,7 +165,7 @@ commands/
 
 ---
 
-### 📁 `.claude/skills/` (21 skills)
+### 📁 `.openclaw/skills/` (21 skills)
 
 Comprehensive workflow skills with YAML frontmatter and progressive disclosure:
 
@@ -217,7 +217,7 @@ skills/
 │   Advanced reasoning with WASM-powered memory and intelligence
 │
 ├── skill-builder/SKILL.md
-│   Create new Claude Code skills with proper structure
+│   Create new OpenClaw skills with proper structure
 │
 ├── sparc-methodology/SKILL.md
 │   Complete SPARC development workflow
@@ -259,7 +259,7 @@ All files are included in the npm package via `package.json`:
 ```json
 {
   "files": [
-    ".claude/",
+    ".openclaw/",
     "bin/",
     "dist/",
     "src/"
@@ -267,7 +267,7 @@ All files are included in the npm package via `package.json`:
 }
 ```
 
-When users run `npx claude-flow init`:
+When users run `npx ruflo init`:
 1. ✅ All 76 agent files are copied
 2. ✅ All 81 command files are copied
 3. ✅ All 21 skill files are copied
@@ -305,7 +305,7 @@ When users run `npx claude-flow init`:
 
 ```bash
 # Test the init process
-npx claude-flow init --force
+npx ruflo init --force
 
 # Expected output:
 # ✅ Copied 76 agent files

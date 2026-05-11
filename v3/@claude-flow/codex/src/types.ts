@@ -144,8 +144,8 @@ export interface CodexInitOptions {
   template?: AgentsMdTemplate;
   skills?: string[];
   force?: boolean;
-  dual?: boolean;  // Generate both Claude Code and Codex configs
-  migrateFrom?: 'claude.md' | 'CLAUDE.md';
+  dual?: boolean;  // Generate both OpenClaw and Codex configs
+  migrateFrom?: 'claude.md' | 'OPENCLAW.md';
 }
 
 /**
@@ -182,7 +182,7 @@ export interface MigrationResult {
 }
 
 /**
- * Feature mapping between Claude Code and Codex
+ * Feature mapping between OpenClaw and Codex
  */
 export interface FeatureMapping {
   claudeCode: string;

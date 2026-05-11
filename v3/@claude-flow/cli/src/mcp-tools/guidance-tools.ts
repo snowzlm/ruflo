@@ -315,7 +315,7 @@ const WORKFLOW_TEMPLATES: Record<string, { steps: string[]; agents: string[]; to
 // ── Dynamic Discovery ───────────────────────────────────────
 
 function discoverAgents(): string[] {
-  const agentsDir = join(PROJECT_ROOT, '.claude/agents');
+  const agentsDir = join(PROJECT_ROOT, '.openclaw/agents');
   if (!existsSync(agentsDir)) return [];
 
   const agents: string[] = [];
@@ -338,7 +338,7 @@ function discoverAgents(): string[] {
 }
 
 function discoverSkills(): string[] {
-  const skillsDir = join(PROJECT_ROOT, '.claude/skills');
+  const skillsDir = join(PROJECT_ROOT, '.openclaw/skills');
   if (!existsSync(skillsDir)) return [];
 
   const skills: string[] = [];

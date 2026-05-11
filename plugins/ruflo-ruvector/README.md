@@ -35,7 +35,7 @@ claude --plugin-dir plugins/ruflo-ruvector
 
 Register with the pinned version:
 ```bash
-claude mcp add ruvector -- npx -y ruvector@0.2.25 mcp start
+openclaw mcp add ruvector -- npx -y ruvector@0.2.25 mcp start
 ```
 
 Key tool categories: hooks routing, AST analysis, diff classification, coverage routing, graph clustering, security scanning, RAG context, brain knowledge, SONA learning.

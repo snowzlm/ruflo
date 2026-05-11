@@ -7,7 +7,7 @@ User-facing surface for Ruflo's self-learning system. Wraps **29 intelligence-re
 ## Install
 
 ```
-/plugin marketplace add ruvnet/ruflo
+/plugin marketplace add snowzlm/ruflo
 /plugin install ruflo-intelligence@ruflo
 ```
 
@@ -29,7 +29,7 @@ User-facing surface for Ruflo's self-learning system. Wraps **29 intelligence-re
 
 ## The 4-step intelligence pipeline
 
-CLAUDE.md describes the V3 intelligence loop as four discrete phases. This plugin operationalizes them:
+OPENCLAW.md describes the V3 intelligence loop as four discrete phases. This plugin operationalizes them:
 
 | Step | What happens | Tools |
 |------|--------------|-------|
@@ -70,7 +70,7 @@ Prerequisite: `PINATA_API_JWT` (or the equivalent endpoint env vars) must be con
 
 ## Hook integration
 
-Several Claude Code hooks fire intelligence-side writes:
+Several OpenClaw hooks fire intelligence-side writes:
 
 | Hook | Tool invoked | Target |
 |------|--------------|--------|
@@ -89,7 +89,7 @@ This plugin defers to [ruflo-agentdb ADR-0001](../ruflo-agentdb/docs/adrs/0001-a
 |-----------|---------|--------|
 | `pattern` | `hooks_intelligence_pattern-search`, `agentdb_pattern-search` | ReasoningBank fallback target |
 | `patterns` (plural) | `hooks_pretrain`, `neural_train` corpus | distinct from `pattern` |
-| `claude-memories` | `memory_search_unified` (default include) | Claude Code auto-memory bridge |
+| `claude-memories` | `memory_search_unified` (default include) | OpenClaw auto-memory bridge |
 
 Do **not** invent new top-level namespaces for intelligence purposes — the convention is owned upstream.
 

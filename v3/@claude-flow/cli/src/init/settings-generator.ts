@@ -49,17 +49,17 @@ export function generateSettings(options: InitOptions): object {
   if (options.attribution === true) {
     settings.attribution = {
       commit: 'Co-Authored-By: RuFlo <ruv@ruv.net>',
-      pr: '🤖 Generated with [RuFlo](https://github.com/ruvnet/ruflo)',
+      pr: '🤖 Generated with [RuFlo](https://github.com/snowzlm/ruflo)',
     };
   }
 
-  // Note: Claude Code expects 'model' to be a string, not an object
+  // Note: OpenClaw expects 'model' to be a string, not an object
   // Model preferences are stored in claudeFlow settings instead
   // settings.model = 'claude-sonnet-4-5-20250929'; // Uncomment if you want to set a default model
 
   // Add Agent Teams configuration (experimental feature)
   settings.env = {
-    // Enable Claude Code Agent Teams for multi-agent coordination
+    // Enable OpenClaw Agent Teams for multi-agent coordination
     CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS: '1',
     // Claude Flow specific environment
     CLAUDE_FLOW_V3_ENABLED: 'true',
@@ -171,7 +171,7 @@ const IS_WINDOWS = process.platform === 'win32';
  * Build a hook command with reliable $CLAUDE_PROJECT_DIR expansion.
  * Wraps in `sh -c` to guarantee shell expansion on all platforms (macOS zsh,
  * Linux bash). Falls back to "." if CLAUDE_PROJECT_DIR is unset, since
- * Claude Code runs hooks from the project root.
+ * OpenClaw runs hooks from the project root.
  * On Windows, uses `cmd /c` with %CLAUDE_PROJECT_DIR%.
  */
 function hookCmd(script: string, subcommand: string): string {
@@ -179,7 +179,7 @@ function hookCmd(script: string, subcommand: string): string {
     return `cmd /c node %CLAUDE_PROJECT_DIR%/${script} ${subcommand}`.trim();
   }
   // Use sh -c to ensure $CLAUDE_PROJECT_DIR is expanded by a real shell,
-  // even if Claude Code doesn't invoke hooks through a shell on macOS.
+  // even if OpenClaw doesn't invoke hooks through a shell on macOS.
   // eslint-disable-next-line no-template-curly-in-string
   const dir = '${CLAUDE_PROJECT_DIR:-.}';
   return `sh -c 'exec node "${dir}/${script}" ${subcommand}'`;
@@ -187,29 +187,29 @@ function hookCmd(script: string, subcommand: string): string {
 
 /** Shorthand for CJS hook-handler commands */
 function hookHandlerCmd(subcommand: string): string {
-  return hookCmd('.claude/helpers/hook-handler.cjs', subcommand);
+  return hookCmd('.openclaw/helpers/hook-handler.cjs', subcommand);
 }
 
 /** Shorthand for ESM auto-memory-hook commands */
 function autoMemoryCmd(subcommand: string): string {
-  return hookCmd('.claude/helpers/auto-memory-hook.mjs', subcommand);
+  return hookCmd('.openclaw/helpers/auto-memory-hook.mjs', subcommand);
 }
 
 /**
- * Generate statusLine configuration for Claude Code
+ * Generate statusLine configuration for OpenClaw
  * Uses local helper script for cross-platform compatibility (no npx cold-start)
  */
 function generateStatusLineConfig(_options: InitOptions): object {
-  // Claude Code pipes JSON session data to the script via stdin.
+  // OpenClaw pipes JSON session data to the script via stdin.
   // Valid fields: type, command, padding (optional).
   // The script runs after each assistant message (debounced 300ms).
-  // NOTE: statusline must NOT use `cmd /c` — Claude Code manages its stdin
+  // NOTE: statusline must NOT use `cmd /c` — OpenClaw manages its stdin
   // directly for statusline commands, and `cmd /c` blocks stdin forwarding.
   // eslint-disable-next-line no-template-curly-in-string
   const dir = '${CLAUDE_PROJECT_DIR:-.}';
   return {
     type: 'command',
-    command: `sh -c 'exec node "${dir}/.claude/helpers/statusline.cjs"'`,
+    command: `sh -c 'exec node "${dir}/.openclaw/helpers/statusline.cjs"'`,
   };
 }
 
@@ -403,7 +403,7 @@ function generateHooksConfig(config: HooksConfig): object {
     },
   ];
 
-  // Notification — capture Claude Code notifications for logging
+  // Notification — capture OpenClaw notifications for logging
   if (config.notification) {
     hooks.Notification = [
       {
@@ -419,7 +419,7 @@ function generateHooksConfig(config: HooksConfig): object {
   }
 
   // NOTE: TeammateIdle, TaskCompleted, and PostCompact are NOT accepted by
-  // Claude Code's settings.json validator (rejected as "Invalid key in record").
+  // OpenClaw's settings.json validator (rejected as "Invalid key in record").
   // Agent Teams coordination lives in claudeFlow.agentTeams.hooks instead.
 
   return hooks;

@@ -1,26 +1,26 @@
 # Getting Started with @claude-flow/guidance
 
-## Background: How Claude Code Uses Memory Files
+## Background: How OpenClaw Uses Memory Files
 
-In Claude Code, `CLAUDE.md` and `CLAUDE.local.md` are loaded into the agent's working context at session start. They are the primary mechanism for telling Claude Code how to behave on your project:
+In OpenClaw, `OPENCLAW.md` and `OPENCLAW.local.md` are loaded into the agent's working context at session start. They are the primary mechanism for telling OpenClaw how to behave on your project:
 
 | File | Who it's for | Committed? |
 |------|-------------|-----------|
-| `CLAUDE.md` | The whole team | Yes |
-| `CLAUDE.local.md` | You, on this machine | No (auto-gitignored) |
+| `OPENCLAW.md` | The whole team | Yes |
+| `OPENCLAW.local.md` | You, on this machine | No (auto-gitignored) |
 
-Claude Code searches **upward** from the current directory and loads every instance it finds. In a monorepo, a child directory's `CLAUDE.md` layers on top of the root's. Run `/memory` in Claude Code to see which files were loaded.
+OpenClaw searches **upward** from the current directory and loads every instance it finds. In a monorepo, a child directory's `OPENCLAW.md` layers on top of the root's. Run `/memory` in OpenClaw to see which files were loaded.
 
-The `@import` pattern offers an alternative to `CLAUDE.local.md` for developers using multiple git worktrees:
+The `@import` pattern offers an alternative to `OPENCLAW.local.md` for developers using multiple git worktrees:
 
 ```markdown
-# In CLAUDE.md (committed):
-@~/.claude/my_project_instructions.md
+# In OPENCLAW.md (committed):
+@~/.openclaw/my_project_instructions.md
 ```
 
 ## What This Package Adds
 
-The Guidance Control Plane takes these plain-text files and turns them into structured, enforceable, auditable policy. Without it, Claude Code loads `CLAUDE.md` as raw text and relies on the model to follow it. With it, rules become typed objects with gates that block violations before they execute.
+The Guidance Control Plane takes these plain-text files and turns them into structured, enforceable, auditable policy. Without it, OpenClaw loads `OPENCLAW.md` as raw text and relies on the model to follow it. With it, rules become typed objects with gates that block violations before they execute.
 
 ## Installation
 
@@ -36,8 +36,8 @@ Requires Node.js 20+.
 import { createGuidanceControlPlane } from '@claude-flow/guidance';
 
 const plane = createGuidanceControlPlane({
-  rootGuidancePath: './CLAUDE.md',
-  localGuidancePath: './CLAUDE.local.md', // optional, your personal overrides
+  rootGuidancePath: './OPENCLAW.md',
+  localGuidancePath: './OPENCLAW.local.md', // optional, your personal overrides
 });
 await plane.initialize();
 ```
@@ -46,7 +46,7 @@ This reads both files, compiles them into a policy bundle (constitution + rule s
 
 ## What Happens at Initialization
 
-1. **Load** — `CLAUDE.md` is read as the root guidance. `CLAUDE.local.md` (if present) is read as an overlay. Local rules supplement or override root rules.
+1. **Load** — `OPENCLAW.md` is read as the root guidance. `OPENCLAW.local.md` (if present) is read as an overlay. Local rules supplement or override root rules.
 2. **Compile** — Both files are parsed into structured rules. Each rule gets an ID, risk class, domain tags, tool class tags, and intent tags.
 3. **Shard** — Rules are broken into task-scoped shards. The always-loaded invariants form the constitution (first ~30-60 lines of the root file). Everything else becomes retrievable shards.
 4. **Index** — Shards are loaded into the retriever for similarity-based lookup.
@@ -100,9 +100,9 @@ const trust = createTrustSystem();
 
 All 20 modules are available as separate entry points. See the [API Reference](../reference/api-quick-reference.md) for the full list.
 
-## CLAUDE.md vs. CLAUDE.local.md
+## OPENCLAW.md vs. OPENCLAW.local.md
 
-### What goes in CLAUDE.md (shared, committed)
+### What goes in OPENCLAW.md (shared, committed)
 
 Team-level guidance everyone benefits from:
 
@@ -122,7 +122,7 @@ This project uses a layered architecture. See docs/architecture.md.
 - API responses must include `requestId` for tracing.
 ```
 
-### What goes in CLAUDE.local.md (private, not committed)
+### What goes in OPENCLAW.local.md (private, not committed)
 
 Machine-specific or personal notes:
 
@@ -138,15 +138,15 @@ Machine-specific or personal notes:
 
 ### The @import alternative for worktrees
 
-If you use multiple git worktrees, `CLAUDE.local.md` is awkward because each worktree needs its own copy. The `@` import pattern inside `CLAUDE.md` points to a shared file in your home directory:
+If you use multiple git worktrees, `OPENCLAW.local.md` is awkward because each worktree needs its own copy. The `@` import pattern inside `OPENCLAW.md` points to a shared file in your home directory:
 
 ```markdown
-@~/.claude/my_project_instructions.md
+@~/.openclaw/my_project_instructions.md
 ```
 
 ### How the optimizer uses both files
 
-The optimizer watches which `CLAUDE.local.md` experiments reduce violations. When a local rule consistently outperforms the root, the optimizer proposes promoting it to `CLAUDE.md` with an ADR:
+The optimizer watches which `OPENCLAW.local.md` experiments reduce violations. When a local rule consistently outperforms the root, the optimizer proposes promoting it to `OPENCLAW.md` with an ADR:
 
 ```ts
 const optimized = await plane.optimize();
@@ -174,7 +174,7 @@ No configuration needed. The bridge detects WASM availability at load time.
 @claude-flow/guidance/
   src/
     index.ts            # Control plane + re-exports
-    compiler.ts         # CLAUDE.md → PolicyBundle
+    compiler.ts         # OPENCLAW.md → PolicyBundle
     retriever.ts        # Shard similarity retrieval
     gates.ts            # Enforcement gates (4 built-in)
     gateway.ts          # Tool gateway (idempotency + schema + budget)
@@ -209,17 +209,17 @@ No configuration needed. The bridge detects WASM availability at load time.
 
 To confirm both files are being loaded and enforced:
 
-1. Add a unique rule to `CLAUDE.md`: `# Test: Always respond in English`
-2. Add a different rule to `CLAUDE.local.md`: `# Test: Prefer bullet points`
-3. Start Claude Code and run `/memory` — both files should appear as loaded
+1. Add a unique rule to `OPENCLAW.md`: `# Test: Always respond in English`
+2. Add a different rule to `OPENCLAW.local.md`: `# Test: Prefer bullet points`
+3. Start OpenClaw and run `/memory` — both files should appear as loaded
 4. Ask Claude to restate each unique rule to confirm both were applied
 
 Then, initialize the guidance control plane and confirm:
 
 ```ts
 const plane = createGuidanceControlPlane({
-  rootGuidancePath: './CLAUDE.md',
-  localGuidancePath: './CLAUDE.local.md',
+  rootGuidancePath: './OPENCLAW.md',
+  localGuidancePath: './OPENCLAW.local.md',
 });
 await plane.initialize();
 const bundle = plane.getBundle();

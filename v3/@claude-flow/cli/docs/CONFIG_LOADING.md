@@ -41,9 +41,9 @@ The CLI loads configuration in the following priority order:
 
 ### Supported Config Files
 
-- `claude-flow.config.json`
-- `claude-flow.config.js`
-- `claude-flow.json`
+- `ruflo.config.json`
+- `ruflo.config.js`
+- `ruflo.json`
 - `.claude-flow.json`
 
 ## Environment Variables
@@ -120,13 +120,13 @@ interface V3Config {
 
 ```bash
 # Use default config search paths
-claude-flow agent spawn -t coder
+ruflo agent spawn -t coder
 
 # Use specific config file
-claude-flow agent spawn -t coder --config ./custom-config.json
+ruflo agent spawn -t coder --config ./custom-config.json
 
 # Override with environment variables
-CLAUDE_FLOW_MAX_AGENTS=20 claude-flow swarm init
+CLAUDE_FLOW_MAX_AGENTS=20 ruflo swarm init
 ```
 
 ### Example Config File
@@ -230,7 +230,7 @@ npx vitest run __tests__/config-loading.test.ts
 ## Future Enhancements
 
 - [ ] TypeScript config support (`.ts` files)
-- [ ] Config validation command (`claude-flow config validate`)
+- [ ] Config validation command (`ruflo config validate`)
 - [ ] Config migration tool (v2 → v3)
 - [ ] Interactive config setup wizard
 - [ ] Schema documentation generation

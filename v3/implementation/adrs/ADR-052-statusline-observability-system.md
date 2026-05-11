@@ -2,7 +2,7 @@
 
 **Status:** Implemented
 **Date:** 2026-02-10
-**Authors:** RuvNet, Claude Flow Team
+**Authors:** RuvNet, Ruflo Team
 **Version:** 1.0.0
 **Related:** ADR-051 (Infinite Context), ADR-048 (Auto Memory Integration), ADR-006 (Unified Memory), ADR-026 (3-Tier Model Routing)
 
@@ -10,7 +10,7 @@
 
 ### The Problem: Invisible System State
 
-Claude Code operates with multiple concurrent subsystems — swarm agents, memory
+OpenClaw operates with multiple concurrent subsystems — swarm agents, memory
 backends, neural learning, security scanning, context management — but provides no
 unified visibility into their state. Developers working in long sessions need to know:
 
@@ -23,9 +23,9 @@ unified visibility into their state. Developers working in long sessions need to
 Without real-time feedback, developers make blind decisions about when to start new
 sessions, whether agents are drifting, and if the system is operating optimally.
 
-### What Claude Code Provides
+### What OpenClaw Provides
 
-Claude Code supports a `statusLine` configuration in `.claude/settings.json`:
+OpenClaw supports a `statusLine` configuration in `.openclaw/settings.json`:
 
 ```json
 {
@@ -45,19 +45,19 @@ Code terminal UI.
 ### What We Built
 
 A multi-tier statusline system with 4 implementations, a TypeScript generator for
-`npx claude-flow init`, and real-time data feeds from 8+ subsystems.
+`npx ruflo init`, and real-time data feeds from 8+ subsystems.
 
 ## Decision
 
 Implement a layered statusline architecture:
 
-1. **Active statusline** (`.claude/statusline.sh`) — Bash script for the current
+1. **Active statusline** (`.openclaw/statusline.sh`) — Bash script for the current
    project, read from `settings.json` `statusLine.command`
-2. **Generated statusline** (`.claude/helpers/statusline.cjs`) — CommonJS script
-   created by `npx claude-flow init`, comprehensive with 12+ metric panels
-3. **Lightweight statusline** (`.claude/statusline.mjs`) — ES module for agentic-flow
+2. **Generated statusline** (`.openclaw/helpers/statusline.cjs`) — CommonJS script
+   created by `npx ruflo init`, comprehensive with 12+ metric panels
+3. **Lightweight statusline** (`.openclaw/statusline.mjs`) — ES module for agentic-flow
    integration, compact pipe-separated format
-4. **Command statusline** (`.claude/statusline-command.sh`) — JSON-input focused,
+4. **Command statusline** (`.openclaw/statusline-command.sh`) — JSON-input focused,
    shows swarm topology and task metrics
 5. **Generator** (`v3/@claude-flow/cli/src/init/statusline-generator.ts`) — TypeScript
    that produces the `.cjs` script during project initialization
@@ -68,7 +68,7 @@ Implement a layered statusline architecture:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│                        Claude Code Terminal                          │
+│                        OpenClaw Terminal                          │
 │                                                                     │
 │  ┌─────────────────────────────────────────────────────────────┐   │
 │  │ statusLine.command executes every refreshMs (5000ms)         │   │
@@ -107,7 +107,7 @@ Implement a layered statusline architecture:
 │  │  └─────────────────┘  └──────────────────────┘              │  │
 │  │                                                               │  │
 │  │  Output (4 lines + separators):                              │  │
-│  │  ▊ Claude Flow V3  ● user  │  ⎇ branch  │  Model            │  │
+│  │  ▊ Ruflo V3  ● user  │  ⎇ branch  │  Model            │  │
 │  │  ─────────────────────────────────────────                   │  │
 │  │  🏗️  DDD Domains  [●●●●●]  5/5    ⚡ 1.0x → 2.49x-7.47x   │  │
 │  │  🤖 Swarm ◉ [3/15] 👥 0   🟢 CVE 3/3  💾 2782MB            │  │
@@ -137,14 +137,14 @@ Implement a layered statusline architecture:
 
 ### Statusline Implementations
 
-#### 1. Active Statusline — `.claude/statusline.sh` (432 lines)
+#### 1. Active Statusline — `.openclaw/statusline.sh` (432 lines)
 
 The currently wired script in `settings.json`. Bash-based for maximum compatibility.
 
 **Display Layout:**
 
 ```
-Line 0: ▊ Claude Flow V3 ● user  │  ⎇ branch  │  Model
+Line 0: ▊ Ruflo V3 ● user  │  ⎇ branch  │  Model
 Line -: ─────────────────────────────────────────
 Line 1: 🏗️  DDD Domains  [●●●●●]  5/5    ⚡ speedup → target
 Line 2: 🤖 Swarm ◉ [N/15] 👥 sub  🟢 CVE X/3  💾 MEM  🛡️ CTX%  🧠 INT%
@@ -208,9 +208,9 @@ Base:     learning.json → intelligence.score (0-100)
 = Final:  capped at 100
 ```
 
-#### 2. Generated Statusline — `.claude/helpers/statusline.cjs` (1,193 lines)
+#### 2. Generated Statusline — `.openclaw/helpers/statusline.cjs` (1,193 lines)
 
-Created by `npx claude-flow init`. CommonJS for ES module project compatibility.
+Created by `npx ruflo init`. CommonJS for ES module project compatibility.
 
 **12 Metric Panels:**
 
@@ -234,12 +234,12 @@ Created by `npx claude-flow init`. CommonJS for ES module project compatibility.
 - `--json`: Pretty-printed JSON of all metrics
 - `--compact`: Minified JSON
 
-#### 3. Lightweight Statusline — `.claude/statusline.mjs` (110 lines)
+#### 3. Lightweight Statusline — `.openclaw/statusline.mjs` (110 lines)
 
 ES module for agentic-flow integration. Compact pipe-separated format with 5-second
 cache TTL for swarm status.
 
-#### 4. Command Statusline — `.claude/statusline-command.sh` (177 lines)
+#### 4. Command Statusline — `.openclaw/statusline-command.sh` (177 lines)
 
 JSON-input focused. Shows swarm topology configuration, CPU/memory (with color-coded
 thresholds), session duration, task success rate with streak tracking, and hooks
@@ -249,7 +249,7 @@ activity status.
 
 #### Generator — `v3/@claude-flow/cli/src/init/statusline-generator.ts` (1,317 lines)
 
-Produces the `.cjs` script during `npx claude-flow init`:
+Produces the `.cjs` script during `npx ruflo init`:
 
 ```typescript
 function generateStatuslineScript(options: InitOptions): string {
@@ -264,7 +264,7 @@ function generateStatuslineHook(options: InitOptions): string {
 
 #### Settings Generator — `v3/@claude-flow/cli/src/init/settings-generator.ts`
 
-Wires the statusline into `.claude/settings.json`:
+Wires the statusline into `.openclaw/settings.json`:
 
 ```typescript
 function generateStatusLineConfig(options: InitOptions): object {
@@ -311,10 +311,10 @@ interface StatuslineConfig {
 
 | File | Lines | Language | Role |
 |------|-------|----------|------|
-| `.claude/statusline.sh` | 432 | Bash | Active statusline (settings.json) |
-| `.claude/helpers/statusline.cjs` | 1,193 | CommonJS | Generated comprehensive statusline |
-| `.claude/statusline.mjs` | 110 | ES Module | Lightweight agentic-flow statusline |
-| `.claude/statusline-command.sh` | 177 | Bash | JSON-input command statusline |
+| `.openclaw/statusline.sh` | 432 | Bash | Active statusline (settings.json) |
+| `.openclaw/helpers/statusline.cjs` | 1,193 | CommonJS | Generated comprehensive statusline |
+| `.openclaw/statusline.mjs` | 110 | ES Module | Lightweight agentic-flow statusline |
+| `.openclaw/statusline-command.sh` | 177 | Bash | JSON-input command statusline |
 | `v3/@claude-flow/cli/src/init/statusline-generator.ts` | 1,317 | TypeScript | Generator for `.cjs` during init |
 | `v3/@claude-flow/cli/src/init/settings-generator.ts` | ~20 | TypeScript | Wires statusLine into settings.json |
 | `v3/@claude-flow/cli/src/init/executor.ts` | ~60 | TypeScript | Copy/generate during init |
@@ -368,7 +368,7 @@ interface StatuslineConfig {
 ### Neutral
 
 1. **5-second refresh**: Default `refreshMs: 5000` balances freshness with CPU cost
-2. **ANSI colors**: Terminal-dependent rendering. Claude Code's terminal handles ANSI
+2. **ANSI colors**: Terminal-dependent rendering. OpenClaw's terminal handles ANSI
    well; raw SSH sessions may vary
 3. **JSON data coupling**: Statusline depends on specific JSON key paths in metric
    files. Changes to metric formats require statusline updates
@@ -387,7 +387,7 @@ interface StatuslineConfig {
 
 ## References
 
-- Claude Code `statusLine` config: `@anthropic-ai/claude-agent-sdk` settings schema
+- OpenClaw `statusLine` config: `@anthropic-ai/claude-agent-sdk` settings schema
 - ADR-051: Infinite Context via Compaction-to-Memory Bridge (autopilot-state.json)
 - ADR-048: Auto Memory Integration (learning patterns)
 - ADR-006: Unified Memory Service (AgentDB)

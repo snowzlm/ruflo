@@ -122,7 +122,7 @@ After comprehensive analysis of the Phase 1 & 2 implementation (Progressive Disc
 
 | Binary | Path | Status | Notes |
 |--------|------|--------|-------|
-| `claude-flow` | `bin/claude-flow.js` | ✅ Working | Main CLI |
+| `ruflo` | `bin/claude-flow.js` | ✅ Working | Main CLI |
 | `claude-flow-swarm` | `bin/claude-flow-swarm` | ✅ Working | Swarm commands |
 | `claude-flow-dev` | `bin/claude-flow-dev` | ✅ Working | Dev mode |
 
@@ -393,7 +393,7 @@ The Phase 1 & 2 implementation uses only existing dependencies:
 | Document | Status | Notes |
 |----------|--------|-------|
 | README.md | ✅ Unchanged | Main documentation |
-| CLAUDE.md | ✅ Unchanged | Project instructions |
+| OPENCLAW.md | ✅ Unchanged | Project instructions |
 | API docs | ✅ Unchanged | Tool APIs preserved |
 
 ### New Documentation Created
@@ -469,7 +469,7 @@ The Phase 1 & 2 implementation uses only existing dependencies:
 | CLI Commands | ✅ Pass | All bin commands functional |
 | Hook System | ✅ Pass | Pre/post hooks execute |
 | In-Process Server | ✅ Pass | Fast execution maintained |
-| SDK Integration | ✅ Pass | Claude Code SDK works |
+| SDK Integration | ✅ Pass | OpenClaw SDK works |
 
 ### Performance Regression Tests
 

@@ -4,7 +4,7 @@
 
 **Date:** August 6, 2025  
 **Agent:** Agent 3 - Test Validator  
-**Project:** Python code reorganization for `/workspaces/claude-code-flow/benchmark/`  
+**Project:** Python code reorganization for `/workspaces/openclaw-flow/benchmark/`  
 **GitHub Issue:** #599
 
 ---
@@ -103,7 +103,7 @@ benchmark/
 │   ├── mle_star/                # Ensemble learning
 │   ├── advanced_metrics/         # Metrics collection
 │   ├── collective/               # Collective intelligence
-│   ├── claude_optimizer/         # CLAUDE.md optimization
+│   ├── claude_optimizer/         # OPENCLAW.md optimization
 │   └── config/                   # Configuration management
 ├── tests/                        # Test suite
 ├── examples/                     # Working examples

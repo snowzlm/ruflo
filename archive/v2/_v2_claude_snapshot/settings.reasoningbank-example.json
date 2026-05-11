@@ -1,5 +1,5 @@
 {
-  "comment": "ReasoningBank-Enhanced Claude Code Settings - Copy sections to .claude/settings.json",
+  "comment": "ReasoningBank-Enhanced OpenClaw Settings - Copy sections to .claude/settings.json",
   "env": {
     "CLAUDE_FLOW_AUTO_COMMIT": "false",
     "CLAUDE_FLOW_AUTO_PUSH": "false",
@@ -88,7 +88,7 @@
           {
             "type": "command",
             "comment": "Show session patterns before manual compact",
-            "command": "/bin/bash -c 'SESSION_COUNT=$(npx claude-flow@alpha memory stats --reasoningbank 2>/dev/null | grep -oP \"Total.*: \\K[0-9]+\" || echo \"0\"); echo \"🔄 PreCompact Guidance:\"; echo \"📋 IMPORTANT: Review CLAUDE.md for 54 agents and concurrent patterns\"; echo \"🧠 ReasoningBank: $SESSION_COUNT total patterns stored\"; echo \"✅ Ready for compact operation\"'"
+            "command": "/bin/bash -c 'SESSION_COUNT=$(npx claude-flow@alpha memory stats --reasoningbank 2>/dev/null | grep -oP \"Total.*: \\K[0-9]+\" || echo \"0\"); echo \"🔄 PreCompact Guidance:\"; echo \"📋 IMPORTANT: Review OPENCLAW.md for 54 agents and concurrent patterns\"; echo \"🧠 ReasoningBank: $SESSION_COUNT total patterns stored\"; echo \"✅ Ready for compact operation\"'"
           }
         ]
       },
@@ -119,6 +119,6 @@
   "enabledMcpjsonServers": ["claude-flow", "ruv-swarm"],
   "statusLine": {
     "type": "command",
-    "command": ".claude/statusline-command.sh"
+    "command": ".openclaw/statusline-command.sh"
   }
 }

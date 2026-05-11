@@ -151,7 +151,7 @@ export class ValidationSystem {
         results.errors.push(...roomodesCheck.errors);
       }
 
-      // Validate CLAUDE.md
+      // Validate OPENCLAW.md
       const claudeMdCheck = await this.configValidator.validateClaudeMd();
       results.checks.claudeMd = claudeMdCheck;
       if (!claudeMdCheck.success) {

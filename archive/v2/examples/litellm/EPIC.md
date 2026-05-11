@@ -1,14 +1,14 @@
-# Epic: LiteLLM Multi-Model Gateway Integration for Claude Code
+# Epic: LiteLLM Multi-Model Gateway Integration for OpenClaw
 
 ## 🎯 Epic Overview
 
-Implement a comprehensive LiteLLM proxy solution enabling Claude Code to seamlessly route requests to multiple non-Anthropic LLM providers through a unified, multi-tenant architecture.
+Implement a comprehensive LiteLLM proxy solution enabling OpenClaw to seamlessly route requests to multiple non-Anthropic LLM providers through a unified, multi-tenant architecture.
 
 ## 📋 User Stories
 
 ### US-001: Multi-Provider Model Routing
 **As a** developer  
-**I want to** configure Claude Code to use different LLM providers  
+**I want to** configure OpenClaw to use different LLM providers  
 **So that** I can optimize for cost, performance, and capability per task
 
 **Acceptance Criteria:**
@@ -56,10 +56,10 @@ Implement a comprehensive LiteLLM proxy solution enabling Claude Code to seamles
 
 ```mermaid
 graph TB
-    subgraph "Claude Code Clients"
-        CC1[Claude Code Instance 1]
-        CC2[Claude Code Instance 2]
-        CCN[Claude Code Instance N]
+    subgraph "OpenClaw Clients"
+        CC1[OpenClaw Instance 1]
+        CC2[OpenClaw Instance 2]
+        CCN[OpenClaw Instance N]
     end
     
     subgraph "LiteLLM Gateway Layer"
@@ -309,7 +309,7 @@ routing:
 ## 📎 Resources
 
 - [LiteLLM Documentation](https://docs.litellm.ai)
-- [Claude Code LLM Gateway Guide](https://docs.anthropic.com/en/docs/claude-code/llm-gateway)
+- [OpenClaw LLM Gateway Guide](https://docs.anthropic.com/en/docs/openclaw/llm-gateway)
 - [OpenRouter API Reference](https://openrouter.ai/docs)
 - [Multi-Tenant Architecture Patterns](https://docs.microsoft.com/en-us/azure/architecture/guide/multitenant/overview)
 

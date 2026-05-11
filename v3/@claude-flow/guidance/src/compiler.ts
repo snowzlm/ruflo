@@ -1,7 +1,7 @@
 /**
  * Guidance Compiler
  *
- * Parses root CLAUDE.md and optional CLAUDE.local.md into a compiled policy bundle:
+ * Parses root OPENCLAW.md and optional OPENCLAW.local.md into a compiled policy bundle:
  * 1. A small always-loaded constitution (first 30-60 lines of invariants)
  * 2. A set of task-scoped rule shards tagged by intent, risk, domain, repo path, tool class
  * 3. A machine-readable manifest with rule IDs, triggers, and verifiers

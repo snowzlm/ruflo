@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-This document outlines the production readiness assessment for AgentDB v1.3.9 integration into claude-flow's memory system. It will be populated with actual benchmark results and recommendations once Agent 1 completes the core implementation.
+This document outlines the production readiness assessment for AgentDB v1.3.9 integration into ruflo's memory system. It will be populated with actual benchmark results and recommendations once Agent 1 completes the core implementation.
 
 ---
 
@@ -264,20 +264,20 @@ const agentdb = new AgentDB({
 
 ### Monitoring Implementation
 
-**Using claude-flow hooks:**
+**Using ruflo hooks:**
 
 ```javascript
 // Enable performance tracking
-npx claude-flow@alpha hooks performance-monitor --enable
+ruflo hooks performance-monitor --enable
 
 // Track specific metrics
-npx claude-flow@alpha hooks track-metric \
+ruflo hooks track-metric \
   --metric agentdb.query.latency \
   --value 0.085 \
   --unit ms
 
 // Alert on thresholds
-npx claude-flow@alpha hooks alert-threshold \
+ruflo hooks alert-threshold \
   --metric agentdb.memory.usage \
   --threshold 4096 \
   --unit MB

@@ -1,7 +1,7 @@
 # Training Pipeline - Real Code Execution Only
 
 ## Overview
-The Claude Flow Training Pipeline now **exclusively uses real code execution**. There is no simulation mode - all training runs actual npm tests on real code files to provide genuine learning and improvement.
+The Ruflo Training Pipeline now **exclusively uses real code execution**. There is no simulation mode - all training runs actual npm tests on real code files to provide genuine learning and improvement.
 
 ## What Changed
 

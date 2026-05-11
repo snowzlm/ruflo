@@ -2,14 +2,14 @@
 
 **Document Version:** 1.0
 **Date:** 2025-11-24
-**Project:** claude-code-flow
+**Project:** openclaw-flow
 **Status:** Architecture Recommendation
 
 ---
 
 ## Executive Summary
 
-This document provides a comprehensive architectural strategy to optimize GitHub Actions workflows for the claude-code-flow project. Based on analysis of recent workflow runs showing consistent failures in integration tests, rollback manager, and CI/CD pipeline, this strategy focuses on:
+This document provides a comprehensive architectural strategy to optimize GitHub Actions workflows for the openclaw-flow project. Based on analysis of recent workflow runs showing consistent failures in integration tests, rollback manager, and CI/CD pipeline, this strategy focuses on:
 
 1. **Eliminating redundant jobs** - Reduce unnecessary duplication
 2. **Optimizing resource allocation** - Right-size timeouts and compute
@@ -835,7 +835,7 @@ Metrics to Monitor:
 
 ## Conclusion
 
-This optimization strategy will transform the claude-code-flow GitHub Actions workflows from a complex, unreliable system to a streamlined, maintainable CI/CD pipeline. The three-phase implementation plan minimizes risk while maximizing benefits.
+This optimization strategy will transform the openclaw-flow GitHub Actions workflows from a complex, unreliable system to a streamlined, maintainable CI/CD pipeline. The three-phase implementation plan minimizes risk while maximizing benefits.
 
 **Key Outcomes:**
 - ✅ **3x faster** CI feedback loop

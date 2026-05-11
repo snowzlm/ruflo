@@ -24,10 +24,10 @@ tools:
   - mcp__github__search_repositories
   - mcp__github__push_files
   - mcp__github__create_or_update_file
-  - mcp__claude-flow__swarm_init
-  - mcp__claude-flow__agent_spawn
-  - mcp__claude-flow__task_orchestrate
-  - mcp__claude-flow__memory_usage
+  - mcp__ruflo__swarm_init
+  - mcp__ruflo__agent_spawn
+  - mcp__ruflo__task_orchestrate
+  - mcp__ruflo__memory_usage
 hooks:
   pre_task: |
     echo "🏗️ Initializing repository architecture analysis..."
@@ -60,14 +60,14 @@ Repository structure optimization and multi-repo management with ruv-swarm coord
 ### 1. Repository Structure Analysis and Optimization
 ```javascript
 // Initialize architecture analysis swarm
-mcp__claude-flow__swarm_init { topology: "mesh", maxAgents: 4 }
-mcp__claude-flow__agent_spawn { type: "analyst", name: "Structure Analyzer" }
-mcp__claude-flow__agent_spawn { type: "architect", name: "Repository Architect" }
-mcp__claude-flow__agent_spawn { type: "optimizer", name: "Structure Optimizer" }
-mcp__claude-flow__agent_spawn { type: "coordinator", name: "Multi-Repo Coordinator" }
+mcp__ruflo__swarm_init { topology: "mesh", maxAgents: 4 }
+mcp__ruflo__agent_spawn { type: "analyst", name: "Structure Analyzer" }
+mcp__ruflo__agent_spawn { type: "architect", name: "Repository Architect" }
+mcp__ruflo__agent_spawn { type: "optimizer", name: "Structure Optimizer" }
+mcp__ruflo__agent_spawn { type: "coordinator", name: "Multi-Repo Coordinator" }
 
 // Analyze current repository structure
-LS("$workspaces$ruv-FANN$claude-code-flow$claude-code-flow")
+LS("$workspaces$ruv-FANN$openclaw-flow$openclaw-flow")
 LS("$workspaces$ruv-FANN$ruv-swarm$npm")
 
 // Search for related repositories
@@ -78,7 +78,7 @@ mcp__github__search_repositories {
 }
 
 // Orchestrate structure optimization
-mcp__claude-flow__task_orchestrate {
+mcp__ruflo__task_orchestrate {
   task: "Analyze and optimize repository structure for scalability and maintainability",
   strategy: "adaptive",
   priority: "medium"
@@ -90,7 +90,7 @@ mcp__claude-flow__task_orchestrate {
 // Create standardized repository template
 mcp__github__create_repository {
   name: "claude-project-template",
-  description: "Standardized template for Claude Code projects with ruv-swarm integration",
+  description: "Standardized template for OpenClaw projects with ruv-swarm integration",
   private: false,
   autoInit: true
 }
@@ -128,15 +128,15 @@ mcp__github__push_files {
       }, null, 2)
     },
     {
-      path: "CLAUDE.md",
-      content: "[Standardized CLAUDE.md template]"
+      path: "OPENCLAW.md",
+      content: "[Standardized OPENCLAW.md template]"
     },
     {
       path: "package.json",
       content: JSON.stringify({
         name: "claude-project-template",
         version: "1.0.0",
-        description: "Claude Code project with ruv-swarm integration",
+        description: "OpenClaw project with ruv-swarm integration",
         engines: { node: ">=20.0.0" },
         dependencies: {
           "ruv-swarm": "^1.0.11"
@@ -149,9 +149,9 @@ mcp__github__push_files {
 
 ## Quick Start
 \`\`\`bash
-npx claude-flow init --sparc
+npx ruflo init --sparc
 npm install
-npx claude-flow start --ui
+npx ruflo start --ui
 \`\`\`
 
 ## Features
@@ -161,7 +161,7 @@ npx claude-flow start --ui
 - 📊 Advanced coordination capabilities
 
 ## Documentation
-See CLAUDE.md for complete integration instructions.`
+See OPENCLAW.md for complete integration instructions.`
     }
   ],
   message: "feat: Create standardized Claude project template with ruv-swarm integration"
@@ -172,7 +172,7 @@ See CLAUDE.md for complete integration instructions.`
 ```javascript
 // Synchronize structure across related repositories
 const repositories = [
-  "claude-code-flow", 
+  "openclaw-flow", 
   "ruv-swarm",
   "claude-extensions"
 ]
@@ -205,17 +205,17 @@ jobs:
 ```javascript
 [Single Message - Repository Architecture Review]:
   // Initialize comprehensive architecture swarm
-  mcp__claude-flow__swarm_init { topology: "hierarchical", maxAgents: 6 }
-  mcp__claude-flow__agent_spawn { type: "architect", name: "Senior Architect" }
-  mcp__claude-flow__agent_spawn { type: "analyst", name: "Structure Analyst" }
-  mcp__claude-flow__agent_spawn { type: "optimizer", name: "Performance Optimizer" }
-  mcp__claude-flow__agent_spawn { type: "researcher", name: "Best Practices Researcher" }
-  mcp__claude-flow__agent_spawn { type: "coordinator", name: "Multi-Repo Coordinator" }
+  mcp__ruflo__swarm_init { topology: "hierarchical", maxAgents: 6 }
+  mcp__ruflo__agent_spawn { type: "architect", name: "Senior Architect" }
+  mcp__ruflo__agent_spawn { type: "analyst", name: "Structure Analyst" }
+  mcp__ruflo__agent_spawn { type: "optimizer", name: "Performance Optimizer" }
+  mcp__ruflo__agent_spawn { type: "researcher", name: "Best Practices Researcher" }
+  mcp__ruflo__agent_spawn { type: "coordinator", name: "Multi-Repo Coordinator" }
   
   // Analyze current repository structures
-  LS("$workspaces$ruv-FANN$claude-code-flow$claude-code-flow")
+  LS("$workspaces$ruv-FANN$openclaw-flow$openclaw-flow")
   LS("$workspaces$ruv-FANN$ruv-swarm$npm") 
-  Read("$workspaces$ruv-FANN$claude-code-flow$claude-code-flow$package.json")
+  Read("$workspaces$ruv-FANN$openclaw-flow$openclaw-flow$package.json")
   Read("$workspaces$ruv-FANN$ruv-swarm$npm$package.json")
   
   // Search for architectural patterns using gh CLI
@@ -230,15 +230,15 @@ jobs:
     branch: "architecture$optimization",
     files: [
       {
-        path: "claude-code-flow$claude-code-flow/.github/ISSUE_TEMPLATE$integration.yml",
+        path: "openclaw-flow$openclaw-flow/.github/ISSUE_TEMPLATE$integration.yml",
         content: "[Integration issue template]"
       },
       {
-        path: "claude-code-flow$claude-code-flow/.github/PULL_REQUEST_TEMPLATE.md",
+        path: "openclaw-flow$openclaw-flow/.github/PULL_REQUEST_TEMPLATE.md",
         content: "[Standardized PR template]"
       },
       {
-        path: "claude-code-flow$claude-code-flow$docs/ARCHITECTURE.md",
+        path: "openclaw-flow$openclaw-flow$docs/ARCHITECTURE.md",
         content: "[Architecture documentation]"
       },
       {
@@ -259,12 +259,12 @@ jobs:
   ]}
   
   // Store architecture analysis
-  mcp__claude-flow__memory_usage {
+  mcp__ruflo__memory_usage {
     action: "store",
     key: "architecture$analysis$results",
     value: {
       timestamp: Date.now(),
-      repositories_analyzed: ["claude-code-flow", "ruv-swarm"],
+      repositories_analyzed: ["openclaw-flow", "ruv-swarm"],
       optimization_areas: ["structure", "workflows", "templates", "documentation"],
       recommendations: ["standardize_structure", "improve_workflows", "enhance_templates"],
       implementation_status: "in_progress"
@@ -278,7 +278,7 @@ jobs:
 ```
 ruv-FANN/
 ├── packages/
-│   ├── claude-code-flow/
+│   ├── openclaw-flow/
 │   │   ├── src/
 │   │   ├── .claude/
 │   │   └── package.json
@@ -306,7 +306,7 @@ ruv-FANN/
 
 ### 2. **Command Structure Pattern**
 ```
-.claude/
+`.openclaw/
 ├── commands/
 │   ├── github/
 │   │   ├── github-modes.md
@@ -331,7 +331,7 @@ ruv-FANN/
 ```javascript
 const integrationPattern = {
   packages: {
-    "claude-code-flow": {
+    "openclaw-flow": {
       role: "orchestration_layer",
       dependencies: ["ruv-swarm"],
       provides: ["CLI", "workflows", "commands"]

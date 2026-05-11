@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-// cost-track — auto-capture token usage from a Claude Code session jsonl
+// cost-track — auto-capture token usage from a OpenClaw session jsonl
 // and persist a structured record to the `cost-tracking` AgentDB namespace.
 //
 // Resolution: by default reads the most-recently-modified session jsonl in
-// ~/.claude/projects/<encoded-cwd>/. Override with TRACK_CWD or TRACK_SESSION.
+// ~/.openclaw/projects/<encoded-cwd>/. Override with TRACK_CWD or TRACK_SESSION.
 //
 // Optional env:
 //   TRACK_CWD=<path>          override which project's sessions to scan
@@ -46,7 +46,7 @@ function costForUsage(tier, usage) {
 }
 
 function encodeProjectPath(cwd) {
-  // Claude Code encodes absolute path by replacing `/` with `-`.
+  // OpenClaw encodes absolute path by replacing `/` with `-`.
   return cwd.replace(/\//g, '-');
 }
 
@@ -139,7 +139,7 @@ function main() {
   const targetCwd = process.env.TRACK_CWD || process.cwd();
   const projectDir = findProjectDir(targetCwd);
   if (!projectDir) {
-    console.error(`cost-track: no Claude Code project dir for cwd=${targetCwd}`);
+    console.error(`cost-track: no OpenClaw project dir for cwd=${targetCwd}`);
     console.error(`looked under ${PROJECTS_DIR}/${encodeProjectPath(targetCwd)}`);
     process.exit(2);
   }

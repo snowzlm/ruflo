@@ -1,7 +1,7 @@
 /**
  * @claude-flow/codex - Migration Tests
  *
- * Tests for Claude Code to Codex migration functions
+ * Tests for OpenClaw to Codex migration functions
  */
 
 import { describe, it, expect } from 'vitest';
@@ -16,7 +16,7 @@ import {
 import type { MigrationResult } from '../src/types.js';
 
 // =============================================================================
-// Sample CLAUDE.md Content for Testing
+// Sample OPENCLAW.md Content for Testing
 // =============================================================================
 
 const SAMPLE_CLAUDE_MD = `# Claude Flow V3 Project
@@ -85,7 +85,7 @@ describe('analyzeClaudeMd', () => {
       expect(result.sections).toContain('Advanced');
     });
 
-    it('should handle CLAUDE.md with no level-2 sections', async () => {
+    it('should handle OPENCLAW.md with no level-2 sections', async () => {
       const content = `# Simple Project
 
 Just a description with no level-2 sections.
@@ -223,7 +223,7 @@ npm install
       expect(result.warnings.some(w => w.includes('TodoWrite'))).toBe(true);
     });
 
-    it('should not generate warnings for clean CLAUDE.md', async () => {
+    it('should not generate warnings for clean OPENCLAW.md', async () => {
       const content = `# Clean Project
 
 ## Setup
@@ -251,7 +251,7 @@ describe('migrateFromClaudeCode', () => {
   describe('successful migration', () => {
     it('should return success result', async () => {
       const result = await migrateFromClaudeCode({
-        sourcePath: '/project/CLAUDE.md',
+        sourcePath: '/project/OPENCLAW.md',
         targetPath: '/project',
       });
 
@@ -260,7 +260,7 @@ describe('migrateFromClaudeCode', () => {
 
     it('should generate AGENTS.md path', async () => {
       const result = await migrateFromClaudeCode({
-        sourcePath: '/project/CLAUDE.md',
+        sourcePath: '/project/OPENCLAW.md',
         targetPath: '/project',
       });
 
@@ -269,7 +269,7 @@ describe('migrateFromClaudeCode', () => {
 
     it('should generate config.toml path', async () => {
       const result = await migrateFromClaudeCode({
-        sourcePath: '/project/CLAUDE.md',
+        sourcePath: '/project/OPENCLAW.md',
         targetPath: '/project',
       });
 
@@ -278,7 +278,7 @@ describe('migrateFromClaudeCode', () => {
 
     it('should create default skills when generateSkills is true', async () => {
       const result = await migrateFromClaudeCode({
-        sourcePath: '/project/CLAUDE.md',
+        sourcePath: '/project/OPENCLAW.md',
         targetPath: '/project',
         generateSkills: true,
       });
@@ -290,7 +290,7 @@ describe('migrateFromClaudeCode', () => {
 
     it('should not create skills when generateSkills is false', async () => {
       const result = await migrateFromClaudeCode({
-        sourcePath: '/project/CLAUDE.md',
+        sourcePath: '/project/OPENCLAW.md',
         targetPath: '/project',
         generateSkills: false,
       });
@@ -300,7 +300,7 @@ describe('migrateFromClaudeCode', () => {
 
     it('should include feature mappings', async () => {
       const result = await migrateFromClaudeCode({
-        sourcePath: '/project/CLAUDE.md',
+        sourcePath: '/project/OPENCLAW.md',
         targetPath: '/project',
       });
 
@@ -310,7 +310,7 @@ describe('migrateFromClaudeCode', () => {
 
     it('should include migration warnings', async () => {
       const result = await migrateFromClaudeCode({
-        sourcePath: '/project/CLAUDE.md',
+        sourcePath: '/project/OPENCLAW.md',
         targetPath: '/project',
       });
 
@@ -322,7 +322,7 @@ describe('migrateFromClaudeCode', () => {
   describe('migration options', () => {
     it('should respect preserveComments option', async () => {
       const result = await migrateFromClaudeCode({
-        sourcePath: '/project/CLAUDE.md',
+        sourcePath: '/project/OPENCLAW.md',
         targetPath: '/project',
         preserveComments: true,
       });
@@ -332,7 +332,7 @@ describe('migrateFromClaudeCode', () => {
 
     it('should use custom target path', async () => {
       const result = await migrateFromClaudeCode({
-        sourcePath: '/old/CLAUDE.md',
+        sourcePath: '/old/OPENCLAW.md',
         targetPath: '/new/project',
       });
 
@@ -564,7 +564,7 @@ describe('generateMigrationReport', () => {
       const result: MigrationResult = {
         success: true,
         mappings: [
-          { claudeCode: 'CLAUDE.md', codex: 'AGENTS.md', status: 'mapped', notes: 'Main file' },
+          { claudeCode: 'OPENCLAW.md', codex: 'AGENTS.md', status: 'mapped', notes: 'Main file' },
           { claudeCode: '/skill', codex: '$skill', status: 'mapped', notes: 'Syntax change' },
         ],
       };
@@ -573,8 +573,8 @@ describe('generateMigrationReport', () => {
 
       expect(report).toContain('## Feature Mappings');
       // Table now includes Notes column
-      expect(report).toContain('| Claude Code | Codex | Status | Notes |');
-      expect(report).toContain('CLAUDE.md');
+      expect(report).toContain('| OpenClaw | Codex | Status | Notes |');
+      expect(report).toContain('OPENCLAW.md');
       expect(report).toContain('AGENTS.md');
       expect(report).toContain('mapped');
     });
@@ -639,8 +639,8 @@ describe('generateMigrationReport', () => {
 // =============================================================================
 
 describe('FEATURE_MAPPINGS', () => {
-  it('should contain CLAUDE.md to AGENTS.md mapping', () => {
-    const mapping = FEATURE_MAPPINGS.find(m => m.claudeCode === 'CLAUDE.md');
+  it('should contain OPENCLAW.md to AGENTS.md mapping', () => {
+    const mapping = FEATURE_MAPPINGS.find(m => m.claudeCode === 'OPENCLAW.md');
 
     expect(mapping).toBeDefined();
     expect(mapping!.codex).toBe('AGENTS.md');
@@ -713,7 +713,7 @@ Use pre-task hooks.
 
     const analysis = await analyzeClaudeMd(content);
     const migration = await migrateFromClaudeCode({
-      sourcePath: '/test/CLAUDE.md',
+      sourcePath: '/test/OPENCLAW.md',
       targetPath: '/test',
     });
 

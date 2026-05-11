@@ -4,7 +4,7 @@ Learn how to orchestrate complex workflows with multiple specialized agents work
 
 ## Overview
 
-Multi-agent systems in Claude Flow allow you to:
+Multi-agent systems in Ruflo allow you to:
 - Parallelize work across specialized agents
 - Coordinate dependencies between tasks
 - Share information between agents
@@ -113,7 +113,7 @@ Create the e-commerce platform using the swarm system:
 
 ### Step 4: Understanding Coordination Modes
 
-Claude Flow supports different coordination patterns:
+Ruflo supports different coordination patterns:
 
 #### Hub-Spoke Pattern
 Central coordinator manages all agents:

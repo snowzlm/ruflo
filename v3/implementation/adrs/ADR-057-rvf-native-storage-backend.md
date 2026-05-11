@@ -4,7 +4,7 @@
 |-------|-------|
 | **Status** | Proposed |
 | **Date** | 2026-02-28 |
-| **Authors** | Claude Flow Team |
+| **Authors** | Ruflo Team |
 | **Supersedes** | — |
 | **Related** | ADR-053 (AgentDB Controller Activation), ADR-054 (RVF Plugin Marketplace), ADR-055 (Controller Bug Remediation), ADR-056 (agentic-flow v3 Integration) |
 
@@ -55,7 +55,7 @@ recommendations.push('Consider using better-sqlite3 with HNSW for faster vector 
 
 ### The Opportunity
 
-RVF (RuVector Format) is a binary container format already used in the Claude Flow ecosystem (ADR-054). It provides everything sql.js does **plus native HNSW indexing** in a fraction of the footprint:
+RVF (RuVector Format) is a binary container format already used in the Ruflo ecosystem (ADR-054). It provides everything sql.js does **plus native HNSW indexing** in a fraction of the footprint:
 
 | Capability | sql.js | RVF |
 |-----------|--------|-----|

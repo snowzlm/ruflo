@@ -60,10 +60,10 @@ try {
 }
 
 // Test 5: Verify SDK Integration
-console.log('\nTest 5: Verifying Claude Code SDK integration...');
+console.log('\nTest 5: Verifying OpenClaw SDK integration...');
 try {
-  const claudeCodeSDK = require('@anthropic-ai/claude-code');
-  console.log('✅ Claude Code SDK accessible');
+  const claudeCodeSDK = require('@anthropic-ai/openclaw');
+  console.log('✅ OpenClaw SDK accessible');
   console.log('   SDK exports query function:', typeof claudeCodeSDK.query === 'function');
 
 } catch (error) {
@@ -77,5 +77,5 @@ console.log('   ✅ Session forking module loads correctly');
 console.log('   ✅ ParallelSwarmExecutor instantiates');
 console.log('   ✅ Query control module loads correctly');
 console.log('   ✅ RealTimeQueryController instantiates');
-console.log('   ✅ Claude Code SDK integration working');
+console.log('   ✅ OpenClaw SDK integration working');
 console.log('\n🚀 Phase 4 is fully operational!');

@@ -44,7 +44,7 @@ const SKILLS_MAP: Record<string, string[]> = {
     'skill-builder',
   ],
   browser: ['browser'],  // agent-browser integration
-  dualMode: ['dual-mode'],  // Claude Code + Codex hybrid execution
+  dualMode: ['dual-mode'],  // OpenClaw + Codex hybrid execution
   agentdb: [
     'agentdb-advanced',
     'agentdb-learning',
@@ -104,7 +104,7 @@ const AGENTS_MAP: Record<string, string[]> = {
   sparc: ['sparc'],
   swarm: ['swarm'],
   browser: ['browser'],  // agent-browser integration
-  dualMode: ['dual-mode'],  // Claude Code + Codex hybrid execution
+  dualMode: ['dual-mode'],  // OpenClaw + Codex hybrid execution
   // V3-specific agents
   v3: ['v3'],
   optimization: ['optimization'],
@@ -131,10 +131,10 @@ const AGENTS_MAP: Record<string, string[]> = {
 const DIRECTORIES = {
   claude: [
     '.claude',
-    '.claude/skills',
-    '.claude/commands',
-    '.claude/agents',
-    '.claude/helpers',
+    '.openclaw/skills',
+    '.openclaw/commands',
+    '.openclaw/agents',
+    '.openclaw/helpers',
   ],
   runtime: [
     '.claude-flow',
@@ -222,7 +222,7 @@ export async function executeInit(options: InitOptions): Promise<InitResult> {
       await writeInitialMetrics(targetDir, options, result);
     }
 
-    // Generate CLAUDE.md
+    // Generate OPENCLAW.md
     if (options.components.claudeMd) {
       await writeClaudeMd(targetDir, options, result);
     }
@@ -269,7 +269,7 @@ function mergeSettingsForUpgrade(existing: Record<string, unknown>): Record<stri
   // Windows: Use PowerShell-compatible commands
   // Mac/Linux: Use bash-compatible commands with 2>/dev/null
   // NOTE: teammateIdleCmd and taskCompletedCmd were removed.
-  // TeammateIdle/TaskCompleted are not valid Claude Code hook events and caused warnings.
+  // TeammateIdle/TaskCompleted are not valid OpenClaw hook events and caused warnings.
   // Agent Teams hook config lives in claudeFlow.agentTeams.hooks instead.
 
   // 1. Merge env vars (preserve existing, add new)
@@ -290,7 +290,7 @@ function mergeSettingsForUpgrade(existing: Record<string, unknown>): Record<stri
   const gitRootResolver = "var c=require('child_process'),p=require('path'),u=require('url'),r;"
     + "try{r=c.execSync('git rev-parse --show-toplevel',{encoding:'utf8'}).trim()}"
     + 'catch(e){r=process.cwd()}';
-  const autoMemoryScript = '.claude/helpers/auto-memory-hook.mjs';
+  const autoMemoryScript = '.openclaw/helpers/auto-memory-hook.mjs';
   const autoMemoryImportCmd = `node -e "${gitRootResolver}var f=p.join(r,'${autoMemoryScript}');import(u.pathToFileURL(f).href)" import`;
   const autoMemorySyncCmd = `node -e "${gitRootResolver}var f=p.join(r,'${autoMemoryScript}');import(u.pathToFileURL(f).href)" sync`;
 
@@ -333,7 +333,7 @@ function mergeSettingsForUpgrade(existing: Record<string, unknown>): Record<stri
     });
   }
 
-  // NOTE: TeammateIdle and TaskCompleted are NOT valid Claude Code hook events.
+  // NOTE: TeammateIdle and TaskCompleted are NOT valid OpenClaw hook events.
   // They cause warnings when present in settings.json hooks.
   // Remove them if they exist from a previous init.
   delete (merged.hooks as Record<string, unknown>).TeammateIdle;
@@ -341,13 +341,13 @@ function mergeSettingsForUpgrade(existing: Record<string, unknown>): Record<stri
   // Their configuration lives in claudeFlow.agentTeams.hooks instead.
 
   // 3. Fix statusLine config (remove invalid fields, ensure correct format)
-  // Claude Code only supports: type, command, padding
+  // OpenClaw only supports: type, command, padding
   const existingStatusLine = existing.statusLine as Record<string, unknown> | undefined;
   if (existingStatusLine) {
     merged.statusLine = {
       type: 'command',
-      command: existingStatusLine.command || `node -e "var c=require('child_process'),p=require('path'),r;try{r=c.execSync('git rev-parse --show-toplevel',{encoding:'utf8'}).trim()}catch(e){r=process.cwd()}var s=p.join(r,'.claude/helpers/statusline.cjs');process.argv.splice(1,0,s);require(s)"`,
-      // Remove invalid fields: refreshMs, enabled (not supported by Claude Code)
+      command: existingStatusLine.command || `node -e "var c=require('child_process'),p=require('path'),r;try{r=c.execSync('git rev-parse --show-toplevel',{encoding:'utf8'}).trim()}catch(e){r=process.cwd()}var s=p.join(r,'.openclaw/helpers/statusline.cjs');process.argv.splice(1,0,s);require(s)"`,
+      // Remove invalid fields: refreshMs, enabled (not supported by OpenClaw)
     };
   }
 
@@ -404,7 +404,7 @@ export async function executeUpgrade(targetDir: string, upgradeSettings = false)
   try {
     // Ensure required directories exist
     const dirs = [
-      '.claude/helpers',
+      '.openclaw/helpers',
       '.claude-flow/metrics',
       '.claude-flow/security',
       '.claude-flow/learning',
@@ -426,9 +426,9 @@ export async function executeUpgrade(targetDir: string, upgradeSettings = false)
         const sourcePath = path.join(sourceHelpersForUpgrade, helperName);
         if (fs.existsSync(sourcePath)) {
           if (fs.existsSync(targetPath)) {
-            result.updated.push(`.claude/helpers/${helperName}`);
+            result.updated.push(`.openclaw/helpers/${helperName}`);
           } else {
-            result.created.push(`.claude/helpers/${helperName}`);
+            result.created.push(`.openclaw/helpers/${helperName}`);
           }
           fs.copyFileSync(sourcePath, targetPath);
           try { fs.chmodSync(targetPath, '755'); } catch {}
@@ -444,9 +444,9 @@ export async function executeUpgrade(targetDir: string, upgradeSettings = false)
       for (const [helperName, content] of Object.entries(generatedCritical)) {
         const targetPath = path.join(targetDir, '.claude', 'helpers', helperName);
         if (fs.existsSync(targetPath)) {
-          result.updated.push(`.claude/helpers/${helperName}`);
+          result.updated.push(`.openclaw/helpers/${helperName}`);
         } else {
-          result.created.push(`.claude/helpers/${helperName}`);
+          result.created.push(`.openclaw/helpers/${helperName}`);
         }
         fs.writeFileSync(targetPath, content, 'utf-8');
         try { fs.chmodSync(targetPath, '755'); } catch {}
@@ -468,9 +468,9 @@ export async function executeUpgrade(targetDir: string, upgradeSettings = false)
     const statuslineContent = generateStatuslineScript(upgradeOptions);
 
     if (fs.existsSync(statuslinePath)) {
-      result.updated.push('.claude/helpers/statusline.cjs');
+      result.updated.push('.openclaw/helpers/statusline.cjs');
     } else {
-      result.created.push('.claude/helpers/statusline.cjs');
+      result.created.push('.openclaw/helpers/statusline.cjs');
     }
     fs.writeFileSync(statuslinePath, statuslineContent, 'utf-8');
 
@@ -553,13 +553,13 @@ export async function executeUpgrade(targetDir: string, upgradeSettings = false)
           const existingSettings = JSON.parse(fs.readFileSync(settingsPath, 'utf-8'));
           const mergedSettings = mergeSettingsForUpgrade(existingSettings);
           fs.writeFileSync(settingsPath, JSON.stringify(mergedSettings, null, 2), 'utf-8');
-          result.updated.push('.claude/settings.json');
+          result.updated.push('.openclaw/settings.json');
           result.settingsUpdated = [
             'env.CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS',
             'hooks.SessionStart (auto-memory import)',
             'hooks.SessionEnd (auto-memory sync)',
-            'hooks.TeammateIdle (removed — not a valid Claude Code hook)',
-            'hooks.TaskCompleted (removed — not a valid Claude Code hook)',
+            'hooks.TeammateIdle (removed — not a valid OpenClaw hook)',
+            'hooks.TaskCompleted (removed — not a valid OpenClaw hook)',
             'claudeFlow.agentTeams',
             'claudeFlow.memory (learningBridge, memoryGraph, agentScopes)',
           ];
@@ -570,7 +570,7 @@ export async function executeUpgrade(targetDir: string, upgradeSettings = false)
         // Create new settings.json with defaults
         const defaultSettings = generateSettings(DEFAULT_INIT_OPTIONS);
         fs.writeFileSync(settingsPath, JSON.stringify(defaultSettings, null, 2), 'utf-8');
-        result.created.push('.claude/settings.json');
+        result.created.push('.openclaw/settings.json');
         result.settingsUpdated = ['Created new settings.json with Agent Teams'];
       }
     }
@@ -647,7 +647,7 @@ export async function executeUpgradeWithMissing(targetDir: string, upgradeSettin
         if (sourceExists && !targetExists) {
           copyDirRecursive(sourcePath, targetPath);
           result.addedSkills.push(skillName);
-          result.created.push(`.claude/skills/${skillName}`);
+          result.created.push(`.openclaw/skills/${skillName}`);
         }
       }
     }
@@ -662,7 +662,7 @@ export async function executeUpgradeWithMissing(targetDir: string, upgradeSettin
         if (fs.existsSync(sourcePath) && !fs.existsSync(targetPath)) {
           copyDirRecursive(sourcePath, targetPath);
           result.addedAgents.push(agentCategory);
-          result.created.push(`.claude/agents/${agentCategory}`);
+          result.created.push(`.openclaw/agents/${agentCategory}`);
         }
       }
     }
@@ -681,7 +681,7 @@ export async function executeUpgradeWithMissing(targetDir: string, upgradeSettin
             fs.copyFileSync(sourcePath, targetPath);
           }
           result.addedCommands.push(cmdName);
-          result.created.push(`.claude/commands/${cmdName}`);
+          result.created.push(`.openclaw/commands/${cmdName}`);
         }
       }
     }
@@ -759,24 +759,24 @@ async function writeSettings(
 
       if (merged) {
         fs.writeFileSync(settingsPath, JSON.stringify(existing, null, 2), 'utf-8');
-        result.created.files.push('.claude/settings.json (merged hooks)');
+        result.created.files.push('.openclaw/settings.json (merged hooks)');
       } else {
-        result.skipped.push('.claude/settings.json');
+        result.skipped.push('.openclaw/settings.json');
       }
     } catch {
       // Existing file is corrupt — overwrite
       fs.writeFileSync(settingsPath, JSON.stringify(generated, null, 2), 'utf-8');
-      result.created.files.push('.claude/settings.json');
+      result.created.files.push('.openclaw/settings.json');
     }
     return;
   }
 
   fs.writeFileSync(settingsPath, JSON.stringify(generated, null, 2), 'utf-8');
-  result.created.files.push('.claude/settings.json');
+  result.created.files.push('.openclaw/settings.json');
 }
 
 /**
- * #1779 — Walk parents of `targetDir` plus the user-global Claude Code
+ * #1779 — Walk parents of `targetDir` plus the user-global OpenClaw
  * config locations, looking for any `.mcp.json` (or `~/.claude.json`)
  * that already declares a `ruflo`-keyed MCP server. We use this to skip
  * writing our own `claude-flow`-keyed entry when the user has already
@@ -790,7 +790,7 @@ async function writeSettings(
 function detectExistingRufloMCP(targetDir: string): string | null {
   const home = (process.env.HOME ?? process.env.USERPROFILE) ?? '';
   const candidates = new Set<string>();
-  // User-global Claude Code config locations
+  // User-global OpenClaw config locations
   if (home) {
     candidates.add(path.join(home, '.claude.json'));
     candidates.add(path.join(home, '.claude', 'mcp.json'));
@@ -818,7 +818,7 @@ function detectExistingRufloMCP(targetDir: string): string | null {
       if (parsed.mcpServers && typeof parsed.mcpServers === 'object') {
         if ('ruflo' in parsed.mcpServers) return candidate;
       }
-      // (b) #1840: Claude Code project-scoped registrations under
+      // (b) #1840: OpenClaw project-scoped registrations under
       //     parsed.projects[<projectPath>].mcpServers.ruflo. Match by
       //     normalized path against targetDir or any of its ancestors so
       //     a `claude mcp add ruflo` in this repo is detected even when
@@ -841,7 +841,7 @@ function detectExistingRufloMCP(targetDir: string): string | null {
 
 /**
  * Normalize a project path key for cross-platform comparison.
- * Claude Code stores Windows paths like "C:/Users/.../Project" while
+ * OpenClaw stores Windows paths like "C:/Users/.../Project" while
  * Node's `path.resolve()` may emit "C:\Users\...\Project". Lowercase +
  * forward-slash gives a stable comparison key on both platforms.
  */
@@ -925,10 +925,10 @@ async function copySkills(
     if (fs.existsSync(sourcePath)) {
       if (!fs.existsSync(targetPath) || options.force) {
         copyDirRecursive(sourcePath, targetPath);
-        result.created.files.push(`.claude/skills/${skillName}`);
+        result.created.files.push(`.openclaw/skills/${skillName}`);
         result.summary.skillsCount++;
       } else {
-        result.skipped.push(`.claude/skills/${skillName}`);
+        result.skipped.push(`.openclaw/skills/${skillName}`);
       }
     }
   }
@@ -980,10 +980,10 @@ async function copyCommands(
         } else {
           fs.copyFileSync(sourcePath, targetPath);
         }
-        result.created.files.push(`.claude/commands/${cmdName}`);
+        result.created.files.push(`.openclaw/commands/${cmdName}`);
         result.summary.commandsCount++;
       } else {
-        result.skipped.push(`.claude/commands/${cmdName}`);
+        result.skipped.push(`.openclaw/commands/${cmdName}`);
       }
     }
   }
@@ -1017,7 +1017,7 @@ async function copyAgents(
     if (agentsConfig.v3) agentsToCopy.push(...(AGENTS_MAP.v3 || []));
     if (agentsConfig.optimization) agentsToCopy.push(...(AGENTS_MAP.optimization || []));
     if (agentsConfig.testing) agentsToCopy.push(...(AGENTS_MAP.testing || []));
-    // Dual-mode agents (Claude Code + Codex hybrid)
+    // Dual-mode agents (OpenClaw + Codex hybrid)
     if (agentsConfig.dualMode) agentsToCopy.push(...(AGENTS_MAP.dualMode || []));
   }
 
@@ -1039,9 +1039,9 @@ async function copyAgents(
         // Count agent files (.md only — .yaml agents were migrated to .md)
         const mdFiles = countFiles(sourcePath, '.md');
         result.summary.agentsCount += mdFiles;
-        result.created.files.push(`.claude/agents/${agentCategory}`);
+        result.created.files.push(`.openclaw/agents/${agentCategory}`);
       } else {
-        result.skipped.push(`.claude/agents/${agentCategory}`);
+        result.skipped.push(`.openclaw/agents/${agentCategory}`);
       }
     }
   }
@@ -1137,10 +1137,10 @@ async function writeHelpers(
           fs.chmodSync(destPath, '755');
         }
 
-        result.created.files.push(`.claude/helpers/${file}`);
+        result.created.files.push(`.openclaw/helpers/${file}`);
         copiedCount++;
       } else {
-        result.skipped.push(`.claude/helpers/${file}`);
+        result.skipped.push(`.openclaw/helpers/${file}`);
       }
     }
 
@@ -1172,9 +1172,9 @@ async function writeHelpers(
         fs.chmodSync(filePath, '755');
       }
 
-      result.created.files.push(`.claude/helpers/${name}`);
+      result.created.files.push(`.openclaw/helpers/${name}`);
     } else {
-      result.skipped.push(`.claude/helpers/${name}`);
+      result.skipped.push(`.openclaw/helpers/${name}`);
     }
   }
 }
@@ -1250,9 +1250,9 @@ async function writeStatusline(
           if (file.src.endsWith('.sh') || file.src.endsWith('.mjs')) {
             fs.chmodSync(destPath, '755');
           }
-          result.created.files.push(`.claude/${file.dest}`);
+          result.created.files.push(`.openclaw/${file.dest}`);
         } else {
-          result.skipped.push(`.claude/${file.dest}`);
+          result.skipped.push(`.openclaw/${file.dest}`);
         }
       }
     }
@@ -1266,7 +1266,7 @@ async function writeStatusline(
   const statuslinePath = path.join(helpersDir, 'statusline.cjs');
 
   fs.writeFileSync(statuslinePath, statuslineScript, 'utf-8');
-  result.created.files.push('.claude/helpers/statusline.cjs');
+  result.created.files.push('.openclaw/helpers/statusline.cjs');
 }
 
 /**
@@ -1487,7 +1487,7 @@ async function writeCapabilitiesDoc(
 
   const capabilities = `# RuFlo V3 - Complete Capabilities Reference
 > Generated: ${new Date().toISOString()}
-> Full documentation: https://github.com/ruvnet/claude-flow
+> Full documentation: https://github.com/snowzlm/ruflo
 
 ## 📋 Table of Contents
 
@@ -1736,10 +1736,10 @@ npx @claude-flow/cli@latest doctor --fix
 
 **MemoryGraph** - Builds a knowledge graph from entry references. PageRank identifies influential insights. Communities group related knowledge. Graph-aware ranking blends vector + structural scores.
 
-**AgentMemoryScope** - Maps Claude Code 3-scope directories:
-- \`project\`: \`<gitRoot>/.claude/agent-memory/<agent>/\`
-- \`local\`: \`<gitRoot>/.claude/agent-memory-local/<agent>/\`
-- \`user\`: \`~/.claude/agent-memory/<agent>/\`
+**AgentMemoryScope** - Maps OpenClaw 3-scope directories:
+- \`project\`: \`<gitRoot>/.openclaw/agent-memory/<agent>/\`
+- \`local\`: \`<gitRoot>/.openclaw/agent-memory-local/<agent>/\`
+- \`user\`: \`~/.openclaw/agent-memory/<agent>/\`
 
 High-confidence insights (>0.8) can transfer between agents.
 
@@ -1886,8 +1886,8 @@ npx ruflo@latest hooks worker dispatch --trigger optimize
 
 ---
 
-**Full Documentation**: https://github.com/ruvnet/claude-flow
-**Issues**: https://github.com/ruvnet/claude-flow/issues
+**Full Documentation**: https://github.com/snowzlm/ruflo
+**Issues**: https://github.com/snowzlm/ruflo/issues
 `;
 
   fs.writeFileSync(capabilitiesPath, capabilities, 'utf-8');
@@ -1895,33 +1895,33 @@ npx ruflo@latest hooks worker dispatch --trigger optimize
 }
 
 /**
- * Write CLAUDE.md with swarm guidance
+ * Write OPENCLAW.md with swarm guidance
  */
 async function writeClaudeMd(
   targetDir: string,
   options: InitOptions,
   result: InitResult
 ): Promise<void> {
-  const claudeMdPath = path.join(targetDir, 'CLAUDE.md');
+  const claudeMdPath = path.join(targetDir, 'OPENCLAW.md');
 
   if (fs.existsSync(claudeMdPath) && !options.force) {
-    result.skipped.push('CLAUDE.md');
+    result.skipped.push('OPENCLAW.md');
   } else {
     // Determine template: explicit option > infer from components > 'standard'
     const inferredTemplate = (!options.components.commands && !options.components.agents) ? 'minimal' : undefined;
     const content = generateClaudeMd(options, inferredTemplate);
 
     fs.writeFileSync(claudeMdPath, content, 'utf-8');
-    result.created.files.push('CLAUDE.md');
+    result.created.files.push('OPENCLAW.md');
   }
 
-  // Also write/append global ~/.claude/CLAUDE.md so ruflo tools are used automatically (#1497).
+  // Also write/append global ~/.openclaw/OPENCLAW.md so ruflo tools are used automatically (#1497).
   // Opt-out via --no-global / options.skipGlobalClaudeMd (#1744 — keeps global rules file pristine
   // for users who don't want a per-machine pointer block).
   const homeDir = process.env.HOME || process.env.USERPROFILE || '';
   if (homeDir && !options.skipGlobalClaudeMd) {
     const globalClaudeDir = path.join(homeDir, '.claude');
-    const globalClaudeMd = path.join(globalClaudeDir, 'CLAUDE.md');
+    const globalClaudeMd = path.join(globalClaudeDir, 'OPENCLAW.md');
     const rufloBlock = [
       '',
       '# Ruflo Integration (auto-generated by ruflo init)',
@@ -1939,17 +1939,17 @@ async function writeClaudeMd(
         const existing = fs.readFileSync(globalClaudeMd, 'utf-8');
         if (!existing.includes('Ruflo Integration')) {
           fs.appendFileSync(globalClaudeMd, rufloBlock);
-          result.created.files.push('~/.claude/CLAUDE.md (appended ruflo block)');
+          result.created.files.push('~/.openclaw/OPENCLAW.md (appended ruflo block)');
         }
       } else {
         fs.writeFileSync(globalClaudeMd, rufloBlock.trimStart(), 'utf-8');
-        result.created.files.push('~/.claude/CLAUDE.md');
+        result.created.files.push('~/.openclaw/OPENCLAW.md');
       }
     } catch {
-      // Non-critical — global CLAUDE.md is best-effort
+      // Non-critical — global OPENCLAW.md is best-effort
     }
   } else if (options.skipGlobalClaudeMd) {
-    result.skipped.push('~/.claude/CLAUDE.md (--no-global)');
+    result.skipped.push('~/.openclaw/OPENCLAW.md (--no-global)');
   }
 }
 

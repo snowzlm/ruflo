@@ -2,7 +2,7 @@
 
 ## ✅ All Models Are Now Fully Compatible!
 
-As of **2025-10-15**, all ReasoningBank pre-trained models have been updated to include **all required claude-flow memory tables**. You can use these models with any claude-flow command.
+As of **2025-10-15**, all ReasoningBank pre-trained models have been updated to include **all required ruflo memory tables**. You can use these models with any ruflo command.
 
 ---
 
@@ -32,7 +32,7 @@ LIMIT 10;
 
 ### 2. Claude-Flow Memory Tables (General Storage)
 
-These tables support general memory operations across all claude-flow commands:
+These tables support general memory operations across all ruflo commands:
 
 | Table | Description | Usage |
 |-------|-------------|-------|
@@ -65,42 +65,42 @@ These tables track usage and performance:
 
 ## Supported Commands
 
-All models work with these claude-flow commands:
+All models work with these ruflo commands:
 
 ### ✅ General Memory Commands
 
 ```bash
 # Store a value
-npx claude-flow@alpha memory store api_key "sk-123456" --namespace config
+ruflo memory store api_key "sk-123456" --namespace config
 
 # Query by key
-npx claude-flow@alpha memory query "api" --namespace config
+ruflo memory query "api" --namespace config
 
 # List all memories
-npx claude-flow@alpha memory list --namespace config
+ruflo memory list --namespace config
 
 # Delete a memory
-npx claude-flow@alpha memory delete api_key --namespace config
+ruflo memory delete api_key --namespace config
 ```
 
 ### ✅ ReasoningBank-Specific Commands
 
 ```bash
 # Query patterns semantically
-npx claude-flow@alpha memory query "authentication best practices" --reasoningbank
+ruflo memory query "authentication best practices" --reasoningbank
 
 # Search patterns
-npx claude-flow@alpha memory search "API optimization" --namespace backend
+ruflo memory search "API optimization" --namespace backend
 
 # Store pattern with learning
-npx claude-flow@alpha memory store api_pattern "Use JWT with refresh tokens" --reasoningbank
+ruflo memory store api_pattern "Use JWT with refresh tokens" --reasoningbank
 ```
 
 ### ✅ Hive-Mind Swarm Operations
 
 ```bash
 # Initialize swarm with model
-npx claude-flow@alpha hive-mind init --topology mesh
+ruflo hive-mind init --topology mesh
 
 # Swarms use collective_memory table automatically
 # No additional configuration needed!
@@ -110,10 +110,10 @@ npx claude-flow@alpha hive-mind init --topology mesh
 
 ```bash
 # Sessions are automatically tracked in sessions table
-npx claude-flow@alpha hooks session-restore --session-id swarm-123
+ruflo hooks session-restore --session-id swarm-123
 
 # View session metrics
-npx claude-flow@alpha hooks session-end --export-metrics
+ruflo hooks session-end --export-metrics
 ```
 
 ---
@@ -154,10 +154,10 @@ ORDER BY name
 
 ## Migration from Old Models
 
-If you have an older model without claude-flow tables:
+If you have an older model without ruflo tables:
 
 ```bash
-cd /workspaces/claude-code-flow/docs/reasoningbank/models
+cd /workspaces/openclaw-flow/docs/reasoningbank/models
 node fix-schema-compatibility.cjs
 
 # This will:
@@ -437,7 +437,7 @@ patterns = db.execute("""
 
 ## Summary
 
-✅ **All models are fully compatible** with claude-flow
+✅ **All models are fully compatible** with ruflo
 ✅ **12 tables** per model (ReasoningBank + Claude-Flow + Metrics)
 ✅ **Backups created** automatically during schema updates
 ✅ **No data loss** - all patterns preserved

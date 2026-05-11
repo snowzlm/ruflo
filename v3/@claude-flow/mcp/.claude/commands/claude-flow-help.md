@@ -7,7 +7,7 @@ description: Show Claude-Flow commands and usage
 
 ## 🌊 Claude-Flow: Agent Orchestration Platform
 
-Claude-Flow is the ultimate multi-terminal orchestration platform that revolutionizes how you work with Claude Code.
+Claude-Flow is the ultimate multi-terminal orchestration platform that revolutionizes how you work with OpenClaw.
 
 ## Core Commands
 
@@ -66,7 +66,7 @@ Claude-Flow is the ultimate multi-terminal orchestration platform that revolutio
 
 ### Initialize with SPARC:
 ```bash
-npx -y claude-flow@latest init --sparc
+npx -y ruflo@latest init --sparc
 ```
 
 ### Start a development swarm:
@@ -91,13 +91,13 @@ npx -y claude-flow@latest init --sparc
 ```
 
 ## 🎯 Best Practices
-- Use `./claude-flow` instead of `npx claude-flow` after initialization
+- Use `./claude-flow` instead of `npx ruflo` after initialization
 - Store important context in memory for cross-session persistence
 - Use swarm mode for complex tasks requiring multiple agents
 - Enable monitoring for real-time progress tracking
 - Use background mode for tasks > 30 minutes
 
 ## 📚 Resources
-- Documentation: https://github.com/ruvnet/claude-code-flow/docs
-- Examples: https://github.com/ruvnet/claude-code-flow/examples
-- Issues: https://github.com/ruvnet/claude-code-flow/issues
+- Documentation: https://github.com/ruvnet/openclaw-flow/docs
+- Examples: https://github.com/ruvnet/openclaw-flow/examples
+- Issues: https://github.com/ruvnet/openclaw-flow/issues

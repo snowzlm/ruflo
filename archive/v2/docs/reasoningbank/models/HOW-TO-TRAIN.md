@@ -21,8 +21,8 @@ This guide shows you how to create custom pre-trained ReasoningBank models with 
 # Install dependencies
 npm install better-sqlite3
 
-# Ensure claude-flow is available
-npx claude-flow@alpha --version
+# Ensure ruflo is available
+ruflo --version
 ```
 
 ### Create a Simple Model (100 patterns)
@@ -145,7 +145,7 @@ node _scripts/validation-suite.cjs my-custom-model my-custom-model
 
 ### Required Tables
 
-Every `memory.db` must include these tables for full claude-flow compatibility:
+Every `memory.db` must include these tables for full ruflo compatibility:
 
 **ReasoningBank Core:**
 - `patterns` - Core pattern storage
@@ -366,7 +366,7 @@ console.log(`Database size: ${(stats.size / 1024 / 1024).toFixed(2)} MB`);
 ### Parallel Training with Agents
 
 ```javascript
-// Use Claude Code agents for parallel pattern generation
+// Use OpenClaw agents for parallel pattern generation
 const { spawn } = require('child_process');
 
 const agents = [
@@ -399,13 +399,13 @@ console.log('✅ All agents completed training');
 
 ```bash
 # Store training progress in shared memory
-npx claude-flow@alpha memory store \
+ruflo memory store \
   "training/progress/agent-1" \
   '{"patterns": 250, "status": "in_progress"}' \
   --namespace training --reasoningbank
 
 # Query agent status
-npx claude-flow@alpha memory query \
+ruflo memory query \
   "training/progress" \
   --namespace training --reasoningbank
 ```

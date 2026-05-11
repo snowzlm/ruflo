@@ -842,7 +842,7 @@
     },
     {
       "name": "hooks_route",
-      "description": "Get a 3-tier routing recommendation for a task: Tier 1 (Agent Booster, 0ms / $0 — for var-to-const, add-types, etc.), Tier 2 (Haiku — simple), Tier 3 (Sonnet/Opus — complex). Use this BEFORE spawning an agent to avoid sending simple transforms to Sonnet. Native tools have no equivalent — Claude Code does not introspect its own model-selection cost. Returns the recommended model + a",
+      "description": "Get a 3-tier routing recommendation for a task: Tier 1 (Agent Booster, 0ms / $0 — for var-to-const, add-types, etc.), Tier 2 (Haiku — simple), Tier 3 (Sonnet/Opus — complex). Use this BEFORE spawning an agent to avoid sending simple transforms to Sonnet. Native tools have no equivalent — OpenClaw does not introspect its own model-selection cost. Returns the recommended model + a",
       "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
     },
     {
@@ -957,7 +957,7 @@
     },
     {
       "name": "memory_bridge_status",
-      "description": "Show Claude Code memory bridge status — AgentDB vectors, SONA learning, intelligence patterns, and connection health.",
+      "description": "Show OpenClaw memory bridge status — AgentDB vectors, SONA learning, intelligence patterns, and connection health.",
       "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\memory-tools.ts"
     },
     {
@@ -967,7 +967,7 @@
     },
     {
       "name": "memory_import_claude",
-      "description": "Import Claude Code auto-memory files into AgentDB with ONNX vector embeddings. Reads ~/.claude/projects/*/memory/*.md files, parses YAML frontmatter, splits into sections, and stores with 384-dim embeddings for semantic search. Use allProjects=true to import from ALL Claude projects.",
+      "description": "Import OpenClaw auto-memory files into AgentDB with ONNX vector embeddings. Reads ~/.openclaw/projects/*/memory/*.md files, parses YAML frontmatter, splits into sections, and stores with 384-dim embeddings for semantic search. Use allProjects=true to import from ALL Claude projects.",
       "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\memory-tools.ts"
     },
     {
@@ -992,7 +992,7 @@
     },
     {
       "name": "memory_search_unified",
-      "description": "Search across both Claude Code memories and AgentDB entries using semantic vector similarity. Returns merged, deduplicated results from all namespaces.",
+      "description": "Search across both OpenClaw memories and AgentDB entries using semantic vector similarity. Returns merged, deduplicated results from all namespaces.",
       "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\memory-tools.ts"
     },
     {
@@ -1778,193 +1778,193 @@
       "name": "ruflo-adr",
       "version": "0.3.0",
       "description": "ADR lifecycle management — create, index, supersede, check compliance, and link Architecture Decision Records to code via AgentDB hierarchical store + causal edges (supersedes/amends/depends-on/related)",
-      "sourceFile": "plugins\\ruflo-adr\\.claude-plugin\\plugin.json"
+      "sourceFile": "plugins\\ruflo-adr\\.openclaw-plugin\\plugin.json"
     },
     {
       "name": "ruflo-agentdb",
       "version": "0.3.0",
       "description": "Substrate plugin for Ruflo memory: AgentDB controller bridge (15 agentdb_* MCP tools), RuVector ONNX embeddings (10 embeddings_* tools incl. RaBitQ 32x quantization), and WASM HNSW pattern router (3 ruvllm_hnsw_* tools)",
-      "sourceFile": "plugins\\ruflo-agentdb\\.claude-plugin\\plugin.json"
+      "sourceFile": "plugins\\ruflo-agentdb\\.openclaw-plugin\\plugin.json"
     },
     {
       "name": "ruflo-aidefence",
       "version": "0.2.0",
       "description": "AI safety scanning, PII detection, prompt injection defense, and adaptive threat learning",
-      "sourceFile": "plugins\\ruflo-aidefence\\.claude-plugin\\plugin.json"
+      "sourceFile": "plugins\\ruflo-aidefence\\.openclaw-plugin\\plugin.json"
     },
     {
       "name": "ruflo-autopilot",
       "version": "0.2.0",
       "description": "Autonomous /loop-driven task completion with learning, prediction, and progress tracking — wraps 10 autopilot_* MCP tools (status/enable/disable/config/reset/log/progress/learn/history/predict)",
-      "sourceFile": "plugins\\ruflo-autopilot\\.claude-plugin\\plugin.json"
+      "sourceFile": "plugins\\ruflo-autopilot\\.openclaw-plugin\\plugin.json"
     },
     {
       "name": "ruflo-browser",
       "version": "0.2.0",
       "description": "Session-as-skill browser automation: Playwright + RVF cognitive containers + ruvector trajectories + AgentDB selector memory + AIDefence PII/injection gates",
-      "sourceFile": "plugins\\ruflo-browser\\.claude-plugin\\plugin.json"
+      "sourceFile": "plugins\\ruflo-browser\\.openclaw-plugin\\plugin.json"
     },
     {
       "name": "ruflo-core",
       "version": "0.2.0",
       "description": "Foundation plugin — registers the ruflo MCP server (300+ tools across memory/agentdb/embeddings/hooks/aidefence/neural/autopilot/browser/agent/swarm), provides 3 generalist agents (coder/researcher/reviewer), 3 first-run skills, and a curated plugin-discovery catalog",
-      "sourceFile": "plugins\\ruflo-core\\.claude-plugin\\plugin.json"
+      "sourceFile": "plugins\\ruflo-core\\.openclaw-plugin\\plugin.json"
     },
     {
       "name": "ruflo-cost-tracker",
       "version": "0.16.1",
       "description": "Token usage tracking, model cost attribution per agent, budget alerts, and optimization recommendations — uses memory_* (namespace-routed) for cost-tracking and cost-patterns; pairs with federation budget circuit breaker (ADR-097)",
-      "sourceFile": "plugins\\ruflo-cost-tracker\\.claude-plugin\\plugin.json"
+      "sourceFile": "plugins\\ruflo-cost-tracker\\.openclaw-plugin\\plugin.json"
     },
     {
       "name": "ruflo-daa",
       "version": "0.2.0",
       "description": "Dynamic Agentic Architecture — 8 daa_* MCP tools for adaptive agents (create/adapt), cognitive patterns, workflows (create/execute), knowledge sharing, and learning/performance metrics. Feeds the JUDGE phase of the 4-step intelligence pipeline.",
-      "sourceFile": "plugins\\ruflo-daa\\.claude-plugin\\plugin.json"
+      "sourceFile": "plugins\\ruflo-daa\\.openclaw-plugin\\plugin.json"
     },
     {
       "name": "ruflo-ddd",
       "version": "0.2.0",
       "description": "Domain-Driven Design scaffolding — bounded contexts, aggregate roots, domain events, value objects, repositories, and anti-corruption layers; navigable domain graph stored in AgentDB",
-      "sourceFile": "plugins\\ruflo-ddd\\.claude-plugin\\plugin.json"
+      "sourceFile": "plugins\\ruflo-ddd\\.openclaw-plugin\\plugin.json"
     },
     {
       "name": "ruflo-docs",
       "version": "0.2.0",
       "description": "Documentation generation, API docs (JSDoc/TSDoc/OpenAPI), and drift detection — drives the `document` background worker via hooks_worker-dispatch; uses Haiku model for cost-efficient docs work",
-      "sourceFile": "plugins\\ruflo-docs\\.claude-plugin\\plugin.json"
+      "sourceFile": "plugins\\ruflo-docs\\.openclaw-plugin\\plugin.json"
     },
     {
       "name": "ruflo-federation",
       "version": "0.2.0",
       "description": "Cross-installation agent federation with zero-trust security, peer discovery, consensus-based task routing, and per-call budget circuit breaker (ADR-097)",
-      "sourceFile": "plugins\\ruflo-federation\\.claude-plugin\\plugin.json"
+      "sourceFile": "plugins\\ruflo-federation\\.openclaw-plugin\\plugin.json"
     },
     {
       "name": "ruflo-goals",
       "version": "0.2.0",
       "description": "Long-horizon goal planning, deep research orchestration, and adaptive replanning using GOAP algorithms",
-      "sourceFile": "plugins\\ruflo-goals\\.claude-plugin\\plugin.json"
+      "sourceFile": "plugins\\ruflo-goals\\.openclaw-plugin\\plugin.json"
     },
     {
       "name": "ruflo-intelligence",
       "version": "0.3.0",
       "description": "User-facing surface for Ruflo's self-learning system: 6 neural_* + 10 hooks_intelligence_* + 9 routing/meta hooks + 4 SONA/MicroLoRA tools (29 total). Implements the 4-step pipeline (RETRIEVE → JUDGE → DISTILL → CONSOLIDATE) and IPFS-based cross-project pattern transfer.",
-      "sourceFile": "plugins\\ruflo-intelligence\\.claude-plugin\\plugin.json"
+      "sourceFile": "plugins\\ruflo-intelligence\\.openclaw-plugin\\plugin.json"
     },
     {
       "name": "ruflo-iot-cognitum",
       "version": "0.2.0",
       "description": "IoT device lifecycle, telemetry anomaly detection, fleet management, and witness chain verification for Cognitum Seed hardware",
-      "sourceFile": "plugins\\ruflo-iot-cognitum\\.claude-plugin\\plugin.json"
+      "sourceFile": "plugins\\ruflo-iot-cognitum\\.openclaw-plugin\\plugin.json"
     },
     {
       "name": "ruflo-jujutsu",
       "version": "0.2.0",
       "description": "Advanced git workflows with diff analysis, risk scoring, change classification (feature/bugfix/refactor/...), and reviewer recommendations — wraps 6 analyze_* MCP tools (diff, diff-risk, diff-classify, diff-reviewers, file-risk, diff-stats)",
-      "sourceFile": "plugins\\ruflo-jujutsu\\.claude-plugin\\plugin.json"
+      "sourceFile": "plugins\\ruflo-jujutsu\\.openclaw-plugin\\plugin.json"
     },
     {
       "name": "ruflo-knowledge-graph",
       "version": "0.2.0",
       "description": "Knowledge graph construction — entity extraction, relation mapping, and pathfinder graph traversal",
-      "sourceFile": "plugins\\ruflo-knowledge-graph\\.claude-plugin\\plugin.json"
+      "sourceFile": "plugins\\ruflo-knowledge-graph\\.openclaw-plugin\\plugin.json"
     },
     {
       "name": "ruflo-loop-workers",
       "version": "0.2.0",
       "description": "Cache-aware /loop workers and CronCreate background automation — wraps 5 hooks_worker-* MCP tools (list/dispatch/status/detect/cancel) and exposes 12 background worker triggers (ultralearn, optimize, consolidate, predict, audit, map, preload, deepdive, document, refactor, benchmark, testgaps)",
-      "sourceFile": "plugins\\ruflo-loop-workers\\.claude-plugin\\plugin.json"
+      "sourceFile": "plugins\\ruflo-loop-workers\\.openclaw-plugin\\plugin.json"
     },
     {
       "name": "ruflo-market-data",
       "version": "0.2.0",
       "description": "Market data ingestion — feed normalization, OHLCV vectorization, and HNSW-indexed pattern matching",
-      "sourceFile": "plugins\\ruflo-market-data\\.claude-plugin\\plugin.json"
+      "sourceFile": "plugins\\ruflo-market-data\\.openclaw-plugin\\plugin.json"
     },
     {
       "name": "ruflo-migrations",
       "version": "0.2.0",
       "description": "Schema migration management — generate, validate, dry-run, and rollback database migrations",
-      "sourceFile": "plugins\\ruflo-migrations\\.claude-plugin\\plugin.json"
+      "sourceFile": "plugins\\ruflo-migrations\\.openclaw-plugin\\plugin.json"
     },
     {
       "name": "ruflo-neural-trader",
       "version": "0.2.0",
       "description": "Neural trading via npx neural-trader — self-learning strategies, Rust/NAPI backtesting, 112+ MCP tools, swarm coordination, and portfolio optimization",
-      "sourceFile": "plugins\\ruflo-neural-trader\\.claude-plugin\\plugin.json"
+      "sourceFile": "plugins\\ruflo-neural-trader\\.openclaw-plugin\\plugin.json"
     },
     {
       "name": "ruflo-observability",
       "version": "0.2.0",
       "description": "Structured logging, distributed tracing, and metrics — correlate agent swarm activity with application telemetry",
-      "sourceFile": "plugins\\ruflo-observability\\.claude-plugin\\plugin.json"
+      "sourceFile": "plugins\\ruflo-observability\\.openclaw-plugin\\plugin.json"
     },
     {
       "name": "ruflo-plugin-creator",
       "version": "0.2.0",
-      "description": "Scaffold, validate, and publish new Claude Code plugins with the canonical plugin contract — ADR + smoke + Compatibility + namespace coordination + MCP-tool drift warnings",
-      "sourceFile": "plugins\\ruflo-plugin-creator\\.claude-plugin\\plugin.json"
+      "description": "Scaffold, validate, and publish new OpenClaw plugins with the canonical plugin contract — ADR + smoke + Compatibility + namespace coordination + MCP-tool drift warnings",
+      "sourceFile": "plugins\\ruflo-plugin-creator\\.openclaw-plugin\\plugin.json"
     },
     {
       "name": "ruflo-rag-memory",
       "version": "0.2.0",
       "description": "RuVector memory with HNSW search, AgentDB, and semantic retrieval",
-      "sourceFile": "plugins\\ruflo-rag-memory\\.claude-plugin\\plugin.json"
+      "sourceFile": "plugins\\ruflo-rag-memory\\.openclaw-plugin\\plugin.json"
     },
     {
       "name": "ruflo-ruvector",
       "version": "0.2.1",
       "description": "Self-learning vector database via npx ruvector@0.2.25 — HNSW, adaptive LoRA embeddings, code-graph clustering, hooks routing, brain/SONA, 103 MCP tools",
-      "sourceFile": "plugins\\ruflo-ruvector\\.claude-plugin\\plugin.json"
+      "sourceFile": "plugins\\ruflo-ruvector\\.openclaw-plugin\\plugin.json"
     },
     {
       "name": "ruflo-ruvllm",
       "version": "0.2.0",
       "description": "RuVLLM local inference with chat formatting (Claude/GPT/Gemini/Ollama/Cohere), model configuration, MicroLoRA fine-tuning, and SONA real-time adaptation",
-      "sourceFile": "plugins\\ruflo-ruvllm\\.claude-plugin\\plugin.json"
+      "sourceFile": "plugins\\ruflo-ruvllm\\.openclaw-plugin\\plugin.json"
     },
     {
       "name": "ruflo-rvf",
       "version": "0.2.0",
       "description": "RVF format for portable agent memory, session persistence, and cross-platform transfer",
-      "sourceFile": "plugins\\ruflo-rvf\\.claude-plugin\\plugin.json"
+      "sourceFile": "plugins\\ruflo-rvf\\.openclaw-plugin\\plugin.json"
     },
     {
       "name": "ruflo-security-audit",
       "version": "0.2.0",
       "description": "Security review, dependency scanning, policy gates, and CVE monitoring",
-      "sourceFile": "plugins\\ruflo-security-audit\\.claude-plugin\\plugin.json"
+      "sourceFile": "plugins\\ruflo-security-audit\\.openclaw-plugin\\plugin.json"
     },
     {
       "name": "ruflo-sparc",
       "version": "0.2.0",
       "description": "SPARC methodology — Specification, Pseudocode, Architecture, Refinement, Completion phases with gate checks",
-      "sourceFile": "plugins\\ruflo-sparc\\.claude-plugin\\plugin.json"
+      "sourceFile": "plugins\\ruflo-sparc\\.openclaw-plugin\\plugin.json"
     },
     {
       "name": "ruflo-swarm",
       "version": "0.2.0",
       "description": "Agent teams, swarm coordination, Monitor streams, and worktree isolation — wraps 4 swarm_* + 8 agent_* MCP tools (12 total) plus 6 topologies (hierarchical / mesh / hierarchical-mesh / ring / star / adaptive)",
-      "sourceFile": "plugins\\ruflo-swarm\\.claude-plugin\\plugin.json"
+      "sourceFile": "plugins\\ruflo-swarm\\.openclaw-plugin\\plugin.json"
     },
     {
       "name": "ruflo-testgen",
       "version": "0.2.0",
       "description": "Test gap detection, coverage analysis, and automated test generation — drives the testgaps background worker via hooks_worker-dispatch; SPARC Refinement-phase canonical owner",
-      "sourceFile": "plugins\\ruflo-testgen\\.claude-plugin\\plugin.json"
+      "sourceFile": "plugins\\ruflo-testgen\\.openclaw-plugin\\plugin.json"
     },
     {
       "name": "ruflo-wasm",
       "version": "0.2.0",
       "description": "Sandboxed WASM agent creation, execution, and gallery sharing — wraps 10 wasm_* MCP tools (agent_create/prompt/tool/list/terminate/files/export + gallery_list/search/create); built on @ruvector/rvagent-wasm + @ruvector/ruvllm-wasm per ADR-070 (Implemented)",
-      "sourceFile": "plugins\\ruflo-wasm\\.claude-plugin\\plugin.json"
+      "sourceFile": "plugins\\ruflo-wasm\\.openclaw-plugin\\plugin.json"
     },
     {
       "name": "ruflo-workflows",
       "version": "0.2.0",
       "description": "Workflow automation with templates, orchestration, and lifecycle management — wraps 10 workflow_* MCP tools (create/run/execute/status/list/pause/resume/cancel/delete/template) with full state-machine lifecycle (created → running ↔ paused → completed/cancelled)",
-      "sourceFile": "plugins\\ruflo-workflows\\.claude-plugin\\plugin.json"
+      "sourceFile": "plugins\\ruflo-workflows\\.openclaw-plugin\\plugin.json"
     }
   ],
   "agents": [
@@ -2144,7 +2144,7 @@
     },
     {
       "name": "plugin-developer",
-      "description": "Plugin development specialist for scaffolding, validating, and publishing Claude Code plugins",
+      "description": "Plugin development specialist for scaffolding, validating, and publishing OpenClaw plugins",
       "plugin": "ruflo-plugin-creator",
       "sourceFile": "plugins\\ruflo-plugin-creator\\agents\\plugin-developer.md"
     },

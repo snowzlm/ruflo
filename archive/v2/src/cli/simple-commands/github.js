@@ -154,7 +154,7 @@ ADVANCED FEATURES:
   • Cross-repository dependency management and synchronization
 
 For complete documentation:
-https://github.com/ruvnet/claude-code-flow/docs/github.md
+https://github.com/ruvnet/openclaw-flow/docs/github.md
 `);
 }
 

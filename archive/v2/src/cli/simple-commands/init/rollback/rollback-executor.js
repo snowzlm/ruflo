@@ -118,7 +118,7 @@ export class RollbackExecutor {
     };
 
     try {
-      const itemsToRemove = ['.roomodes', '.roo', '.claude/commands/sparc'];
+      const itemsToRemove = ['.roomodes', '.roo', '.openclaw/commands/sparc'];
 
       for (const item of itemsToRemove) {
         const itemPath = `${this.workingDir}/${item}`;
@@ -139,9 +139,9 @@ export class RollbackExecutor {
         }
       }
 
-      // Remove SPARC-specific content from CLAUDE.md
+      // Remove SPARC-specific content from OPENCLAW.md
       await this.removeSPARCContentFromClaudeMd();
-      result.actions.push('Cleaned SPARC content from CLAUDE.md');
+      result.actions.push('Cleaned SPARC content from OPENCLAW.md');
     } catch (error) {
       result.success = false;
       result.errors.push(`SPARC rollback failed: ${error.message}`);
@@ -162,7 +162,7 @@ export class RollbackExecutor {
     };
 
     try {
-      const commandsDir = `${this.workingDir}/.claude/commands`;
+      const commandsDir = `${this.workingDir}/.openclaw/commands`;
 
       try {
         // Remove all command files
@@ -343,7 +343,7 @@ export class RollbackExecutor {
 
     try {
       const artifactsToRemove = [
-        'CLAUDE.md',
+        'OPENCLAW.md',
         'memory-bank.md',
         'coordination.md',
         'claude-flow',
@@ -420,7 +420,7 @@ export class RollbackExecutor {
 
     try {
       const expectedCleanItems = [
-        'CLAUDE.md',
+        'OPENCLAW.md',
         'memory-bank.md',
         'coordination.md',
         '.roomodes',
@@ -453,11 +453,11 @@ export class RollbackExecutor {
   }
 
   /**
-   * Remove SPARC content from CLAUDE.md
+   * Remove SPARC content from OPENCLAW.md
    */
   async removeSPARCContentFromClaudeMd() {
     try {
-      const claudePath = `${this.workingDir}/CLAUDE.md`;
+      const claudePath = `${this.workingDir}/OPENCLAW.md`;
 
       try {
         const content = await fs.readFile(claudePath, 'utf8');
@@ -474,7 +474,7 @@ export class RollbackExecutor {
         // File doesn't exist or can't be modified
       }
     } catch {
-      // Error handling CLAUDE.md - continue silently
+      // Error handling OPENCLAW.md - continue silently
     }
   }
 

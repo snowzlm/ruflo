@@ -104,7 +104,7 @@ rest-api-advanced/
 
 ```bash
 # Navigate to the project
-cd /workspaces/claude-code-flow/examples/05-swarm-apps/rest-api-advanced
+cd /workspaces/openclaw-flow/examples/05-swarm-apps/rest-api-advanced
 
 # Run the quick start script
 ./scripts/quick-start.sh
@@ -214,4 +214,4 @@ This is an example project designed to demonstrate best practices. Feel free to:
 
 ## License
 
-This example is part of the Claude Code Flow project and follows the same license terms.
+This example is part of the OpenClaw Flow project and follows the same license terms.

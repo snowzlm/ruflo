@@ -30,7 +30,7 @@ export async function goalCommand(args, flags) {
 }
 
 async function initGoalModule(flags = {}) {
-  const targetDir = path.resolve(process.cwd(), flags.target || '.claude/agents/goal');
+  const targetDir = path.resolve(process.cwd(), flags.target || '.openclaw/agents/goal');
   
   console.log(chalk.magenta('🎯 Initializing Claude Flow Goal Module...'));
   console.log(chalk.gray(`  Target: ${targetDir}`));
@@ -125,7 +125,7 @@ mcp__claude-flow__memory_usage {
     
     console.log(chalk.green('\n✅ Goal module initialized successfully!'));
     console.log(chalk.magenta('\n📚 Usage:'));
-    console.log(chalk.gray('  • In Claude Code: @agent-goal-planner "Create deployment plan"'));
+    console.log(chalk.gray('  • In OpenClaw: @agent-goal-planner "Create deployment plan"'));
     console.log(chalk.gray('  • View agent: cat .claude/agents/goal/goal-planner.md'));
     
   } catch (error) {

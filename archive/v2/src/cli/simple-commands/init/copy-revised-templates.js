@@ -8,7 +8,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Source directory for revised templates (repository root .claude/commands)
-const REPO_TEMPLATES_DIR = path.join(__dirname, '../../../../.claude/commands');
+const REPO_TEMPLATES_DIR = path.join(__dirname, '../../../../.openclaw/commands');
 // Source directory for init templates
 const INIT_TEMPLATES_DIR = path.join(__dirname, './templates');
 
@@ -23,7 +23,7 @@ export async function copyRevisedTemplates(targetDir, options = {}) {
     errors: []
   };
 
-  const targetCommandsDir = path.join(targetDir, '.claude/commands');
+  const targetCommandsDir = path.join(targetDir, '.openclaw/commands');
 
   try {
     // Ensure target directory exists
@@ -34,9 +34,9 @@ export async function copyRevisedTemplates(targetDir, options = {}) {
 
     // Copy additional .claude files if they exist
     const additionalFiles = [
-      { source: REPO_TEMPLATES_DIR, relative: '../config.json', target: '.claude/config.json' },
-      { source: REPO_TEMPLATES_DIR, relative: '../settings.json', target: '.claude/settings.json' },
-      { source: INIT_TEMPLATES_DIR, relative: 'statusline-command.sh', target: '.claude/statusline-command.sh', executable: true }
+      { source: REPO_TEMPLATES_DIR, relative: '../config.json', target: '.openclaw/config.json' },
+      { source: REPO_TEMPLATES_DIR, relative: '../settings.json', target: '.openclaw/settings.json' },
+      { source: INIT_TEMPLATES_DIR, relative: 'statusline-command.sh', target: '.openclaw/statusline-command.sh', executable: true }
     ];
 
     for (const file of additionalFiles) {
@@ -136,7 +136,7 @@ export async function copyRevisedTemplatesByCategory(targetDir, categories, opti
 
   for (const category of categories) {
     const sourceCategoryDir = path.join(REPO_TEMPLATES_DIR, category);
-    const targetCategoryDir = path.join(targetDir, '.claude/commands', category);
+    const targetCategoryDir = path.join(targetDir, '.openclaw/commands', category);
 
     if (fs.existsSync(sourceCategoryDir)) {
       await fs.promises.mkdir(targetCategoryDir, { recursive: true });

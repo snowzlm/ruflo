@@ -113,7 +113,7 @@ outcome_analysis: "Start generic, analyze missed elements, refine selector.
 
 ```bash
 # Navigate to model directory
-cd /workspaces/claude-code-flow/docs/reasoningbank/models/google-research
+cd /workspaces/openclaw-flow/docs/reasoningbank/models/google-research
 
 # The model is ready to use (memory.db)
 ```
@@ -123,8 +123,8 @@ cd /workspaces/claude-code-flow/docs/reasoningbank/models/google-research
 #### 1. Find Success Strategies for a Domain
 
 ```bash
-# Using claude-flow CLI
-npx claude-flow@alpha memory search "web-automation success" \
+# Using ruflo CLI
+ruflo memory search "web-automation success" \
   --namespace google-research \
   --reasoningbank \
   --limit 10
@@ -192,18 +192,18 @@ sqlite3 memory.db "
 "
 ```
 
-### Integration with Claude Flow
+### Integration with Ruflo
 
 ```bash
 # Store decision using Google Research patterns
-npx claude-flow@alpha memory store \
+ruflo memory store \
   "project/decision/authentication" \
   "Using OAuth2 with JWT tokens based on google-research pattern #427" \
   --namespace project \
   --reasoningbank
 
 # Query for similar past decisions
-npx claude-flow@alpha memory search "authentication oauth jwt" \
+ruflo memory search "authentication oauth jwt" \
   --namespace project \
   --reasoningbank
 ```
@@ -437,8 +437,8 @@ This model is provided for research and educational purposes. Please refer to th
 
 ## Support & Questions
 
-- **Issues:** https://github.com/ruvnet/claude-flow/issues
-- **Documentation:** https://github.com/ruvnet/claude-flow/wiki
+- **Issues:** https://github.com/snowzlm/ruflo/issues
+- **Documentation:** https://github.com/snowzlm/ruflo/wiki
 - **Paper:** https://arxiv.org/abs/2509.25140
 
 ## Related Models

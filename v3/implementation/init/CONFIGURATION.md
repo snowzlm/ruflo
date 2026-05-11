@@ -138,7 +138,7 @@ interface AgentsConfig {
 
 ```typescript
 interface MCPConfig {
-  claudeFlow: boolean;    // claude-flow MCP server
+  claudeFlow: boolean;    // ruflo MCP server
   agenticFlow: boolean;   // agentic-flow integration
   memory: boolean;        // Memory MCP tools
   neural: boolean;        // Neural MCP tools

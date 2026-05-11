@@ -4,7 +4,7 @@ title: Optimize ruflo-agentdb — accurate surface, quantization opt-ins, contro
 status: Proposed
 date: 2026-05-04
 authors:
-  - planner (Claude Code)
+  - planner (OpenClaw)
 tags: [plugin, agentdb, mcp, hnsw, rabitq, controllers, namespacing, smoke-test]
 ---
 
@@ -14,7 +14,7 @@ tags: [plugin, agentdb, mcp, hnsw, rabitq, controllers, namespacing, smoke-test]
 
 `ruflo-agentdb` is a thin documentation wrapper around three MCP tool families exposed by `@claude-flow/cli`: `agentdb_*` (controller bridge), `embeddings_*` (RuVector ONNX engine), and `ruvllm_hnsw_*` (WASM-backed pattern router). The plugin ships six files:
 
-- `.claude-plugin/plugin.json:2` — `name: "ruflo-agentdb"`, `version: "0.2.0"`, keywords `agentdb, ruvector, hnsw, embeddings, vector-search`.
+- `.openclaw-plugin/plugin.json:2` — `name: "ruflo-agentdb"`, `version: "0.2.0"`, keywords `agentdb, ruvector, hnsw, embeddings, vector-search`.
 - `README.md:16` — claims `19 AgentDB controllers`; `README.md:49` — calls out HNSW "150x-12,500x" speedup and "384-dim ONNX" embeddings.
 - `agents/agentdb-specialist.md:15` — header `MCP Tools (19 Controllers)` then enumerates eight `agentdb_*` tool prefixes plus `embeddings_*` and `ruvllm_hnsw_*` as bullet groups.
 - `commands/agentdb.md:8` — invokes `agentdb_health` and `agentdb_controllers` and prints "all 19 controllers and their status".
@@ -46,14 +46,14 @@ The "19 controllers" number appears to be a stale snapshot from before ADR-095 G
 
 Beyond the count drift, the plugin omits four substantive capabilities of the substrate it documents:
 
-1. **Quantization.** `embeddings_rabitq_*` provides 32× memory reduction at index time. CLAUDE.md's V3 perf targets explicitly call out "Memory Reduction 50–75% with quantization" as **Implemented**; the plugin advertises HNSW speedup but never mentions quantization.
+1. **Quantization.** `embeddings_rabitq_*` provides 32× memory reduction at index time. OPENCLAW.md's V3 perf targets explicitly call out "Memory Reduction 50–75% with quantization" as **Implemented**; the plugin advertises HNSW speedup but never mentions quantization.
 2. **Index tunables.** `efSearch` / `efConstruction` / `M` directly control the recall/latency tradeoff; the plugin presents HNSW as a binary "150–12,500×" claim with no operating points.
 3. **Namespacing convention.** Every consumer plugin (`ruflo-browser` defines `browser-sessions / browser-selectors / browser-templates / browser-cookies` in its ADR-0001 §3; `ruflo-rag-memory` references `claude-memories / patterns / tasks / solutions`; `ruflo-intelligence` writes to `pattern`) reinvents namespace naming. There is no contract from `ruflo-agentdb` about how namespaces should be named, what they should contain, or how they are GC'd. The `agentdb_*` tools mostly do not even take a namespace parameter — they route to controllers (`reasoningBank`, `hierarchicalMemory`, `causalGraph`) — but the CLI fallback `memory_store` and `embeddings_search` *do* take namespace strings, so the surface is mixed and undocumented.
 4. **Token-efficiency path.** The repo ships `getCompactContext` on the `TokenOptimizer` (`v3/@claude-flow/integration/src/token-optimizer.ts:109`), and `agentdb_context-synthesize` exists for the same goal at the MCP layer. Neither is surfaced by the plugin as a "use this when you want compact retrieved context for an LLM call" workflow.
 
 ### Why now
 
-`ruflo-agentdb` is the substrate plugin — `ruflo-browser` (ADR-0001) explicitly depends on AgentDB namespaces and controller-managed sessions; `ruflo-rag-memory` and `ruflo-intelligence` route through the same controllers; the whole "memory-as-substrate" story in `CLAUDE.md` rests on it. Documentation drift in this plugin is contagious — every downstream plugin inherits the wrong tool count, the wrong controller count, and the missing quantization story. We just fixed the same class of drift in `ruflo-ruvector` (ADR-0001 there); the same pattern applies here.
+`ruflo-agentdb` is the substrate plugin — `ruflo-browser` (ADR-0001) explicitly depends on AgentDB namespaces and controller-managed sessions; `ruflo-rag-memory` and `ruflo-intelligence` route through the same controllers; the whole "memory-as-substrate" story in `OPENCLAW.md` rests on it. Documentation drift in this plugin is contagious — every downstream plugin inherits the wrong tool count, the wrong controller count, and the missing quantization story. We just fixed the same class of drift in `ruflo-ruvector` (ADR-0001 there); the same pattern applies here.
 
 ## Decision
 
@@ -102,7 +102,7 @@ We also fix the speed claim. The 12,500× number is for the embeddings/HNSW path
 Add a new section to `README.md` titled **"Namespace convention"** that ruflo-agentdb owns and downstream plugins consume. The contract:
 
 - **Naming**: `<plugin-stem>-<intent>` kebab-case. Examples: `browser-sessions`, `browser-selectors`, `browser-cookies` (ruflo-browser), `claude-memories` (ruflo-rag-memory's bridge), `pattern` (ruflo-intelligence ReasoningBank fallback).
-- **Three reserved namespaces** owned by the AgentDB plugin itself, not to be shadowed: `pattern` (ReasoningBank fallback writes here per `agentdb-tools.ts:144`), `claude-memories` (Claude Code auto-memory bridge target), `default` (`memory_store` default per `memory-tools.ts:194`).
+- **Three reserved namespaces** owned by the AgentDB plugin itself, not to be shadowed: `pattern` (ReasoningBank fallback writes here per `agentdb-tools.ts:144`), `claude-memories` (OpenClaw auto-memory bridge target), `default` (`memory_store` default per `memory-tools.ts:194`).
 - **Controller routing**: tools in the `agentdb_hierarchical-*` family route by `tier` (`working|episodic|semantic`) not by namespace; tools in the `agentdb_pattern-*` family route by ReasoningBank, again not by namespace. Document explicitly that namespace strings only apply to `memory_*` and `embeddings_search` paths. This stops downstream plugins from passing a `namespace` arg to `agentdb_pattern-store` and being silently confused when it's ignored.
 - **GC posture**: ruflo-agentdb does not GC namespaces. Consumer plugins that want lifecycle (e.g., `browser-sessions` after `purge`) own their own deletion via `memory_delete` + `agentdb_consolidate`. Document this so consumers don't expect cleanup we don't provide.
 - **Naming guardrail**: a namespace SHOULD NOT contain `:` (collides with key-internal delimiters used in the bridge), MUST be ≤200 chars, and MUST pass `validateIdentifier` (the same validator already used in `agentdb-tools.ts:122`).
@@ -141,7 +141,7 @@ The script does NOT test the controller count exactly, does NOT depend on `agent
 Following ruvector ADR-0001:
 
 - Add a "Compatibility" subsection to README.md that states: "Plugin v0.3.x targets `@claude-flow/cli` v3.6.x with bundled `agentdb@^3.0.0-alpha.11`. The plugin is documentation-only and does not pin via package.json; the smoke contract is the verification mechanism."
-- Bump `.claude-plugin/plugin.json` to `0.3.0` when this ADR's changes land. Patch bumps thereafter for accuracy fixes; minor for new namespace-convention rules or new MCP tools surfaced.
+- Bump `.openclaw-plugin/plugin.json` to `0.3.0` when this ADR's changes land. Patch bumps thereafter for accuracy fixes; minor for new namespace-convention rules or new MCP tools surfaced.
 - Plugin pins the **CLI**'s major+minor (`v3.6`), not the npm `agentdb` package, because the CLI is the layer the plugin actually invokes. AgentDB internals (e.g., the alpha.11 → alpha.12 bump) are not the plugin's contract.
 
 ## Consequences
@@ -166,7 +166,7 @@ Following ruvector ADR-0001:
 
 - Plugin version moves `0.2.0` → `0.3.0`. Semver-minor because the namespace convention is a new contract for consumers, not a removal.
 - No new MCP tools are introduced. We are surfacing existing surface, not extending it.
-- No change to the `.claude-plugin/plugin.json` keywords beyond optionally adding `rabitq` and `quantization`. Keywords are advisory only.
+- No change to the `.openclaw-plugin/plugin.json` keywords beyond optionally adding `rabitq` and `quantization`. Keywords are advisory only.
 
 ## Verification
 

@@ -1,12 +1,12 @@
-# ADR-047: Fast Mode Integration for Claude Code
+# ADR-047: Fast Mode Integration for OpenClaw
 
 **Status:** Proposed
 **Date:** 2026-02-08
-**Authors:** RuvNet, Claude Flow Team
+**Authors:** RuvNet, Ruflo Team
 
 ## Context
 
-Claude Code has introduced **Fast Mode** as a research preview feature that provides faster Opus 4.6 responses at higher cost. This feature is valuable for interactive work where latency matters more than cost, such as rapid iteration and live debugging.
+OpenClaw has introduced **Fast Mode** as a research preview feature that provides faster Opus 4.6 responses at higher cost. This feature is valuable for interactive work where latency matters more than cost, such as rapid iteration and live debugging.
 
 ### What is Fast Mode?
 
@@ -45,7 +45,7 @@ Integrate Fast Mode awareness into RuvFlow/Claude-Flow to enable:
 
 #### 1. Settings Generator Update
 
-Add fast mode configuration to `.claude/settings.json`:
+Add fast mode configuration to `.openclaw/settings.json`:
 
 ```json
 {
@@ -211,7 +211,7 @@ const modelDisplay = `${modelName}${fastModeIndicator}`;
 
 ### Phase 5: Documentation
 
-Update CLAUDE.md with fast mode guidance:
+Update OPENCLAW.md with fast mode guidance:
 
 ```markdown
 ## Fast Mode
@@ -219,7 +219,7 @@ Update CLAUDE.md with fast mode guidance:
 Enable fast mode for time-critical tasks:
 
 \`\`\`bash
-# Toggle in Claude Code
+# Toggle in OpenClaw
 /fast
 
 # Or in settings
@@ -269,7 +269,7 @@ No migration needed - this is an additive feature. Existing users:
 
 - Source: https://code.claude.com/docs/en/fast-mode
 - Related: ADR-026 (3-Tier Model Routing)
-- Related: ADR-018 (Claude Code Integration)
+- Related: ADR-018 (OpenClaw Integration)
 
 ## Appendix: CLI Reference
 

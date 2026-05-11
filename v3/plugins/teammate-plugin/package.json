@@ -1,7 +1,7 @@
 {
   "name": "@claude-flow/teammate-plugin",
   "version": "1.0.0-alpha.1",
-  "description": "Native TeammateTool integration plugin for Claude Flow - bridges Claude Code v2.1.19+ multi-agent capabilities",
+  "description": "Native TeammateTool integration plugin for Claude Flow - bridges OpenClaw v2.1.19+ multi-agent capabilities",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -42,7 +42,7 @@
   },
   "keywords": [
     "claude",
-    "claude-code",
+    "openclaw",
     "claude-flow",
     "teammate",
     "multi-agent",
@@ -54,21 +54,21 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ruvnet/claude-flow.git",
+    "url": "https://github.com/snowzlm/ruflo.git",
     "directory": "v3/plugins/teammate-plugin"
   },
   "bugs": {
-    "url": "https://github.com/ruvnet/claude-flow/issues"
+    "url": "https://github.com/snowzlm/ruflo/issues"
   },
-  "homepage": "https://github.com/ruvnet/claude-flow#readme",
+  "homepage": "https://github.com/snowzlm/ruflo#readme",
   "engines": {
     "node": ">=18.0.0"
   },
   "peerDependencies": {
-    "@anthropic-ai/claude-code": ">=2.1.19"
+    "@anthropic-ai/openclaw": ">=2.1.19"
   },
   "peerDependenciesMeta": {
-    "@anthropic-ai/claude-code": {
+    "@anthropic-ai/openclaw": {
       "optional": true
     }
   },
@@ -85,7 +85,7 @@
     "@typescript-eslint/eslint-plugin": "^6.13.0",
     "@typescript-eslint/parser": "^6.13.0"
   },
-  "claude-code": {
+  "openclaw": {
     "minimumVersion": "2.1.19",
     "requiredFeatures": [
       "TeammateTool",

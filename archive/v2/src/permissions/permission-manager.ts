@@ -15,7 +15,7 @@
 import { readFile, writeFile, mkdir, access } from 'fs/promises';
 import { join, dirname } from 'path';
 import { constants } from 'fs';
-import type { PermissionBehavior, PermissionRuleValue, PermissionUpdate } from '@anthropic-ai/claude-code/sdk';
+import type { PermissionBehavior, PermissionRuleValue, PermissionUpdate } from '@anthropic-ai/openclaw/sdk';
 
 // ===== Core Permission Types =====
 

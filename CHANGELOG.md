@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to the Ruflo project (formerly Claude Flow) are documented here.
+All notable changes to the Ruflo project (formerly Ruflo) are documented here.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -9,11 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Ruflo v3.5 — First Major Stable Release
 
-This release marks the official rebranding from **Claude Flow** to **Ruflo** and represents the first major stable release after 5,800+ commits, 55 alpha iterations, and 10 months of development.
+This release marks the official rebranding from **Ruflo** to **Ruflo** and represents the first major stable release after 5,800+ commits, 55 alpha iterations, and 10 months of development.
 
 ### Highlights
 
-- **Rebranding**: Claude Flow → Ruflo across all packages (`@claude-flow/cli`, `claude-flow`, `ruflo`)
+- **Rebranding**: Ruflo → Ruflo across all packages (`@claude-flow/cli`, `ruflo`, `ruflo`)
 - **agentic-flow v3.0.0-alpha.1 Integration**: Full deep integration with 10 subpath exports (ReasoningBank, Router, Orchestration, Agent Booster, SDK, Security, QUIC transport)
 - **AgentDB v3.0.0-alpha.9**: 8 new controllers (HierarchicalMemory, MemoryConsolidation, SemanticRouter, GNNService, RVFOptimizer, MutationGuard, AttestationLog, GuardedVectorBackend) + 6 MCP tools
 - **215 MCP Tools**: Full Model Context Protocol server with vector memory, neural training, swarm coordination
@@ -61,7 +61,7 @@ This release marks the official rebranding from **Claude Flow** to **Ruflo** and
 
 ### Ruflo Branding Fix
 
-- Fixed CLI branding: show 'ruflo' instead of 'claude-flow' when run via `npx ruflo`
+- Fixed CLI branding: show 'ruflo' instead of 'ruflo' when run via `npx ruflo`
 - Fixed Windows ESM import crash with `pathToFileURL`
 - Fixed init hook prompt overflow and description field
 
@@ -117,7 +117,7 @@ This release marks the official rebranding from **Claude Flow** to **Ruflo** and
 - **Rust WASM Policy Kernel**: SIMD128-accelerated policy evaluation
 - **ContinueGate**: Safety gate for agent continuation decisions
 - 22-benchmark suite with before/after performance reporting
-- CLAUDE.md generators, analyzer, and auto-optimizer
+- OPENCLAW.md generators, analyzer, and auto-optimizer
 - Content-aware executor with statistical validation (Spearman ρ, Cohen's d)
 
 ### v3.0.0-alpha.50 — Core V3 Implementation (2025-10)
@@ -204,7 +204,7 @@ This release marks the official rebranding from **Claude Flow** to **Ruflo** and
 - Parallel execution for swarm tasks
 - Background task management
 - Swarm command with improved error handling
-- Claude Code slash commands integration
+- OpenClaw slash commands integration
 
 ### v1.0.28 — Project Management
 

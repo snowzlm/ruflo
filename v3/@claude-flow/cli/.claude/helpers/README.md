@@ -1,4 +1,4 @@
-# Claude Flow V3 Helpers
+# Ruflo V3 Helpers
 
 This directory contains helper scripts and utilities for V3 development.
 
@@ -6,15 +6,15 @@ This directory contains helper scripts and utilities for V3 development.
 
 ```bash
 # Initialize V3 development environment
-.claude/helpers/v3.sh init
+`.openclaw/helpers/v3.sh init
 
 # Quick status check
-.claude/helpers/v3.sh status
+`.openclaw/helpers/v3.sh status
 
 # Update progress metrics
-.claude/helpers/v3.sh update domain 3
-.claude/helpers/v3.sh update agent 8
-.claude/helpers/v3.sh update security 2
+`.openclaw/helpers/v3.sh update domain 3
+`.openclaw/helpers/v3.sh update agent 8
+`.openclaw/helpers/v3.sh update security 2
 ```
 
 ## Available Helpers
@@ -69,13 +69,13 @@ This directory contains helper scripts and utilities for V3 development.
 - Use consistent exit codes (0 = success, non-zero = error)
 
 ### Configuration Integration
-Helpers are configured in `.claude/settings.json`:
+Helpers are configured in `.openclaw/settings.json`:
 ```json
 {
   "helpers": {
-    "directory": ".claude/helpers",
+    "directory": ".openclaw/helpers",
     "enabled": true,
-    "v3ProgressUpdater": ".claude/helpers/update-v3-progress.sh"
+    "v3ProgressUpdater": ".openclaw/helpers/update-v3-progress.sh"
   }
 }
 ```
@@ -90,7 +90,7 @@ Helpers are configured in `.claude/settings.json`:
 
 ## Adding New Helpers
 
-1. Create script in `.claude/helpers/`
+1. Create script in `.openclaw/helpers/`
 2. Make executable: `chmod +x script-name.sh`
 3. Add to settings.json helpers section
 4. Test thoroughly before committing

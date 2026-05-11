@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 /**
- * Claude Code Telemetry Integration
- * Captures real token usage from Claude Code CLI
+ * OpenClaw Telemetry Integration
+ * Captures real token usage from OpenClaw CLI
  */
 
 import { spawn } from 'child_process';

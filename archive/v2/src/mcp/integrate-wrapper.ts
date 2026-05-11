@@ -2,11 +2,11 @@
 import { spawn } from 'child_process';
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
-import { ClaudeCodeMCPWrapper } from './claude-code-wrapper.js';
+import { ClaudeCodeMCPWrapper } from './openclaw-wrapper.js';
 
 /**
  * Integration script that connects the Claude-Flow MCP wrapper
- * to the Claude Code MCP server
+ * to the OpenClaw MCP server
  */
 export class MCPIntegration {
   private claudeCodeClient?: Client;
@@ -18,14 +18,14 @@ export class MCPIntegration {
 
   async connectToClaudeCode(): Promise<void> {
     try {
-      // Start Claude Code MCP server process
-      const claudeCodeProcess = spawn('npx', ['-y', '@anthropic/claude-code', 'mcp'], {
+      // Start OpenClaw MCP server process
+      const claudeCodeProcess = spawn('npx', ['-y', '@anthropic/openclaw', 'mcp'], {
         stdio: ['pipe', 'pipe', 'pipe'],
       });
 
       const transport = new StdioClientTransport({
         command: 'npx',
-        args: ['-y', '@anthropic/claude-code', 'mcp'],
+        args: ['-y', '@anthropic/openclaw', 'mcp'],
       });
 
       this.claudeCodeClient = new Client(
@@ -43,15 +43,15 @@ export class MCPIntegration {
       // Inject the client into the wrapper
       (this.wrapper as any).claudeCodeMCP = this.claudeCodeClient;
 
-      console.log('Connected to Claude Code MCP server');
+      console.log('Connected to OpenClaw MCP server');
     } catch (error) {
-      console.error('Failed to connect to Claude Code MCP:', error);
+      console.error('Failed to connect to OpenClaw MCP:', error);
       throw error;
     }
   }
 
   async start(): Promise<void> {
-    // Connect to Claude Code MCP
+    // Connect to OpenClaw MCP
     await this.connectToClaudeCode();
 
     // Start the wrapper server
@@ -59,7 +59,7 @@ export class MCPIntegration {
   }
 }
 
-// Update the wrapper to use the real Claude Code MCP client
+// Update the wrapper to use the real OpenClaw MCP client
 export function injectClaudeCodeClient(wrapper: ClaudeCodeMCPWrapper, client: Client): void {
   // Override the forwardToClaudeCode method
   (wrapper as any).forwardToClaudeCode = async function (toolName: string, args: any) {
@@ -71,7 +71,7 @@ export function injectClaudeCodeClient(wrapper: ClaudeCodeMCPWrapper, client: Cl
         content: [
           {
             type: 'text',
-            text: `Error calling Claude Code tool ${toolName}: ${error instanceof Error ? error.message : String(error)}`,
+            text: `Error calling OpenClaw tool ${toolName}: ${error instanceof Error ? error.message : String(error)}`,
           },
         ],
         isError: true,

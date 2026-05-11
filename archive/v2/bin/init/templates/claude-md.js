@@ -1,7 +1,7 @@
-// claude-md.js - CLAUDE.md templates
+// claude-md.js - OPENCLAW.md templates
 
 export function createMinimalClaudeMd() {
-  return `# Claude Code Configuration
+  return `# OpenClaw Configuration
 
 ## 🚨 CRITICAL: CONCURRENT EXECUTION FOR ALL ACTIONS
 
@@ -85,7 +85,7 @@ mcp__flow-nexus__swarm_init { topology: "mesh", maxAgents: 5 }
 mcp__flow-nexus__sandbox_create { template: "node", name: "api-dev" }
 \`\`\`
 
-Learn more: https://github.com/ruvnet/claude-flow@alpha#flow-nexus
+Learn more: https://github.com/snowzlm/ruflo@alpha#flow-nexus
 
 ## Project Info
 This is a Claude-Flow AI agent orchestration system.
@@ -93,7 +93,7 @@ This is a Claude-Flow AI agent orchestration system.
 }
 
 export function createFullClaudeMd() {
-  return `# Claude Code Configuration
+  return `# OpenClaw Configuration
 
 ## 🚨 CRITICAL: CONCURRENT EXECUTION FOR ALL ACTIONS
 
@@ -242,12 +242,12 @@ mcp__flow-nexus__swarm_init { topology: "mesh", maxAgents: 5 }
 mcp__flow-nexus__sandbox_create { template: "node", name: "api-dev" }
 \`\`\`
 
-Learn more: https://github.com/ruvnet/claude-flow@alpha#flow-nexus
+Learn more: https://github.com/snowzlm/ruflo@alpha#flow-nexus
 `;
 }
 
 export function createSparcClaudeMd() {
-  return `# Claude Code Configuration - SPARC Development Environment
+  return `# OpenClaw Configuration - SPARC Development Environment
 
 ## 🚨 CRITICAL: CONCURRENT EXECUTION FOR ALL ACTIONS
 
@@ -393,9 +393,9 @@ This project uses the SPARC (Specification, Pseudocode, Architecture, Refinement
 - **\`mcp\`**: External service integration
 - **\`swarm\`**: Multi-agent coordination for complex tasks
 
-## Claude Code Slash Commands
+## OpenClaw Slash Commands
 
-Claude Code slash commands are available in \`.claude/commands/\`:
+OpenClaw slash commands are available in \`.openclaw/commands/\`:
 
 ### Project Commands
 - \`/sparc\`: Execute SPARC methodology workflows
@@ -405,10 +405,10 @@ Claude Code slash commands are available in \`.claude/commands/\`:
 - \`/claude-flow@alpha-swarm\`: Coordinate multi-agent swarms
 
 ### Using Slash Commands
-1. Type \`/\` in Claude Code to see available commands
+1. Type \`/\` in OpenClaw to see available commands
 2. Select a command or type its name
 3. Commands are context-aware and project-specific
-4. Custom commands can be added to \`.claude/commands/\`
+4. Custom commands can be added to \`.openclaw/commands/\`
 
 ## Code Style and Best Practices
 
@@ -499,9 +499,9 @@ Claude Code slash commands are available in \`.claude/commands/\`:
 
 ## Configuration Files
 
-### Claude Code Integration
-- **\`.claude/commands/\`**: Claude Code slash commands for all SPARC modes
-- **\`.claude/logs/\`**: Conversation and session logs
+### OpenClaw Integration
+- **\`.openclaw/commands/\`**: OpenClaw slash commands for all SPARC modes
+- **\`.openclaw/logs/\`**: Conversation and session logs
 
 ### SPARC Configuration
 - **\`.roomodes\`**: SPARC mode definitions and configurations (auto-generated)
@@ -510,7 +510,7 @@ Claude Code slash commands are available in \`.claude/commands/\`:
 ### Claude-Flow Configuration
 - **\`memory/\`**: Persistent memory and session data
 - **\`coordination/\`**: Multi-agent coordination settings
-- **\`CLAUDE.md\`**: Project instructions for Claude Code
+- **\`OPENCLAW.md\`**: Project instructions for OpenClaw
 
 ## Git Workflow Integration
 
@@ -565,9 +565,9 @@ This SPARC-enabled project follows a systematic development approach:
 - Follow the Red-Green-Refactor cycle during TDD phases
 - Document architectural decisions in memory for future reference
 - Regular security reviews for any authentication or data handling code
-- Claude Code slash commands provide quick access to SPARC modes
+- OpenClaw slash commands provide quick access to SPARC modes
 
-For more information about SPARC methodology, see: https://github.com/ruvnet/claude-code-flow/docs/sparc.md
+For more information about SPARC methodology, see: https://github.com/ruvnet/openclaw-flow/docs/sparc.md
 
 ## 🌐 Flow Nexus Cloud Platform
 
@@ -618,13 +618,13 @@ mcp__flow-nexus__swarm_init { topology: "mesh", maxAgents: 5 }
 mcp__flow-nexus__sandbox_create { template: "node", name: "api-dev" }
 \`\`\`
 
-Learn more: https://github.com/ruvnet/claude-flow@alpha#flow-nexus
+Learn more: https://github.com/snowzlm/ruflo@alpha#flow-nexus
 `;
 }
 
-// Create optimized SPARC CLAUDE.md with batchtools integration
+// Create optimized SPARC OPENCLAW.md with batchtools integration
 export function createOptimizedSparcClaudeMd() {
-  return `# Claude Code Configuration - SPARC Development Environment with Psycho-Symbolic Reasoning
+  return `# OpenClaw Configuration - SPARC Development Environment with Psycho-Symbolic Reasoning
 
 ## 🧠 PSYCHO-SYMBOLIC REASONING INTEGRATION
 
@@ -664,16 +664,16 @@ Agents now have cognitive patterns:
 
 **MANDATORY PATTERNS:**
 - **TodoWrite**: ALWAYS batch ALL todos in ONE call (5-10+ todos minimum)
-- **Task tool (Claude Code)**: ALWAYS spawn ALL agents in ONE message with full instructions
+- **Task tool (OpenClaw)**: ALWAYS spawn ALL agents in ONE message with full instructions
 - **File operations**: ALWAYS batch ALL reads/writes/edits in ONE message
 - **Bash commands**: ALWAYS batch ALL terminal operations in ONE message
 - **Memory operations**: ALWAYS batch ALL memory store/retrieve in ONE message
 
-### 🎯 CRITICAL: Claude Code Task Tool for Agent Execution
+### 🎯 CRITICAL: OpenClaw Task Tool for Agent Execution
 
-**Claude Code's Task tool is the PRIMARY way to spawn agents:**
+**OpenClaw's Task tool is the PRIMARY way to spawn agents:**
 \`\`\`javascript
-// ✅ CORRECT: Use Claude Code's Task tool for parallel agent execution
+// ✅ CORRECT: Use OpenClaw's Task tool for parallel agent execution
 [Single Message]:
   Task("Research agent", "Analyze requirements and patterns...", "researcher")
   Task("Coder agent", "Implement core features...", "coder")
@@ -765,9 +765,9 @@ This project uses SPARC (Specification, Pseudocode, Architecture, Refinement, Co
 ### Migration & Planning
 \`migration-planner\`, \`swarm-init\`
 
-## 🎯 Claude Code vs MCP Tools
+## 🎯 OpenClaw vs MCP Tools
 
-### Claude Code Handles ALL EXECUTION:
+### OpenClaw Handles ALL EXECUTION:
 - **Task tool**: Spawn and run agents concurrently for actual work
 - File operations (Read, Write, Edit, MultiEdit, Glob, Grep)
 - Code generation and programming
@@ -788,7 +788,7 @@ This project uses SPARC (Specification, Pseudocode, Architecture, Refinement, Co
 - Performance tracking
 - GitHub integration
 
-**KEY**: MCP coordinates the strategy, Claude Code's Task tool executes with real agents.
+**KEY**: MCP coordinates the strategy, OpenClaw's Task tool executes with real agents.
 
 ## 🚀 Quick Setup
 
@@ -840,19 +840,19 @@ Flow-Nexus extends MCP capabilities with 70+ cloud-based orchestration tools:
 - Login: \`mcp__flow-nexus__user_login\` or \`npx flow-nexus@latest login\`
 - Access 70+ specialized MCP tools for advanced orchestration
 
-## 🚀 Agent Execution Flow with Claude Code
+## 🚀 Agent Execution Flow with OpenClaw
 
 ### The Correct Pattern:
 
 1. **Optional**: Use MCP tools to set up coordination topology
-2. **REQUIRED**: Use Claude Code's Task tool to spawn agents that do actual work
+2. **REQUIRED**: Use OpenClaw's Task tool to spawn agents that do actual work
 3. **REQUIRED**: Each agent runs hooks for coordination
 4. **REQUIRED**: Batch all operations in single messages
 
 ### Example Full-Stack Development:
 
 \`\`\`javascript
-// Single message with all agent spawning via Claude Code's Task tool
+// Single message with all agent spawning via OpenClaw's Task tool
 [Parallel Agent Execution]:
   Task("Backend Developer", "Build REST API with Express. Use hooks for coordination.", "backend-dev")
   Task("Frontend Developer", "Create React UI. Coordinate with backend via memory.", "coder")
@@ -898,7 +898,7 @@ npx claude-flow@alpha hooks session-end --export-metrics true
 
 ## 🎯 Concurrent Execution Examples
 
-### ✅ CORRECT WORKFLOW: MCP Coordinates, Claude Code Executes
+### ✅ CORRECT WORKFLOW: MCP Coordinates, OpenClaw Executes
 
 \`\`\`javascript
 // Step 1: MCP tools set up coordination with cognitive patterns
@@ -915,9 +915,9 @@ npx claude-flow@alpha hooks session-end --export-metrics true
     metadata: { depth: 10, cache: true }
   }
 
-// Step 2: Claude Code Task tool spawns ACTUAL agents that do the work
+// Step 2: OpenClaw Task tool spawns ACTUAL agents that do the work
 [Single Message - Parallel Agent Execution]:
-  // Claude Code's Task tool spawns real agents concurrently
+  // OpenClaw's Task tool spawns real agents concurrently
   Task("Research agent", "Analyze API requirements and best practices. Check memory for prior decisions.", "researcher")
   Task("Coder agent", "Implement REST endpoints with authentication. Coordinate via hooks.", "coder")
   Task("Database agent", "Design and implement database schema. Store decisions in memory.", "code-analyzer")
@@ -1006,13 +1006,13 @@ Message 4: Write "file.js"
 
 ## Support
 
-- Documentation: https://github.com/ruvnet/claude-flow@alpha
-- Issues: https://github.com/ruvnet/claude-flow@alpha/issues
+- Documentation: https://github.com/snowzlm/ruflo@alpha
+- Issues: https://github.com/snowzlm/ruflo@alpha/issues
 - Flow-Nexus Platform: https://flow-nexus.ruv.io (registration required for cloud features)
 
 ---
 
-Remember: **Claude Flow coordinates, Claude Code creates!**
+Remember: **Claude Flow coordinates, OpenClaw creates!**
 
 # important-instruction-reminders
 Do what has been asked; nothing more, nothing less.
@@ -1024,7 +1024,7 @@ Never save working files, text/mds and tests to the root folder.
 }
 
 export function createFlowNexusClaudeMd() {
-  return `# Claude Code Configuration - Flow Nexus Integration
+  return `# OpenClaw Configuration - Flow Nexus Integration
 
 ## 🌐 Flow Nexus Cloud Platform
 
@@ -1069,7 +1069,7 @@ Flow Nexus extends Claude Flow with cloud-powered features for AI development an
 
 ### 🤖 Flow Nexus Agents
 
-Specialized agents for Flow Nexus operations available in \`.claude/agents/flow-nexus/\`:
+Specialized agents for Flow Nexus operations available in \`.openclaw/agents/flow-nexus/\`:
 
 - **flow-nexus-auth**: Authentication and user management
 - **flow-nexus-sandbox**: E2B sandbox deployment and management  
@@ -1083,7 +1083,7 @@ Specialized agents for Flow Nexus operations available in \`.claude/agents/flow-
 
 ### 📁 Flow Nexus Commands
 
-Detailed Flow Nexus command documentation available in \`.claude/commands/flow-nexus/\`:
+Detailed Flow Nexus command documentation available in \`.openclaw/commands/flow-nexus/\`:
 
 - \`login-registration.md\` - Authentication workflows
 - \`sandbox.md\` - E2B sandbox management
@@ -1122,20 +1122,20 @@ mcp__flow-nexus__task_orchestrate({
 })
 \`\`\`
 
-### 🔗 Integration with Claude Code
+### 🔗 Integration with OpenClaw
 
-Flow Nexus seamlessly integrates with Claude Code through MCP (Model Context Protocol):
+Flow Nexus seamlessly integrates with OpenClaw through MCP (Model Context Protocol):
 
 1. **Add MCP Server**: \`claude mcp add flow-nexus npx flow-nexus@latest mcp start\`
-2. **Use in Claude Code**: Access all Flow Nexus tools through MCP interface
+2. **Use in OpenClaw**: Access all Flow Nexus tools through MCP interface
 3. **Agent Coordination**: Use Flow Nexus agents for specialized cloud operations
 4. **Command Reference**: Use slash commands for quick Flow Nexus operations
 
 ### 📚 Learn More
 
-- Documentation: https://github.com/ruvnet/claude-flow@alpha#flow-nexus
-- MCP Integration: Use \`mcp__flow-nexus__*\` tools in Claude Code
-- Agent Usage: Type \`/\` in Claude Code to see Flow Nexus commands
+- Documentation: https://github.com/snowzlm/ruflo@alpha#flow-nexus
+- MCP Integration: Use \`mcp__flow-nexus__*\` tools in OpenClaw
+- Agent Usage: Type \`/\` in OpenClaw to see Flow Nexus commands
 - Community: Join discussions and share templates
 
 ---

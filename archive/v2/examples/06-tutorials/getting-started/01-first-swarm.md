@@ -1,10 +1,10 @@
-# Your First Claude Flow Swarm
+# Your First Ruflo Swarm
 
-This tutorial will guide you through creating your first swarm and understanding how Claude Flow works.
+This tutorial will guide you through creating your first swarm and understanding how Ruflo works.
 
 ## Prerequisites
 
-- Claude Flow installed (`npm install -g claude-flow`)
+- Ruflo installed (`npm install -g ruflo`)
 - Basic command line knowledge
 - Node.js 18+ installed
 
@@ -24,7 +24,7 @@ cd examples
 ```
 
 ### What happens:
-1. Claude Flow creates a swarm coordinator
+1. Ruflo creates a swarm coordinator
 2. Assigns agents based on the task
 3. Agents work together to build the application
 4. Output is saved to the specified directory

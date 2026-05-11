@@ -188,7 +188,7 @@ interface CommitConfig {
   addCoAuthor: boolean;
   /** Co-author to add */
   coAuthor: CoAuthor;
-  /** Add Claude Code reference */
+  /** Add OpenClaw reference */
   addClaudeReference: boolean;
   /** Allowed scopes */
   allowedScopes?: string[];
@@ -320,13 +320,13 @@ export class GitCommitHook {
       }
     }
 
-    // Add Claude Code reference and co-author
+    // Add OpenClaw reference and co-author
     let coAuthorAdded = false;
     if (this.config.addClaudeReference || this.config.addCoAuthor) {
       const additions: string[] = [];
 
       if (this.config.addClaudeReference) {
-        additions.push('\n\nGenerated with [Claude Code](https://claude.com/claude-code)');
+        additions.push('\n\nGenerated with [OpenClaw](https://claude.com/openclaw)');
       }
 
       if (this.config.addCoAuthor) {

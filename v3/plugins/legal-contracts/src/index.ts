@@ -57,8 +57,8 @@ export const pluginMetadata = {
   author: 'Claude Flow Team',
   category: 'legal',
   keywords: ['legal', 'contracts', 'clause', 'risk', 'compliance'],
-  homepage: 'https://github.com/ruvnet/claude-flow',
-  repository: 'https://github.com/ruvnet/claude-flow.git',
+  homepage: 'https://github.com/snowzlm/ruflo',
+  repository: 'https://github.com/snowzlm/ruflo.git',
 };
 
 /**

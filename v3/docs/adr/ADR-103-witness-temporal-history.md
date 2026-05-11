@@ -78,7 +78,7 @@ The witness scripts move to `plugins/ruflo-core/scripts/witness/`:
 | `verify.mjs` | Validate signature + markers against the live tree |
 | `history.mjs` | Query the temporal log: `summary`, `regressions`, `timeline`, `list` |
 
-Plus exposure as Claude Code surface area:
+Plus exposure as OpenClaw surface area:
 
 | File | Purpose |
 |---|---|
@@ -166,7 +166,7 @@ to a small set of commits to read.
 
 - `plugins/ruflo-core/skills/witness/SKILL.md` — adoption guide
 - `plugins/ruflo-core/agents/witness-curator.md` — agent definition
-- `~/.claude/.../project_verification_process.md` — original inline
+- `~/.openclaw/.../project_verification_process.md` — original inline
   regen process; superseded by this ADR's plugin-extracted form
 - ADR-102 — CI smoke harness pattern (this ADR generalizes the
   smoke-test layer to a fully temporal verification layer)

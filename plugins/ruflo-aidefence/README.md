@@ -5,7 +5,7 @@ AI safety scanning, PII detection, prompt injection defense, and adaptive threat
 ## Install
 
 ```
-/plugin marketplace add ruvnet/ruflo
+/plugin marketplace add snowzlm/ruflo
 /plugin install ruflo-aidefence@ruflo
 ```
 

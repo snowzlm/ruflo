@@ -1,15 +1,15 @@
-# ADR-076: Bridge Claude Code Auto-Memory to AgentDB Vector Search
+# ADR-076: Bridge OpenClaw Auto-Memory to AgentDB Vector Search
 
 **Status**: Implemented (Phase 1: helper hook) / Proposed (Phase 2: MCP tools)
 **Date**: 2026-04-07
-**Branch**: `feat/claude-code-memory-bridge`
+**Branch**: `feat/openclaw-memory-bridge`
 **Related**: ADR-048 (AutoMemoryBridge), ADR-075 (learning pipeline), ruDevolution
 
 ## Context
 
-Claude Code's auto-memory system stores project knowledge in `~/.claude/projects/*/memory/MEMORY.md` files with YAML frontmatter. Ruflo's AgentDB stores data in sql.js with ONNX embeddings (all-MiniLM-L6-v2, 384d) for semantic vector search. These two systems were disconnected.
+OpenClaw's auto-memory system stores project knowledge in `~/.openclaw/projects/*/memory/MEMORY.md` files with YAML frontmatter. Ruflo's AgentDB stores data in sql.js with ONNX embeddings (all-MiniLM-L6-v2, 384d) for semantic vector search. These two systems were disconnected.
 
-[ruDevolution](https://github.com/ruvnet/rudevolution) research (`07-context-and-session-management.md`) documents Claude Code's memory internals: auto-memory paths, env vars (`autoMemoryEnabled`, `CLAUDE_CODE_DISABLE_AUTO_MEMORY`), session persistence, dream mode, and compaction system.
+[ruDevolution](https://github.com/ruvnet/rudevolution) research (`07-context-and-session-management.md`) documents OpenClaw's memory internals: auto-memory paths, env vars (`autoMemoryEnabled`, `CLAUDE_CODE_DISABLE_AUTO_MEMORY`), session persistence, dream mode, and compaction system.
 
 ## Decision
 
@@ -17,7 +17,7 @@ Two-phase approach:
 
 ### Phase 1: Helper Hook (Implemented)
 
-The existing `auto-memory-hook.mjs` (SessionStart/SessionEnd) bridges Claude Code memory to AgentDB:
+The existing `auto-memory-hook.mjs` (SessionStart/SessionEnd) bridges OpenClaw memory to AgentDB:
 
 - **import**: Reads MEMORY.md → JSON backend → stores into sql.js with ONNX embeddings
 - **import-all**: Imports ALL Claude memories across ALL projects into AgentDB
@@ -53,11 +53,11 @@ ruflo memory search --unified       # Search both stores
 - Testable via CLI
 - Works via `npx ruflo` without file path dependencies
 - Composable with other MCP tools (swarm, hooks, hive-mind)
-- Claude Code can call them directly through the MCP server
+- OpenClaw can call them directly through the MCP server
 
 ### Phase 3: MicroLoRA Embedding Adaptation (Future)
 
-Once `@ruvector/learning-wasm` MicroLoRA is functional (currently identity pass-through due to zero-initialized weights), adapt the base MiniLM-L6-v2 embeddings for Claude Code's domain vocabulary:
+Once `@ruvector/learning-wasm` MicroLoRA is functional (currently identity pass-through due to zero-initialized weights), adapt the base MiniLM-L6-v2 embeddings for OpenClaw's domain vocabulary:
 
 - Tool names, agent types, MCP concepts cluster closer
 - Successful trajectory patterns reinforce embedding neighborhoods
@@ -102,7 +102,7 @@ Not available mid-session              MCP Tool: memory_search_unified
 ## Files
 
 ### Phase 1 (Implemented)
-- `.claude/helpers/auto-memory-hook.mjs` — vectorization bridge + import-all + pattern flush
+- `.openclaw/helpers/auto-memory-hook.mjs` — vectorization bridge + import-all + pattern flush
 
 ### Phase 2 (Proposed)
 - `v3/@claude-flow/cli/src/mcp-tools/memory-tools.ts` — add MCP tool handlers
@@ -110,7 +110,7 @@ Not available mid-session              MCP Tool: memory_search_unified
 
 ## References
 
-- [ruDevolution](https://github.com/ruvnet/rudevolution) — Claude Code internals via decompilation
+- [ruDevolution](https://github.com/ruvnet/rudevolution) — OpenClaw internals via decompilation
 - `07-context-and-session-management.md` — auto-memory paths, env vars, session persistence
 - `13-extension-points.md` — hooks, MCP, agents, skills integration catalog
 - ADR-048: AutoMemoryBridge design

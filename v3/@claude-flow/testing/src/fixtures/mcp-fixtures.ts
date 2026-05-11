@@ -775,7 +775,7 @@ export const mcpSessionContexts: Record<string, MCPSessionContext> = {
   active: {
     sessionId: 'session-001',
     clientInfo: {
-      name: 'claude-code',
+      name: 'openclaw',
       version: '1.0.0',
     },
     capabilities: {

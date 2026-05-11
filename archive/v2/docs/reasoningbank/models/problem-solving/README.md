@@ -153,7 +153,7 @@ Success Rate: 0.88
 
 ### 1. Root Cause Analysis for System Outage
 ```bash
-npx claude-flow@alpha memory query "How to approach a complex system outage with intermittent failures?" \
+ruflo memory query "How to approach a complex system outage with intermittent failures?" \
   --namespace problem-solving \
   --reasoningbank \
   --k 5
@@ -163,7 +163,7 @@ npx claude-flow@alpha memory query "How to approach a complex system outage with
 
 ### 2. Alternative Solutions for Scaling Bottleneck
 ```bash
-npx claude-flow@alpha memory query "Explore multiple approaches to solve database scaling bottleneck" \
+ruflo memory query "Explore multiple approaches to solve database scaling bottleneck" \
   --namespace problem-solving \
   --reasoningbank \
   --k 5
@@ -173,7 +173,7 @@ npx claude-flow@alpha memory query "Explore multiple approaches to solve databas
 
 ### 3. Unconventional Solution for Deployment Delays
 ```bash
-npx claude-flow@alpha memory query "Traditional deployment process too slow, need breakthrough solution" \
+ruflo memory query "Traditional deployment process too slow, need breakthrough solution" \
   --namespace problem-solving \
   --reasoningbank \
   --k 5
@@ -183,7 +183,7 @@ npx claude-flow@alpha memory query "Traditional deployment process too slow, nee
 
 ### 4. Understanding Product-Market Feedback Dynamics
 ```bash
-npx claude-flow@alpha memory query "Why does increasing marketing spend reduce lead quality?" \
+ruflo memory query "Why does increasing marketing spend reduce lead quality?" \
   --namespace problem-solving \
   --reasoningbank \
   --k 5
@@ -193,7 +193,7 @@ npx claude-flow@alpha memory query "Why does increasing marketing spend reduce l
 
 ### 5. Validating Product Roadmap Assumptions
 ```bash
-npx claude-flow@alpha memory query "Validate assumption that users want more features" \
+ruflo memory query "Validate assumption that users want more features" \
   --namespace problem-solving \
   --reasoningbank \
   --k 5
@@ -284,7 +284,7 @@ const strategy = synthesizeMultiPatternSolution([
 ### 1. Technical Debugging
 ```bash
 # Query
-npx claude-flow@alpha memory query \
+ruflo memory query \
   "API returning inconsistent data for same request" \
   --namespace problem-solving \
   --reasoningbank
@@ -298,7 +298,7 @@ npx claude-flow@alpha memory query \
 ### 2. Business Strategy
 ```bash
 # Query
-npx claude-flow@alpha memory query \
+ruflo memory query \
   "Customer success team expansion not improving retention" \
   --namespace problem-solving \
   --reasoningbank
@@ -312,7 +312,7 @@ npx claude-flow@alpha memory query \
 ### 3. Creative Problem Solving
 ```bash
 # Query
-npx claude-flow@alpha memory query \
+ruflo memory query \
   "Office space shortage without relocating" \
   --namespace problem-solving \
   --reasoningbank
@@ -327,7 +327,7 @@ npx claude-flow@alpha memory query \
 ### 4. Pattern Recognition Across Domains
 ```bash
 # Query
-npx claude-flow@alpha memory query \
+ruflo memory query \
   "How to handle growing costs with growing scale" \
   --namespace problem-solving \
   --reasoningbank
@@ -418,12 +418,12 @@ CREATE TABLE task_trajectories (
 ### 1. Cognitive Pattern Filtering
 ```bash
 # Only convergent (systematic) patterns
-npx claude-flow@alpha memory query "debug production issue" \
+ruflo memory query "debug production issue" \
   --reasoningbank \
   --filter "cognitive_type:convergent"
 
 # Only divergent (creative) patterns
-npx claude-flow@alpha memory query "improve user engagement" \
+ruflo memory query "improve user engagement" \
   --reasoningbank \
   --filter "cognitive_type:divergent"
 ```
@@ -431,12 +431,12 @@ npx claude-flow@alpha memory query "improve user engagement" \
 ### 2. Domain-Specific Queries
 ```bash
 # Technical domain
-npx claude-flow@alpha memory query "scale microservices" \
+ruflo memory query "scale microservices" \
   --reasoningbank \
   --filter "domain:technical"
 
 # Business domain
-npx claude-flow@alpha memory query "reduce customer churn" \
+ruflo memory query "reduce customer churn" \
   --reasoningbank \
   --filter "domain:business"
 ```
@@ -444,7 +444,7 @@ npx claude-flow@alpha memory query "reduce customer churn" \
 ### 3. Success Rate Filtering
 ```bash
 # High-confidence patterns only (>0.85 success rate)
-npx claude-flow@alpha memory query "deploy safely" \
+ruflo memory query "deploy safely" \
   --reasoningbank \
   --filter "success_rate:>0.85"
 ```
@@ -452,13 +452,13 @@ npx claude-flow@alpha memory query "deploy safely" \
 ### 4. Pattern Relationship Exploration
 ```bash
 # Find alternative approaches
-npx claude-flow@alpha memory query "solve scaling problem" \
+ruflo memory query "solve scaling problem" \
   --reasoningbank \
   --links "alternative" \
   --k 10
 
 # Find prerequisite patterns
-npx claude-flow@alpha memory query "implement microservices" \
+ruflo memory query "implement microservices" \
   --reasoningbank \
   --links "requires" \
   --k 5
@@ -467,7 +467,7 @@ npx claude-flow@alpha memory query "implement microservices" \
 ### 5. Multi-Step Trajectory Following
 ```bash
 # Follow proven reasoning paths
-npx claude-flow@alpha memory query "complex system debugging" \
+ruflo memory query "complex system debugging" \
   --reasoningbank \
   --trajectory \
   --steps 5
@@ -552,8 +552,8 @@ db.prepare(`
 
 Run validation suite:
 ```bash
-node /workspaces/claude-code-flow/docs/reasoningbank/models/validation-suite.js \
-  /workspaces/claude-code-flow/docs/reasoningbank/models/problem-solving \
+node /workspaces/openclaw-flow/docs/reasoningbank/models/validation-suite.js \
+  /workspaces/openclaw-flow/docs/reasoningbank/models/problem-solving \
   problem-solving
 ```
 
@@ -569,7 +569,7 @@ node /workspaces/claude-code-flow/docs/reasoningbank/models/validation-suite.js 
 
 ## Integration Examples
 
-### Claude Code Agent Integration
+### OpenClaw Agent Integration
 ```javascript
 // .claude/config.json
 {
@@ -588,7 +588,7 @@ node /workspaces/claude-code-flow/docs/reasoningbank/models/validation-suite.js 
 
 ### MCP Tool Integration
 ```javascript
-// Use with claude-flow MCP server
+// Use with ruflo MCP server
 {
   "action": "query",
   "query": "How to debug intermittent production issues?",
@@ -612,12 +612,12 @@ This model is based on research in:
 
 ## License & Attribution
 
-Part of the claude-flow ReasoningBank system. Pre-trained model available for use with claude-flow and agentic-flow agents.
+Part of the ruflo ReasoningBank system. Pre-trained model available for use with ruflo and agentic-flow agents.
 
 ## Support
 
-- **Documentation**: https://github.com/ruvnet/claude-flow
-- **Issues**: https://github.com/ruvnet/claude-flow/issues
+- **Documentation**: https://github.com/snowzlm/ruflo
+- **Issues**: https://github.com/snowzlm/ruflo/issues
 - **Model Training**: `/docs/reasoningbank/models/problem-solving/train-problem.js`
 - **Validation**: `/docs/reasoningbank/models/validation-suite.js`
 

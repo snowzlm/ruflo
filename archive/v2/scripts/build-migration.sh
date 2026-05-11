@@ -42,7 +42,7 @@ cp src/migration/migration-manifest.json dist/migration/
 echo "📋 Copying templates..."
 mkdir -p dist/migration/templates
 cp -r .claude/ dist/migration/templates/claude || echo "⚠️  .claude folder not found, skipping..."
-cp CLAUDE.md dist/migration/templates/ || echo "⚠️  CLAUDE.md not found, skipping..."
+cp OPENCLAW.md dist/migration/templates/ || echo "⚠️  OPENCLAW.md not found, skipping..."
 cp .roomodes dist/migration/templates/ || echo "⚠️  .roomodes not found, skipping..."
 
 # Make executable

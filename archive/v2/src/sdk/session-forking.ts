@@ -3,10 +3,10 @@
  * Claude-Flow v2.5-alpha.130
  *
  * Implements session forking for 10-20x faster parallel agent spawning
- * using Claude Code SDK's forkSession: true option
+ * using OpenClaw SDK's forkSession: true option
  */
 
-import { query, type Options, type SDKMessage, type Query } from '@anthropic-ai/claude-code';
+import { query, type Options, type SDKMessage, type Query } from '@anthropic-ai/openclaw';
 import { EventEmitter } from 'events';
 import { Logger } from '../core/logger.js';
 import { generateId } from '../utils/helpers.js';

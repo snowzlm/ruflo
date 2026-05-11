@@ -5,7 +5,7 @@ RuVLLM local inference with chat formatting, model configuration, MicroLoRA fine
 ## Install
 
 ```
-/plugin marketplace add ruvnet/ruflo
+/plugin marketplace add snowzlm/ruflo
 /plugin install ruflo-ruvllm@ruflo
 ```
 

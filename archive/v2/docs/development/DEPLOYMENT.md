@@ -23,16 +23,16 @@
 
 ```bash
 # Install from npm registry
-npm install -g claude-flow@alpha
+npm install -g github:snowzlm/ruflo
 
 # Verify installation
-npx claude-flow@alpha --version
+ruflo --version
 
 # Initialize configuration
-npx claude-flow@alpha init --force
+ruflo init --force
 
 # Test installation
-npx claude-flow@alpha swarm "test deployment" --agents 3
+ruflo swarm "test deployment" --agents 3
 ```
 
 ### Prerequisites Check
@@ -111,7 +111,7 @@ CLAUDE_API_KEY=sk-ant-api03-...
 OPENAI_API_KEY=sk-...
 GITHUB_TOKEN=ghp_...
 
-# === Claude Flow Configuration ===
+# === Ruflo Configuration ===
 CLAUDE_FLOW_DEBUG=false
 CLAUDE_FLOW_LOG_LEVEL=info
 CLAUDE_FLOW_DATA_DIR=/app/data
@@ -170,13 +170,13 @@ EOF
 
 ```bash
 # Validate environment configuration
-npx claude-flow@alpha config validate --env production
+ruflo config validate --env production
 
 # Test API connectivity
-npx claude-flow@alpha diagnostics --api-check
+ruflo diagnostics --api-check
 
 # Verify database connection
-npx claude-flow@alpha diagnostics --db-check
+ruflo diagnostics --db-check
 ```
 
 ---
@@ -205,7 +205,7 @@ WORKDIR /app
 
 # Create non-root user
 RUN addgroup -g 1001 -S nodejs && \
-    adduser -S claude-flow -u 1001 -G nodejs
+    adduser -S ruflo -u 1001 -G nodejs
 
 # === Build Stage ===
 FROM base AS builder
@@ -235,13 +235,13 @@ ENV NODE_ENV=production \
     CLAUDE_FLOW_LOG_LEVEL=info
 
 # Copy built application
-COPY --from=builder --chown=claude-flow:nodejs /app/dist ./dist
-COPY --from=builder --chown=claude-flow:nodejs /app/node_modules ./node_modules
-COPY --from=builder --chown=claude-flow:nodejs /app/package*.json ./
+COPY --from=builder --chown=ruflo:nodejs /app/dist ./dist
+COPY --from=builder --chown=ruflo:nodejs /app/node_modules ./node_modules
+COPY --from=builder --chown=ruflo:nodejs /app/package*.json ./
 
 # Create data directories
 RUN mkdir -p /app/data /app/memory /app/config /app/logs && \
-    chown -R claude-flow:nodejs /app
+    chown -R ruflo:nodejs /app
 
 # Copy entrypoint script
 COPY docker-entrypoint.sh /usr/local/bin/
@@ -255,7 +255,7 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
     CMD curl -f http://localhost:3000/health || exit 1
 
 # Switch to non-root user
-USER claude-flow:nodejs
+USER ruflo:nodejs
 
 # Start application
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
@@ -272,8 +272,8 @@ set -e
 
 # Initialize configuration if not exists
 if [ ! -f "/app/config/config.json" ]; then
-    echo "Initializing Claude Flow configuration..."
-    npx claude-flow@alpha init --force --config-dir /app/config
+    echo "Initializing Ruflo configuration..."
+    ruflo init --force --config-dir /app/config
 fi
 
 # Wait for database if DATABASE_URL is set
@@ -299,11 +299,11 @@ fi
 # Run database migrations
 if [ "$NODE_ENV" = "production" ]; then
     echo "Running database migrations..."
-    npx claude-flow@alpha db migrate
+    ruflo db migrate
 fi
 
 # Start the application
-echo "Starting Claude Flow..."
+echo "Starting Ruflo..."
 exec "$@"
 ```
 
@@ -315,8 +315,8 @@ version: '3.8'
 
 services:
   # === Core Services ===
-  claude-flow:
-    image: claude-flow:2.0.0-production
+  ruflo:
+    image: ruflo:2.0.0-production
     container_name: claude-flow-app
     restart: unless-stopped
     ports:
@@ -404,7 +404,7 @@ services:
     networks:
       - claude-flow-net
     depends_on:
-      - claude-flow
+      - ruflo
     healthcheck:
       test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"]
       interval: 30s
@@ -487,10 +487,10 @@ networks:
 
 ```bash
 # Build production image
-docker build -f Dockerfile.production -t claude-flow:2.0.0-production .
+docker build -f Dockerfile.production -t ruflo:2.0.0-production .
 
 # Tag for registry
-docker tag claude-flow:2.0.0-production your-registry.com/claude-flow:2.0.0
+docker tag ruflo:2.0.0-production your-registry.com/claude-flow:2.0.0
 
 # Push to registry
 docker push your-registry.com/claude-flow:2.0.0
@@ -500,10 +500,10 @@ cp .env.production .env
 docker-compose -f docker-compose.production.yml up -d
 
 # View logs
-docker-compose -f docker-compose.production.yml logs -f claude-flow
+docker-compose -f docker-compose.production.yml logs -f ruflo
 
 # Scale services
-docker-compose -f docker-compose.production.yml up -d --scale claude-flow=3
+docker-compose -f docker-compose.production.yml up -d --scale ruflo=3
 
 # Health check
 curl -f http://localhost/health
@@ -597,10 +597,10 @@ CMD ["node", "dist/cli/main.js", "server"]
 version: '3.8'
 
 services:
-  claude-flow:
+  ruflo:
     build: .
-    image: claude-flow:latest
-    container_name: claude-flow
+    image: ruflo:latest
+    container_name: ruflo
     restart: unless-stopped
     ports:
       - "3000:3000"
@@ -657,7 +657,7 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf
       - ./ssl:/etc/nginx/ssl
     depends_on:
-      - claude-flow
+      - ruflo
     networks:
       - claude-flow-network
 
@@ -674,27 +674,27 @@ networks:
 
 ```bash
 # Build Docker image
-docker build -t claude-flow:latest .
+docker build -t ruflo:latest .
 
 # Run with Docker
 docker run -d \
-  --name claude-flow \
+  --name ruflo \
   -p 3000:3000 \
   -e CLAUDE_API_KEY=$CLAUDE_API_KEY \
   -v $(pwd)/data:/data \
-  claude-flow:latest
+  ruflo:latest
 
 # Run with Docker Compose
 docker-compose up -d
 
 # View logs
-docker logs -f claude-flow
+docker logs -f ruflo
 
 # Stop container
-docker stop claude-flow
+docker stop ruflo
 
 # Remove container
-docker rm claude-flow
+docker rm ruflo
 ```
 
 #### Services and Ingress
@@ -705,13 +705,13 @@ apiVersion: v1
 kind: Service
 metadata:
   name: claude-flow-service
-  namespace: claude-flow
+  namespace: ruflo
   labels:
-    app: claude-flow
+    app: ruflo
 spec:
   type: ClusterIP
   selector:
-    app: claude-flow
+    app: ruflo
   ports:
   - name: http
     port: 80
@@ -731,7 +731,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: claude-flow-lb
-  namespace: claude-flow
+  namespace: ruflo
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
     service.beta.kubernetes.io/aws-load-balancer-ssl-cert: "arn:aws:acm:us-west-2:123456789:certificate/..."
@@ -739,7 +739,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: claude-flow
+    app: ruflo
   ports:
   - name: https
     port: 443
@@ -755,7 +755,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: claude-flow-ingress
-  namespace: claude-flow
+  namespace: ruflo
   annotations:
     kubernetes.io/ingress.class: "nginx"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
@@ -803,7 +803,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: claude-flow-data-pvc
-  namespace: claude-flow
+  namespace: ruflo
 spec:
   accessModes:
     - ReadWriteOnce
@@ -816,7 +816,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: claude-flow-memory-pvc
-  namespace: claude-flow
+  namespace: ruflo
 spec:
   accessModes:
     - ReadWriteOnce
@@ -830,12 +830,12 @@ apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: claude-flow-hpa
-  namespace: claude-flow
+  namespace: ruflo
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: claude-flow
+    name: ruflo
   minReplicas: 3
   maxReplicas: 20
   metrics:
@@ -877,7 +877,7 @@ spec:
 
 ```bash
 # Create namespace
-kubectl create namespace claude-flow
+kubectl create namespace ruflo
 
 # Apply RBAC
 kubectl apply -f k8s/namespace.yaml
@@ -888,7 +888,7 @@ kubectl create secret generic claude-flow-secrets \
   --from-literal=claude-api-key="$(echo -n 'your-api-key' | base64)" \
   --from-literal=database-url="$(echo -n 'postgresql://...' | base64)" \
   --from-literal=jwt-secret="$(echo -n 'your-jwt-secret' | base64)" \
-  -n claude-flow
+  -n ruflo
 
 # Apply configurations
 kubectl apply -f k8s/configmap.yaml
@@ -899,28 +899,28 @@ kubectl apply -f k8s/ingress.yaml
 kubectl apply -f k8s/hpa.yaml
 
 # Check deployment status
-kubectl get pods -n claude-flow -w
-kubectl get svc -n claude-flow
-kubectl get ingress -n claude-flow
+kubectl get pods -n ruflo -w
+kubectl get svc -n ruflo
+kubectl get ingress -n ruflo
 
 # View logs
-kubectl logs -f deployment/claude-flow -n claude-flow
+kubectl logs -f deployment/claude-flow -n ruflo
 
 # Scale deployment manually
-kubectl scale deployment/claude-flow --replicas=5 -n claude-flow
+kubectl scale deployment/claude-flow --replicas=5 -n ruflo
 
 # Rolling update
-kubectl set image deployment/claude-flow claude-flow=your-registry.com/claude-flow:2.0.1 -n claude-flow
-kubectl rollout status deployment/claude-flow -n claude-flow
+kubectl set image deployment/claude-flow ruflo=your-registry.com/claude-flow:2.0.1 -n ruflo
+kubectl rollout status deployment/claude-flow -n ruflo
 
 # Rollback if needed
-kubectl rollout undo deployment/claude-flow -n claude-flow
+kubectl rollout undo deployment/claude-flow -n ruflo
 
 # Port forward for testing
-kubectl port-forward svc/claude-flow-service 3000:80 -n claude-flow
+kubectl port-forward svc/claude-flow-service 3000:80 -n ruflo
 
 # Delete deployment
-kubectl delete namespace claude-flow
+kubectl delete namespace ruflo
 ```
 
 ---
@@ -931,7 +931,7 @@ kubectl delete namespace claude-flow
 
 ```yaml
 # .github/workflows/deploy.yml
-name: Deploy Claude Flow
+name: Deploy Ruflo
 
 on:
   push:
@@ -1069,7 +1069,7 @@ jobs:
     
     - name: Deploy to staging
       run: |
-        kubectl set image deployment/claude-flow claude-flow=${{ needs.build.outputs.image }} -n claude-flow-staging
+        kubectl set image deployment/claude-flow ruflo=${{ needs.build.outputs.image }} -n claude-flow-staging
         kubectl rollout status deployment/claude-flow -n claude-flow-staging --timeout=300s
     
     - name: Run smoke tests
@@ -1077,7 +1077,7 @@ jobs:
         kubectl port-forward svc/claude-flow-service 3000:80 -n claude-flow-staging &
         sleep 10
         curl -f http://localhost:3000/health || exit 1
-        npx claude-flow@alpha swarm "test deployment" --agents 1 || exit 1
+        ruflo swarm "test deployment" --agents 1 || exit 1
 
   deploy-production:
     needs: build
@@ -1103,23 +1103,23 @@ jobs:
     - name: Deploy to production
       run: |
         # Blue-green deployment
-        kubectl patch deployment claude-flow -p '{"spec":{"template":{"spec":{"containers":[{"name":"claude-flow","image":"${{ needs.build.outputs.image }}"}]}}}}' -n claude-flow
-        kubectl rollout status deployment/claude-flow -n claude-flow --timeout=600s
+        kubectl patch deployment ruflo -p '{"spec":{"template":{"spec":{"containers":[{"name":"ruflo","image":"${{ needs.build.outputs.image }}"}]}}}}' -n ruflo
+        kubectl rollout status deployment/claude-flow -n ruflo --timeout=600s
     
     - name: Run production tests
       run: |
         # Wait for deployment to be ready
-        kubectl wait --for=condition=available --timeout=300s deployment/claude-flow -n claude-flow
+        kubectl wait --for=condition=available --timeout=300s deployment/claude-flow -n ruflo
         
         # Run health checks
-        EXTERNAL_IP=$(kubectl get svc claude-flow-lb -n claude-flow -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+        EXTERNAL_IP=$(kubectl get svc claude-flow-lb -n ruflo -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
         curl -f "https://$EXTERNAL_IP/health" || exit 1
     
     - name: Notify deployment
       uses: 8398a7/action-slack@v3
       with:
         status: ${{ job.status }}
-        text: "Claude Flow ${{ github.ref_name }} deployed to production"
+        text: "Ruflo ${{ github.ref_name }} deployed to production"
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 ```
@@ -1223,14 +1223,14 @@ resource "aws_db_instance" "claude_flow" {
   
   tags = {
     Environment = "production"
-    Application = "claude-flow"
+    Application = "ruflo"
   }
 }
 
 # ElastiCache Redis
 resource "aws_elasticache_replication_group" "claude_flow" {
   replication_group_id         = "claude-flow-redis"
-  description                  = "Redis cluster for Claude Flow"
+  description                  = "Redis cluster for Ruflo"
   
   node_type                    = "cache.r6g.large"
   port                         = 6379
@@ -1252,7 +1252,7 @@ resource "aws_elasticache_replication_group" "claude_flow" {
   
   tags = {
     Environment = "production"
-    Application = "claude-flow"
+    Application = "ruflo"
   }
 }
 
@@ -1299,12 +1299,12 @@ alerting:
         - targets: ['alertmanager:9093']
 
 scrape_configs:
-  # Claude Flow application
-  - job_name: 'claude-flow'
+  # Ruflo application
+  - job_name: 'ruflo'
     kubernetes_sd_configs:
       - role: pod
         namespaces:
-          names: ['claude-flow']
+          names: ['ruflo']
     relabel_configs:
       - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
         action: keep
@@ -1367,8 +1367,8 @@ gzip "$BACKUP_DIR/redis_$DATE.rdb"
 
 # Configuration backup
 echo "Backing up configurations..."
-kubectl get secret claude-flow-secrets -n claude-flow -o yaml > "$BACKUP_DIR/secrets_$DATE.yaml"
-kubectl get configmap claude-flow-config -n claude-flow -o yaml > "$BACKUP_DIR/config_$DATE.yaml"
+kubectl get secret claude-flow-secrets -n ruflo -o yaml > "$BACKUP_DIR/secrets_$DATE.yaml"
+kubectl get configmap claude-flow-config -n ruflo -o yaml > "$BACKUP_DIR/config_$DATE.yaml"
 
 # Application data backup
 echo "Backing up application data..."
@@ -1395,7 +1395,7 @@ echo "Backup completed successfully!"
 
 # Send notification
 curl -X POST -H 'Content-type: application/json' \
-    --data "{\"text\":\"✅ Claude Flow backup completed: $DATE\"}" \
+    --data "{\"text\":\"✅ Ruflo backup completed: $DATE\"}" \
     "$SLACK_WEBHOOK_URL"
 ```
 
@@ -1409,7 +1409,7 @@ curl -X POST -H 'Content-type: application/json' \
 # Create secrets in AWS Secrets Manager
 aws secretsmanager create-secret \
     --name "claude-flow/api-keys" \
-    --description "Claude Flow API keys" \
+    --description "Ruflo API keys" \
     --secret-string '{
         "claude-api-key": "sk-ant-api03-...",
         "openai-api-key": "sk-...",
@@ -1533,7 +1533,7 @@ aws elbv2 create-listener \
 
 ```bash
 #!/bin/bash
-# Deploy Claude Flow to AWS EKS
+# Deploy Ruflo to AWS EKS
 
 # Variables
 CLUSTER_NAME="claude-flow-production"
@@ -1585,7 +1585,7 @@ echo "EKS cluster $CLUSTER_NAME created successfully!"
 
 ```json
 {
-  "family": "claude-flow",
+  "family": "ruflo",
   "networkMode": "awsvpc",
   "requiresCompatibilities": ["FARGATE"],
   "cpu": "2048",
@@ -1594,7 +1594,7 @@ echo "EKS cluster $CLUSTER_NAME created successfully!"
   "taskRoleArn": "arn:aws:iam::ACCOUNT:role/claudeFlowTaskRole",
   "containerDefinitions": [
     {
-      "name": "claude-flow",
+      "name": "ruflo",
       "image": "ACCOUNT.dkr.ecr.us-west-2.amazonaws.com/claude-flow:2.0.0",
       "portMappings": [
         {"containerPort": 3000, "protocol": "tcp"},
@@ -1638,12 +1638,12 @@ aws ecs register-task-definition --cli-input-json file://task-definition.json
 
 aws ecs create-service \
   --cluster claude-flow-production \
-  --service-name claude-flow \
-  --task-definition claude-flow:1 \
+  --service-name ruflo \
+  --task-definition ruflo:1 \
   --desired-count 3 \
   --launch-type FARGATE \
   --network-configuration "awsvpcConfiguration={subnets=[subnet-12345,subnet-67890],securityGroups=[sg-12345],assignPublicIp=DISABLED}" \
-  --load-balancers "targetGroupArn=arn:aws:elasticloadbalancing:us-west-2:ACCOUNT:targetgroup/claude-flow/12345,containerName=claude-flow,containerPort=3000" \
+  --load-balancers "targetGroupArn=arn:aws:elasticloadbalancing:us-west-2:ACCOUNT:targetgroup/claude-flow/12345,containerName=ruflo,containerPort=3000" \
   --enable-logging
 ```
 
@@ -1683,8 +1683,8 @@ gcloud container clusters get-credentials $CLUSTER_NAME --region=$REGION --proje
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/cloud/deploy.yaml
 
 # Deploy application
-kubectl create namespace claude-flow
-kubectl apply -f k8s/ -n claude-flow
+kubectl create namespace ruflo
+kubectl apply -f k8s/ -n ruflo
 
 echo "GKE deployment completed!"
 ```
@@ -1696,7 +1696,7 @@ echo "GKE deployment completed!"
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
-  name: claude-flow
+  name: ruflo
   annotations:
     run.googleapis.com/ingress: all
     run.googleapis.com/execution-environment: gen2
@@ -1755,9 +1755,9 @@ gcloud run services replace cloud-run.yaml \
 # Deploy to Azure Container Instances
 az container create \
   --resource-group claude-flow-rg \
-  --name claude-flow \
+  --name ruflo \
   --image claudeflow/claude-flow:latest \
-  --dns-name-label claude-flow \
+  --dns-name-label ruflo \
   --ports 3000 \
   --environment-variables CLAUDE_API_KEY=$CLAUDE_API_KEY
 
@@ -1765,7 +1765,7 @@ az container create \
 az webapp create \
   --resource-group claude-flow-rg \
   --plan claude-flow-plan \
-  --name claude-flow \
+  --name ruflo \
   --deployment-container-image-name claudeflow/claude-flow:latest
 ```
 
@@ -1773,7 +1773,7 @@ az webapp create \
 
 ```bash
 # Create Heroku app
-heroku create claude-flow
+heroku create ruflo
 
 # Set environment variables
 heroku config:set CLAUDE_API_KEY=$CLAUDE_API_KEY
@@ -1799,13 +1799,13 @@ heroku logs --tail
 # nginx.conf
 server {
     listen 80;
-    server_name claude-flow.example.com;
+    server_name ruflo.example.com;
     return 301 https://$server_name$request_uri;
 }
 
 server {
     listen 443 ssl http2;
-    server_name claude-flow.example.com;
+    server_name ruflo.example.com;
     
     ssl_certificate /etc/nginx/ssl/cert.pem;
     ssl_certificate_key /etc/nginx/ssl/key.pem;
@@ -1918,7 +1918,7 @@ health_check() {
   else
     echo "❌ Service is unhealthy (HTTP $response)"
     # Send alert
-    send_alert "Claude Flow service is down"
+    send_alert "Ruflo service is down"
   fi
 }
 
@@ -1954,7 +1954,7 @@ send_alert() {
 # Run checks
 while true; do
   clear
-  echo "Claude Flow Monitoring - $(date)"
+  echo "Ruflo Monitoring - $(date)"
   echo "================================"
   health_check
   check_memory
@@ -2061,29 +2061,29 @@ net.ipv4.tcp_fin_timeout = 30
 
 ```bash
 # Check memory usage
-kubectl top pods -n claude-flow
+kubectl top pods -n ruflo
 
 # Increase memory limits
-kubectl patch deployment claude-flow -n claude-flow -p='{"spec":{"template":{"spec":{"containers":[{"name":"claude-flow","resources":{"limits":{"memory":"8Gi"}}}]}}}}'
+kubectl patch deployment ruflo -n ruflo -p='{"spec":{"template":{"spec":{"containers":[{"name":"ruflo","resources":{"limits":{"memory":"8Gi"}}}]}}}}'
 
 # Enable memory profiling
-kubectl set env deployment/claude-flow NODE_OPTIONS="--max-old-space-size=6144" -n claude-flow
+kubectl set env deployment/claude-flow NODE_OPTIONS="--max-old-space-size=6144" -n ruflo
 ```
 
 #### Issue: High Response Times
 
 ```bash
 # Check pod resource usage
-kubectl describe pod -l app=claude-flow -n claude-flow
+kubectl describe pod -l app=ruflo -n ruflo
 
 # Scale up replicas
-kubectl scale deployment claude-flow --replicas=5 -n claude-flow
+kubectl scale deployment ruflo --replicas=5 -n ruflo
 
 # Check database connections
-kubectl exec deployment/claude-flow -n claude-flow -- psql $DATABASE_URL -c "SELECT count(*) FROM pg_stat_activity;"
+kubectl exec deployment/claude-flow -n ruflo -- psql $DATABASE_URL -c "SELECT count(*) FROM pg_stat_activity;"
 
 # Optimize database queries
-kubectl exec deployment/claude-flow -n claude-flow -- npx claude-flow@alpha db optimize
+kubectl exec deployment/claude-flow -n ruflo -- ruflo db optimize
 ```
 
 #### Issue: Database Connection Pool Exhaustion
@@ -2098,23 +2098,23 @@ FROM pg_stat_activity
 GROUP BY state;"
 
 # Increase connection limits
-kubectl patch configmap claude-flow-config -n claude-flow -p='{"data":{"config.json":"{\"database\":{\"pool\":{\"max\":50,\"min\":10}}}"}}'
+kubectl patch configmap claude-flow-config -n ruflo -p='{"data":{"config.json":"{\"database\":{\"pool\":{\"max\":50,\"min\":10}}}"}}'
 
 # Restart deployment
-kubectl rollout restart deployment/claude-flow -n claude-flow
+kubectl rollout restart deployment/claude-flow -n ruflo
 ```
 
 #### Issue: Load Balancer Health Check Failures
 
 ```bash
 # Check health endpoint
-kubectl exec deployment/claude-flow -n claude-flow -- curl -f http://localhost:3000/health
+kubectl exec deployment/claude-flow -n ruflo -- curl -f http://localhost:3000/health
 
 # View detailed health status
-kubectl exec deployment/claude-flow -n claude-flow -- npx claude-flow@alpha diagnostics --health
+kubectl exec deployment/claude-flow -n ruflo -- ruflo diagnostics --health
 
 # Check ingress configuration
-kubectl describe ingress claude-flow-ingress -n claude-flow
+kubectl describe ingress claude-flow-ingress -n ruflo
 
 # Test from outside cluster
 curl -H "Host: api.claude-flow.com" http://$(kubectl get svc ingress-nginx-controller -n ingress-nginx -o jsonpath='{.status.loadBalancer.ingress[0].ip}')/health
@@ -2124,16 +2124,16 @@ curl -H "Host: api.claude-flow.com" http://$(kubectl get svc ingress-nginx-contr
 
 ```bash
 # Check certificate status
-kubectl get certificate claude-flow-tls -n claude-flow
+kubectl get certificate claude-flow-tls -n ruflo
 
 # Describe certificate for details
-kubectl describe certificate claude-flow-tls -n claude-flow
+kubectl describe certificate claude-flow-tls -n ruflo
 
 # Check cert-manager logs
 kubectl logs deployment/cert-manager -n cert-manager
 
 # Force certificate renewal
-kubectl delete certificate claude-flow-tls -n claude-flow
+kubectl delete certificate claude-flow-tls -n ruflo
 kubectl apply -f k8s/cert-issuer.yaml
 ```
 
@@ -2141,39 +2141,39 @@ kubectl apply -f k8s/cert-issuer.yaml
 
 ```bash
 # Check CPU metrics
-kubectl top pods -n claude-flow
+kubectl top pods -n ruflo
 
 # Profile application
-kubectl exec deployment/claude-flow -n claude-flow -- node --prof /app/dist/index.js &
+kubectl exec deployment/claude-flow -n ruflo -- node --prof /app/dist/index.js &
 # Let it run for a few minutes, then:
-kubectl exec deployment/claude-flow -n claude-flow -- node --prof-process isolate-*.log > profile.txt
+kubectl exec deployment/claude-flow -n ruflo -- node --prof-process isolate-*.log > profile.txt
 
 # Scale horizontally
-kubectl patch hpa claude-flow-hpa -n claude-flow -p='{"spec":{"minReplicas":5,"maxReplicas":30}}'
+kubectl patch hpa claude-flow-hpa -n ruflo -p='{"spec":{"minReplicas":5,"maxReplicas":30}}'
 ```
 
 ### Debug Mode & Diagnostics
 
 ```bash
 # Enable production debugging (use cautiously)
-kubectl set env deployment/claude-flow -n claude-flow \
+kubectl set env deployment/claude-flow -n ruflo \
   CLAUDE_FLOW_DEBUG=true \
   CLAUDE_FLOW_LOG_LEVEL=debug
 
 # Get comprehensive diagnostics
-kubectl exec deployment/claude-flow -n claude-flow -- npx claude-flow@alpha diagnostics --full > diagnostic-report.txt
+kubectl exec deployment/claude-flow -n ruflo -- ruflo diagnostics --full > diagnostic-report.txt
 
 # Monitor real-time logs
-kubectl logs -f deployment/claude-flow -n claude-flow --tail=100
+kubectl logs -f deployment/claude-flow -n ruflo --tail=100
 
 # Export cluster information
 kubectl cluster-info dump > cluster-dump.txt
 
 # Check resource quotas
-kubectl describe quota -n claude-flow
+kubectl describe quota -n ruflo
 
 # View events
-kubectl get events -n claude-flow --sort-by='.metadata.creationTimestamp'
+kubectl get events -n ruflo --sort-by='.metadata.creationTimestamp'
 ```
 
 ### Emergency Procedures
@@ -2184,20 +2184,20 @@ kubectl get events -n claude-flow --sort-by='.metadata.creationTimestamp'
 #!/bin/bash
 # emergency-shutdown.sh
 
-echo "🚨 EMERGENCY: Shutting down Claude Flow..."
+echo "🚨 EMERGENCY: Shutting down Ruflo..."
 
 # Scale down to zero
-kubectl scale deployment claude-flow --replicas=0 -n claude-flow
+kubectl scale deployment ruflo --replicas=0 -n ruflo
 
 # Stop autoscaling
-kubectl patch hpa claude-flow-hpa -n claude-flow -p='{"spec":{"minReplicas":0,"maxReplicas":0}}'
+kubectl patch hpa claude-flow-hpa -n ruflo -p='{"spec":{"minReplicas":0,"maxReplicas":0}}'
 
 # Cordon nodes (if necessary)
 # kubectl cordon <node-name>
 
 # Send alert
 curl -X POST -H 'Content-type: application/json' \
-  --data '{"text":"🚨 EMERGENCY: Claude Flow has been shut down!"}' \
+  --data '{"text":"🚨 EMERGENCY: Ruflo has been shut down!"}' \
   "$SLACK_WEBHOOK_URL"
 
 echo "✅ Emergency shutdown complete"
@@ -2207,31 +2207,31 @@ echo "✅ Emergency shutdown complete"
 
 ```bash
 # Implement circuit breaker for external APIs
-kubectl patch configmap claude-flow-config -n claude-flow -p='{
+kubectl patch configmap claude-flow-config -n ruflo -p='{
   "data": {
     "config.json": "{\"circuitBreaker\":{\"enabled\":true,\"threshold\":10,\"timeout\":60000}}"
   }
 }'
 
 # Restart to apply changes
-kubectl rollout restart deployment/claude-flow -n claude-flow
+kubectl rollout restart deployment/claude-flow -n ruflo
 ```
 
 ### Performance Debugging
 
 ```bash
 # Memory leak detection
-kubectl exec deployment/claude-flow -n claude-flow -- node --trace-gc --expose-gc /app/dist/index.js
+kubectl exec deployment/claude-flow -n ruflo -- node --trace-gc --expose-gc /app/dist/index.js
 
 # CPU profiling in production
-kubectl exec deployment/claude-flow -n claude-flow -- node --prof-process /tmp/isolate-*.log > cpu-profile.txt
+kubectl exec deployment/claude-flow -n ruflo -- node --prof-process /tmp/isolate-*.log > cpu-profile.txt
 
 # Network debugging
-kubectl exec deployment/claude-flow -n claude-flow -- netstat -tupln
-kubectl exec deployment/claude-flow -n claude-flow -- ss -tulpn
+kubectl exec deployment/claude-flow -n ruflo -- netstat -tupln
+kubectl exec deployment/claude-flow -n ruflo -- ss -tulpn
 
 # Database query analysis
-kubectl exec deployment/claude-flow -n claude-flow -- psql $DATABASE_URL -c "
+kubectl exec deployment/claude-flow -n ruflo -- psql $DATABASE_URL -c "
 SELECT query, calls, total_time, mean_time 
 FROM pg_stat_statements 
 ORDER BY total_time DESC 
@@ -2248,13 +2248,13 @@ LIMIT 10;"
 #!/bin/bash
 # support-runbook.sh - Quick diagnostic commands
 
-echo "🔍 Claude Flow Production Diagnostics"
+echo "🔍 Ruflo Production Diagnostics"
 echo "======================================"
 
 echo "📊 Cluster Status:"
 kubectl get nodes -o wide
-kubectl get pods -n claude-flow
-kubectl top pods -n claude-flow
+kubectl get pods -n ruflo
+kubectl top pods -n ruflo
 
 echo "📈 Application Health:"
 curl -s https://api.claude-flow.com/health | jq '.'
@@ -2268,7 +2268,7 @@ redis-cli -u $REDIS_URL info memory | grep used_memory_human
 redis-cli -u $REDIS_URL ping
 
 echo "🔧 Recent Logs:"
-kubectl logs deployment/claude-flow -n claude-flow --tail=50 --timestamps
+kubectl logs deployment/claude-flow -n ruflo --tail=50 --timestamps
 
 echo "⚠️  Recent Alerts:"
 curl -s http://alertmanager:9093/api/v1/alerts | jq '.data[] | select(.state=="firing") | .labels.alertname'
@@ -2308,29 +2308,29 @@ Level 3: Leadership
 - **API Documentation**: [API_DOCUMENTATION.md](./API_DOCUMENTATION.md)  
 - **Development Workflow**: [DEVELOPMENT_WORKFLOW.md](./DEVELOPMENT_WORKFLOW.md)
 - **Main Documentation**: [INDEX.md](./INDEX.md)
-- **Repository**: https://github.com/ruvnet/claude-flow
-- **Issues**: https://github.com/ruvnet/claude-flow/issues
+- **Repository**: https://github.com/snowzlm/ruflo
+- **Issues**: https://github.com/snowzlm/ruflo/issues
 
 ### Quick Commands Reference
 
 ```bash
 # Essential production commands
-npx claude-flow@alpha --version                    # Check version
-npx claude-flow@alpha diagnostics --full           # Full system check
-npx claude-flow@alpha swarm "test" --agents 3      # Quick functionality test
-npx claude-flow@alpha config validate              # Validate configuration
+ruflo --version                    # Check version
+ruflo diagnostics --full           # Full system check
+ruflo swarm "test" --agents 3      # Quick functionality test
+ruflo config validate              # Validate configuration
 
 # Kubernetes shortcuts
-alias kgp="kubectl get pods -n claude-flow"
-alias kgs="kubectl get svc -n claude-flow"  
-alias kgi="kubectl get ingress -n claude-flow"
-alias kl="kubectl logs -f deployment/claude-flow -n claude-flow"
-alias kdp="kubectl describe pod -l app=claude-flow -n claude-flow"
+alias kgp="kubectl get pods -n ruflo"
+alias kgs="kubectl get svc -n ruflo"  
+alias kgi="kubectl get ingress -n ruflo"
+alias kl="kubectl logs -f deployment/claude-flow -n ruflo"
+alias kdp="kubectl describe pod -l app=ruflo -n ruflo"
 
 # Emergency commands
-kubectl scale deployment claude-flow --replicas=0 -n claude-flow  # Emergency stop
-kubectl rollout undo deployment/claude-flow -n claude-flow        # Rollback
-kubectl get events --sort-by='.metadata.creationTimestamp' -n claude-flow  # Recent events
+kubectl scale deployment ruflo --replicas=0 -n ruflo  # Emergency stop
+kubectl rollout undo deployment/claude-flow -n ruflo        # Rollback
+kubectl get events --sort-by='.metadata.creationTimestamp' -n ruflo  # Recent events
 ```
 
 ---
@@ -2343,6 +2343,6 @@ kubectl get events --sort-by='.metadata.creationTimestamp' -n claude-flow  # Rec
 
 [📚 Documentation Home](./INDEX.md) | [🏗️ Architecture](./ARCHITECTURE.md) | [📖 API Reference](./API_DOCUMENTATION.md) | [⚡ Development](./DEVELOPMENT_WORKFLOW.md)
 
-[🐙 GitHub Repository](https://github.com/ruvnet/claude-flow) | [🐛 Report Issues](https://github.com/ruvnet/claude-flow/issues) | [💬 Community Support](https://discord.gg/claude-flow)
+[🐙 GitHub Repository](https://github.com/snowzlm/ruflo) | [🐛 Report Issues](https://github.com/snowzlm/ruflo/issues) | [💬 Community Support](https://discord.gg/claude-flow)
 
 </div>

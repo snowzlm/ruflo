@@ -88,6 +88,6 @@ SEED_ENDPOINT=http://169.254.42.1 \
 
 ## License
 
-MIT — Claude Flow Team.
+MIT — Ruflo Team.
 
 Cognitum Seed hardware: see https://cognitum.one for licensing and acquisition.

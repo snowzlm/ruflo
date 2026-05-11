@@ -49,9 +49,9 @@ describe('RollbackSystem', () => {
   describe('Backup Management', () => {
     it('should create pre-init backup successfully', async () => {
       // Mock existing files
-      fs.readdir.mockResolvedValue(['CLAUDE.md', 'package.json']);
+      fs.readdir.mockResolvedValue(['OPENCLAW.md', 'package.json']);
       fs.stat.mockImplementation((path) => {
-        if (path.endsWith('CLAUDE.md') || path.endsWith('package.json')) {
+        if (path.endsWith('OPENCLAW.md') || path.endsWith('package.json')) {
           return Promise.resolve({ isFile: () => true, isDirectory: () => false });
         }
         return Promise.resolve({ isFile: () => false, isDirectory: () => true });
@@ -93,7 +93,7 @@ describe('RollbackSystem', () => {
 
     it('should backup only relevant files', async () => {
       fs.readdir.mockResolvedValue([
-        'CLAUDE.md',
+        'OPENCLAW.md',
         '.claude',
         'package.json',
         'node_modules',
@@ -112,7 +112,7 @@ describe('RollbackSystem', () => {
 
       // Should not backup node_modules or .git
       expect(fs.copyFile).toHaveBeenCalledWith(
-        expect.stringContaining('CLAUDE.md'),
+        expect.stringContaining('OPENCLAW.md'),
         expect.any(String)
       );
       expect(fs.copyFile).toHaveBeenCalledWith(
@@ -135,7 +135,7 @@ describe('RollbackSystem', () => {
       const checkpointData = {
         phase: 'file-creation',
         timestamp: Date.now(),
-        files: ['CLAUDE.md', '.claude/settings.json']
+        files: ['OPENCLAW.md', '.openclaw/settings.json']
       };
 
       const result = await rollbackSystem.createCheckpoint('test-checkpoint', checkpointData);
@@ -164,7 +164,7 @@ describe('RollbackSystem', () => {
           return Promise.resolve(JSON.stringify({
             type: 'pre-init',
             timestamp: Date.now(),
-            files: ['CLAUDE.md']
+            files: ['OPENCLAW.md']
           }));
         }
         if (path.includes('checkpoint.json')) {
@@ -199,7 +199,7 @@ describe('RollbackSystem', () => {
       // Mock backup structure
       fs.readdir.mockImplementation((path) => {
         if (path.includes('backup-123')) {
-          return Promise.resolve(['CLAUDE.md', 'package.json']);
+          return Promise.resolve(['OPENCLAW.md', 'package.json']);
         }
         return Promise.resolve(['backup-123']);
       });
@@ -209,7 +209,7 @@ describe('RollbackSystem', () => {
           return Promise.resolve(JSON.stringify({
             type: 'pre-init',
             timestamp: Date.now(),
-            files: ['CLAUDE.md', 'package.json']
+            files: ['OPENCLAW.md', 'package.json']
           }));
         }
         return Promise.resolve('{}');
@@ -219,8 +219,8 @@ describe('RollbackSystem', () => {
 
       expect(result.success).toBe(true);
       expect(fs.copyFile).toHaveBeenCalledWith(
-        expect.stringContaining('backup-123/CLAUDE.md'),
-        expect.stringContaining('CLAUDE.md')
+        expect.stringContaining('backup-123/OPENCLAW.md'),
+        expect.stringContaining('OPENCLAW.md')
       );
     });
 
@@ -229,9 +229,9 @@ describe('RollbackSystem', () => {
       fs.readFile.mockResolvedValue(JSON.stringify({
         phase: 'file-creation',
         timestamp: Date.now(),
-        files: ['CLAUDE.md'],
+        files: ['OPENCLAW.md'],
         actions: [
-          { type: 'create', path: 'CLAUDE.md' },
+          { type: 'create', path: 'OPENCLAW.md' },
           { type: 'mkdir', path: '.claude' }
         ]
       }));
@@ -239,7 +239,7 @@ describe('RollbackSystem', () => {
       const result = await rollbackSystem.performPartialRollback('file-creation');
 
       expect(result.success).toBe(true);
-      expect(fs.rm).toHaveBeenCalledWith(expect.stringContaining('CLAUDE.md'));
+      expect(fs.rm).toHaveBeenCalledWith(expect.stringContaining('OPENCLAW.md'));
       expect(fs.rm).toHaveBeenCalledWith(expect.stringContaining('.claude'));
     });
 
@@ -448,7 +448,7 @@ describe('RollbackSystem Integration', () => {
     await rollbackSystem.createCheckpoint('files', {
       phase: 'file-creation',
       actions: [
-        { type: 'create', path: 'CLAUDE.md' },
+        { type: 'create', path: 'OPENCLAW.md' },
         { type: 'mkdir', path: '.claude' }
       ]
     });
@@ -476,7 +476,7 @@ describe('RollbackSystem Integration', () => {
     await rollbackSystem.createCheckpoint('partial', {
       phase: 'file-creation',
       actions: [
-        { type: 'create', path: 'CLAUDE.md' }
+        { type: 'create', path: 'OPENCLAW.md' }
       ]
     });
 
@@ -486,7 +486,7 @@ describe('RollbackSystem Integration', () => {
 
     // Verify cleanup
     expect(fs.rm).toHaveBeenCalledWith(
-      expect.stringContaining('CLAUDE.md')
+      expect.stringContaining('OPENCLAW.md')
     );
   });
 });

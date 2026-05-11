@@ -6,8 +6,8 @@ MODEL=$(echo "$INPUT" | jq -r '.model.display_name // "Claude"')
 CWD=$(echo "$INPUT" | jq -r '.workspace.current_dir // .cwd')
 DIR=$(basename "$CWD")
 
-# Replace claude-code-flow with branded name
-if [ "$DIR" = "claude-code-flow" ]; then
+# Replace openclaw-flow with branded name
+if [ "$DIR" = "openclaw-flow" ]; then
   DIR="🌊 Claude Flow"
 fi
 

@@ -2,7 +2,7 @@
 
 ## Summary
 
-Implemented comprehensive automatic error recovery system for `claude-flow init` that handles the WSL better-sqlite3 ENOTEMPTY error **without manual intervention**.
+Implemented comprehensive automatic error recovery system for `ruflo init` that handles the WSL better-sqlite3 ENOTEMPTY error **without manual intervention**.
 
 ## Changes Made
 
@@ -51,7 +51,7 @@ Initialize → Error? → Retry with JSON (3x max)
 
 **User Experience:**
 ```bash
-npx claude-flow@alpha init --force
+ruflo init --force
 
 🔍 WSL environment detected
 ✅ WSL environment optimized
@@ -88,19 +88,19 @@ npx claude-flow@alpha init --force
 ### Before (Manual Fix Required)
 
 ```bash
-$ npx claude-flow@alpha init --force
+$ ruflo init --force
 [Error: ENOTEMPTY: directory not empty, rmdir '/home/user/.npm/_npx/xxx/node_modules/better-sqlite3']
 
 # User had to manually:
 $ npm cache clean --force
 $ rm -rf ~/.npm/_npx
-$ npx claude-flow@alpha init --force  # Try again
+$ ruflo init --force  # Try again
 ```
 
 ### After (Automatic Recovery)
 
 ```bash
-$ npx claude-flow@alpha init --force
+$ ruflo init --force
 
 🔍 WSL environment detected
 ✅ WSL environment optimized
@@ -232,7 +232,7 @@ USER testuser
 WORKDIR /home/testuser
 
 # Test command
-CMD npx claude-flow@alpha init --force
+CMD ruflo init --force
 ```
 
 ### Test Commands

@@ -5,7 +5,7 @@ color: "teal"
 type: "specialized"
 version: "1.0.0"
 created: "2025-07-25"
-author: "Claude Code"
+author: "OpenClaw"
 metadata:
   specialization: "React Native, mobile UI/UX, native modules, cross-platform development"
   complexity: "complex"

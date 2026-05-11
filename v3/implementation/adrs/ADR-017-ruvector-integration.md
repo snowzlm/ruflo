@@ -16,7 +16,7 @@ The `@claude-flow/cli` package requires integration with `ruvector` for advanced
 4. **Coverage Routing** - Test-aware agent selection
 5. **Graph Analysis** - Code boundaries (MinCut/Louvain)
 
-These features are unique to ruvector and complement claude-flow's existing capabilities without duplicating functionality already present in `@claude-flow/embeddings` or `@claude-flow/memory`.
+These features are unique to ruvector and complement ruflo's existing capabilities without duplicating functionality already present in `@claude-flow/embeddings` or `@claude-flow/memory`.
 
 ## Decision
 
@@ -361,11 +361,11 @@ export const routeCommand: Command = {
   ],
   examples: [
     {
-      command: 'claude-flow route -t "Implement user authentication" --q-learning',
+      command: 'ruflo route -t "Implement user authentication" --q-learning',
       description: 'Route with Q-Learning model'
     },
     {
-      command: 'claude-flow route -t "Fix login bug" --coverage-aware',
+      command: 'ruflo route -t "Fix login bug" --coverage-aware',
       description: 'Route with coverage awareness'
     }
   ],
@@ -418,8 +418,8 @@ const astSubcommand: Command = {
     }
   ],
   examples: [
-    { command: 'claude-flow analyze ast -p src/', description: 'Analyze src directory' },
-    { command: 'claude-flow analyze ast -p src/api.ts --complexity', description: 'Get complexity for file' }
+    { command: 'ruflo analyze ast -p src/', description: 'Analyze src directory' },
+    { command: 'ruflo analyze ast -p src/api.ts --complexity', description: 'Get complexity for file' }
   ],
   action: astAction
 };
@@ -455,9 +455,9 @@ const diffSubcommand: Command = {
     }
   ],
   examples: [
-    { command: 'claude-flow analyze diff --risk', description: 'Analyze current diff with risk' },
-    { command: 'claude-flow analyze diff --base main --target feature', description: 'Compare branches' },
-    { command: 'git diff | claude-flow analyze diff --stdin --risk', description: 'Pipe diff from git' }
+    { command: 'ruflo analyze diff --risk', description: 'Analyze current diff with risk' },
+    { command: 'ruflo analyze diff --base main --target feature', description: 'Compare branches' },
+    { command: 'git diff | ruflo analyze diff --stdin --risk', description: 'Pipe diff from git' }
   ],
   action: diffAction
 };
@@ -489,8 +489,8 @@ const boundariesSubcommand: Command = {
     }
   ],
   examples: [
-    { command: 'claude-flow analyze boundaries -p src/', description: 'Detect boundaries in src' },
-    { command: 'claude-flow analyze boundaries -a louvain', description: 'Use Louvain algorithm' }
+    { command: 'ruflo analyze boundaries -p src/', description: 'Detect boundaries in src' },
+    { command: 'ruflo analyze boundaries -a louvain', description: 'Use Louvain algorithm' }
   ],
   action: boundariesAction
 };
@@ -1388,7 +1388,7 @@ await pooledTransport.withConnection(async (transport) => {
 
 | Package | Before | After |
 |---------|--------|-------|
-| `claude-flow` | 3.0.0-alpha.17 | 3.0.0-alpha.18 |
+| `ruflo` | 3.0.0-alpha.17 | 3.0.0-alpha.18 |
 | `@claude-flow/cli` | 3.0.0-alpha.24 | 3.0.0-alpha.25 |
 | `@claude-flow/mcp` | 3.0.0-alpha.7 | 3.0.0-alpha.8 |
 
@@ -1465,7 +1465,7 @@ console.log(pool.getStats());
 
 ### Published Versions
 
-- `claude-flow@3.0.0-alpha.18`
+- `ruflo@3.0.0-alpha.18`
 - `@claude-flow/cli@3.0.0-alpha.25`
 - `@claude-flow/mcp@3.0.0-alpha.8`
 - `@claude-flow/memory@3.0.0-alpha.2`

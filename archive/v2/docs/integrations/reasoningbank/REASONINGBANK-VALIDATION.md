@@ -8,7 +8,7 @@
 
 ## Executive Summary
 
-The ReasoningBank plugin has been successfully implemented and validated. All core components are operational and ready for integration with Claude Flow's agent system.
+The ReasoningBank plugin has been successfully implemented and validated. All core components are operational and ready for integration with Ruflo's agent system.
 
 ### Validation Results
 
@@ -250,7 +250,7 @@ retrieve.min_score = 0.3
 
 ## 5. Integration Points
 
-### Claude Flow Memory Space
+### Ruflo Memory Space
 
 **Database Path**: `.swarm/memory.db`
 
@@ -274,7 +274,7 @@ retrieve.min_score = 0.3
 4. Check consolidation trigger threshold
 5. Run consolidation if needed
 
-**Configuration**: Add to `.claude/settings.json`:
+**Configuration**: Add to `.openclaw/settings.json`:
 ```json
 {
   "hooks": {
@@ -506,7 +506,7 @@ The ReasoningBank plugin is **production-ready** for the core infrastructure:
 1. Implement 6 remaining TypeScript files (judge, distill, consolidate, matts, hooks)
 2. Add Anthropic API integration for LLM calls
 3. Implement PII scrubbing utility
-4. Add hook configuration to `.claude/settings.json`
+4. Add hook configuration to `.openclaw/settings.json`
 5. Run end-to-end integration tests on WebArena benchmark
 
 **Estimated Completion Time**: 4-6 hours
@@ -520,7 +520,7 @@ The ReasoningBank plugin is **production-ready** for the core infrastructure:
 - [x] Test retrieval algorithm
 - [x] Validate configuration loading
 - [ ] Implement remaining 6 TypeScript files
-- [ ] Configure hooks in `.claude/settings.json`
+- [ ] Configure hooks in `.openclaw/settings.json`
 - [ ] Set `ANTHROPIC_API_KEY` environment variable
 - [ ] Run end-to-end integration test
 - [ ] Enable `REASONINGBANK_ENABLED=true`
@@ -528,5 +528,5 @@ The ReasoningBank plugin is **production-ready** for the core infrastructure:
 ---
 
 **Report Generated**: 2025-10-10
-**Validated By**: Claude Code (Agentic-Flow Integration)
+**Validated By**: OpenClaw (Agentic-Flow Integration)
 **Status**: ✅ **READY FOR DEPLOYMENT**

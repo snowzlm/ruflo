@@ -31,17 +31,17 @@ This hands-on tutorial will teach you the fundamentals of ReasoningBank's persis
 
 ```bash
 # Install latest alpha version
-npx claude-flow@alpha init --force
+ruflo init --force
 
 # Verify installation
-npx claude-flow@alpha --version
+ruflo --version
 # Expected: v2.7.0-alpha.10
 ```
 
 ### Step 2: Verify ReasoningBank
 
 ```bash
-npx claude-flow@alpha memory status --reasoningbank
+ruflo memory status --reasoningbank
 ```
 
 **Expected Output:**
@@ -62,7 +62,7 @@ Let's store your first memory and understand what's happening under the hood.
 ### Store a Simple Memory
 
 ```bash
-npx claude-flow@alpha memory store greeting \
+ruflo memory store greeting \
   "Hello! I'm learning ReasoningBank." \
   --namespace tutorial --reasoningbank
 ```
@@ -84,7 +84,7 @@ Storage time: 5ms
 ### Retrieve Your Memory
 
 ```bash
-npx claude-flow@alpha memory list --namespace tutorial --reasoningbank
+ruflo memory list --namespace tutorial --reasoningbank
 ```
 
 **Output:**
@@ -108,12 +108,12 @@ The real power of ReasoningBank is **semantic search** - finding relevant memori
 
 ```bash
 # Store a memory
-npx claude-flow@alpha memory store api_auth \
+ruflo memory store api_auth \
   "Use JWT tokens with 15-minute expiration" \
   --namespace backend --reasoningbank
 
 # Query with exact keyword
-npx claude-flow@alpha memory query "JWT" \
+ruflo memory query "JWT" \
   --namespace backend --reasoningbank
 ```
 
@@ -132,7 +132,7 @@ Query time: 2ms
 
 ```bash
 # Query with related concept (doesn't contain "JWT")
-npx claude-flow@alpha memory query "authentication" \
+ruflo memory query "authentication" \
   --namespace backend --reasoningbank
 ```
 
@@ -155,20 +155,20 @@ Let's store more patterns and see how semantic search finds related memories:
 
 ```bash
 # Store related patterns
-npx claude-flow@alpha memory store db_connection \
+ruflo memory store db_connection \
   "PostgreSQL with connection pooling (max 20 connections)" \
   --namespace backend --reasoningbank
 
-npx claude-flow@alpha memory store cache_strategy \
+ruflo memory store cache_strategy \
   "Redis for session storage with 24-hour TTL" \
   --namespace backend --reasoningbank
 
-npx claude-flow@alpha memory store rate_limiting \
+ruflo memory store rate_limiting \
   "100 requests per minute per IP using sliding window" \
   --namespace backend --reasoningbank
 
 # Query with broad concept
-npx claude-flow@alpha memory query "performance optimization" \
+ruflo memory query "performance optimization" \
   --namespace backend --reasoningbank
 ```
 
@@ -206,22 +206,22 @@ Namespaces are like folders for organizing memories. Think of them as knowledge 
 
 ```bash
 # Backend patterns
-npx claude-flow@alpha memory store rest_api \
+ruflo memory store rest_api \
   "RESTful endpoints with versioning /api/v1/" \
   --namespace backend --reasoningbank
 
 # Frontend patterns
-npx claude-flow@alpha memory store react_hooks \
+ruflo memory store react_hooks \
   "Use useEffect for side effects, useMemo for expensive computations" \
   --namespace frontend --reasoningbank
 
 # DevOps patterns
-npx claude-flow@alpha memory store ci_pipeline \
+ruflo memory store ci_pipeline \
   "GitHub Actions with parallel test execution" \
   --namespace devops --reasoningbank
 
 # Architecture decisions
-npx claude-flow@alpha memory store microservices \
+ruflo memory store microservices \
   "Event-driven architecture with message queues" \
   --namespace architecture --reasoningbank
 ```
@@ -230,18 +230,18 @@ npx claude-flow@alpha memory store microservices \
 
 ```bash
 # Query specific namespace
-npx claude-flow@alpha memory query "API design" \
+ruflo memory query "API design" \
   --namespace backend --reasoningbank
 
 # Query all namespaces (omit --namespace)
-npx claude-flow@alpha memory query "API design" \
+ruflo memory query "API design" \
   --reasoningbank
 ```
 
 ### List All Namespaces
 
 ```bash
-npx claude-flow@alpha memory list --reasoningbank
+ruflo memory list --reasoningbank
 ```
 
 **Output:**
@@ -276,13 +276,13 @@ ReasoningBank uses **SAFLA (Self-Aware Feedback Loop Algorithm)** to learn from 
 
 ```bash
 # Initial storage
-npx claude-flow@alpha memory store api_v1 \
+ruflo memory store api_v1 \
   "Basic password authentication" \
   --namespace backend --reasoningbank
 # Confidence: 50%
 
 # Query and use the pattern (usage_count++)
-npx claude-flow@alpha memory query "authentication" \
+ruflo memory query "authentication" \
   --namespace backend --reasoningbank
 # Confidence: 50% (no change yet)
 # Usage: 1
@@ -295,7 +295,7 @@ npx claude-flow@alpha memory query "authentication" \
 ### View Usage Statistics
 
 ```bash
-npx claude-flow@alpha memory status --reasoningbank
+ruflo memory status --reasoningbank
 ```
 
 **Output:**
@@ -326,24 +326,24 @@ Top Performing Namespaces:
 
 ```bash
 # Store patterns as you learn
-npx claude-flow@alpha memory store api_versioning \
+ruflo memory store api_versioning \
   "Use /api/v1/, /api/v2/ for backward compatibility" \
   --namespace api_design --reasoningbank
 
-npx claude-flow@alpha memory store error_handling \
+ruflo memory store error_handling \
   "Return consistent error format: {error, message, code, details}" \
   --namespace api_design --reasoningbank
 
-npx claude-flow@alpha memory store pagination \
+ruflo memory store pagination \
   "Cursor-based pagination with limit/before/after params" \
   --namespace api_design --reasoningbank
 
-npx claude-flow@alpha memory store security \
+ruflo memory store security \
   "CORS, rate limiting, input validation, SQL injection prevention" \
   --namespace api_design --reasoningbank
 
 # Later, query when implementing
-npx claude-flow@alpha memory query "error responses" \
+ruflo memory query "error responses" \
   --namespace api_design --reasoningbank
 ```
 
@@ -362,12 +362,12 @@ Match Score: 88%
 
 ```bash
 # Store the solution
-npx claude-flow@alpha memory store react_rerender_fix \
+ruflo memory store react_rerender_fix \
   "Circular ref in useEffect deps causing infinite loop. Fix: Use useRef or useCallback with empty deps" \
   --namespace debugging --reasoningbank
 
 # Weeks later, similar issue occurs
-npx claude-flow@alpha memory query "React infinite loop" \
+ruflo memory query "React infinite loop" \
   --namespace debugging --reasoningbank
 ```
 
@@ -387,12 +387,12 @@ Usage: 1 (you've seen this before!)
 
 ```bash
 # Team member 1 stores decision
-npx claude-flow@alpha memory store arch_001_messaging \
+ruflo memory store arch_001_messaging \
   "Use RabbitMQ for event-driven architecture. Kafka considered but RabbitMQ better for our scale" \
   --namespace team_decisions --reasoningbank
 
 # Team member 2 queries later
-npx claude-flow@alpha memory query "event system" \
+ruflo memory query "event system" \
   --namespace team_decisions --reasoningbank
 ```
 
@@ -415,10 +415,10 @@ Match Score: 79%
 
 ```bash
 # ❌ Bad: Vague key
-npx claude-flow@alpha memory store config "JWT secret" --reasoningbank
+ruflo memory store config "JWT secret" --reasoningbank
 
 # ✅ Good: Descriptive key
-npx claude-flow@alpha memory store jwt_secret_config \
+ruflo memory store jwt_secret_config \
   "JWT secret stored in .env, 256-bit random string" \
   --reasoningbank
 ```
@@ -427,10 +427,10 @@ npx claude-flow@alpha memory store jwt_secret_config \
 
 ```bash
 # ❌ Bad: Too brief
-npx claude-flow@alpha memory store db "Postgres" --reasoningbank
+ruflo memory store db "Postgres" --reasoningbank
 
 # ✅ Good: Context included
-npx claude-flow@alpha memory store db_choice \
+ruflo memory store db_choice \
   "PostgreSQL chosen for ACID compliance, JSON support, and team expertise. MySQL considered but Postgres better for complex queries" \
   --namespace architecture --reasoningbank
 ```
@@ -462,7 +462,7 @@ The more you query, the better the system learns what's useful!
 
 ```bash
 # Query frequently to build usage data
-npx claude-flow@alpha memory query "API patterns" --reasoningbank
+ruflo memory query "API patterns" --reasoningbank
 # This increments usage_count, improving confidence over time
 ```
 
@@ -470,14 +470,14 @@ npx claude-flow@alpha memory query "API patterns" --reasoningbank
 
 ```bash
 # ❌ Bad: Store duplicate
-npx claude-flow@alpha memory store api_auth "JWT tokens" --reasoningbank
-npx claude-flow@alpha memory store api_auth_v2 "JWT with refresh" --reasoningbank
+ruflo memory store api_auth "JWT tokens" --reasoningbank
+ruflo memory store api_auth_v2 "JWT with refresh" --reasoningbank
 
 # ✅ Good: Store as evolution
-npx claude-flow@alpha memory store api_auth_basic \
+ruflo memory store api_auth_basic \
   "Simple JWT tokens (deprecated)" --reasoningbank
 
-npx claude-flow@alpha memory store api_auth_production \
+ruflo memory store api_auth_production \
   "JWT with refresh token rotation (current)" --reasoningbank
 ```
 
@@ -491,12 +491,12 @@ Build a knowledge base of your favorite tools/libraries:
 
 ```bash
 # Store 5 patterns about tools you use
-npx claude-flow@alpha memory store tool_1 "..." --namespace tools --reasoningbank
-npx claude-flow@alpha memory store tool_2 "..." --namespace tools --reasoningbank
+ruflo memory store tool_1 "..." --namespace tools --reasoningbank
+ruflo memory store tool_2 "..." --namespace tools --reasoningbank
 # ... 3 more
 
 # Query to find relevant tool
-npx claude-flow@alpha memory query "testing" --namespace tools --reasoningbank
+ruflo memory query "testing" --namespace tools --reasoningbank
 ```
 
 ### Exercise 2: Bug Solutions
@@ -504,14 +504,14 @@ npx claude-flow@alpha memory query "testing" --namespace tools --reasoningbank
 Store 3 bugs you've solved recently:
 
 ```bash
-npx claude-flow@alpha memory store bug_001 \
+ruflo memory store bug_001 \
   "CORS error: Add Access-Control-Allow-Origin header" \
   --namespace debugging --reasoningbank
 
 # Add 2 more bugs...
 
 # Later, query when you see a similar error
-npx claude-flow@alpha memory query "CORS" --namespace debugging --reasoningbank
+ruflo memory query "CORS" --namespace debugging --reasoningbank
 ```
 
 ### Exercise 3: Code Patterns
@@ -519,7 +519,7 @@ npx claude-flow@alpha memory query "CORS" --namespace debugging --reasoningbank
 Store code snippets you frequently use:
 
 ```bash
-npx claude-flow@alpha memory store async_error \
+ruflo memory store async_error \
   "try-catch with async/await: async function() { try { await... } catch (e) { ... } }" \
   --namespace code_snippets --reasoningbank
 
@@ -533,42 +533,42 @@ npx claude-flow@alpha memory store async_error \
 ### Issue 1: No Results Found
 
 ```bash
-npx claude-flow@alpha memory query "foobar" --reasoningbank
+ruflo memory query "foobar" --reasoningbank
 # ❌ Found 0 results
 ```
 
 **Solution**: Your query might be too specific or no related patterns exist. Try broader terms:
 
 ```bash
-npx claude-flow@alpha memory query "configuration" --reasoningbank
+ruflo memory query "configuration" --reasoningbank
 # ✅ Found 3 results
 ```
 
 ### Issue 2: Irrelevant Results
 
 ```bash
-npx claude-flow@alpha memory query "security" --reasoningbank
+ruflo memory query "security" --reasoningbank
 # Returns patterns about "secure sockets" instead of "authentication"
 ```
 
 **Solution**: Use more specific queries or namespace filtering:
 
 ```bash
-npx claude-flow@alpha memory query "authentication security" \
+ruflo memory query "authentication security" \
   --namespace backend --reasoningbank
 ```
 
 ### Issue 3: Database File Missing
 
 ```bash
-npx claude-flow@alpha memory status --reasoningbank
+ruflo memory status --reasoningbank
 # ❌ Database not found: .swarm/memory.db
 ```
 
 **Solution**: Initialize the system:
 
 ```bash
-npx claude-flow@alpha memory store init "Initializing database" --reasoningbank
+ruflo memory store init "Initializing database" --reasoningbank
 ```
 
 ---
@@ -587,15 +587,15 @@ Congratulations! You've mastered the basics of ReasoningBank. 🎉
 
 ```bash
 # Pattern linking (covered in advanced tutorial)
-npx claude-flow@alpha memory link api_auth requires secret_management
+ruflo memory link api_auth requires secret_management
 
 # Cognitive patterns
-npx claude-flow@alpha memory store problem_solving \
+ruflo memory store problem_solving \
   "Use divergent thinking for creative solutions" \
   --cognitive-pattern divergent --reasoningbank
 
 # Export/backup
-npx claude-flow@alpha memory export --namespace backend > backup.json
+ruflo memory export --namespace backend > backup.json
 ```
 
 ---
@@ -615,8 +615,8 @@ You learned:
 ---
 
 **Need Help?**
-- GitHub Issues: https://github.com/ruvnet/claude-flow/issues
-- Documentation: https://github.com/ruvnet/claude-flow/tree/main/docs/reasoningbank
+- GitHub Issues: https://github.com/snowzlm/ruflo/issues
+- Documentation: https://github.com/snowzlm/ruflo/tree/main/docs/reasoningbank
 
 **Happy Learning! 🚀**
 

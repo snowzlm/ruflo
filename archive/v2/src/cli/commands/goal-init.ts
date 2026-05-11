@@ -14,10 +14,10 @@ interface InitOptions {
 }
 
 export class GoalInitCommand {
-  private readonly sourcePath = path.resolve(__dirname, '../../../.claude/agents/goal');
+  private readonly sourcePath = path.resolve(__dirname, '../../../.openclaw/agents/goal');
   
   async execute(options: InitOptions = {}): Promise<void> {
-    const targetDir = options.targetDir || '.claude/agents/goal';
+    const targetDir = options.targetDir || '.openclaw/agents/goal';
     const absoluteTarget = path.resolve(process.cwd(), targetDir);
     
     logger.info(chalk.magenta('🎯 Initializing Claude Flow Goal Module...'));
@@ -273,7 +273,7 @@ Optimizes action sequences for cost, time, and resource efficiency.
     console.log(chalk.gray('  npx claude-flow goal execute --plan plan-id'));
     console.log(chalk.gray('  @agent-goal-planner "Create deployment plan"'));
     console.log('\n' + chalk.magenta('🔗 Documentation:'));
-    console.log(chalk.gray('  https://github.com/ruvnet/claude-flow'));
+    console.log(chalk.gray('  https://github.com/snowzlm/ruflo'));
   }
 }
 

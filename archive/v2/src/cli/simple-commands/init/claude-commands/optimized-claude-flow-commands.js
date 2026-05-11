@@ -13,7 +13,7 @@ description: Show Claude-Flow commands and usage with batchtools optimization
 
 ## 🌊 Claude-Flow: Advanced Agent Orchestration Platform
 
-Claude-Flow is the ultimate multi-terminal orchestration platform that revolutionizes how you work with Claude Code.
+Claude-Flow is the ultimate multi-terminal orchestration platform that revolutionizes how you work with OpenClaw.
 
 **🚀 Batchtools Enhancement**: All commands now include parallel processing capabilities, batch operations, and performance optimizations for maximum efficiency.
 
@@ -204,11 +204,11 @@ npx -y claude-flow@latest init --sparc --force
 - **Monitoring Intervals**: Set appropriate monitoring frequencies
 
 ## 📚 Resources (Enhanced)
-- Documentation: https://github.com/ruvnet/claude-code-flow/docs
-- Batchtools Guide: https://github.com/ruvnet/claude-code-flow/docs/batchtools.md
-- Performance Optimization: https://github.com/ruvnet/claude-code-flow/docs/performance.md
-- Examples: https://github.com/ruvnet/claude-code-flow/examples
-- Issues: https://github.com/ruvnet/claude-code-flow/issues
+- Documentation: https://github.com/ruvnet/openclaw-flow/docs
+- Batchtools Guide: https://github.com/ruvnet/openclaw-flow/docs/batchtools.md
+- Performance Optimization: https://github.com/ruvnet/openclaw-flow/docs/performance.md
+- Examples: https://github.com/ruvnet/openclaw-flow/examples
+- Issues: https://github.com/ruvnet/openclaw-flow/issues
 
 ## 🚨 Troubleshooting (Enhanced)
 
@@ -239,7 +239,7 @@ npx -y claude-flow@latest init --sparc --force
 For comprehensive documentation and optimization guides, see the resources above.
 `;
 
-  await fs.writeFile(`${workingDir}/.claude/commands/claude-flow-help.md`, helpCommand, 'utf8');
+  await fs.writeFile(`${workingDir}/.openclaw/commands/claude-flow-help.md`, helpCommand, 'utf8');
   console.log('  ✓ Created optimized slash command: /claude-flow-help (Batchtools enhanced)');
 
   // Memory command with batchtools optimization
@@ -527,10 +527,10 @@ The memory system provides persistent storage for cross-session and cross-agent 
 ./claude-flow memory performance-report --detailed --recommendations
 \`\`\`
 
-For comprehensive memory system documentation and optimization guides, see: https://github.com/ruvnet/claude-code-flow/docs/memory-batchtools.md
+For comprehensive memory system documentation and optimization guides, see: https://github.com/ruvnet/openclaw-flow/docs/memory-batchtools.md
 `;
 
-  await fs.writeFile(`${workingDir}/.claude/commands/claude-flow-memory.md`, memoryCommand, 'utf8');
+  await fs.writeFile(`${workingDir}/.openclaw/commands/claude-flow-memory.md`, memoryCommand, 'utf8');
   console.log('  ✓ Created optimized slash command: /claude-flow-memory (Batchtools enhanced)');
 
   // Swarm command with batchtools optimization
@@ -868,9 +868,9 @@ Swarms automatically use distributed memory with parallel processing for collabo
 - **Monitoring**: 350% improvement with concurrent metrics
 - **Memory Operations**: 400% faster with parallel processing
 
-For detailed documentation and optimization guides, see: https://github.com/ruvnet/claude-code-flow/docs/swarm-batchtools.md
+For detailed documentation and optimization guides, see: https://github.com/ruvnet/openclaw-flow/docs/swarm-batchtools.md
 `;
 
-  await fs.writeFile(`${workingDir}/.claude/commands/claude-flow-swarm.md`, swarmCommand, 'utf8');
+  await fs.writeFile(`${workingDir}/.openclaw/commands/claude-flow-swarm.md`, swarmCommand, 'utf8');
   console.log('  ✓ Created optimized slash command: /claude-flow-swarm (Batchtools enhanced)');
 }

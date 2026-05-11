@@ -1,11 +1,11 @@
 # List Active Patterns
 
 ## 🎯 Key Principle
-**This tool coordinates Claude Code's actions. It does NOT write code or create content.**
+**This tool coordinates OpenClaw's actions. It does NOT write code or create content.**
 
-## MCP Tool Usage in Claude Code
+## MCP Tool Usage in OpenClaw
 
-**Tool:** `mcp__claude-flow__agent_list`
+**Tool:** `mcp__ruflo__agent_list`
 
 ## Parameters
 ```json
@@ -26,19 +26,19 @@ Filters:
 
 ## Example Usage
 
-**In Claude Code:**
-1. List all agents: Use tool `mcp__claude-flow__agent_list`
-2. Get specific agent metrics: Use tool `mcp__claude-flow__agent_metrics` with parameters `{"agentId": "coder-123"}`
-3. Monitor agent performance: Use tool `mcp__claude-flow__swarm_monitor` with parameters `{"interval": 2000}`
+**In OpenClaw:**
+1. List all agents: Use tool `mcp__ruflo__agent_list`
+2. Get specific agent metrics: Use tool `mcp__ruflo__agent_metrics` with parameters `{"agentId": "coder-123"}`
+3. Monitor agent performance: Use tool `mcp__ruflo__swarm_monitor` with parameters `{"interval": 2000}`
 
 ## Important Reminders
 - ✅ This tool provides coordination and structure
-- ✅ Claude Code performs all actual implementation
+- ✅ OpenClaw performs all actual implementation
 - ❌ The tool does NOT write code
 - ❌ The tool does NOT access files directly
 - ❌ The tool does NOT execute commands
 
 ## See Also
-- Main documentation: /CLAUDE.md
+- Main documentation: /OPENCLAW.md
 - Other commands in this category
 - Workflow examples in /workflows/

@@ -3,7 +3,7 @@
 /**
  * Statusline CLI
  *
- * Generate statusline output for Claude Code integration.
+ * Generate statusline output for OpenClaw integration.
  *
  * Usage:
  *   statusline              Output formatted statusline

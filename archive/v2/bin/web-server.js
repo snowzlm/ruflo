@@ -1,5 +1,5 @@
 /**
- * Web Server for Claude Code Console
+ * Web Server for OpenClaw Console
  * Serves the web-based UI and provides WebSocket communication
  */
 
@@ -98,7 +98,7 @@ export class ClaudeCodeWebServer {
       });
 
       this.isRunning = true;
-      printSuccess(`🌐 Claude Code Web UI started successfully`);
+      printSuccess(`🌐 OpenClaw Web UI started successfully`);
       console.log(`📍 Web Interface: http://localhost:${this.port}/console`);
       console.log(`🔗 WebSocket: ws://localhost:${this.port}/ws`);
       console.log(`📁 Serving UI from: ${this.uiPath}`);

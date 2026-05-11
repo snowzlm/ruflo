@@ -5,7 +5,7 @@ Long-horizon goal planning, deep research orchestration, and adaptive replanning
 ## Install
 
 ```
-/plugin marketplace add ruvnet/ruflo
+/plugin marketplace add snowzlm/ruflo
 /plugin install ruflo-goals@ruflo
 ```
 

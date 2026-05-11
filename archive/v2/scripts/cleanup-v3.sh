@@ -89,13 +89,13 @@ done
 
 echo ""
 echo "=== Phase 4: Remove Deprecated Settings Files ==="
-remove_file ".claude/settings-complete.json"
-remove_file ".claude/settings-checkpoint-example.json"
-remove_file ".claude/settings-checkpoint-simple.json"
-remove_file ".claude/settings.reasoningbank-example.json"
-remove_file ".claude/settings.reasoningbank-minimal.json"
-remove_file ".claude/settings-npx-hooks.json"
-remove_file ".claude/test-reasoningbank-hooks.sh"
+remove_file ".openclaw/settings-complete.json"
+remove_file ".openclaw/settings-checkpoint-example.json"
+remove_file ".openclaw/settings-checkpoint-simple.json"
+remove_file ".openclaw/settings.reasoningbank-example.json"
+remove_file ".openclaw/settings.reasoningbank-minimal.json"
+remove_file ".openclaw/settings-npx-hooks.json"
+remove_file ".openclaw/test-reasoningbank-hooks.sh"
 
 echo ""
 echo "=== Phase 5: Remove Empty Directories ==="
@@ -105,7 +105,7 @@ fi
 
 echo ""
 echo "=== Phase 6: Archive Old Checkpoints ==="
-if [ -d ".claude/checkpoints" ]; then
+if [ -d ".openclaw/checkpoints" ]; then
     CHECKPOINT_COUNT=$(find .claude/checkpoints -maxdepth 1 -name "*.json" -type f 2>/dev/null | wc -l)
     if [ "$CHECKPOINT_COUNT" -gt 20 ]; then
         echo "Found $CHECKPOINT_COUNT checkpoints (keeping newest 20)"

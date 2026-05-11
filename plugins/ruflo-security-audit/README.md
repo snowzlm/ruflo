@@ -5,7 +5,7 @@ Security review, dependency scanning, policy gates, and CVE monitoring.
 ## Install
 
 ```
-/plugin marketplace add ruvnet/ruflo
+/plugin marketplace add snowzlm/ruflo
 /plugin install ruflo-security-audit@ruflo
 ```
 

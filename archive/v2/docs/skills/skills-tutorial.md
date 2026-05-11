@@ -1,4 +1,4 @@
-# 🎓 Claude Code Skills Capabilities Guide
+# 🎓 OpenClaw Skills Capabilities Guide
 
 **Version**: 2.0.0
 **Last Updated**: October 19, 2025
@@ -29,7 +29,7 @@
 
 ## 🌟 What Are Skills?
 
-Skills are **modular capabilities** that Claude Code discovers and uses automatically. Think of them as expert knowledge modules that Claude activates when needed.
+Skills are **modular capabilities** that OpenClaw discovers and uses automatically. Think of them as expert knowledge modules that Claude activates when needed.
 
 **How it works:**
 1. **You ask Claude** to do something ("Implement semantic search")
@@ -39,7 +39,7 @@ Skills are **modular capabilities** that Claude Code discovers and uses automati
 5. **Claude learns** and gets faster next time (46% improvement)
 
 **Two types of skills available:**
-- ✅ **21 Built-In Skills** (automatic via claude-flow MCP)
+- ✅ **21 Built-In Skills** (automatic via ruflo MCP)
 - ✅ **Custom Skills** (create your own with agentic-flow)
 
 A skill is simply a directory with a `SKILL.md` file containing instructions:
@@ -76,15 +76,15 @@ Use for RAG systems, documentation search, similarity matching."
 ### Installation (30 seconds)
 
 ```bash
-# Install claude-flow for 21 built-in skills
-npm install -g claude-flow@alpha
+# Install ruflo for 21 built-in skills
+npm install -g github:snowzlm/ruflo
 
 # Add MCP server (makes skills available)
-claude mcp add claude-flow npx claude-flow@alpha mcp start
+openclaw mcp add ruflo ruflo mcp start
 
 # Verify it's running
-claude mcp list
-# ✓ claude-flow@alpha   npx claude-flow@alpha mcp start   ✓ Running
+openclaw mcp list
+# ✓ ruflo@alpha   ruflo mcp start   ✓ Running
 
 # That's it! All 21 skills are now available.
 ```
@@ -120,7 +120,7 @@ npx agentic-flow skills init-builder
 
 ## 📚 Built-In Skills Catalog (21 Total)
 
-All 21 skills are **automatically available** with claude-flow MCP server. No setup required - just use them!
+All 21 skills are **automatically available** with ruflo MCP server. No setup required - just use them!
 
 ### 🧠 AI & Memory (3 skills)
 
@@ -430,7 +430,7 @@ and codebase reliability."
 
 #### 19. **hooks-automation**
 ```yaml
-description: "Automated coordination, formatting, and learning from Claude Code
+description: "Automated coordination, formatting, and learning from OpenClaw
 operations using intelligent hooks with MCP integration. Includes pre/post task
 hooks, session management, Git integration, memory coordination, and neural pattern
 training for enhanced development workflows."
@@ -446,7 +446,7 @@ training for enhanced development workflows."
 
 #### 20. **skill-builder**
 ```yaml
-description: "Create new Claude Code Skills with proper YAML frontmatter, progressive
+description: "Create new OpenClaw Skills with proper YAML frontmatter, progressive
 disclosure structure, and complete directory organization. Use when you need to build
 custom skills for specific workflows, generate skill templates, or understand the
 Claude Skills specification."
@@ -465,7 +465,7 @@ Claude Skills specification."
 #### 21. **performance-analysis**
 ```yaml
 description: "Comprehensive performance analysis, bottleneck detection, and
-optimization recommendations for Claude Flow swarms."
+optimization recommendations for Ruflo swarms."
 ```
 
 **Key capabilities:**
@@ -638,11 +638,11 @@ Validation: Before/after metrics
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                     Claude Code (User)                       │
+│                     OpenClaw (User)                       │
 └────────────────┬───────────────────────┬────────────────────┘
                  │                       │
     ┌────────────▼─────────┐   ┌────────▼──────────┐
-    │  claude-flow Skills  │   │ agentic-flow Skills│
+    │  ruflo Skills  │   │ agentic-flow Skills│
     │  (21 Built-In)       │   │  (Custom Created)  │
     └────────────┬─────────┘   └────────┬──────────┘
                  │                       │
@@ -650,7 +650,7 @@ Validation: Before/after metrics
                  │    │
     ┌────────────▼────▼──────────────────────────────┐
     │         MCP Integration Layer                  │
-    │  • claude-flow: 213+ coordination tools        │
+    │  • ruflo: 213+ coordination tools        │
     │  • ruv-swarm: Enhanced coordination            │
     │  • flow-nexus: Cloud capabilities              │
     │  • agentic-flow: Multi-provider agent runtime  │
@@ -667,17 +667,17 @@ Validation: Before/after metrics
 
 ### Skill Discovery Process
 
-**When Claude Code starts:**
+**When OpenClaw starts:**
 
-1. **Personal Skills** (`~/.claude/skills/`)
+1. **Personal Skills** (`~/.openclaw/skills/`)
    - Loads custom skills you've created
    - Available across all projects
 
-2. **Project Skills** (`.claude/skills/`)
+2. **Project Skills** (`.openclaw/skills/`)
    - Loads team-shared skills
    - Version-controlled with git
 
-3. **Built-In Skills** (from claude-flow MCP)
+3. **Built-In Skills** (from ruflo MCP)
    - 21 pre-configured skills
    - Automatically loaded via MCP
 
@@ -691,7 +691,7 @@ Validation: Before/after metrics
 ```
 User Request: "Build a REST API with comprehensive tests and deploy to GitHub"
 
-Claude Code coordinates:
+OpenClaw coordinates:
 ┌─────────────────────────────────────────────────────────────┐
 │ 1. sparc-methodology skill                                   │
 │    └─> Plans systematic development phases                  │
@@ -715,10 +715,10 @@ Claude Code coordinates:
 └─────────────────────────────────────────────────────────────┘
 
 MCP Tools Used:
-- mcp__claude-flow__swarm_init (topology setup)
-- mcp__claude-flow__agent_spawn (create agents)
-- mcp__claude-flow__memory_usage (coordination)
-- mcp__claude-flow__github_workflow_auto (CI/CD)
+- mcp__ruflo__swarm_init (topology setup)
+- mcp__ruflo__agent_spawn (create agents)
+- mcp__ruflo__memory_usage (coordination)
+- mcp__ruflo__github_workflow_auto (CI/CD)
 
 Result: Complete REST API with tests, deployed to GitHub,
         patterns stored for 46% faster next execution
@@ -749,13 +749,13 @@ Skills learn and improve through feedback loops:
 Build once, use everywhere:
 ```bash
 # Personal project
-~/.claude/skills/api-design/
+~/.openclaw/skills/api-design/
 
 # Team repository
-.claude/skills/api-design/
+`.openclaw/skills/api-design/
 
 # Organization-wide
-Shared across all Claude Code instances
+Shared across all OpenClaw instances
 ```
 
 ### 4. **Multi-Agent Coordination** 🤝
@@ -786,7 +786,7 @@ npx agentic-flow skills init
 # Create example skills
 npx agentic-flow skills create
 
-# That's it! Claude Code finds them automatically
+# That's it! OpenClaw finds them automatically
 ```
 
 ---
@@ -800,34 +800,34 @@ npx agentic-flow skills create
 node --version    # v18.0.0 or higher
 npm --version     # v9.0.0 or higher
 
-# Option 1: Install claude-flow (includes 21 built-in skills + 213+ MCP tools)
-npm install -g claude-flow@alpha
-npx claude-flow --version  # Should show 2.7.0 or higher
+# Option 1: Install ruflo (includes 21 built-in skills + 213+ MCP tools)
+npm install -g github:snowzlm/ruflo
+npx ruflo --version  # Should show 2.7.0 or higher
 
 # Option 2: Install agentic-flow (for custom skill creation)
 npm install -g agentic-flow@latest
 npx agentic-flow --version  # Should show 1.7.3 or higher
 
 # Recommended: Install both for full capabilities
-npm install -g claude-flow@alpha agentic-flow@latest
+npm install -g github:snowzlm/ruflo agentic-flow@latest
 ```
 
 ### Setup MCP Servers
 
 ```bash
-# Add claude-flow MCP server (required for 21 built-in skills)
-claude mcp add claude-flow npx claude-flow@alpha mcp start
+# Add ruflo MCP server (required for 21 built-in skills)
+openclaw mcp add ruflo ruflo mcp start
 
 # Optional: Add additional MCP servers for enhanced capabilities
-claude mcp add ruv-swarm npx ruv-swarm mcp start              # Enhanced coordination
-claude mcp add flow-nexus npx flow-nexus@latest mcp start    # Cloud features
-claude mcp add agentic-flow npx agentic-flow@latest mcp start  # Multi-provider agents
+openclaw mcp add ruv-swarm npx ruv-swarm mcp start              # Enhanced coordination
+openclaw mcp add flow-nexus npx flow-nexus@latest mcp start    # Cloud features
+openclaw mcp add agentic-flow npx agentic-flow@latest mcp start  # Multi-provider agents
 
 # Verify MCP servers are running
-claude mcp list
+openclaw mcp list
 
 # Should show:
-# claude-flow@alpha   npx claude-flow@alpha mcp start   ✓ Running
+# ruflo@alpha   ruflo mcp start   ✓ Running
 ```
 
 ### Step 1: Initialize Skills Directories
@@ -838,16 +838,16 @@ npx agentic-flow skills init
 ```
 
 **What this does:**
-- ✅ Creates `~/.claude/skills/` (personal, global)
-- ✅ Creates `.claude/skills/` (project, version-controlled)
+- ✅ Creates `~/.openclaw/skills/` (personal, global)
+- ✅ Creates `.openclaw/skills/` (project, version-controlled)
 
 **Output:**
 ```
 🎨 Initializing agentic-flow Skills
 ═══════════════════════════════════════════════════════════════
 
-✓ Created personal skills directory: /home/user/.claude/skills
-✓ Created project skills directory: /workspace/.claude/skills
+✓ Created personal skills directory: /home/user/.openclaw/skills
+✓ Created project skills directory: /workspace/.openclaw/skills
 
 ✓ Skills directories initialized!
 ```
@@ -876,7 +876,7 @@ Skills installed:
 
 **File structure:**
 ```
-.claude/skills/
+`.openclaw/skills/
   ├── agentdb-vector-search/
   │   └── SKILL.md
   ├── agentdb-memory-patterns/
@@ -906,7 +906,7 @@ npx agentic-flow skills init-builder
 
 **File structure:**
 ```
-.claude/skills/skill-builder/
+`.openclaw/skills/skill-builder/
   ├── SKILL.md                    # Main skill-builder skill
   ├── README.md                   # Quick reference guide
   ├── docs/
@@ -950,12 +950,12 @@ npx agentic-flow skills list
 
 **Output:**
 ```
-📚 Installed Claude Code Skills
+📚 Installed OpenClaw Skills
 ═══════════════════════════════════════════════════════════════
 
-Personal Skills (~/.claude/skills/)
+Personal Skills (~/.openclaw/skills/)
   • Skill Builder
-     Create new Claude Code Skills with proper YAML frontmatter...
+     Create new OpenClaw Skills with proper YAML frontmatter...
 
 Project Skills (.claude/skills/)
   • AgentDB Memory Patterns
@@ -1138,19 +1138,19 @@ const bestApproach = await reasoningbank.queryPatterns('authentication', {
 
 ---
 
-## 🎨 Using Skills with Claude Code
+## 🎨 Using Skills with OpenClaw
 
 ### Concept: Autonomous Skill Discovery
 
-**Claude Code automatically discovers and uses skills** when they're relevant to your task. You don't need to explicitly invoke them. Claude decides when to apply which skill based on context.
+**OpenClaw automatically discovers and uses skills** when they're relevant to your task. You don't need to explicitly invoke them. Claude decides when to apply which skill based on context.
 
 ### Workflow 1: Semantic Search Implementation
 
 **Scenario**: You need to implement semantic search for a documentation site.
 
-#### Step 1: Ask Claude Code
+#### Step 1: Ask OpenClaw
 
-Open Claude Code and type:
+Open OpenClaw and type:
 ```
 I need to implement semantic search for our documentation.
 The docs are in markdown files and I want users to search by meaning, not keywords.
@@ -1158,8 +1158,8 @@ The docs are in markdown files and I want users to search by meaning, not keywor
 
 #### Step 2: Claude Discovers the Skill
 
-Claude Code automatically:
-1. ✅ Scans `.claude/skills/`
+OpenClaw automatically:
+1. ✅ Scans `.openclaw/skills/`
 2. ✅ Finds `agentdb-vector-search/SKILL.md`
 3. ✅ Recognizes "semantic search" matches skill description
 4. ✅ Loads skill instructions
@@ -1240,7 +1240,7 @@ await db.storePattern({
 
 **Scenario**: You want to review a large codebase with multiple specialized agents.
 
-#### Step 1: Ask Claude Code
+#### Step 1: Ask OpenClaw
 
 ```
 I need a comprehensive code review of our TypeScript backend.
@@ -1249,7 +1249,7 @@ Check for bugs, security issues, performance problems, and best practices.
 
 #### Step 2: Claude Discovers Swarm Orchestration Skill
 
-Claude Code:
+OpenClaw:
 1. ✅ Recognizes "comprehensive review" needs multiple specialized agents
 2. ✅ Loads `swarm-orchestration/SKILL.md`
 3. ✅ Plans multi-agent coordination
@@ -1427,11 +1427,11 @@ The **Claude Agent SDK** (released October 2025) enables programmatic agent deve
 ```typescript
 import { Agent } from '@anthropic-ai/claude-agent-sdk';
 
-// Create agent (auto-discovers skills in ~/.claude/skills/)
+// Create agent (auto-discovers skills in ~/.openclaw/skills/)
 const agent = new Agent({
   apiKey: process.env.ANTHROPIC_API_KEY,
   model: 'claude-sonnet-4-5-20250929',
-  skillsDir: './.claude/skills'  // Project-specific skills
+  skillsDir: './.openclaw/skills'  // Project-specific skills
 });
 
 // Agent automatically uses relevant skills
@@ -1467,7 +1467,7 @@ await agenticFlow.reasoningbank.initialize({
 const agent = await agenticFlow.createAgent({
   type: 'coder',
   model: 'claude-sonnet-4-5-20250929',
-  skillsDir: './.claude/skills',
+  skillsDir: './.openclaw/skills',
   memory: db,  // Persistent memory across sessions
   learning: true  // Enable ReasoningBank pattern learning
 });
@@ -1494,17 +1494,17 @@ const swarm = await agenticFlow.swarm.initialize({
   agents: [
     {
       type: 'researcher',
-      skillsDir: './.claude/skills',  // All agents share skills
+      skillsDir: './.openclaw/skills',  // All agents share skills
       memory: 'shared'  // Shared AgentDB instance
     },
     {
       type: 'coder',
-      skillsDir: './.claude/skills',
+      skillsDir: './.openclaw/skills',
       memory: 'shared'
     },
     {
       type: 'tester',
-      skillsDir: './.claude/skills',
+      skillsDir: './.openclaw/skills',
       memory: 'shared'
     }
   ],
@@ -1554,7 +1554,7 @@ const result = await swarm.orchestrate({
 └──────────┘  └────────────┘  └───────────┘
 ```
 
-While Claude Code uses skills automatically, you can also invoke them programmatically via the agentic-flow agent system.
+While OpenClaw uses skills automatically, you can also invoke them programmatically via the agentic-flow agent system.
 
 ### Agent + Skill Integration
 
@@ -1632,9 +1632,9 @@ Create a skill when you have a **repeatable reasoning pattern** that:
 
 The skill-builder framework provides **3 ways** to create skills:
 
-#### Option A: Interactive Generation with Claude Code
+#### Option A: Interactive Generation with OpenClaw
 
-**Step 1: Ask Claude Code to use skill-builder**
+**Step 1: Ask OpenClaw to use skill-builder**
 
 ```
 Use the skill-builder to create a custom skill for GraphQL API design.
@@ -1810,7 +1810,7 @@ npx agentic-flow skills validate .claude/skills/my-custom-skill/SKILL.md
 
 #### Step 1: Generate microservice design skill
 
-Ask Claude Code:
+Ask OpenClaw:
 ```
 Use skill-builder to create a skill for microservice architecture design.
 Include service boundaries, communication patterns, and observability.
@@ -1844,7 +1844,7 @@ Cover unit, integration, contract, and E2E testing.
 
 Claude generates:
 ```
-.claude/skills/microservice-testing-patterns/SKILL.md
+`.openclaw/skills/microservice-testing-patterns/SKILL.md
 ```
 
 #### Step 3: Use both skills together
@@ -1853,7 +1853,7 @@ Claude generates:
 Design and implement a payment microservice with complete test coverage.
 ```
 
-Claude Code:
+OpenClaw:
 1. ✅ Discovers `microservice-architecture-design` skill
 2. ✅ Applies service boundary patterns
 3. ✅ Discovers `microservice-testing-patterns` skill
@@ -1992,7 +1992,7 @@ This meta-skill orchestrates:
 Build an e-commerce platform for selling digital products.
 ```
 
-Claude Code orchestrates all 5 skills automatically!
+OpenClaw orchestrates all 5 skills automatically!
 
 ### Workflow 2: Feedback-Driven Skill Evolution
 
@@ -2026,7 +2026,7 @@ cd /your-project
 npx agentic-flow skills init  # Creates .claude/skills/
 
 # 2. Generate team skills with skill-builder
-# Ask Claude Code:
+# Ask OpenClaw:
 "Use skill-builder to create our team's API design standards skill.
 Include our preferred patterns: REST with OpenAPI, JWT auth,
 cursor pagination, and error handling standards."
@@ -2038,7 +2038,7 @@ git push origin main
 
 # 4. Team members pull and use automatically
 git pull
-# Claude Code discovers team skills on next run
+# OpenClaw discovers team skills on next run
 ```
 
 #### Customizing Sample Skills for Your Stack
@@ -2117,7 +2117,7 @@ for result in results:
 \`\`\`
 ```
 
-**Now Claude Code applies Python patterns automatically:**
+**Now OpenClaw applies Python patterns automatically:**
 ```
 Implement semantic search for our Python documentation.
 ```
@@ -2132,13 +2132,13 @@ Claude discovers your customized Python skill and generates Python code!
 
 ```bash
 # 1. Create organization skill repository
-git clone https://github.com/your-org/claude-skills.git ~/.claude/skills-org
+git clone https://github.com/your-org/claude-skills.git ~/.openclaw/skills-org
 
 # 2. Symlink org skills to personal directory
-ln -s ~/.claude/skills-org/* ~/.claude/skills/
+ln -s ~/.openclaw/skills-org/* ~/.openclaw/skills/
 
 # 3. Keep skills updated
-cd ~/.claude/skills-org
+cd ~/.openclaw/skills-org
 git pull
 
 # Now all org skills available in all projects!
@@ -2146,7 +2146,7 @@ git pull
 
 **Organization skill structure:**
 ```
-~/.claude/skills-org/
+~/.openclaw/skills-org/
   ├── security/
   │   ├── owasp-top-10/SKILL.md
   │   └── security-review/SKILL.md
@@ -2184,11 +2184,11 @@ cat > package.json << 'EOF'
 {
   "name": "agentic-flow-skills-web3",
   "version": "1.0.0",
-  "description": "Claude Code skills for Web3 development",
-  "keywords": ["agentic-flow", "claude-code", "skills", "web3"],
+  "description": "OpenClaw skills for Web3 development",
+  "keywords": ["agentic-flow", "openclaw", "skills", "web3"],
   "files": ["skills/"],
   "scripts": {
-    "postinstall": "mkdir -p ~/.claude/skills && cp -r skills/* ~/.claude/skills/"
+    "postinstall": "mkdir -p ~/.openclaw/skills && cp -r skills/* ~/.openclaw/skills/"
   }
 }
 EOF
@@ -2203,7 +2203,7 @@ npm publish
 
 # 5. Users install with:
 npm install -g agentic-flow-skills-web3
-# Skills automatically copied to ~/.claude/skills/
+# Skills automatically copied to ~/.openclaw/skills/
 ```
 
 ---
@@ -2424,7 +2424,7 @@ bash .claude/skills/skill-builder/scripts/validate-skill.sh my-skill/SKILL.md
 ✅ Skill ready for use!
 
 Next steps:
-  1. Test with Claude Code
+  1. Test with OpenClaw
   2. Share with team (git commit)
   3. Publish to npm (optional)
 ```
@@ -2538,7 +2538,7 @@ Skills available:
   • react-component-library
   • docker-compose-workflows
 
-Test them with Claude Code!
+Test them with OpenClaw!
 ```
 
 ---
@@ -2553,7 +2553,7 @@ bash .claude/skills/skill-builder/scripts/test-skill.sh \
 ```
 
 **Test scenarios:**
-1. **Discovery Test**: Can Claude Code find the skill?
+1. **Discovery Test**: Can OpenClaw find the skill?
 2. **Activation Test**: Does it activate for relevant queries?
 3. **Execution Test**: Does it provide correct guidance?
 4. **Learning Test**: Does it store patterns in AgentDB?
@@ -2664,12 +2664,12 @@ See also: `agentdb-vector-search`, `swarm-orchestration`
 
 ### Issue: Skills Not Discovered
 
-**Problem**: Claude Code doesn't find your skill.
+**Problem**: OpenClaw doesn't find your skill.
 
 **Solutions**:
 ```bash
 # 1. Verify skill location (MUST be top level!)
-ls ~/.claude/skills/          # Personal
+ls ~/.openclaw/skills/          # Personal
 ls .claude/skills/            # Project
 
 # Should see: my-skill/SKILL.md
@@ -2678,7 +2678,7 @@ ls .claude/skills/            # Project
 # 2. Validate YAML frontmatter
 npx agentic-flow skills validate .claude/skills/my-skill/SKILL.md
 
-# 3. Restart Claude Code
+# 3. Restart OpenClaw
 # Skills are loaded at startup
 
 # 4. Check file permissions
@@ -2724,7 +2724,7 @@ cat .claude/skills/my-skill/SKILL.md
 
 ### What You Learned
 
-✅ **21 Built-In Skills** from claude-flow (AI, GitHub, Swarm, SPARC, Performance)
+✅ **21 Built-In Skills** from ruflo (AI, GitHub, Swarm, SPARC, Performance)
 ✅ **Custom Skill Creation** with agentic-flow's skill-builder
 ✅ **213+ MCP Tools** for coordination, memory, and automation
 ✅ **54 Specialized Agents** for all development scenarios
@@ -2734,16 +2734,16 @@ cat .claude/skills/my-skill/SKILL.md
 
 ### Quick Reference
 
-#### claude-flow (Built-In Skills)
+#### ruflo (Built-In Skills)
 ```bash
 # Install and setup MCP server
-npm install -g claude-flow@alpha
-claude mcp add claude-flow npx claude-flow@alpha mcp start
+npm install -g github:snowzlm/ruflo
+openclaw mcp add ruflo ruflo mcp start
 
 # Verify 21 skills are available
-claude mcp list
+openclaw mcp list
 
-# Skills auto-discovered by Claude Code - no additional setup!
+# Skills auto-discovered by OpenClaw - no additional setup!
 ```
 
 #### agentic-flow (Custom Skills)
@@ -2767,17 +2767,17 @@ npx agentic-flow skills validate <path>
 #### Combined Usage
 ```bash
 # Install both systems
-npm install -g claude-flow@alpha agentic-flow@latest
+npm install -g github:snowzlm/ruflo agentic-flow@latest
 
 # Setup MCP servers
-claude mcp add claude-flow npx claude-flow@alpha mcp start
+openclaw mcp add ruflo ruflo mcp start
 
 # Create custom skills
 npx agentic-flow skills init
 npx agentic-flow skills create
 
 # Now you have:
-# ✅ 21 built-in claude-flow skills
+# ✅ 21 built-in ruflo skills
 # ✅ 4 sample agentic-flow skills
 # ✅ 213+ MCP coordination tools
 # ✅ 54 specialized agents
@@ -2786,7 +2786,7 @@ npx agentic-flow skills create
 
 ### Skill Categories Available
 
-| Category | claude-flow Built-In | agentic-flow Custom | Total |
+| Category | ruflo Built-In | agentic-flow Custom | Total |
 |----------|---------------------|---------------------|-------|
 | AI & Memory | 3 | 2 | 5 |
 | GitHub Integration | 5 | 0 | 5 |
@@ -2799,11 +2799,11 @@ Plus unlimited custom skills you create!
 
 ### Next Steps
 
-1. **Install claude-flow MCP**: Get 21 built-in skills instantly
+1. **Install ruflo MCP**: Get 21 built-in skills instantly
 2. **Try built-in skills**: Test agentdb-vector-search, swarm-orchestration, github-code-review
 3. **Install agentic-flow**: Add custom skill creation capabilities
 4. **Create your first custom skill**: Use skill-builder for your domain
-5. **Build multi-agent workflows**: Combine claude-flow + custom skills
+5. **Build multi-agent workflows**: Combine ruflo + custom skills
 6. **Explore MCP tools**: 213+ coordination tools available
 7. **Share with your team**: Commit custom skills to git
 8. **Join the community**: Share your skills on GitHub
@@ -2831,7 +2831,7 @@ User: "Build REST API with tests and deploy"
 
 **Custom Domain (built-in + custom):**
 ```
-1. Use claude-flow built-in: swarm-orchestration
+1. Use ruflo built-in: swarm-orchestration
 2. Create custom: your-company-api-standards (agentic-flow)
 3. Combine: Company-specific development with best practices
 4. Learn: Patterns stored for 46% faster next time
@@ -2841,9 +2841,9 @@ User: "Build REST API with tests and deploy"
 
 ## 🌐 Resources
 
-### claude-flow
-- **Repository**: [https://github.com/ruvnet/claude-flow](https://github.com/ruvnet/claude-flow)
-- **Wiki**: [claude-flow wiki](https://github.com/ruvnet/claude-flow/wiki)
+### ruflo
+- **Repository**: [https://github.com/snowzlm/ruflo](https://github.com/snowzlm/ruflo)
+- **Wiki**: [ruflo wiki](https://github.com/snowzlm/ruflo/wiki)
 - **21 Built-In Skills**: Available via MCP server
 - **213+ MCP Tools**: Coordination, memory, GitHub, neural patterns
 - **54 Agents**: Core dev to advanced distributed systems
@@ -2856,15 +2856,15 @@ User: "Build REST API with tests and deploy"
 - **Issues**: [GitHub Issues](https://github.com/ruvnet/agentic-flow/issues)
 
 ### Official Anthropic
-- **Claude Code**: [Official docs](https://docs.claude.com/en/docs/claude-code)
-- **Claude Skills Specification**: [Skills guide](https://docs.claude.com/en/docs/claude-code/skills)
+- **OpenClaw**: [Official docs](https://docs.claude.com/en/docs/openclaw)
+- **Claude Skills Specification**: [Skills guide](https://docs.claude.com/en/docs/openclaw/skills)
 - **Agent SDK**: [Agent development](https://docs.claude.com/en/docs/agent-sdk)
 
 ---
 
 ## 📊 Performance Metrics
 
-### With claude-flow + agentic-flow Integration:
+### With ruflo + agentic-flow Integration:
 
 - **84.8% SWE-Bench solve rate** (vs industry avg 43%)
 - **32.3% token reduction** through intelligent coordination
@@ -2876,7 +2876,7 @@ User: "Build REST API with tests and deploy"
 
 ---
 
-**Version**: claude-flow v2.0 + agentic-flow v1.7.3
+**Version**: ruflo v2.0 + agentic-flow v1.7.3
 **Philosophy**: Pre-built excellence + custom specialization
 **Architecture**: 21 built-in skills + unlimited custom + 213+ MCP tools
 **Result**: Enterprise-grade adaptive intelligence that learns how to think
@@ -2885,10 +2885,10 @@ User: "Build REST API with tests and deploy"
 
 ```bash
 # Full installation (recommended)
-npm install -g claude-flow@alpha agentic-flow@latest
+npm install -g github:snowzlm/ruflo agentic-flow@latest
 
 # Setup MCP server for built-in skills
-claude mcp add claude-flow npx claude-flow@alpha mcp start
+openclaw mcp add ruflo ruflo mcp start
 
 # Create custom skills
 npx agentic-flow skills init
@@ -2896,7 +2896,7 @@ npx agentic-flow skills create
 npx agentic-flow skills init-builder
 
 # You now have access to:
-# ✅ 21 claude-flow built-in skills
+# ✅ 21 ruflo built-in skills
 # ✅ 4 agentic-flow sample skills
 # ✅ 213+ MCP coordination tools
 # ✅ 54 specialized agents

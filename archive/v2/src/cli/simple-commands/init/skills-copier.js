@@ -19,9 +19,9 @@ export async function copySkillFiles(targetDir, options = {}) {
 
   // Path to skill files - try multiple locations
   // From npm package: src/cli/simple-commands/init/ -> root = ../../../../
-  const packageSkillsDir = join(__dirname, '../../../../.claude/skills');
-  const localSkillsDir = join(__dirname, '../../../../../.claude/skills'); // Local development (one more level up)
-  const globalNpmSkillsDir = '/usr/local/lib/node_modules/claude-flow/.claude/skills'; // Global npm install
+  const packageSkillsDir = join(__dirname, '../../../../.openclaw/skills');
+  const localSkillsDir = join(__dirname, '../../../../../.openclaw/skills'); // Local development (one more level up)
+  const globalNpmSkillsDir = '/usr/local/lib/node_modules/claude-flow/.openclaw/skills'; // Global npm install
 
   let sourceSkillsDir;
 
@@ -59,7 +59,7 @@ export async function copySkillFiles(targetDir, options = {}) {
     return { success: false, error: 'Skill files not found' };
   }
 
-  const targetSkillsDir = join(targetDir, '.claude/skills');
+  const targetSkillsDir = join(targetDir, '.openclaw/skills');
 
   console.log('📁 Copying skill system files...');
   console.log(`  📂 Source: ${sourceSkillsDir}`);
@@ -154,7 +154,7 @@ export async function copySkillFiles(targetDir, options = {}) {
  */
 export async function createSkillDirectories(targetDir, dryRun = false) {
   const skillDirs = [
-    '.claude/skills',
+    '.openclaw/skills',
   ];
 
   if (dryRun) {
@@ -173,7 +173,7 @@ export async function createSkillDirectories(targetDir, dryRun = false) {
  * Validate skill system after copying
  */
 export async function validateSkillSystem(targetDir) {
-  const skillsDir = join(targetDir, '.claude/skills');
+  const skillsDir = join(targetDir, '.openclaw/skills');
 
   try {
     const items = await fs.readdir(skillsDir, { withFileTypes: true });

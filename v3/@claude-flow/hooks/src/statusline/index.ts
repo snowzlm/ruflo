@@ -1,7 +1,7 @@
 /**
  * V3 Statusline Generator
  *
- * Generates statusline data for Claude Code integration.
+ * Generates statusline data for OpenClaw integration.
  * Provides real-time progress, metrics, and status information.
  *
  * Format matches the working .claude/statusline.sh output:
@@ -250,11 +250,11 @@ export class StatuslineGenerator {
   }
 
   /**
-   * Generate single-line output for Claude Code compatibility
-   * This avoids the multi-line collision bug where Claude Code's internal status
+   * Generate single-line output for OpenClaw compatibility
+   * This avoids the multi-line collision bug where OpenClaw's internal status
    * (written at absolute terminal coordinates ~cols 15-25) bleeds into conversation
    *
-   * @see https://github.com/ruvnet/claude-flow/issues/985
+   * @see https://github.com/snowzlm/ruflo/issues/985
    */
   generateSingleLine(): string {
     if (!this.config.enabled) {
@@ -281,7 +281,7 @@ export class StatuslineGenerator {
    * The collision zone is columns 15-25 on the SECOND-TO-LAST line
    * We restructure output so that line has minimal/no content in that zone
    *
-   * @see https://github.com/ruvnet/claude-flow/issues/985
+   * @see https://github.com/snowzlm/ruflo/issues/985
    */
   generateSafeStatusline(): string {
     if (!this.config.enabled) {
@@ -587,7 +587,7 @@ export class StatuslineGenerator {
 
     return {
       memoryMB,
-      contextPct: 0, // Requires Claude Code input
+      contextPct: 0, // Requires OpenClaw input
       intelligencePct,
       subAgents,
     };
@@ -622,7 +622,7 @@ export class StatuslineGenerator {
       gitBranch = '';
     }
 
-    // Model name would come from Claude Code input
+    // Model name would come from OpenClaw input
     // For now, leave empty unless provided via data source
 
     return {

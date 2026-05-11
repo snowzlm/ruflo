@@ -224,8 +224,8 @@ const server = createMCPServer({
 
 ```bash
 # V2 (deprecated but supported)
-npx claude-flow hive-mind init
-npx claude-flow hive-mind status
+npx ruflo hive-mind init
+npx ruflo hive-mind status
 
 # V3 (recommended)
 npx @claude-flow/cli swarm init
@@ -381,7 +381,7 @@ hooks:
 | claude-flow/tasks | @claude-flow/task-execution |
 | claude-flow/hooks | @claude-flow/hooks |
 | claude-flow/config | @claude-flow/config |
-| claude-flow | @claude-flow/core |
+| ruflo | @claude-flow/core |
 
 ### C. V2 to V3 Class Aliases
 

@@ -1,10 +1,10 @@
-# Leveraging Claude Code SDK for Real Features
+# Leveraging OpenClaw SDK for Real Features
 
 ## SDK Capabilities Analysis
 
 ### What the SDK Actually Provides
 
-From examining `/node_modules/@anthropic-ai/claude-code/sdk.d.ts`, here's what we can **actually** use:
+From examining `/node_modules/@anthropic-ai/openclaw/sdk.d.ts`, here's what we can **actually** use:
 
 #### **1. Query Interface** (Line 365-377)
 
@@ -139,7 +139,7 @@ export type SDKMessage =
 **Real Implementation:**
 
 ```typescript
-import { query, type Options, type SDKMessage } from '@anthropic-ai/claude-code';
+import { query, type Options, type SDKMessage } from '@anthropic-ai/openclaw';
 
 class RealSessionForking {
   private sessions = new Map<string, SessionSnapshot>();
@@ -256,7 +256,7 @@ await fork.rollback(); // Discard fork
 **Real Implementation:**
 
 ```typescript
-import { query, type Query, type SDKMessage } from '@anthropic-ai/claude-code';
+import { query, type Query, type SDKMessage } from '@anthropic-ai/openclaw';
 
 class RealQueryControl {
   private pausedQueries = new Map<string, PausedQuery>();
@@ -366,7 +366,7 @@ for await (const msg of resumed) {
 **Real Implementation:**
 
 ```typescript
-import { query, type SDKMessage } from '@anthropic-ai/claude-code';
+import { query, type SDKMessage } from '@anthropic-ai/openclaw';
 
 class RealCheckpointManager {
   private checkpoints = new Map<string, Checkpoint>();
@@ -516,7 +516,7 @@ import {
   createSdkMcpServer,
   tool,
   query
-} from '@anthropic-ai/claude-code';
+} from '@anthropic-ai/openclaw';
 import { z } from 'zod';
 
 // Create in-process MCP server

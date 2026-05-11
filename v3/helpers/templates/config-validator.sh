@@ -24,7 +24,7 @@ echo ""
 
 # Check required directories
 echo "📁 Checking Directory Structure..."
-required_dirs=(".claude" ".claude/helpers" ".claude-flow/metrics" ".claude-flow/security")
+required_dirs=(".claude" ".openclaw/helpers" ".claude-flow/metrics" ".claude-flow/security")
 
 for dir in "${required_dirs[@]}"; do
     if [ -d "$dir" ]; then

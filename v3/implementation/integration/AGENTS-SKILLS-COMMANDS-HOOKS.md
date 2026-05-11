@@ -12,7 +12,7 @@ This document details the optimization strategy for the four core extensibility 
 
 ### 1.1 Current State Analysis
 
-**Location**: `.claude/agents/`
+**Location**: `.openclaw/agents/`
 **Count**: 76 agents across 22 directories (scattered organization)
 
 ```
@@ -235,7 +235,7 @@ echo "Agent migration complete"
 
 ### 2.1 Current State
 
-**Location**: `.claude/skills/`
+**Location**: `.openclaw/skills/`
 **Count**: 28 skills (flat structure)
 
 ```
@@ -352,9 +352,9 @@ tools:
   - Task
   - TodoWrite
   - Bash
-  - mcp__claude-flow__swarm_init
-  - mcp__claude-flow__agent_spawn
-  - mcp__claude-flow__task_orchestrate
+  - mcp__ruflo__swarm_init
+  - mcp__ruflo__agent_spawn
+  - mcp__ruflo__task_orchestrate
 ---
 
 # Swarm Orchestration Skill
@@ -389,7 +389,7 @@ await adapter.initializeSwarm({
 
 ### 3.1 Current State
 
-**Location**: `.claude/commands/`
+**Location**: `.openclaw/commands/`
 **Count**: 93 commands across 16 categories
 
 ```
@@ -568,9 +568,9 @@ Initialize a multi-agent swarm with intelligent topology selection.
 ### 4.1 Current State (Problem)
 
 Hooks are defined in **3 different locations**:
-1. `.claude/settings-enhanced.json` (lines 78-257)
-2. `.claude/settings-complete.json` (similar hooks)
-3. `.claude-plugin/hooks/hooks.json` (plugin hooks)
+1. `.openclaw/settings-enhanced.json` (lines 78-257)
+2. `.openclaw/settings-complete.json` (similar hooks)
+3. `.openclaw-plugin/hooks/hooks.json` (plugin hooks)
 
 This causes:
 - Inconsistent behavior
@@ -579,7 +579,7 @@ This causes:
 
 ### 4.2 v3 Solution: Single Source of Truth
 
-All hooks defined in `.claude/config.json`:
+All hooks defined in `.openclaw/config.json`:
 
 ```json
 {
@@ -589,7 +589,7 @@ All hooks defined in `.claude/config.json`:
       {
         "matcher": "Bash",
         "commands": [
-          "npx claude-flow hooks pre-tool --tool=$TOOL_NAME --command=\"$BASH_COMMAND\""
+          "npx ruflo hooks pre-tool --tool=$TOOL_NAME --command=\"$BASH_COMMAND\""
         ],
         "timeout": 5000,
         "failOnError": false
@@ -597,7 +597,7 @@ All hooks defined in `.claude/config.json`:
       {
         "matcher": "Write|Edit",
         "commands": [
-          "npx claude-flow hooks pre-edit --file=$FILE_PATH"
+          "npx ruflo hooks pre-edit --file=$FILE_PATH"
         ]
       }
     ],
@@ -606,13 +606,13 @@ All hooks defined in `.claude/config.json`:
       {
         "matcher": "*",
         "commands": [
-          "npx claude-flow hooks post-tool --tool=$TOOL_NAME --success=$SUCCESS"
+          "npx ruflo hooks post-tool --tool=$TOOL_NAME --success=$SUCCESS"
         ]
       },
       {
         "matcher": "Write|Edit",
         "commands": [
-          "npx claude-flow hooks post-edit --file=$FILE_PATH --memory-key=\"edits/$FILE_PATH\""
+          "npx ruflo hooks post-edit --file=$FILE_PATH --memory-key=\"edits/$FILE_PATH\""
         ]
       }
     ],
@@ -620,7 +620,7 @@ All hooks defined in `.claude/config.json`:
     "PreCompact": [
       {
         "commands": [
-          "npx claude-flow hooks pre-compact --session=$SESSION_ID"
+          "npx ruflo hooks pre-compact --session=$SESSION_ID"
         ]
       }
     ],
@@ -628,7 +628,7 @@ All hooks defined in `.claude/config.json`:
     "Stop": [
       {
         "commands": [
-          "npx claude-flow hooks session-end --export-metrics true"
+          "npx ruflo hooks session-end --export-metrics true"
         ]
       }
     ]
@@ -752,13 +752,13 @@ echo "Migrating hooks to single config.json..."
 
 # 1. Backup existing files
 cp .claude/settings-enhanced.json .claude/settings-enhanced.json.backup
-cp .claude-plugin/hooks/hooks.json .claude-plugin/hooks/hooks.json.backup
+cp .openclaw-plugin/hooks/hooks.json .openclaw-plugin/hooks/hooks.json.backup
 
 # 2. Extract hooks from settings-enhanced.json
 # (Manual step - copy hooks section to config.json)
 
-# 3. Update .claude-plugin/hooks/hooks.json to reference config.json
-cat > .claude-plugin/hooks/hooks.json << 'EOF'
+# 3. Update .openclaw-plugin/hooks/hooks.json to reference config.json
+cat > .openclaw-plugin/hooks/hooks.json << 'EOF'
 {
   "$ref": "../../config.json#/hooks",
   "comment": "Hooks are defined in .claude/config.json for single source of truth"
@@ -829,7 +829,7 @@ required-agents:
 ### Phase 2: Hook Consolidation
 - [ ] Create unified hooks in config.json
 - [ ] Remove hooks from settings files
-- [ ] Update .claude-plugin reference
+- [ ] Update .openclaw-plugin reference
 - [ ] Implement learning hooks
 - [ ] Test hook execution
 

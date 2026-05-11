@@ -713,20 +713,20 @@ CMD ["node", "dist/index.js"]
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: claude-flow
+  name: ruflo
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: claude-flow
+      app: ruflo
   template:
     metadata:
       labels:
-        app: claude-flow
+        app: ruflo
     spec:
       containers:
-      - name: claude-flow
-        image: claude-flow:latest
+      - name: ruflo
+        image: ruflo:latest
         ports:
         - containerPort: 3000
         resources:
@@ -1239,7 +1239,7 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: claude-flow
+    name: ruflo
   minReplicas: 3
   maxReplicas: 100
   metrics:
@@ -1615,7 +1615,7 @@ class Logger {
         winston.format.errors({ stack: true }),
         winston.format.json()
       ),
-      defaultMeta: { service: 'claude-flow' },
+      defaultMeta: { service: 'ruflo' },
       transports: [
         new winston.transports.File({ filename: 'error.log', level: 'error' }),
         new winston.transports.File({ filename: 'combined.log' }),

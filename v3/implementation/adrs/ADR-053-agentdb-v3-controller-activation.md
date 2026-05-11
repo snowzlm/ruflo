@@ -3,7 +3,7 @@
 **Status:** Implemented
 **Date:** 2026-02-25
 **Updated:** 2026-02-25
-**Authors:** RuvNet, Claude Flow Team
+**Authors:** RuvNet, Ruflo Team
 **Version:** 1.3.0
 **Published:** v3.1.0-alpha.51
 **Related:** ADR-006 (Unified Memory), ADR-049 (Self-Learning Memory GNN), ADR-050 (Intelligence Loop), ADR-009 (Hybrid Memory Backend), ADR-060 (Proof-Gated Mutations)
@@ -132,7 +132,7 @@ The following capabilities are fully wired **inside AgentDB** and available to c
 | `SonaTrajectoryService` | Yes (since alpha.5) | No | — |
 | `AgentMemoryScope` | Yes | No | #1227 |
 
-Additionally, the `HybridBackend` facade (#1212) does not proxy new v3 methods (`recordFeedback`, `verifyWitnessChain`, `getWitnessChain`), and the hook handler (#1211) ignores stdin on Claude Code 2.x, making all hooks non-functional.
+Additionally, the `HybridBackend` facade (#1212) does not proxy new v3 methods (`recordFeedback`, `verifyWitnessChain`, `getWitnessChain`), and the hook handler (#1211) ignores stdin on OpenClaw 2.x, making all hooks non-functional.
 
 ### Root Cause
 
@@ -150,7 +150,7 @@ Implement a **phased controller activation plan** organized by dependency order,
 |-----------|--------|-------------|
 | **Eliminate dual memory system** | — | Refactor CLI to use `@claude-flow/memory` → `HybridBackend` → AgentDB v3 instead of raw `sql.js` in `memory-initializer.js`. This is the single largest blocker. |
 | **Hook stdin fix** | #1211 | Read JSON from stdin in `hook-handler.cjs` instead of environment variables. Without this, all hook-based wiring is non-functional. |
-| **Init hook config fix** | #1230 | Remove invalid `TaskCompleted`/`TeammateIdle` keys from generated hook config that cause Claude Code settings warnings. |
+| **Init hook config fix** | #1230 | Remove invalid `TaskCompleted`/`TeammateIdle` keys from generated hook config that cause OpenClaw settings warnings. |
 | **HybridBackend proxy** | #1212 | Add `recordFeedback()`, `verifyWitnessChain()`, `getWitnessChain()` proxy methods to `HybridBackend`. |
 | **Config consumption** | #1204 | Wire the 12 dead config.json keys into their respective runtime consumers. |
 | **Topology alignment** | #1202, #1206 | Replace all 5 stale `--topology hierarchical` references with `hierarchical-mesh`. |
@@ -338,7 +338,7 @@ Controllers are only instantiated when their config section is present and enabl
 This ADR acknowledges issue #1196 (beginner confusion from the paradox of choice). While the controller activation is internal plumbing, the UX problem is real. We recommend:
 
 1. **Beginner's Guide**: Create a "Getting Started in 5 Minutes" doc.
-2. **Auto-start dependencies**: `ruflo` / `claude-flow` should auto-start MCP when needed.
+2. **Auto-start dependencies**: `ruflo` / `ruflo` should auto-start MCP when needed.
 3. **Simplified CLI entry point**: A single `npx ruflo start "build me a todo app"` command that handles everything.
 4. **Progressive disclosure**: Hide advanced options behind `--advanced` flags.
 

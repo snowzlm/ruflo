@@ -26,32 +26,32 @@ Vector embeddings for semantic search and pattern matching with HNSW indexing.
 
 ### Initialize Embeddings
 ```bash
-npx claude-flow embeddings init --backend sqlite
+npx ruflo embeddings init --backend sqlite
 ```
 
 ### Embed Text
 ```bash
-npx claude-flow embeddings embed --text "authentication patterns"
+npx ruflo embeddings embed --text "authentication patterns"
 ```
 
 ### Batch Embed
 ```bash
-npx claude-flow embeddings batch --file documents.json
+npx ruflo embeddings batch --file documents.json
 ```
 
 ### Semantic Search
 ```bash
-npx claude-flow embeddings search --query "security best practices" --top-k 5
+npx ruflo embeddings search --query "security best practices" --top-k 5
 ```
 
 ## Memory Integration
 
 ```bash
 # Store with embeddings
-npx claude-flow memory store --key "pattern-1" --value "description" --embed
+npx ruflo memory store --key "pattern-1" --value "description" --embed
 
 # Search with embeddings
-npx claude-flow memory search --query "related patterns" --semantic
+npx ruflo memory search --query "related patterns" --semantic
 ```
 
 ## Quantization

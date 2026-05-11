@@ -5,11 +5,11 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
 
-> Self-Optimizing Neural Architecture (SONA) for Claude Flow V3 — adaptive learning, trajectory tracking, pattern reuse, and 7 RL algorithms in a single package.
+> Self-Optimizing Neural Architecture (SONA) for Ruflo V3 — adaptive learning, trajectory tracking, pattern reuse, and 7 RL algorithms in a single package.
 
 ## What this is
 
-A self-contained learning module that records agent execution trajectories, distills them into reusable patterns, retrieves matches for new tasks, and adapts via SONA + LoRA + EWC++. Designed to be the substrate that the Claude Flow CLI's intelligence layer composes onto — the package owns the algorithms, the CLI owns the orchestration.
+A self-contained learning module that records agent execution trajectories, distills them into reusable patterns, retrieves matches for new tasks, and adapts via SONA + LoRA + EWC++. Designed to be the substrate that the Ruflo CLI's intelligence layer composes onto — the package owns the algorithms, the CLI owns the orchestration.
 
 ## Install
 

@@ -69,10 +69,10 @@ if (sqliteInitFails && retries > maxRetries) {
 
 ```bash
 # Standard initialization with automatic recovery
-npx claude-flow@alpha init
+ruflo init
 
 # Force mode with extended retries (5 attempts)
-npx claude-flow@alpha init --force
+ruflo init --force
 ```
 
 ### Manual Recovery Commands
@@ -85,10 +85,10 @@ npm cache clean --force
 rm -rf ~/.npm/_npx
 
 # Check WSL environment
-npx claude-flow@alpha diagnose --wsl
+ruflo diagnose --wsl
 
 # Verify dependencies
-npx claude-flow@alpha verify --deps
+ruflo verify --deps
 ```
 
 ## Recovery Process Flow
@@ -208,7 +208,7 @@ export interface RetryOptions {
 ### Recovery Log Output
 
 ```bash
-npx claude-flow@alpha init --force
+ruflo init --force
 
 🔍 WSL environment detected
 ✅ WSL environment optimized
@@ -234,7 +234,7 @@ npx claude-flow@alpha init --force
 
 ```bash
 # Enable verbose error recovery logging
-DEBUG=claude-flow:error-recovery npx claude-flow@alpha init --force
+DEBUG=ruflo:error-recovery ruflo init --force
 ```
 
 ## API Usage
@@ -330,4 +330,4 @@ Error recovery adds minimal overhead:
 
 ---
 
-**Need Help?** Report issues at https://github.com/ruvnet/claude-flow/issues
+**Need Help?** Report issues at https://github.com/snowzlm/ruflo/issues

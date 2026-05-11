@@ -346,9 +346,9 @@ async function initializeProject(projectPath, options = {}) {
       'coordination/subtasks',
       'coordination/orchestration',
       '.claude',
-      '.claude/commands',
-      '.claude/commands/sparc',
-      '.claude/logs',
+      '.openclaw/commands',
+      '.openclaw/commands/sparc',
+      '.openclaw/logs',
     ];
 
     // Add template-specific directories
@@ -367,13 +367,13 @@ async function initializeProject(projectPath, options = {}) {
     // Create configuration files in parallel
     const fileCreationTasks = [];
 
-    // CLAUDE.md
+    // OPENCLAW.md
     const claudeMd = sparc
       ? createSparcClaudeMd()
       : minimal
         ? createMinimalClaudeMd()
         : createFullClaudeMd();
-    fileCreationTasks.push(fs.writeFile('CLAUDE.md', claudeMd));
+    fileCreationTasks.push(fs.writeFile('OPENCLAW.md', claudeMd));
 
     // memory-bank.md
     const memoryBankMd = minimal ? createMinimalMemoryBankMd() : createFullMemoryBankMd();

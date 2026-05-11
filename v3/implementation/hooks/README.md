@@ -2,7 +2,7 @@
 
 ## Overview
 
-The V3 Hooks System provides a comprehensive event-driven architecture for intercepting, modifying, and recording operations throughout the claude-flow lifecycle. It integrates with the **ReasoningBank** neural learning system to enable self-improving agent behaviors.
+The V3 Hooks System provides a comprehensive event-driven architecture for intercepting, modifying, and recording operations throughout the ruflo lifecycle. It integrates with the **ReasoningBank** neural learning system to enable self-improving agent behaviors.
 
 ## Architecture
 
@@ -101,25 +101,25 @@ User-accessible CLI for hooks operations.
 
 ```bash
 # Pre/Post Edit Hooks
-npx claude-flow hooks pre-edit <filePath> [--operation modify]
-npx claude-flow hooks post-edit <filePath> --success true
+npx ruflo hooks pre-edit <filePath> [--operation modify]
+npx ruflo hooks post-edit <filePath> --success true
 
 # Pre/Post Command Hooks
-npx claude-flow hooks pre-command "npm test"
-npx claude-flow hooks post-command "npm test" --success true --exit-code 0
+npx ruflo hooks pre-command "npm test"
+npx ruflo hooks post-command "npm test" --success true --exit-code 0
 
 # Task Routing
-npx claude-flow hooks route "Implement user authentication"
-npx claude-flow hooks explain "Implement user authentication" --verbose
+npx ruflo hooks route "Implement user authentication"
+npx ruflo hooks explain "Implement user authentication" --verbose
 
 # Intelligence Bootstrap
-npx claude-flow hooks pretrain [--include-git --include-deps]
-npx claude-flow hooks build-agents [--focus security]
+npx ruflo hooks pretrain [--include-git --include-deps]
+npx ruflo hooks build-agents [--focus security]
 
 # Metrics & Management
-npx claude-flow hooks metrics [--category routing]
-npx claude-flow hooks list [--category pre-edit]
-npx claude-flow hooks transfer <sourceProject>
+npx ruflo hooks metrics [--category routing]
+npx ruflo hooks list [--category pre-edit]
+npx ruflo hooks transfer <sourceProject>
 ```
 
 ## Hook Events
@@ -412,11 +412,11 @@ V3 maintains full backward compatibility with V2 hooks:
 
 ```bash
 # V2 syntax still works
-npx claude-flow hooks pre-task --description "task"
-npx claude-flow hooks session-restore --session-id "swarm-123"
-npx claude-flow hooks post-edit --file "file.ts" --memory-key "swarm/agent/step"
-npx claude-flow hooks notify --message "completed"
-npx claude-flow hooks session-end --export-metrics true
+npx ruflo hooks pre-task --description "task"
+npx ruflo hooks session-restore --session-id "swarm-123"
+npx ruflo hooks post-edit --file "file.ts" --memory-key "swarm/agent/step"
+npx ruflo hooks notify --message "completed"
+npx ruflo hooks session-end --export-metrics true
 ```
 
 ### V2 MCP Tools (Deprecated but Functional)

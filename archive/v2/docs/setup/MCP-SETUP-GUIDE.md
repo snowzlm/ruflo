@@ -1,8 +1,8 @@
-# MCP Server Setup Guide for Claude Flow
+# MCP Server Setup Guide for Ruflo
 
 ## 🎯 Overview
 
-Claude Flow integrates with Claude Code through MCP (Model Context Protocol) servers. This guide explains how to set up MCP servers correctly.
+Ruflo integrates with OpenClaw through MCP (Model Context Protocol) servers. This guide explains how to set up MCP servers correctly.
 
 ## 📋 Two Ways to Initialize
 
@@ -10,28 +10,28 @@ Claude Flow integrates with Claude Code through MCP (Model Context Protocol) ser
 
 ```bash
 # This command automatically adds MCP servers
-npx claude-flow@alpha init --force
+ruflo init --force
 ```
 
 **What it does:**
-- Creates project files (CLAUDE.md, settings.json, etc.)
-- Automatically runs: `claude mcp add claude-flow npx claude-flow@alpha mcp start`
+- Creates project files (OPENCLAW.md, settings.json, etc.)
+- Automatically runs: `openclaw mcp add ruflo ruflo mcp start`
 - Sets up ruv-swarm and flow-nexus MCP servers (optional)
 - Configures hooks and permissions
 
 ### 2. **Manual Setup**
 
-If you already have Claude Code installed but need to add MCP servers:
+If you already have OpenClaw installed but need to add MCP servers:
 
 ```bash
-# Add Claude Flow MCP server
-claude mcp add claude-flow npx claude-flow@alpha mcp start
+# Add Ruflo MCP server
+openclaw mcp add ruflo ruflo mcp start
 
 # Optional: Add enhanced coordination
-claude mcp add ruv-swarm npx ruv-swarm mcp start
+openclaw mcp add ruv-swarm npx ruv-swarm mcp start
 
 # Optional: Add cloud features
-claude mcp add flow-nexus npx flow-nexus@latest mcp start
+openclaw mcp add flow-nexus npx flow-nexus@latest mcp start
 ```
 
 ## ✅ Verify Setup
@@ -39,12 +39,12 @@ claude mcp add flow-nexus npx flow-nexus@latest mcp start
 Check that MCP servers are running:
 
 ```bash
-claude mcp list
+openclaw mcp list
 ```
 
 Expected output:
 ```
-claude-flow: npx claude-flow@alpha mcp start - ✓ Connected
+ruflo: ruflo mcp start - ✓ Connected
 ruv-swarm: npx ruv-swarm mcp start - ✓ Connected
 flow-nexus: npx flow-nexus@latest mcp start - ✓ Connected
 ```
@@ -55,29 +55,29 @@ flow-nexus: npx flow-nexus@latest mcp start - ✓ Connected
 
 **Example:**
 ```
-claude-flow: /workspaces/claude-code-flow/bin/claude-flow mcp start - ✓ Connected
+ruflo: /workspaces/openclaw-flow/bin/claude-flow mcp start - ✓ Connected
 ```
 
 **Solution:**
-This happens when you're working in the claude-flow repository itself. It's actually fine for development! The MCP server will work correctly.
+This happens when you're working in the ruflo repository itself. It's actually fine for development! The MCP server will work correctly.
 
 If you want to use the npx command instead:
 
 ```bash
 # Remove the existing server
-claude mcp remove claude-flow
+openclaw mcp remove ruflo
 
 # Re-add with npx command
-claude mcp add claude-flow npx claude-flow@alpha mcp start
+openclaw mcp add ruflo ruflo mcp start
 ```
 
 ### Issue: "claude: command not found"
 
 **Solution:**
-Install Claude Code first:
+Install OpenClaw first:
 
 ```bash
-npm install -g @anthropic-ai/claude-code
+npm install -g @anthropic-ai/openclaw
 ```
 
 ### Issue: MCP server fails to connect
@@ -87,12 +87,12 @@ npm install -g @anthropic-ai/claude-code
 1. **Package not installed globally:**
    ```bash
    # Install the package
-   npm install -g claude-flow@alpha
+   npm install -g github:snowzlm/ruflo
    ```
 
 2. **Using local development version:**
    ```bash
-   # In the claude-flow repo, build first
+   # In the ruflo repo, build first
    npm run build
    ```
 
@@ -104,44 +104,44 @@ npm install -g @anthropic-ai/claude-code
 
 ## 📚 Understanding the Commands
 
-### `npx claude-flow@alpha init`
-- Initializes Claude Flow project files
-- **Automatically calls** `claude mcp add` for you
+### `ruflo init`
+- Initializes Ruflo project files
+- **Automatically calls** `openclaw mcp add` for you
 - Only needs to be run once per project
 
 ### `claude init`
-- Claude Code's own initialization
-- Does **NOT** automatically add Claude Flow MCP servers
-- Separate from Claude Flow initialization
+- OpenClaw's own initialization
+- Does **NOT** automatically add Ruflo MCP servers
+- Separate from Ruflo initialization
 
-### `claude mcp add <name> <command>`
-- Adds an MCP server to Claude Code's global config
+### `openclaw mcp add <name> <command>`
+- Adds an MCP server to OpenClaw's global config
 - Persists across projects
 - Located in `~/.config/claude/`
 
 ## 🎯 Recommended Workflow
 
 ```bash
-# 1. Install Claude Code (one-time)
-npm install -g @anthropic-ai/claude-code
+# 1. Install OpenClaw (one-time)
+npm install -g @anthropic-ai/openclaw
 
-# 2. Initialize your project with Claude Flow (per project)
+# 2. Initialize your project with Ruflo (per project)
 cd your-project
-npx claude-flow@alpha init --force
+ruflo init --force
 
 # 3. Verify MCP servers are connected
-claude mcp list
+openclaw mcp list
 
-# 4. Start using Claude Code with MCP tools
+# 4. Start using OpenClaw with MCP tools
 claude
 ```
 
 ## 💡 Key Points
 
-- **`npx claude-flow@alpha init`** does BOTH file setup AND MCP configuration
-- **`claude init`** is just for Claude Code, not Claude Flow
-- MCP servers are **global** (affect all Claude Code sessions)
-- Project files (.claude/, CLAUDE.md) are **local** to each project
+- **`ruflo init`** does BOTH file setup AND MCP configuration
+- **`claude init`** is just for OpenClaw, not Ruflo
+- MCP servers are **global** (affect all OpenClaw sessions)
+- Project files (.claude/, OPENCLAW.md) are **local** to each project
 
 ## 🔗 Related Documentation
 
@@ -151,4 +151,4 @@ claude
 
 ---
 
-**Questions?** See [GitHub Issues](https://github.com/ruvnet/claude-flow/issues) or join our [Discord](https://discord.com/invite/dfxmpwkG2D)
+**Questions?** See [GitHub Issues](https://github.com/snowzlm/ruflo/issues) or join our [Discord](https://discord.com/invite/dfxmpwkG2D)

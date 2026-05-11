@@ -4,7 +4,7 @@ This tutorial shows how to run automated compliance tests against your guidance 
 
 ## The Problem
 
-You've written 50 rules in `CLAUDE.md`. How do you know agents actually follow them? Manual testing is slow and inconsistent. The headless runner automates this: it runs Claude Code in headless mode against test tasks and evaluates the results.
+You've written 50 rules in `OPENCLAW.md`. How do you know agents actually follow them? Manual testing is slow and inconsistent. The headless runner automates this: it runs OpenClaw in headless mode against test tasks and evaluates the results.
 
 ## Step 1: Define Test Tasks
 

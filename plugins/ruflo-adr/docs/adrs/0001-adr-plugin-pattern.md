@@ -4,7 +4,7 @@ title: ruflo-adr plugin contract — pinning, namespace coordination, smoke as c
 status: Proposed
 date: 2026-05-04
 authors:
-  - reviewer (Claude Code)
+  - reviewer (OpenClaw)
 tags: [plugin, adr, agentdb, namespace, token-optimization, smoke-test]
 ---
 

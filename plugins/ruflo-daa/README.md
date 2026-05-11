@@ -5,7 +5,7 @@ Dynamic Agentic Architecture with cognitive patterns, knowledge sharing, and ada
 ## Install
 
 ```
-/plugin marketplace add ruvnet/ruflo
+/plugin marketplace add snowzlm/ruflo
 /plugin install ruflo-daa@ruflo
 ```
 

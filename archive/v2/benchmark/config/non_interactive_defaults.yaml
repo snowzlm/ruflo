@@ -17,7 +17,7 @@ commands:
     analysis: true
     background: false
     ui: false  # Disable UI
-    claude: false  # Don't open Claude Code CLI
+    claude: false  # Don't open OpenClaw CLI
     
   hive_mind:
     executor: true

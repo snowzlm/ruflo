@@ -235,25 +235,25 @@ const hiveAgentTypes = {
 ### V2 Hive Commands
 ```bash
 # V2 Commands
-npx claude-flow hive --topology mesh --consensus quorum --max-agents 8
-npx claude-flow hive-mind init
-npx claude-flow hive-mind status
-npx claude-flow hive-mind spawn --type queen
-npx claude-flow hive-mind task --description "Implement feature"
-npx claude-flow hive-mind wizard
-npx claude-flow hive-mind pause
-npx claude-flow hive-mind resume
-npx claude-flow hive-mind stop
-npx claude-flow hive-mind ps
-npx claude-flow hive-mind optimize-memory
+npx ruflo hive --topology mesh --consensus quorum --max-agents 8
+npx ruflo hive-mind init
+npx ruflo hive-mind status
+npx ruflo hive-mind spawn --type queen
+npx ruflo hive-mind task --description "Implement feature"
+npx ruflo hive-mind wizard
+npx ruflo hive-mind pause
+npx ruflo hive-mind resume
+npx ruflo hive-mind stop
+npx ruflo hive-mind ps
+npx ruflo hive-mind optimize-memory
 ```
 
 ### V3 Equivalent Commands
 ```bash
 # V3 Commands (partial coverage)
-npx claude-flow swarm init --topology hierarchical-mesh --max-agents 15
-npx claude-flow swarm status
-npx claude-flow agent spawn --type queen-coordinator
+npx ruflo swarm init --topology hierarchical-mesh --max-agents 15
+npx ruflo swarm status
+npx ruflo agent spawn --type queen-coordinator
 
 # Missing V3 commands:
 # - hive (dedicated hive mode)

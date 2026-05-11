@@ -160,7 +160,7 @@ $ ./claude-flow analysis claude-cost
 
 ### Wiki Updates
 - [x] **Token-Tracking-Telemetry.md** - Comprehensive guide created
-- [x] **CLAUDE.md** - Updated with telemetry section and examples
+- [x] **OPENCLAW.md** - Updated with telemetry section and examples
 - [x] **Home.md** - Updated to reference telemetry features
 
 ### Code Documentation  
@@ -191,7 +191,7 @@ The Alpha-89 telemetry implementation is **COMPLETE and WORKING**. The system su
 
 **Key Success**: Confirmed real token data capture with actual Claude API responses showing input tokens, output tokens, and cache utilization metrics.
 
-This implementation provides the foundation for advanced usage analytics, cost management, and performance optimization in Claude Flow v2.0.0.
+This implementation provides the foundation for advanced usage analytics, cost management, and performance optimization in Ruflo v2.0.0.
 
 ---
 

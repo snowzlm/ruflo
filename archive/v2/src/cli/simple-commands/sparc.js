@@ -82,7 +82,7 @@ async function listSparcModes(subArgs) {
   try {
     // Get the actual working directory where the command was run from
     const workingDir = process.env.PWD || cwd();
-    const configPath = `${workingDir}/.claude/sparc-modes.json`;
+    const configPath = `${workingDir}/.openclaw/sparc-modes.json`;
     let configContent;
     try {
       configContent = await fs.readFile(configPath, 'utf8');
@@ -131,7 +131,7 @@ async function showModeInfo(subArgs) {
   try {
     // Get the actual working directory where the command was run from
     const workingDir = process.env.PWD || cwd();
-    const configPath = `${workingDir}/.claude/sparc-modes.json`;
+    const configPath = `${workingDir}/.openclaw/sparc-modes.json`;
     let configContent;
     try {
       configContent = await fs.readFile(configPath, 'utf8');
@@ -188,7 +188,7 @@ async function runSparcMode(subArgs, flags) {
   try {
     // Get the actual working directory where the command was run from
     const workingDir = process.env.PWD || cwd();
-    const configPath = `${workingDir}/.claude/sparc-modes.json`;
+    const configPath = `${workingDir}/.openclaw/sparc-modes.json`;
     let configContent;
     try {
       configContent = await fs.readFile(configPath, 'utf8');

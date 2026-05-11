@@ -1,5 +1,5 @@
 #!/bin/bash
-# Auto-commit helper for Claude Code hooks
+# Auto-commit helper for OpenClaw hooks
 # Handles git add, commit, and push in a robust way
 
 set -e
@@ -77,18 +77,18 @@ auto_commit() {
     local timestamp=$(date -u +%Y-%m-%dT%H:%M:%SZ)
 
     if [ -z "$message" ]; then
-        message="$COMMIT_PREFIX: Auto-commit from Claude Code"
+        message="$COMMIT_PREFIX: Auto-commit from OpenClaw"
     fi
 
     # Commit
     if git commit -m "$message
 
-Automatic checkpoint created by Claude Code
+Automatic checkpoint created by OpenClaw
 - Branch: $branch
 - Timestamp: $timestamp
 - Changes: $change_count file(s)
 
-🤖 Generated with [Claude Code](https://claude.com/claude-code)
+🤖 Generated with [OpenClaw](https://claude.com/openclaw)
 
 Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>" --quiet 2>/dev/null; then
         log "Created commit: $message"

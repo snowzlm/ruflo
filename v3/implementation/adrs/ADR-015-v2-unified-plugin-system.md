@@ -253,7 +253,7 @@ interface CollectionManagerState {
 // Core collection - essential plugins
 const coreCollection: PluginCollection = {
   id: 'claude-flow-core',
-  name: 'Claude Flow Core Plugins',
+  name: 'Ruflo Core Plugins',
   version: '3.0.0',
   plugins: [
     { plugin: memoryPlugin, defaultEnabled: true, category: 'memory' },

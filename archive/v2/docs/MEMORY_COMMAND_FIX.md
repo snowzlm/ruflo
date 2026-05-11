@@ -1,5 +1,5 @@
 # Memory Command Fix - better-sqlite3 / onnxruntime-node Errors
-**Issue:** `npx claude-flow@alpha memory` commands fail with dependency errors
+**Issue:** `ruflo memory` commands fail with dependency errors
 **Status:** ✅ FIXED (Automatic Fallback in v2.7.15)
 **Date:** 2025-10-25
 
@@ -9,14 +9,14 @@
 
 ### Error 1: better-sqlite3 (ReasoningBank)
 ```bash
-$ npx claude-flow@alpha memory store "api" "REST"
+$ ruflo memory store "api" "REST"
 ❌ Error: BetterSqlite3 is not a constructor
    Migration error: TypeError: BetterSqlite3 is not a constructor
 ```
 
 ### Error 2: onnxruntime-node (ONNX inference)
 ```bash
-$ npx claude-flow@alpha memory status
+$ ruflo memory status
 ❌ Error: Cannot find package 'onnxruntime-node'
 ```
 
@@ -33,7 +33,7 @@ $ npx claude-flow@alpha memory status
 **Memory commands now automatically fall back to JSON when SQLite isn't available:**
 
 ```bash
-$ npx claude-flow@alpha memory store "api" "REST"
+$ ruflo memory store "api" "REST"
 ⚠️  NPX LIMITATION DETECTED
 ReasoningBank requires better-sqlite3, not available in npx temp directories.
 
@@ -42,10 +42,10 @@ ReasoningBank requires better-sqlite3, not available in npx temp directories.
      npm install && node_modules/.bin/claude-flow memory store "key" "value"
 
   2. USE MCP TOOLS instead:
-     mcp__claude-flow__memory_usage({ action: "store", key: "test", value: "data" })
+     mcp__ruflo__memory_usage({ action: "store", key: "test", value: "data" })
 
   3. USE JSON FALLBACK:
-     npx claude-flow@alpha memory store "key" "value" --basic
+     ruflo memory store "key" "value" --basic
 
 ✅ Automatically using JSON fallback for this command
 ✅ Stored: api = REST (namespace: default)
@@ -92,7 +92,7 @@ npm run memory:stats  # if you add the script
 npm install onnxruntime-node --save-optional --legacy-peer-deps
 
 # Then npx should work
-npx claude-flow@alpha memory status
+ruflo memory status
 ```
 
 **Status:** ⚠️ Installed but npx still has issues due to temp directory
@@ -105,10 +105,10 @@ npx claude-flow@alpha memory status
 // package.json
 {
   "scripts": {
-    "memory:stats": "claude-flow memory stats",
-    "memory:list": "claude-flow memory list",
-    "memory:store": "claude-flow memory store",
-    "memory:query": "claude-flow memory query"
+    "memory:stats": "ruflo memory stats",
+    "memory:list": "ruflo memory list",
+    "memory:store": "ruflo memory store",
+    "memory:query": "ruflo memory query"
   }
 }
 ```
@@ -220,9 +220,9 @@ cfmem query "authentication"
 // package.json
 {
   "scripts": {
-    "memory:export": "claude-flow memory export .memory-backup.json",
-    "memory:import": "claude-flow memory import .memory-backup.json",
-    "memory:clear": "claude-flow memory clear --namespace temp"
+    "memory:export": "ruflo memory export .memory-backup.json",
+    "memory:import": "ruflo memory import .memory-backup.json",
+    "memory:clear": "ruflo memory clear --namespace temp"
   }
 }
 ```
@@ -234,21 +234,21 @@ cfmem query "authentication"
 **Best Option:** Use MCP tools which don't have this issue
 
 ```javascript
-// Via Claude Code (MCP tools)
-mcp__claude-flow__memory_usage({
+// Via OpenClaw (MCP tools)
+mcp__ruflo__memory_usage({
   action: "store",
   key: "test-key",
   value: "test-value",
   namespace: "default"
 })
 
-mcp__claude-flow__memory_usage({
+mcp__ruflo__memory_usage({
   action: "retrieve",
   key: "test-key",
   namespace: "default"
 })
 
-mcp__claude-flow__memory_search({
+mcp__ruflo__memory_search({
   pattern: "test",
   namespace: "default",
   limit: 10
@@ -258,7 +258,7 @@ mcp__claude-flow__memory_search({
 **Benefits:**
 - ✅ No npx issues
 - ✅ No optional dependency issues
-- ✅ Works in Claude Code / Claude Desktop
+- ✅ Works in OpenClaw / Claude Desktop
 - ✅ Better integration with workflows
 
 ---
@@ -272,13 +272,13 @@ mcp__claude-flow__memory_search({
 **Quick Fix:**
 ```bash
 # Instead of:
-npx claude-flow@alpha memory status  ❌
+ruflo memory status  ❌
 
 # Use:
 node_modules/.bin/claude-flow memory stats  ✅
 
 # Or (best):
-mcp__claude-flow__memory_usage({ action: "retrieve" })  ✅
+mcp__ruflo__memory_usage({ action: "retrieve" })  ✅
 ```
 
 ---

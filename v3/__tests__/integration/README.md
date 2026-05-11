@@ -1,6 +1,6 @@
 # V3 Integration Test Suite
 
-Comprehensive cross-module integration tests for claude-flow V3 architecture.
+Comprehensive cross-module integration tests for ruflo V3 architecture.
 
 ## Test Files Overview
 
@@ -207,7 +207,7 @@ These integration tests are designed to run in CI/CD pipelines:
 
 ### Enable verbose logging
 ```bash
-DEBUG=claude-flow:* npm run test:integration
+DEBUG=ruflo:* npm run test:integration
 ```
 
 ### Run single test
@@ -251,4 +251,4 @@ Integration tests include:
 - `/v3/docs/architecture/` - Architecture decision records
 - `/v3/docs/testing/` - Testing strategy
 - `/v3/README.md` - V3 overview
-- `/CLAUDE.md` - Development guidelines
+- `/OPENCLAW.md` - Development guidelines

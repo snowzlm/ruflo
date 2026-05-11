@@ -28,16 +28,16 @@ Ruflo already ships every primitive needed to assemble a maigret-style investiga
 
 | Capability | Existing tool |
 |---|---|
-| Hybrid sparse+dense semantic search | `mcp__claude-flow__memory_search_unified`, `ruflo-rag-memory:memory-search` |
-| Vector search (HNSW, RaBitQ) | `mcp__claude-flow__embeddings_search`, `embeddings_rabitq_search` |
-| Pattern recall | `mcp__claude-flow__agentdb_pattern-search`, `agentdb_hierarchical-recall` |
+| Hybrid sparse+dense semantic search | `mcp__ruflo__memory_search_unified`, `ruflo-rag-memory:memory-search` |
+| Vector search (HNSW, RaBitQ) | `mcp__ruflo__embeddings_search`, `embeddings_rabitq_search` |
+| Pattern recall | `mcp__ruflo__agentdb_pattern-search`, `agentdb_hierarchical-recall` |
 | Knowledge-graph traversal + extraction | `ruflo-knowledge-graph:kg-traverse`, `kg-extract` |
 | Web search & fetch | `WebSearch`, `WebFetch` |
 | Codebase queries | `Grep`, `Glob`, `Read` |
 | ADR index lookup | `ruflo-adr:adr-index` |
 | Git intelligence | `ruflo-jujutsu:diff-analyze` |
 | Parallel agent fan-out | `ruflo-swarm:swarm-init` (mesh topology) |
-| Trajectory recording | `mcp__claude-flow__hooks_intelligence_trajectory-*` |
+| Trajectory recording | `mcp__ruflo__hooks_intelligence_trajectory-*` |
 
 ## Decision
 
@@ -108,7 +108,7 @@ If the overlap proves excessive after first usage, we can refactor a shared `mul
 | 1. Agent prompt | `plugins/ruflo-goals/agents/dossier-investigator.md` | coder |
 | 2. Skill markdown | `plugins/ruflo-goals/skills/dossier-collect/SKILL.md` | coder |
 | 3. Slash command | `plugins/ruflo-goals/commands/goals.md` (add `dossier` subcommand) | coder |
-| 4. Plugin manifest bump | `plugins/ruflo-goals/.claude-plugin/plugin.json` (0.1.0 → 0.2.0) | coder |
+| 4. Plugin manifest bump | `plugins/ruflo-goals/.openclaw-plugin/plugin.json` (0.1.0 → 0.2.0) | coder |
 | 5. README update | `plugins/ruflo-goals/README.md` | coder |
 | 6. Smoke test | `tests/plugins/ruflo-goals/dossier.spec.ts` | tester |
 | 7. Ship behind a flag | `dossierInvestigator.enabled` defaulting `true` for first release | coder |
@@ -130,7 +130,7 @@ All implementation plan steps are complete on `main`.
 | 1. Agent prompt | `plugins/ruflo-goals/agents/dossier-investigator.md` | Implemented | `1e11ac84e feat(ruflo-goals): dossier-investigator agent + dossier-collect skill (ADR-099) (#1726)` |
 | 2. Skill markdown | `plugins/ruflo-goals/skills/dossier-collect/SKILL.md` | Implemented | same |
 | 3. Slash command | `plugins/ruflo-goals/commands/goals.md` (dossier subcommand) | Implemented | same |
-| 4. Plugin manifest bump | `plugins/ruflo-goals/.claude-plugin/plugin.json` (0.1.0 → 0.2.0) | Implemented | same |
+| 4. Plugin manifest bump | `plugins/ruflo-goals/.openclaw-plugin/plugin.json` (0.1.0 → 0.2.0) | Implemented | same |
 | 5. README update | `plugins/ruflo-goals/README.md` | Implemented | same |
 | 6. Smoke test | `tests/plugins/ruflo-goals/dossier.spec.ts` | Implemented | same |
 | 7. Feature flag | `dossierInvestigator.enabled` (default `true`) | Implemented | same |

@@ -1,16 +1,16 @@
 {
-  "name": "claude-flow",
+  "name": "ruflo",
   "version": "3.7.0-alpha.20",
-  "description": "Ruflo - Enterprise AI agent orchestration for Claude Code. Deploy 60+ specialized agents in coordinated swarms with self-learning, fault-tolerant consensus, vector memory, and MCP integration",
+  "description": "Ruflo - Enterprise AI agent orchestration for OpenClaw. Deploy 60+ specialized agents in coordinated swarms with self-learning, fault-tolerant consensus, vector memory, multi-provider LLM (Claude/GPT/Gemini), and MCP integration",
   "main": "dist/index.js",
   "type": "module",
   "bin": {
-    "claude-flow": "./bin/cli.js"
+    "ruflo": "./bin/cli.js"
   },
-  "homepage": "https://github.com/ruvnet/claude-flow#readme",
+  "homepage": "https://github.com/snowzlm/ruflo#readme",
   "bugs": {
-    "url": "https://github.com/ruvnet/claude-flow/issues",
-    "email": "support@ruv.io"
+    "url": "https://github.com/snowzlm/ruflo/issues",
+    "email": "snow@openclaw.local"
   },
   "funding": {
     "type": "github",
@@ -31,10 +31,10 @@
     "v3/@claude-flow/guidance/dist/**/*.d.ts",
     "!v3/@claude-flow/guidance/dist/**/*.map",
     "v3/@claude-flow/guidance/package.json",
-    ".claude-plugin/**",
-    ".claude/**",
-    "!.claude/**/*.db",
-    "!.claude/**/*.map",
+    ".openclaw-plugin/**",
+    ".openclaw/**",
+    "!.openclaw/**/*.db",
+    "!.openclaw/**/*.map",
     "README.md",
     "LICENSE"
   ],
@@ -105,14 +105,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ruvnet/claude-flow.git"
+    "url": "https://github.com/snowzlm/ruflo.git"
   },
   "keywords": [
-    "ruvflow",
-    "claude",
-    "claude-code",
-    "anthropic",
-    "ai",
+    "ruflo",
+    "openclaw",
     "ai-agents",
     "multi-agent",
     "agent-orchestration",
@@ -123,7 +120,9 @@
     "llm",
     "large-language-model",
     "gpt",
-    "chatgpt",
+    "openai",
+    "anthropic",
+    "gemini",
     "automation",
     "workflow",
     "orchestration",
@@ -143,9 +142,8 @@
     "self-learning"
   ],
   "author": {
-    "name": "RuvNet",
-    "email": "ruv@ruv.io",
-    "url": "https://ruv.io"
+    "name": "snowzlm",
+    "url": "https://github.com/snowzlm"
   },
   "license": "MIT",
   "publishConfig": {

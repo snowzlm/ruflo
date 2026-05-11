@@ -18,7 +18,7 @@ export interface PromptConfig {
 }
 
 export const DEFAULT_CONFIG: PromptConfig = {
-  sourceDirectories: ['.roo', '.claude/commands', 'src/templates', 'templates'],
+  sourceDirectories: ['.roo', '.openclaw/commands', 'src/templates', 'templates'],
   destinationDirectory: './project-prompts',
   defaultOptions: {
     backup: true,

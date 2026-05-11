@@ -62,7 +62,7 @@ v3.0.0          → Stable release
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "claude-flow": "bin/claude-flow.js"
+    "ruflo": "bin/claude-flow.js"
   },
   "engines": {
     "node": ">=20.0.0"
@@ -559,16 +559,16 @@ checks:
     timeout: 60s
 
   - name: CLI startup
-    command: claude-flow --version
+    command: ruflo --version
     expected: "3.0.0"
     timeout: 5s
 
   - name: Basic swarm
-    command: claude-flow swarm init test --dry-run
+    command: ruflo swarm init test --dry-run
     timeout: 10s
 
   - name: MCP server
-    command: claude-flow mcp start --health-check
+    command: ruflo mcp start --health-check
     timeout: 30s
 ```
 
@@ -608,7 +608,7 @@ deep integration with the agentic-flow ecosystem.
 
 ```bash
 npm install -g @anthropic/claude-flow@3.0.0
-claude-flow migrate --from v2
+ruflo migrate --from v2
 ```
 
 ## Links

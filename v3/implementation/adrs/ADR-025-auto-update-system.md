@@ -18,7 +18,7 @@
 
 ## Context
 
-The Claude Flow V3 ecosystem consists of multiple packages:
+The Ruflo V3 ecosystem consists of multiple packages:
 - `@claude-flow/cli` - Main CLI tool
 - `@claude-flow/embeddings` - Vector embeddings
 - `@claude-flow/security` - Security utilities
@@ -165,30 +165,30 @@ interface ValidationResult {
    │   └─► Log to update history
    │
    └─► Display notification for non-auto updates
-       └─► "Run `npx claude-flow update` to update X packages"
+       └─► "Run `npx ruflo update` to update X packages"
 ```
 
 ### CLI Commands
 
 ```bash
 # Check for updates (manual)
-npx claude-flow update check
+npx ruflo update check
 
 # Update all packages
-npx claude-flow update all
+npx ruflo update all
 
 # Update specific package
-npx claude-flow update @claude-flow/embeddings
+npx ruflo update @claude-flow/embeddings
 
 # View update history
-npx claude-flow update history
+npx ruflo update history
 
 # Rollback last update
-npx claude-flow update rollback
+npx ruflo update rollback
 
 # Configure auto-update
-npx claude-flow config set update.autoUpdateMinor true
-npx claude-flow config set update.checkIntervalHours 12
+npx ruflo config set update.autoUpdateMinor true
+npx ruflo config set update.checkIntervalHours 12
 ```
 
 ### Environment Variables
@@ -207,7 +207,7 @@ CI=true
 ### Configuration File
 
 ```json
-// claude-flow.config.json
+// ruflo.config.json
 {
   "update": {
     "enabled": true,

@@ -305,7 +305,7 @@ export class BackupManager {
   async getCriticalFiles() {
     const files = [];
     const potentialFiles = [
-      'CLAUDE.md',
+      'OPENCLAW.md',
       'memory-bank.md',
       'coordination.md',
       'package.json',

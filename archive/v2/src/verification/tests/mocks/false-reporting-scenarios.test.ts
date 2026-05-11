@@ -19,7 +19,7 @@ import * as os from 'os';
 // Dynamic import for CommonJS module
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
-const TruthScoreCalc = require('../../../../.claude/helpers/truth-score.js');
+const TruthScoreCalc = require('../../../../.openclaw/helpers/truth-score.js');
 
 interface MockAgent {
   id: string;

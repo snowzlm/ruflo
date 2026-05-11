@@ -1,16 +1,16 @@
-# Claude Code Configuration - Claude Flow V3
+# OpenClaw Configuration - Ruflo V3
 
 ## 🚨 AUTOMATIC SWARM ORCHESTRATION
 
-**When starting work on complex tasks, Claude Code MUST automatically:**
+**When starting work on complex tasks, OpenClaw MUST automatically:**
 
 1. **Initialize the swarm** using CLI tools via Bash
-2. **Spawn concurrent agents** using Claude Code's Task tool
+2. **Spawn concurrent agents** using OpenClaw's Task tool
 3. **Coordinate via hooks** and memory
 
 ### 🚨 CRITICAL: CLI + Task Tool in SAME Message
 
-**When user says "spawn swarm" or requests complex work, Claude Code MUST in ONE message:**
+**When user says "spawn swarm" or requests complex work, OpenClaw MUST in ONE message:**
 1. Call CLI tools via Bash to initialize coordination
 2. **IMMEDIATELY** call Task tool to spawn REAL working agents
 3. Both CLI and Task calls must be in the SAME response
@@ -253,7 +253,7 @@ Bash("npx @claude-flow/cli@latest hooks worker dispatch --trigger optimize")
 
 **MANDATORY PATTERNS:**
 - **TodoWrite**: ALWAYS batch ALL todos in ONE call (5-10+ todos minimum)
-- **Task tool (Claude Code)**: ALWAYS spawn ALL agents in ONE message with full instructions
+- **Task tool (OpenClaw)**: ALWAYS spawn ALL agents in ONE message with full instructions
 - **File operations**: ALWAYS batch ALL reads/writes/edits in ONE message
 - **Bash commands**: ALWAYS batch ALL terminal operations in ONE message
 - **Memory operations**: ALWAYS batch ALL memory store/retrieve in ONE message
@@ -457,7 +457,7 @@ npx @claude-flow/cli@latest hooks worker status
 npx @claude-flow/cli@latest hooks coverage-gaps --format table
 npx @claude-flow/cli@latest hooks coverage-route --task "[task]"
 
-# Statusline (for Claude Code integration)
+# Statusline (for OpenClaw integration)
 npx @claude-flow/cli@latest hooks statusline
 npx @claude-flow/cli@latest hooks statusline --json
 ```
@@ -604,9 +604,9 @@ Run `npx @claude-flow/cli@latest doctor` to check:
 
 ```bash
 # Add MCP servers (auto-detects MCP mode when stdin is piped)
-claude mcp add claude-flow -- npx -y @claude-flow/cli@latest
-claude mcp add ruv-swarm -- npx -y ruv-swarm mcp start  # Optional
-claude mcp add flow-nexus -- npx -y flow-nexus@latest mcp start  # Optional
+openclaw mcp add ruflo -- npx -y @claude-flow/cli@latest
+openclaw mcp add ruv-swarm -- npx -y ruv-swarm mcp start  # Optional
+openclaw mcp add flow-nexus -- npx -y flow-nexus@latest mcp start  # Optional
 
 # Start daemon
 npx @claude-flow/cli@latest daemon start
@@ -615,9 +615,9 @@ npx @claude-flow/cli@latest daemon start
 npx @claude-flow/cli@latest doctor --fix
 ```
 
-## 🎯 Claude Code vs CLI Tools
+## 🎯 OpenClaw vs CLI Tools
 
-### Claude Code Handles ALL EXECUTION:
+### OpenClaw Handles ALL EXECUTION:
 - **Task tool**: Spawn and run agents concurrently
 - File operations (Read, Write, Edit, MultiEdit, Glob, Grep)
 - Code generation and programming
@@ -673,11 +673,11 @@ npx @claude-flow/cli@latest memory retrieve --key "pattern-auth" --namespace pat
 npx @claude-flow/cli@latest memory init --force --verbose
 ```
 
-**KEY**: CLI coordinates the strategy via Bash, Claude Code's Task tool executes with real agents.
+**KEY**: CLI coordinates the strategy via Bash, OpenClaw's Task tool executes with real agents.
 
 ## 📚 Full Capabilities Reference
 
-For a comprehensive overview of all Claude Flow V3 features, agents, commands, and integrations, see:
+For a comprehensive overview of all Ruflo V3 features, agents, commands, and integrations, see:
 
 **`.claude-flow/CAPABILITIES.md`** - Complete reference generated during init
 
@@ -692,12 +692,12 @@ This includes:
 
 ## Support
 
-- Documentation: https://github.com/ruvnet/claude-flow
-- Issues: https://github.com/ruvnet/claude-flow/issues
+- Documentation: https://github.com/snowzlm/ruflo
+- Issues: https://github.com/snowzlm/ruflo/issues
 
 ---
 
-Remember: **Claude Flow CLI coordinates, Claude Code Task tool creates!**
+Remember: **Ruflo CLI coordinates, OpenClaw Task tool creates!**
 
 # important-instruction-reminders
 Do what has been asked; nothing more, nothing less.

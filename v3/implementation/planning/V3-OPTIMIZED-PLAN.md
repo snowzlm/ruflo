@@ -56,7 +56,7 @@ export class SecureFoundation {
 // package.json - Updated secure dependencies
 {
   "dependencies": {
-    "@anthropic-ai/claude-code": "^2.0.31",
+    "@anthropic-ai/openclaw": "^2.0.31",
     "@modelcontextprotocol/sdk": "^1.24.0",
     "agentic-flow": "^2.0.1-alpha.0",
     "bcrypt": "^5.1.1",
@@ -479,7 +479,7 @@ export class MemoryManager {
 ```typescript
 // src/v3/compatibility/config-migration.ts
 export async function autoMigrateConfig(): Promise<void> {
-  const configPath = '.claude/config.json';
+  const configPath = '.openclaw/config.json';
 
   if (!await fileExists(configPath)) {
     // Fresh install - create v3 config
@@ -605,10 +605,10 @@ export class InitController {
   private async initDirectories(): Promise<InitStepResult> {
     const dirs = [
       '.claude',
-      '.claude/agents',
-      '.claude/commands',
-      '.claude/skills',
-      '.claude/checkpoints/active',
+      '.openclaw/agents',
+      '.openclaw/commands',
+      '.openclaw/skills',
+      '.openclaw/checkpoints/active',
       '.claude-flow/coordination',
       '.claude-flow/training',
       '.claude-flow/metrics'
@@ -891,7 +891,7 @@ export function createInitCommand(): Command {
 
 ```bash
 # Day 1-2: Security fixes
-npm update @anthropic-ai/claude-code@^2.0.31
+npm update @anthropic-ai/openclaw@^2.0.31
 npm update @modelcontextprotocol/sdk@^1.24.0
 npm install bcrypt zod
 
@@ -956,16 +956,16 @@ npm run test:compatibility
 
 ```bash
 # Fresh v3 installation
-npx claude-flow init --mode sparc --sona research
+npx ruflo init --mode sparc --sona research
 
 # With all features
-npx claude-flow init --mode enterprise --sona research --attention flash
+npx ruflo init --mode enterprise --sona research --attention flash
 
 # Minimal (fast startup)
-npx claude-flow init --mode standard --sona real-time
+npx ruflo init --mode standard --sona real-time
 
 # Migrate from v2
-npx claude-flow init --migrate
+npx ruflo init --migrate
 ```
 
 ```typescript

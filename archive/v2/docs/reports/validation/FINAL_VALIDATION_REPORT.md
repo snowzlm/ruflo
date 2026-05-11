@@ -158,7 +158,7 @@ The agentic-flow integration is **PRODUCTION READY**. All Phase 2 tasks are comp
 
 ---
 
-**Validated by:** Claude Code
+**Validated by:** OpenClaw
 **Date:** 2025-10-10
 **Test Environment:** Linux 6.8.0-1030-azure
 **Node Version:** v23.6.0

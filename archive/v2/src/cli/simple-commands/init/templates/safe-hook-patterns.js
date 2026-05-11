@@ -1,5 +1,5 @@
 /**
- * Safe Hook Patterns - Templates for safe Claude Code hook configurations
+ * Safe Hook Patterns - Templates for safe OpenClaw hook configurations
  *
  * These patterns prevent infinite loops that could cost thousands of dollars
  * by avoiding recursive hook execution when hooks call 'claude' commands.
@@ -31,7 +31,7 @@ export const DANGEROUS_PATTERN_EXAMPLE = {
     '🚨 Creates infinite loop: Stop → claude command → Stop → claude command...',
     '💰 Can cost $3600+ per day by bypassing rate limits',
     '🚫 Makes system unresponsive',
-    '⚡ No built-in protection in Claude Code',
+    '⚡ No built-in protection in OpenClaw',
   ],
 };
 
@@ -51,7 +51,7 @@ export const SAFE_FLAG_PATTERN = {
             {
               type: 'command',
               command:
-                'bash -c \'echo "History update needed at $(date)" > ~/.claude/needs_update && echo "📝 History update flagged. Run: claude -c -p \\"Update history.md\\""\'',
+                'bash -c \'echo "History update needed at $(date)" > ~/.openclaw/needs_update && echo "📝 History update flagged. Run: claude -c -p \\"Update history.md\\""\'',
             },
           ],
         },
@@ -87,7 +87,7 @@ export const SAFE_POST_TOOL_PATTERN = {
           hooks: [
             {
               type: 'command',
-              command: "echo 'File modified: {file}' >> ~/.claude/modifications.log",
+              command: "echo 'File modified: {file}' >> ~/.openclaw/modifications.log",
             },
           ],
         },
@@ -160,7 +160,7 @@ export const SAFE_BATCH_PATTERN = {
           hooks: [
             {
               type: 'command',
-              command: 'echo "$(date): Session ended" >> ~/.claude/session_log.txt',
+              command: 'echo "$(date): Session ended" >> ~/.openclaw/session_log.txt',
             },
           ],
         },
@@ -171,8 +171,8 @@ export const SAFE_BATCH_PATTERN = {
     cronJob: '# Add to crontab (run every hour):\n# 0 * * * * /path/to/update-history.sh',
     updateScript: `#!/bin/bash
 # update-history.sh - Safe batch update script
-LOCK_FILE="~/.claude/update.lock"
-LOG_FILE="~/.claude/session_log.txt"
+LOCK_FILE="~/.openclaw/update.lock"
+LOG_FILE="~/.openclaw/session_log.txt"
 
 # Check if update is already running
 if [ -f "$LOCK_FILE" ]; then
@@ -189,7 +189,7 @@ if [ -f "$LOG_FILE" ] && [ -s "$LOG_FILE" ]; then
     claude -c -p "Update history.md with recent session data" --skip-hooks
     
     # Archive the log
-    mv "$LOG_FILE" "~/.claude/session_log_$(date +%Y%m%d_%H%M%S).txt"
+    mv "$LOG_FILE" "~/.openclaw/session_log_$(date +%Y%m%d_%H%M%S).txt"
 fi
 
 # Remove lock file
@@ -219,7 +219,7 @@ export const SAFE_QUEUE_PATTERN = {
             {
               type: 'command',
               command:
-                'echo \'{"command": "update-history", "timestamp": "\'$(date -Iseconds)\'", "session": "\'$CLAUDE_SESSION_ID\'"}\' >> ~/.claude/command_queue.jsonl',
+                'echo \'{"command": "update-history", "timestamp": "\'$(date -Iseconds)\'", "session": "\'$CLAUDE_SESSION_ID\'"}\' >> ~/.openclaw/command_queue.jsonl',
             },
           ],
         },
@@ -291,7 +291,7 @@ export const ALL_SAFE_PATTERNS = [
  * Generate safe hooks documentation
  */
 export function generateSafeHooksGuide() {
-  return `# 🛡️ Safe Hook Patterns for Claude Code
+  return `# 🛡️ Safe Hook Patterns for OpenClaw
 
 ⚠️ **CRITICAL WARNING**: Stop hooks that call 'claude' commands create infinite loops that can cost thousands of dollars per day!
 
@@ -388,7 +388,7 @@ ${pattern.processor}
 \`\`\`json
 {
   "hooks": {
-    "Stop": [{"hooks": [{"type": "command", "command": "touch ~/.claude/needs_update && echo 'Run: claude -c -p \"Update history\"'"}]}]
+    "Stop": [{"hooks": [{"type": "command", "command": "touch ~/.openclaw/needs_update && echo 'Run: claude -c -p \"Update history\"'"}]}]
   }
 }
 \`\`\`
@@ -413,8 +413,8 @@ claude-flow hook-safety reset
 
 ## 📚 Additional Resources
 
-- Issue #166: https://github.com/ruvnet/claude-flow/issues/166
-- Claude Code Hooks Documentation: https://docs.anthropic.com/en/docs/claude-code/hooks
+- Issue #166: https://github.com/snowzlm/ruflo/issues/166
+- OpenClaw Hooks Documentation: https://docs.anthropic.com/en/docs/openclaw/hooks
 - Reddit Discussion: https://www.reddit.com/r/ClaudeAI/comments/1ltvi6x/anyone_else_accidentally_create_an_infinite_loop/
 
 ---

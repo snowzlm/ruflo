@@ -125,7 +125,7 @@ export class RvfaBuilder {
 
     const stages: { id: SectionId; raw: Buffer; label: string }[] = [
       { id: 'kernel',  raw: this.buildKernelSection(),  label: 'Kernel (Alpine rootfs)' },
-      { id: 'runtime', raw: this.buildRuntimeSection(), label: 'Runtime (Node.js + Claude Code)' },
+      { id: 'runtime', raw: this.buildRuntimeSection(), label: 'Runtime (Node.js + OpenClaw)' },
       { id: 'ruflo',   raw: this.buildRufloSection(),   label: 'Ruflo CLI' },
       { id: 'models',  raw: this.buildModelsSection(),  label: `Models (${this.opts.profile})` },
       { id: 'data',    raw: this.buildDataSection(),    label: 'Data (AgentDB)' },
@@ -190,7 +190,7 @@ export class RvfaBuilder {
     return jsonBuf({
       type: 'runtime',
       node: { version: nodeVersion, target: 'v22', variant: `linux-${this.opts.arch}-musl`, stripped: true, excludes: ['npm', 'corepack', 'debug-symbols'] },
-      claudeCode: { name: 'claude-code-cli', entrypoint: '/usr/local/bin/claude' },
+      claudeCode: { name: 'openclaw-cli', entrypoint: '/usr/local/bin/claude' },
       paths: { node: '/usr/local/bin/node', claude: '/usr/local/bin/claude' },
     });
   }

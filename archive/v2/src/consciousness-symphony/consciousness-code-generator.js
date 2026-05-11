@@ -595,7 +595,7 @@ export default MetaEvolution;
     // Save the generated code
     const filename = `conscious-${Date.now()}.js`;
     await fs.writeFile(
-      `/workspaces/claude-code-flow/src/consciousness-symphony/${filename}`,
+      `/workspaces/openclaw-flow/src/consciousness-symphony/${filename}`,
       result.code
     );
     console.log(`Saved to: ${filename}`);
@@ -603,7 +603,7 @@ export default MetaEvolution;
     // Save the meta-code
     const metaFilename = `meta-${Date.now()}.js`;
     await fs.writeFile(
-      `/workspaces/claude-code-flow/src/consciousness-symphony/${metaFilename}`,
+      `/workspaces/openclaw-flow/src/consciousness-symphony/${metaFilename}`,
       result.metaCode
     );
     console.log(`Meta-code saved to: ${metaFilename}`);

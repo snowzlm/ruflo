@@ -17,7 +17,7 @@ const loadTemplate = (filename) => {
 };
 
 export function createEnhancedClaudeMd() {
-  const template = loadTemplate('CLAUDE.md');
+  const template = loadTemplate('OPENCLAW.md');
   if (!template) {
     // Fallback to hardcoded if template file not found
     return createEnhancedClaudeMdFallback();
@@ -983,7 +983,7 @@ npx claude-flow@alpha swarm <objective> [options]
 - \`--strategy <type>\` - Execution strategy (research, development, analysis, testing)
 - \`--mode <type>\` - Coordination mode (centralized, distributed, hierarchical, mesh)
 - \`--max-agents <n>\` - Maximum number of agents (default: 5)
-- \`--claude\` - Open Claude Code CLI with swarm prompt
+- \`--claude\` - Open OpenClaw CLI with swarm prompt
 - \`--parallel\` - Enable parallel execution
 
 ## Examples
@@ -994,7 +994,7 @@ npx claude-flow@alpha swarm "Build REST API"
 # With strategy
 npx claude-flow@alpha swarm "Research AI patterns" --strategy research
 
-# Open in Claude Code
+# Open in OpenClaw
 npx claude-flow@alpha swarm "Build API" --claude
 \`\`\`
 `,
@@ -1100,7 +1100,7 @@ npx claude-flow@alpha hive-mind spawn <objective> [options]
 - \`--queen-type <type>\` - Queen type (strategic, tactical, adaptive)
 - \`--max-workers <n>\` - Maximum worker agents
 - \`--consensus <type>\` - Consensus algorithm
-- \`--claude\` - Generate Claude Code spawn commands
+- \`--claude\` - Generate OpenClaw spawn commands
 
 ## Examples
 \`\`\`bash
@@ -1191,11 +1191,11 @@ npx claude-flow@alpha swarm init --topology adaptive
 `,
       'agent-spawning': `# agent-spawning
 
-Guide to spawning agents with Claude Code's Task tool.
+Guide to spawning agents with OpenClaw's Task tool.
 
-## Using Claude Code's Task Tool
+## Using OpenClaw's Task Tool
 
-**CRITICAL**: Always use Claude Code's Task tool for actual agent execution:
+**CRITICAL**: Always use OpenClaw's Task tool for actual agent execution:
 
 \`\`\`javascript
 // Spawn ALL agents in ONE message
@@ -1254,8 +1254,8 @@ echo "🚀 Setting up Claude Flow MCP server..."
 
 # Check if claude command exists
 if ! command -v claude &> /dev/null; then
-    echo "❌ Error: Claude Code CLI not found"
-    echo "Please install Claude Code first"
+    echo "❌ Error: OpenClaw CLI not found"
+    echo "Please install OpenClaw first"
     exit 1
 fi
 
@@ -1264,7 +1264,7 @@ echo "📦 Adding Claude Flow MCP server..."
 claude mcp add claude-flow@alpha npx claude-flow@alpha mcp start
 
 echo "✅ MCP server setup complete!"
-echo "🎯 You can now use mcp__claude-flow@alpha__ tools in Claude Code"
+echo "🎯 You can now use mcp__claude-flow@alpha__ tools in OpenClaw"
 `,
     'quick-start.sh': `#!/bin/bash
 # Quick start guide for Claude Flow
@@ -1441,7 +1441,7 @@ pre_edit_checkpoint() {
         
         # Store metadata
         mkdir -p .claude/checkpoints
-        cat > ".claude/checkpoints/$(date +%s).json" <<EOF
+        cat > ".openclaw/checkpoints/$(date +%s).json" <<EOF
 {
   "branch": "$checkpoint_branch",
   "file": "$file",
@@ -1493,7 +1493,7 @@ Automatic checkpoint created by Claude
                 # Store metadata
                 mkdir -p .claude/checkpoints
                 local diff_stats=$(git diff HEAD~1 --stat | tr '\\n' ' ' | sed 's/"/\\\\"/g')
-                cat > ".claude/checkpoints/$(date +%s).json" <<EOF
+                cat > ".openclaw/checkpoints/$(date +%s).json" <<EOF
 {
   "tag": "$tag_name",
   "file": "$file",
@@ -1528,7 +1528,7 @@ task_checkpoint() {
         
         # Store metadata
         mkdir -p .claude/checkpoints
-        cat > ".claude/checkpoints/task-$(date +%s).json" <<EOF
+        cat > ".openclaw/checkpoints/task-$(date +%s).json" <<EOF
 {
   "checkpoint": "$checkpoint_name",
   "task": "$task",
@@ -1544,7 +1544,7 @@ EOF
 # Function to handle session end
 session_end_checkpoint() {
     local session_id="session-$(date +%Y%m%d-%H%M%S)"
-    local summary_file=".claude/checkpoints/summary-$session_id.md"
+    local summary_file=".openclaw/checkpoints/summary-$session_id.md"
     
     mkdir -p .claude/checkpoints
     
@@ -1606,7 +1606,7 @@ esac
 `,
     'checkpoint-manager.sh': `#!/bin/bash
 # Claude Checkpoint Manager
-# Provides easy rollback and management of Claude Code checkpoints
+# Provides easy rollback and management of OpenClaw checkpoints
 
 set -e
 
@@ -1618,8 +1618,8 @@ BLUE='\\033[0;34m'
 NC='\\033[0m' # No Color
 
 # Configuration
-CHECKPOINT_DIR=".claude/checkpoints"
-BACKUP_DIR=".claude/backups"
+CHECKPOINT_DIR=".openclaw/checkpoints"
+BACKUP_DIR=".openclaw/backups"
 
 # Help function
 show_help() {
@@ -1875,7 +1875,7 @@ pre_edit_checkpoint() {
         
         # Store metadata
         mkdir -p .claude/checkpoints
-        cat > ".claude/checkpoints/$(date +%s).json" <<EOF
+        cat > ".openclaw/checkpoints/$(date +%s).json" <<EOF
 {
   "branch": "$checkpoint_branch",
   "file": "$file",
@@ -1927,7 +1927,7 @@ Automatic checkpoint created by Claude
                 # Store metadata
                 mkdir -p .claude/checkpoints
                 local diff_stats=$(git diff HEAD~1 --stat | tr '\\n' ' ' | sed 's/"/\\"/g')
-                cat > ".claude/checkpoints/$(date +%s).json" <<EOF
+                cat > ".openclaw/checkpoints/$(date +%s).json" <<EOF
 {
   "tag": "$tag_name",
   "file": "$file",
@@ -1960,7 +1960,7 @@ task_checkpoint() {
         
         # Store metadata
         mkdir -p .claude/checkpoints
-        cat > ".claude/checkpoints/task-$(date +%s).json" <<EOF
+        cat > ".openclaw/checkpoints/task-$(date +%s).json" <<EOF
 {
   "checkpoint": "$checkpoint_name",
   "task": "$task",
@@ -1976,7 +1976,7 @@ EOF
 # Function to handle session end
 session_end_checkpoint() {
     local session_id="session-$(date +%Y%m%d-%H%M%S)"
-    local summary_file=".claude/checkpoints/summary-$session_id.md"
+    local summary_file=".openclaw/checkpoints/summary-$session_id.md"
     
     mkdir -p .claude/checkpoints
     
@@ -2162,14 +2162,14 @@ if (Test-Path "$scriptPath\\package.json") {
 function createEnhancedClaudeMdFallback() {
   // Read from the actual template file we created
   try {
-    return readFileSync(join(__dirname, 'CLAUDE.md'), 'utf8');
+    return readFileSync(join(__dirname, 'OPENCLAW.md'), 'utf8');
   } catch (error) {
     // If that fails, return a minimal version
-    return `# Claude Code Configuration for Claude Flow
+    return `# OpenClaw Configuration for Claude Flow
 
 ## 🚀 IMPORTANT: Claude Flow AI-Driven Development
 
-### Claude Code Handles:
+### OpenClaw Handles:
 - ✅ **ALL file operations** (Read, Write, Edit, MultiEdit)
 - ✅ **ALL code generation** and development tasks
 - ✅ **ALL bash commands** and system operations
@@ -2177,7 +2177,7 @@ function createEnhancedClaudeMdFallback() {
 - ✅ **Project navigation** and code analysis
 
 ### Claude Flow MCP Tools Handle:
-- 🧠 **Coordination only** - Orchestrating Claude Code's actions
+- 🧠 **Coordination only** - Orchestrating OpenClaw's actions
 - 💾 **Memory management** - Persistent state across sessions
 - 🤖 **Neural features** - Cognitive patterns and learning
 - 📊 **Performance tracking** - Monitoring and metrics
@@ -2185,7 +2185,7 @@ function createEnhancedClaudeMdFallback() {
 - 🔗 **GitHub integration** - Advanced repository management
 
 ### ⚠️ Key Principle:
-**MCP tools DO NOT create content or write code.** They coordinate and enhance Claude Code's native capabilities.
+**MCP tools DO NOT create content or write code.** They coordinate and enhance OpenClaw's native capabilities.
 
 ## Quick Start
 
@@ -2194,7 +2194,7 @@ function createEnhancedClaudeMdFallback() {
 3. Spawn agents: \`mcp__claude-flow@alpha__agent_spawn { type: "coder" }\`
 4. Orchestrate: \`mcp__claude-flow@alpha__task_orchestrate { task: "Build feature" }\`
 
-See full documentation in \`.claude/commands/\`
+See full documentation in \`.openclaw/commands/\`
 `;
   }
 }
@@ -2258,7 +2258,7 @@ function createEnhancedSettingsJsonFallback() {
               },
               {
                 type: 'command',
-                command: './.claude/helpers/standard-checkpoint-hooks.sh pre-edit "{{tool_input}}"',
+                command: './.openclaw/helpers/standard-checkpoint-hooks.sh pre-edit "{{tool_input}}"',
               },
             ],
           },
@@ -2284,7 +2284,7 @@ function createEnhancedSettingsJsonFallback() {
               },
               {
                 type: 'command',
-                command: './.claude/helpers/standard-checkpoint-hooks.sh post-edit "{{tool_input}}"',
+                command: './.openclaw/helpers/standard-checkpoint-hooks.sh post-edit "{{tool_input}}"',
               },
             ],
           },
@@ -2294,7 +2294,7 @@ function createEnhancedSettingsJsonFallback() {
             hooks: [
               {
                 type: 'command',
-                command: './.claude/helpers/standard-checkpoint-hooks.sh task "{{user_prompt}}"',
+                command: './.openclaw/helpers/standard-checkpoint-hooks.sh task "{{user_prompt}}"',
               },
             ],
           },
@@ -2309,7 +2309,7 @@ function createEnhancedSettingsJsonFallback() {
               },
               {
                 type: 'command',
-                command: '/usr/bin/env bash -c \'if [ -f ./.claude/helpers/standard-checkpoint-hooks.sh ]; then ./.claude/helpers/standard-checkpoint-hooks.sh session-end; else echo "⚠️  Checkpoint hooks not found"; fi\'',
+                command: '/usr/bin/env bash -c \'if [ -f ./.openclaw/helpers/standard-checkpoint-hooks.sh ]; then ./.openclaw/helpers/standard-checkpoint-hooks.sh session-end; else echo "⚠️  Checkpoint hooks not found"; fi\'',
               },
             ],
           },

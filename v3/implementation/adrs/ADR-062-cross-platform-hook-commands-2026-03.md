@@ -9,7 +9,7 @@
 The `hookCmd()` function in `settings-generator.ts` generated complex `node -e "..."` one-liners for hook commands:
 
 ```
-node -e "var c=require('child_process'),p=require('path'),r;try{r=c.execSync('git rev-parse --show-toplevel',{encoding:'utf8'}).trim()}catch(e){r=process.cwd()}var s=p.join(r,'.claude/helpers/hook-handler.cjs');process.argv.splice(1,0,s);require(s)" pre-bash
+node -e "var c=require('child_process'),p=require('path'),r;try{r=c.execSync('git rev-parse --show-toplevel',{encoding:'utf8'}).trim()}catch(e){r=process.cwd()}var s=p.join(r,'.openclaw/helpers/hook-handler.cjs');process.argv.splice(1,0,s);require(s)" pre-bash
 ```
 
 This broke on Windows because:
@@ -49,7 +49,7 @@ node .claude/helpers/hook-handler.cjs pre-bash
 
 ### Why This Works
 
-The `node -e` one-liner existed to resolve the git root at runtime, ensuring hooks worked regardless of CWD. However, **Claude Code always runs hooks from the project root directory**, making git-root resolution redundant. Direct invocation with relative paths works identically on Windows, macOS, and Linux.
+The `node -e` one-liner existed to resolve the git root at runtime, ensuring hooks worked regardless of CWD. However, **OpenClaw always runs hooks from the project root directory**, making git-root resolution redundant. Direct invocation with relative paths works identically on Windows, macOS, and Linux.
 
 ### Platform Detection
 

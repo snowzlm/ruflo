@@ -361,3 +361,196 @@ export function createAnthropicProvider(apiKey: string): LLMProvider {
     },
   };
 }
+
+/**
+ * Create an OpenAI (GPT) provider (requires API key)
+ * Supports gpt-4o, gpt-4-turbo, gpt-3.5-turbo and any OpenAI-compatible endpoint.
+ */
+export function createOpenAIProvider(
+  apiKey: string,
+  options: { baseUrl?: string; model?: string } = {},
+): LLMProvider {
+  const baseUrl = options.baseUrl || 'https://api.openai.com/v1';
+  const defaultModel = options.model || 'gpt-4o-mini';
+  return {
+    name: 'openai',
+    async createMessage(request: CreateMessageRequest): Promise<CreateMessageResult> {
+      const messages: Array<{ role: string; content: string }> = [];
+      if (request.systemPrompt) {
+        messages.push({ role: 'system', content: request.systemPrompt });
+      }
+      for (const m of request.messages) {
+        const text = m.content.type === 'text' ? (m.content as any).text : JSON.stringify(m.content);
+        messages.push({ role: m.role === 'assistant' ? 'assistant' : 'user', content: text });
+      }
+      const response = await fetch(`${baseUrl}/chat/completions`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify({
+          model: defaultModel,
+          max_tokens: request.maxTokens,
+          temperature: request.temperature,
+          messages,
+        }),
+      });
+      if (!response.ok) {
+        throw new Error(`OpenAI API error: ${response.status}`);
+      }
+      const data = (await response.json()) as any;
+      const choice = data.choices?.[0];
+      return {
+        role: 'assistant',
+        content: {
+          type: 'text',
+          text: choice?.message?.content || '',
+        },
+        model: data.model,
+        stopReason: choice?.finish_reason === 'stop' ? 'endTurn' : 'maxTokens',
+      };
+    },
+    async isAvailable(): Promise<boolean> {
+      return !!apiKey;
+    },
+  };
+}
+
+/**
+ * Create a Google Gemini provider (requires API key)
+ */
+export function createGeminiProvider(
+  apiKey: string,
+  options: { model?: string } = {},
+): LLMProvider {
+  const defaultModel = options.model || 'gemini-1.5-flash';
+  return {
+    name: 'gemini',
+    async createMessage(request: CreateMessageRequest): Promise<CreateMessageResult> {
+      const contents = request.messages.map((m) => ({
+        role: m.role === 'assistant' ? 'model' : 'user',
+        parts: [
+          {
+            text:
+              m.content.type === 'text' ? (m.content as any).text : JSON.stringify(m.content),
+          },
+        ],
+      }));
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${defaultModel}:generateContent?key=${apiKey}`;
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          systemInstruction: request.systemPrompt
+            ? { parts: [{ text: request.systemPrompt }] }
+            : undefined,
+          contents,
+          generationConfig: {
+            maxOutputTokens: request.maxTokens,
+            temperature: request.temperature,
+          },
+        }),
+      });
+      if (!response.ok) {
+        throw new Error(`Gemini API error: ${response.status}`);
+      }
+      const data = (await response.json()) as any;
+      const candidate = data.candidates?.[0];
+      const text = candidate?.content?.parts?.[0]?.text || '';
+      return {
+        role: 'assistant',
+        content: { type: 'text', text },
+        model: defaultModel,
+        stopReason: candidate?.finishReason === 'STOP' ? 'endTurn' : 'maxTokens',
+      };
+    },
+    async isAvailable(): Promise<boolean> {
+      return !!apiKey;
+    },
+  };
+}
+
+/**
+ * Create an OpenClaw gateway provider (delegates to a local OpenClaw router endpoint)
+ * Useful when running Ruflo inside an OpenClaw managed environment that already has
+ * configured providers/credentials.
+ */
+export function createOpenClawProvider(
+  options: { baseUrl?: string; token?: string; model?: string } = {},
+): LLMProvider {
+  const baseUrl = options.baseUrl || process.env.OPENCLAW_GATEWAY_URL || 'http://127.0.0.1:7890';
+  const token = options.token || process.env.OPENCLAW_GATEWAY_TOKEN || '';
+  const defaultModel = options.model || process.env.OPENCLAW_MODEL || 'gpt/gpt-5.5';
+  return {
+    name: 'openclaw',
+    async createMessage(request: CreateMessageRequest): Promise<CreateMessageResult> {
+      const response = await fetch(`${baseUrl}/v1/messages`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
+        body: JSON.stringify({
+          model: defaultModel,
+          max_tokens: request.maxTokens,
+          temperature: request.temperature,
+          system: request.systemPrompt,
+          messages: request.messages,
+        }),
+      });
+      if (!response.ok) {
+        throw new Error(`OpenClaw gateway error: ${response.status}`);
+      }
+      const data = (await response.json()) as any;
+      return {
+        role: 'assistant',
+        content: {
+          type: 'text',
+          text: data.content?.[0]?.text || data.text || '',
+        },
+        model: data.model || defaultModel,
+        stopReason: data.stop_reason === 'end_turn' ? 'endTurn' : 'maxTokens',
+      };
+    },
+    async isAvailable(): Promise<boolean> {
+      try {
+        const res = await fetch(`${baseUrl}/health`, { method: 'GET' });
+        return res.ok;
+      } catch {
+        return false;
+      }
+    },
+  };
+}
+
+/**
+ * Auto-detect providers from environment variables.
+ * Order: OPENCLAW_GATEWAY_TOKEN > ANTHROPIC_API_KEY > OPENAI_API_KEY > GEMINI_API_KEY
+ * Returns array of providers in registration order; the first is treated as default.
+ */
+export function createProvidersFromEnv(): LLMProvider[] {
+  const providers: LLMProvider[] = [];
+  if (process.env.OPENCLAW_GATEWAY_TOKEN || process.env.OPENCLAW_GATEWAY_URL) {
+    providers.push(createOpenClawProvider());
+  }
+  if (process.env.ANTHROPIC_API_KEY) {
+    providers.push(createAnthropicProvider(process.env.ANTHROPIC_API_KEY));
+  }
+  if (process.env.OPENAI_API_KEY) {
+    providers.push(
+      createOpenAIProvider(process.env.OPENAI_API_KEY, {
+        baseUrl: process.env.OPENAI_BASE_URL,
+        model: process.env.OPENAI_MODEL,
+      }),
+    );
+  }
+  if (process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY) {
+    providers.push(
+      createGeminiProvider(process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY!, {
+        model: process.env.GEMINI_MODEL,
+      }),
+    );
+  }
+  return providers;
+}

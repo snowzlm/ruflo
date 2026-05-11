@@ -1,6 +1,6 @@
 # Ruflo Plugins
 
-32 Claude Code plugins for agent-powered development workflows. Load with `--plugin-dir`.
+32 OpenClaw plugins for agent-powered development workflows. Load with `--plugin-dir`.
 
 ## Quick Start
 
@@ -103,17 +103,17 @@ Several plugins wrap standalone npm packages for deeper functionality:
 npm install neural-trader ruvector
 
 # Add as MCP servers (optional, for direct tool access)
-claude mcp add neural-trader -- npx neural-trader mcp start
-claude mcp add ruvector -- npx ruvector mcp start
+openclaw mcp add neural-trader -- npx neural-trader mcp start
+openclaw mcp add ruvector -- npx ruvector mcp start
 ```
 
 ## Plugin Structure
 
-Each plugin follows the Claude Code plugin specification:
+Each plugin follows the OpenClaw plugin specification:
 
 ```
 ruflo-<name>/
-  .claude-plugin/plugin.json    # Plugin manifest
+  .openclaw-plugin/plugin.json    # Plugin manifest
   agents/<name>.md              # Agent definitions (frontmatter: name, description, model)
   commands/<name>.md            # CLI command mappings
   skills/<name>/SKILL.md        # Interactive skills (frontmatter: name, description, argument-hint, allowed-tools)

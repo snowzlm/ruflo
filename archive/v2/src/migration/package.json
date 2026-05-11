@@ -66,11 +66,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ruvnet/claude-code-flow",
+    "url": "https://github.com/ruvnet/openclaw-flow",
     "directory": "src/migration"
   },
   "bugs": {
-    "url": "https://github.com/ruvnet/claude-code-flow/issues"
+    "url": "https://github.com/ruvnet/openclaw-flow/issues"
   },
-  "homepage": "https://github.com/ruvnet/claude-code-flow#readme"
+  "homepage": "https://github.com/ruvnet/openclaw-flow#readme"
 }

@@ -16,7 +16,7 @@ Automated release coordination and deployment with ruv-swarm orchestration for s
 - `mcp__github__create_branch`
 - `mcp__github__push_files`
 - `mcp__github__create_issue`
-- `mcp__claude-flow__*` (all swarm coordination tools)
+- `mcp__ruflo__*` (all swarm coordination tools)
 - `TodoWrite`, `TodoRead`, `Task`, `Bash`, `Read`, `Write`, `Edit`
 
 ## Usage Patterns
@@ -24,12 +24,12 @@ Automated release coordination and deployment with ruv-swarm orchestration for s
 ### 1. Coordinated Release Preparation
 ```javascript
 // Initialize release management swarm
-mcp__claude-flow__swarm_init { topology: "hierarchical", maxAgents: 6 }
-mcp__claude-flow__agent_spawn { type: "coordinator", name: "Release Coordinator" }
-mcp__claude-flow__agent_spawn { type: "tester", name: "QA Engineer" }
-mcp__claude-flow__agent_spawn { type: "reviewer", name: "Release Reviewer" }
-mcp__claude-flow__agent_spawn { type: "coder", name: "Version Manager" }
-mcp__claude-flow__agent_spawn { type: "analyst", name: "Deployment Analyst" }
+mcp__ruflo__swarm_init { topology: "hierarchical", maxAgents: 6 }
+mcp__ruflo__agent_spawn { type: "coordinator", name: "Release Coordinator" }
+mcp__ruflo__agent_spawn { type: "tester", name: "QA Engineer" }
+mcp__ruflo__agent_spawn { type: "reviewer", name: "Release Reviewer" }
+mcp__ruflo__agent_spawn { type: "coder", name: "Version Manager" }
+mcp__ruflo__agent_spawn { type: "analyst", name: "Deployment Analyst" }
 
 // Create release preparation branch
 mcp__github__create_branch {
@@ -40,7 +40,7 @@ mcp__github__create_branch {
 }
 
 // Orchestrate release preparation
-mcp__claude-flow__task_orchestrate {
+mcp__ruflo__task_orchestrate {
   task: "Prepare release v1.0.72 with comprehensive testing and validation",
   strategy: "sequential",
   priority: "critical"
@@ -56,9 +56,9 @@ mcp__github__push_files {
   branch: "release/v1.0.72",
   files: [
     {
-      path: "claude-code-flow/claude-code-flow/package.json",
+      path: "openclaw-flow/openclaw-flow/package.json",
       content: JSON.stringify({
-        name: "claude-flow",
+        name: "ruflo",
         version: "1.0.72",
         // ... rest of package.json
       }, null, 2)
@@ -100,10 +100,10 @@ mcp__github__push_files {
 ### 3. Automated Release Validation
 ```javascript
 // Comprehensive release testing
-Bash("cd /workspaces/ruv-FANN/claude-code-flow/claude-code-flow && npm install")
-Bash("cd /workspaces/ruv-FANN/claude-code-flow/claude-code-flow && npm run test")
-Bash("cd /workspaces/ruv-FANN/claude-code-flow/claude-code-flow && npm run lint")
-Bash("cd /workspaces/ruv-FANN/claude-code-flow/claude-code-flow && npm run build")
+Bash("cd /workspaces/ruv-FANN/openclaw-flow/openclaw-flow && npm install")
+Bash("cd /workspaces/ruv-FANN/openclaw-flow/openclaw-flow && npm run test")
+Bash("cd /workspaces/ruv-FANN/openclaw-flow/openclaw-flow && npm run lint")
+Bash("cd /workspaces/ruv-FANN/openclaw-flow/openclaw-flow && npm run build")
 
 Bash("cd /workspaces/ruv-FANN/ruv-swarm/npm && npm install")
 Bash("cd /workspaces/ruv-FANN/ruv-swarm/npm && npm run test:all")
@@ -121,11 +121,11 @@ mcp__github__create_pull_request {
 ### 🎯 Release Highlights
 - **GitHub Workflow Integration**: Complete GitHub command suite with swarm coordination
 - **Package Synchronization**: Aligned versions and dependencies across packages
-- **Enhanced Documentation**: Synchronized CLAUDE.md with comprehensive integration guides
+- **Enhanced Documentation**: Synchronized OPENCLAW.md with comprehensive integration guides
 - **Improved Testing**: Comprehensive integration test suite with 89% success rate
 
 ### 📦 Package Updates
-- **claude-flow**: v1.0.71 → v1.0.72
+- **ruflo**: v1.0.71 → v1.0.72
 - **ruv-swarm**: v1.0.11 → v1.0.12
 
 ### 🔧 Changes
@@ -167,7 +167,7 @@ This release was coordinated using ruv-swarm agents:
 This release is production-ready with comprehensive validation and testing.
 
 ---
-🤖 Generated with Claude Code using ruv-swarm coordination`
+🤖 Generated with OpenClaw using ruv-swarm coordination`
 }
 ```
 
@@ -177,13 +177,13 @@ This release is production-ready with comprehensive validation and testing.
 ```javascript
 [Single Message - Complete Release Management]:
   // Initialize comprehensive release swarm
-  mcp__claude-flow__swarm_init { topology: "star", maxAgents: 8 }
-  mcp__claude-flow__agent_spawn { type: "coordinator", name: "Release Director" }
-  mcp__claude-flow__agent_spawn { type: "tester", name: "QA Lead" }
-  mcp__claude-flow__agent_spawn { type: "reviewer", name: "Senior Reviewer" }
-  mcp__claude-flow__agent_spawn { type: "coder", name: "Version Controller" }
-  mcp__claude-flow__agent_spawn { type: "analyst", name: "Performance Analyst" }
-  mcp__claude-flow__agent_spawn { type: "researcher", name: "Compatibility Checker" }
+  mcp__ruflo__swarm_init { topology: "star", maxAgents: 8 }
+  mcp__ruflo__agent_spawn { type: "coordinator", name: "Release Director" }
+  mcp__ruflo__agent_spawn { type: "tester", name: "QA Lead" }
+  mcp__ruflo__agent_spawn { type: "reviewer", name: "Senior Reviewer" }
+  mcp__ruflo__agent_spawn { type: "coder", name: "Version Controller" }
+  mcp__ruflo__agent_spawn { type: "analyst", name: "Performance Analyst" }
+  mcp__ruflo__agent_spawn { type: "researcher", name: "Compatibility Checker" }
   
   // Create release branch and prepare files using gh CLI
   Bash("gh api repos/:owner/:repo/git/refs --method POST -f ref='refs/heads/release/v1.0.72' -f sha=$(gh api repos/:owner/:repo/git/refs/heads/main --jq '.object.sha')")
@@ -192,7 +192,7 @@ This release is production-ready with comprehensive validation and testing.
   Bash("gh repo clone :owner/:repo /tmp/release-v1.0.72 -- --branch release/v1.0.72 --depth=1")
   
   // Update all release-related files
-  Write("/tmp/release-v1.0.72/claude-code-flow/claude-code-flow/package.json", "[updated package.json]")
+  Write("/tmp/release-v1.0.72/openclaw-flow/openclaw-flow/package.json", "[updated package.json]")
   Write("/tmp/release-v1.0.72/ruv-swarm/npm/package.json", "[updated package.json]")
   Write("/tmp/release-v1.0.72/CHANGELOG.md", "[release changelog]")
   Write("/tmp/release-v1.0.72/RELEASE_NOTES.md", "[detailed release notes]")
@@ -200,7 +200,7 @@ This release is production-ready with comprehensive validation and testing.
   Bash("cd /tmp/release-v1.0.72 && git add -A && git commit -m 'release: Prepare v1.0.72 with comprehensive updates' && git push")
   
   // Run comprehensive validation
-  Bash("cd /workspaces/ruv-FANN/claude-code-flow/claude-code-flow && npm install && npm test && npm run lint && npm run build")
+  Bash("cd /workspaces/ruv-FANN/openclaw-flow/openclaw-flow && npm install && npm test && npm run lint && npm run build")
   Bash("cd /workspaces/ruv-FANN/ruv-swarm/npm && npm install && npm run test:all && npm run lint")
   
   // Create release PR using gh CLI
@@ -222,14 +222,14 @@ This release is production-ready with comprehensive validation and testing.
   ]}
   
   // Store release state
-  mcp__claude-flow__memory_usage {
+  mcp__ruflo__memory_usage {
     action: "store", 
     key: "release/v1.0.72/status",
     value: {
       timestamp: Date.now(),
       version: "1.0.72",
       stage: "validation_complete",
-      packages: ["claude-flow", "ruv-swarm"],
+      packages: ["ruflo", "ruv-swarm"],
       validation_passed: true,
       ready_for_review: true
     }
@@ -317,10 +317,10 @@ jobs:
           node-version: '20'
       - name: Install and Test
         run: |
-          cd claude-code-flow/claude-code-flow && npm install && npm test
+          cd openclaw-flow/openclaw-flow && npm install && npm test
           cd ../../ruv-swarm/npm && npm install && npm test:all
       - name: Validate Release
-        run: npx claude-flow release validate
+        run: npx ruflo release validate
 ```
 
 ## Monitoring and Metrics

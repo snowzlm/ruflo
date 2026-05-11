@@ -21,7 +21,7 @@ Claude-Flow has been updated to use **agentic-flow@1.5.13** with the **Node.js b
 
 ### API Compatibility
 
-✅ **No breaking changes to external API** - All claude-flow memory functions remain the same:
+✅ **No breaking changes to external API** - All ruflo memory functions remain the same:
 - `storeMemory(key, value, options)`
 - `queryMemories(searchQuery, options)`
 - `listMemories(options)`
@@ -136,10 +136,10 @@ node tests/test-semantic-search.mjs
 ### Issue: "Database not found"
 ```bash
 # Ensure initialization ran
-npx claude-flow@alpha memory status
+ruflo memory status
 
 # Manually initialize if needed
-npx claude-flow@alpha memory init
+ruflo memory init
 ```
 
 ### Issue: "No results from semantic search"
@@ -180,7 +180,7 @@ npm install agentic-flow@1.5.12 --legacy-peer-deps
 ## Support
 
 For issues or questions:
-- GitHub Issues: https://github.com/ruvnet/claude-code-flow/issues
+- GitHub Issues: https://github.com/ruvnet/openclaw-flow/issues
 - Documentation: `/docs/integrations/reasoningbank/`
 - Test Suite: `/tests/test-semantic-search.mjs`
 

@@ -1,5 +1,5 @@
 /**
- * ruv-swarm integration helper for Claude Code configuration
+ * ruv-swarm integration helper for OpenClaw configuration
  *
  * This module bridges the main claude-flow configuration with
  * ruv-swarm specific settings and provides utility functions

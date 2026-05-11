@@ -5,7 +5,7 @@
 
 ## Context
 
-Claude Flow V3 uses embeddings extensively for:
+Ruflo V3 uses embeddings extensively for:
 - Memory vector search (HNSW-indexed)
 - Neural pattern recognition
 - Semantic drift detection
@@ -112,7 +112,7 @@ Add embedding-specific pretraining:
 
 ```bash
 # New pretrain options
-npx claude-flow@v3alpha hooks pretrain \
+ruflo hooks pretrain \
   --model-type embeddings \
   --source-model all-MiniLM-L6-v2 \
   --hyperbolic true \
@@ -128,7 +128,7 @@ npx claude-flow@v3alpha hooks pretrain \
 
 ### 4. Configuration Schema
 
-Add to `claude-flow.config.json`:
+Add to `ruflo.config.json`:
 
 ```json
 {
@@ -158,7 +158,7 @@ Add to `claude-flow.config.json`:
 #### `embeddings init`
 ```bash
 # Initialize embeddings subsystem
-npx claude-flow@v3alpha embeddings init [options]
+ruflo embeddings init [options]
 
 Options:
   --model <id>      Model to download (default: all-MiniLM-L6-v2)
@@ -171,7 +171,7 @@ Options:
 #### `embeddings status`
 ```bash
 # Check embeddings status
-npx claude-flow@v3alpha embeddings status
+ruflo embeddings status
 
 Output:
 ╭────────────────────────────────────────────────────╮
@@ -189,10 +189,10 @@ Output:
 #### `embeddings download`
 ```bash
 # Download specific model
-npx claude-flow@v3alpha embeddings download <model-id>
+ruflo embeddings download <model-id>
 
 # Example
-npx claude-flow@v3alpha embeddings download all-mpnet-base-v2
+ruflo embeddings download all-mpnet-base-v2
 Downloading all-mpnet-base-v2... [████████░░] 80% (88/110 MB)
 ```
 
@@ -616,19 +616,19 @@ export default embeddingsCommand;
 ## Migration Path
 
 ### For Existing V2 Projects
-1. Run `claude-flow migrate run -t embeddings`
+1. Run `ruflo migrate run -t embeddings`
 2. Downloads ONNX model
 3. Migrates any cached embeddings
 4. Enables hyperbolic by default
 
 ### For New V3 Projects
-1. Run `claude-flow init` or `claude-flow init wizard`
+1. Run `ruflo init` or `ruflo init wizard`
 2. Embeddings step auto-runs
 3. Model pre-downloaded
 4. Hyperbolic enabled by default
 
 ### For Pretraining
-1. Run `claude-flow hooks pretrain --embeddings`
+1. Run `ruflo hooks pretrain --embeddings`
 2. Ensures model downloaded
 3. Warms cache with codebase terms
 4. Pre-computes hierarchical patterns

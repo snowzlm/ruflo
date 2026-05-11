@@ -1,13 +1,13 @@
 // help.js - Help text for init command
 
 export function showInitHelp() {
-  console.log('Initialize Claude Code integration files with Claude Flow v2.0.0');
+  console.log('Initialize OpenClaw integration files with Claude Flow v2.0.0');
   console.log();
   console.log('Usage: claude-flow@alpha init [options]');
   console.log();
   console.log('🚀 DEFAULT BEHAVIOR:');
   console.log('  claude-flow@alpha init     Initialize with Claude Flow v2.0.0 enhanced features');
-  console.log('                       Creates CLAUDE.md & .claude/commands for MCP integration');
+  console.log('                       Creates OPENCLAW.md & .claude/commands for MCP integration');
   console.log();
   console.log('Standard Options:');
   console.log('  --force, -f          Overwrite existing files (also updates .gitignore)');
@@ -19,13 +19,13 @@ export function showInitHelp() {
   console.log('  --sparc, -s          Initialize with SPARC development environment');
   console.log('  --minimal, -m        Create minimal configuration files');
   console.log('  --modes <list>       Initialize only specific SPARC modes (comma-separated)');
-  console.log('  --skip-mcp           Skip automatic MCP server setup in Claude Code');
+  console.log('  --skip-mcp           Skip automatic MCP server setup in OpenClaw');
   console.log('  --monitoring         Enable token usage tracking and telemetry setup');
   console.log();
   console.log('Verification & Pair Programming:');
   console.log('  --verify             Initialize with Truth Verification System enabled');
   console.log('  --pair               Initialize with Pair Programming mode enabled');
-  console.log('                       (These options create verification-focused CLAUDE.md)');
+  console.log('                       (These options create verification-focused OPENCLAW.md)');
   console.log();
   console.log('Advanced Options:');
   console.log('  --enhanced, --safe   Enhanced initialization with validation and rollback');
@@ -73,20 +73,20 @@ export function showInitHelp() {
   console.log('  claude-flow@alpha init --list-backups             # Show available backups');
   console.log();
   console.log('What gets created:');
-  console.log('  • .claude/settings.json - Claude Code configuration with hooks');
+  console.log('  • .claude/settings.json - OpenClaw configuration with hooks');
   console.log('  • .claude/settings.local.json - Pre-approved MCP permissions (no prompts!)');
   console.log('  • .mcp.json - Project-scoped MCP server configuration');
   // Removed claude-flow@alpha.config.json reference per user request
-  console.log('  • .claude/commands/ directory with 20+ Claude Code slash commands');
-  console.log('  • CLAUDE.md with project instructions (v2.0.0 enhanced by default)');
+  console.log('  • .claude/commands/ directory with 20+ OpenClaw slash commands');
+  console.log('  • OPENCLAW.md with project instructions (v2.0.0 enhanced by default)');
   console.log('  • memory/ directory for persistent context storage');
   console.log('  • coordination/ directory for agent orchestration');
   console.log('  • ./claude-flow@alpha local executable wrapper');
   console.log('  • .gitignore entries for Claude Flow generated files');
-  console.log('  • Automatic MCP server setup if Claude Code CLI is installed');
+  console.log('  • Automatic MCP server setup if OpenClaw CLI is installed');
   console.log('  • Pre-configured for TDD, architecture, and code generation');
   console.log();
-  console.log('Claude Code Slash Commands Created:');
+  console.log('OpenClaw Slash Commands Created:');
   console.log('  • /sparc - Execute SPARC methodology workflows');
   console.log('  • /sparc-<mode> - Run specific SPARC modes (17+ modes)');
   console.log('  • /claude-flow@alpha-help - Show all claude-flow@alpha commands');
@@ -116,5 +116,5 @@ export function showInitHelp() {
   console.log();
   console.log('  Or uncomment in .mcp.json after init');
   console.log();
-  console.log('Learn more: https://github.com/ruvnet/claude-code-flow');
+  console.log('Learn more: https://github.com/ruvnet/openclaw-flow');
 }

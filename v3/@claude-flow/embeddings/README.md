@@ -4,9 +4,9 @@
 [![npm downloads](https://img.shields.io/npm/dm/@claude-flow/embeddings.svg)](https://www.npmjs.com/package/@claude-flow/embeddings)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
-[![Performance](https://img.shields.io/badge/Performance-<5ms-brightgreen.svg)](https://github.com/ruvnet/claude-flow)
+[![Performance](https://img.shields.io/badge/Performance-<5ms-brightgreen.svg)](https://github.com/snowzlm/ruflo)
 
-> High-performance embedding generation module for Claude Flow V3 - multi-provider support with persistent caching, document chunking, normalization, hyperbolic embeddings, and neural substrate integration.
+> High-performance embedding generation module for Ruflo V3 - multi-provider support with persistent caching, document chunking, normalization, hyperbolic embeddings, and neural substrate integration.
 
 ## Features
 
@@ -71,16 +71,16 @@ console.log(`Similarity: ${similarity.toFixed(4)}`);
 
 ```bash
 # Generate embedding from CLI
-claude-flow embeddings embed "Your text here"
+ruflo embeddings embed "Your text here"
 
 # Batch embed from file
-claude-flow embeddings batch documents.txt -o embeddings.json
+ruflo embeddings batch documents.txt -o embeddings.json
 
 # Similarity search
-claude-flow embeddings search "query" --index ./vectors
+ruflo embeddings search "query" --index ./vectors
 
 # Initialize agentic-flow model
-claude-flow embeddings init --provider agentic-flow
+ruflo embeddings init --provider agentic-flow
 ```
 
 ## API Reference
@@ -618,26 +618,26 @@ const service = createEmbeddingService({
 
 ```bash
 # Document chunking
-claude-flow embeddings chunk document.txt --strategy sentence --max-size 512
+ruflo embeddings chunk document.txt --strategy sentence --max-size 512
 
 # Normalize embedding file
-claude-flow embeddings normalize embeddings.json --type l2 -o normalized.json
+ruflo embeddings normalize embeddings.json --type l2 -o normalized.json
 
 # Convert to hyperbolic
-claude-flow embeddings hyperbolic embeddings.json -o poincare.json
+ruflo embeddings hyperbolic embeddings.json -o poincare.json
 
 # Neural operations
-claude-flow embeddings neural drift --baseline "context" --input "check this"
-claude-flow embeddings neural store --id mem-1 --content "data"
-claude-flow embeddings neural recall "query" --top-k 5
+ruflo embeddings neural drift --baseline "context" --input "check this"
+ruflo embeddings neural store --id mem-1 --content "data"
+ruflo embeddings neural recall "query" --top-k 5
 
 # List/download models
-claude-flow embeddings models list
-claude-flow embeddings models download all-MiniLM-L6-v2
+ruflo embeddings models list
+ruflo embeddings models download all-MiniLM-L6-v2
 
 # Cache management
-claude-flow embeddings cache stats
-claude-flow embeddings cache clear --older-than 7d
+ruflo embeddings cache stats
+ruflo embeddings cache clear --older-than 7d
 ```
 
 ## Related Packages

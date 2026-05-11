@@ -1,6 +1,6 @@
 # Latest Agentic-Flow & AgentDB Libraries Review
 **Date:** 2025-10-25
-**Reviewer:** Claude Code (Claude Sonnet 4.5)
+**Reviewer:** OpenClaw (Claude Sonnet 4.5)
 
 ---
 
@@ -611,7 +611,7 @@ node -e "import('agentdb').then(db => db.init())"
 
 2. **Add hooks support:**
    ```bash
-   npx claude-flow@alpha hooks pre-edit \
+   ruflo hooks pre-edit \
      --file "src/api.js" \
      --sign-with-ed25519 \
      --key-id "agent-123"
@@ -619,7 +619,7 @@ node -e "import('agentdb').then(db => db.init())"
 
 3. **MCP tool enhancement:**
    ```javascript
-   mcp__claude-flow__memory_usage({
+   mcp__ruflo__memory_usage({
      action: "store",
      key: "api-pattern",
      value: "REST endpoint design",
@@ -809,7 +809,7 @@ if (!verification.valid) {
 3. **Test Integration** ✅
    ```bash
    npm run test:integration
-   npm run validate:claude-flow
+   npm run validate:ruflo
    ```
    **Benefit:** Ensure compatibility
    **Risk:** None
@@ -830,7 +830,7 @@ if (!verification.valid) {
    - `agentdb_sign_certificate`
    - `agentdb_verify_signature`
    - `agentdb_certificate_chain`
-   **Benefit:** Easy integration with Claude Code
+   **Benefit:** Easy integration with OpenClaw
    **Effort:** 1-2 hours
    **Impact:** MEDIUM
 

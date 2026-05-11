@@ -6,7 +6,7 @@
 
 ## Executive summary
 
-**rUv** (GitHub `ruvnet`, Twitter `ruv`, blog `Cognitum.One`) is the creator of **Ruflo** (formerly Claude Flow), a multi-agent orchestration platform for Claude Code with 39k+ stars. The account joined GitHub in 2012, hosts 173 public repos, has 7,268 followers, and lists company "Not a Bot" / location "0x". The portfolio clusters around three themes:
+**rUv** (GitHub `ruvnet`, Twitter `ruv`, blog `Cognitum.One`) is the creator of **Ruflo** (formerly Ruflo), a multi-agent orchestration platform for OpenClaw with 39k+ stars. The account joined GitHub in 2012, hosts 173 public repos, has 7,268 followers, and lists company "Not a Bot" / location "0x". The portfolio clusters around three themes:
 
 1. **Agent orchestration** (`ruflo`, `agentic-flow`, `swarm-*`)
 2. **Self-learning AI infrastructure** (`RuVector`, `ruv-FANN`, `RuLake`)
@@ -25,7 +25,7 @@ A ruflo-internal "Dossier" repo also exists (33 stars) — visual planning for A
 | `agentic-flow` | repo | TS, 668 ⭐, low-cost model switcher | gh-api, WebSearch |
 | `ruv-FANN` | repo | Rust, 347 ⭐, neural net library | gh-api |
 | `SynthLang` | repo | Python, 253 ⭐, prompt language for LLMs | gh-api |
-| `open-claude-code` | repo | JS, 242 ⭐, clean-room CC reimpl | gh-api |
+| `open-openclaw` | repo | JS, 242 ⭐, clean-room CC reimpl | gh-api |
 | `rvm` | repo | Rust, 95 ⭐, agentic VM | gh-api |
 | `Dossier` | repo | 33 ⭐, visual AI coding planner | gh-api |
 | `Cognitum.One` | url | personal blog / company site | gh-api (profile.blog) |
@@ -45,7 +45,7 @@ graph TD
   rUv -->|owns| agentic-flow
   rUv -->|owns| ruv-FANN
   rUv -->|owns| SynthLang
-  rUv -->|owns| open-claude-code
+  rUv -->|owns| open-openclaw
   rUv -->|owns| rvm
   rUv -->|owns| Dossier
   rUv -->|owns| RuLake
@@ -66,7 +66,7 @@ graph TD
 ### 1. Agent orchestration cluster
 - `ruflo` (39k ⭐ TS, the flagship)
 - `agentic-flow` (low-cost model switcher; integration partner)
-- `open-claude-code` (CC reverse engineering)
+- `open-openclaw` (CC reverse engineering)
 - `marketing` (agentic marketing swarm)
 - `agentic-voice` (Next.js + OpenAI + Exa chat)
 
@@ -84,8 +84,8 @@ graph TD
 
 ## Source provenance
 
-- **Round 0 fan-out** (parallel, 1 batch): `gh api users/ruvnet`, `gh api users/ruvnet/repos?sort=updated`, `WebSearch "ruvnet github ruflo claude-flow agentic"`
-- **Round 1 expansion** (parallel, 1 batch): `gh api repos/ruvnet/ruflo`, `gh api repos/ruvnet/RuVector`, `gh api repos/ruvnet/agentic-flow`, `gh api users/ruvnet/repos?sort=stars`
+- **Round 0 fan-out** (parallel, 1 batch): `gh api users/ruvnet`, `gh api users/ruvnet/repos?sort=updated`, `WebSearch "ruvnet github ruflo ruflo agentic"`
+- **Round 1 expansion** (parallel, 1 batch): `gh api repos/snowzlm/ruflo`, `gh api repos/ruvnet/RuVector`, `gh api repos/ruvnet/agentic-flow`, `gh api users/ruvnet/repos?sort=stars`
 - **Dedup**: 0 collisions (all entities surfaced once)
 - **Budget spent**: ~3.2k tokens, $0 (gh API + WebSearch are free; no Anthropic calls beyond orchestration)
 

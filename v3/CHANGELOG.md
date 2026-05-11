@@ -1,4 +1,4 @@
-# Changelog - Claude Flow v3
+# Changelog - Ruflo v3
 
 All notable changes to this project will be documented in this file.
 

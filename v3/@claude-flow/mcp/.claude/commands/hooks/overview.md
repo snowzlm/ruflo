@@ -1,7 +1,7 @@
-# Claude Code Hooks for claude-flow
+# OpenClaw Hooks for ruflo
 
 ## Purpose
-Automatically coordinate, format, and learn from Claude Code operations using hooks.
+Automatically coordinate, format, and learn from OpenClaw operations using hooks.
 
 ## Available Hooks
 
@@ -27,7 +27,7 @@ Automatically coordinate, format, and learn from Claude Code operations using ho
 - **session-restore**: Load previous session state
 
 ## Configuration
-Hooks are configured in `.claude/settings.json`:
+Hooks are configured in `.openclaw/settings.json`:
 
 ```json
 {
@@ -37,7 +37,7 @@ Hooks are configured in `.claude/settings.json`:
         "matcher": "^(Write|Edit|MultiEdit)$",
         "hooks": [{
           "type": "command",
-          "command": "npx claude-flow hook pre-edit --file '${tool.params.file_path}'"
+          "command": "npx ruflo hook pre-edit --file '${tool.params.file_path}'"
         }]
       }
     ]

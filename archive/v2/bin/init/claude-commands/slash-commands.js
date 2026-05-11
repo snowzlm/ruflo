@@ -1,4 +1,4 @@
-// slash-commands.js - Create Claude Code slash commands
+// slash-commands.js - Create OpenClaw slash commands
 
 import { createSparcSlashCommand, createMainSparcCommand } from './sparc-commands.js';
 import { createClaudeFlowCommands } from './claude-flow-commands.js';
@@ -6,10 +6,10 @@ import { copyTemplates } from '../template-copier.js';
 import { promises as fs } from 'fs';
 import { join } from 'path';
 
-// Create Claude Code slash commands for SPARC modes
+// Create OpenClaw slash commands for SPARC modes
 export async function createClaudeSlashCommands(workingDir) {
   try {
-    console.log('\n📝 Creating Claude Code slash commands...');
+    console.log('\n📝 Creating OpenClaw slash commands...');
 
     // Use template copier for SPARC slash commands
     const slashCommandOptions = {

@@ -66,7 +66,7 @@ Comprehensive analysis through distributed agent coordination.
 
 ## Activation
 
-### Option 1: Using MCP Tools (Preferred in Claude Code)
+### Option 1: Using MCP Tools (Preferred in OpenClaw)
 \`\`\`javascript
 mcp__claude-flow__swarm_init {
   topology: "mesh",
@@ -116,7 +116,7 @@ Coordinated development through specialized agent teams.
 
 ## Activation
 
-### Option 1: Using MCP Tools (Preferred in Claude Code)
+### Option 1: Using MCP Tools (Preferred in OpenClaw)
 \`\`\`javascript
 mcp__claude-flow__swarm_init {
   topology: "hierarchical",
@@ -201,7 +201,7 @@ System maintenance and updates through coordinated agents.
 
 ## Activation
 
-### Option 1: Using MCP Tools (Preferred in Claude Code)
+### Option 1: Using MCP Tools (Preferred in OpenClaw)
 \`\`\`javascript
 mcp__claude-flow__swarm_init {
   topology: "hierarchical",
@@ -252,7 +252,7 @@ Performance optimization through specialized analysis.
 
 ## Activation
 
-### Option 1: Using MCP Tools (Preferred in Claude Code)
+### Option 1: Using MCP Tools (Preferred in OpenClaw)
 \`\`\`javascript
 mcp__claude-flow__swarm_init {
   topology: "mesh",
@@ -303,7 +303,7 @@ Deep research through parallel information gathering.
 
 ## Activation
 
-### Option 1: Using MCP Tools (Preferred in Claude Code)
+### Option 1: Using MCP Tools (Preferred in OpenClaw)
 \`\`\`javascript
 mcp__claude-flow__swarm_init {
   topology: "distributed",
@@ -353,7 +353,7 @@ Comprehensive testing through distributed execution.
 
 ## Activation
 
-### Option 1: Using MCP Tools (Preferred in Claude Code)
+### Option 1: Using MCP Tools (Preferred in OpenClaw)
 \`\`\`javascript
 mcp__claude-flow__swarm_init {
   topology: "distributed",
@@ -426,7 +426,7 @@ Deep code and data analysis with batch processing capabilities.
 
 ## Activation
 
-### Option 1: Using MCP Tools (Preferred in Claude Code)
+### Option 1: Using MCP Tools (Preferred in OpenClaw)
 \`\`\`javascript
 mcp__claude-flow__sparc_mode {
   mode: "analyzer",
@@ -482,7 +482,7 @@ System design with Memory-based coordination for scalable architectures.
 
 ## Activation
 
-### Option 1: Using MCP Tools (Preferred in Claude Code)
+### Option 1: Using MCP Tools (Preferred in OpenClaw)
 \`\`\`javascript
 mcp__claude-flow__sparc_mode {
   mode: "architect",
@@ -539,7 +539,7 @@ Parallel task execution specialist using batch operations.
 
 ## Activation
 
-### Option 1: Using MCP Tools (Preferred in Claude Code)
+### Option 1: Using MCP Tools (Preferred in OpenClaw)
 \`\`\`javascript
 mcp__claude-flow__sparc_mode {
   mode: "batch-executor",
@@ -597,7 +597,7 @@ Autonomous code generation with batch file operations.
 
 ## Activation
 
-### Option 1: Using MCP Tools (Preferred in Claude Code)
+### Option 1: Using MCP Tools (Preferred in OpenClaw)
 \`\`\`javascript
 mcp__claude-flow__sparc_mode {
   mode: "coder",
@@ -655,7 +655,7 @@ Systematic debugging with TodoWrite and Memory integration.
 
 ## Activation
 
-### Option 1: Using MCP Tools (Preferred in Claude Code)
+### Option 1: Using MCP Tools (Preferred in OpenClaw)
 \`\`\`javascript
 mcp__claude-flow__sparc_mode {
   mode: "debugger",
@@ -713,7 +713,7 @@ UI/UX design with Memory coordination for consistent experiences.
 
 ## Activation
 
-### Option 1: Using MCP Tools (Preferred in Claude Code)
+### Option 1: Using MCP Tools (Preferred in OpenClaw)
 \`\`\`javascript
 mcp__claude-flow__sparc_mode {
   mode: "designer",
@@ -770,7 +770,7 @@ Documentation with batch file operations for comprehensive docs.
 
 ## Activation
 
-### Option 1: Using MCP Tools (Preferred in Claude Code)
+### Option 1: Using MCP Tools (Preferred in OpenClaw)
 \`\`\`javascript
 mcp__claude-flow__sparc_mode {
   mode: "documenter",
@@ -828,7 +828,7 @@ Creative problem solving with WebSearch and Memory integration.
 
 ## Activation
 
-### Option 1: Using MCP Tools (Preferred in Claude Code)
+### Option 1: Using MCP Tools (Preferred in OpenClaw)
 \`\`\`javascript
 mcp__claude-flow__sparc_mode {
   mode: "innovator",
@@ -886,7 +886,7 @@ Knowledge management with Memory tools for persistent insights.
 
 ## Activation
 
-### Option 1: Using MCP Tools (Preferred in Claude Code)
+### Option 1: Using MCP Tools (Preferred in OpenClaw)
 \`\`\`javascript
 mcp__claude-flow__sparc_mode {
   mode: "memory-manager",
@@ -944,7 +944,7 @@ Performance optimization with systematic analysis and improvements.
 
 ## Activation
 
-### Option 1: Using MCP Tools (Preferred in Claude Code)
+### Option 1: Using MCP Tools (Preferred in OpenClaw)
 \`\`\`javascript
 mcp__claude-flow__sparc_mode {
   mode: "optimizer",
@@ -1002,7 +1002,7 @@ Multi-agent task orchestration with TodoWrite/TodoRead/Task/Memory.
 
 ## Activation
 
-### Option 1: Using MCP Tools (Preferred in Claude Code)
+### Option 1: Using MCP Tools (Preferred in OpenClaw)
 \`\`\`javascript
 mcp__claude-flow__sparc_mode {
   mode: "orchestrator",
@@ -1060,7 +1060,7 @@ Deep research with parallel WebSearch/WebFetch and Memory coordination.
 
 ## Activation
 
-### Option 1: Using MCP Tools (Preferred in Claude Code)
+### Option 1: Using MCP Tools (Preferred in OpenClaw)
 \`\`\`javascript
 mcp__claude-flow__sparc_mode {
   mode: "researcher",
@@ -1118,7 +1118,7 @@ Code review using batch file analysis for comprehensive reviews.
 
 ## Activation
 
-### Option 1: Using MCP Tools (Preferred in Claude Code)
+### Option 1: Using MCP Tools (Preferred in OpenClaw)
 \`\`\`javascript
 mcp__claude-flow__sparc_mode {
   mode: "reviewer",
@@ -1176,7 +1176,7 @@ Specialized swarm management with batch coordination capabilities.
 
 ## Activation
 
-### Option 1: Using MCP Tools (Preferred in Claude Code)
+### Option 1: Using MCP Tools (Preferred in OpenClaw)
 \`\`\`javascript
 mcp__claude-flow__sparc_mode {
   mode: "swarm-coordinator",
@@ -1234,7 +1234,7 @@ Test-driven development with TodoWrite planning and comprehensive testing.
 
 ## Activation
 
-### Option 1: Using MCP Tools (Preferred in Claude Code)
+### Option 1: Using MCP Tools (Preferred in OpenClaw)
 \`\`\`javascript
 mcp__claude-flow__sparc_mode {
   mode: "tdd",
@@ -1292,7 +1292,7 @@ Comprehensive testing with parallel execution capabilities.
 
 ## Activation
 
-### Option 1: Using MCP Tools (Preferred in Claude Code)
+### Option 1: Using MCP Tools (Preferred in OpenClaw)
 \`\`\`javascript
 mcp__claude-flow__sparc_mode {
   mode: "tester",
@@ -1350,7 +1350,7 @@ Process automation with TodoWrite planning and Task execution.
 
 ## Activation
 
-### Option 1: Using MCP Tools (Preferred in Claude Code)
+### Option 1: Using MCP Tools (Preferred in OpenClaw)
 \`\`\`javascript
 mcp__claude-flow__sparc_mode {
   mode: "workflow-manager",

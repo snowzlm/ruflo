@@ -797,7 +797,7 @@ v3/@claude-flow/attention/
 ## Configuration Schema
 
 ```typescript
-// claude-flow.config.json
+// ruflo.config.json
 {
   "attention": {
     // Default mechanism for general use

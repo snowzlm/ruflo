@@ -1207,7 +1207,7 @@ async function modifyBashCommand(subArgs, flags) {
     if (!hasInput) {
       console.log('Usage: echo \'{"tool_input":{"command":"your command"}}\' | claude-flow hooks modify-bash');
       console.log('\nThis hook reads JSON from stdin and outputs modified JSON.');
-      console.log('It is designed for use with Claude Code v2.0.10+ PreToolUse feature.');
+      console.log('It is designed for use with OpenClaw v2.0.10+ PreToolUse feature.');
       console.log('\nExample:');
       console.log('  echo \'{"tool_input":{"command":"rm test.txt"}}\' | claude-flow hooks modify-bash');
       process.exit(0);
@@ -1286,7 +1286,7 @@ async function modifyFileCommand(subArgs, flags) {
     if (!hasInput) {
       console.log('Usage: echo \'{"tool_input":{"file_path":"your/file.js"}}\' | claude-flow hooks modify-file');
       console.log('\nThis hook reads JSON from stdin and outputs modified JSON.');
-      console.log('It is designed for use with Claude Code v2.0.10+ PreToolUse feature.');
+      console.log('It is designed for use with OpenClaw v2.0.10+ PreToolUse feature.');
       console.log('\nExample:');
       console.log('  echo \'{"tool_input":{"file_path":"test.js"}}\' | claude-flow hooks modify-file');
       process.exit(0);
@@ -1379,7 +1379,7 @@ async function modifyGitCommitCommand(subArgs, flags) {
     if (!hasInput) {
       console.log('Usage: echo \'{"tool_input":{"command":"git commit -m \\"message\\""}}\'  | claude-flow hooks modify-git-commit');
       console.log('\nThis hook reads JSON from stdin and outputs modified JSON.');
-      console.log('It is designed for use with Claude Code v2.0.10+ PreToolUse feature.');
+      console.log('It is designed for use with OpenClaw v2.0.10+ PreToolUse feature.');
       console.log('\nExample:');
       console.log('  echo \'{"tool_input":{"command":"git commit -m \\"fix bug\\""}}\'  | claude-flow hooks modify-git-commit');
       process.exit(0);
@@ -1547,7 +1547,7 @@ function showHooksHelp() {
   console.log('  • post-command and post-bash are aliases');
   console.log('  • Both --dash-case and camelCase parameters supported');
   console.log('  • All parameters from settings.json template supported');
-  console.log('  • New modification hooks work with Claude Code v2.0.10+ PreToolUse feature');
+  console.log('  • New modification hooks work with OpenClaw v2.0.10+ PreToolUse feature');
 }
 
 export default hooksAction;

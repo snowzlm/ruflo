@@ -182,7 +182,7 @@ export async function retrieveCoordinationData(
 }
 
 /**
- * Examples and usage patterns for Claude Code integration
+ * Examples and usage patterns for OpenClaw integration
  */
 export const USAGE_EXAMPLES = {
   todoWrite: `

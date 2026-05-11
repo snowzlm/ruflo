@@ -17,14 +17,14 @@ Successfully created a comprehensive Code Reasoning ReasoningBank model focused 
 ## 📁 Deliverables
 
 ### 1. Database
-- **Location**: `/workspaces/claude-code-flow/docs/reasoningbank/models/code-reasoning/.swarm/memory.db`
+- **Location**: `/workspaces/openclaw-flow/docs/reasoningbank/models/code-reasoning/.swarm/memory.db`
 - **Size**: 2.66 MB
 - **Patterns**: 2,600
 - **Links**: 428
 - **Format**: SQLite with optimized indexes
 
 ### 2. Training Script
-- **Location**: `/workspaces/claude-code-flow/docs/reasoningbank/models/code-reasoning/train-code.js`
+- **Location**: `/workspaces/openclaw-flow/docs/reasoningbank/models/code-reasoning/train-code.js`
 - **Lines**: 2,059
 - **Categories**: 5 major categories
 - **Pattern Types**: 15+ subtypes
@@ -356,7 +356,7 @@ WHERE pl.src_id = 'pattern-100';
 
 ### Technologies Used
 - **Database**: SQLite with better-sqlite3
-- **Memory**: ReasoningBank with claude-flow
+- **Memory**: ReasoningBank with ruflo
 - **Coordination**: Hook-based memory system
 - **Validation**: Custom SQL-based validation suite
 
@@ -376,7 +376,7 @@ WHERE pl.src_id = 'pattern-100';
 
 ### Integration
 - See examples in README.md
-- Check /workspaces/claude-code-flow/docs/reasoningbank/examples/
+- Check /workspaces/openclaw-flow/docs/reasoningbank/examples/
 - Integration with agentic-flow documented
 
 ### Contribution

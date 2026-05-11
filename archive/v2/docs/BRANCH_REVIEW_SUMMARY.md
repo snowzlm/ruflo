@@ -10,7 +10,7 @@
 
 ## Executive Summary
 
-This branch implements **three major feature sets** that align Claude Flow with industry best practices:
+This branch implements **three major feature sets** that align Ruflo with industry best practices:
 
 1. ✅ **Phase 1 & 2: Progressive Disclosure** - 98.7% token reduction (150k → 2k tokens)
 2. ✅ **MCP 2025-11 Specification Compliance** - Full Phase A & B implementation
@@ -104,10 +104,10 @@ src/mcp/
 ### Usage
 ```bash
 # Enable MCP 2025-11 features
-npx claude-flow mcp start --mcp2025
+npx ruflo mcp start --mcp2025
 
 # Legacy mode (default)
-npx claude-flow mcp start
+npx ruflo mcp start
 ```
 
 ### Compliance Status
@@ -188,7 +188,7 @@ npx claude-flow mcp start
 | **CLI Commands** | ✅ Working | All 62 npm scripts functional |
 | **MCP Server** | ✅ Operational | Stdio, HTTP, WS transports work |
 | **Hook System** | ✅ Intact | Pre/post/session hooks working |
-| **SDK Integration** | ✅ Compatible | Claude Code SDK functional |
+| **SDK Integration** | ✅ Compatible | OpenClaw SDK functional |
 | **Dependencies** | ✅ Safe | 2 new, 16 existing unchanged |
 
 ### Risk Assessment
@@ -335,7 +335,7 @@ npm run build
 npm publish --tag latest
 
 # Users can opt-in to MCP 2025-11
-npx claude-flow mcp start --mcp2025
+npx ruflo mcp start --mcp2025
 ```
 
 ### Phase 2: Gradual Adoption (1-3 months)
@@ -414,7 +414,7 @@ npx claude-flow mcp start --mcp2025
 ---
 
 **Review Completed**: 2025-11-12
-**Reviewer**: Claude Code
+**Reviewer**: OpenClaw
 **Approval Status**: ✅ **APPROVED**
 **Merge Recommendation**: ✅ **MERGE TO MAIN**
 

@@ -17,9 +17,9 @@ The full ADR markdown template, the AgentDB graph-storage commands for persistin
 
 ## Tools
 
-- `mcp__claude-flow__agentdb_hierarchical-store` / `agentdb_hierarchical-query` — ADR tree storage.
-- `mcp__claude-flow__agentdb_causal-edge` / `agentdb_causal-query` — relationship tracking.
-- `mcp__claude-flow__memory_store` / `memory_search` — semantic search.
+- `mcp__ruflo__agentdb_hierarchical-store` / `agentdb_hierarchical-query` — ADR tree storage.
+- `mcp__ruflo__agentdb_causal-edge` / `agentdb_causal-query` — relationship tracking.
+- `mcp__ruflo__memory_store` / `memory_search` — semantic search.
 - `Read`, `Write`, `Edit` — ADR file operations.
 - `Grep`, `Glob` — code scanning.
 - `Bash` — git operations (`blame`, `log`, `diff`).

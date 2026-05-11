@@ -50,7 +50,7 @@ await plane.initialize()
 
 | Method | Returns | Description |
 |--------|---------|-------------|
-| `initialize()` | `Promise<void>` | Read CLAUDE.md, compile, load shards, activate gates |
+| `initialize()` | `Promise<void>` | Read OPENCLAW.md, compile, load shards, activate gates |
 | `compile(root, local?)` | `Promise<PolicyBundle>` | Compile without reading files |
 | `retrieveForTask(request)` | `Promise<RetrievalResult>` | Get constitution + relevant shards |
 | `evaluateCommand(cmd)` | `GateResult[]` | Gate a shell command |
@@ -367,8 +367,8 @@ import { generateClaudeMd, scaffold } from '@claude-flow/guidance/generators';
 
 | Function | Returns | Description |
 |----------|---------|-------------|
-| `generateClaudeMd(profile)` | `string` | Generate CLAUDE.md from a `ProjectProfile` |
-| `generateClaudeLocalMd(profile)` | `string` | Generate CLAUDE.local.md from a `LocalProfile` |
+| `generateClaudeMd(profile)` | `string` | Generate OPENCLAW.md from a `ProjectProfile` |
+| `generateClaudeLocalMd(profile)` | `string` | Generate OPENCLAW.local.md from a `LocalProfile` |
 | `generateSkillMd(skill)` | `string` | Generate a skill definition markdown |
 | `generateAgentMd(agent)` | `string` | Generate an agent manifest markdown |
 | `generateAgentIndex(agents)` | `string` | Generate an agent index file |
@@ -389,7 +389,7 @@ import { analyze, validateEffect } from '@claude-flow/guidance/analyzer';
 | Function | Returns | Description |
 |----------|---------|-------------|
 | `analyze(content, localContent?)` | `AnalysisResult` | 6-dimension analysis with composite score (0-100) and grade (A-F) |
-| `benchmark(before, after, local?)` | `BenchmarkResult` | Compare two CLAUDE.md versions |
+| `benchmark(before, after, local?)` | `BenchmarkResult` | Compare two OPENCLAW.md versions |
 | `formatReport(result)` | `string` | Formatted analysis report |
 | `formatBenchmark(result)` | `string` | Formatted benchmark comparison |
 

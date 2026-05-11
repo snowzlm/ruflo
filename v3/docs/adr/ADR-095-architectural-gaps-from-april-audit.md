@@ -85,7 +85,7 @@ The *handler* underneath is still EventEmitter-based and runs in a single Node p
 
 ### G6 — Auto-memory graph state bloat (100 MB / 20 unique entries)
 
-**Current state.** The `auto-memory-hook.mjs` reads `MEMORY.md` files from `~/.claude/projects/*/memory/`, parses each section as a separate entry, and stores them in `auto-memory-store.json`. Then it builds a similarity graph using character-trigram Jaccard, runs PageRank for 30 iterations, and writes `graph-state.json` and `ranked-context.json`.
+**Current state.** The `auto-memory-hook.mjs` reads `MEMORY.md` files from `~/.openclaw/projects/*/memory/`, parses each section as a separate entry, and stores them in `auto-memory-store.json`. Then it builds a similarity graph using character-trigram Jaccard, runs PageRank for 30 iterations, and writes `graph-state.json` and `ranked-context.json`.
 
 The audit measured: 5,706 entries, ~20 unique (5,686 are the same MEMORY.md sections duplicated across project directories). `graph-state.json` is 100 MB. `ranked-context.json` is 8.7 MB. The PageRank result is uniform (~0.02 across nodes) — meaningless because the graph is near-complete between near-identical duplicates. Trigram Jaccard isn't semantic — it scores character overlap, not meaning. The same entry is injected into Claude's context 5 times per message.
 

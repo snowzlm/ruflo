@@ -5,7 +5,7 @@ status: Accepted
 date: 2026-05-04
 updated: 2026-05-09
 authors:
-  - reviewer (Claude Code)
+  - reviewer (OpenClaw)
 tags: [plugin, core, mcp, foundation, smoke-test]
 ---
 
@@ -15,7 +15,7 @@ tags: [plugin, core, mcp, foundation, smoke-test]
 
 Today's plugin (v0.1.0):
 
-- `.claude-plugin/plugin.json:4` — `version: "0.1.0"`, keywords `mcp, orchestration, claude-code`
+- `.openclaw-plugin/plugin.json:4` — `version: "0.1.0"`, keywords `mcp, orchestration, openclaw`
 - `.mcp.json` — registers `ruflo` MCP server via `npx -y @claude-flow/cli@latest`
 - `agents/` — 3 generalists (`coder`, `researcher`, `reviewer`)
 - `skills/` — 3 first-run helpers (`init-project`, `ruflo-doctor`, `discover-plugins`)

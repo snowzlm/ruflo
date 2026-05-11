@@ -284,7 +284,7 @@ describe('analyze', () => {
     });
 
     it('detects @import directives', () => {
-      const withImport = WELL_STRUCTURED_CLAUDE_MD + '\n@~/.claude/my_instructions.md\n';
+      const withImport = WELL_STRUCTURED_CLAUDE_MD + '\n@~/.openclaw/my_instructions.md\n';
       const result = analyze(withImport);
       expect(result.metrics.hasImports).toBe(true);
     });
@@ -650,7 +650,7 @@ describe('edge cases', () => {
 // optimizeForSize() — Context-size-aware optimization
 // ============================================================================
 
-// A large, realistic CLAUDE.md with enforcement prose and long sections
+// A large, realistic OPENCLAW.md with enforcement prose and long sections
 const LARGE_CLAUDE_MD = `# My Project
 
 This project is a web application built with TypeScript.
@@ -660,7 +660,7 @@ This project is a web application built with TypeScript.
 
 ## Swarm Orchestration
 
-When starting work on complex tasks, Claude Code MUST automatically:
+When starting work on complex tasks, OpenClaw MUST automatically:
 
 1. Initialize the swarm using MCP tools
 2. Spawn concurrent agents using Task tool
@@ -668,7 +668,7 @@ When starting work on complex tasks, Claude Code MUST automatically:
 
 **MCP alone does NOT execute work** — Task tool agents do the actual work.
 
-When user says "spawn swarm", Claude Code MUST in ONE message:
+When user says "spawn swarm", OpenClaw MUST in ONE message:
 1. Call MCP tools to initialize coordination
 2. IMMEDIATELY call Task tool to spawn REAL working agents
 3. Both MCP and Task calls must be in the SAME response
@@ -847,7 +847,7 @@ describe('optimizeForSize', () => {
 **ALWAYS use TypeScript strict mode.**
 **NEVER use any type.**
 **MUST run tests before committing.**
-Claude Code MUST automatically spawn agents.
+OpenClaw MUST automatically spawn agents.
 
 ## Build & Test
 
@@ -1249,16 +1249,16 @@ class NonCompliantExecutor implements IHeadlessExecutor {
 
 /**
  * DifferentialMockExecutor — content-aware executor that varies its behavior
- * based on the quality of the loaded CLAUDE.md content.
+ * based on the quality of the loaded OPENCLAW.md content.
  *
  * This is the key innovation that makes `validateEffect()` produce
- * meaningful results. When the CLAUDE.md has:
+ * meaningful results. When the OPENCLAW.md has:
  * - Security rules → executor respects them (no hardcoded secrets)
  * - Enforcement statements → executor follows them (no force push, no `any`)
  * - Build/test commands → executor knows how to build/test
  * - Architecture section → executor knows the project structure
  *
- * When the CLAUDE.md is poor/missing those sections, the executor produces
+ * When the OPENCLAW.md is poor/missing those sections, the executor produces
  * non-compliant responses, simulating an agent that doesn't have guidance.
  */
 class DifferentialMockExecutor implements IContentAwareExecutor {
@@ -1514,7 +1514,7 @@ describe('validateEffect', () => {
   });
 
   describe('content-aware differential executor', () => {
-    it('produces higher adherence for well-structured CLAUDE.md than poor', async () => {
+    it('produces higher adherence for well-structured OPENCLAW.md than poor', async () => {
       const good = await validateEffect(
         WELL_STRUCTURED_CLAUDE_MD,
         WELL_STRUCTURED_CLAUDE_MD,
@@ -2240,7 +2240,7 @@ describe('abBenchmark', () => {
       const report = await abBenchmark(WELL_STRUCTURED_CLAUDE_MD, {
         executor: new ABDifferentialExecutor(),
       });
-      // With the differential executor and well-structured CLAUDE.md,
+      // With the differential executor and well-structured OPENCLAW.md,
       // we expect significant improvement across multiple classes
       expect(typeof report.categoryShift).toBe('boolean');
     });
@@ -2417,7 +2417,7 @@ describe('abBenchmark', () => {
     });
   });
 
-  describe('poor CLAUDE.md shows minimal improvement', () => {
+  describe('poor OPENCLAW.md shows minimal improvement', () => {
     it('poor guidance still shows some improvement over no guidance', async () => {
       const report = await abBenchmark(POOR_CLAUDE_MD, {
         executor: new ABDifferentialExecutor(),

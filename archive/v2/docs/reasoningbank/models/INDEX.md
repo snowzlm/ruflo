@@ -32,7 +32,7 @@
 1. [Installation Methods](./HOW-TO-USE.md#installation-methods) - 4 ways to install
 2. [Model Selection Guide](./HOW-TO-USE.md#model-selection-guide) - Which model for what?
 3. [Usage Examples](./HOW-TO-USE.md#usage-examples) - CLI, JavaScript, Python
-4. [Integration Patterns](./HOW-TO-USE.md#integration-patterns) - With agentic-flow, Claude Code
+4. [Integration Patterns](./HOW-TO-USE.md#integration-patterns) - With agentic-flow, OpenClaw
 5. [Troubleshooting](./HOW-TO-USE.md#troubleshooting) - Common issues
 
 ### Training Models
@@ -57,13 +57,13 @@ See [_scripts/README.md](./_scripts/README.md) for detailed documentation.
 ### Tutorial 1: Install and Use a Model (5 minutes)
 ```bash
 # 1. Choose model
-cd /workspaces/claude-code-flow/docs/reasoningbank/models/safla
+cd /workspaces/openclaw-flow/docs/reasoningbank/models/safla
 
-# 2. Copy to claude-flow
+# 2. Copy to ruflo
 cp memory.db ~/.swarm/memory.db
 
 # 3. Try it
-npx claude-flow@alpha memory query "API optimization best practices"
+ruflo memory query "API optimization best practices"
 ```
 
 ### Tutorial 2: Merge Multiple Models (10 minutes)
@@ -185,7 +185,7 @@ See [HOW-TO-USE.md - Pattern 1: Agentic-Flow Integration](./HOW-TO-USE.md#patter
 **Guide**: [HOW-TO-USE.md - Usage Examples](./HOW-TO-USE.md#usage-examples)
 **Example**:
 ```bash
-npx claude-flow@alpha memory query "JWT authentication" --reasoningbank
+ruflo memory query "JWT authentication" --reasoningbank
 ```
 
 ### Task: Merge models

@@ -217,8 +217,8 @@ The following environments are validated and ready:
 - **Clean installations** (no local dependencies required)
 
 ### Installation Methods Validated
-1. **NPM Global**: `npm install -g claude-flow@alpha`
-2. **NPX**: `npx claude-flow@alpha`
+1. **NPM Global**: `npm install -g github:snowzlm/ruflo`
+2. **NPX**: `ruflo`
 3. **Binary**: Direct binary execution
 
 ### Recommended Next Steps
@@ -268,13 +268,13 @@ The following environments are validated and ready:
 ## 📞 Support & Issues
 
 If you encounter any issues not covered in this validation:
-- GitHub Issues: https://github.com/ruvnet/claude-flow/issues
-- Documentation: https://github.com/ruvnet/claude-flow
+- GitHub Issues: https://github.com/snowzlm/ruflo/issues
+- Documentation: https://github.com/snowzlm/ruflo
 - Test Suite: `./tests/docker/quick-validation.sh`
 
 ---
 
-**Validated by**: Claude Code
+**Validated by**: OpenClaw
 **Platform**: Docker (Alpine Linux + Node 18)
 **Date**: 2025-10-12
 **Version**: v2.7.0-alpha

@@ -48,7 +48,7 @@ export async function createClaudeConfig(options: InitOptions): Promise<void> {
     },
   };
 
-  await fs.writeFile('.claude/config.json', JSON.stringify(claudeConfig, null, 2));
+  await fs.writeFile('.openclaw/config.json', JSON.stringify(claudeConfig, null, 2));
   console.log('  ✅ Created .claude/config.json with batch tools configuration');
 
   // Create additional configuration files
@@ -62,7 +62,7 @@ async function createBatchToolsConfig(): Promise<void> {
 
   const batchConfig = {
     version: '1.0.71',
-    description: 'Batch tools configuration for Claude Code orchestration',
+    description: 'Batch tools configuration for OpenClaw orchestration',
     tools: {
       todoWrite: {
         enabled: true,
@@ -139,7 +139,7 @@ async function createBatchToolsConfig(): Promise<void> {
     },
   };
 
-  await fs.writeFile('.claude/configs/batch-tools.json', JSON.stringify(batchConfig, null, 2));
+  await fs.writeFile('.openclaw/configs/batch-tools.json', JSON.stringify(batchConfig, null, 2));
   console.log('  ✅ Created batch tools configuration');
 }
 
@@ -233,7 +233,7 @@ async function createSwarmConfig(): Promise<void> {
     },
   };
 
-  await fs.writeFile('.claude/configs/swarm.json', JSON.stringify(swarmConfig, null, 2));
+  await fs.writeFile('.openclaw/configs/swarm.json', JSON.stringify(swarmConfig, null, 2));
   console.log('  ✅ Created swarm orchestration configuration');
 }
 
@@ -304,7 +304,7 @@ async function createCoordinationConfig(): Promise<void> {
   };
 
   await fs.writeFile(
-    '.claude/configs/coordination.json',
+    '.openclaw/configs/coordination.json',
     JSON.stringify(coordinationConfig, null, 2),
   );
   console.log('  ✅ Created coordination configuration');

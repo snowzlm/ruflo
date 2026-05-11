@@ -589,7 +589,7 @@ ${this.results.recommendations.map(rec => `- ${rec.issue}`).join('\n')}
 
 ---
 
-*Report generated automatically by the Claude Code testing system.*
+*Report generated automatically by the OpenClaw testing system.*
 `;
   }
 }

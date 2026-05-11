@@ -2,7 +2,7 @@
  * Real In-Process MCP - 100% SDK-Powered
  * Claude-Flow v2.5-alpha.130+
  *
- * Uses ONLY Claude Code SDK primitives - TRUE in-process MCP:
+ * Uses ONLY OpenClaw SDK primitives - TRUE in-process MCP:
  * - createSdkMcpServer() (SDK creates in-process server)
  * - tool() (SDK defines tools with Zod schemas)
  * - No subprocess, stdio, or HTTP transport overhead
@@ -14,7 +14,7 @@ import {
   createSdkMcpServer,
   tool,
   type McpSdkServerConfigWithInstance,
-} from '@anthropic-ai/claude-code';
+} from '@anthropic-ai/openclaw';
 import { z } from 'zod';
 
 /**
@@ -457,7 +457,7 @@ export function createQueryControlMcpServer(): McpSdkServerConfigWithInstance {
  * Example Usage:
  *
  * ```typescript
- * import { query } from '@anthropic-ai/claude-code';
+ * import { query } from '@anthropic-ai/openclaw';
  * import {
  *   createMathMcpServer,
  *   createSessionMcpServer,

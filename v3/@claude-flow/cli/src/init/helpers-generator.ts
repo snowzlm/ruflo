@@ -406,7 +406,7 @@ export function generateHookHandler(): string {
     '',
     'const [,, command, ...args] = process.argv;',
     '',
-    '// Read stdin with timeout — Claude Code sends hook data as JSON via stdin.',
+    '// Read stdin with timeout — OpenClaw sends hook data as JSON via stdin.',
     '// Timeout prevents hanging when stdin is in an ambiguous state (not TTY, not pipe).',
     'async function readStdin() {',
     '  if (process.stdin.isTTY) return "";',
@@ -545,7 +545,7 @@ export function generateHookHandler(): string {
     '',
     "  'compact-manual': () => {",
     "    console.log('PreCompact Guidance:');",
-    "    console.log('IMPORTANT: Review CLAUDE.md in project root for:');",
+    "    console.log('IMPORTANT: Review OPENCLAW.md in project root for:');",
     "    console.log('   - Available agents and concurrent usage patterns');",
     "    console.log('   - Swarm coordination strategies (hierarchical, mesh, adaptive)');",
     "    console.log('   - Critical concurrent execution rules (1 MESSAGE = ALL OPERATIONS)');",
@@ -556,7 +556,7 @@ export function generateHookHandler(): string {
     "    console.log('Auto-Compact Guidance (Context Window Full):');",
     "    console.log('CRITICAL: Before compacting, ensure you understand:');",
     "    console.log('   - All agents available in .claude/agents/ directory');",
-    "    console.log('   - Concurrent execution patterns from CLAUDE.md');",
+    "    console.log('   - Concurrent execution patterns from OPENCLAW.md');",
     "    console.log('   - Swarm coordination strategies for complex tasks');",
     "    console.log('Apply GOLDEN RULE: Always batch operations in single messages');",
     "    console.log('Auto-compact proceeding with full agent context');",
@@ -922,10 +922,10 @@ try {
       process.exit(1);
   }
 } catch (err) {
-  // Hooks must never crash Claude Code - fail silently
+  // Hooks must never crash OpenClaw - fail silently
   dim(\`Error (non-critical): \${err.message}\`);
 }
-// Ensure clean exit for Claude Code hooks (exit 0 = success)
+// Ensure clean exit for OpenClaw hooks (exit 0 = success)
 process.exit(0);
 `;
 }

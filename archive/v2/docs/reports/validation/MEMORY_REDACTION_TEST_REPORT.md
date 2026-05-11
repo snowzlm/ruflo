@@ -9,7 +9,7 @@
 
 ## 📋 Feature Overview
 
-Added optional API key redaction to claude-flow memory commands with two-level security:
+Added optional API key redaction to ruflo memory commands with two-level security:
 
 ### 1️⃣ **Always Validate** (Auto-Protection)
 - Automatically detects API keys in stored values
@@ -295,6 +295,6 @@ The memory redaction feature is fully implemented, tested, and documented. It pr
 ---
 
 **Test Report Created:** 2025-10-10
-**Tester:** Claude Code
+**Tester:** OpenClaw
 **Feature Version:** v2.6.0-alpha.1
 **Confidence Level:** HIGH

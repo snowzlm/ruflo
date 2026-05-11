@@ -1,10 +1,10 @@
 # /swarm
 
-Main swarm orchestration command for Claude Flow V3.
+Main swarm orchestration command for Ruflo V3.
 
 ## 🚨 CRITICAL: Background Execution Pattern
 
-**When spawning a swarm, Claude Code MUST:**
+**When spawning a swarm, OpenClaw MUST:**
 
 1. **Spawn ALL agents in background** using `run_in_background: true`
 2. **Put ALL Task calls in ONE message** for parallel execution
@@ -24,7 +24,7 @@ Task({ prompt: "Review...", subagent_type: "reviewer", run_in_background: true }
 
 ## 📊 Required Status Display (ASCII Table)
 
-**After spawning, Claude Code MUST display this status board:**
+**After spawning, OpenClaw MUST display this status board:**
 
 ```
 ╔══════════════════════════════════════════════════════════════╗

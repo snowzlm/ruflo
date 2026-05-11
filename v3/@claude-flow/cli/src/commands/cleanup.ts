@@ -13,8 +13,8 @@ import { join } from 'path';
 /**
  * Ruflo-owned subdirectories within .claude/ that are safe to delete.
  * Everything else in .claude/ (agents, skills, commands, settings.local.json,
- * memory.db, worktrees, launch.json) belongs to Claude Code and must be preserved.
- * See: https://github.com/ruvnet/ruflo/issues/1557
+ * memory.db, worktrees, launch.json) belongs to OpenClaw and must be preserved.
+ * See: https://github.com/snowzlm/ruflo/issues/1557
  */
 const CLAUDE_OWNED_SUBDIRS = [
   { path: join('.claude', 'helpers'), description: 'Ruflo hook scripts' },
@@ -138,7 +138,7 @@ export const cleanupCommand: Command = {
     const found: { path: string; description: string; size: number; type: 'dir' | 'file'; skipped?: boolean }[] = [];
     let totalSize = 0;
 
-    // Scan ruflo-owned subdirs within .claude/ (surgical — preserves Claude Code files)
+    // Scan ruflo-owned subdirs within .claude/ (surgical — preserves OpenClaw files)
     for (const artifact of CLAUDE_OWNED_SUBDIRS) {
       const fullPath = join(cwd, artifact.path);
       if (existsSync(fullPath)) {

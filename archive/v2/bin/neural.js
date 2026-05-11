@@ -30,7 +30,7 @@ export async function neuralCommand(args, flags) {
 }
 
 async function initNeuralModule(flags = {}) {
-  const targetDir = path.resolve(process.cwd(), flags.target || '.claude/agents/neural');
+  const targetDir = path.resolve(process.cwd(), flags.target || '.openclaw/agents/neural');
   
   console.log(chalk.cyan('🧠 Initializing Claude Flow Neural Module...'));
   console.log(chalk.gray(`  Target: ${targetDir}`));
@@ -126,7 +126,7 @@ mcp__claude-flow__memory_usage {
     
     console.log(chalk.green('\n✅ Neural module initialized successfully!'));
     console.log(chalk.cyan('\n📚 Usage:'));
-    console.log(chalk.gray('  • In Claude Code: @agent-safla-neural "Create self-improving system"'));
+    console.log(chalk.gray('  • In OpenClaw: @agent-safla-neural "Create self-improving system"'));
     console.log(chalk.gray('  • View agent: cat .claude/agents/neural/safla-neural.md'));
     
   } catch (error) {

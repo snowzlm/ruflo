@@ -45,7 +45,7 @@
 | Command | Version | MCP Server |
 |---------|---------|------------|
 | `npx @claude-flow/cli@alpha` | v3.0.0-alpha.87 | **171 tools**, 19 categories |
-| `npx claude-flow@v3alpha` | v3.0.0-alpha.34 | **171 tools**, 19 categories |
+| `ruflo` | v3.0.0-alpha.34 | **171 tools**, 19 categories |
 
 **Fix Applied:** Pinned exact CLI version in wrapper package to avoid semver resolution to buggy 3.0.x versions. Deprecated versions 3.0.0, 3.0.1, 3.0.2.
 
@@ -148,7 +148,7 @@
 
 | ADR | Title | Status | Notes |
 |-----|-------|--------|-------|
-| ADR-018 | Claude Code Integration | ✅ Complete | Deep Claude Code hooks and tooling |
+| ADR-018 | OpenClaw Integration | ✅ Complete | Deep OpenClaw hooks and tooling |
 | ADR-019 | Headless Runtime Package | ✅ Complete | @claude-flow/headless for CI/CD |
 | ADR-020 | Headless Worker Integration | ✅ Complete | Background workers in headless mode |
 | ADR-021 | Transfer Hook IPFS Pattern Sharing | ✅ Complete | Decentralized pattern registry |
@@ -251,7 +251,7 @@ Stats handler (`hooks/intelligence/stats`) pulls from actual implementations:
 | Package | Version | Published |
 |---------|---------|-----------|
 | @claude-flow/cli | **3.0.0-alpha.117** | 2026-01-14 |
-| claude-flow | **3.0.0-alpha.76** | 2026-01-14 |
+| ruflo | **3.0.0-alpha.76** | 2026-01-14 |
 | @claude-flow/memory | 3.0.0-alpha.2 | 2026-01-07 |
 | @claude-flow/mcp | 3.0.0-alpha.8 | 2026-01-07 |
 | @claude-flow/neural | 3.0.0-alpha.2 | 2026-01-06 |
@@ -399,7 +399,7 @@ Stats handler (`hooks/intelligence/stats`) pulls from actual implementations:
 | Package | Version | Published | Status |
 |---------|---------|-----------|--------|
 | @claude-flow/cli | **3.0.0-alpha.87** | 2026-01-13 | ✅ Beta Ready |
-| claude-flow | **3.0.0-alpha.34** | 2026-01-13 | ✅ Beta Ready |
+| ruflo | **3.0.0-alpha.34** | 2026-01-13 | ✅ Beta Ready |
 | @claude-flow/memory | 3.0.0-alpha.2 | 2026-01-07 | ✅ |
 | @claude-flow/mcp | 3.0.0-alpha.8 | 2026-01-07 | ✅ |
 | @claude-flow/neural | 3.0.0-alpha.2 | 2026-01-06 | ✅ |
@@ -464,7 +464,7 @@ const heapUsedMB = (endMem.heapUsed / 1024 / 1024);
 
 ```typescript
 output.writeln(output.warning('⚠ No real CVE database configured. Showing example data.'));
-output.writeln(output.dim('Run "npm audit" or "claude-flow security scan" for real vulnerability detection.'));
+output.writeln(output.dim('Run "npm audit" or "ruflo security scan" for real vulnerability detection.'));
 ```
 
 ### Transfer Fallback Warnings
@@ -480,14 +480,14 @@ console.warn(`⚠ [Discovery] OFFLINE MODE - Could not resolve IPNS: ${ipnsName}
 
 ### MCP Server Fix
 
-**Problem:** `npx claude-flow@alpha mcp start` failed with "Cannot read properties of undefined (reading 'split')"
+**Problem:** `ruflo mcp start` failed with "Cannot read properties of undefined (reading 'split')"
 
 **Root Cause:** npm resolved `^3.0.0-alpha.84` to buggy version `3.0.2` (semver: `3.0.2 > 3.0.0-alpha.84`)
 
 **Solution:**
 1. Pinned exact version in wrapper: `"@claude-flow/cli": "3.0.0-alpha.86"` (no caret)
 2. Deprecated buggy versions: 3.0.0, 3.0.1, 3.0.2
-3. Published claude-flow@3.0.0-alpha.33 with fix
+3. Published ruflo@3.0.0-alpha.33 with fix
 
 ### Doctor Version Freshness Check (alpha.86)
 
@@ -522,11 +522,11 @@ npx @claude-flow/cli@alpha doctor -c version
 ### Update CLI Commands
 
 ```bash
-npx claude-flow update check      # Check for updates
-npx claude-flow update all        # Update all packages
-npx claude-flow update history    # View update history
-npx claude-flow update rollback   # Rollback last update
-npx claude-flow update clear-cache # Clear check cache
+npx ruflo update check      # Check for updates
+npx ruflo update all        # Update all packages
+npx ruflo update history    # View update history
+npx ruflo update rollback   # Rollback last update
+npx ruflo update clear-cache # Clear check cache
 ```
 
 ---
@@ -647,7 +647,7 @@ V3 now implements **171 MCP tools** with full V2 backward compatibility:
 - Local state management for workflow coordination
 
 For real operations:
-- **Terminal commands**: Use Claude Code's `Bash` tool
+- **Terminal commands**: Use OpenClaw's `Bash` tool
 - **GitHub API**: Use `gh` CLI or GitHub MCP server
 - **Real metrics**: Use `process.memoryUsage()`, `os` module
 - **Neural training**: Use `@claude-flow/neural` module

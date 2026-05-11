@@ -1,6 +1,6 @@
 #!/bin/bash
 # Guidance Hooks for Claude Flow V3
-# Provides context and routing for Claude Code operations
+# Provides context and routing for OpenClaw operations
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"

@@ -1,12 +1,12 @@
 ---
 name: agent-types
-description: Complete guide to all 87 available agent types in Claude Flow V3
+description: Complete guide to all 87 available agent types in Ruflo V3
 type: reference
 ---
 
 # Agent Types Reference
 
-Complete guide to all 87 available agent types in Claude Flow V3.
+Complete guide to all 87 available agent types in Ruflo V3.
 
 ## Core Development (5)
 
@@ -203,10 +203,10 @@ Complete guide to all 87 available agent types in Claude Flow V3.
 
 ```bash
 # List all agent types
-npx claude-flow agent spawn --help
+npx ruflo agent spawn --help
 
 # Spawn any agent
-npx claude-flow agent spawn -t <agent-type>
+npx ruflo agent spawn -t <agent-type>
 ```
 
 ## See Also

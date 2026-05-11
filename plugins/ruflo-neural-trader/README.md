@@ -23,7 +23,7 @@ claude --plugin-dir plugins/ruflo-neural-trader
 neural-trader exposes 112+ MCP tools for direct Claude Desktop access:
 
 ```bash
-claude mcp add neural-trader -- npx neural-trader mcp start
+openclaw mcp add neural-trader -- npx neural-trader mcp start
 ```
 
 ## Agents

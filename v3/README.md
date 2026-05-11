@@ -1,15 +1,15 @@
-# Claude Flow V3
+# Ruflo V3
 
 > **Modular AI Agent Coordination System** - A complete reimagining of Claude-Flow with 15-agent hierarchical mesh swarm coordination.
 
-[![Version](https://img.shields.io/badge/version-3.0.0--alpha.1-blue.svg)](https://github.com/ruvnet/claude-flow)
+[![Version](https://img.shields.io/badge/version-3.0.0--alpha.1-blue.svg)](https://github.com/snowzlm/ruflo)
 [![Node.js](https://img.shields.io/badge/node-%3E%3D20.0.0-green.svg)](https://nodejs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3+-blue.svg)](https://www.typescriptlang.org/)
 [![License](https://img.shields.io/badge/license-MIT-purple.svg)](../LICENSE)
 
 ## Introduction
 
-Claude Flow V3 is a next-generation AI agent coordination system built on 10 Architecture Decision Records (ADRs). It provides a modular, security-first, high-performance platform for orchestrating multi-agent swarms with hierarchical mesh topology.
+Ruflo V3 is a next-generation AI agent coordination system built on 10 Architecture Decision Records (ADRs). It provides a modular, security-first, high-performance platform for orchestrating multi-agent swarms with hierarchical mesh topology.
 
 V3 represents a complete architectural overhaul:
 - **10x faster testing** with Vitest
@@ -398,7 +398,7 @@ Features:
 
 ```bash
 # Clone the repository
-git clone https://github.com/ruvnet/claude-flow.git
+git clone https://github.com/snowzlm/ruflo.git
 cd claude-flow/v3
 
 # Install dependencies
@@ -474,7 +474,7 @@ pnpm test:coverage
 - [Hooks Tools](./mcp/tools/hooks-tools.ts)
 
 ### External
-- [GitHub Repository](https://github.com/ruvnet/claude-flow)
+- [GitHub Repository](https://github.com/snowzlm/ruflo)
 - [agentic-flow Integration](https://github.com/ruvnet/agentic-flow)
 - [AgentDB](https://github.com/ruvnet/agentdb)
 

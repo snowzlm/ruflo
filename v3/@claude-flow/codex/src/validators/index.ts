@@ -173,15 +173,15 @@ export async function validateAgentsMd(content: string): Promise<ValidationResul
     warnings.push({
       path: 'AGENTS.md',
       message: 'No skill references found',
-      suggestion: 'Add skill references using $skill-name syntax (Codex) or /skill-name (Claude Code)',
+      suggestion: 'Add skill references using $skill-name syntax (Codex) or /skill-name (OpenClaw)',
     });
   }
 
-  // Warn about slash syntax (Claude Code style)
+  // Warn about slash syntax (OpenClaw style)
   if (slashSkills.length > 0 && dollarSkills.length === 0) {
     warnings.push({
       path: 'AGENTS.md',
-      message: 'Using Claude Code skill syntax (/skill-name)',
+      message: 'Using OpenClaw skill syntax (/skill-name)',
       suggestion: 'Codex uses $skill-name syntax. Consider migrating for full compatibility.',
     });
   }

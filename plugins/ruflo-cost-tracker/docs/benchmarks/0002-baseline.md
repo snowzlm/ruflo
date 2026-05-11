@@ -18,7 +18,7 @@ is wiring of tools that already exist in `hooks-tools.ts`.
 | commands/ruflo-cost.md                     |  2,802 |   370 |    46 |
 | REFERENCE.md                               |  4,420 |   662 |    92 |
 | README.md                                  |  8,208 | 1,087 |   141 |
-| .claude-plugin/plugin.json                 |    684 |    61 |    25 |
+| .openclaw-plugin/plugin.json                 |    684 |    61 |    25 |
 | scripts/smoke.sh                           |  6,585 |   779 |   149 |
 
 All four skill prompts stay under the 5 KB target derived from ADR-098
@@ -52,7 +52,7 @@ revisited and the Bash grant dropped.
 
 ## Token-spend optimization claims (upstream, not measured here)
 
-CLAUDE.md root attributes the following figures to the Token Optimizer
+OPENCLAW.md root attributes the following figures to the Token Optimizer
 bridge. They are reported by `getTokenOptimizer` in-process; this plugin
 **surfaces** them via `cost-compact-context` but does **not** verify them
 against a no-RAG baseline:
@@ -254,7 +254,7 @@ high-confidence `exact_replace` path; 3 hit `fuzzy_replace`.
 ### Hypothesized "before" — same 5 edits via an LLM editing endpoint
 
 LLM baseline numbers come from the `agent-booster` package's own README
-("200–500 ms latency, ~$0.01 per edit") and from CLAUDE.md root's pricing
+("200–500 ms latency, ~$0.01 per edit") and from OPENCLAW.md root's pricing
 table (Sonnet $3/M input, $15/M output). The "before" column is **not
 measured live in this repo** — running an LLM baseline on every benchmark
 would defeat the cost-tracking purpose. We treat it as a published
@@ -311,7 +311,7 @@ Wall-time 0.08–0.09 s on all phases.
 ```bash
 cd plugins/ruflo-cost-tracker
 for f in skills/*/SKILL.md agents/*.md commands/*.md REFERENCE.md README.md \
-         .claude-plugin/plugin.json scripts/smoke.sh; do
+         .openclaw-plugin/plugin.json scripts/smoke.sh; do
   wc -c "$f" | awk '{printf "%6d B  ", $1}'
   wc -w "$f" | awk '{printf "%5d w  ", $1}'
   wc -l "$f" | awk '{printf "%4d L  ", $1}'

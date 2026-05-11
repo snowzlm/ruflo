@@ -1,7 +1,7 @@
-# 🚀 Benchmark System Enhancement Plan: Claude Flow Integration
+# 🚀 Benchmark System Enhancement Plan: Ruflo Integration
 
 ## Executive Summary
-Complete modernization of the benchmark system to leverage Claude Flow's advanced capabilities including MLE-STAR, non-interactive automation modes, and multi-agent swarm orchestration.
+Complete modernization of the benchmark system to leverage Ruflo's advanced capabilities including MLE-STAR, non-interactive automation modes, and multi-agent swarm orchestration.
 
 ## 📊 Current State Analysis
 
@@ -167,7 +167,7 @@ class AdvancedMetrics:
 - [ ] Add advanced metric collectors
 
 ### Week 3: Integration & Testing
-- [ ] Integrate with Claude Flow CLI
+- [ ] Integrate with Ruflo CLI
 - [ ] Comprehensive test suite
 - [ ] Performance optimization
 
@@ -199,9 +199,9 @@ class AdvancedMetrics:
 ## 📝 Implementation Guidelines for Swarm Agents
 
 ### Critical Rules
-1. **DO NOT modify** any files in `/workspaces/claude-code-flow/src/` directory
+1. **DO NOT modify** any files in `/workspaces/openclaw-flow/src/` directory
 2. **DO NOT save** any files to the root folder
-3. **All changes** must be within `/workspaces/claude-code-flow/benchmark/` directory
+3. **All changes** must be within `/workspaces/openclaw-flow/benchmark/` directory
 4. **Preserve** backward compatibility with existing benchmark APIs
 5. **Update** GitHub issue after each major milestone
 
@@ -214,7 +214,7 @@ class AdvancedMetrics:
 
 ### Testing Requirements
 - Unit tests for all new functions
-- Integration tests for Claude Flow interactions
+- Integration tests for Ruflo interactions
 - Performance benchmarks for optimization claims
 - Regression tests for existing functionality
 
@@ -222,8 +222,8 @@ class AdvancedMetrics:
 
 ```bash
 # Initialize swarm and execute enhancement
-npx claude-flow@alpha swarm init --topology hierarchical --agents 6
-npx claude-flow@alpha swarm execute --task "benchmark-enhancement" --config ./benchmark/ENHANCEMENT_PLAN.md
+ruflo swarm init --topology hierarchical --agents 6
+ruflo swarm execute --task "benchmark-enhancement" --config ./benchmark/ENHANCEMENT_PLAN.md
 ```
 
 ## 📊 Expected Outcomes
@@ -266,4 +266,4 @@ Key focus areas:
 4. Parallel execution for performance gains
 5. Comprehensive testing for reliability
 
-Remember: The goal is optimization for various use cases while maintaining the integrity of the existing Claude Flow system.
+Remember: The goal is optimization for various use cases while maintaining the integrity of the existing Ruflo system.

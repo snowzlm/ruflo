@@ -313,9 +313,9 @@ export class EnhancedUIViews {
     console.log();
     console.log(colors.cyan('🔔 Recent Activity'));
     const mockActivity = [
-      { action: 'PR merged', repo: 'claude-code-flow', time: '1h ago' },
+      { action: 'PR merged', repo: 'openclaw-flow', time: '1h ago' },
       { action: 'Issue closed', repo: 'ruv-swarm', time: '2h ago' },
-      { action: 'Release created', repo: 'claude-code-flow', time: '4h ago' },
+      { action: 'Release created', repo: 'openclaw-flow', time: '4h ago' },
     ];
 
     mockActivity.forEach((activity) => {

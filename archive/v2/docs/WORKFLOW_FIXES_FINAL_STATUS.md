@@ -281,7 +281,7 @@ Error: Debug Failure. No error for 3 or fewer overload signatures
 
 ## 👥 Credits
 
-**🤖 Generated with Claude Code**
+**🤖 Generated with OpenClaw**
 **Co-Authored-By: Claude <noreply@anthropic.com>**
 
 ---

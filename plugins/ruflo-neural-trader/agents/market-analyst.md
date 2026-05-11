@@ -51,9 +51,9 @@ npx neural-trader --sector-analysis --sectors "tech,healthcare,energy"
 ### Tools
 
 - `npx neural-trader` — technical analysis and regime detection
-- `mcp__claude-flow__memory_store` / `memory_search` — persist and query analysis history
-- `mcp__claude-flow__neural_predict` — SONA regime prediction
-- `mcp__claude-flow__agentdb_pattern-search` — find similar historical patterns
+- `mcp__ruflo__memory_store` / `memory_search` — persist and query analysis history
+- `mcp__ruflo__neural_predict` — SONA regime prediction
+- `mcp__ruflo__agentdb_pattern-search` — find similar historical patterns
 
 ### Neural Learning
 

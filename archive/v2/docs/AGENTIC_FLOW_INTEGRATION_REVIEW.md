@@ -82,7 +82,7 @@ The agentic-flow integration is **working correctly** but is running an **outdat
     "@anthropic-ai/sdk": "^0.65.0",
     "agentdb": "^1.3.9",
     "better-sqlite3": "^12.4.1",
-    "claude-flow": "^2.0.0",     // Circular dependency (intentional)
+    "ruflo": "^2.0.0",     // Circular dependency (intentional)
     "fastmcp": "^3.19.0",
     "tiktoken": "^1.0.22",
     "zod": "^3.25.76"
@@ -91,9 +91,9 @@ The agentic-flow integration is **working correctly** but is running an **outdat
 ```
 
 **Notable:**
-- 🔄 **Circular dependency:** `agentic-flow` → `claude-flow` → `agentic-flow`
+- 🔄 **Circular dependency:** `agentic-flow` → `ruflo` → `agentic-flow`
 - ✅ **Intentional design:** Each package extends the other
-- ✅ **Version constraint:** `claude-flow: "^2.0.0"` (claude-flow is on 2.7.12)
+- ✅ **Version constraint:** `ruflo: "^2.0.0"` (ruflo is on 2.7.12)
 
 ---
 
@@ -101,7 +101,7 @@ The agentic-flow integration is **working correctly** but is running an **outdat
 
 ### 3.1 ReasoningBank Memory Adapter ✅
 
-**File:** `/workspaces/claude-code-flow/src/reasoningbank/reasoningbank-adapter.js`
+**File:** `/workspaces/openclaw-flow/src/reasoningbank/reasoningbank-adapter.js`
 
 **Key Features:**
 ```javascript
@@ -132,7 +132,7 @@ import * as ReasoningBank from 'agentic-flow/reasoningbank';
 - ✅ **Query caching** (LRU, 100 items, 60s TTL)
 - ✅ **Graceful fallback** (semantic → SQL)
 - ✅ **Error handling** with detailed logging
-- ✅ **Memory mapping** (claude-flow model → ReasoningBank pattern model)
+- ✅ **Memory mapping** (ruflo model → ReasoningBank pattern model)
 
 ### 3.2 Memory Model Mapping ✅
 
@@ -217,7 +217,7 @@ import * as ReasoningBank from 'agentic-flow/reasoningbank';
 ```bash
 npm run validate              # All validations
 npm run validate:sdk          # SDK validation
-npm run validate:claude-flow  # Claude-flow specific tests
+npm run validate:ruflo  # Claude-flow specific tests
 npm run test:memory          # Memory system tests
 npm run test:coordination    # Coordination tests
 npm run test:hybrid          # Hybrid system tests
@@ -229,7 +229,7 @@ npm run test:hybrid          # Hybrid system tests
 
 ## 6. Documentation
 
-### Agentic-Flow Documentation (in claude-flow)
+### Agentic-Flow Documentation (in ruflo)
 
 **Integration Guides:**
 - `/docs/integrations/agentic-flow/README.md`
@@ -255,11 +255,11 @@ npm run test:hybrid          # Hybrid system tests
 - `/docs/integrations/agentic-flow/AGENTIC_FLOW_INTEGRATION_STATUS.md`
 - `/docs/integrations/agentic-flow/AGENTIC_FLOW_MVP_COMPLETE.md`
 
-**Skills (Claude Code):**
-- `.claude/skills/swarm-orchestration/SKILL.md`
-- `.claude/skills/reasoningbank-agentdb/SKILL.md`
-- `.claude/skills/reasoningbank-intelligence/SKILL.md`
-- `.claude/skills/agentdb-*/*.md` (5 AgentDB skills)
+**Skills (OpenClaw):**
+- `.openclaw/skills/swarm-orchestration/SKILL.md`
+- `.openclaw/skills/reasoningbank-agentdb/SKILL.md`
+- `.openclaw/skills/reasoningbank-intelligence/SKILL.md`
+- `.openclaw/skills/agentdb-*/*.md` (5 AgentDB skills)
 
 **Total Documentation Files:** 116+ markdown files mentioning agentic-flow
 
@@ -314,7 +314,7 @@ Search: Semantic (MMR) + SQL fallback
 - **Priority:** MEDIUM
 
 **2. Circular Dependency** ℹ️
-- **Issue:** claude-flow ↔ agentic-flow circular dependency
+- **Issue:** ruflo ↔ agentic-flow circular dependency
 - **Impact:** None (intentional design)
 - **Status:** BY DESIGN
 - **Priority:** INFO ONLY
@@ -361,7 +361,7 @@ npm list agentic-flow
 **Step 3: Run Tests**
 ```bash
 npm run test:integration
-npm run validate:claude-flow  # If agentic-flow scripts are accessible
+npm run validate:ruflo  # If agentic-flow scripts are accessible
 ```
 
 **Step 4: Update Comments**
@@ -374,9 +374,9 @@ npm run validate:claude-flow  # If agentic-flow scripts are accessible
 
 **Step 5: Validate Features**
 ```bash
-npx claude-flow@alpha memory status
-npx claude-flow@alpha memory store "test" "value"
-npx claude-flow@alpha memory query "test"
+ruflo memory status
+ruflo memory store "test" "value"
+ruflo memory query "test"
 ```
 
 **Risk Level:** 🟢 LOW
@@ -445,7 +445,7 @@ npx claude-flow@alpha memory query "test"
 
 **Potential Concerns:**
 - ℹ️ **better-sqlite3** - Native dependency (requires compilation)
-  - **Mitigation:** Moved to optionalDependencies in claude-flow
+  - **Mitigation:** Moved to optionalDependencies in ruflo
   - **Status:** ✅ Handled gracefully
 
 **Security Best Practices:**
@@ -524,7 +524,7 @@ npx claude-flow@alpha memory query "test"
 ### Overall Integration Status: ✅ EXCELLENT (with minor update needed)
 
 **Summary:**
-The agentic-flow integration in claude-flow is **well-designed and properly implemented**. The ReasoningBank adapter demonstrates best practices in error handling, caching, and graceful degradation. The only issue is running an outdated version (1.7.4 vs 1.8.3), which is easily resolved.
+The agentic-flow integration in ruflo is **well-designed and properly implemented**. The ReasoningBank adapter demonstrates best practices in error handling, caching, and graceful degradation. The only issue is running an outdated version (1.7.4 vs 1.8.3), which is easily resolved.
 
 **Key Achievements:**
 - ✅ 66 specialized agents available
@@ -540,7 +540,7 @@ The agentic-flow integration in claude-flow is **well-designed and properly impl
 ⚠️ **UPDATE TO 1.8.3** - Run `npm update agentic-flow`
 
 **Future-Proof:**
-The wildcard dependency (`"*"`) ensures claude-flow stays current with agentic-flow releases. Regular updates are recommended to maintain compatibility and access new features.
+The wildcard dependency (`"*"`) ensures ruflo stays current with agentic-flow releases. Regular updates are recommended to maintain compatibility and access new features.
 
 ---
 
@@ -580,13 +580,13 @@ The wildcard dependency (`"*"`) ensures claude-flow stays current with agentic-f
 **Documentation:**
 - `/docs/integrations/agentic-flow/` (10+ files)
 - `/docs/reasoningbank/` (20+ files)
-- `.claude/skills/` (8 skills)
+- `.openclaw/skills/` (8 skills)
 
 **Total Integration Size:** ~50+ files, 5000+ LOC
 
 ---
 
-**Report Generated By:** Claude Code (Claude Sonnet 4.5)
+**Report Generated By:** OpenClaw (Claude Sonnet 4.5)
 **Analysis Duration:** Comprehensive review of 400+ lines of adapter code + 116 documentation files
 **Confidence Level:** HIGH (based on code inspection, npm registry data, and test coverage)
 

@@ -16,7 +16,7 @@ This guide walks you through migrating from Claude-Flow v2.x to v3.0. The migrat
 
 ```bash
 # Update to v3
-npm install claude-flow@3.0.0
+npm install ruflo@3.0.0
 
 # Install new optional dependencies
 npm install sql.js  # Windows support
@@ -25,11 +25,11 @@ npm install sql.js  # Windows support
 ### Step 2: Run Auto-Migration
 
 ```bash
-npx claude-flow migrate --to v3
+npx ruflo migrate --to v3
 ```
 
 This command:
-- Backs up your current config to `.claude/config.json.v2.backup`
+- Backs up your current config to `.openclaw/config.json.v2.backup`
 - Migrates settings to v3 format
 - Consolidates duplicate settings files
 - Archives old checkpoints
@@ -41,7 +41,7 @@ This command:
 npm run test:compatibility
 
 # Check migration status
-npx claude-flow status --check-migration
+npx ruflo status --check-migration
 ```
 
 ## Manual Migration Steps
@@ -52,7 +52,7 @@ If you prefer manual control or auto-migration fails:
 
 #### Before (v2)
 ```
-.claude/
+`.openclaw/
 ├── settings.json
 ├── settings-enhanced.json
 ├── settings-complete.json
@@ -62,7 +62,7 @@ If you prefer manual control or auto-migration fails:
 
 #### After (v3)
 ```
-.claude/
+`.openclaw/
 ├── config.json              # Master config
 ├── settings.prod.json       # Production
 ├── settings.dev.json        # Development
@@ -105,9 +105,9 @@ rm .claude/settings-npx-hooks.json
 
 #### Before (v2)
 Hooks scattered in multiple files:
-- `.claude/settings-enhanced.json`
-- `.claude/settings-complete.json`
-- `.claude-plugin/hooks/hooks.json`
+- `.openclaw/settings-enhanced.json`
+- `.openclaw/settings-complete.json`
+- `.openclaw-plugin/hooks/hooks.json`
 
 #### After (v3)
 Single source in `config.json`:
@@ -118,13 +118,13 @@ Single source in `config.json`:
     "PreToolUse": [
       {
         "matcher": "Bash",
-        "commands": ["npx claude-flow hooks pre-tool --tool=$TOOL_NAME"]
+        "commands": ["npx ruflo hooks pre-tool --tool=$TOOL_NAME"]
       }
     ],
     "PostToolUse": [
       {
         "matcher": "*",
-        "commands": ["npx claude-flow hooks post-tool --tool=$TOOL_NAME"]
+        "commands": ["npx ruflo hooks post-tool --tool=$TOOL_NAME"]
       }
     ]
   }
@@ -135,7 +135,7 @@ Single source in `config.json`:
 
 #### Before (v2)
 ```
-.claude/agents/
+`.openclaw/agents/
 ├── consensus/
 ├── core/
 ├── devops/
@@ -155,7 +155,7 @@ Single source in `config.json`:
 
 #### After (v3)
 ```
-.claude/agents/
+`.openclaw/agents/
 ├── core/           # Essential: coder, tester, reviewer, researcher, planner
 ├── orchestration/  # All coordinators consolidated
 ├── platform/       # github, flow-nexus, devops
@@ -311,7 +311,7 @@ If you need to rollback to v2:
 cp .claude/config.json.v2.backup .claude/config.json
 
 # Downgrade package
-npm install claude-flow@2.7.47
+npm install ruflo@2.7.47
 
 # Restore v2 settings (if needed)
 git checkout HEAD~1 -- .claude/settings-*.json
@@ -346,15 +346,15 @@ These are informational only. Your code still works. To silence:
 ### "Migration failed: hooks conflict"
 
 Manual resolution needed:
-1. Open `.claude/config.json.v2.backup`
+1. Open `.openclaw/config.json.v2.backup`
 2. Copy hook definitions
-3. Paste into `.claude/config.json` under `hooks` key
+3. Paste into `.openclaw/config.json` under `hooks` key
 
 ## Support
 
-- Documentation: https://github.com/ruvnet/claude-flow/docs/v3
-- Issues: https://github.com/ruvnet/claude-flow/issues
-- Discussions: https://github.com/ruvnet/claude-flow/discussions
+- Documentation: https://github.com/snowzlm/ruflo/docs/v3
+- Issues: https://github.com/snowzlm/ruflo/issues
+- Discussions: https://github.com/snowzlm/ruflo/discussions
 
 ---
 

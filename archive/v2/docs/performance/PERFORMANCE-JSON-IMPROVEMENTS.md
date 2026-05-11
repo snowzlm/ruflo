@@ -230,7 +230,7 @@ cat .claude-flow/metrics/performance.json
 # Output: 95+ fields organized in 9 categories
 
 # Or get summary with calculated metrics:
-npx claude-flow memory stats
+npx ruflo memory stats
 ```
 
 ## File Size Impact

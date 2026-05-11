@@ -16,13 +16,13 @@ bad()  { printf "FAIL: %s\n" "$1"; FAIL=$((FAIL+1)); }
 
 # 1. plugin.json version + keywords
 step "plugin.json declares version 0.2.0 with new keywords"
-v=$(grep -E '"version"[[:space:]]*:' "$ROOT/.claude-plugin/plugin.json" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -1)
+v=$(grep -E '"version"[[:space:]]*:' "$ROOT/.openclaw-plugin/plugin.json" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -1)
 if [[ "$v" != "0.2.0" ]]; then
   bad "expected 0.2.0, got '$v'"
 else
   missing=""
   for kw in rvf replay trajectory agentdb aidefence; do
-    grep -q "\"$kw\"" "$ROOT/.claude-plugin/plugin.json" || missing="$missing $kw"
+    grep -q "\"$kw\"" "$ROOT/.openclaw-plugin/plugin.json" || missing="$missing $kw"
   done
   [[ -z "$missing" ]] && ok || bad "missing keywords:$missing"
 fi

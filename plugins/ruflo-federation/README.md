@@ -5,7 +5,7 @@ The comms layer for multi-agent AI. Cross-installation agent federation with zer
 ## Install
 
 ```
-/plugin marketplace add ruvnet/ruflo
+/plugin marketplace add snowzlm/ruflo
 /plugin install ruflo-federation@ruflo
 ```
 

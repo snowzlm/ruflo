@@ -1,7 +1,7 @@
 # Domain Expert Model - Validation Report
 
 **Validation Date**: 2025-10-15T02:55:59.272Z
-**Database**: /workspaces/claude-code-flow/docs/reasoningbank/models/domain-expert/memory.db
+**Database**: /workspaces/openclaw-flow/docs/reasoningbank/models/domain-expert/memory.db
 
 ## ✅ Validation Results
 
@@ -61,19 +61,19 @@ The Domain Expert model provides:
 
 ### Query DevOps patterns
 ```bash
-npx claude-flow@alpha memory search "kubernetes autoscaling" \
+ruflo memory search "kubernetes autoscaling" \
   --namespace domain-expert --reasoningbank --limit 5
 ```
 
 ### Query Security patterns
 ```bash
-npx claude-flow@alpha memory search "OAuth 2.0 security" \
+ruflo memory search "OAuth 2.0 security" \
   --namespace domain-expert --reasoningbank --limit 5
 ```
 
 ### Query Performance patterns
 ```bash
-npx claude-flow@alpha memory search "database query optimization" \
+ruflo memory search "database query optimization" \
   --namespace domain-expert --reasoningbank --limit 5
 ```
 

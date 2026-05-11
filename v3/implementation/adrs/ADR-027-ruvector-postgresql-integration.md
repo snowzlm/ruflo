@@ -153,7 +153,7 @@ export class RuVectorPostgresPlugin implements IPlugin {
     name: 'ruvector-postgres',
     version: '1.0.0',
     description: 'RuVector PostgreSQL integration for high-performance vector/graph operations',
-    author: 'Claude Flow Team',
+    author: 'Ruflo Team',
     tags: ['vector', 'graph', 'postgresql', 'storage', 'production'],
     dependencies: [
       { name: 'core-plugin', version: '^3.0.0' }
@@ -1073,7 +1073,7 @@ class DualWriteAdapter implements IMemoryBackend {
 
 2. **Phase 2: Enable Dual-Write**
    ```typescript
-   // claude-flow.config.ts
+   // ruflo.config.ts
    export default {
      memory: {
        backend: 'dual-write',
@@ -1088,7 +1088,7 @@ class DualWriteAdapter implements IMemoryBackend {
 
 3. **Phase 3: Migrate Existing Data**
    ```bash
-   npx claude-flow migrate \
+   npx ruflo migrate \
      --from agentdb \
      --to ruvector-postgres \
      --batch-size 5000
@@ -1188,7 +1188,7 @@ await plugin.attentionQuery({ query: 'complex reasoning', mechanism: 'multi_head
 - [ ] End-to-end tests
 - [ ] Security audit
 - [ ] Performance optimization
-- [ ] CLI integration (`claude-flow memory --backend ruvector-postgres`)
+- [ ] CLI integration (`ruflo memory --backend ruvector-postgres`)
 - [ ] User documentation
 
 ## References

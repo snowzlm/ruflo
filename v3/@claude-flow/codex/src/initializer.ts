@@ -158,7 +158,7 @@ export class CodexInitializer {
         warnings.push(mcpResult.warning);
       }
 
-      // If dual mode, also generate Claude Code files
+      // If dual mode, also generate OpenClaw files
       if (this.dual) {
         const dualResult = await this.generateDualPlatformFiles();
         filesCreated.push(...dualResult.files);
@@ -541,45 +541,45 @@ Skills are invoked using \`$skill-name\` syntax. Each skill has:
 
 - Main instructions: \`AGENTS.md\` (project root)
 - Local overrides: \`.codex/AGENTS.override.md\` (gitignored)
-- Claude Flow: https://github.com/ruvnet/claude-flow
+- Claude Flow: https://github.com/snowzlm/ruflo
 `;
   }
 
   /**
-   * Generate dual-platform files (Claude Code + Codex)
+   * Generate dual-platform files (OpenClaw + Codex)
    */
   private async generateDualPlatformFiles(): Promise<{ files: string[]; warnings?: string[] }> {
     const files: string[] = [];
     const warnings: string[] = [];
 
-    // Check if CLAUDE.md already exists
-    const claudeMdPath = path.join(this.projectPath, 'CLAUDE.md');
+    // Check if OPENCLAW.md already exists
+    const claudeMdPath = path.join(this.projectPath, 'OPENCLAW.md');
     const claudeMdExists = await fs.pathExists(claudeMdPath);
 
     if (claudeMdExists && !this.force) {
-      warnings.push('CLAUDE.md already exists - not overwriting. Use --force to replace.');
+      warnings.push('OPENCLAW.md already exists - not overwriting. Use --force to replace.');
       return { files, warnings };
     }
 
     const projectName = path.basename(this.projectPath);
 
-    // Generate a CLAUDE.md that references AGENTS.md
+    // Generate a OPENCLAW.md that references AGENTS.md
     const claudeMd = `# ${projectName}
 
-> This project supports both Claude Code and OpenAI Codex.
+> This project supports both OpenClaw and OpenAI Codex.
 
 ## Platform Compatibility
 
 | Platform | Config File | Skill Syntax |
 |----------|-------------|--------------|
-| Claude Code | CLAUDE.md | /skill-name |
+| OpenClaw | OPENCLAW.md | /skill-name |
 | OpenAI Codex | AGENTS.md | $skill-name |
 
 ## Instructions
 
 **Primary instructions are in \`AGENTS.md\`** (Agentic AI Foundation standard).
 
-This file provides compatibility for Claude Code users.
+This file provides compatibility for OpenClaw users.
 
 ## Quick Start
 
@@ -598,7 +598,7 @@ npm test
 
 Both platforms share the same skills in \`.agents/skills/\`:
 
-${this.skills.map(s => `- \`$${s}\` (Codex) / \`/${s}\` (Claude Code)`).join('\n')}
+${this.skills.map(s => `- \`$${s}\` (Codex) / \`/${s}\` (OpenClaw)`).join('\n')}
 
 ## Configuration
 
@@ -606,9 +606,9 @@ ${this.skills.map(s => `- \`$${s}\` (Codex) / \`/${s}\` (Claude Code)`).join('\n
 - Main: \`.agents/config.toml\`
 - Local: \`.codex/config.toml\` (gitignored)
 
-### Claude Code Configuration
-- This file: \`CLAUDE.md\`
-- Local: \`CLAUDE.local.md\` (gitignored)
+### OpenClaw Configuration
+- This file: \`OPENCLAW.md\`
+- Local: \`OPENCLAW.local.md\` (gitignored)
 
 ## MCP Integration
 
@@ -650,10 +650,10 @@ For complete instructions, see \`AGENTS.md\`.
 `;
 
     await fs.writeFile(claudeMdPath, claudeMd, 'utf-8');
-    files.push('CLAUDE.md');
+    files.push('OPENCLAW.md');
 
-    // Generate CLAUDE.local.md template
-    const claudeLocalPath = path.join(this.projectPath, 'CLAUDE.local.md');
+    // Generate OPENCLAW.local.md template
+    const claudeLocalPath = path.join(this.projectPath, 'OPENCLAW.local.md');
     if (await this.shouldWriteFile(claudeLocalPath)) {
       const claudeLocal = `# Local Development Configuration
 
@@ -677,15 +677,15 @@ Enable verbose logging for development.
 *This file is gitignored and contains local-only settings.*
 `;
       await fs.writeFile(claudeLocalPath, claudeLocal, 'utf-8');
-      files.push('CLAUDE.local.md');
+      files.push('OPENCLAW.local.md');
     }
 
-    // Update .gitignore for CLAUDE.local.md
+    // Update .gitignore for OPENCLAW.local.md
     const gitignorePath = path.join(this.projectPath, '.gitignore');
     if (await fs.pathExists(gitignorePath)) {
       let content = await fs.readFile(gitignorePath, 'utf-8');
-      if (!content.includes('CLAUDE.local.md')) {
-        content += '\n# Claude Code local config\nCLAUDE.local.md\n';
+      if (!content.includes('OPENCLAW.local.md')) {
+        content += '\n# OpenClaw local config\nOPENCLAW.local.md\n';
         await fs.writeFile(gitignorePath, content, 'utf-8');
       }
     }
@@ -714,8 +714,8 @@ Enable verbose logging for development.
     }
 
     if (options.dual) {
-      files.push('CLAUDE.md');
-      files.push('CLAUDE.local.md');
+      files.push('OPENCLAW.md');
+      files.push('OPENCLAW.local.md');
     }
 
     return files;

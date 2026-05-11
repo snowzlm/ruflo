@@ -6,7 +6,7 @@
 |----------|-------|
 | Version | 1.0.0 |
 | Status | Draft |
-| Author | Claude Flow Architecture Team |
+| Author | Ruflo Architecture Team |
 | Last Updated | 2026-01-16 |
 | ADR References | ADR-006 (Unified Memory), ADR-009 (Hybrid Memory Backend) |
 
@@ -30,7 +30,7 @@ The RuVector PostgreSQL Bridge plugin provides a high-performance integration la
 
 ```
 +------------------------------------------------------------------+
-|                        Claude Code / MCP Client                   |
+|                        OpenClaw / MCP Client                   |
 +------------------------------------------------------------------+
                                 |
                                 | MCP Protocol (stdio/HTTP/WebSocket)

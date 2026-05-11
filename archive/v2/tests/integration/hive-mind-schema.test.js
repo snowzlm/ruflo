@@ -45,7 +45,7 @@ describe('Hive Mind Database Schema - Issue #403', () => {
       execSync('npx claude-flow init', {
         cwd: testDir,
         stdio: 'pipe',
-        env: { ...process.env, PATH: `/workspaces/claude-code-flow/node_modules/.bin:${process.env.PATH}` }
+        env: { ...process.env, PATH: `/workspaces/openclaw-flow/node_modules/.bin:${process.env.PATH}` }
       });
 
       // Verify database file exists
@@ -74,7 +74,7 @@ describe('Hive Mind Database Schema - Issue #403', () => {
       execSync('npx claude-flow init', {
         cwd: testDir,
         stdio: 'pipe',
-        env: { ...process.env, PATH: `/workspaces/claude-code-flow/node_modules/.bin:${process.env.PATH}` }
+        env: { ...process.env, PATH: `/workspaces/openclaw-flow/node_modules/.bin:${process.env.PATH}` }
       });
 
       // Open database
@@ -111,7 +111,7 @@ describe('Hive Mind Database Schema - Issue #403', () => {
       execSync('npx claude-flow init', {
         cwd: testDir,
         stdio: 'pipe',
-        env: { ...process.env, PATH: `/workspaces/claude-code-flow/node_modules/.bin:${process.env.PATH}` }
+        env: { ...process.env, PATH: `/workspaces/openclaw-flow/node_modules/.bin:${process.env.PATH}` }
       });
 
       // Open database
@@ -219,7 +219,7 @@ describe('Hive Mind Database Schema - Issue #403', () => {
       execSync('npx claude-flow init --force', {
         cwd: testDir,
         stdio: 'pipe',
-        env: { ...process.env, PATH: `/workspaces/claude-code-flow/node_modules/.bin:${process.env.PATH}` }
+        env: { ...process.env, PATH: `/workspaces/openclaw-flow/node_modules/.bin:${process.env.PATH}` }
       });
       
       // Reopen and check if it was fixed
@@ -252,7 +252,7 @@ describe('Hive Mind Database Schema - Issue #403', () => {
       execSync('npx claude-flow init', {
         cwd: testDir,
         stdio: 'pipe',
-        env: { ...process.env, PATH: `/workspaces/claude-code-flow/node_modules/.bin:${process.env.PATH}` }
+        env: { ...process.env, PATH: `/workspaces/openclaw-flow/node_modules/.bin:${process.env.PATH}` }
       });
       
       db = new Database(dbPath);

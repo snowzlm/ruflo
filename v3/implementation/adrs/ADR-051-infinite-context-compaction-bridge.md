@@ -2,16 +2,16 @@
 
 **Status:** Implemented
 **Date:** 2026-02-10
-**Authors:** RuvNet, Claude Flow Team
+**Authors:** RuvNet, Ruflo Team
 **Version:** 2.0.0
 **Related:** ADR-006 (Unified Memory), ADR-009 (Hybrid Memory Backend), ADR-027 (RuVector PostgreSQL), ADR-048 (Auto Memory Integration), ADR-049 (Self-Learning Memory GNN), ADR-052 (Statusline Observability)
-**Implementation:** `.claude/helpers/context-persistence-hook.mjs` (~1600 lines), `.claude/helpers/patch-aggressive-prune.mjs` (~120 lines)
+**Implementation:** `.openclaw/helpers/context-persistence-hook.mjs` (~1600 lines), `.openclaw/helpers/patch-aggressive-prune.mjs` (~120 lines)
 
 ## Context
 
 ### The Problem: Context Window is a Hard Ceiling
 
-Claude Code operates within a finite context window. When the conversation approaches
+OpenClaw operates within a finite context window. When the conversation approaches
 this limit, the system automatically **compacts** prior messages -- summarizing them
 into a condensed form. While compaction preserves the gist of the conversation, it
 irreversibly discards:
@@ -28,7 +28,7 @@ degraded assistance quality in long sessions.
 
 ### What We Have Today
 
-Claude Code's SDK exposes two hook events relevant to compaction:
+OpenClaw's SDK exposes two hook events relevant to compaction:
 
 1. **PreCompact** (`PreCompactHookInput`): Fires BEFORE compaction with access to:
    - `transcript_path`: Full JSONL transcript of the conversation
@@ -40,7 +40,7 @@ Claude Code's SDK exposes two hook events relevant to compaction:
    - `source: 'compact'` (distinguishes post-compaction from fresh start)
    - Hook output supports `additionalContext` injection into the new context
 
-Current PreCompact hooks (`.claude/settings.json` lines 469-498) only:
+Current PreCompact hooks (`.openclaw/settings.json` lines 469-498) only:
 - Print guidance text about available agents
 - Export learned patterns to `compact-patterns.json`
 - Export intelligence state to `intelligence-state.json`
@@ -67,8 +67,8 @@ bridge retrieves and injects the most relevant archived context.
 
 ### Design Principles
 
-1. **Hook-Native**: Uses Claude Code's official PreCompact and SessionStart hooks
-2. **SDK-Patched**: Extends Claude Code's micro-compaction (`Vd()`) to also prune
+1. **Hook-Native**: Uses OpenClaw's official PreCompact and SessionStart hooks
+2. **SDK-Patched**: Extends OpenClaw's micro-compaction (`Vd()`) to also prune
    old conversation text, not just tool results -- the only way to prevent compaction
 3. **Backend-Agnostic**: Works with SQLite, RuVector PostgreSQL, AgentDB, or JSON
 4. **Timeout-Safe**: All operations complete within the 5-second hook timeout using
@@ -84,7 +84,7 @@ bridge retrieves and injects the most relevant archived context.
 
 ### Full Compaction Pipeline
 
-The Claude Code SDK has two compaction mechanisms, decompiled from `cli.js`:
+The OpenClaw SDK has two compaction mechanisms, decompiled from `cli.js`:
 
 ```
 Every query (ew function):
@@ -114,7 +114,7 @@ Every query (ew function):
 │  │  Falls back to NJ1() — full LLM compaction (slow, "Compacting..." UI)
 │  └─ NJ1 calls _H0 (executePreCompactHooks) before compacting
 │
-└─ NO OTHER PRUNING MECHANISM EXISTS in Claude Code
+└─ NO OTHER PRUNING MECHANISM EXISTS in OpenClaw
 ```
 
 ### Key SDK Functions (Decompiled)
@@ -173,7 +173,7 @@ instead of blocking.
 
 ```
 +------------------------------------------------------------------+
-|                      Claude Code Session                          |
+|                      OpenClaw Session                          |
 |                                                                   |
 |  Context Window: [system prompt] [messages...] [new messages]     |
 |                                                                   |
@@ -380,7 +380,7 @@ function createHashEmbedding(text, dimensions = 768) {
 ## Context Autopilot
 
 The Context Autopilot is a real-time context window management system that prevents
-Claude Code's automatic compaction from ever firing. Instead of letting the context
+OpenClaw's automatic compaction from ever firing. Instead of letting the context
 window fill up and trigger lossy compaction, the autopilot tracks usage and optimizes
 proactively.
 
@@ -440,7 +440,7 @@ estimates. Each assistant message in the transcript contains:
 
 Total context = `input_tokens + cache_read_input_tokens + cache_creation_input_tokens`
 
-This matches what Claude Code reports as context usage (e.g., "Context left until
+This matches what OpenClaw reports as context usage (e.g., "Context left until
 auto-compact: 8%" corresponds to ~92% usage). Falls back to character-based estimation
 (`chars / 3.5`) only when API usage data is unavailable.
 
@@ -551,7 +551,7 @@ State is persisted to `.claude-flow/data/autopilot-state.json`:
 ## Security Considerations
 
 1. **No credentials in transcript**: Tool inputs may contain file paths but not secrets
-   (Claude Code already redacts sensitive content before tool execution)
+   (OpenClaw already redacts sensitive content before tool execution)
 2. **Local storage default**: SQLite writes to `.claude-flow/data/` which is
    gitignored. No network calls unless RuVector PostgreSQL is configured.
 3. **Parameterized queries**: SQLite uses prepared statements, RuVector uses `$N`
@@ -754,7 +754,7 @@ All capabilities confirmed working (2026-02-10):
 ### Neutral
 
 1. **Exit code 2 not implemented**: PreCompact hooks cannot block compaction in
-   Claude Code v2.0.76 despite documentation claiming otherwise. This is an SDK
+   OpenClaw v2.0.76 despite documentation claiming otherwise. This is an SDK
    limitation, not a bug in our system.
 2. **Hook timeout pressure**: 5s budget is generous for local I/O operations
 
@@ -768,7 +768,7 @@ All capabilities confirmed working (2026-02-10):
    PageRank-aware retrieval (ADR-049)
 4. **Adaptive pruning thresholds**: Dynamically adjust `TEXT_PRUNE_KEEP` and
    `TEXT_PRUNE_THRESHOLD` based on conversation complexity and context growth rate
-5. **Upstream contribution**: Propose text pruning as a native Claude Code feature
+5. **Upstream contribution**: Propose text pruning as a native OpenClaw feature
    to eliminate the need for SDK patching
 
 ## Implementation Details
@@ -777,9 +777,9 @@ All capabilities confirmed working (2026-02-10):
 
 | File | Lines | Purpose |
 |------|-------|---------|
-| `.claude/helpers/context-persistence-hook.mjs` | ~1600 | Core hook script (all 4 backends, autopilot, all commands) |
-| `.claude/helpers/patch-aggressive-prune.mjs` | ~120 | SDK patch: aggressive text pruning for cli.js |
-| `.claude/settings.json` | +12 | Hook wiring + pruning config env vars |
+| `.openclaw/helpers/context-persistence-hook.mjs` | ~1600 | Core hook script (all 4 backends, autopilot, all commands) |
+| `.openclaw/helpers/patch-aggressive-prune.mjs` | ~120 | SDK patch: aggressive text pruning for cli.js |
+| `.openclaw/settings.json` | +12 | Hook wiring + pruning config env vars |
 | `tests/context-persistence-hook.test.mjs` | ~150 | Unit tests for parsing, chunking, dedup, retrieval |
 | `v3/implementation/adrs/ADR-051-infinite-context-compaction-bridge.md` | this file | Architecture decision record |
 
@@ -821,7 +821,7 @@ All core functions are exported from the hook module:
 ```
 
 **Note**: PreCompact hooks use `|| true` because exit code 2 blocking is not
-implemented in Claude Code v2.0.76 (see SDK analysis above). The hook archives
+implemented in OpenClaw v2.0.76 (see SDK analysis above). The hook archives
 turns and outputs custom compact instructions via exit code 0.
 
 ### SDK Patch Application
@@ -852,7 +852,7 @@ is saved at `cli.js.backup` before patching. Must be re-applied after
   key decisions for compact preservation
 - **RuVector dedup**: Synchronous `hashExists()` returns false for RuVector (async DB);
   dedup is handled at the database level via `ON CONFLICT (id) DO NOTHING`
-- **Graceful failure**: Top-level try/catch ensures hook never crashes Claude Code;
+- **Graceful failure**: Top-level try/catch ensures hook never crashes OpenClaw;
   errors are written to stderr as `[ContextPersistence] Error (non-critical): ...`
 
 ### Verification

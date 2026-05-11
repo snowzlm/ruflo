@@ -12,7 +12,7 @@
 CLI commands would hang indefinitely after successful execution, requiring manual termination (Ctrl+C).
 
 ```bash
-$ npx claude-flow@alpha memory store test "data" --reasoningbank
+$ ruflo memory store test "data" --reasoningbank
 ✅ Stored successfully in ReasoningBank
 [ReasoningBank] Database connection closed
 # Process hangs here indefinitely ❌
@@ -103,7 +103,7 @@ $ echo $?  # Exit code: 0 ✅
 
 ### Before (alpha.8)
 ```bash
-$ timeout 10 npx claude-flow@alpha memory store test "data"
+$ timeout 10 ruflo memory store test "data"
 # Timed out after 10s ❌
 ```
 
@@ -128,17 +128,17 @@ $ sqlite3 .swarm/memory.db "SELECT COUNT(*) FROM patterns WHERE type='reasoning_
 ### Update to Latest Alpha
 ```bash
 # NPM
-npm install -g claude-flow@alpha
+npm install -g github:snowzlm/ruflo
 
 # Or use npx (always latest)
-npx claude-flow@alpha --version
+ruflo --version
 # Output: v2.7.0-alpha.9
 ```
 
 ### Verify Fix
 ```bash
 # Test command exits properly
-npx claude-flow@alpha memory store test_fix "verification" --reasoningbank
+ruflo memory store test_fix "verification" --reasoningbank
 # Should complete and exit within 2 seconds ✅
 ```
 
@@ -164,7 +164,7 @@ npx claude-flow@alpha memory store test_fix "verification" --reasoningbank
 
 ### From alpha.8
 ```bash
-npm install -g claude-flow@alpha
+npm install -g github:snowzlm/ruflo
 # Automatic update, no migration needed
 ```
 
@@ -182,7 +182,7 @@ None - this release resolves the critical process hanging issue.
 ## 📝 Next Steps
 
 Users should:
-1. ✅ Update to alpha.9: `npm install -g claude-flow@alpha`
+1. ✅ Update to alpha.9: `npm install -g github:snowzlm/ruflo`
 2. ✅ Test commands exit properly
 3. ✅ Verify data persistence: `ls -lh .swarm/memory.db`
 
@@ -191,7 +191,7 @@ Users should:
 ## 🙏 Credits
 
 **Issue Reported By**: @ruvnet
-**Fixed By**: Claude Code
+**Fixed By**: OpenClaw
 **Validation**: Docker + Live Testing
 
 ---
@@ -205,4 +205,4 @@ Users should:
 ---
 
 **Status**: ✅ **PRODUCTION READY**
-**Recommendation**: Safe to deploy `claude-flow@2.7.0-alpha.9` for production use.
+**Recommendation**: Safe to deploy `ruflo@2.7.0-alpha.9` for production use.

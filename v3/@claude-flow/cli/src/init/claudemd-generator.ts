@@ -1,6 +1,6 @@
 /**
- * CLAUDE.md Generator
- * Generates lean, enforceable Claude Code configuration optimized for token efficiency.
+ * OPENCLAW.md Generator
+ * Generates lean, enforceable OpenClaw configuration optimized for token efficiency.
  *
  * Templates: minimal | standard | full | security | performance | solo
  * All templates use imperative rules and agent comms-first coordination.
@@ -260,7 +260,7 @@ Pipeline: **RETRIEVE** (vector search) → **JUDGE** (success/failure) → **DIS
 - **ONNX Embeddings**: all-MiniLM-L6-v2, 384-dim
 - **HNSW/DiskANN**: 150x-12,500x faster search
 - **SONA**: Sub-millisecond pattern adaptation
-- **Claude Bridge**: Auto-imports \`~/.claude/projects/*/memory/*.md\` into AgentDB`;
+- **Claude Bridge**: Auto-imports \`~/.openclaw/projects/*/memory/*.md\` into AgentDB`;
 }
 
 function federationRef(): string {
@@ -366,7 +366,7 @@ export function generateClaudeMd(options: InitOptions, template?: ClaudeMdTempla
   const tmpl = template ?? options.runtime.claudeMdTemplate ?? 'standard';
   const sections = TEMPLATE_SECTIONS[tmpl] ?? TEMPLATE_SECTIONS.standard;
 
-  const header = `# Ruflo — Claude Code Configuration\n`;
+  const header = `# Ruflo — OpenClaw Configuration\n`;
   const body = sections.map(fn => fn(options)).join('\n\n');
 
   return `${header}\n${body}\n`;

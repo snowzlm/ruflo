@@ -185,13 +185,13 @@ async function checkApiKeys(): Promise<HealthCheck> {
     }
   }
 
-  // Detect Claude Code environment — API keys are managed internally
+  // Detect OpenClaw environment — API keys are managed internally
   const inClaudeCode = !!(process.env.CLAUDE_CODE || process.env.CLAUDE_PROJECT_DIR || process.env.MCP_SESSION_ID);
 
   if (found.includes('ANTHROPIC_API_KEY') || found.includes('CLAUDE_API_KEY')) {
     return { name: 'API Keys', status: 'pass', message: `Found: ${found.join(', ')}` };
   } else if (inClaudeCode) {
-    return { name: 'API Keys', status: 'pass', message: 'Claude Code (managed internally)' };
+    return { name: 'API Keys', status: 'pass', message: 'OpenClaw (managed internally)' };
   } else if (found.length > 0) {
     return { name: 'API Keys', status: 'warn', message: `Found: ${found.join(', ')} (no Claude key)`, fix: 'export ANTHROPIC_API_KEY=your_key' };
   } else {
@@ -325,7 +325,7 @@ async function checkMcpServers(): Promise<HealthCheck> {
   // local .mcp.json paths.
   const mcpConfigPaths = [
     join(home, '.claude.json'),
-    join(home, '.claude/claude_desktop_config.json'),
+    join(home, '.openclaw/claude_desktop_config.json'),
     join(home, '.config/claude/mcp.json'),
     '.mcp.json',
   ];
@@ -342,7 +342,7 @@ async function checkMcpServers(): Promise<HealthCheck> {
       const topServerKeys = Object.keys(topServers);
       const topHasRuflo = topServerKeys.some(isRufloKey);
 
-      // Project-scoped (Claude Code shape): projects[*].mcpServers.ruflo
+      // Project-scoped (OpenClaw shape): projects[*].mcpServers.ruflo
       let projectHits = 0;
       let projectScannedServers = 0;
       if (content.projects && typeof content.projects === 'object') {
@@ -537,37 +537,37 @@ async function checkVersionFreshness(): Promise<HealthCheck> {
   }
 }
 
-// Check Claude Code CLI (async with proper env inheritance)
+// Check OpenClaw CLI (async with proper env inheritance)
 async function checkClaudeCode(): Promise<HealthCheck> {
   try {
     const version = await runCommand('claude --version');
-    // Parse version from output like "claude 1.0.0" or "Claude Code v1.0.0"
+    // Parse version from output like "claude 1.0.0" or "OpenClaw v1.0.0"
     const versionMatch = version.match(/v?(\d+\.\d+\.\d+)/);
     const versionStr = versionMatch ? `v${versionMatch[1]}` : version;
-    return { name: 'Claude Code CLI', status: 'pass', message: versionStr };
+    return { name: 'OpenClaw CLI', status: 'pass', message: versionStr };
   } catch {
     return {
-      name: 'Claude Code CLI',
+      name: 'OpenClaw CLI',
       status: 'warn',
       message: 'Not installed',
-      fix: 'npm install -g @anthropic-ai/claude-code'
+      fix: 'npm install -g @anthropic-ai/openclaw'
     };
   }
 }
 
-// Install Claude Code CLI
+// Install OpenClaw CLI
 async function installClaudeCode(): Promise<boolean> {
   try {
     output.writeln();
-    output.writeln(output.bold('Installing Claude Code CLI...'));
-    execSync('npm install -g @anthropic-ai/claude-code', {
+    output.writeln(output.bold('Installing OpenClaw CLI...'));
+    execSync('npm install -g @anthropic-ai/openclaw', {
       encoding: 'utf8',
       stdio: 'inherit'
     });
-    output.writeln(output.success('Claude Code CLI installed successfully!'));
+    output.writeln(output.success('OpenClaw CLI installed successfully!'));
     return true;
   } catch (error) {
-    output.writeln(output.error('Failed to install Claude Code CLI'));
+    output.writeln(output.error('Failed to install OpenClaw CLI'));
     if (error instanceof Error) {
       output.writeln(output.dim(error.message));
     }
@@ -720,7 +720,7 @@ export const doctorCommand: Command = {
     {
       name: 'install',
       short: 'i',
-      description: 'Auto-install missing dependencies (Claude Code CLI)',
+      description: 'Auto-install missing dependencies (OpenClaw CLI)',
       type: 'boolean',
       default: false
     },
@@ -743,7 +743,7 @@ export const doctorCommand: Command = {
     { command: 'claude-flow doctor --fix', description: 'Print suggested fix commands (does not auto-apply)' },
     { command: 'claude-flow doctor --install', description: 'Auto-install missing dependencies' },
     { command: 'claude-flow doctor -c version', description: 'Check for stale npx cache' },
-    { command: 'claude-flow doctor -c claude', description: 'Check Claude Code CLI only' }
+    { command: 'claude-flow doctor -c claude', description: 'Check OpenClaw CLI only' }
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const showFix = ctx.flags.fix as boolean;
@@ -841,17 +841,17 @@ export const doctorCommand: Command = {
 
     // Auto-install missing dependencies if requested
     if (autoInstall) {
-      const claudeCodeResult = results.find(r => r.name === 'Claude Code CLI');
+      const claudeCodeResult = results.find(r => r.name === 'OpenClaw CLI');
       if (claudeCodeResult && claudeCodeResult.status !== 'pass') {
         const installed = await installClaudeCode();
         if (installed) {
-          // Re-check Claude Code after installation
+          // Re-check OpenClaw after installation
           const newCheck = await checkClaudeCode();
-          const idx = results.findIndex(r => r.name === 'Claude Code CLI');
+          const idx = results.findIndex(r => r.name === 'OpenClaw CLI');
           if (idx !== -1) {
             results[idx] = newCheck;
             // Update fixes list
-            const fixIdx = fixes.findIndex(f => f.startsWith('Claude Code CLI:'));
+            const fixIdx = fixes.findIndex(f => f.startsWith('OpenClaw CLI:'));
             if (fixIdx !== -1 && newCheck.status === 'pass') {
               fixes.splice(fixIdx, 1);
             }

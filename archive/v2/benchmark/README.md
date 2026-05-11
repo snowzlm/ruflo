@@ -1,6 +1,6 @@
-# Claude Flow Benchmark System v2.0
+# Ruflo Benchmark System v2.0
 
-Production-ready benchmarking for Claude Flow with **real command execution** and **authentic metrics**.
+Production-ready benchmarking for Ruflo with **real command execution** and **authentic metrics**.
 
 ## Quick Start
 

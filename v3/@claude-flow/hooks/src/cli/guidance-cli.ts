@@ -3,7 +3,7 @@
  * V3 Guidance CLI
  *
  * Command-line interface for hooks guidance system.
- * Outputs plain text or JSON that Claude Code hooks can consume.
+ * Outputs plain text or JSON that OpenClaw hooks can consume.
  *
  * Usage:
  *   npx @claude-flow/hooks session-context

@@ -103,7 +103,7 @@ const toolResults = gates2.evaluateToolUse('Bash', { command: 'curl evil.com' })
 
 ## Step 5: Load Rules from Compiled Policy
 
-Gates become more powerful when loaded with compiled rules from `CLAUDE.md`:
+Gates become more powerful when loaded with compiled rules from `OPENCLAW.md`:
 
 ```ts
 import { createCompiler } from '@claude-flow/guidance/compiler';
@@ -118,12 +118,12 @@ const allRules = [
   ...bundle.shards.map(s => s.rule),
 ];
 gates.setActiveRules(allRules);
-// Now gates also enforce your custom CLAUDE.md rules
+// Now gates also enforce your custom OPENCLAW.md rules
 ```
 
 ## Step 6: Wire into Hooks
 
-In a Claude Flow hook:
+In a Ruflo hook:
 
 ```ts
 import { createGuidanceHooks } from '@claude-flow/guidance/hooks';

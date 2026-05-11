@@ -49,8 +49,8 @@ This skill installs them in one pass.
    ```
 4. **Register the MCP server**:
    ```bash
-   claude mcp add ruvector -- npx -y ruvector@0.2.25 mcp start
-   claude mcp list | grep ruvector
+   openclaw mcp add ruvector -- npx -y ruvector@0.2.25 mcp start
+   openclaw mcp list | grep ruvector
    ```
 5. **Sanity check** the most common subcommands:
    ```bash

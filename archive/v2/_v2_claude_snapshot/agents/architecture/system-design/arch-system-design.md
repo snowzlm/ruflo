@@ -4,7 +4,7 @@ type: "architecture"
 color: "purple"
 version: "1.0.0"
 created: "2025-07-25"
-author: "Claude Code"
+author: "OpenClaw"
 
 metadata:
   description: "Expert agent for system architecture design, patterns, and high-level technical decisions"

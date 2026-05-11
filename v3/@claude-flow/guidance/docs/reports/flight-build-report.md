@@ -4,7 +4,7 @@
 **Duration**: ~20 hours
 **Altitude**: 38,000 ft
 **Connectivity**: Airplane mode
-**Tools**: Claude Code + laptop
+**Tools**: OpenClaw + laptop
 
 ---
 
@@ -32,13 +32,13 @@ This report documents what was built, how it was built, and what it proves about
 | **ADRs written** | 25 Architecture Decision Records |
 | **Estimated organic cost** (COCOMO II) | **$898,929** |
 | **Estimated organic schedule** | **13.21 months / 6 people** |
-| **Actual elapsed time** | **~20 hours / 1 person + Claude Code** |
+| **Actual elapsed time** | **~20 hours / 1 person + OpenClaw** |
 
 ### The 9 Architectural Layers
 
 | # | Layer | Modules | What It Does |
 |---|-------|---------|-------------|
-| 1 | **Compile** | compiler | Parses CLAUDE.md into typed PolicyBundle (constitution + shards) |
+| 1 | **Compile** | compiler | Parses OPENCLAW.md into typed PolicyBundle (constitution + shards) |
 | 2 | **Retrieve** | retriever | Intent-classified, weighted rule retrieval per task |
 | 3 | **Enforce** | gates, gateway, continue-gate, manifest-validator | 4 enforcement gates, deterministic tool gateway, loop control |
 | 4 | **Record** | ledger, proof, persistence, artifacts | Event logging, hash-chained proof, NDJSON persistence, artifact lineage |
@@ -46,11 +46,11 @@ This report documents what was built, how it was built, and what it proves about
 | 6 | **Trust** | trust, truth-anchors, uncertainty, temporal | Trust accumulation, truth anchoring, uncertainty tracking, bitemporal assertions |
 | 7 | **Defend** | adversarial, evolution, conformance-kit | Threat detection, collusion detection, safe evolution, conformance testing |
 | 8 | **Accelerate** | wasm-kernel, hooks, headless | Rust WASM kernel, hook integration, headless benchmarking |
-| 9 | **Measure** | generators, analyzer | CLAUDE.md scaffolding, 6-dimension scoring, A/B benchmarking, statistical validation |
+| 9 | **Measure** | generators, analyzer | OPENCLAW.md scaffolding, 6-dimension scoring, A/B benchmarking, statistical validation |
 
 ### Key Capabilities Delivered
 
-- **Policy compilation**: CLAUDE.md → typed constitution + task-scoped shards
+- **Policy compilation**: OPENCLAW.md → typed constitution + task-scoped shards
 - **4 enforcement gates**: Destructive ops, tool allowlist, diff size, secret detection
 - **Deterministic tool gateway**: Idempotency cache, schema validation, budget metering
 - **Continue gate**: Self-throttling loop control with budget slope analysis
@@ -74,7 +74,7 @@ This report documents what was built, how it was built, and what it proves about
 ### Hours 0–2: Foundation
 - Project scaffolding, TypeScript configuration
 - Core types and interfaces (`types.ts`)
-- Compiler: CLAUDE.md → PolicyBundle
+- Compiler: OPENCLAW.md → PolicyBundle
 - Retriever: intent classification + weighted shard matching
 - First 28 tests passing
 
@@ -82,7 +82,7 @@ This report documents what was built, how it was built, and what it proves about
 - 4 enforcement gates (destructive, allowlist, diff, secret)
 - Deterministic tool gateway with idempotency
 - Continue gate with budget slope analysis
-- Hook integration for Claude Code
+- Hook integration for OpenClaw
 - Tests: 28 → 120
 
 ### Hours 4–7: Record & Govern
@@ -118,7 +118,7 @@ This report documents what was built, how it was built, and what it proves about
 - Tests: 1,020 → 1,088
 
 ### Hours 15–17: Generators & Analyzer
-- CLAUDE.md generators (6 scaffolding functions)
+- OPENCLAW.md generators (6 scaffolding functions)
 - 6-dimension analyzer (structure, coverage, enforceability, compilability, clarity, completeness)
 - Auto-optimizer with context-size-aware presets
 - Headless benchmarking via `claude -p`
@@ -153,9 +153,9 @@ The COCOMO II model estimates $899K and 13.2 months for 28,161 lines of code usi
 - Context switching between tasks and meetings
 - Knowledge ramp-up time per new module
 
-With Claude Code as a pair programmer, most of these multipliers collapse:
+With OpenClaw as a pair programmer, most of these multipliers collapse:
 
-| COCOMO Factor | Traditional | With Claude Code |
+| COCOMO Factor | Traditional | With OpenClaw |
 |---------------|------------|------------------|
 | Requirements gathering | Weeks | Inline (conversation) |
 | Design review | Days per ADR | Minutes per ADR |
@@ -187,7 +187,7 @@ The 31 modules maintain consistent:
 - Naming conventions (camelCase functions, PascalCase types)
 - Test patterns (describe/it blocks, fixture builders)
 
-This consistency exists because Claude Code held the full architectural context across the entire session. A 6-person team would need style guides, linting rules, and PR reviews to achieve the same coherence.
+This consistency exists because OpenClaw held the full architectural context across the entire session. A 6-person team would need style guides, linting rules, and PR reviews to achieve the same coherence.
 
 ### 4. Test Coverage Drives Velocity
 
@@ -210,18 +210,18 @@ npm install @claude-flow/guidance@alpha
 # Run all 1,328 tests
 npm test
 
-# Score your CLAUDE.md
+# Score your OPENCLAW.md
 npx ts-node -e "
   import { analyze, formatReport } from '@claude-flow/guidance/analyzer';
   import { readFileSync } from 'fs';
-  console.log(formatReport(analyze(readFileSync('CLAUDE.md', 'utf-8'))));
+  console.log(formatReport(analyze(readFileSync('OPENCLAW.md', 'utf-8'))));
 "
 
 # Run the A/B benchmark
 npx ts-node -e "
   import { abBenchmark } from '@claude-flow/guidance/analyzer';
   import { readFileSync } from 'fs';
-  const report = await abBenchmark(readFileSync('CLAUDE.md', 'utf-8'));
+  const report = await abBenchmark(readFileSync('OPENCLAW.md', 'utf-8'));
   console.log(report.report);
 "
 ```
@@ -230,8 +230,8 @@ npx ts-node -e "
 
 ## Links
 
-- **GitHub**: [github.com/ruvnet/claude-flow](https://github.com/ruvnet/claude-flow)
+- **GitHub**: [github.com/snowzlm/ruflo](https://github.com/snowzlm/ruflo)
 - **npm**: [@claude-flow/guidance](https://www.npmjs.com/package/@claude-flow/guidance)
-- **npm**: [claude-flow](https://www.npmjs.com/package/claude-flow)
+- **npm**: [ruflo](https://www.npmjs.com/package/claude-flow)
 - **npm**: [ruvbot](https://www.npmjs.com/package/ruvbot)
 - **ruv.io**: [ruv.io](https://ruv.io)

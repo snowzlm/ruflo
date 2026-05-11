@@ -65,7 +65,7 @@ Three new MCP tools wired through agentdb@3.0.0-alpha.13's native Cypher-routed 
 - `agentdb_causal-edge-delete` — calls `GraphDatabaseAdapter.deleteEdgesByEndpoints(from, to, relation?)` (Cypher-injection-safe)
 - `agentdb_causal-node-delete` — calls `GraphDatabaseAdapter.deleteNode(id, {cascade: true})` returns native `{deletedNode, deletedEdges}` audit
 
-All wrapped in MutationGuard (fail-closed) + AttestationLog (audit). Unblocks `/adr-index` re-index when ADR files are deleted from disk — stale nodes + dangling `supersedes` / `amends` / `related` / `depends-on` edges are now scrubbable. Closed [#1784](https://github.com/ruvnet/ruflo/issues/1784).
+All wrapped in MutationGuard (fail-closed) + AttestationLog (audit). Unblocks `/adr-index` re-index when ADR files are deleted from disk — stale nodes + dangling `supersedes` / `amends` / `related` / `depends-on` edges are now scrubbable. Closed [#1784](https://github.com/snowzlm/ruflo/issues/1784).
 
 ### What didn't change
 
@@ -73,7 +73,7 @@ All wrapped in MutationGuard (fail-closed) + AttestationLog (audit). Unblocks `/
 - Agent registry (60+ agent types)
 - Plugin marketplace
 - Hooks system (27 hooks + 12 background workers)
-- Configuration files (`claude-flow.config.json`, `.env`, etc.)
+- Configuration files (`ruflo.config.json`, `.env`, etc.)
 
 If you're running `npx ruflo@latest`, everything you used in 3.6 still works. The above improvements compound underneath.
 
@@ -81,7 +81,7 @@ If you're running `npx ruflo@latest`, everything you used in 3.6 still works. Th
 
 ## Getting into the Flow
 
-Ruflo is a comprehensive AI agent orchestration framework that transforms Claude Code into a powerful multi-agent development platform. It enables teams to deploy, coordinate, and optimize specialized AI agents working together on complex software engineering tasks.
+Ruflo is a comprehensive AI agent orchestration framework that transforms OpenClaw into a powerful multi-agent development platform. It enables teams to deploy, coordinate, and optimize specialized AI agents working together on complex software engineering tasks.
 
 ### Self-Learning/Self-Optimizing Agent Architecture
 
@@ -204,16 +204,16 @@ npx ruflo@latest hooks intelligence --status
 
 ```bash
 # One-line install (recommended)
-curl -fsSL https://cdn.jsdelivr.net/gh/ruvnet/ruflo@main/scripts/install.sh | bash
+curl -fsSL https://cdn.jsdelivr.net/gh/snowzlm/ruflo@main/scripts/install.sh | bash
 
 # Or full setup with MCP + diagnostics
-curl -fsSL https://cdn.jsdelivr.net/gh/ruvnet/ruflo@main/scripts/install.sh | bash -s -- --full
+curl -fsSL https://cdn.jsdelivr.net/gh/snowzlm/ruflo@main/scripts/install.sh | bash -s -- --full
 
 # Or via npx
 npx ruflo@latest init wizard
 ```
 
-> **New to Ruflo?** You don't need to learn 310+ MCP tools or 26 CLI commands. After running `init`, just use Claude Code normally — the hooks system automatically routes tasks to the right agents, learns from successful patterns, and coordinates multi-agent work in the background. The advanced tools exist for fine-grained control when you need it.
+> **New to Ruflo?** You don't need to learn 310+ MCP tools or 26 CLI commands. After running `init`, just use OpenClaw normally — the hooks system automatically routes tasks to the right agents, learns from successful patterns, and coordinates multi-agent work in the background. The advanced tools exist for fine-grained control when you need it.
 
 ---
 ### Key Capabilities
@@ -226,7 +226,7 @@ npx ruflo@latest init wizard
 
 🔌 **Works With Any LLM** - Switch between Claude, GPT, Gemini, Cohere, or local models like Llama. Automatic failover if one provider is unavailable. Smart routing picks the cheapest option that meets quality requirements.
 
-⚡ **Plugs Into Claude Code** - Native integration via MCP (Model Context Protocol). Use ruflo commands directly in your Claude Code sessions with full tool access.
+⚡ **Plugs Into OpenClaw** - Native integration via MCP (Model Context Protocol). Use ruflo commands directly in your OpenClaw sessions with full tool access.
 
 🔒 **Production-Ready Security** - Built-in protection against prompt injection, input validation, path traversal prevention, command injection blocking, and safe credential handling.
 
@@ -239,11 +239,11 @@ npx ruflo@latest init wizard
 <details>
 <summary>🔄 <strong>Core Flow</strong> — How requests move through the system</summary>
 
-Every request flows through four layers: from your CLI or Claude Code interface, through intelligent routing, to specialized agents, and finally to LLM providers for reasoning.
+Every request flows through four layers: from your CLI or OpenClaw interface, through intelligent routing, to specialized agents, and finally to LLM providers for reasoning.
 
 | Layer | Components | What It Does |
 |-------|------------|--------------|
-| User | Claude Code, CLI | Your interface to control and run commands |
+| User | OpenClaw, CLI | Your interface to control and run commands |
 | Orchestration | MCP Server, Router, Hooks | Routes requests to the right agents |
 | Agents | 100+ types | Specialized workers (coder, tester, reviewer...) |
 | Providers | Anthropic, OpenAI, Google, Ollama | AI models that power reasoning |
@@ -316,9 +316,9 @@ Background daemons handle security audits, performance optimization, and session
 </details>
 
 <details>
-<summary>🎯 <strong>Task Routing</strong> — Extend your Claude Code subscription by 250%</summary>
+<summary>🎯 <strong>Task Routing</strong> — Extend your OpenClaw subscription by 250%</summary>
 
-Smart routing skips expensive LLM calls when possible. Simple edits use WASM (free), medium tasks use cheaper models. This can extend your Claude Code usage by 250% or save significantly on direct API costs.
+Smart routing skips expensive LLM calls when possible. Simple edits use WASM (free), medium tasks use cheaper models. This can extend your OpenClaw usage by 250% or save significantly on direct API costs.
 
 | Complexity | Handler | Speed |
 |------------|---------|-------|
@@ -446,9 +446,9 @@ swarm_init({
 
 </details>
 
-### Claude Code: With vs Without Ruflo
+### OpenClaw: With vs Without Ruflo
 
-| Capability | Claude Code Alone | Claude Code + Ruflo |
+| Capability | OpenClaw Alone | OpenClaw + Ruflo |
 |------------|-------------------|---------------------------|
 | **Agent Collaboration** | Agents work in isolation, no shared context | Agents collaborate via swarms with shared memory and consensus |
 | **Coordination** | Manual orchestration between tasks | Queen-led hierarchy with 3 consensus algorithms (Raft, Byzantine, Gossip) |
@@ -474,11 +474,11 @@ swarm_init({
 - **Node.js 20+** (required)
 - **npm 9+** / **pnpm** / **bun** package manager
 
-**IMPORTANT**: Claude Code must be installed first:
+**IMPORTANT**: OpenClaw must be installed first:
 
 ```bash
-# 1. Install Claude Code globally
-npm install -g @anthropic-ai/claude-code
+# 1. Install OpenClaw globally
+npm install -g @anthropic-ai/openclaw
 
 # 2. (Optional) Skip permissions check for faster setup
 claude --dangerously-skip-permissions
@@ -490,10 +490,10 @@ claude --dangerously-skip-permissions
 
 ```bash
 # curl-style installer with progress display
-curl -fsSL https://cdn.jsdelivr.net/gh/ruvnet/ruflo@main/scripts/install.sh | bash
+curl -fsSL https://cdn.jsdelivr.net/gh/snowzlm/ruflo@main/scripts/install.sh | bash
 
 # Full setup (global + MCP + diagnostics)
-curl -fsSL https://cdn.jsdelivr.net/gh/ruvnet/ruflo@main/scripts/install.sh | bash -s -- --full
+curl -fsSL https://cdn.jsdelivr.net/gh/snowzlm/ruflo@main/scripts/install.sh | bash -s -- --full
 ```
 
 <details>
@@ -503,7 +503,7 @@ curl -fsSL https://cdn.jsdelivr.net/gh/ruvnet/ruflo@main/scripts/install.sh | ba
 |--------|-------------|
 | `--global`, `-g` | Install globally (`npm install -g`) |
 | `--minimal`, `-m` | Skip optional deps (faster, ~15s) |
-| `--setup-mcp` | Auto-configure MCP server for Claude Code |
+| `--setup-mcp` | Auto-configure MCP server for OpenClaw |
 | `--doctor`, `-d` | Run diagnostics after install |
 | `--no-init` | Skip project initialization (init runs by default) |
 | `--full`, `-f` | Full setup: global + MCP + doctor |
@@ -557,13 +557,13 @@ bunx ruflo@latest init
 npm install -g ruflo@latest --omit=optional
 ```
 
-#### Claude Code Plugin Marketplace
+#### OpenClaw Plugin Marketplace
 
-Install Ruflo as a native Claude Code plugin -- adds skills, commands, agents, and MCP tools directly into Claude Code:
+Install Ruflo as a native OpenClaw plugin -- adds skills, commands, agents, and MCP tools directly into OpenClaw:
 
 ```bash
 # Add the marketplace (one-time)
-/plugin marketplace add ruvnet/ruflo
+/plugin marketplace add snowzlm/ruflo
 
 # Install individual plugins
 /plugin install ruflo-core@ruflo         # MCP server + base agents
@@ -581,12 +581,12 @@ After installing, new `/slash-commands` and agent types are available immediatel
 <details>
 <summary>🤖 <strong>OpenAI Codex CLI Support</strong> — Full Codex integration with self-learning</summary>
 
-Ruflo supports both **Claude Code** and **OpenAI Codex CLI** via the [@claude-flow/codex](https://www.npmjs.com/package/@claude-flow/codex) package, following the [Agentics Foundation](https://agentics.org) standard.
+Ruflo supports both **OpenClaw** and **OpenAI Codex CLI** via the [@claude-flow/codex](https://www.npmjs.com/package/@claude-flow/codex) package, following the [Agentics Foundation](https://agentics.org) standard.
 
 ### Quick Start for Codex
 
 ```bash
-# Initialize for Codex CLI (creates AGENTS.md instead of CLAUDE.md)
+# Initialize for Codex CLI (creates AGENTS.md instead of OPENCLAW.md)
 npx ruflo@latest init --codex
 
 # Full Codex setup with all 137+ skills
@@ -598,10 +598,10 @@ npx ruflo@latest init --dual
 
 ### Platform Comparison
 
-| Feature | Claude Code | OpenAI Codex |
+| Feature | OpenClaw | OpenAI Codex |
 |---------|-------------|--------------|
-| Config File | `CLAUDE.md` | `AGENTS.md` |
-| Skills Dir | `.claude/skills/` | `.agents/skills/` |
+| Config File | `OPENCLAW.md` | `AGENTS.md` |
+| Skills Dir | `.openclaw/skills/` | `.agents/skills/` |
 | Skill Syntax | `/skill-name` | `$skill-name` |
 | Settings | `settings.json` | `config.toml` |
 | MCP | Native | Via `codex mcp add` |
@@ -618,9 +618,9 @@ npx ruflo@latest init --dual
 
 **Codex does the work. Claude-flow coordinates and learns.**
 
-### Dual-Mode Integration (Claude Code + Codex)
+### Dual-Mode Integration (OpenClaw + Codex)
 
-Run Claude Code for interactive development and spawn headless Codex workers for parallel background tasks:
+Run OpenClaw for interactive development and spawn headless Codex workers for parallel background tasks:
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -633,7 +633,7 @@ Run Claude Code for interactive development and spawn headless Codex workers for
 ```
 
 ```bash
-# Spawn parallel Codex workers from Claude Code
+# Spawn parallel Codex workers from OpenClaw
 claude -p "Analyze src/auth/ for security issues" --session-id "task-1" &
 claude -p "Write unit tests for src/api/" --session-id "task-2" &
 claude -p "Optimize database queries in src/db/" --session-id "task-3" &
@@ -738,7 +738,7 @@ The **Intelligence Loop** (ADR-050) automates this cycle through hooks. Each ses
 # Initialize project
 npx ruflo@latest init
 
-# Start MCP server for Claude Code integration
+# Start MCP server for OpenClaw integration
 npx ruflo@latest mcp start
 
 # Spawn a coding agent
@@ -763,19 +763,19 @@ npx ruflo@latest init upgrade --add-missing
 
 The `--add-missing` flag automatically detects and installs new skills, agents, and commands that were added in newer versions, without overwriting your existing customizations.
 
-### Claude Code MCP Integration
+### OpenClaw MCP Integration
 
 Add ruflo as an MCP server for seamless integration:
 
 ```bash
-# Add ruflo MCP server to Claude Code
-claude mcp add ruflo -- npx -y ruflo@latest mcp start
+# Add ruflo MCP server to OpenClaw
+openclaw mcp add ruflo -- npx -y ruflo@latest mcp start
 
 # Verify installation
-claude mcp list
+openclaw mcp list
 ```
 
-Once added, Claude Code can use all 313 ruflo MCP tools directly:
+Once added, OpenClaw can use all 313 ruflo MCP tools directly:
 - `swarm_init` - Initialize agent swarms
 - `agent_spawn` - Spawn specialized agents
 - `memory_search` - Search patterns with HNSW vector search
@@ -941,7 +941,7 @@ Complex projects fail when implementation drifts from the original plan. Ruflo s
 - **ADR-008**: Vitest testing framework (10x faster than Jest)
 - **ADR-009**: Hybrid Memory Backend (SQLite + HNSW)
 - **ADR-026**: Intelligent 3-tier model routing
-- **ADR-048**: Auto Memory Bridge (Claude Code ↔ AgentDB bidirectional sync)
+- **ADR-048**: Auto Memory Bridge (OpenClaw ↔ AgentDB bidirectional sync)
 - **ADR-049**: Self-Learning Memory with GNN (LearningBridge, MemoryGraph, AgentMemoryScope)
 
 </details>
@@ -956,7 +956,7 @@ Complex projects fail when implementation drifts from the original plan. Ruflo s
 ```mermaid
 flowchart TB
     subgraph User["👤 User Layer"]
-        CC[Claude Code]
+        CC[OpenClaw]
         CLI[CLI Commands]
     end
 
@@ -1090,7 +1090,7 @@ flowchart LR
 | **LearningBridge** | Connects insights to SONA/ReasoningBank neural pipeline | 0.12 ms/insight |
 | **MemoryGraph** | PageRank + label propagation knowledge graph | 2.78 ms build (1k nodes) |
 | **AgentMemoryScope** | 3-scope agent memory (project/local/user) with cross-agent transfer | 1.25 ms transfer |
-| **AutoMemoryBridge** | Bidirectional sync: Claude Code auto memory files ↔ AgentDB | ADR-048 |
+| **AutoMemoryBridge** | Bidirectional sync: OpenClaw auto memory files ↔ AgentDB | ADR-048 |
 
 </details>
 
@@ -1292,22 +1292,22 @@ Restart Claude Desktop after saving. Look for the MCP indicator (hammer icon) in
 </details>
 
 <details>
-<summary>⌨️ <strong>Claude Code (CLI)</strong></summary>
+<summary>⌨️ <strong>OpenClaw (CLI)</strong></summary>
 
 ```bash
 # Add via CLI (recommended)
-claude mcp add ruflo -- npx ruflo@latest mcp start
+openclaw mcp add ruflo -- npx ruflo@latest mcp start
 
 # Or add with environment variables
-claude mcp add ruflo \
+openclaw mcp add ruflo \
   --env ANTHROPIC_API_KEY=sk-ant-... \
   -- npx ruflo@latest mcp start
 
 # Verify installation
-claude mcp list
+openclaw mcp list
 ```
 
-*Sources: [Claude Code MCP Docs](https://code.claude.com/docs/en/mcp)*
+*Sources: [OpenClaw MCP Docs](https://code.claude.com/docs/en/mcp)*
 
 </details>
 
@@ -1531,17 +1531,17 @@ echo "ANTHROPIC_API_KEY=sk-ant-..." >> .env
 ---
 
 <details>
-<summary>🛡️ <strong>@claude-flow/guidance</strong> — Long-horizon governance control plane for Claude Code agents</summary>
+<summary>🛡️ <strong>@claude-flow/guidance</strong> — Long-horizon governance control plane for OpenClaw agents</summary>
 
 ### Overview
 
-`@claude-flow/guidance` turns `CLAUDE.md` into a runtime governance system with enforcement gates, cryptographic proofs, and feedback loops. Agents that normally drift after 30 minutes can now operate for days — rules are enforced mechanically at every step, not remembered by the model.
+`@claude-flow/guidance` turns `OPENCLAW.md` into a runtime governance system with enforcement gates, cryptographic proofs, and feedback loops. Agents that normally drift after 30 minutes can now operate for days — rules are enforced mechanically at every step, not remembered by the model.
 
 **7-phase pipeline:** Compile → Retrieve → Enforce → Trust → Prove → Defend → Evolve
 
 | Capability | Description |
 |-----------|-------------|
-| **Compile** | Parses `CLAUDE.md` into typed policy bundles (constitution + task-scoped shards) |
+| **Compile** | Parses `OPENCLAW.md` into typed policy bundles (constitution + task-scoped shards) |
 | **Retrieve** | Intent-classified shard retrieval with semantic similarity and risk filters |
 | **Enforce** | 4 gates the model cannot bypass (destructive ops, tool allowlist, diff size, secrets) |
 | **Trust** | Per-agent trust accumulation with privilege tiers and coherence-driven throttling |
@@ -1566,7 +1566,7 @@ import {
   createProofChain,
 } from '@claude-flow/guidance';
 
-// Compile CLAUDE.md into a policy bundle
+// Compile OPENCLAW.md into a policy bundle
 const compiler = createCompiler();
 const bundle = await compiler.compile(claudeMdText);
 
@@ -1593,7 +1593,7 @@ chain.verify(envelope); // true — tamper-evident
 | Import Path | Purpose |
 |-------------|---------|
 | `@claude-flow/guidance` | Main entry — GuidanceControlPlane |
-| `@claude-flow/guidance/compiler` | CLAUDE.md → PolicyBundle compiler |
+| `@claude-flow/guidance/compiler` | OPENCLAW.md → PolicyBundle compiler |
 | `@claude-flow/guidance/retriever` | Intent classification + shard retrieval |
 | `@claude-flow/guidance/gates` | 4 enforcement gates |
 | `@claude-flow/guidance/ledger` | Run event logging + evaluators |
@@ -1602,7 +1602,7 @@ chain.verify(envelope); // true — tamper-evident
 | `@claude-flow/guidance/trust` | Trust accumulation + privilege tiers |
 | `@claude-flow/guidance/authority` | Human authority + irreversibility classification |
 | `@claude-flow/guidance/wasm-kernel` | WASM-accelerated security-critical paths |
-| `@claude-flow/guidance/analyzer` | CLAUDE.md quality analysis + A/B benchmarking |
+| `@claude-flow/guidance/analyzer` | OPENCLAW.md quality analysis + A/B benchmarking |
 | `@claude-flow/guidance/conformance-kit` | Headless conformance test runner |
 
 ### Stats
@@ -1713,9 +1713,9 @@ npx ruflo hive-mind sessions                # List active sessions
 </details>
 
 <details>
-<summary>👥 <strong>Agent Teams</strong> — Claude Code multi-instance coordination</summary>
+<summary>👥 <strong>Agent Teams</strong> — OpenClaw multi-instance coordination</summary>
 
-Native integration with Claude Code's experimental Agent Teams feature for spawning and coordinating multiple Claude instances.
+Native integration with OpenClaw's experimental Agent Teams feature for spawning and coordinating multiple Claude instances.
 
 **Enable Agent Teams:**
 ```bash
@@ -1859,7 +1859,7 @@ Install these optional plugins to extend Ruflo capabilities:
 | **@claude-flow/plugin-agentic-qe** | 3.0.0-alpha.2 | Quality Engineering with 58 AI agents across 12 DDD contexts. TDD, coverage analysis, security scanning, chaos engineering, accessibility testing. | `npm install @claude-flow/plugin-agentic-qe` |
 | **@claude-flow/plugin-prime-radiant** | 0.1.4 | Mathematical AI interpretability with 6 engines: sheaf cohomology, spectral analysis, causal inference, quantum topology, category theory, HoTT proofs. | `npm install @claude-flow/plugin-prime-radiant` |
 | **@claude-flow/plugin-gastown-bridge** | 0.1.0 | Gas Town orchestrator integration with WASM-accelerated formula parsing (instant (regex-based, no LLM call)), Beads sync, convoy management, and graph analysis. 20 MCP tools. | `npx ruflo@latest plugins install -n @claude-flow/plugin-gastown-bridge` |
-| **@claude-flow/teammate-plugin** | 1.0.0-alpha.1 | Native TeammateTool integration for Claude Code v2.1.19+. BMSSP WASM acceleration, rate limiting, circuit breaker, semantic routing. 21 MCP tools. | `npx ruflo@latest plugins install -n @claude-flow/teammate-plugin` |
+| **@claude-flow/teammate-plugin** | 1.0.0-alpha.1 | Native TeammateTool integration for OpenClaw v2.1.19+. BMSSP WASM acceleration, rate limiting, circuit breaker, semantic routing. 21 MCP tools. | `npx ruflo@latest plugins install -n @claude-flow/teammate-plugin` |
 
 #### 🏥 Domain-Specific Plugins
 
@@ -1901,7 +1901,7 @@ Install these optional plugins to extend Ruflo capabilities:
 - Hallucination prevention via consensus verification
 
 **Teammate Plugin Features:**
-- Native TeammateTool integration for Claude Code v2.1.19+
+- Native TeammateTool integration for OpenClaw v2.1.19+
 - 21 MCP tools: `teammate/spawn`, `teammate/coordinate`, `teammate/broadcast`, `teammate/discover-teams`, `teammate/route-task`, etc.
 - BMSSP WASM acceleration for topology optimization (instant (regex-based, no LLM call))
 - Rate limiting with sliding window (configurable limits)
@@ -2554,13 +2554,13 @@ npx ruflo hive-mind status                                  # Check status
 </details>
 
 <details>
-<summary>📊 <strong>V3 Statusline</strong> — Real-time development status for Claude Code</summary>
+<summary>📊 <strong>V3 Statusline</strong> — Real-time development status for OpenClaw</summary>
 
-Real-time development status display integrated directly into Claude Code's status bar. Shows DDD progress, swarm activity, security status, AgentDB metrics, and live session data (model, context usage, cost).
+Real-time development status display integrated directly into OpenClaw's status bar. Shows DDD progress, swarm activity, security status, AgentDB metrics, and live session data (model, context usage, cost).
 
 **How It Works:**
 
-Claude Code pipes JSON session data via **stdin** to the statusline script after each assistant message (debounced ~300ms). The script reads this data and combines it with local project metrics to produce a single-line status output.
+OpenClaw pipes JSON session data via **stdin** to the statusline script after each assistant message (debounced ~300ms). The script reads this data and combines it with local project metrics to produce a single-line status output.
 
 **Output Format:**
 ```
@@ -2588,7 +2588,7 @@ Claude Code pipes JSON session data via **stdin** to the statusline script after
 
 **Setup (Automatic):**
 
-Run `npx ruflo@latest init` — this generates `.claude/settings.json` with the correct statusline config and creates the helper script at `.claude/helpers/statusline.cjs`.
+Run `npx ruflo@latest init` — this generates `.openclaw/settings.json` with the correct statusline config and creates the helper script at `.openclaw/helpers/statusline.cjs`.
 
 The generated config uses a **fast local script** (no `npx` cold-start):
 ```json
@@ -2600,7 +2600,7 @@ The generated config uses a **fast local script** (no `npx` cold-start):
 }
 ```
 
-> **Note:** Only `type`, `command`, and `padding` are valid statusLine fields. Do not add `refreshMs`, `enabled`, or other fields — Claude Code will ignore them.
+> **Note:** Only `type`, `command`, and `padding` are valid statusLine fields. Do not add `refreshMs`, `enabled`, or other fields — OpenClaw will ignore them.
 
 **For Existing Users:**
 
@@ -2613,7 +2613,7 @@ This removes invalid config fields and regenerates the statusline helper with st
 
 **Stdin JSON Protocol:**
 
-Claude Code provides session data via stdin in this format:
+OpenClaw provides session data via stdin in this format:
 ```json
 {
   "model": { "display_name": "Opus 4.6" },
@@ -2627,7 +2627,7 @@ Claude Code provides session data via stdin in this format:
 The statusline script reads stdin synchronously, falls back to local detection when run manually (TTY mode).
 
 **Data Sources:**
-- **Stdin JSON** — Model name, context %, cost, duration (from Claude Code)
+- **Stdin JSON** — Model name, context %, cost, duration (from OpenClaw)
 - `.claude-flow/metrics/v3-progress.json` — DDD domain progress
 - `.claude-flow/metrics/swarm-activity.json` — Active agent counts
 - `.claude-flow/security/audit-status.json` — CVE remediation status
@@ -2704,13 +2704,13 @@ Shell-based daemons for monitoring (Linux/macOS only):
 **Commands:**
 ```bash
 # Start all daemons
-.claude/helpers/daemon-manager.sh start 3 5
+`.openclaw/helpers/daemon-manager.sh start 3 5
 
 # Check daemon status
-.claude/helpers/daemon-manager.sh status
+`.openclaw/helpers/daemon-manager.sh status
 
 # Stop all daemons
-.claude/helpers/daemon-manager.sh stop
+`.openclaw/helpers/daemon-manager.sh stop
 ```
 
 ### Worker Manager (7 Scheduled Workers)
@@ -2728,13 +2728,13 @@ Shell-based daemons for monitoring (Linux/macOS only):
 **Commands:**
 ```bash
 # Start worker manager
-.claude/helpers/worker-manager.sh start 60
+`.openclaw/helpers/worker-manager.sh start 60
 
 # Force run all workers immediately
-.claude/helpers/worker-manager.sh force
+`.openclaw/helpers/worker-manager.sh force
 
 # Check worker status
-.claude/helpers/worker-manager.sh status
+`.openclaw/helpers/worker-manager.sh status
 ```
 
 </details>
@@ -2851,7 +2851,7 @@ npx ruflo@latest doctor --verbose
 ✅ Node.js      20.11.0 (required: 20+)
 ✅ npm          10.2.4 (required: 9+)
 ✅ Git          2.43.0
-✅ Config       Valid claude-flow.config.json
+✅ Config       Valid ruflo.config.json
 ✅ Daemon       Running (PID: 12345)
 ✅ Memory       SQLite healthy, 1.2MB
 ⚠️ API Keys    ANTHROPIC_API_KEY set, OPENAI_API_KEY missing
@@ -2996,14 +2996,14 @@ Real-world scenarios and pre-built workflows for common tasks.
 
 ## 🧠 Infinite Context & Memory Optimization
 
-Ruflo eliminates Claude Code's context window ceiling with a real-time memory management system that archives, optimizes, and restores conversation context automatically.
+Ruflo eliminates OpenClaw's context window ceiling with a real-time memory management system that archives, optimizes, and restores conversation context automatically.
 
 <details>
 <summary>♾️ <strong>Context Autopilot</strong> — Never lose context to compaction again</summary>
 
 ### The Problem
 
-Claude Code has a finite context window (~200K tokens). When full, it **compacts** — summarizing the conversation and discarding details like exact file paths, tool outputs, decision reasoning, and code snippets. This creates a "context cliff" where Claude loses the ability to reference earlier work.
+OpenClaw has a finite context window (~200K tokens). When full, it **compacts** — summarizing the conversation and discarding details like exact file paths, tool outputs, decision reasoning, and code snippets. This creates a "context cliff" where Claude loses the ability to reference earlier work.
 
 ### The Solution: Context Autopilot (ADR-051)
 
@@ -3089,8 +3089,8 @@ CLAUDE_FLOW_AUTO_OPTIMIZE=true            # Importance ranking + pruning + sync
 # Check archive status and autopilot state
 node .claude/helpers/context-persistence-hook.mjs status
 
-# Manual compact (archives first, then allows Claude Code to compress)
-# Use /compact in Claude Code — autopilot allows manual, blocks auto
+# Manual compact (archives first, then allows OpenClaw to compress)
+# Use /compact in OpenClaw — autopilot allows manual, blocks auto
 
 # Query archive directly
 sqlite3 .claude-flow/data/transcript-archive.db \
@@ -3101,8 +3101,8 @@ sqlite3 .claude-flow/data/transcript-archive.db \
 
 - **ADR-051**: Infinite Context via Compaction-to-Memory Bridge
 - **ADR-052**: Statusline Observability System
-- **Implementation**: `.claude/helpers/context-persistence-hook.mjs` (~1560 lines)
-- **Settings**: `.claude/settings.json` (PreCompact, SessionStart, UserPromptSubmit hooks)
+- **Implementation**: `.openclaw/helpers/context-persistence-hook.mjs` (~1560 lines)
+- **Settings**: `.openclaw/settings.json` (PreCompact, SessionStart, UserPromptSubmit hooks)
 
 </details>
 
@@ -3888,19 +3888,19 @@ Scripts, coordination systems, and collaborative development features.
 <details>
 <summary>🛠️ <strong>Helper Scripts</strong> — 30+ Development Automation Tools</summary>
 
-The `.claude/helpers/` directory contains **30+ automation scripts** for development, monitoring, learning, and swarm coordination. These scripts integrate with hooks and can be called directly or via the V3 master tool.
+The `.openclaw/helpers/` directory contains **30+ automation scripts** for development, monitoring, learning, and swarm coordination. These scripts integrate with hooks and can be called directly or via the V3 master tool.
 
 ### Quick Start
 
 ```bash
 # Master V3 tool - access all helpers
-.claude/helpers/v3.sh help              # Show all commands
-.claude/helpers/v3.sh status            # Quick development status
-.claude/helpers/v3.sh update domain 3   # Update metrics
+`.openclaw/helpers/v3.sh help              # Show all commands
+`.openclaw/helpers/v3.sh status            # Quick development status
+`.openclaw/helpers/v3.sh update domain 3   # Update metrics
 
 # Quick setup
-.claude/helpers/quick-start.sh          # Initialize development environment
-.claude/helpers/setup-mcp.sh            # Configure MCP servers
+`.openclaw/helpers/quick-start.sh          # Initialize development environment
+`.openclaw/helpers/setup-mcp.sh            # Configure MCP servers
 ```
 
 ### Helper Categories
@@ -3909,88 +3909,88 @@ The `.claude/helpers/` directory contains **30+ automation scripts** for develop
 
 | Script | Purpose | Usage |
 |--------|---------|-------|
-| `v3.sh` | Master CLI for all V3 operations | `.claude/helpers/v3.sh status` |
-| `update-v3-progress.sh` | Update development metrics | `.claude/helpers/update-v3-progress.sh domain 3` |
-| `v3-quick-status.sh` | Compact progress overview | `.claude/helpers/v3-quick-status.sh` |
-| `sync-v3-metrics.sh` | Sync metrics across systems | `.claude/helpers/sync-v3-metrics.sh` |
-| `validate-v3-config.sh` | Validate configuration | `.claude/helpers/validate-v3-config.sh` |
+| `v3.sh` | Master CLI for all V3 operations | `.openclaw/helpers/v3.sh status` |
+| `update-v3-progress.sh` | Update development metrics | `.openclaw/helpers/update-v3-progress.sh domain 3` |
+| `v3-quick-status.sh` | Compact progress overview | `.openclaw/helpers/v3-quick-status.sh` |
+| `sync-v3-metrics.sh` | Sync metrics across systems | `.openclaw/helpers/sync-v3-metrics.sh` |
+| `validate-v3-config.sh` | Validate configuration | `.openclaw/helpers/validate-v3-config.sh` |
 
 #### 🤖 Daemon & Worker Management
 
 | Script | Purpose | Usage |
 |--------|---------|-------|
-| `daemon-manager.sh` | Start/stop/status background daemons | `.claude/helpers/daemon-manager.sh start 3 5` |
-| `worker-manager.sh` | Manage background workers | `.claude/helpers/worker-manager.sh start 60` |
-| `swarm-monitor.sh` | Monitor swarm activity | `.claude/helpers/swarm-monitor.sh` |
-| `health-monitor.sh` | System health checks | `.claude/helpers/health-monitor.sh` |
-| `perf-worker.sh` | Performance monitoring worker | `.claude/helpers/perf-worker.sh` |
+| `daemon-manager.sh` | Start/stop/status background daemons | `.openclaw/helpers/daemon-manager.sh start 3 5` |
+| `worker-manager.sh` | Manage background workers | `.openclaw/helpers/worker-manager.sh start 60` |
+| `swarm-monitor.sh` | Monitor swarm activity | `.openclaw/helpers/swarm-monitor.sh` |
+| `health-monitor.sh` | System health checks | `.openclaw/helpers/health-monitor.sh` |
+| `perf-worker.sh` | Performance monitoring worker | `.openclaw/helpers/perf-worker.sh` |
 
 #### 🧠 Learning & Intelligence
 
 | Script | Purpose | Usage |
 |--------|---------|-------|
 | `learning-service.mjs` | Neural learning service (Node.js) | `node .claude/helpers/learning-service.mjs` |
-| `learning-hooks.sh` | Hook-based pattern learning | `.claude/helpers/learning-hooks.sh` |
-| `learning-optimizer.sh` | Optimize learned patterns | `.claude/helpers/learning-optimizer.sh` |
-| `pattern-consolidator.sh` | Consolidate patterns (EWC++) | `.claude/helpers/pattern-consolidator.sh` |
+| `learning-hooks.sh` | Hook-based pattern learning | `.openclaw/helpers/learning-hooks.sh` |
+| `learning-optimizer.sh` | Optimize learned patterns | `.openclaw/helpers/learning-optimizer.sh` |
+| `pattern-consolidator.sh` | Consolidate patterns (EWC++) | `.openclaw/helpers/pattern-consolidator.sh` |
 | `metrics-db.mjs` | Metrics database service | `node .claude/helpers/metrics-db.mjs` |
 
 #### 🐝 Swarm Coordination
 
 | Script | Purpose | Usage |
 |--------|---------|-------|
-| `swarm-hooks.sh` | Swarm lifecycle hooks | `.claude/helpers/swarm-hooks.sh init` |
-| `swarm-comms.sh` | Inter-agent communication | `.claude/helpers/swarm-comms.sh broadcast "msg"` |
-| `swarm-monitor.sh` | Real-time swarm monitoring | `.claude/helpers/swarm-monitor.sh --watch` |
+| `swarm-hooks.sh` | Swarm lifecycle hooks | `.openclaw/helpers/swarm-hooks.sh init` |
+| `swarm-comms.sh` | Inter-agent communication | `.openclaw/helpers/swarm-comms.sh broadcast "msg"` |
+| `swarm-monitor.sh` | Real-time swarm monitoring | `.openclaw/helpers/swarm-monitor.sh --watch` |
 
 #### 🔒 Security & Compliance
 
 | Script | Purpose | Usage |
 |--------|---------|-------|
-| `security-scanner.sh` | Scan for vulnerabilities | `.claude/helpers/security-scanner.sh` |
-| `adr-compliance.sh` | Check ADR compliance | `.claude/helpers/adr-compliance.sh` |
-| `ddd-tracker.sh` | Track DDD domain progress | `.claude/helpers/ddd-tracker.sh` |
+| `security-scanner.sh` | Scan for vulnerabilities | `.openclaw/helpers/security-scanner.sh` |
+| `adr-compliance.sh` | Check ADR compliance | `.openclaw/helpers/adr-compliance.sh` |
+| `ddd-tracker.sh` | Track DDD domain progress | `.openclaw/helpers/ddd-tracker.sh` |
 
 #### 💾 Checkpoints & Git
 
 | Script | Purpose | Usage |
 |--------|---------|-------|
-| `checkpoint-manager.sh` | Save/restore checkpoints | `.claude/helpers/checkpoint-manager.sh save "desc"` |
-| `auto-commit.sh` | Automated git commits | `.claude/helpers/auto-commit.sh` |
-| `standard-checkpoint-hooks.sh` | Checkpoint hook integration | `.claude/helpers/standard-checkpoint-hooks.sh` |
+| `checkpoint-manager.sh` | Save/restore checkpoints | `.openclaw/helpers/checkpoint-manager.sh save "desc"` |
+| `auto-commit.sh` | Automated git commits | `.openclaw/helpers/auto-commit.sh` |
+| `standard-checkpoint-hooks.sh` | Checkpoint hook integration | `.openclaw/helpers/standard-checkpoint-hooks.sh` |
 | `github-safe.js` | Safe GitHub operations | `node .claude/helpers/github-safe.js` |
-| `github-setup.sh` | Configure GitHub integration | `.claude/helpers/github-setup.sh` |
+| `github-setup.sh` | Configure GitHub integration | `.openclaw/helpers/github-setup.sh` |
 
 #### 🎯 Guidance & Hooks
 
 | Script | Purpose | Usage |
 |--------|---------|-------|
-| `guidance-hooks.sh` | Development guidance via hooks | `.claude/helpers/guidance-hooks.sh` |
-| `guidance-hook.sh` | Single guidance hook | `.claude/helpers/guidance-hook.sh` |
+| `guidance-hooks.sh` | Development guidance via hooks | `.openclaw/helpers/guidance-hooks.sh` |
+| `guidance-hook.sh` | Single guidance hook | `.openclaw/helpers/guidance-hook.sh` |
 
 ### Example Workflows
 
 **Start Development Session:**
 ```bash
 # Initialize everything
-.claude/helpers/v3.sh init
-.claude/helpers/daemon-manager.sh start 3 5
-.claude/helpers/worker-manager.sh start 60
+`.openclaw/helpers/v3.sh init
+`.openclaw/helpers/daemon-manager.sh start 3 5
+`.openclaw/helpers/worker-manager.sh start 60
 
 # Check status
-.claude/helpers/v3.sh full-status
+`.openclaw/helpers/v3.sh full-status
 ```
 
 **Swarm Development:**
 ```bash
 # Start swarm monitoring
-.claude/helpers/swarm-monitor.sh --watch &
+`.openclaw/helpers/swarm-monitor.sh --watch &
 
 # Initialize swarm hooks
-.claude/helpers/swarm-hooks.sh init
+`.openclaw/helpers/swarm-hooks.sh init
 
 # Monitor agent communication
-.claude/helpers/swarm-comms.sh listen
+`.openclaw/helpers/swarm-comms.sh listen
 ```
 
 **Learning & Pattern Management:**
@@ -3999,22 +3999,22 @@ The `.claude/helpers/` directory contains **30+ automation scripts** for develop
 node .claude/helpers/learning-service.mjs &
 
 # Consolidate patterns after session
-.claude/helpers/pattern-consolidator.sh
+`.openclaw/helpers/pattern-consolidator.sh
 
 # Optimize learned patterns
-.claude/helpers/learning-optimizer.sh --aggressive
+`.openclaw/helpers/learning-optimizer.sh --aggressive
 ```
 
 ### Configuration
 
-Helpers are configured in `.claude/settings.json`:
+Helpers are configured in `.openclaw/settings.json`:
 
 ```json
 {
   "helpers": {
-    "directory": ".claude/helpers",
+    "directory": ".openclaw/helpers",
     "enabled": true,
-    "v3ProgressUpdater": ".claude/helpers/update-v3-progress.sh",
+    "v3ProgressUpdater": ".openclaw/helpers/update-v3-progress.sh",
     "autoStart": ["daemon-manager.sh", "worker-manager.sh"]
   }
 }
@@ -4179,7 +4179,7 @@ Skills are **reusable workflows** that combine agents, hooks, and patterns into 
 ### Running Skills
 
 ```bash
-# In Claude Code - just use the slash command
+# In OpenClaw - just use the slash command
 /github-code-review
 /pair-programming --mode tdd
 /v3-security-overhaul
@@ -4853,8 +4853,8 @@ npx agentic-flow --help
 # Start MCP server
 npx agentic-flow mcp start
 
-# Add to Claude Code
-claude mcp add agentic-flow -- npx agentic-flow mcp start
+# Add to OpenClaw
+openclaw mcp add agentic-flow -- npx agentic-flow mcp start
 ```
 
 ### Core Components
@@ -5114,8 +5114,8 @@ The agentic-flow ecosystem exposes MCP tools across packages (ruflo CLI provides
 # Start MCP server
 npx agentic-flow mcp start
 
-# Add to Claude Code
-claude mcp add agentic-flow -- npx agentic-flow mcp start
+# Add to OpenClaw
+openclaw mcp add agentic-flow -- npx agentic-flow mcp start
 ```
 
 </details>
@@ -6974,7 +6974,7 @@ export CLAUDE_FLOW_MEMORY_PATH="./data"
 | `CLAUDE_FLOW_MAX_AGENTS` | Default concurrent agent limit | `15` |
 | `CLAUDE_FLOW_TOPOLOGY` | Default swarm topology (`hierarchical`, `mesh`, `ring`, `star`) | `hierarchical` |
 | `CLAUDE_FLOW_HEADLESS` | Run in headless mode (no interactive prompts) | `false` |
-| `CLAUDE_CODE_HEADLESS` | Claude Code headless mode compatibility | `false` |
+| `CLAUDE_CODE_HEADLESS` | OpenClaw headless mode compatibility | `false` |
 
 ### MCP Server
 
@@ -7436,7 +7436,7 @@ export CLAUDE_FLOW_HNSW_EF=100
 | **Hooks System** | Basic patterns | ReasoningBank + SONA | Self-learning |
 | **Security** | Manual validation | Automatic strict mode | More secure |
 | **CLI Commands** | Flat structure | Nested subcommands | New syntax |
-| **Config Format** | `.ruflo/config.json` | `claude-flow.config.json` | Update path |
+| **Config Format** | `.ruflo/config.json` | `ruflo.config.json` | Update path |
 
 ### Step-by-Step Migration
 
@@ -7488,7 +7488,7 @@ npx ruflo@latest doctor --fix
 }
 ```
 
-**V3 Config (`claude-flow.config.json`)**:
+**V3 Config (`ruflo.config.json`)**:
 ```json
 {
   "version": "3.0.0",
@@ -7550,7 +7550,7 @@ cp -r ./data-backup-v2 ./data
 | Issue | Cause | Solution |
 |-------|-------|----------|
 | `MODULE_NOT_FOUND` | Old package references | Update imports to `@claude-flow/*` |
-| `Config not found` | Path change | Rename to `claude-flow.config.json` |
+| `Config not found` | Path change | Rename to `ruflo.config.json` |
 | `Memory backend error` | Schema change | Run `migrate run` to convert |
 | `Hooks not working` | New hook names | Use new hook commands |
 | `Agent spawn fails` | Type name changes | Check `agent list` for new types |
@@ -7597,8 +7597,8 @@ cp -r ./data-backup-v2 ./data
 
 | Resource | Link |
 |----------|------|
-| 📚 Documentation | [github.com/ruvnet/claude-flow](https://github.com/ruvnet/claude-flow) |
-| 🐛 Issues & Bugs | [github.com/ruvnet/claude-flow/issues](https://github.com/ruvnet/claude-flow/issues) |
+| 📚 Documentation | [github.com/snowzlm/ruflo](https://github.com/snowzlm/ruflo) |
+| 🐛 Issues & Bugs | [github.com/snowzlm/ruflo/issues](https://github.com/snowzlm/ruflo/issues) |
 | 💼 Professional Implementation | [ruv.io](https://ruv.io) — Enterprise consulting, custom integrations, and production deployment |
 | 💬 Discord Community | [Agentics Foundation](https://discord.com/invite/dfxmpwkG2D) |
 

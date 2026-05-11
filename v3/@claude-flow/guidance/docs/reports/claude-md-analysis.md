@@ -1,8 +1,8 @@
-# CLAUDE.md Analysis Report
+# OPENCLAW.md Analysis Report
 
 Generated: 2026-02-01 by `@claude-flow/guidance/analyzer`
 
-## Root CLAUDE.md (`/CLAUDE.md`)
+## Root OPENCLAW.md (`/OPENCLAW.md`)
 
 ### Composite Score: 73/100 (Grade C)
 
@@ -60,7 +60,7 @@ The auto-optimizer added the missing Architecture section, improving Coverage fr
 
 ---
 
-## v3/CLAUDE.md (`/v3/CLAUDE.md`)
+## v3/OPENCLAW.md (`/v3/OPENCLAW.md`)
 
 ### Composite Score: 64/100 (Grade D)
 
@@ -82,7 +82,7 @@ The auto-optimizer added the missing Architecture section, improving Coverage fr
 
 ### After Optimization: 78/100 (Grade C, +14 improvement)
 
-The v3/CLAUDE.md benefited more from auto-optimization because it was missing both Security and Architecture sections. Adding these brought Coverage from 60 to 100, Enforceability from 50 to 60, and Compilability from 80 to 100.
+The v3/OPENCLAW.md benefited more from auto-optimization because it was missing both Security and Architecture sections. Adding these brought Coverage from 60 to 100, Enforceability from 50 to 60, and Compilability from 80 to 100.
 
 ---
 

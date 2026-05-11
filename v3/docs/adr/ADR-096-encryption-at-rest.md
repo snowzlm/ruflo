@@ -56,7 +56,7 @@ Magic `"RFE1"` (Ruflo File Encrypted v1) — distinguishes from plaintext on rea
 **Key source** (precedence, fail closed):
 
 1. `CLAUDE_FLOW_ENCRYPTION_KEY` — base64-encoded 32 bytes. Highest precedence, useful for CI / containers / users who already have a secret manager.
-2. OS keychain — `keytar`-style lookup under service `claude-flow`, account `default`. macOS Keychain, Windows DPAPI, libsecret on Linux. **Optional dependency**: `keytar` is a native module; if unavailable, fall back to (3).
+2. OS keychain — `keytar`-style lookup under service `ruflo`, account `default`. macOS Keychain, Windows DPAPI, libsecret on Linux. **Optional dependency**: `keytar` is a native module; if unavailable, fall back to (3).
 3. Passphrase prompt + scrypt KDF — interactive only. Stored derived key in process memory for the session, never on disk. Salt persisted at `~/.claude-flow/.kdf-salt` (16 bytes random, mode 0600).
 
 If `CLAUDE_FLOW_ENCRYPT_AT_REST=1` and *no* key source resolves, the CLI **errors immediately** rather than silently writing plaintext. Fail-closed posture.
@@ -128,7 +128,7 @@ This ADR proposes the design; the implementation iteration ships in a separate c
 ## Open questions
 
 - **Daemon vs CLI**: the daemon long-lived process and the CLI one-shot process need to share a key. For env-var/keychain, they both read the same source. For passphrase, the daemon would need to be started with the passphrase or a derived key passed in via stdin. Document the daemon-mode setup explicitly.
-- **MCP server mode**: when started by Claude Code via `claude mcp add`, the MCP server inherits Claude Code's environment. The user has to set `CLAUDE_FLOW_ENCRYPTION_KEY` in the env Claude Code launches with — which is doable but non-obvious. A `~/.claude-flow/encryption.json` config (mode 0600, keychain reference) might be cleaner than env-var-everywhere. Decide in implementation.
+- **MCP server mode**: when started by OpenClaw via `openclaw mcp add`, the MCP server inherits OpenClaw's environment. The user has to set `CLAUDE_FLOW_ENCRYPTION_KEY` in the env OpenClaw launches with — which is doable but non-obvious. A `~/.claude-flow/encryption.json` config (mode 0600, keychain reference) might be cleaner than env-var-everywhere. Decide in implementation.
 - **AgentDB v3 native encryption**: if AgentDB ever exposes a transparent column-encryption API, switch to it for the memory DB. Until then, file-level on the whole DB blob is correct.
 
 ## Acceptance criteria

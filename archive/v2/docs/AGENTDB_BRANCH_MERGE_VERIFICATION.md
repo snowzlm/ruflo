@@ -208,10 +208,10 @@ Metrics Updates:
 
 **CLI Commands Verified**:
 ```bash
-✅ npx claude-flow memory stats - Shows ReasoningBank data
-✅ npx claude-flow memory list - Lists all memories
-✅ npx claude-flow memory store - Stores with confidence
-✅ npx claude-flow memory query - Semantic search
+✅ npx ruflo memory stats - Shows ReasoningBank data
+✅ npx ruflo memory list - Lists all memories
+✅ npx ruflo memory store - Stores with confidence
+✅ npx ruflo memory query - Semantic search
 ```
 
 ---
@@ -320,9 +320,9 @@ git cherry-pick 23e935287
 
 ### CLI Verification
 ```bash
-✅ npx claude-flow --version → v2.7.32
-✅ npx claude-flow memory stats → Shows ReasoningBank data
-✅ npx claude-flow mcp start → Works
+✅ npx ruflo --version → v2.7.32
+✅ npx ruflo memory stats → Shows ReasoningBank data
+✅ npx ruflo mcp start → Works
 ✅ All CLI commands functional
 ```
 
@@ -430,7 +430,7 @@ The current branch (`claude/align-flow-with-mcp-011CV45c34eF2MawJHUpj9XD`) **suc
 
 ---
 
-**Verified By**: Claude Code
+**Verified By**: OpenClaw
 **Date**: 2025-11-12
 **Status**: ✅ **APPROVED FOR RELEASE**
 **Action**: ✅ **NO MERGE NEEDED** - Proceed with current branch

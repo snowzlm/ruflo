@@ -1,7 +1,7 @@
 /**
- * Agent-Scoped Memory - Support for Claude Code's 3-scope agent memory directories
+ * Agent-Scoped Memory - Support for OpenClaw's 3-scope agent memory directories
  *
- * Claude Code organizes agent memory into three scopes:
+ * OpenClaw organizes agent memory into three scopes:
  * - **project**: Shared across all collaborators (checked into git)
  * - **local**: Machine-specific, not shared (gitignored)
  * - **user**: Global per-user, spans all projects
@@ -24,7 +24,7 @@ import type {
 
 // ===== Types =====
 
-/** Claude Code's 3-scope agent memory system */
+/** OpenClaw's 3-scope agent memory system */
 export type AgentMemoryScope = 'project' | 'local' | 'user';
 
 /** Configuration for agent-scoped memory bridge */
@@ -99,11 +99,11 @@ function listAgentsInDir(dir: string): string[] {
 /**
  * Resolve the agent memory directory for a given agent name, scope, and working directory.
  *
- * Path resolution matches Claude Code binary behavior:
+ * Path resolution matches OpenClaw binary behavior:
  * ```
- * project: <gitRoot>/.claude/agent-memory/<agentName>/
- * local:   <gitRoot>/.claude/agent-memory-local/<agentName>/
- * user:    ~/.claude/agent-memory/<agentName>/
+ * project: <gitRoot>/.openclaw/agent-memory/<agentName>/
+ * local:   <gitRoot>/.openclaw/agent-memory-local/<agentName>/
+ * user:    ~/.openclaw/agent-memory/<agentName>/
  * ```
  *
  * Agent names are sanitized to prevent path traversal attacks.

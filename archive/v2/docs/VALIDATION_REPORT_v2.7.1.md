@@ -49,14 +49,14 @@
 
 #### Version Command
 ```bash
-$ claude-flow --version
+$ ruflo --version
 v2.7.1
 ```
 **Result**: ✅ PASS
 
 #### Help Command
 ```bash
-$ claude-flow --help
+$ ruflo --help
 🌊 Claude-Flow v2.7.1 - Enterprise-Grade AI Agent Orchestration Platform
 ...
 (135 lines total)
@@ -65,9 +65,9 @@ $ claude-flow --help
 
 #### Available Commands
 **Detected**: 20 main commands including:
-- `npx claude-flow init`
+- `npx ruflo init`
 - `mcp__flow-nexus__*` (cloud features)
-- `claude-flow hive-mind wizard`
+- `ruflo hive-mind wizard`
 - Memory operations
 - Swarm operations
 - SPARC workflow
@@ -79,7 +79,7 @@ $ claude-flow --help
 
 #### Memory Store
 ```bash
-$ claude-flow memory store test-key "test-value"
+$ ruflo memory store test-key "test-value"
 ✅ Stored successfully
 📝 Key: test-key
 📦 Namespace: default
@@ -89,7 +89,7 @@ $ claude-flow memory store test-key "test-value"
 
 #### Memory List
 ```bash
-$ claude-flow memory list
+$ ruflo memory list
 ✅ Available namespaces:
   default (8 entries)
   swarm (1 entries)
@@ -107,22 +107,22 @@ $ claude-flow memory list
 ### 3. Advanced Features
 
 #### Swarm Initialization
-**Command**: `claude-flow swarm init --help`
+**Command**: `ruflo swarm init --help`
 **Output**: Topology options, agent configuration
 **Result**: ✅ PASS
 
 #### MCP Integration
-**Command**: `claude-flow mcp --help`
+**Command**: `ruflo mcp --help`
 **Output**: Server, tools, protocol options
 **Result**: ✅ PASS (6 MCP references found)
 
 #### SPARC Methodology
-**Command**: `claude-flow sparc --help`
+**Command**: `ruflo sparc --help`
 **Output**: Specification, pseudocode, architecture phases
 **Result**: ✅ PASS
 
 #### Neural Network Commands
-**Command**: `claude-flow neural --help`
+**Command**: `ruflo neural --help`
 **Output**: Train, model, inference options
 **Result**: ✅ PASS
 
@@ -304,13 +304,13 @@ npm error path .../node_modules/better-sqlite3
 
 ## 📚 Additional Documentation
 
-- [Branch Information](/workspaces/claude-code-flow/docs/BRANCH_INFO.md) - Created earlier
-- [Remote Install Fix](/workspaces/claude-code-flow/docs/REMOTE_INSTALL_FIX.md) - Technical details
-- [v2.7.14 Release Notes](/workspaces/claude-code-flow/docs/V2.7.14_RELEASE_NOTES.md) - Current alpha comparison
+- [Branch Information](/workspaces/openclaw-flow/docs/BRANCH_INFO.md) - Created earlier
+- [Remote Install Fix](/workspaces/openclaw-flow/docs/REMOTE_INSTALL_FIX.md) - Technical details
+- [v2.7.14 Release Notes](/workspaces/openclaw-flow/docs/V2.7.14_RELEASE_NOTES.md) - Current alpha comparison
 
 ---
 
-**Test Conducted By**: Claude Code
+**Test Conducted By**: OpenClaw
 **Test Date**: October 25, 2025
 **Test Duration**: Comprehensive (multiple Docker environments)
 **Overall Result**: ✅ **PASS - PRODUCTION READY**

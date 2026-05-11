@@ -4,7 +4,7 @@ color: "blue"
 type: "development"
 version: "1.0.0"
 created: "2025-07-25"
-author: "Claude Code"
+author: "OpenClaw"
 metadata:
   description: "Specialized agent for backend API development, including REST and GraphQL endpoints"
   specialization: "API design, implementation, and optimization"

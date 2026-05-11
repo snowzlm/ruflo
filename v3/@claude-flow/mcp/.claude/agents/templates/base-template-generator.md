@@ -16,14 +16,14 @@ hooks:
 
     # 🧠 v2.0.0-alpha: Learn from past successful templates
     echo "🧠 Learning from past template patterns..."
-    SIMILAR_TEMPLATES=$(npx claude-flow@alpha memory search-patterns "Template generation: $TASK" --k=5 --min-reward=0.85 2>/dev/null || echo "")
+    SIMILAR_TEMPLATES=$(ruflo memory search-patterns "Template generation: $TASK" --k=5 --min-reward=0.85 2>/dev/null || echo "")
     if [ -n "$SIMILAR_TEMPLATES" ]; then
       echo "📚 Found similar successful template patterns"
-      npx claude-flow@alpha memory get-pattern-stats "Template generation" --k=5 2>/dev/null || true
+      ruflo memory get-pattern-stats "Template generation" --k=5 2>/dev/null || true
     fi
 
     # Store task start
-    npx claude-flow@alpha memory store-pattern \
+    ruflo memory store-pattern \
       --session-id "template-gen-$(date +%s)" \
       --task "Template: $TASK" \
       --input "$TASK_CONTEXT" \
@@ -38,7 +38,7 @@ hooks:
     REWARD="0.9"
     SUCCESS="true"
 
-    npx claude-flow@alpha memory store-pattern \
+    ruflo memory store-pattern \
       --session-id "template-gen-$(date +%s)" \
       --task "Template: $TASK" \
       --output "Generated template with $FILE_COUNT files" \
@@ -49,7 +49,7 @@ hooks:
     # Train neural patterns
     if [ "$SUCCESS" = "true" ]; then
       echo "🧠 Training neural pattern from successful template"
-      npx claude-flow@alpha neural train \
+      ruflo neural train \
         --pattern-type "coordination" \
         --training-data "$TASK_OUTPUT" \
         --epochs 50 2>/dev/null || true
@@ -59,7 +59,7 @@ hooks:
     echo "❌ Template generation error: {{error_message}}"
 
     # Store failure pattern
-    npx claude-flow@alpha memory store-pattern \
+    ruflo memory store-pattern \
       --session-id "template-gen-$(date +%s)" \
       --task "Template: $TASK" \
       --output "Failed: {{error_message}}" \
@@ -206,7 +206,7 @@ const similarStructures = await agentDB.gnnEnhancedSearch(
 
 Your core responsibilities:
 - Generate comprehensive base templates for components, modules, APIs, configurations, and project structures
-- Ensure all templates follow established coding standards and best practices from the project's CLAUDE.md guidelines
+- Ensure all templates follow established coding standards and best practices from the project's OPENCLAW.md guidelines
 - Include proper TypeScript definitions, error handling, and documentation structure
 - Create modular, extensible templates that can be easily customized for specific needs
 - Incorporate appropriate testing scaffolding and configuration files

@@ -13,10 +13,10 @@ export async function copyAgentFiles(targetDir, options = {}) {
   const { force = false, dryRun = false } = options;
   
   // Path to agent files - try multiple locations
-  // From bin/init/, go up to project root: ../../.claude/agents
-  const packageAgentsDir = join(__dirname, '../../.claude/agents'); // From npm package
-  const localAgentsDir = '/workspaces/claude-code-flow/.claude/agents';   // Local development
-  const cwdAgentsDir = join(process.cwd(), '.claude/agents');              // Current working directory
+  // From bin/init/, go up to project root: ../../.openclaw/agents
+  const packageAgentsDir = join(__dirname, '../../.openclaw/agents'); // From npm package
+  const localAgentsDir = '/workspaces/openclaw-flow/.openclaw/agents';   // Local development
+  const cwdAgentsDir = join(process.cwd(), '.openclaw/agents');              // Current working directory
   
   let sourceAgentsDir;
   
@@ -41,7 +41,7 @@ export async function copyAgentFiles(targetDir, options = {}) {
       }
     }
   }
-  const targetAgentsDir = join(targetDir, '.claude/agents');
+  const targetAgentsDir = join(targetDir, '.openclaw/agents');
   
   console.log('📁 Copying agent system files...');
   console.log(`  📂 Source: ${sourceAgentsDir}`);
@@ -138,35 +138,35 @@ export async function copyAgentFiles(targetDir, options = {}) {
 export async function createAgentDirectories(targetDir, dryRun = false) {
   const agentDirs = [
     '.claude',
-    '.claude/agents',
-    '.claude/agents/core',
-    '.claude/agents/swarm', 
-    '.claude/agents/hive-mind',
-    '.claude/agents/consensus',
-    '.claude/agents/optimization',
-    '.claude/agents/github',
-    '.claude/agents/sparc',
-    '.claude/agents/testing',
-    '.claude/agents/testing/unit',
-    '.claude/agents/testing/validation',
-    '.claude/agents/templates',
-    '.claude/agents/analysis',
-    '.claude/agents/analysis/code-review',
-    '.claude/agents/architecture',
-    '.claude/agents/architecture/system-design',
-    '.claude/agents/data',
-    '.claude/agents/data/ml',
-    '.claude/agents/development',
-    '.claude/agents/development/backend',
-    '.claude/agents/devops',
-    '.claude/agents/devops/ci-cd',
-    '.claude/agents/documentation',
-    '.claude/agents/documentation/api-docs',
-    '.claude/agents/specialized',
-    '.claude/agents/specialized/mobile',
-    '.claude/agents/flow-nexus',
-    '.claude/commands',
-    '.claude/commands/flow-nexus'
+    '.openclaw/agents',
+    '.openclaw/agents/core',
+    '.openclaw/agents/swarm', 
+    '.openclaw/agents/hive-mind',
+    '.openclaw/agents/consensus',
+    '.openclaw/agents/optimization',
+    '.openclaw/agents/github',
+    '.openclaw/agents/sparc',
+    '.openclaw/agents/testing',
+    '.openclaw/agents/testing/unit',
+    '.openclaw/agents/testing/validation',
+    '.openclaw/agents/templates',
+    '.openclaw/agents/analysis',
+    '.openclaw/agents/analysis/code-review',
+    '.openclaw/agents/architecture',
+    '.openclaw/agents/architecture/system-design',
+    '.openclaw/agents/data',
+    '.openclaw/agents/data/ml',
+    '.openclaw/agents/development',
+    '.openclaw/agents/development/backend',
+    '.openclaw/agents/devops',
+    '.openclaw/agents/devops/ci-cd',
+    '.openclaw/agents/documentation',
+    '.openclaw/agents/documentation/api-docs',
+    '.openclaw/agents/specialized',
+    '.openclaw/agents/specialized/mobile',
+    '.openclaw/agents/flow-nexus',
+    '.openclaw/commands',
+    '.openclaw/commands/flow-nexus'
   ];
   
   if (dryRun) {
@@ -191,10 +191,10 @@ export async function copyCommandFiles(targetDir, options = {}) {
   const { force = false, dryRun = false } = options;
   
   // Path to command files - try multiple locations
-  // From bin/init/, go up to project root: ../../.claude/commands
-  const packageCommandsDir = join(__dirname, '../../.claude/commands'); // From npm package
-  const localCommandsDir = '/workspaces/claude-code-flow/.claude/commands';   // Local development
-  const cwdCommandsDir = join(process.cwd(), '.claude/commands');              // Current working directory
+  // From bin/init/, go up to project root: ../../.openclaw/commands
+  const packageCommandsDir = join(__dirname, '../../.openclaw/commands'); // From npm package
+  const localCommandsDir = '/workspaces/openclaw-flow/.openclaw/commands';   // Local development
+  const cwdCommandsDir = join(process.cwd(), '.openclaw/commands');              // Current working directory
   
   let sourceCommandsDir;
   
@@ -220,7 +220,7 @@ export async function copyCommandFiles(targetDir, options = {}) {
     }
   }
   
-  const targetCommandsDir = join(targetDir, '.claude/commands');
+  const targetCommandsDir = join(targetDir, '.openclaw/commands');
   
   console.log('📁 Copying command system files...');
   console.log(`  📂 Source: ${sourceCommandsDir}`);
@@ -311,7 +311,7 @@ export async function copyCommandFiles(targetDir, options = {}) {
 }
 
 export async function validateAgentSystem(targetDir) {
-  const agentsDir = join(targetDir, '.claude/agents');
+  const agentsDir = join(targetDir, '.openclaw/agents');
   
   try {
     const categories = await fs.readdir(agentsDir, { withFileTypes: true });

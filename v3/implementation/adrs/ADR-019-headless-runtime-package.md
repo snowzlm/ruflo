@@ -7,18 +7,18 @@
 
 ## Context
 
-The undocumented `CLAUDE_CODE_HEADLESS` and `CLAUDE_CODE_SANDBOX_MODE` environment variables in Claude Code enable programmatic, non-interactive execution. This creates opportunities for:
+The undocumented `CLAUDE_CODE_HEADLESS` and `CLAUDE_CODE_SANDBOX_MODE` environment variables in OpenClaw enable programmatic, non-interactive execution. This creates opportunities for:
 
 1. **CI/CD Integration** - Automated code review, generation, and testing
 2. **Batch Processing** - Queue-based task execution without user interaction
-3. **Distributed Agents** - Remote Claude Code instances in swarm topology
-4. **API Gateway** - REST/WebSocket interface to Claude Code capabilities
-5. **Container Orchestration** - Docker/K8s-native Claude Code execution
+3. **Distributed Agents** - Remote OpenClaw instances in swarm topology
+4. **API Gateway** - REST/WebSocket interface to OpenClaw capabilities
+5. **Container Orchestration** - Docker/K8s-native OpenClaw execution
 
 ## Decision
 
 Create `@claude-flow/headless` package providing:
-- Programmatic Claude Code invocation with environment control
+- Programmatic OpenClaw invocation with environment control
 - Sandbox-aware execution contexts
 - Batch task queue with persistence
 - HTTP/WebSocket API server
@@ -69,7 +69,7 @@ Create `@claude-flow/headless` package providing:
 // src/executor/headless-executor.ts
 
 export interface HeadlessConfig {
-  // Claude Code path (auto-detected if not provided)
+  // OpenClaw path (auto-detected if not provided)
   claudeCodePath?: string;
 
   // Sandbox configuration
@@ -494,8 +494,8 @@ export class APIServer {
 // src/docker/container-executor.ts
 
 export interface DockerConfig {
-  // Base image with Claude Code pre-installed
-  image: string;  // e.g., 'ghcr.io/ruvnet/claude-flow-headless:latest'
+  // Base image with OpenClaw pre-installed
+  image: string;  // e.g., 'ghcr.io/snowzlm/ruflo-headless:latest'
 
   // Container resources
   resources: {
@@ -602,7 +602,7 @@ npx @claude-flow/headless metrics --prometheus
 
 ```yaml
 # .github/workflows/claude-review.yml
-name: Claude Code Review
+name: OpenClaw Review
 on: [pull_request]
 
 jobs:
@@ -687,7 +687,7 @@ spec:
     spec:
       containers:
       - name: claude
-        image: ghcr.io/ruvnet/claude-flow-headless:latest
+        image: ghcr.io/snowzlm/ruflo-headless:latest
         env:
         - name: ANTHROPIC_API_KEY
           valueFrom:
@@ -719,7 +719,7 @@ spec:
 import { ContainerExecutor } from '@claude-flow/headless';
 
 const executor = new ContainerExecutor({
-  image: 'ghcr.io/ruvnet/claude-flow-headless:latest',
+  image: 'ghcr.io/snowzlm/ruflo-headless:latest',
   resources: { cpus: 2, memoryMb: 4096, diskMb: 10240 },
   pool: { minContainers: 5, maxContainers: 20, idleTimeoutMs: 60000 }
 });
@@ -837,10 +837,10 @@ const HARD_LIMITS = {
     "zod": "^3.22.0"
   },
   "peerDependencies": {
-    "@anthropic-ai/claude-code": ">=2.0.0"
+    "@anthropic-ai/openclaw": ">=2.0.0"
   },
   "peerDependenciesMeta": {
-    "@anthropic-ai/claude-code": {
+    "@anthropic-ai/openclaw": {
       "optional": true
     }
   }
@@ -862,20 +862,20 @@ const HARD_LIMITS = {
 
 1. **Complexity** - Another package to maintain
 2. **Dependencies** - Docker, SQLite add requirements
-3. **Undocumented APIs** - Claude Code env vars may change
+3. **Undocumented APIs** - OpenClaw env vars may change
 
 ### Neutral
 
 1. **Optional** - Users who don't need headless can skip it
-2. **Standalone** - Can be used without other claude-flow packages
+2. **Standalone** - Can be used without other ruflo packages
 
 ---
 
 ## References
 
-- ADR-018: Claude Code Deep Integration
+- ADR-018: OpenClaw Deep Integration
 - ADR-017: RuVector Integration Architecture
-- Claude Code Environment Variables (undocumented)
+- OpenClaw Environment Variables (undocumented)
 - Docker Best Practices for CI/CD
 
 ---

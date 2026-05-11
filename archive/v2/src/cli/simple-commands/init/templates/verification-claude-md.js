@@ -1,7 +1,7 @@
-// verification-claude-md.js - Verification and Pair Programming CLAUDE.md template
+// verification-claude-md.js - Verification and Pair Programming OPENCLAW.md template
 
 export function createVerificationClaudeMd() {
-  return `# Claude Code Configuration - Truth Verification & Pair Programming Environment
+  return `# OpenClaw Configuration - Truth Verification & Pair Programming Environment
 
 ## 🔍 VERIFICATION-FIRST DEVELOPMENT
 
@@ -259,7 +259,7 @@ Before ANY operation:
 Verification data stored in:
 - \`.swarm/verification-memory.json\`: Verification history
 - \`.swarm/memory.db\`: Persistent swarm memory
-- \`.claude/verification-config.json\`: Custom configuration
+- \`.openclaw/verification-config.json\`: Custom configuration
 
 ## 🎯 AGENT VERIFICATION PATTERNS
 
@@ -322,10 +322,10 @@ fi
 
 ## 📚 DOCUMENTATION
 
-- [Truth Verification System](https://github.com/ruvnet/claude-flow/wiki/Truth-Verification-System)
-- [Pair Programming Guide](https://github.com/ruvnet/claude-flow/wiki/Pair-Programming-System)
-- [Background Commands](https://github.com/ruvnet/claude-flow/wiki/background-commands)
-- [Agent Verification](https://github.com/ruvnet/claude-flow/wiki/Agent-Verification)
+- [Truth Verification System](https://github.com/snowzlm/ruflo/wiki/Truth-Verification-System)
+- [Pair Programming Guide](https://github.com/snowzlm/ruflo/wiki/Pair-Programming-System)
+- [Background Commands](https://github.com/snowzlm/ruflo/wiki/background-commands)
+- [Agent Verification](https://github.com/snowzlm/ruflo/wiki/Agent-Verification)
 
 ## 🚨 IMPORTANT REMINDERS
 

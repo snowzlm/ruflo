@@ -13,7 +13,7 @@
 
 ### Phase 1: MVP (Minimal Viable Product)
 
-This implementation provides the **foundation** for agentic-flow integration while maintaining **100% backwards compatibility** with existing claude-flow features.
+This implementation provides the **foundation** for agentic-flow integration while maintaining **100% backwards compatibility** with existing ruflo features.
 
 ### ✅ Completed Components
 
@@ -34,7 +34,7 @@ This implementation provides the **foundation** for agentic-flow integration whi
 - `provider-manager.ts` (180+ lines)
   - Multi-provider configuration management
   - Provider selection logic
-  - Settings persistence to `.claude/settings.json`
+  - Settings persistence to `.openclaw/settings.json`
   - Supports: Anthropic, OpenRouter, ONNX, Gemini
 
 - `index.ts` (20+ lines)
@@ -53,16 +53,16 @@ This implementation provides the **foundation** for agentic-flow integration whi
 **New Commands Available:**
 ```bash
 # Execute agents with multi-provider support
-claude-flow agent run coder "Build REST API"
-claude-flow agent run researcher "Research AI" --provider openrouter
-claude-flow agent run security-auditor "Audit code" --provider onnx
+ruflo agent run coder "Build REST API"
+ruflo agent run researcher "Research AI" --provider openrouter
+ruflo agent run security-auditor "Audit code" --provider onnx
 
 # List available agents
-claude-flow agent agents
+ruflo agent agents
 
 # All existing commands still work
-claude-flow agent spawn researcher --name "DataBot"
-claude-flow agent list
+ruflo agent spawn researcher --name "DataBot"
+ruflo agent list
 ```
 
 **Created (not yet registered):** `src/cli/simple-commands/config.ts`
@@ -115,7 +115,7 @@ Access to comprehensive agent library:
 ### Provider Configuration
 Manage providers via:
 - Command line flags (`--provider openrouter`)
-- Configuration file (`.claude/settings.json`)
+- Configuration file (`.openclaw/settings.json`)
 - Interactive wizard (Phase 2)
 
 ---
@@ -180,11 +180,11 @@ Agent commands:
 
 ### Backwards Compatibility ✅
 All existing commands continue to work:
-- `claude-flow agent spawn` ✅
-- `claude-flow agent list` ✅
-- `claude-flow sparc` ✅
-- `claude-flow swarm` ✅
-- `claude-flow status` ✅
+- `ruflo agent spawn` ✅
+- `ruflo agent list` ✅
+- `ruflo sparc` ✅
+- `ruflo swarm` ✅
+- `ruflo status` ✅
 
 ---
 
@@ -212,35 +212,35 @@ All existing commands continue to work:
 ### Basic Execution
 ```bash
 # Use default provider (Anthropic)
-claude-flow agent run coder "Create a REST API with authentication"
+ruflo agent run coder "Create a REST API with authentication"
 
 # Specify provider for cost savings
-claude-flow agent run researcher "Research React 19 features" --provider openrouter
+ruflo agent run researcher "Research React 19 features" --provider openrouter
 
 # Use local privacy-first execution
-claude-flow agent run security-auditor "Audit this code" --provider onnx
+ruflo agent run security-auditor "Audit this code" --provider onnx
 
 # List all available agents
-claude-flow agent agents
+ruflo agent agents
 ```
 
 ### Advanced Options
 ```bash
 # With model specification
-claude-flow agent run coder "Build API" \
+ruflo agent run coder "Build API" \
   --provider openrouter \
   --model meta-llama/llama-3.1-8b-instruct
 
 # With temperature control
-claude-flow agent run creative-writer "Write story" \
+ruflo agent run creative-writer "Write story" \
   --temperature 0.9
 
 # With output formatting
-claude-flow agent run data-analyst "Analyze data" \
+ruflo agent run data-analyst "Analyze data" \
   --format json
 
 # Verbose output
-claude-flow agent run debugger "Fix bug" \
+ruflo agent run debugger "Fix bug" \
   --verbose
 ```
 
@@ -250,7 +250,7 @@ claude-flow agent run debugger "Fix bug" \
 
 ```
 ┌────────────────────────────────────────┐
-│     Claude Code (User Interface)       │
+│     OpenClaw (User Interface)       │
 └────────────────────────────────────────┘
                   ↓
 ┌────────────────────────────────────────┐
@@ -333,7 +333,7 @@ claude-flow agent run debugger "Fix bug" \
 
 ## 🔗 Related Documentation
 
-- [GitHub EPIC #794](https://github.com/ruvnet/claude-flow/issues/794)
+- [GitHub EPIC #794](https://github.com/snowzlm/ruflo/issues/794)
 - [Integration Status](./AGENTIC_FLOW_INTEGRATION_STATUS.md)
 - [Package Documentation](../README.md)
 

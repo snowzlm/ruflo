@@ -1,6 +1,6 @@
 # V3 Migration Documentation
 
-> Comprehensive guide for migrating from Claude Flow V2 to V3
+> Comprehensive guide for migrating from Ruflo V2 to V3
 
 ## Overview
 
@@ -95,13 +95,13 @@ This directory contains detailed analysis of capabilities, gaps, and migration p
 
 ```bash
 # Check migration status
-npx claude-flow migrate status
+npx ruflo migrate status
 
 # Run automatic migration
-npx claude-flow migrate run --target all --backup
+npx ruflo migrate run --target all --backup
 
 # Verify migration
-npx claude-flow migrate verify
+npx ruflo migrate verify
 ```
 
 ## Related Documentation

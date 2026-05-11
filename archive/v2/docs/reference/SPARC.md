@@ -244,16 +244,16 @@ SPARC transforms development from ad-hoc coding to systematic engineering by:
 
 ```bash
 # List all available SPARC modes
-npx claude-flow@alpha sparc modes [--verbose]
+ruflo sparc modes [--verbose]
 
 # Get detailed information about a specific mode
-npx claude-flow@alpha sparc info <mode-slug>
+ruflo sparc info <mode-slug>
 
 # Execute a task in a specific SPARC mode
-npx claude-flow@alpha sparc run <mode> "<task-description>"
+ruflo sparc run <mode> "<task-description>"
 
 # Run Test-Driven Development workflow
-npx claude-flow@alpha sparc tdd "<feature-description>"
+ruflo sparc tdd "<feature-description>"
 ```
 
 ### Command Options
@@ -278,31 +278,31 @@ npx claude-flow@alpha sparc tdd "<feature-description>"
 #### Single Mode Execution
 ```bash
 # Code implementation with custom namespace
-npx claude-flow@alpha sparc run code "implement user authentication" --namespace auth_system
+ruflo sparc run code "implement user authentication" --namespace auth_system
 
 # Architecture planning with verbose output
-npx claude-flow@alpha sparc run architect "design microservices architecture" --verbose
+ruflo sparc run architect "design microservices architecture" --verbose
 
 # Test-driven development for payment system
-npx claude-flow@alpha sparc run tdd "payment processing with validation" --namespace payments
+ruflo sparc run tdd "payment processing with validation" --namespace payments
 
 # Security review of existing codebase
-npx claude-flow@alpha sparc run security-review "audit authentication system" --verbose
+ruflo sparc run security-review "audit authentication system" --verbose
 
 # Performance optimization with non-interactive mode
-npx claude-flow@alpha sparc run optimizer "optimize database queries" --non-interactive
+ruflo sparc run optimizer "optimize database queries" --non-interactive
 ```
 
 #### TDD Workflow
 ```bash
 # Interactive TDD workflow (step-by-step)
-npx claude-flow@alpha sparc tdd "user registration system" --interactive
+ruflo sparc tdd "user registration system" --interactive
 
 # Automated TDD workflow
-npx claude-flow@alpha sparc tdd "shopping cart functionality" --namespace ecommerce
+ruflo sparc tdd "shopping cart functionality" --namespace ecommerce
 
 # TDD with custom configuration
-npx claude-flow@alpha sparc tdd "payment gateway integration" --config ./custom-mcp.json
+ruflo sparc tdd "payment gateway integration" --config ./custom-mcp.json
 ```
 
 ## Pipeline and Batch Execution
@@ -315,30 +315,30 @@ SPARC modes can be orchestrated using BatchTool for parallel and sequential exec
 ```bash
 # Run multiple modes concurrently
 batchtool run --parallel \
-  "npx claude-flow@alpha sparc run architect 'system design' --non-interactive" \
-  "npx claude-flow@alpha sparc run security-review 'security requirements' --non-interactive" \
-  "npx claude-flow@alpha sparc run researcher 'technology evaluation' --non-interactive"
+  "ruflo sparc run architect 'system design' --non-interactive" \
+  "ruflo sparc run security-review 'security requirements' --non-interactive" \
+  "ruflo sparc run researcher 'technology evaluation' --non-interactive"
 ```
 
 #### Sequential Pipeline
 ```bash
 # Sequential execution with result chaining
 batchtool pipeline \
-  --stage1 "npx claude-flow@alpha sparc run ask 'gather requirements' --non-interactive" \
-  --stage2 "npx claude-flow@alpha sparc run architect 'design system' --non-interactive" \
-  --stage3 "npx claude-flow@alpha sparc run code 'implement features' --non-interactive" \
-  --stage4 "npx claude-flow@alpha sparc run tdd 'create test suite' --non-interactive"
+  --stage1 "ruflo sparc run ask 'gather requirements' --non-interactive" \
+  --stage2 "ruflo sparc run architect 'design system' --non-interactive" \
+  --stage3 "ruflo sparc run code 'implement features' --non-interactive" \
+  --stage4 "ruflo sparc run tdd 'create test suite' --non-interactive"
 ```
 
 #### Boomerang Pattern
 ```bash
 # Iterative development with feedback loops
 batchtool orchestrate --boomerang \
-  --research "npx claude-flow@alpha sparc run researcher 'best practices' --non-interactive" \
-  --design "npx claude-flow@alpha sparc run architect 'system design' --non-interactive" \
-  --implement "npx claude-flow@alpha sparc run code 'feature implementation' --non-interactive" \
-  --test "npx claude-flow@alpha sparc run tdd 'validation suite' --non-interactive" \
-  --refine "npx claude-flow@alpha sparc run optimizer 'performance tuning' --non-interactive"
+  --research "ruflo sparc run researcher 'best practices' --non-interactive" \
+  --design "ruflo sparc run architect 'system design' --non-interactive" \
+  --implement "ruflo sparc run code 'feature implementation' --non-interactive" \
+  --test "ruflo sparc run tdd 'validation suite' --non-interactive" \
+  --refine "ruflo sparc run optimizer 'performance tuning' --non-interactive"
 ```
 
 ### Full Development Pipeline
@@ -346,7 +346,7 @@ batchtool orchestrate --boomerang \
 #### Complete Feature Development
 ```bash
 # End-to-end feature development pipeline
-npx claude-flow@alpha sparc pipeline "user authentication system" \
+ruflo sparc pipeline "user authentication system" \
   --phases "ask,architect,security-review,code,tdd,optimizer,documenter" \
   --namespace "auth_feature" \
   --parallel-compatible "ask,security-review,documenter"
@@ -356,10 +356,10 @@ npx claude-flow@alpha sparc pipeline "user authentication system" \
 ```bash
 # Parallel microservices development
 batchtool run --max-parallel 3 \
-  "npx claude-flow@alpha sparc run code 'user service' --namespace users --non-interactive" \
-  "npx claude-flow@alpha sparc run code 'order service' --namespace orders --non-interactive" \
-  "npx claude-flow@alpha sparc run code 'payment service' --namespace payments --non-interactive" \
-  "npx claude-flow@alpha sparc run integration 'service communication' --namespace integration --non-interactive"
+  "ruflo sparc run code 'user service' --namespace users --non-interactive" \
+  "ruflo sparc run code 'order service' --namespace orders --non-interactive" \
+  "ruflo sparc run code 'payment service' --namespace payments --non-interactive" \
+  "ruflo sparc run integration 'service communication' --namespace integration --non-interactive"
 ```
 
 ## TDD Workflow Integration
@@ -402,13 +402,13 @@ The SPARC TDD mode implements London School TDD with the following phases:
 
 ```bash
 # Start interactive TDD workflow
-npx claude-flow@alpha sparc tdd "shopping cart with discounts" --interactive
+ruflo sparc tdd "shopping cart with discounts" --interactive
 
 # Automated TDD with custom namespace
-npx claude-flow@alpha sparc tdd "payment validation system" --namespace payments
+ruflo sparc tdd "payment validation system" --namespace payments
 
 # TDD with integration testing focus
-npx claude-flow@alpha sparc run tdd "API endpoint with database" --namespace api_tests
+ruflo sparc run tdd "API endpoint with database" --namespace api_tests
 ```
 
 ## Memory Namespace Usage
@@ -427,17 +427,17 @@ Memory namespaces organize context and enable coordination between modes:
 #### Memory Operations
 ```bash
 # Store progress and context
-npx claude-flow@alpha memory store <namespace>_progress "Current implementation status"
-npx claude-flow@alpha memory store <namespace>_decisions "Key architectural decisions"
-npx claude-flow@alpha memory store <namespace>_blockers "Current impediments"
+ruflo memory store <namespace>_progress "Current implementation status"
+ruflo memory store <namespace>_decisions "Key architectural decisions"
+ruflo memory store <namespace>_blockers "Current impediments"
 
 # Query previous work and context
-npx claude-flow@alpha memory query <namespace>
-npx claude-flow@alpha memory query <namespace>_architecture
-npx claude-flow@alpha memory query <namespace>_requirements
+ruflo memory query <namespace>
+ruflo memory query <namespace>_architecture
+ruflo memory query <namespace>_requirements
 
 # List all namespaces
-npx claude-flow@alpha memory list
+ruflo memory list
 ```
 
 ### Cross-Mode Coordination
@@ -445,13 +445,13 @@ npx claude-flow@alpha memory list
 #### Shared Context Example
 ```bash
 # Architect stores system design
-npx claude-flow@alpha sparc run architect "design user system" --namespace user_feature
+ruflo sparc run architect "design user system" --namespace user_feature
 
 # Coder implements based on architect's design
-npx claude-flow@alpha sparc run code "implement user CRUD" --namespace user_feature
+ruflo sparc run code "implement user CRUD" --namespace user_feature
 
 # Tester validates implementation
-npx claude-flow@alpha sparc run tdd "test user operations" --namespace user_feature
+ruflo sparc run tdd "test user operations" --namespace user_feature
 
 # All modes share the user_feature namespace for context
 ```
@@ -463,25 +463,25 @@ npx claude-flow@alpha sparc run tdd "test user operations" --namespace user_feat
 #### Full-Stack Development Pipeline
 ```bash
 # 1. Requirements and research
-npx claude-flow@alpha sparc run ask "e-commerce requirements" --namespace ecommerce
+ruflo sparc run ask "e-commerce requirements" --namespace ecommerce
 
 # 2. System architecture
-npx claude-flow@alpha sparc run architect "microservices design" --namespace ecommerce
+ruflo sparc run architect "microservices design" --namespace ecommerce
 
 # 3. Parallel service development
 batchtool run --parallel \
-  "npx claude-flow@alpha sparc run code 'user service API' --namespace ecommerce_users --non-interactive" \
-  "npx claude-flow@alpha sparc run code 'product catalog API' --namespace ecommerce_products --non-interactive" \
-  "npx claude-flow@alpha sparc run code 'order processing API' --namespace ecommerce_orders --non-interactive"
+  "ruflo sparc run code 'user service API' --namespace ecommerce_users --non-interactive" \
+  "ruflo sparc run code 'product catalog API' --namespace ecommerce_products --non-interactive" \
+  "ruflo sparc run code 'order processing API' --namespace ecommerce_orders --non-interactive"
 
 # 4. Integration and testing
-npx claude-flow@alpha sparc run integration "service communication" --namespace ecommerce
-npx claude-flow@alpha sparc run tdd "end-to-end testing" --namespace ecommerce
+ruflo sparc run integration "service communication" --namespace ecommerce
+ruflo sparc run tdd "end-to-end testing" --namespace ecommerce
 
 # 5. Security and optimization
 batchtool run --parallel \
-  "npx claude-flow@alpha sparc run security-review 'security audit' --namespace ecommerce --non-interactive" \
-  "npx claude-flow@alpha sparc run optimizer 'performance tuning' --namespace ecommerce --non-interactive"
+  "ruflo sparc run security-review 'security audit' --namespace ecommerce --non-interactive" \
+  "ruflo sparc run optimizer 'performance tuning' --namespace ecommerce --non-interactive"
 ```
 
 ### API Development
@@ -489,16 +489,16 @@ batchtool run --parallel \
 #### RESTful API with TDD
 ```bash
 # Test-driven API development
-npx claude-flow@alpha sparc tdd "RESTful user management API" --namespace user_api
+ruflo sparc tdd "RESTful user management API" --namespace user_api
 
 # Add authentication layer
-npx claude-flow@alpha sparc run security-review "API authentication" --namespace user_api
+ruflo sparc run security-review "API authentication" --namespace user_api
 
 # Performance optimization
-npx claude-flow@alpha sparc run optimizer "API response times" --namespace user_api
+ruflo sparc run optimizer "API response times" --namespace user_api
 
 # Documentation generation
-npx claude-flow@alpha sparc run documenter "API documentation" --namespace user_api
+ruflo sparc run documenter "API documentation" --namespace user_api
 ```
 
 ### Bug Fix Workflow
@@ -506,16 +506,16 @@ npx claude-flow@alpha sparc run documenter "API documentation" --namespace user_
 #### Systematic Bug Resolution
 ```bash
 # 1. Research and reproduction
-npx claude-flow@alpha sparc run debugger "investigate login failures" --namespace bug_1234
+ruflo sparc run debugger "investigate login failures" --namespace bug_1234
 
 # 2. Root cause analysis
-npx claude-flow@alpha sparc run analyst "analyze authentication flow" --namespace bug_1234
+ruflo sparc run analyst "analyze authentication flow" --namespace bug_1234
 
 # 3. Fix implementation with tests
-npx claude-flow@alpha sparc run tdd "fix and test authentication" --namespace bug_1234
+ruflo sparc run tdd "fix and test authentication" --namespace bug_1234
 
 # 4. Security validation
-npx claude-flow@alpha sparc run security-review "validate auth fix" --namespace bug_1234
+ruflo sparc run security-review "validate auth fix" --namespace bug_1234
 ```
 
 ### DevOps and Infrastructure
@@ -523,16 +523,16 @@ npx claude-flow@alpha sparc run security-review "validate auth fix" --namespace 
 #### CI/CD Pipeline Setup
 ```bash
 # Infrastructure planning
-npx claude-flow@alpha sparc run architect "CI/CD architecture" --namespace devops
+ruflo sparc run architect "CI/CD architecture" --namespace devops
 
 # Pipeline implementation
-npx claude-flow@alpha sparc run devops "GitHub Actions workflow" --namespace devops
+ruflo sparc run devops "GitHub Actions workflow" --namespace devops
 
 # Monitoring and alerts
-npx claude-flow@alpha sparc run devops "application monitoring" --namespace devops
+ruflo sparc run devops "application monitoring" --namespace devops
 
 # Documentation
-npx claude-flow@alpha sparc run documenter "deployment guide" --namespace devops
+ruflo sparc run documenter "deployment guide" --namespace devops
 ```
 
 ### Research and Analysis
@@ -540,16 +540,16 @@ npx claude-flow@alpha sparc run documenter "deployment guide" --namespace devops
 #### Technology Evaluation
 ```bash
 # Research phase
-npx claude-flow@alpha sparc run researcher "JavaScript framework comparison" --namespace tech_eval
+ruflo sparc run researcher "JavaScript framework comparison" --namespace tech_eval
 
 # Architecture implications
-npx claude-flow@alpha sparc run architect "framework integration design" --namespace tech_eval
+ruflo sparc run architect "framework integration design" --namespace tech_eval
 
 # Prototype development
-npx claude-flow@alpha sparc run code "proof of concept" --namespace tech_eval
+ruflo sparc run code "proof of concept" --namespace tech_eval
 
 # Analysis and recommendation
-npx claude-flow@alpha sparc run analyst "framework recommendation" --namespace tech_eval
+ruflo sparc run analyst "framework recommendation" --namespace tech_eval
 ```
 
 ## Best Practices and Tips
@@ -652,7 +652,7 @@ Continuous improvement through multiple optimization cycles
 
 1. **Mode Not Found**
    - Ensure `.roomodes` file exists in project directory
-   - Run `npx claude-flow@alpha init --sparc` to set up SPARC environment
+   - Run `ruflo init --sparc` to set up SPARC environment
 
 2. **Permission Issues**
    - Use `--enable-permissions` for manual control
@@ -660,7 +660,7 @@ Continuous improvement through multiple optimization cycles
 
 3. **Memory Namespace Conflicts**
    - Use unique namespace names
-   - Query existing namespaces with `npx claude-flow@alpha memory list`
+   - Query existing namespaces with `ruflo memory list`
 
 4. **BatchTool Integration**
    - Ensure BatchTool is installed and configured
@@ -714,4 +714,4 @@ Key advantages:
 - **Memory Persistence**: Context sharing across development sessions
 - **Quality Assurance**: Built-in best practices and validation
 
-Start with `npx claude-flow@alpha sparc modes` to explore available modes, and use `npx claude-flow@alpha sparc run <mode> "<task>"` to begin systematic development with SPARC.
+Start with `ruflo sparc modes` to explore available modes, and use `ruflo sparc run <mode> "<task>"` to begin systematic development with SPARC.

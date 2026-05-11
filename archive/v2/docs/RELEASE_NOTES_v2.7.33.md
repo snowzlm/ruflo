@@ -1,4 +1,4 @@
-# Release Notes: Claude Flow v2.7.33
+# Release Notes: Ruflo v2.7.33
 
 **Release Date**: 2025-11-12
 **Version**: 2.7.33 (Major Feature Release)
@@ -36,7 +36,7 @@ This is a **major feature release** introducing **MCP 2025-11 specification comp
 ## 🎯 Feature 1: MCP 2025-11 Specification Compliance
 
 ### Overview
-Full implementation of MCP (Model Context Protocol) 2025-11 specification, aligning Claude Flow with Anthropic's latest standards for AI model interaction.
+Full implementation of MCP (Model Context Protocol) 2025-11 specification, aligning Ruflo with Anthropic's latest standards for AI model interaction.
 
 ### What's New
 
@@ -82,13 +82,13 @@ Full implementation of MCP (Model Context Protocol) 2025-11 specification, align
 #### Enable MCP 2025-11 Features
 ```bash
 # Via CLI flag (testing)
-npx claude-flow mcp start --mcp2025
+npx ruflo mcp start --mcp2025
 
 # With specific transport
-npx claude-flow mcp start --mcp2025 --transport http --port 3000
+npx ruflo mcp start --mcp2025 --transport http --port 3000
 
 # Legacy mode (default)
-npx claude-flow mcp start
+npx ruflo mcp start
 ```
 
 #### Via Configuration (production)
@@ -232,7 +232,7 @@ Updated AgentDB from previous versions to v1.6.1, providing massive performance 
 ### Usage
 ```bash
 # Memory stats now shows ReasoningBank data
-npx claude-flow memory stats
+npx ruflo memory stats
 
 # Automatic SQLite backend
 # Falls back to JSON if unavailable
@@ -291,7 +291,7 @@ Fixed GitHub issue #865 where `memory stats` command always returned zeros inste
 
 ### Before (Broken)
 ```bash
-$ npx claude-flow memory stats
+$ npx ruflo memory stats
 Total Entries: 0
 Namespaces: 0
 Size: 0.00 KB
@@ -299,7 +299,7 @@ Size: 0.00 KB
 
 ### After (Fixed)
 ```bash
-$ npx claude-flow memory stats
+$ npx ruflo memory stats
 📁 JSON Storage: 1 entries, 0.11 KB
 🧠 ReasoningBank: 19 memories, 80% confidence, 11.92 MB
 💡 Active Mode: ReasoningBank (auto-selected)
@@ -374,10 +374,10 @@ docs/
 No migration needed - all features are opt-in via feature flags:
 ```bash
 # Legacy mode (default)
-npx claude-flow mcp start
+npx ruflo mcp start
 
 # New MCP 2025-11 mode (opt-in)
-npx claude-flow mcp start --mcp2025
+npx ruflo mcp start --mcp2025
 ```
 
 ---
@@ -422,22 +422,22 @@ npx claude-flow mcp start --mcp2025
 ### New Installation
 ```bash
 # Install latest version
-npm install claude-flow@2.7.33
+npm install ruflo@2.7.33
 
 # Or use npx (always latest)
-npx claude-flow@latest init
+ruflo init
 ```
 
 ### Upgrade from v2.7.x
 ```bash
 # Update package
-npm update claude-flow
+npm update ruflo
 
 # Or reinstall
-npm install claude-flow@2.7.33
+npm install ruflo@2.7.33
 
 # Verify version
-npx claude-flow --version  # Should show v2.7.33
+npx ruflo --version  # Should show v2.7.33
 ```
 
 ### Breaking Changes
@@ -503,13 +503,13 @@ All new dependencies are for MCP 2025-11 features (opt-in).
 ### For Development
 ```bash
 # Enable all MCP 2025-11 features for testing
-npx claude-flow mcp start --mcp2025 --transport stdio
+npx ruflo mcp start --mcp2025 --transport stdio
 ```
 
 ### For Production
 ```bash
 # Start with legacy mode (default)
-npx claude-flow mcp start
+npx ruflo mcp start
 
 # Gradually enable MCP 2025-11 via feature flags
 # Monitor performance and stability
@@ -579,13 +579,13 @@ npx claude-flow mcp start
 ## 📞 Support & Resources
 
 ### Getting Help
-- **Documentation**: https://github.com/ruvnet/claude-code-flow/docs
-- **Issues**: https://github.com/ruvnet/claude-code-flow/issues
-- **Discussions**: https://github.com/ruvnet/claude-code-flow/discussions
+- **Documentation**: https://github.com/ruvnet/openclaw-flow/docs
+- **Issues**: https://github.com/ruvnet/openclaw-flow/issues
+- **Discussions**: https://github.com/ruvnet/openclaw-flow/discussions
 
 ### Reporting Issues
 1. Check existing issues first
-2. Include version (`npx claude-flow --version`)
+2. Include version (`npx ruflo --version`)
 3. Provide reproduction steps
 4. Include error messages/logs
 
@@ -593,7 +593,7 @@ npx claude-flow mcp start
 
 ## 🎉 Summary
 
-Claude Flow v2.7.33 is a **major feature release** that brings:
+Ruflo v2.7.33 is a **major feature release** that brings:
 
 ✅ **MCP 2025-11 Specification Compliance** (100% Phase A & B)
 ✅ **Progressive Disclosure** (98.7% token reduction)
@@ -604,7 +604,7 @@ Claude Flow v2.7.33 is a **major feature release** that brings:
 ✅ **Comprehensive Documentation** (87 new docs)
 ✅ **Production Ready** (extensively tested)
 
-**This release positions Claude Flow as an industry-leading AI agent orchestration platform** with cutting-edge features, massive performance improvements, and enterprise-grade reliability.
+**This release positions Ruflo as an industry-leading AI agent orchestration platform** with cutting-edge features, massive performance improvements, and enterprise-grade reliability.
 
 ---
 

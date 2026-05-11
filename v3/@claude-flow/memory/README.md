@@ -4,15 +4,15 @@
 [![npm downloads](https://img.shields.io/npm/dm/@claude-flow/memory.svg)](https://www.npmjs.com/package/@claude-flow/memory)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
-[![Performance](https://img.shields.io/badge/Performance-150x--12500x%20Faster-brightgreen.svg)](https://github.com/ruvnet/claude-flow)
+[![Performance](https://img.shields.io/badge/Performance-150x--12500x%20Faster-brightgreen.svg)](https://github.com/snowzlm/ruflo)
 
-> High-performance memory module for Claude Flow V3 - AgentDB unification, HNSW indexing, vector search, self-learning knowledge graph, and hybrid SQLite+AgentDB backend (ADR-009).
+> High-performance memory module for Ruflo V3 - AgentDB unification, HNSW indexing, vector search, self-learning knowledge graph, and hybrid SQLite+AgentDB backend (ADR-009).
 
 ## Features
 
 - **150x-12,500x Faster Search** - HNSW (Hierarchical Navigable Small World) vector index for ultra-fast similarity search
 - **Hybrid Backend** - SQLite for structured data + AgentDB for vectors (ADR-009)
-- **Auto Memory Bridge** - Bidirectional sync between Claude Code auto memory and AgentDB (ADR-048)
+- **Auto Memory Bridge** - Bidirectional sync between OpenClaw auto memory and AgentDB (ADR-048)
 - **Self-Learning** - LearningBridge connects insights to SONA/ReasoningBank neural pipeline (ADR-049)
 - **Knowledge Graph** - PageRank + label propagation community detection over memory entries (ADR-049)
 - **Agent-Scoped Memory** - 3-scope agent memory (project/local/user) with cross-agent knowledge transfer (ADR-049)
@@ -216,7 +216,7 @@ const productIndex = new HNSWIndex({
 
 ## Auto Memory Bridge (ADR-048)
 
-Bidirectional sync between Claude Code's [auto memory](https://code.claude.com/docs/en/memory) files and AgentDB. Auto memory is a persistent directory (`~/.claude/projects/<project>/memory/`) where Claude writes learnings as markdown. `MEMORY.md` (first 200 lines) is loaded into the system prompt; topic files are read on demand.
+Bidirectional sync between OpenClaw's [auto memory](https://code.claude.com/docs/en/memory) files and AgentDB. Auto memory is a persistent directory (`~/.openclaw/projects/<project>/memory/`) where Claude writes learnings as markdown. `MEMORY.md` (first 200 lines) is loaded into the system prompt; topic files are read on demand.
 
 ### Quick Start
 
@@ -462,7 +462,7 @@ const neighbors = graph.getNeighbors('entry-1', 2); // depth=2
 
 ## Agent-Scoped Memory (ADR-049)
 
-Maps Claude Code's 3-scope agent memory directories for per-agent knowledge isolation and cross-agent transfer.
+Maps OpenClaw's 3-scope agent memory directories for per-agent knowledge isolation and cross-agent transfer.
 
 ### Quick Start
 
@@ -498,9 +498,9 @@ const result = await transferKnowledge(sourceBackend, targetBridge, {
 
 | Scope | Directory | Use Case |
 |-------|-----------|----------|
-| `project` | `<gitRoot>/.claude/agent-memory/<agent>/` | Project-specific learnings |
-| `local` | `<gitRoot>/.claude/agent-memory-local/<agent>/` | Machine-local data |
-| `user` | `~/.claude/agent-memory/<agent>/` | Cross-project user knowledge |
+| `project` | `<gitRoot>/.openclaw/agent-memory/<agent>/` | Project-specific learnings |
+| `local` | `<gitRoot>/.openclaw/agent-memory-local/<agent>/` | Machine-local data |
+| `user` | `~/.openclaw/agent-memory/<agent>/` | Cross-project user knowledge |
 
 ### Utilities
 
@@ -514,7 +514,7 @@ import {
 
 // Resolve path for an agent scope
 const dir = resolveAgentMemoryDir('my-agent', 'project');
-// → /workspaces/my-project/.claude/agent-memory/my-agent/
+// → /workspaces/my-project/.openclaw/agent-memory/my-agent/
 
 // List all agent scopes in a directory
 const scopes = await listAgentScopes('/workspaces/my-project');

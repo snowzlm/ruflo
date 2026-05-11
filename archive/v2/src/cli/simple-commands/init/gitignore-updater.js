@@ -10,7 +10,7 @@ import { existsSync, readTextFile, writeTextFile } from '../../node-compat.js';
  */
 const CLAUDE_FLOW_GITIGNORE_ENTRIES = `
 # Claude Flow generated files
-.claude/settings.local.json
+`.openclaw/settings.local.json
 .mcp.json
 claude-flow.config.json
 .swarm/

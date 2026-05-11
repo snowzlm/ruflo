@@ -84,7 +84,7 @@ export class HealthChecker {
 
     try {
       // Check for template directories
-      const templateDirs = ['.roo/templates', '.claude/commands'];
+      const templateDirs = ['.roo/templates', '.openclaw/commands'];
 
       for (const dir of templateDirs) {
         const dirPath = `${this.workingDir}/${dir}`;
@@ -103,7 +103,7 @@ export class HealthChecker {
       }
 
       // Check core template files
-      const coreTemplates = ['CLAUDE.md', 'memory-bank.md', 'coordination.md'];
+      const coreTemplates = ['OPENCLAW.md', 'memory-bank.md', 'coordination.md'];
 
       for (const template of coreTemplates) {
         const templatePath = `${this.workingDir}/${template}`;
@@ -156,11 +156,11 @@ export class HealthChecker {
         result.warnings.push('Inconsistency between .roomodes and available commands');
       }
 
-      // Check consistency between CLAUDE.md and actual setup
+      // Check consistency between OPENCLAW.md and actual setup
       const claudeCheck = await this.checkClaudeConfigConsistency();
       result.consistency.claude = claudeCheck;
       if (!claudeCheck.consistent) {
-        result.warnings.push('Inconsistency between CLAUDE.md and actual setup');
+        result.warnings.push('Inconsistency between OPENCLAW.md and actual setup');
       }
 
       // Check memory configuration consistency
@@ -331,7 +331,7 @@ export class HealthChecker {
       const config = JSON.parse(content);
 
       if (config.modes) {
-        const commandsDir = `${this.workingDir}/.claude/commands`;
+        const commandsDir = `${this.workingDir}/.openclaw/commands`;
 
         try {
           const commandFiles = [];
@@ -368,7 +368,7 @@ export class HealthChecker {
     };
 
     try {
-      const claudePath = `${this.workingDir}/CLAUDE.md`;
+      const claudePath = `${this.workingDir}/OPENCLAW.md`;
       const content = await fs.readFile(claudePath, 'utf8');
 
       // Check if mentioned commands exist
@@ -391,7 +391,7 @@ export class HealthChecker {
       }
     } catch {
       result.consistent = false;
-      result.issues.push('Cannot read CLAUDE.md');
+      result.issues.push('Cannot read OPENCLAW.md');
     }
 
     return result;

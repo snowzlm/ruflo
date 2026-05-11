@@ -2,7 +2,7 @@
 
 ## Overview
 
-Claude Flow now includes **REAL** token tracking capabilities that capture actual Claude API usage, not simulated data. This guide shows how to enable and use token tracking with the Claude Code CLI.
+Ruflo now includes **REAL** token tracking capabilities that capture actual Claude API usage, not simulated data. This guide shows how to enable and use token tracking with the OpenClaw CLI.
 
 ## Quick Start
 
@@ -277,12 +277,12 @@ export CLAUDE_CODE_ENABLE_TELEMETRY=1
 ## Support
 
 For issues or questions:
-- GitHub Issues: https://github.com/ruvnet/claude-flow/issues
-- Documentation: https://github.com/ruvnet/claude-flow/docs
+- GitHub Issues: https://github.com/snowzlm/ruflo/issues
+- Documentation: https://github.com/snowzlm/ruflo/docs
 
 ## Conclusion
 
-Real token tracking in Claude Flow provides transparency into API usage and costs. By following this guide, you can:
+Real token tracking in Ruflo provides transparency into API usage and costs. By following this guide, you can:
 - Track actual Claude API token consumption
 - Monitor costs in real-time
 - Optimize token usage patterns

@@ -99,7 +99,7 @@ export class PreInitValidator {
     };
 
     const criticalFiles = [
-      'CLAUDE.md',
+      'OPENCLAW.md',
       'memory-bank.md',
       'coordination.md',
       '.roomodes',

@@ -1,11 +1,11 @@
 # 📚 User Guides & Tutorials
 
-Comprehensive guides and tutorials for using claude-flow.
+Comprehensive guides and tutorials for using ruflo.
 
 ## Featured Guides
 
 ### Skills System
-- **[Skills Tutorial](./skills-tutorial.md)** - Complete guide to 25 Claude Flow skills with natural language invocation
+- **[Skills Tutorial](./skills-tutorial.md)** - Complete guide to 25 Ruflo skills with natural language invocation
 
 ## Skill Categories
 

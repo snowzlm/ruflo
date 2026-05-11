@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 /**
- * Example: How to Use Yoga Layout Engine with Claude Code
+ * Example: How to Use Yoga Layout Engine with OpenClaw
  * 
- * Note: yoga.wasm in Claude Code is a compiled WebAssembly binary
+ * Note: yoga.wasm in OpenClaw is a compiled WebAssembly binary
  * that provides flexbox layout calculations. It's not a UI itself,
  * but a layout engine that calculates positions and sizes.
  */
@@ -17,7 +17,7 @@ import { dirname, join } from 'path';
 
 class YogaLayoutExample {
   constructor() {
-    this.wasmPath = '/usr/local/share/nvm/versions/node/v20.19.0/lib/node_modules/@anthropic-ai/claude-code/yoga.wasm';
+    this.wasmPath = '/usr/local/share/nvm/versions/node/v20.19.0/lib/node_modules/@anthropic-ai/openclaw/yoga.wasm';
   }
 
   /**
@@ -93,7 +93,7 @@ class YogaLayoutExample {
     
     console.log('\n4. CUSTOM CLAUDE CODE INTEGRATION:');
     console.log(`
-   // Create a custom layout manager for Claude Code output
+   // Create a custom layout manager for OpenClaw output
    class ClaudeCodeLayoutManager {
      constructor() {
        this.yoga = require('yoga-layout');
@@ -137,9 +137,9 @@ class YogaLayoutExample {
    `);
     
     console.log('\n5. CURRENT STATUS:');
-    console.log('   ✓ yoga.wasm exists in Claude Code installation');
+    console.log('   ✓ yoga.wasm exists in OpenClaw installation');
     console.log('   ✓ 88KB compiled WebAssembly binary');
-    console.log('   ⚠ Not currently used by Claude Code');
+    console.log('   ⚠ Not currently used by OpenClaw');
     console.log('   ⚠ Would need yoga-layout npm package to utilize');
     
     console.log('\n6. POTENTIAL USE CASES:');
@@ -151,7 +151,7 @@ class YogaLayoutExample {
   }
   
   /**
-   * Check if yoga.wasm exists in Claude Code
+   * Check if yoga.wasm exists in OpenClaw
    */
   checkYogaWasm() {
     try {
@@ -170,8 +170,8 @@ const example = new YogaLayoutExample();
 example.demonstrateYogaUsage();
 example.checkYogaWasm();
 
-console.log('\n📝 To actually modify Claude Code\'s UI:');
-console.log('   1. Fork Claude Code repository');
+console.log('\n📝 To actually modify OpenClaw\'s UI:');
+console.log('   1. Fork OpenClaw repository');
 console.log('   2. Integrate yoga-layout package');
 console.log('   3. Implement custom terminal UI components');
 console.log('   4. Use yoga for layout calculations');

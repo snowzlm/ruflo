@@ -543,7 +543,7 @@ advancedSecurity.addThreatIndicator("malicious-pattern-x");
 // Claude Flow integration:
 const wrapper = new ClaudeFlowAgentSecurityWrapper(securitySystem);
 await wrapper.registerClaudeFlowAgent({
-  agentId: "claude-coder-1",
+  agentId: "openclawr-1",
   type: "coder",
   capabilities: ["code", "review", "test"]
 });

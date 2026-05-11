@@ -1,8 +1,8 @@
-# Background Commands in Claude Code
+# Background Commands in OpenClaw
 
 ## Overview
 
-Claude Code supports running shell commands in the background through multiple methods:
+OpenClaw supports running shell commands in the background through multiple methods:
 
 1. **Keyboard Shortcut**: Press `Ctrl+B` when Claude suggests a command to run it in the background (or `Ctrl+B Ctrl+B` in tmux)
 2. **Programmatic Execution**: Use the `run_in_background` parameter in the Bash tool
@@ -152,7 +152,7 @@ The development server has been stopped.
 
 ### The /bashes Command
 
-Claude Code includes a built-in command for managing background shells interactively:
+OpenClaw includes a built-in command for managing background shells interactively:
 
 ```bash
 /bashes
@@ -229,7 +229,7 @@ function handleCommand(command) {
 #### 3. Hook System Integration
 ```bash
 # Pre-command hook that simulates Ctrl+B for certain commands
-npx claude-flow hooks pre-command \
+npx ruflo hooks pre-command \
   --auto-background "npm run dev" \
   --auto-background "docker-compose up"
 ```
@@ -239,9 +239,9 @@ npx claude-flow hooks pre-command \
 - **Standard Terminals**: `Ctrl+B` triggers background execution
 - **Tmux Sessions**: `Ctrl+B Ctrl+B` (double tap) since Ctrl+B is tmux prefix
 - **VS Code Terminal**: `Ctrl+B` works normally
-- **SSH Sessions**: `Ctrl+B` passes through to Claude Code
+- **SSH Sessions**: `Ctrl+B` passes through to OpenClaw
 
-## Practical Examples with Claude Code Tools
+## Practical Examples with OpenClaw Tools
 
 ### Real-World Example: Starting a Development Server
 
@@ -610,7 +610,7 @@ Commands matching these patterns could automatically use background execution:
 - Any command with `--watch` or `-w` flags
 
 #### Configuration
-Add to `.claude/settings.json`:
+Add to `.openclaw/settings.json`:
 ```json
 {
   "autoBackground": {
@@ -673,9 +673,9 @@ Special handling:
 - test commands → always foreground for immediate feedback
 ```
 
-### CLAUDE.md Configuration
+### OPENCLAW.md Configuration
 
-Add to your project's `CLAUDE.md` file to ensure automatic background execution:
+Add to your project's `OPENCLAW.md` file to ensure automatic background execution:
 
 ```markdown
 # Project Development Guidelines
@@ -762,7 +762,7 @@ When using Claude-Flow's hive-mind system:
 
 ```bash
 # Spawn specialized background monitor agent
-npx claude-flow hive-mind spawn "background-monitor" \
+npx ruflo hive-mind spawn "background-monitor" \
   --role "Monitor and manage all background processes" \
   --instructions "
     1. Track all background tasks
@@ -773,7 +773,7 @@ npx claude-flow hive-mind spawn "background-monitor" \
   "
 
 # Main development agent with background awareness
-npx claude-flow hive-mind spawn "full-stack-dev" \
+npx ruflo hive-mind spawn "full-stack-dev" \
   --role "Develop features while services run in background" \
   --instructions "
     Start all development servers in background:
@@ -901,14 +901,14 @@ Default → Foreground
 
 #### Pre-Command Hook
 ```bash
-npx claude-flow hooks pre-command \
+npx ruflo hooks pre-command \
   --analyze-for-background \
   --auto-background-threshold 30
 ```
 
 #### Background Monitor Hook
 ```bash
-npx claude-flow hooks background-monitor \
+npx ruflo hooks background-monitor \
   --check-interval 10 \
   --alert-on-failure
 ```
@@ -1062,7 +1062,7 @@ bash_3: docker-compose up (database)
 
 ### Session Persistence
 
-Background tasks **automatically persist** across Claude Code sessions. No special commands needed!
+Background tasks **automatically persist** across OpenClaw sessions. No special commands needed!
 
 ```bash
 # Start tasks in one session
@@ -1089,7 +1089,7 @@ For complete details, see [Session Persistence Guide](./session-persistence.md).
 Coordinate multiple background tasks:
 ```bash
 # Start development environment
-npx claude-flow orchestrate dev-env \
+npx ruflo orchestrate dev-env \
   --background "npm run dev" \
   --background "npm run api" \
   --background "docker-compose up db" \
@@ -1099,7 +1099,7 @@ npx claude-flow orchestrate dev-env \
 ### Intelligent Monitoring
 ```bash
 # Smart monitoring with alerts
-npx claude-flow monitor \
+npx ruflo monitor \
   --background-tasks \
   --alert-on "error|failed|exception" \
   --restart-on-failure
@@ -1131,7 +1131,7 @@ npx claude-flow monitor \
 **The `/bashes` command** provides an interactive interface for managing background shells:
 
 ```bash
-# In Claude Code interactive mode, type:
+# In OpenClaw interactive mode, type:
 /bashes
 
 # This opens an interactive menu showing:
@@ -1148,7 +1148,7 @@ npx claude-flow monitor \
 
 #### Programmatic Management
 
-For programmatic control, use Claude Code's tool system:
+For programmatic control, use OpenClaw's tool system:
 
 ```bash
 # Check output of a specific background task
@@ -1172,7 +1172,7 @@ For programmatic control, use Claude Code's tool system:
 
 ### CPU Usage
 - Background tasks run concurrently
-- May impact main Claude Code performance
+- May impact main OpenClaw performance
 - Consider nice levels for low-priority tasks
 
 ### I/O Considerations
@@ -1198,14 +1198,14 @@ For programmatic control, use Claude Code's tool system:
 
 ## Related Documentation
 
-- [Claude Code Bash Tool Documentation](./bash-tool.md)
+- [OpenClaw Bash Tool Documentation](./bash-tool.md)
 - [Claude-Flow Hooks System](./hooks-system.md)
 - [MCP Tools Reference](./mcp-tools.md)
 - [Session Management](./session-management.md)
 
 ## Examples Repository
 
-Find more examples at: [claude-flow-examples/background-tasks](https://github.com/ruvnet/claude-flow-examples/tree/main/background-tasks)
+Find more examples at: [claude-flow-examples/background-tasks](https://github.com/snowzlm/ruflo-examples/tree/main/background-tasks)
 
 ---
 

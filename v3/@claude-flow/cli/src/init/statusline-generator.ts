@@ -199,7 +199,7 @@ function getModelName() {
     if (m.includes('sonnet')) return 'Sonnet 4.6';
     if (m.includes('haiku')) return 'Haiku 4.5';
   }
-  return 'Claude Code';
+  return 'OpenClaw';
 }
 
 // Get learning stats from real data sources (no heuristics)
@@ -602,7 +602,7 @@ function getIntegrationStatus() {
 
 // Session stats (pure file reads)
 function getSessionStats() {
-  var sessionPaths = ['.claude-flow/session.json', '.claude/session.json'];
+  var sessionPaths = ['.claude-flow/session.json', '.openclaw/session.json'];
   for (var i = 0; i < sessionPaths.length; i++) {
     const data = readJSON(path.join(CWD, sessionPaths[i]));
     if (data && data.startTime) {
@@ -625,7 +625,7 @@ function progressBar(current, total) {
 
 function generateStatusline() {
   const git = getGitInfo();
-  // Prefer model name from Claude Code stdin data, fallback to file-based detection
+  // Prefer model name from OpenClaw stdin data, fallback to file-based detection
   const modelName = getModelFromStdin() || getModelName();
   const ctxInfo = getContextFromStdin();
   const costInfo = getCostFromStdin();
@@ -674,15 +674,15 @@ function generateStatusline() {
     if (git.behind > 0) header += ' ' + c.brightRed + '\\u2193' + git.behind + c.reset;
   }
   header += '  ' + c.dim + '\\u2502' + c.reset + '  ' + c.purple + modelName + c.reset;
-  // Show session duration from Claude Code stdin if available, else from local files
+  // Show session duration from OpenClaw stdin if available, else from local files
   const duration = costInfo ? costInfo.duration : session.duration;
   if (duration) header += '  ' + c.dim + '\\u2502' + c.reset + '  ' + c.cyan + '\\u23F1 ' + duration + c.reset;
-  // Show context usage from Claude Code stdin if available
+  // Show context usage from OpenClaw stdin if available
   if (ctxInfo && ctxInfo.usedPct > 0) {
     const ctxColor = ctxInfo.usedPct >= 90 ? c.brightRed : ctxInfo.usedPct >= 70 ? c.brightYellow : c.brightGreen;
     header += '  ' + c.dim + '\\u2502' + c.reset + '  ' + ctxColor + '\\u25CF ' + ctxInfo.usedPct + '% ctx' + c.reset;
   }
-  // Show cost from Claude Code stdin if available
+  // Show cost from OpenClaw stdin if available
   if (costInfo && costInfo.costUsd > 0) {
     header += '  ' + c.dim + '\\u2502' + c.reset + '  ' + c.brightYellow + '$' + costInfo.costUsd.toFixed(2) + c.reset;
   }
@@ -782,11 +782,11 @@ function generateJSON() {
   };
 }
 
-// ─── Stdin reader (Claude Code pipes session JSON) ──────────────
+// ─── Stdin reader (OpenClaw pipes session JSON) ──────────────
 
-// Claude Code sends session JSON via stdin (model, context, cost, etc.)
+// OpenClaw sends session JSON via stdin (model, context, cost, etc.)
 // Read it synchronously so the script works both:
-//   1. When invoked by Claude Code (stdin has JSON)
+//   1. When invoked by OpenClaw (stdin has JSON)
 //   2. When invoked manually from terminal (stdin is empty/tty)
 let _stdinData = null;
 function getStdinData() {
@@ -815,14 +815,14 @@ function getStdinData() {
   return _stdinData;
 }
 
-// Override model detection to prefer stdin data from Claude Code
+// Override model detection to prefer stdin data from OpenClaw
 function getModelFromStdin() {
   const data = getStdinData();
   if (data && data.model && data.model.display_name) return data.model.display_name;
   return null;
 }
 
-// Get context window info from Claude Code session
+// Get context window info from OpenClaw session
 function getContextFromStdin() {
   const data = getStdinData();
   if (data && data.context_window) {
@@ -834,7 +834,7 @@ function getContextFromStdin() {
   return null;
 }
 
-// Get cost info from Claude Code session
+// Get cost info from OpenClaw session
 function getCostFromStdin() {
   const data = getStdinData();
   if (data && data.cost) {
@@ -888,7 +888,7 @@ claude_flow_statusline() {
 # Zsh: Add to RPROMPT
 # export RPROMPT='$(claude_flow_statusline)'
 
-# Claude Code: Add to .claude/settings.json
+# OpenClaw: Add to .claude/settings.json
 # "statusLine": {
 #   "type": "command",
 #   "command": "node .claude/helpers/statusline.cjs 2>/dev/null"

@@ -11,8 +11,8 @@ description: |
 
 author: rUv
 license: MIT
-homepage: https://github.com/ruvnet/ruflo/tree/main/v3/plugins/agentic-qe
-repository: https://github.com/ruvnet/ruflo
+homepage: https://github.com/snowzlm/ruflo/tree/main/v3/plugins/agentic-qe
+repository: https://github.com/snowzlm/ruflo
 
 # Plugin metadata
 metadata:
@@ -1033,7 +1033,7 @@ implementation:
       estimatedLines: 2320
       deliverables:
         - All 58 agents (51 + 7 TDD) defined as YAML
-        - Agents spawn via Claude Code Task tool
+        - Agents spawn via OpenClaw Task tool
         - Model routing hints in agent definitions
 
     - phase: 6

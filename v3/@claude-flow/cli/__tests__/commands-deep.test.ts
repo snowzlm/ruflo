@@ -1540,8 +1540,8 @@ describe('Init System', () => {
       expect(md.length).toBeGreaterThan(100);
     });
 
-    // The CLAUDE.md generator was deliberately rewritten to a terser, more
-    // imperative schema (header "# Ruflo — Claude Code Configuration", section
+    // The OPENCLAW.md generator was deliberately rewritten to a terser, more
+    // imperative schema (header "# Ruflo — OpenClaw Configuration", section
     // titles like "## Rules" / "## Swarm & Routing"). These tests were
     // originally written against the older verbose schema; updated below to
     // pin the *current* contract so future drift is caught.

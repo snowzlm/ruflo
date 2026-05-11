@@ -2,17 +2,17 @@
  * HeadlessWorkerExecutor Tests
  *
  * Comprehensive tests for the headless worker execution service that
- * runs Claude Code in headless mode for background worker tasks.
+ * runs OpenClaw in headless mode for background worker tasks.
  *
  * Tests cover:
  * 1. HeadlessWorkerExecutor instantiation
- * 2. isAvailable() - Claude Code availability detection
+ * 2. isAvailable() - OpenClaw availability detection
  * 3. execute() with various headless configurations
  * 4. Context building from file patterns
  * 5. Prompt template building
  * 6. Output parsing for json/text/markdown
  * 7. Timeout handling
- * 8. Error handling for missing Claude Code
+ * 8. Error handling for missing OpenClaw
  * 9. Event emissions (output, error)
  * 10. HEADLESS_WORKERS configuration validation
  */
@@ -107,8 +107,8 @@ class HeadlessWorkerExecutor extends EventEmitter {
     } catch {
       // Try alternative path
       try {
-        const altResult = (execSync as Mock)('npx claude-code --version', { encoding: 'utf-8' });
-        this.claudePath = 'npx claude-code';
+        const altResult = (execSync as Mock)('npx openclaw --version', { encoding: 'utf-8' });
+        this.claudePath = 'npx openclaw';
         return altResult.includes('claude') || altResult.includes('Claude');
       } catch {
         return false;
@@ -121,7 +121,7 @@ class HeadlessWorkerExecutor extends EventEmitter {
     const timeout = config.timeout ?? this.config.defaultTimeout;
 
     if (!(await this.isAvailable())) {
-      const error = 'Claude Code is not available. Install with: npm install -g @anthropic-ai/claude-code';
+      const error = 'OpenClaw is not available. Install with: npm install -g @anthropic-ai/openclaw';
       this.emit('error', { workerId: config.workerId, error });
       return {
         success: false,
@@ -409,19 +409,19 @@ describe('HeadlessWorkerExecutor', () => {
     });
 
     it('should return true with Claude capitalized', async () => {
-      (execSync as Mock).mockReturnValue('Claude Code CLI v1.0.0');
+      (execSync as Mock).mockReturnValue('OpenClaw CLI v1.0.0');
 
       const result = await executor.isAvailable();
 
       expect(result).toBe(true);
     });
 
-    it('should try npx claude-code when claude fails', async () => {
+    it('should try npx openclaw when claude fails', async () => {
       (execSync as Mock)
         .mockImplementationOnce(() => {
           throw new Error('Command not found');
         })
-        .mockReturnValue('claude-code version 1.0.0');
+        .mockReturnValue('openclaw version 1.0.0');
 
       const result = await executor.isAvailable();
 
@@ -429,7 +429,7 @@ describe('HeadlessWorkerExecutor', () => {
       expect(execSync).toHaveBeenCalledTimes(2);
     });
 
-    it('should return false when both claude and npx claude-code fail', async () => {
+    it('should return false when both claude and npx openclaw fail', async () => {
       (execSync as Mock).mockImplementation(() => {
         throw new Error('Command not found');
       });
@@ -581,7 +581,7 @@ describe('HeadlessWorkerExecutor', () => {
       );
     });
 
-    it('should return error when Claude Code is not available', async () => {
+    it('should return error when OpenClaw is not available', async () => {
       (execSync as Mock).mockImplementation(() => {
         throw new Error('Not found');
       });
@@ -598,7 +598,7 @@ describe('HeadlessWorkerExecutor', () => {
       const result = await executor.execute(config);
 
       expect(result.success).toBe(false);
-      expect(result.error).toContain('Claude Code is not available');
+      expect(result.error).toContain('OpenClaw is not available');
       expect(errorHandler).toHaveBeenCalled();
     });
   });
@@ -849,7 +849,7 @@ describe('HeadlessWorkerExecutor', () => {
   });
 
   describe('Error Handling', () => {
-    it('should handle missing Claude Code gracefully', async () => {
+    it('should handle missing OpenClaw gracefully', async () => {
       (execSync as Mock).mockImplementation(() => {
         throw new Error('ENOENT');
       });

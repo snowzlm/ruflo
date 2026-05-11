@@ -80,7 +80,7 @@ function showMainHelp(): void {
       {
         flags: '--config <path>',
         description: 'Configuration file path',
-        defaultValue: '.claude/config.json',
+        defaultValue: '.openclaw/config.json',
       },
       {
         flags: '--verbose',

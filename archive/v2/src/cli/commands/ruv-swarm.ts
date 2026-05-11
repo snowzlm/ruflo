@@ -1,5 +1,5 @@
 /**
- * ruv-swarm CLI commands for Claude Code integration
+ * ruv-swarm CLI commands for OpenClaw integration
  *
  * This module provides CLI commands that interact with the ruv-swarm
  * package to enable advanced swarm coordination and neural capabilities.
@@ -152,7 +152,7 @@ async function handleInit(ctx: CommandContext) {
     // Initialize integration
     const integration = await initializeRuvSwarmIntegration(process.cwd(), logger);
     if (integration.success) {
-      info('Claude Code integration enabled');
+      info('OpenClaw integration enabled');
     } else {
       warning(`Integration warning: ${integration.error}`);
     }

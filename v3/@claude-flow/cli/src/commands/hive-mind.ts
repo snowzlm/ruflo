@@ -2,7 +2,7 @@
  * V3 CLI Hive Mind Command
  * Queen-led consensus-based multi-agent coordination
  *
- * Updated to support --claude flag for launching interactive Claude Code sessions
+ * Updated to support --claude flag for launching interactive OpenClaw sessions
  * PR: Fix #955 - Implement --claude flag for hive-mind spawn command
  */
 
@@ -60,7 +60,7 @@ function groupWorkersByType(workers: HiveWorker[]): WorkerGroups {
 }
 
 /**
- * Generate comprehensive Hive Mind prompt for Claude Code
+ * Generate comprehensive Hive Mind prompt for OpenClaw
  * Ported from v2.7.47 with enhancements for v3
  */
 function generateHiveMindPrompt(
@@ -178,7 +178,7 @@ Start by checking the current hive status and then proceed with the objective.
 }
 
 /**
- * Spawn Claude Code with Hive Mind coordination instructions
+ * Spawn OpenClaw with Hive Mind coordination instructions
  * Ported from v2.7.47 spawnClaudeCodeInstances function
  */
 async function spawnClaudeCodeInstance(
@@ -189,7 +189,7 @@ async function spawnClaudeCodeInstance(
   flags: Record<string, unknown>
 ): Promise<{ success: boolean; promptFile?: string; error?: string }> {
   output.writeln();
-  output.writeln(output.bold('🚀 Launching Claude Code with Hive Mind Coordination'));
+  output.writeln(output.bold('🚀 Launching OpenClaw with Hive Mind Coordination'));
   output.writeln(output.dim('─'.repeat(60)));
 
   const spinner = output.createSpinner({ text: 'Preparing Hive Mind coordination prompt...', spinner: 'dots' });
@@ -239,8 +239,8 @@ async function spawnClaudeCodeInstance(
       claudeAvailable = true;
     } catch {
       output.writeln();
-      output.printWarning('Claude Code CLI not found in PATH');
-      output.writeln(output.dim('Install it with: npm install -g @anthropic-ai/claude-code'));
+      output.printWarning('OpenClaw CLI not found in PATH');
+      output.writeln(output.dim('Install it with: npm install -g @anthropic-ai/openclaw'));
       output.writeln(output.dim('Falling back to displaying instructions...'));
     }
 
@@ -256,7 +256,7 @@ async function spawnClaudeCodeInstance(
       // Resolution order:
       //   1. explicit --mcp-config <path> flag passed by the caller
       //   2. ./.mcp.json in cwd (project-local Ruflo MCP config)
-      //   3. ~/.claude.json or ~/.claude/mcp.json (user-global)
+      //   3. ~/.claude.json or ~/.openclaw/mcp.json (user-global)
       // If none found, we still spawn but warn — that's the pre-fix behavior
       // and the user's debug log will surface the missing tools.
       const explicitMcpConfig = flags['mcp-config'] as string | undefined;
@@ -274,7 +274,7 @@ async function spawnClaudeCodeInstance(
         }
       }
       if (mcpConfigPath) {
-        // #1780 — Claude Code's `--mcp-config` is variadic; passing it as two
+        // #1780 — OpenClaw's `--mcp-config` is variadic; passing it as two
         // argv tokens (`--mcp-config`, `<path>`) lets a later positional (the
         // hive-mind prompt) be slurped as a second config file, producing
         // `ENAMETOOLONG: name too long, open` once the prompt exceeds PATH_MAX.
@@ -309,7 +309,7 @@ async function spawnClaudeCodeInstance(
       claudeArgs.push(hiveMindPrompt);
 
       output.writeln();
-      output.printInfo('Launching Claude Code...');
+      output.printInfo('Launching OpenClaw...');
       output.writeln(output.dim('Press Ctrl+C to pause the session'));
 
       // Spawn claude with properly ordered arguments
@@ -326,7 +326,7 @@ async function spawnClaudeCodeInstance(
 
         output.writeln();
         output.writeln();
-        output.printWarning('Pausing session and terminating Claude Code...');
+        output.printWarning('Pausing session and terminating OpenClaw...');
 
         if (claudeProcess && !claudeProcess.killed) {
           claudeProcess.kill('SIGTERM');
@@ -351,22 +351,22 @@ async function spawnClaudeCodeInstance(
 
         if (code === 0) {
           output.writeln();
-          output.printSuccess('Claude Code completed successfully');
+          output.printSuccess('OpenClaw completed successfully');
         } else if (code !== null) {
           output.writeln();
-          output.printError(`Claude Code exited with code ${code}`);
+          output.printError(`OpenClaw exited with code ${code}`);
         }
       });
 
       output.writeln();
-      output.printSuccess('Claude Code launched with Hive Mind coordination');
+      output.printSuccess('OpenClaw launched with Hive Mind coordination');
       output.printInfo('The Queen coordinator will orchestrate all worker agents');
       output.writeln(output.dim(`Prompt file saved at: ${promptFile}`));
 
       return { success: true, promptFile };
     } else if (dryRun) {
       output.writeln();
-      output.printInfo('Dry run - would execute Claude Code with prompt:');
+      output.printInfo('Dry run - would execute OpenClaw with prompt:');
       output.writeln(output.dim(`Prompt length: ${hiveMindPrompt.length} characters`));
       output.writeln();
       output.writeln(output.dim('First 500 characters of prompt:'));
@@ -381,7 +381,7 @@ async function spawnClaudeCodeInstance(
       output.writeln(output.bold('📋 Manual Execution Instructions:'));
       output.writeln(output.dim('─'.repeat(50)));
       output.printList([
-        'Install Claude Code: npm install -g @anthropic-ai/claude-code',
+        'Install OpenClaw: npm install -g @anthropic-ai/openclaw',
         `Run with saved prompt: claude < ${promptFile}`,
         `Or copy manually: cat ${promptFile} | claude`,
         `With auto-permissions: claude --dangerously-skip-permissions < ${promptFile}`
@@ -390,7 +390,7 @@ async function spawnClaudeCodeInstance(
       return { success: true, promptFile };
     }
   } catch (error) {
-    spinner.fail('Failed to prepare Claude Code coordination');
+    spinner.fail('Failed to prepare OpenClaw coordination');
     const errorMessage = error instanceof Error ? error.message : String(error);
     output.printError(`Error: ${errorMessage}`);
 
@@ -402,7 +402,7 @@ async function spawnClaudeCodeInstance(
       await writeFile(promptFile, hiveMindPrompt, 'utf8');
       output.writeln();
       output.printSuccess(`Prompt saved to: ${promptFile}`);
-      output.writeln(output.dim('You can run Claude Code manually with the saved prompt'));
+      output.writeln(output.dim('You can run OpenClaw manually with the saved prompt'));
       return { success: false, promptFile, error: errorMessage };
     } catch {
       return { success: false, error: errorMessage };
@@ -524,7 +524,7 @@ const initCommand: Command = {
       output.writeln();
       output.printInfo('Queen agent is ready to coordinate worker agents');
       output.writeln(output.dim('  Use "claude-flow hive-mind spawn" to add workers'));
-      output.writeln(output.dim('  Use "claude-flow hive-mind spawn --claude" to launch Claude Code'));
+      output.writeln(output.dim('  Use "claude-flow hive-mind spawn --claude" to launch OpenClaw'));
 
       return { success: true, data: result };
     } catch (error) {
@@ -542,7 +542,7 @@ const initCommand: Command = {
 // Spawn subcommand - UPDATED with --claude flag
 const spawnCommand: Command = {
   name: 'spawn',
-  description: 'Spawn worker agents into the hive (use --claude to launch Claude Code)',
+  description: 'Spawn worker agents into the hive (use --claude to launch OpenClaw)',
   options: [
     {
       name: 'count',
@@ -573,10 +573,10 @@ const spawnCommand: Command = {
       type: 'string',
       default: 'hive-worker'
     },
-    // NEW: --claude flag for launching Claude Code
+    // NEW: --claude flag for launching OpenClaw
     {
       name: 'claude',
-      description: 'Launch Claude Code with hive-mind coordination prompt',
+      description: 'Launch OpenClaw with hive-mind coordination prompt',
       type: 'boolean',
       default: false
     },
@@ -588,7 +588,7 @@ const spawnCommand: Command = {
     },
     {
       name: 'dangerously-skip-permissions',
-      description: 'Skip permission prompts in Claude Code (use with caution)',
+      description: 'Skip permission prompts in OpenClaw (use with caution)',
       type: 'boolean',
       default: true
     },
@@ -600,13 +600,13 @@ const spawnCommand: Command = {
     },
     {
       name: 'dry-run',
-      description: 'Show what would be done without launching Claude Code',
+      description: 'Show what would be done without launching OpenClaw',
       type: 'boolean',
       default: false
     },
     {
       name: 'non-interactive',
-      description: 'Run Claude Code in non-interactive mode',
+      description: 'Run OpenClaw in non-interactive mode',
       type: 'boolean',
       default: false
     },
@@ -620,8 +620,8 @@ const spawnCommand: Command = {
     { command: 'claude-flow hive-mind spawn -n 5', description: 'Spawn 5 workers' },
     { command: 'claude-flow hive-mind spawn -n 3 -r specialist', description: 'Spawn 3 specialists' },
     { command: 'claude-flow hive-mind spawn -t coder -p my-coder', description: 'Spawn coder with custom prefix' },
-    { command: 'claude-flow hive-mind spawn --claude -o "Build a REST API"', description: 'Launch Claude Code with objective' },
-    { command: 'claude-flow hive-mind spawn -n 5 --claude -o "Research AI patterns"', description: 'Spawn workers and launch Claude Code' }
+    { command: 'claude-flow hive-mind spawn --claude -o "Build a REST API"', description: 'Launch OpenClaw with objective' },
+    { command: 'claude-flow hive-mind spawn -n 5 --claude -o "Research AI patterns"', description: 'Spawn workers and launch OpenClaw' }
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     // Parse count with fallback to default
@@ -729,7 +729,7 @@ const spawnCommand: Command = {
           joinedAt: w.joinedAt
         }));
 
-        // Launch Claude Code with hive mind prompt
+        // Launch OpenClaw with hive mind prompt
         const claudeResult = await spawnClaudeCodeInstance(
           swarmId,
           swarmName,
@@ -1343,7 +1343,7 @@ export const hiveMindCommand: Command = {
   examples: [
     { command: 'claude-flow hive-mind init -t hierarchical-mesh', description: 'Initialize hive' },
     { command: 'claude-flow hive-mind spawn -n 5', description: 'Spawn workers' },
-    { command: 'claude-flow hive-mind spawn --claude -o "Build a feature"', description: 'Launch Claude Code with hive mind' },
+    { command: 'claude-flow hive-mind spawn --claude -o "Build a feature"', description: 'Launch OpenClaw with hive mind' },
     { command: 'claude-flow hive-mind task -d "Build feature"', description: 'Submit task' }
   ],
   action: async (): Promise<CommandResult> => {
@@ -1355,7 +1355,7 @@ export const hiveMindCommand: Command = {
     output.writeln('Subcommands:');
     output.printList([
       `${output.highlight('init')}            - Initialize hive mind`,
-      `${output.highlight('spawn')}           - Spawn worker agents (use --claude to launch Claude Code)`,
+      `${output.highlight('spawn')}           - Spawn worker agents (use --claude to launch OpenClaw)`,
       `${output.highlight('status')}          - Show hive status`,
       `${output.highlight('task')}            - Submit task to hive`,
       `${output.highlight('join')}            - Join an agent to the hive`,
@@ -1374,10 +1374,10 @@ export const hiveMindCommand: Command = {
       'HNSW-accelerated pattern matching',
       'Cross-session memory persistence',
       'Automatic load balancing',
-      output.success('NEW: --claude flag to launch interactive Claude Code sessions')
+      output.success('NEW: --claude flag to launch interactive OpenClaw sessions')
     ]);
     output.writeln();
-    output.writeln('Quick Start with Claude Code:');
+    output.writeln('Quick Start with OpenClaw:');
     output.writeln(output.dim('  claude-flow hive-mind init'));
     output.writeln(output.dim('  claude-flow hive-mind spawn -n 5 --claude -o "Your objective here"'));
 

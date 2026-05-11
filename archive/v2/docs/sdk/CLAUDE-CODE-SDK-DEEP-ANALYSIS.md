@@ -1,9 +1,9 @@
-# Claude Code SDK v2.0.1 - Complete Deep Analysis
+# OpenClaw SDK v2.0.1 - Complete Deep Analysis
 ## Comprehensive Integration Points & Undocumented Features
 
 **Analysis Date**: 2025-09-30
-**SDK Version**: @anthropic-ai/claude-code@2.0.1
-**Source**: `/usr/local/share/nvm/versions/node/v20.19.0/lib/node_modules/@anthropic-ai/claude-code`
+**SDK Version**: @anthropic-ai/openclaw@2.0.1
+**Source**: `/usr/local/share/nvm/versions/node/v20.19.0/lib/node_modules/@anthropic-ai/openclaw`
 
 ---
 
@@ -11,7 +11,7 @@
 
 ### File Structure
 ```
-@anthropic-ai/claude-code/
+@anthropic-ai/openclaw/
 ├── cli.js (9.36MB - minified executable)
 ├── sdk.mjs (511KB - main SDK module, 14,157 lines)
 ├── sdk.d.ts (417 lines - TypeScript definitions)
@@ -20,7 +20,7 @@
 ├── README.md
 ├── yoga.wasm (WASM layout engine)
 └── vendor/
-    ├── claude-code-jetbrains-plugin/
+    ├── openclaw-jetbrains-plugin/
     └── ripgrep/
 ```
 
@@ -137,7 +137,7 @@ type PermissionUpdate =
   | { type: 'removeDirectories'; directories: string[]; destination: PermissionUpdateDestination };
 
 type PermissionUpdateDestination =
-  | 'userSettings'      // ~/.claude/settings.json
+  | 'userSettings'      // ~/.openclaw/settings.json
   | 'projectSettings'   // .claude/settings.json
   | 'localSettings'     // .claude-local.json
   | 'session';          // Current session only
@@ -346,7 +346,7 @@ interface NetworkPermission {
 window.__REACT_DEVTOOLS_COMPONENT_FILTERS__
 // SDK includes full React DevTools backend
 ```
-**Use**: Claude Code CLI uses React for TUI rendering
+**Use**: OpenClaw CLI uses React for TUI rendering
 
 ### 3. **Installation & Auto-Update System**
 ```typescript
@@ -552,7 +552,7 @@ const hooks: Partial<Record<HookEvent, HookCallbackMatcher[]>> = {
 ### Phase 6: In-Process MCP Server (NEW)
 ```typescript
 // Zero-overhead swarm coordination
-import { createSdkMcpServer, tool } from '@anthropic-ai/claude-code/sdk';
+import { createSdkMcpServer, tool } from '@anthropic-ai/openclaw/sdk';
 
 const claudeFlowSwarmServer = createSdkMcpServer({
   name: 'claude-flow-swarm',
@@ -613,7 +613,7 @@ const response = query({
 
 ## ✅ Action Items
 
-1. **Immediate**: Install `@anthropic-ai/claude-code` as dependency
+1. **Immediate**: Install `@anthropic-ai/openclaw` as dependency
 2. **Phase 3**: Refactor memory system to use SDK session persistence
 3. **Phase 4**: Implement session forking for parallel agents
 4. **Phase 5**: Replace custom hooks with SDK native hooks
@@ -646,4 +646,4 @@ const response = query({
 
 ---
 
-*This analysis represents a complete understanding of Claude Code SDK v2.0.1 architecture, integration points, and undocumented features discovered through source code examination.*
+*This analysis represents a complete understanding of OpenClaw SDK v2.0.1 architecture, integration points, and undocumented features discovered through source code examination.*

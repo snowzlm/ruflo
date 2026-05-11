@@ -152,7 +152,7 @@ jobs:
           path: v3/@claude-flow/*/dist/
 
   smoke-install-no-bsqlite:
-    # Regression guard for ruvnet/ruflo#1867 — ensures @claude-flow/memory
+    # Regression guard for snowzlm/ruflo#1867 — ensures @claude-flow/memory
     # installs and loads when better-sqlite3 fails to build (e.g. Node 26
     # without prebuilds). Reproduces the user-visible failure mode by
     # installing with --omit=optional.
@@ -233,7 +233,7 @@ jobs:
           node smoke-no-bsqlite.mjs
 
   plugin-hooks-smoke:
-    # Regression guard for ruvnet/ruflo#1859 + #1862 — drives each PostToolUse
+    # Regression guard for snowzlm/ruflo#1859 + #1862 — drives each PostToolUse
     # hook from plugins/ruflo-core/hooks/hooks.json with synthetic Claude-Code
     # JSON against the locally built CLI. Catches:
     #   - hooks calling flags the CLI doesn't accept (#1862's --format true)
@@ -249,7 +249,7 @@ jobs:
         # Cross-platform: ubuntu + macos. Windows excluded because the
         # plugin's hooks.json uses `/bin/bash -c '...'` and the synthetic
         # JSON-on-stdin pipeline assumes POSIX shell. On Windows users
-        # run Claude Code via WSL or git-bash, which the test would also
+        # run OpenClaw via WSL or git-bash, which the test would also
         # need to simulate; out of scope for this regression guard.
         os: [ubuntu-latest, macos-latest]
         # Node 22 is the project's documented baseline (engines.node: '>=20')
@@ -294,13 +294,13 @@ jobs:
             "node $GITHUB_WORKSPACE/v3/@claude-flow/cli/bin/cli.js"
 
   mcp-protocol-smoke:
-    # Regression guard for ruvnet/ruflo#1874 — boots the HTTP MCP server,
+    # Regression guard for snowzlm/ruflo#1874 — boots the HTTP MCP server,
     # sends a real `initialize` request, and validates the response wire
     # format against the MCP spec (YYYY-MM-DD protocolVersion string,
     # not a {major,minor,patch} object). This was the missing layer that
     # let #1874 ship — the existing in-process unit tests asserted the
     # wrong shape, so test+prod agreed on a non-spec format that broke
-    # Claude Code's Zod validator.
+    # OpenClaw's Zod validator.
     name: MCP protocol smoke / ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:

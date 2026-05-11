@@ -1,4 +1,4 @@
-# Regression Test Report - Claude Flow v2.7.33
+# Regression Test Report - Ruflo v2.7.33
 
 **Test Date**: 2025-11-12
 **Environment**: Docker (GitHub Codespaces)
@@ -27,9 +27,9 @@
 ### 1. Core CLI Commands ✅ PASSED
 
 **Tests Performed:**
-- `npx claude-flow --version` → v2.7.32 (correct)
-- `npx claude-flow --help` → Shows full help with 50+ lines (correct)
-- `npx claude-flow mcp --help` → Shows MCP subcommands (correct)
+- `npx ruflo --version` → v2.7.32 (correct)
+- `npx ruflo --help` → Shows full help with 50+ lines (correct)
+- `npx ruflo mcp --help` → Shows MCP subcommands (correct)
 
 **Result**: ✅ All core CLI commands functional
 
@@ -45,8 +45,8 @@ v2.7.32
 ### 2. MCP Server Functionality ✅ PASSED
 
 **Tests Performed:**
-- `npx claude-flow mcp status` → Shows server status (correct)
-- `npx claude-flow mcp tools` → Lists 87 tools across 12 categories (correct)
+- `npx ruflo mcp status` → Shows server status (correct)
+- `npx ruflo mcp tools` → Lists 87 tools across 12 categories (correct)
 - Module imports: All MCP modules load successfully
 
 **Result**: ✅ MCP server operational, all tools available
@@ -69,7 +69,7 @@ v2.7.32
 ### 3. Memory System (AgentDB) ✅ PASSED
 
 **Tests Performed:**
-- `npx claude-flow memory stats` → Shows ReasoningBank statistics
+- `npx ruflo memory stats` → Shows ReasoningBank statistics
 - AgentDB database file exists: `.swarm/memory.db` (13 MB)
 - Memory backend: SQLite with 19 memories, 80% confidence
 
@@ -89,7 +89,7 @@ v2.7.32
 ### 4. Hooks System ✅ PASSED
 
 **Tests Performed:**
-- `npx claude-flow hooks` → Lists all pre/post operation hooks
+- `npx ruflo hooks` → Lists all pre/post operation hooks
 - Hook categories: Pre-task, post-task, session, MCP integration
 - Modification hooks: modify-bash, modify-file, modify-git-commit
 
@@ -97,7 +97,7 @@ v2.7.32
 
 **Evidence**:
 ```
-Claude Flow Hooks (with .swarm/memory.db persistence):
+Ruflo Hooks (with .swarm/memory.db persistence):
 
 Pre-Operation Hooks:
   pre-task, pre-edit, pre-bash, pre-command
@@ -114,7 +114,7 @@ MCP Integration Hooks:
 ### 5. SPARC Commands ✅ PASSED
 
 **Tests Performed:**
-- `npx claude-flow sparc modes` → Lists 13 SPARC modes
+- `npx ruflo sparc modes` → Lists 13 SPARC modes
 - Modes include: code, tdd, architect, debug, docs, review, etc.
 
 **Result**: ✅ SPARC methodology commands functional
@@ -134,7 +134,7 @@ MCP Integration Hooks:
 ### 6. Swarm Coordination ✅ PASSED
 
 **Tests Performed:**
-- `npx claude-flow agent list` → Shows 4 active agents
+- `npx ruflo agent list` → Shows 4 active agents
 - Agent statuses: All active with 0 tasks
 - Agent types: coder, tester, researcher, general
 
@@ -389,7 +389,7 @@ npm install ajv@^8.17.1 ajv-formats@^3.0.1 ajv-errors@^3.0.0 --save --legacy-pee
 
 ---
 
-**Test Performed By**: Claude Code (Automated + Manual)
+**Test Performed By**: OpenClaw (Automated + Manual)
 **Test Environment**: Docker (GitHub Codespaces) - Node.js v20.19.0
 **Test Duration**: ~15 minutes
 **Approval Date**: 2025-11-12

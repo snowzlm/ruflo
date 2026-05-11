@@ -1,7 +1,7 @@
 # Training Pipeline Demo - Alpha 89
 
 ## Overview
-The Training Pipeline is now fully integrated into Claude Flow, providing real machine learning capabilities that improve agent performance over time.
+The Training Pipeline is now fully integrated into Ruflo, providing real machine learning capabilities that improve agent performance over time.
 
 ## What Was Demonstrated
 
@@ -29,11 +29,11 @@ After training, the system learned:
 
 The pipeline automatically:
 1. **Selected "balanced" as default strategy** based on highest scores
-2. **Created optimized workflows** in `.claude/commands/improved-workflows.js`
+2. **Created optimized workflows** in `.openclaw/commands/improved-workflows.js`
 3. **Stored learning data** for future sessions
 4. **Generated recommendations** for each strategy
 
-### 4. Integration with Claude Flow
+### 4. Integration with Ruflo
 
 The training system now:
 - **Feeds into swarm coordination** - Agents use learned profiles
@@ -143,7 +143,7 @@ The training system now:
 - `.claude-flow/validation/validation-*.json` - Improvement validations
 
 ### Improved Commands
-- `.claude/commands/improved-workflows.js` - Optimized workflow implementations
+- `.openclaw/commands/improved-workflows.js` - Optimized workflow implementations
 
 ## Next Steps
 
@@ -154,7 +154,7 @@ The training system now:
 
 ## Summary
 
-The Training Pipeline transforms Claude Flow from a static system to a learning, adaptive platform that improves with every use. The "balanced" strategy emerged as optimal through real testing, achieving:
+The Training Pipeline transforms Ruflo from a static system to a learning, adaptive platform that improves with every use. The "balanced" strategy emerged as optimal through real testing, achieving:
 
 - **89.5% average score** (highest among all strategies)
 - **85.5% success rate** (reliable performance)

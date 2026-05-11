@@ -1,10 +1,10 @@
-An algorithmic outline to implement a ReasoningBank-style system on top of your Claude Flow Memory Space. It maps cleanly to your SQLite-backed memory at `.swarm/memory.db` and the hooks system so you can drop this into flows immediately. Where I reference paper specifics or your repo’s schemas, I cite them.
+An algorithmic outline to implement a ReasoningBank-style system on top of your Ruflo Memory Space. It maps cleanly to your SQLite-backed memory at `.swarm/memory.db` and the hooks system so you can drop this into flows immediately. Where I reference paper specifics or your repo’s schemas, I cite them.
 
 ---
 
 ## 0) What you will build
 
-A closed-loop module with four algorithms wired into Claude Flow:
+A closed-loop module with four algorithms wired into Ruflo:
 
 1. **Retrieve** relevant “principle” memories for a task and inject them into the system prompt.
 2. **Judge** an interaction trajectory as Success or Failure.
@@ -14,7 +14,7 @@ A closed-loop module with four algorithms wired into Claude Flow:
 
 ReasoningBank stores each memory item as `{title, description, content}` and retrieves top‑k via semantic similarity to inject as system instructions. It learns from both successes and failures and includes Memory‑aware Test‑Time Scaling (MaTTS) in parallel and sequential modes. ([arXiv][1])
 
-Your Claude Flow Memory Space already exposes the right persistence primitives and tables, including `patterns` for learned behaviors, `events` for trajectories, and `performance_metrics`. The DB lives at `.swarm/memory.db`. ([GitHub][2])
+Your Ruflo Memory Space already exposes the right persistence primitives and tables, including `patterns` for learned behaviors, `events` for trajectories, and `performance_metrics`. The DB lives at `.swarm/memory.db`. ([GitHub][2])
 
 ---
 
@@ -316,25 +316,25 @@ MaTTS is defined as memory‑aware scaling that exploits contrastive signals amo
 
 ---
 
-## 8) Claude Flow wiring
+## 8) Ruflo wiring
 
 Leverage your hooks and memory system. Your repo exposes a hooks system with `post-task` and `post-command`, and documents the SQLite memory location. ([GitHub][3])
 
 ### 8.1 Hook configuration
 
-Add these to `.claude/settings.json`:
+Add these to `.openclaw/settings.json`:
 
 ```json
 {
   "hooks": {
     "preTaskHook": {
       "command": "npx",
-      "args": ["claude-flow", "hooks", "pre-task", "--retrieve-reasoningbank", "true"],
+      "args": ["ruflo", "hooks", "pre-task", "--retrieve-reasoningbank", "true"],
       "alwaysRun": true
     },
     "postTaskHook": {
       "command": "npx",
-      "args": ["claude-flow", "hooks", "post-task", "--judge-and-distill", "true"],
+      "args": ["ruflo", "hooks", "post-task", "--judge-and-distill", "true"],
       "alwaysRun": true
     }
   }
@@ -518,7 +518,7 @@ export async function runTask(taskId: string, query: string) {
 * Memory item schema with `title`, `description`, `content` and injection into system prompt at inference. ([arXiv][1])
 * Learn from both successful and failed trajectories using an LLM‑as‑judge. ([arXiv][1])
 * MaTTS in parallel and sequential modes to turn extra compute into better memory. ([arXiv][1])
-* Storage and orchestration sit naturally on your Claude Flow Memory System and hooks at `.swarm/memory.db`. ([GitHub][2])
+* Storage and orchestration sit naturally on your Ruflo Memory System and hooks at `.swarm/memory.db`. ([GitHub][2])
 
 ---
 
@@ -531,8 +531,8 @@ export async function runTask(taskId: string, query: string) {
 ---
 
 [1]: https://arxiv.org/html/2509.25140v1 "ReasoningBank: Scaling Agent Self-Evolving with Reasoning Memory"
-[2]: https://github.com/ruvnet/claude-flow/wiki/Memory-System "Memory System · ruvnet/claude-flow Wiki · GitHub"
-[3]: https://github.com/ruvnet/claude-flow "GitHub - ruvnet/claude-flow:  The leading agent orchestration platform for Claude. Deploy intelligent multi-agent swarms, coordinate autonomous workflows, and build conversational AI systems. Features    enterprise-grade architecture, distributed swarm intelligence, RAG integration, and native Claude Code support via MCP protocol. Ranked #1 in agent-based frameworks."
+[2]: https://github.com/snowzlm/ruflo/wiki/Memory-System "Memory System · snowzlm/ruflo Wiki · GitHub"
+[3]: https://github.com/snowzlm/ruflo "GitHub - snowzlm/ruflo:  The leading agent orchestration platform for Claude. Deploy intelligent multi-agent swarms, coordinate autonomous workflows, and build conversational AI systems. Features    enterprise-grade architecture, distributed swarm intelligence, RAG integration, and native OpenClaw support via MCP protocol. Ranked #1 in agent-based frameworks."
 [4]: https://www.anthropic.com/news/memory?utm_source=chatgpt.com "Claude introduces memory for teams at work"
 ---
 
@@ -1012,6 +1012,6 @@ Assuming a typical agent task with ReasoningBank enabled:
 ## References
 
 [1]: https://arxiv.org/html/2509.25140v1 "ReasoningBank: Scaling Agent Self-Evolving with Reasoning Memory"  
-[2]: https://github.com/ruvnet/claude-flow/wiki/Memory-System "Memory System · ruvnet/claude-flow Wiki · GitHub"  
-[3]: https://github.com/ruvnet/claude-flow "GitHub - ruvnet/claude-flow"  
+[2]: https://github.com/snowzlm/ruflo/wiki/Memory-System "Memory System · snowzlm/ruflo Wiki · GitHub"  
+[3]: https://github.com/snowzlm/ruflo "GitHub - snowzlm/ruflo"  
 [4]: https://www.anthropic.com/news/memory "Claude introduces memory for teams at work"

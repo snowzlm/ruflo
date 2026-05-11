@@ -5,7 +5,7 @@ Workflow automation with templates, orchestration, and full state-machine lifecy
 ## Install
 
 ```
-/plugin marketplace add ruvnet/ruflo
+/plugin marketplace add snowzlm/ruflo
 /plugin install ruflo-workflows@ruflo
 ```
 

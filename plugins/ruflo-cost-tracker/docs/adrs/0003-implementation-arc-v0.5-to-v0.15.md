@@ -4,7 +4,7 @@ title: ruflo-cost-tracker — implementation arc from v0.4.0 to v0.15.0 (auto-ca
 status: Accepted
 date: 2026-05-05
 authors:
-  - planner (Claude Code)
+  - planner (OpenClaw)
 tags: [plugin, cost, telemetry, budget, federation, observability, ci, summary, model-outcome, retrospective]
 ---
 
@@ -27,7 +27,7 @@ Eleven priorities were implemented as separate plugin-local commits, each with v
 
 ### Implementation order and rationale
 
-1. **P1 — `cost-track` (v0.5.0)** — the most embarrassing gap. Reads `~/.claude/projects/<encoded-cwd>/<session>.jsonl`, sums per-message `usage` by model, persists to `cost-tracking` namespace. Without this every other skill operated on empty data.
+1. **P1 — `cost-track` (v0.5.0)** — the most embarrassing gap. Reads `~/.openclaw/projects/<encoded-cwd>/<session>.jsonl`, sums per-message `usage` by model, persists to `cost-tracking` namespace. Without this every other skill operated on empty data.
 2. **P2 — `cost-budget-check` (v0.6.0)** — the README documented a 50/75/90/100% alert ladder but no code enforced it. Wired the producer (`cost track`) to the consumer (`budget check`) with a real fail-closed exit-1 path on `HARD_STOP`.
 3. **P3 — auto-emit `hooks_model-outcome` (v0.7.0)** — `cost-optimize` step 8 was prose. Replaced with a wrapper script (`outcome.mjs`) and a `cost outcome` subcommand so applied recommendations actually train the router.
 4. **P4 — `compact.mjs` (v0.8.0)** — dropped the inline `node --input-type=module -e '...'` block from `cost-compact-context`. True MCP wrapping (modifying @claude-flow/cli source) deliberately deferred — see "Riskiest assumption" below.

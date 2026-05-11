@@ -41,8 +41,8 @@ export async function copyTemplates(targetDir, options = {}) {
     // Core files to copy
     const coreFiles = [
       { 
-        source: 'CLAUDE.md', 
-        destination: 'CLAUDE.md',
+        source: 'OPENCLAW.md', 
+        destination: 'OPENCLAW.md',
         useVariant: true 
       },
       { 
@@ -60,7 +60,7 @@ export async function copyTemplates(targetDir, options = {}) {
     // Copy core files
     for (const file of coreFiles) {
       // Skip files if requested
-      if (options.skipClaudeMd && file.destination === 'CLAUDE.md') continue;
+      if (options.skipClaudeMd && file.destination === 'OPENCLAW.md') continue;
       if (options.skipSettings && file.destination.includes('settings')) continue;
       
       const sourceFile = file.useVariant && existsSync(join(templatesDir, `${file.source}.${templateVariant}`)) 
@@ -93,7 +93,7 @@ export async function copyTemplates(targetDir, options = {}) {
         }
         
         if (await copyFile(settingsPath, settingsDest, options)) {
-          results.copiedFiles.push('.claude/settings.json');
+          results.copiedFiles.push('.openclaw/settings.json');
         }
       } else if (!options.dryRun) {
         // Still create the directory even if skipping settings
@@ -270,7 +270,7 @@ async function copySparcTemplates(templatesDir, targetDir, options, results) {
       await fs.writeFile(overviewPath, createSparcModesOverview());
     }
     console.log(`  ${options.dryRun ? '[DRY RUN] Would create' : '✓ Created'} .claude/commands/sparc/sparc-modes.md`);
-    results.copiedFiles.push('.claude/commands/sparc/sparc-modes.md');
+    results.copiedFiles.push('.openclaw/commands/sparc/sparc-modes.md');
 
     // Copy swarm templates
     await copySwarmTemplates(templatesDir, targetDir, options, results);
@@ -379,15 +379,15 @@ async function createDirectoryStructure(targetDir, options) {
     'coordination/subtasks',
     'coordination/orchestration',
     '.claude',
-    '.claude/commands',
-    '.claude/logs',
+    '.openclaw/commands',
+    '.openclaw/logs',
     '.swarm', // For memory persistence
   ];
 
   if (options.sparc) {
     directories.push(
-      '.claude/commands/sparc',
-      '.claude/commands/swarm'
+      '.openclaw/commands/sparc',
+      '.openclaw/commands/swarm'
     );
   }
 
@@ -459,27 +459,27 @@ async function getTemplateContent(templatePath) {
   
   // Map template files to their generator functions
   const templateGenerators = {
-    'CLAUDE.md': async () => {
+    'OPENCLAW.md': async () => {
       const { createFullClaudeMd } = await import('./templates/claude-md.js');
       return createFullClaudeMd();
     },
-    'CLAUDE.md.sparc': async () => {
+    'OPENCLAW.md.sparc': async () => {
       const { createSparcClaudeMd } = await import('./templates/claude-md.js');
       return createSparcClaudeMd();
     },
-    'CLAUDE.md.minimal': async () => {
+    'OPENCLAW.md.minimal': async () => {
       const { createMinimalClaudeMd } = await import('./templates/claude-md.js');
       return createMinimalClaudeMd();
     },
-    'CLAUDE.md.optimized': async () => {
+    'OPENCLAW.md.optimized': async () => {
       const { createOptimizedSparcClaudeMd } = await import('./templates/claude-md.js');
       return createOptimizedSparcClaudeMd();
     },
-    'CLAUDE.md.enhanced': async () => {
+    'OPENCLAW.md.enhanced': async () => {
       const { createEnhancedClaudeMd } = await import('./templates/enhanced-templates.js');
       return createEnhancedClaudeMd();
     },
-    'CLAUDE.md.verification': async () => {
+    'OPENCLAW.md.verification': async () => {
       const { createVerificationClaudeMd } = await import('./templates/verification-claude-md.js');
       return createVerificationClaudeMd();
     },

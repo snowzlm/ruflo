@@ -9,7 +9,7 @@
 
 **AI-Optimized Browser Automation for Claude-Flow Swarms**
 
-*Integrate [agent-browser](https://github.com/AugmentCode/agent-browser) with claude-flow for intelligent web automation, trajectory learning, security scanning, and multi-agent browser coordination.*
+*Integrate [agent-browser](https://github.com/AugmentCode/agent-browser) with ruflo for intelligent web automation, trajectory learning, security scanning, and multi-agent browser coordination.*
 
 </div>
 
@@ -17,7 +17,7 @@
 
 ## Overview
 
-`@claude-flow/browser` provides a comprehensive browser automation layer for AI agents, combining Vercel Labs' `agent-browser` CLI with claude-flow's learning, memory, and security capabilities. It enables agents to navigate websites, fill forms, extract data, and learn from successful interaction patterns.
+`@claude-flow/browser` provides a comprehensive browser automation layer for AI agents, combining Vercel Labs' `agent-browser` CLI with ruflo's learning, memory, and security capabilities. It enables agents to navigate websites, fill forms, extract data, and learn from successful interaction patterns.
 
 ### Architecture
 
@@ -104,7 +104,7 @@ await browser.close();
 
 ### MCP Integration
 
-Register browser tools with claude-flow's MCP server:
+Register browser tools with ruflo's MCP server:
 
 ```typescript
 import { browserTools } from '@claude-flow/browser';
@@ -714,16 +714,16 @@ MIT License - see [LICENSE](../../LICENSE) for details.
 
 ## Links
 
-- [GitHub Repository](https://github.com/ruvnet/claude-flow)
+- [GitHub Repository](https://github.com/snowzlm/ruflo)
 - [agent-browser](https://github.com/AugmentCode/agent-browser)
-- [Claude-Flow Documentation](https://github.com/ruvnet/claude-flow#readme)
+- [Claude-Flow Documentation](https://github.com/snowzlm/ruflo#readme)
 - [MCP Protocol](https://modelcontextprotocol.io)
 
 ---
 
 <div align="center">
 
-**Part of the [Claude-Flow](https://github.com/ruvnet/claude-flow) ecosystem**
+**Part of the [Claude-Flow](https://github.com/snowzlm/ruflo) ecosystem**
 
 Made with ❤️ by [ruvnet](https://github.com/ruvnet)
 

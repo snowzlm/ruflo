@@ -1,8 +1,8 @@
 /**
- * AutoMemoryBridge - Bidirectional sync between Claude Code Auto Memory and AgentDB
+ * AutoMemoryBridge - Bidirectional sync between OpenClaw Auto Memory and AgentDB
  *
- * Per ADR-048: Bridges Claude Code's auto memory (markdown files at
- * ~/.claude/projects/<project>/memory/) with claude-flow's unified memory
+ * Per ADR-048: Bridges OpenClaw's auto memory (markdown files at
+ * ~/.openclaw/projects/<project>/memory/) with claude-flow's unified memory
  * system (AgentDB + HNSW).
  *
  * Auto memory files are human-readable markdown that Claude loads into its
@@ -181,7 +181,7 @@ const DEFAULT_CONFIG: ResolvedConfig = {
 // ===== AutoMemoryBridge =====
 
 /**
- * Bidirectional bridge between Claude Code auto memory and AgentDB.
+ * Bidirectional bridge between OpenClaw auto memory and AgentDB.
  *
  * @example
  * ```typescript
@@ -472,7 +472,7 @@ export class AutoMemoryBridge extends EventEmitter {
     }
 
     // Fix for #1556: if no topic files matched (e.g. the memory folder uses
-    // Claude Code's native `<type>_<topic>.md` convention rather than the
+    // OpenClaw's native `<type>_<topic>.md` convention rather than the
     // hardcoded DEFAULT_TOPIC_MAPPING filenames), do NOT overwrite the
     // existing MEMORY.md with a one-line stub. A `curate` operation must be
     // non-destructive when there is nothing to curate.
@@ -756,13 +756,13 @@ export class AutoMemoryBridge extends EventEmitter {
 
 /**
  * Resolve the auto memory directory for a given working directory.
- * Mirrors Claude Code's path derivation from git root.
+ * Mirrors OpenClaw's path derivation from git root.
  */
 export function resolveAutoMemoryDir(workingDir: string): string {
   const gitRoot = findGitRoot(workingDir);
   const basePath = gitRoot || workingDir;
 
-  // Claude Code normalizes to forward slashes then replaces with dashes
+  // OpenClaw normalizes to forward slashes then replaces with dashes
   // The leading dash IS preserved (e.g. /workspaces/foo -> -workspaces-foo)
   const normalized = basePath.split(path.sep).join('/');
   const projectKey = normalized.replace(/\//g, '-');

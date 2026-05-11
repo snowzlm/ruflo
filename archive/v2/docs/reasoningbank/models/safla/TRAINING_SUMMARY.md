@@ -92,30 +92,30 @@ All queries meet sub-5ms latency requirement:
 All required files have been created:
 
 ### 1. ✅ Trained Model Database
-**Location**: `/workspaces/claude-code-flow/docs/reasoningbank/models/safla/memory.db`
+**Location**: `/workspaces/openclaw-flow/docs/reasoningbank/models/safla/memory.db`
 - Size: 10.35 MB
 - Format: SQLite3 with WAL mode
 - Contains: 2000 patterns, 2000 embeddings, 3999 links
 
 ### 2. ✅ Training Script
-**Location**: `/workspaces/claude-code-flow/docs/reasoningbank/models/safla/train-safla.js`
+**Location**: `/workspaces/openclaw-flow/docs/reasoningbank/models/safla/train-safla.js`
 - ES6 module format
 - Generates all 2000 patterns programmatically
 - Includes embedding generation and knowledge graph construction
 - Full schema initialization and optimization
 
 ### 3. ✅ Comprehensive Documentation
-**Location**: `/workspaces/claude-code-flow/docs/reasoningbank/models/safla/README.md`
+**Location**: `/workspaces/openclaw-flow/docs/reasoningbank/models/safla/README.md`
 - Algorithm explanation (SAFLA methodology)
 - Pattern category breakdowns with examples
 - Installation and usage instructions
 - Example queries with expected results
 - Performance benchmarks
 - Training methodology details
-- Integration with Claude Flow
+- Integration with Ruflo
 
 ### 4. ✅ Validation Report
-**Location**: `/workspaces/claude-code-flow/docs/reasoningbank/models/safla/validation-report.md`
+**Location**: `/workspaces/openclaw-flow/docs/reasoningbank/models/safla/validation-report.md`
 - 10/10 validation checks passed
 - Detailed metrics for all categories
 - Performance analysis
@@ -153,23 +153,23 @@ Copy the pre-trained model to your `.swarm` directory:
 
 ```bash
 # Global installation (recommended)
-cp /workspaces/claude-code-flow/docs/reasoningbank/models/safla/memory.db ~/.swarm/memory.db
+cp /workspaces/openclaw-flow/docs/reasoningbank/models/safla/memory.db ~/.swarm/memory.db
 
 # Project-specific installation
-cp /workspaces/claude-code-flow/docs/reasoningbank/models/safla/memory.db ./.swarm/memory.db
+cp /workspaces/openclaw-flow/docs/reasoningbank/models/safla/memory.db ./.swarm/memory.db
 ```
 
 ### Usage Examples
 
 ```bash
 # Search for self-learning patterns
-npx claude-flow@alpha memory search "API optimization" --namespace safla
+ruflo memory search "API optimization" --namespace safla
 
 # Get high-confidence patterns
-npx claude-flow@alpha memory retrieve "confidence:>0.85" --namespace safla
+ruflo memory retrieve "confidence:>0.85" --namespace safla
 
 # Find patterns by domain
-npx claude-flow@alpha memory retrieve "domain:feedback-optimization" --namespace safla
+ruflo memory retrieve "domain:feedback-optimization" --namespace safla
 ```
 
 ---
@@ -274,7 +274,7 @@ GROUP BY relationship;
 
 ### 4. Benchmark Query Speed
 ```bash
-time npx claude-flow@alpha memory search "optimize" --namespace safla
+time ruflo memory search "optimize" --namespace safla
 # Expected: < 100ms total (includes CLI overhead)
 ```
 
@@ -305,16 +305,16 @@ time npx claude-flow@alpha memory search "optimize" --namespace safla
 ## 📚 Reference Documentation
 
 ### File Locations
-- **Model**: `/workspaces/claude-code-flow/docs/reasoningbank/models/safla/memory.db`
-- **README**: `/workspaces/claude-code-flow/docs/reasoningbank/models/safla/README.md`
-- **Training Script**: `/workspaces/claude-code-flow/docs/reasoningbank/models/safla/train-safla.js`
-- **Validation Script**: `/workspaces/claude-code-flow/docs/reasoningbank/models/safla/validate-safla.js`
-- **Validation Report**: `/workspaces/claude-code-flow/docs/reasoningbank/models/safla/validation-report.md`
+- **Model**: `/workspaces/openclaw-flow/docs/reasoningbank/models/safla/memory.db`
+- **README**: `/workspaces/openclaw-flow/docs/reasoningbank/models/safla/README.md`
+- **Training Script**: `/workspaces/openclaw-flow/docs/reasoningbank/models/safla/train-safla.js`
+- **Validation Script**: `/workspaces/openclaw-flow/docs/reasoningbank/models/safla/validate-safla.js`
+- **Validation Report**: `/workspaces/openclaw-flow/docs/reasoningbank/models/safla/validation-report.md`
 
 ### Commands
 ```bash
 # Re-train model
-cd /workspaces/claude-code-flow/docs/reasoningbank/models/safla
+cd /workspaces/openclaw-flow/docs/reasoningbank/models/safla
 npm run train
 
 # Validate model
@@ -327,14 +327,14 @@ cat training.log
 ### Integration
 ```bash
 # Initialize with SAFLA model
-npx claude-flow@alpha hooks pre-task --description "Using SAFLA model"
-npx claude-flow@alpha hooks session-restore --session-id "safla-session"
+ruflo hooks pre-task --description "Using SAFLA model"
+ruflo hooks session-restore --session-id "safla-session"
 
 # Query patterns during development
-npx claude-flow@alpha memory search "your query" --namespace safla
+ruflo memory search "your query" --namespace safla
 
 # Store outcomes for future training
-npx claude-flow@alpha hooks post-task --task-id "task-id"
+ruflo hooks post-task --task-id "task-id"
 ```
 
 ---
@@ -359,7 +359,7 @@ npx claude-flow@alpha hooks post-task --task-id "task-id"
 ## 🎖️ Acknowledgments
 
 **Training Agent**: SAFLA Model Training Agent
-**Coordination**: Claude Flow Hooks System
+**Coordination**: Ruflo Hooks System
 **Algorithm**: Self-Aware Feedback Loop Algorithm (SAFLA)
 **Database**: SQLite3 with better-sqlite3
 **Validation**: Custom validation suite
@@ -370,9 +370,9 @@ npx claude-flow@alpha hooks post-task --task-id "task-id"
 
 For questions or issues with the SAFLA model:
 
-- **Documentation**: See `/workspaces/claude-code-flow/docs/reasoningbank/models/safla/README.md`
-- **GitHub**: https://github.com/ruvnet/claude-flow/issues
-- **ReasoningBank CLI**: `npx claude-flow@alpha memory --help`
+- **Documentation**: See `/workspaces/openclaw-flow/docs/reasoningbank/models/safla/README.md`
+- **GitHub**: https://github.com/snowzlm/ruflo/issues
+- **ReasoningBank CLI**: `ruflo memory --help`
 
 ---
 

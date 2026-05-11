@@ -3,7 +3,7 @@
 
 set -e
 
-HELPERS_DIR=".claude/helpers"
+HELPERS_DIR=".openclaw/helpers"
 
 case "$1" in
   "status"|"st")
@@ -20,7 +20,7 @@ case "$1" in
     ;;
 
   "statusline"|"sl")
-    ".claude/statusline.sh"
+    ".openclaw/statusline.sh"
     ;;
 
   "update")
@@ -46,7 +46,7 @@ case "$1" in
     "$HELPERS_DIR/v3-quick-status.sh"
     echo ""
     echo "📺 Full Statusline:"
-    ".claude/statusline.sh"
+    ".openclaw/statusline.sh"
     ;;
 
   "init")

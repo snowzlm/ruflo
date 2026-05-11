@@ -11,7 +11,7 @@ echo "=========================================="
 echo ""
 
 # Configuration
-BENCHMARK_DIR="/workspaces/claude-code-flow/benchmark"
+BENCHMARK_DIR="/workspaces/openclaw-flow/benchmark"
 OUTPUT_DIR="$BENCHMARK_DIR/examples/output/batch_results"
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 BATCH_OUTPUT="$OUTPUT_DIR/batch_$TIMESTAMP"

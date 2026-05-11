@@ -2,7 +2,7 @@
 name: kg-extract
 description: Extract entities and relations from source files to build a knowledge graph
 argument-hint: "<path>"
-allowed-tools: Read Glob Grep mcp__claude-flow__agentdb_hierarchical-store mcp__claude-flow__agentdb_causal-edge mcp__claude-flow__agentdb_semantic-route mcp__claude-flow__agentdb_pattern-store mcp__claude-flow__embeddings_generate Bash
+allowed-tools: Read Glob Grep mcp__ruflo__agentdb_hierarchical-store mcp__ruflo__agentdb_causal-edge mcp__ruflo__agentdb_semantic-route mcp__ruflo__agentdb_pattern-store mcp__ruflo__embeddings_generate Bash
 ---
 
 # KG Extract
@@ -24,8 +24,8 @@ When you need to build or update a knowledge graph from source code or documenta
    - `depends-on`: constructor dependencies, injected services
    - `calls`: function/method invocations
    - `references`: documentation mentions, comments
-4. **Store in AgentDB** -- call `mcp__claude-flow__agentdb_hierarchical-store` for each entity with metadata (name, type, file, line, description)
-5. **Create edges** -- call `mcp__claude-flow__agentdb_causal-edge` for each relation with source, target, relation type, and weight
+4. **Store in AgentDB** -- call `mcp__ruflo__agentdb_hierarchical-store` for each entity with metadata (name, type, file, line, description)
+5. **Create edges** -- call `mcp__ruflo__agentdb_causal-edge` for each relation with source, target, relation type, and weight
 6. **Report** -- summarize: total entities by type, total relations by type, files scanned
 
 ## CLI alternative

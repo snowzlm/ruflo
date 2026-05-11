@@ -1,7 +1,7 @@
 /**
- * CLAUDE.md Analyzer & Auto-Optimizer
+ * OPENCLAW.md Analyzer & Auto-Optimizer
  *
- * Quantifiable, verifiable analysis of CLAUDE.md files.
+ * Quantifiable, verifiable analysis of OPENCLAW.md files.
  * Measures structure quality, coverage, enforceability, and produces
  * a numeric score (0-100) that can be tracked over time.
  *
@@ -215,7 +215,7 @@ const SIZE_BUDGETS: Record<ContextSize, SizeBudget> = {
 // ============================================================================
 
 /**
- * Analyze a CLAUDE.md file and produce quantifiable scores.
+ * Analyze a OPENCLAW.md file and produce quantifiable scores.
  *
  * Scores 6 dimensions (0-100 each), weighted into a composite:
  * - Structure (20%): headings, sections, length, organization
@@ -302,7 +302,7 @@ export function benchmark(before: string, after: string, localContent?: string):
 }
 
 /**
- * Auto-optimize a CLAUDE.md file by applying high-priority suggestions.
+ * Auto-optimize a OPENCLAW.md file by applying high-priority suggestions.
  * Returns the optimized content and the benchmark result.
  */
 export function autoOptimize(
@@ -354,7 +354,7 @@ export function autoOptimize(
  * 5. Adds missing coverage sections
  * 6. Applies iterative patch suggestions
  *
- * @param content - CLAUDE.md content
+ * @param content - OPENCLAW.md content
  * @param options - Optimization options with contextSize and targetScore
  * @returns Optimized content, benchmark, and proof chain
  */
@@ -387,7 +387,7 @@ export function optimizeForSize(
       guidanceHash: 'analyzer',
       retrievedRuleIds: [],
       toolsUsed: ['analyzer.optimizeForSize'],
-      filesTouched: ['CLAUDE.md'],
+      filesTouched: ['OPENCLAW.md'],
       diffSummary: { linesAdded: 0, linesRemoved: 0, filesChanged: 1 },
       testResults: { ran: false, passed: 0, failed: 0, skipped: 0 },
       violations: [],
@@ -488,8 +488,8 @@ export function optimizeForSize(
  * Requires `claude` CLI to be installed. Uses the proof chain to create
  * tamper-evident records of each test run.
  *
- * @param originalContent - Original CLAUDE.md
- * @param optimizedContent - Optimized CLAUDE.md
+ * @param originalContent - Original OPENCLAW.md
+ * @param optimizedContent - Optimized OPENCLAW.md
  * @param options - Options including proof key and executor
  */
 export async function headlessBenchmark(
@@ -512,10 +512,10 @@ export async function headlessBenchmark(
   const chain = proofKey ? createProofChain({ signingKey: proofKey }) : null;
   const proofEnvelopes: ProofEnvelope[] = [];
 
-  // Run tasks with original CLAUDE.md
+  // Run tasks with original OPENCLAW.md
   const beforeResults = await runBenchmarkTasks(executor, tasks, workDir, 'before');
 
-  // Run tasks with optimized CLAUDE.md
+  // Run tasks with optimized OPENCLAW.md
   const afterResults = await runBenchmarkTasks(executor, tasks, workDir, 'after');
 
   // Analyze both
@@ -531,7 +531,7 @@ export async function headlessBenchmark(
       guidanceHash: 'analyzer',
       retrievedRuleIds: [],
       toolsUsed: ['claude -p'],
-      filesTouched: ['CLAUDE.md'],
+      filesTouched: ['OPENCLAW.md'],
       diffSummary: { linesAdded: 0, linesRemoved: 0, filesChanged: 0 },
       testResults: { ran: true, passed: tasks.length, failed: 0, skipped: 0 },
       violations: [],
@@ -579,16 +579,16 @@ export interface IHeadlessExecutor {
 }
 
 /**
- * Content-aware executor that adapts behavior based on CLAUDE.md content.
+ * Content-aware executor that adapts behavior based on OPENCLAW.md content.
  *
  * When `validateEffect()` detects this interface, it calls `setContext()`
  * before each phase (before/after) so the executor can vary its responses
- * based on the quality of the loaded CLAUDE.md. This is the key mechanism
+ * based on the quality of the loaded OPENCLAW.md. This is the key mechanism
  * that makes the empirical validation meaningful — without it, the same
  * executor produces identical adherence for both phases.
  */
 export interface IContentAwareExecutor extends IHeadlessExecutor {
-  /** Set the CLAUDE.md content that the executor should use as behavioral context */
+  /** Set the OPENCLAW.md content that the executor should use as behavioral context */
   setContext(claudeMdContent: string): void;
 }
 
@@ -619,8 +619,8 @@ class DefaultHeadlessExecutor implements IContentAwareExecutor {
     const { join } = await import('node:path');
     const execFileAsync = promisify(execFile);
 
-    const claudeMdPath = join(workDir, 'CLAUDE.md');
-    const backupPath = join(workDir, '.CLAUDE.md.ab-backup');
+    const claudeMdPath = join(workDir, 'OPENCLAW.md');
+    const backupPath = join(workDir, '.OPENCLAW.md.ab-backup');
     let swapped = false;
 
     if (this.contextContent !== null) {
@@ -761,7 +761,7 @@ function formatHeadlessBenchmarkReport(result: HeadlessBenchmarkResult): string 
 export function formatReport(result: AnalysisResult): string {
   const lines: string[] = [];
 
-  lines.push(`CLAUDE.md Analysis Report`);
+  lines.push(`OPENCLAW.md Analysis Report`);
   lines.push(`========================`);
   lines.push(``);
   lines.push(`Composite Score: ${result.compositeScore}/100 (${result.grade})`);
@@ -1572,10 +1572,10 @@ export interface ValidationTaskResult {
 }
 
 /**
- * A single validation run against one CLAUDE.md version.
+ * A single validation run against one OPENCLAW.md version.
  */
 export interface ValidationRun {
-  /** Analysis of the CLAUDE.md used */
+  /** Analysis of the OPENCLAW.md used */
   analysis: AnalysisResult;
   /** Per-task results */
   taskResults: ValidationTaskResult[];
@@ -1624,9 +1624,9 @@ export interface CorrelationResult {
  * lead to behavioral improvements.
  */
 export interface ValidationReport {
-  /** Run against original CLAUDE.md */
+  /** Run against original OPENCLAW.md */
   before: ValidationRun;
-  /** Run against optimized CLAUDE.md */
+  /** Run against optimized OPENCLAW.md */
   after: ValidationRun;
   /** Statistical correlation analysis */
   correlation: CorrelationResult;
@@ -2288,11 +2288,11 @@ function pct(value: number): string {
  * Empirically validate that score improvements produce behavioral improvements.
  *
  * Runs a suite of compliance tasks against both the original and optimized
- * CLAUDE.md, then computes statistical correlations between per-dimension
+ * OPENCLAW.md, then computes statistical correlations between per-dimension
  * score deltas and per-dimension adherence rate deltas.
  *
  * **Content-aware executors**: If the executor implements `IContentAwareExecutor`,
- * `setContext()` is called before each phase with the corresponding CLAUDE.md
+ * `setContext()` is called before each phase with the corresponding OPENCLAW.md
  * content. This is the key mechanism that allows the executor to vary its
  * behavior based on the quality of the loaded guidance — without it, the same
  * executor produces identical adherence for both phases.
@@ -2305,8 +2305,8 @@ function pct(value: number): string {
  * - A formatted report with full task breakdown
  * - Optional proof chain for tamper-evident audit trail
  *
- * @param originalContent - Original CLAUDE.md content
- * @param optimizedContent - Optimized CLAUDE.md content
+ * @param originalContent - Original OPENCLAW.md content
+ * @param optimizedContent - Optimized OPENCLAW.md content
  * @param options - Executor, tasks, proof key, work directory, trials
  * @returns ValidationReport with statistical evidence
  */
@@ -2390,7 +2390,7 @@ export async function validateEffect(
       guidanceHash: 'analyzer-validation',
       retrievedRuleIds: [],
       toolsUsed: ['claude -p', 'analyzer.validateEffect'],
-      filesTouched: ['CLAUDE.md'],
+      filesTouched: ['OPENCLAW.md'],
       diffSummary: { linesAdded: 0, linesRemoved: 0, filesChanged: 0 },
       testResults: {
         ran: true,
@@ -3109,7 +3109,7 @@ function pad(value: number): string {
  * **Success criterion**: B beats A by ≥0.2 on composite across ≥3 task classes
  * = "category shift"
  *
- * @param claudeMdContent - The CLAUDE.md content used for Config B
+ * @param claudeMdContent - The OPENCLAW.md content used for Config B
  * @param options - Executor, tasks, proof key, work directory
  * @returns ABReport with full per-task and per-class breakdown
  */
@@ -3131,15 +3131,15 @@ export async function abBenchmark(
 
   const contentAware = isContentAwareExecutor(executor);
 
-  // #1652: a non-content-aware executor reads CLAUDE.md from disk for both
+  // #1652: a non-content-aware executor reads OPENCLAW.md from disk for both
   // configs, so the delta is architecturally guaranteed to be zero — yet
-  // the verdict implies the user's CLAUDE.md is ineffective. Detect and
+  // the verdict implies the user's OPENCLAW.md is ineffective. Detect and
   // abort with a clear, actionable message before spending ~$23 in tokens
   // on a meaningless run. The default executor IS content-aware, so this
   // only triggers when callers inject a bare IHeadlessExecutor.
   if (!contentAware) {
     throw new Error(
-      'abBenchmark requires a content-aware executor. The provided IHeadlessExecutor lacks `setContext()`, so Config A and Config B will both read the same on-disk CLAUDE.md and the delta is guaranteed to be zero. Either use the DefaultHeadlessExecutor (content-aware as of @claude-flow/guidance@3.0.0-alpha.2) or implement IContentAwareExecutor on your custom executor.',
+      'abBenchmark requires a content-aware executor. The provided IHeadlessExecutor lacks `setContext()`, so Config A and Config B will both read the same on-disk OPENCLAW.md and the delta is guaranteed to be zero. Either use the DefaultHeadlessExecutor (content-aware as of @claude-flow/guidance@3.0.0-alpha.2) or implement IContentAwareExecutor on your custom executor.',
     );
   }
 
@@ -3188,7 +3188,7 @@ export async function abBenchmark(
       guidanceHash: createHash('sha256').update(claudeMdContent).digest('hex').slice(0, 16),
       retrievedRuleIds: [],
       toolsUsed: ['abBenchmark'],
-      filesTouched: ['CLAUDE.md'],
+      filesTouched: ['OPENCLAW.md'],
       diffSummary: { linesAdded: 0, linesRemoved: 0, filesChanged: 0 },
       testResults: {
         ran: true,

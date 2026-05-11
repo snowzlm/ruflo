@@ -1,6 +1,6 @@
 /**
  * Dual-Mode Orchestrator
- * Runs Claude Code and Codex workers in parallel with shared memory
+ * Runs OpenClaw and Codex workers in parallel with shared memory
  */
 
 import { spawn, ChildProcess } from 'child_process';
@@ -49,7 +49,7 @@ export interface CollaborationResult {
 }
 
 /**
- * Orchestrates parallel execution of Claude Code and Codex workers
+ * Orchestrates parallel execution of OpenClaw and Codex workers
  */
 export class DualModeOrchestrator extends EventEmitter {
   private config: Required<DualModeConfig>;
@@ -206,7 +206,7 @@ export class DualModeOrchestrator extends EventEmitter {
     const { sharedNamespace, projectPath } = this.config;
 
     return `You are a ${config.role.toUpperCase()} agent in a collaborative dual-mode swarm.
-Platform: ${config.platform === 'claude' ? 'Claude Code' : 'OpenAI Codex'}
+Platform: ${config.platform === 'claude' ? 'OpenClaw' : 'OpenAI Codex'}
 Working Directory: ${projectPath}
 Shared Memory Namespace: ${sharedNamespace}
 

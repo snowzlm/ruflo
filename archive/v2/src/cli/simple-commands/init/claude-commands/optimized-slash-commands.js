@@ -1,4 +1,4 @@
-// optimized-slash-commands.js - Create batchtools-optimized Claude Code slash commands
+// optimized-slash-commands.js - Create batchtools-optimized OpenClaw slash commands
 
 import {
   createOptimizedSparcSlashCommand,
@@ -9,10 +9,10 @@ import { copyTemplates } from '../template-copier.js';
 import { promises as fs } from 'fs';
 import { join } from 'path';
 
-// Create batchtools-optimized Claude Code slash commands for SPARC modes
+// Create batchtools-optimized OpenClaw slash commands for SPARC modes
 export async function createOptimizedClaudeSlashCommands(workingDir, selectedModes = null) {
   try {
-    console.log('\n🚀 Creating batchtools-optimized Claude Code slash commands...');
+    console.log('\n🚀 Creating batchtools-optimized OpenClaw slash commands...');
 
     // Use template copier with optimized flag
     const optimizedOptions = {
@@ -73,7 +73,7 @@ export async function createOptimizedClaudeSlashCommands(workingDir, selectedMod
 
     console.log('  💡 All commands include parallel processing and performance optimizations');
   } catch (err) {
-    console.log(`  ⚠️  Could not create optimized Claude Code slash commands: ${err.message}`);
+    console.log(`  ⚠️  Could not create optimized OpenClaw slash commands: ${err.message}`);
   }
 }
 
@@ -245,10 +245,10 @@ Chain operations with parallel execution at each stage:
 ./claude-flow batchtools resources --concurrent --verbose
 \`\`\`
 
-For detailed documentation, see: https://github.com/ruvnet/claude-code-flow/docs/batchtools.md
+For detailed documentation, see: https://github.com/ruvnet/openclaw-flow/docs/batchtools.md
 `;
 
-  await fs.writeFile(`${workingDir}/.claude/commands/batchtools.md`, batchtoolsCommand, 'utf8');
+  await fs.writeFile(`${workingDir}/.openclaw/commands/batchtools.md`, batchtoolsCommand, 'utf8');
   console.log('  ✓ Created slash command: /batchtools');
 
   // Performance monitoring command
@@ -343,9 +343,9 @@ Real-time performance monitoring and optimization tools for Claude-Flow operatio
 - Implement performance alerts for critical thresholds
 - Regular performance analysis and optimization
 
-For comprehensive performance guides, see: https://github.com/ruvnet/claude-code-flow/docs/performance.md
+For comprehensive performance guides, see: https://github.com/ruvnet/openclaw-flow/docs/performance.md
 `;
 
-  await fs.writeFile(`${workingDir}/.claude/commands/performance.md`, performanceCommand, 'utf8');
+  await fs.writeFile(`${workingDir}/.openclaw/commands/performance.md`, performanceCommand, 'utf8');
   console.log('  ✓ Created slash command: /performance');
 }

@@ -1,5 +1,5 @@
 /**
- * Claude Flow + Claude Code - Browser IDE
+ * Claude Flow + OpenClaw - Browser IDE
  * Combines swarm orchestration with interactive code editing
  */
 
@@ -61,7 +61,7 @@ class ClaudeCodeDashboard {
     }
 
     getDefaultCode() {
-        return `// Claude Flow + Claude Code - Browser IDE
+        return `// Claude Flow + OpenClaw - Browser IDE
 // Write your code here and click "Run Code" to execute via MCP
 
 console.log('Hello from Claude Flow!');

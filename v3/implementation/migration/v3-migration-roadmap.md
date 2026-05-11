@@ -581,7 +581,7 @@ Step-by-step guide for migrating from v2 to v3
 
 ## Automated Migration Tool
 ```bash
-npx claude-flow migrate v2-to-v3
+npx ruflo migrate v2-to-v3
 ```
 
 ## Common Issues
@@ -1186,7 +1186,7 @@ npm run benchmark:compare -- --base=v2 --compare=v3
 
 # Backup v2 data
 echo "Backing up v2 data..."
-cp claude-flow.db claude-flow-v2-backup.db
+cp ruflo.db claude-flow-v2-backup.db
 
 # Migrate configuration
 echo "Migrating configuration..."
@@ -1208,7 +1208,7 @@ echo "Migration complete! Review logs at migration.log"
 # Migrating from v2 to v3
 
 ## Overview
-This guide helps you migrate your claude-flow installation from v2 to v3.
+This guide helps you migrate your ruflo installation from v2 to v3.
 
 ## Prerequisites
 - Node.js 20+
@@ -1218,39 +1218,39 @@ This guide helps you migrate your claude-flow installation from v2 to v3.
 ## Step 1: Backup
 ```bash
 # Backup data
-cp claude-flow.db backup/
+cp ruflo.db backup/
 cp -r .claude/ backup/
 ```
 
 ## Step 2: Install v3
 ```bash
-npm install claude-flow@3.0.0
+npm install ruflo@3.0.0
 ```
 
 ## Step 3: Migrate Config
 ```bash
-npx claude-flow migrate config
+npx ruflo migrate config
 ```
 
 ## Step 4: Migrate Data
 ```bash
-npx claude-flow migrate data
+npx ruflo migrate data
 ```
 
 ## Step 5: Test
 ```bash
-npx claude-flow test-migration
+npx ruflo test-migration
 ```
 
 ## Step 6: Switch
 ```bash
-npx claude-flow activate v3
+npx ruflo activate v3
 ```
 
 ## Rollback
 If issues occur:
 ```bash
-npx claude-flow rollback v2
+npx ruflo rollback v2
 ```
 ```
 

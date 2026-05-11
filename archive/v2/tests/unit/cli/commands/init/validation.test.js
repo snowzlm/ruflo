@@ -100,7 +100,7 @@ jest.mock('../../../../../src/cli/simple-commands/init/validation/config-validat
     validateClaudeMd: jest.fn().mockResolvedValue({
       success: true,
       errors: [],
-      message: 'CLAUDE.md valid',
+      message: 'OPENCLAW.md valid',
     }),
     validateMemoryConfig: jest.fn().mockResolvedValue({
       success: true,
@@ -305,7 +305,7 @@ describe('ValidationSystem', () => {
       const mockValidator = new ConfigValidator();
       mockValidator.validateClaudeMd.mockResolvedValue({
         success: false,
-        errors: ['Invalid CLAUDE.md format'],
+        errors: ['Invalid OPENCLAW.md format'],
       });
 
       validationSystem.configValidator = mockValidator;
@@ -313,7 +313,7 @@ describe('ValidationSystem', () => {
       const result = await validationSystem.validateConfiguration();
 
       expect(result.success).toBe(true); // Config errors are warnings
-      expect(result.warnings).toContain('Invalid CLAUDE.md format');
+      expect(result.warnings).toContain('Invalid OPENCLAW.md format');
     });
   });
 

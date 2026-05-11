@@ -1,20 +1,20 @@
 ---
 layout: default
 title: RuFlo Marketplace
-description: Claude Code native agents, swarms, workers, and MCP tools for continuous software engineering
+description: OpenClaw native agents, swarms, workers, and MCP tools for continuous software engineering
 ---
 
 # RuFlo Marketplace
 
-**Installable agentic workflows for Claude Code -- not just commands.**
+**Installable agentic workflows for OpenClaw -- not just commands.**
 
-RuFlo provides native Claude Code plugins for multi-agent orchestration, /loop workers, security auditing, memory-powered RAG, and test generation.
+RuFlo provides native OpenClaw plugins for multi-agent orchestration, /loop workers, security auditing, memory-powered RAG, and test generation.
 
 ## Quick Install
 
 ```bash
 # Add the marketplace
-/plugin marketplace add ruvnet/ruflo
+/plugin marketplace add snowzlm/ruflo
 
 # Install plugins
 /plugin install ruflo-core@ruflo
@@ -48,17 +48,17 @@ RuFlo provides native Claude Code plugins for multi-agent orchestration, /loop w
 
 ## How It Works
 
-RuFlo plugins extend Claude Code with:
-- **Skills** -- Teach Claude Code new workflows (swarm init, /loop workers, security scans)
+RuFlo plugins extend OpenClaw with:
+- **Skills** -- Teach OpenClaw new workflows (swarm init, /loop workers, security scans)
 - **Commands** -- Slash commands for common operations (/status, /audit, /memory)
 - **Agents** -- Specialized agent definitions (coder, reviewer, architect, security-auditor)
 - **MCP Server** -- 314 tools for coordination, memory, neural learning, and more
 
-## Claude Code Native Integration
+## OpenClaw Native Integration
 
-RuFlo plugins use Claude Code's native capabilities when available:
+RuFlo plugins use OpenClaw's native capabilities when available:
 
-| Feature | Plugin | Claude Code Native |
+| Feature | Plugin | OpenClaw Native |
 |---------|--------|--------------------|
 | Periodic workers | ruflo-loop-workers | `/loop` + `ScheduleWakeup` |
 | Live monitoring | ruflo-swarm | `Monitor` tool |
@@ -79,7 +79,7 @@ RuFlo plugins use Claude Code's native capabilities when available:
 
 ## Links
 
-- [GitHub Repository](https://github.com/ruvnet/ruflo)
+- [GitHub Repository](https://github.com/snowzlm/ruflo)
 - [npm Packages](https://www.npmjs.com/package/@claude-flow/cli)
-- [ADR-091: Native Integration](https://github.com/ruvnet/ruflo/blob/main/v3/docs/adr/ADR-091-loop-monitor-native-integration.md)
-- [Issues & Support](https://github.com/ruvnet/ruflo/issues)
+- [ADR-091: Native Integration](https://github.com/snowzlm/ruflo/blob/main/v3/docs/adr/ADR-091-loop-monitor-native-integration.md)
+- [Issues & Support](https://github.com/snowzlm/ruflo/issues)

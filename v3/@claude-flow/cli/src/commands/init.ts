@@ -1,6 +1,6 @@
 /**
  * V3 CLI Init Command
- * Comprehensive initialization for Claude Flow with Claude Code integration
+ * Comprehensive initialization for Claude Flow with OpenClaw integration
  */
 
 import type { Command, CommandContext, CommandResult } from '../types.js';
@@ -124,7 +124,7 @@ async function initCodexAction(
         `.agents/config.toml: Project configuration`,
         `.agents/skills/: ${result.skillsGenerated.length} skills`,
         `.codex/: Local overrides (gitignored)`,
-        dualMode ? `CLAUDE.md: Claude Code compatibility` : '',
+        dualMode ? `OPENCLAW.md: OpenClaw compatibility` : '',
       ].filter(Boolean).join('\n'),
       'OpenAI Codex Integration'
     );
@@ -148,7 +148,7 @@ async function initCodexAction(
       `Review ${output.highlight('AGENTS.md')} for project instructions`,
       `Add skills with ${output.highlight('$skill-name')} syntax`,
       `Configure ${output.highlight('.agents/config.toml')} for your project`,
-      dualMode ? `Claude Code users can use ${output.highlight('CLAUDE.md')}` : '',
+      dualMode ? `OpenClaw users can use ${output.highlight('OPENCLAW.md')}` : '',
     ].filter(Boolean));
 
     return { success: true, data: result };
@@ -252,7 +252,7 @@ const initAction = async (ctx: CommandContext): Promise<CommandResult> => {
     options.components.runtime = false;
   }
 
-  // #1744 — opt-out of the user-global ~/.claude/CLAUDE.md "Ruflo Integration"
+  // #1744 — opt-out of the user-global ~/.openclaw/OPENCLAW.md "Ruflo Integration"
   // pointer block. Default behavior (off) preserves current install for users
   // who rely on it; opting in via --no-global keeps the global file pristine.
   if (noGlobal) {
@@ -300,7 +300,7 @@ const initAction = async (ctx: CommandContext): Promise<CommandResult> => {
     if (options.components.claudeMd || options.components.settings || options.components.skills || options.components.commands || options.components.agents) {
       output.printBox(
         [
-          options.components.claudeMd ? `CLAUDE.md:   Swarm guidance & configuration` : '',
+          options.components.claudeMd ? `OPENCLAW.md:   Swarm guidance & configuration` : '',
           options.components.settings ? `Settings:    .claude/settings.json` : '',
           options.components.skills ? `Skills:      .claude/skills/ (${result.summary.skillsCount} skills)` : '',
           options.components.commands ? `Commands:    .claude/commands/ (${result.summary.commandsCount} commands)` : '',
@@ -308,7 +308,7 @@ const initAction = async (ctx: CommandContext): Promise<CommandResult> => {
           options.components.helpers ? `Helpers:     .claude/helpers/` : '',
           options.components.mcp ? `MCP:         .mcp.json` : '',
         ].filter(Boolean).join('\n'),
-        'Claude Code Integration'
+        'OpenClaw Integration'
       );
       output.writeln();
     }
@@ -433,7 +433,7 @@ const initAction = async (ctx: CommandContext): Promise<CommandResult> => {
         `Run ${output.highlight(`${bin} memory init`)} to initialize memory database`,
         `Run ${output.highlight(`${bin} swarm init`)} to initialize a swarm`,
         `Or use ${output.highlight(`${bin} init --start-all`)} to do all of the above`,
-        options.components.settings ? `Review ${output.highlight('.claude/settings.json')} for hook configurations` : '',
+        options.components.settings ? `Review ${output.highlight('.openclaw/settings.json')} for hook configurations` : '',
       ].filter(Boolean));
     }
 
@@ -485,10 +485,10 @@ const wizardCommand: Command = {
         const components = await multiSelect({
           message: 'Select components to initialize:',
           options: [
-            { value: 'claudeMd', label: 'CLAUDE.md', hint: 'Swarm guidance and project configuration', selected: true },
-            { value: 'settings', label: 'settings.json', hint: 'Claude Code hooks configuration', selected: true },
-            { value: 'skills', label: 'Skills', hint: 'Claude Code skills in .claude/skills/', selected: true },
-            { value: 'commands', label: 'Commands', hint: 'Claude Code commands in .claude/commands/', selected: true },
+            { value: 'claudeMd', label: 'OPENCLAW.md', hint: 'Swarm guidance and project configuration', selected: true },
+            { value: 'settings', label: 'settings.json', hint: 'OpenClaw hooks configuration', selected: true },
+            { value: 'skills', label: 'Skills', hint: 'OpenClaw skills in .claude/skills/', selected: true },
+            { value: 'commands', label: 'Commands', hint: 'OpenClaw commands in .claude/commands/', selected: true },
             { value: 'agents', label: 'Agents', hint: 'Agent definitions in .claude/agents/', selected: true },
             { value: 'helpers', label: 'Helpers', hint: 'Utility scripts in .claude/helpers/', selected: true },
             { value: 'statusline', label: 'Statusline', hint: 'Shell statusline integration', selected: false },
@@ -740,7 +740,7 @@ const checkCommand: Command = {
     if (result.initialized) {
       output.printSuccess('RuFlo is initialized');
       if (initialized.claude) {
-        output.printInfo(`  Claude Code: .claude/settings.json`);
+        output.printInfo(`  OpenClaw: .claude/settings.json`);
       }
       if (initialized.claudeFlow) {
         output.printInfo(`  V3 Runtime: .claude-flow/config.yaml`);
@@ -1073,7 +1073,7 @@ export const initCommand: Command = {
     },
     {
       name: 'no-global',
-      description: 'Skip the ~/.claude/CLAUDE.md "Ruflo Integration" pointer block (#1744)',
+      description: 'Skip the ~/.openclaw/OPENCLAW.md "Ruflo Integration" pointer block (#1744)',
       type: 'boolean',
       default: false,
     },
@@ -1110,7 +1110,7 @@ export const initCommand: Command = {
     },
     {
       name: 'dual',
-      description: 'Initialize for both Claude Code and OpenAI Codex',
+      description: 'Initialize for both OpenClaw and OpenAI Codex',
       type: 'boolean',
       default: false,
     },
@@ -1122,7 +1122,7 @@ export const initCommand: Command = {
     { command: 'claude-flow init --minimal', description: 'Initialize with minimal configuration' },
     { command: 'claude-flow init --full', description: 'Initialize with all components' },
     { command: 'claude-flow init --force', description: 'Reinitialize and overwrite existing config' },
-    { command: 'claude-flow init --only-claude', description: 'Only create Claude Code integration' },
+    { command: 'claude-flow init --only-claude', description: 'Only create OpenClaw integration' },
     { command: 'claude-flow init --skip-claude', description: 'Only create V3 runtime' },
     { command: 'claude-flow init wizard', description: 'Interactive setup wizard' },
     { command: 'claude-flow init --with-embeddings', description: 'Initialize with ONNX embeddings' },
@@ -1134,7 +1134,7 @@ export const initCommand: Command = {
     { command: 'claude-flow init upgrade --verbose', description: 'Show detailed upgrade info' },
     { command: 'claude-flow init --codex', description: 'Initialize for OpenAI Codex (AGENTS.md)' },
     { command: 'claude-flow init --codex --full', description: 'Codex init with all 137+ skills' },
-    { command: 'claude-flow init --dual', description: 'Initialize for both Claude Code and Codex' },
+    { command: 'claude-flow init --dual', description: 'Initialize for both OpenClaw and Codex' },
   ],
   action: initAction,
 };

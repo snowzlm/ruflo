@@ -15,7 +15,7 @@ hooks:
     echo "📋 Agent System Migration Planner activated"
     echo "🔄 Analyzing current command structure for migration"
     # Check existing command structure
-    if [ -d ".claude/commands" ]; then
+    if [ -d ".openclaw/commands" ]; then
       echo "📁 Found existing command directory - will map to agents"
       find .claude/commands -name "*.md" | wc -l | xargs echo "Commands to migrate:"
     fi
@@ -25,7 +25,7 @@ hooks:
     echo "🚀 Ready for systematic agent system rollout"
 ---
 
-# Claude Flow Commands to Agent System Migration Plan
+# Ruflo Commands to Agent System Migration Plan
 
 ## Overview
 This document provides a comprehensive migration plan to convert existing .claude/commands to the new agent-based system. Each command is mapped to an equivalent agent with defined roles, responsibilities, capabilities, and tool access restrictions.
@@ -59,7 +59,7 @@ triggers:
 ### 1. Coordination Agents
 
 #### Swarm Initializer Agent
-**Command**: `.claude/commands/coordination/init.md`
+**Command**: `.openclaw/commands/coordination/init.md`
 ```yaml
 ---
 role: coordinator
@@ -75,9 +75,9 @@ capabilities:
   - network-configuration
 tools:
   allowed:
-    - mcp__claude-flow__swarm_init
-    - mcp__claude-flow__topology_optimize
-    - mcp__claude-flow__memory_usage
+    - mcp__ruflo__swarm_init
+    - mcp__ruflo__topology_optimize
+    - mcp__ruflo__memory_usage
     - TodoWrite
   restricted:
     - Bash
@@ -91,7 +91,7 @@ triggers:
 ```
 
 #### Agent Spawner
-**Command**: `.claude/commands/coordination/spawn.md`
+**Command**: `.openclaw/commands/coordination/spawn.md`
 ```yaml
 ---
 role: coordinator
@@ -107,10 +107,10 @@ capabilities:
   - pattern-recognition
 tools:
   allowed:
-    - mcp__claude-flow__agent_spawn
-    - mcp__claude-flow__daa_agent_create
-    - mcp__claude-flow__agent_list
-    - mcp__claude-flow__memory_usage
+    - mcp__ruflo__agent_spawn
+    - mcp__ruflo__daa_agent_create
+    - mcp__ruflo__agent_list
+    - mcp__ruflo__memory_usage
   restricted:
     - Bash
     - Write
@@ -123,7 +123,7 @@ triggers:
 ```
 
 #### Task Orchestrator
-**Command**: `.claude/commands/coordination/orchestrate.md`
+**Command**: `.openclaw/commands/coordination/orchestrate.md`
 ```yaml
 ---
 role: orchestrator
@@ -141,10 +141,10 @@ capabilities:
   - progress-tracking
 tools:
   allowed:
-    - mcp__claude-flow__task_orchestrate
-    - mcp__claude-flow__task_status
-    - mcp__claude-flow__task_results
-    - mcp__claude-flow__parallel_execute
+    - mcp__ruflo__task_orchestrate
+    - mcp__ruflo__task_status
+    - mcp__ruflo__task_results
+    - mcp__ruflo__parallel_execute
     - TodoWrite
     - TodoRead
   restricted:
@@ -161,7 +161,7 @@ triggers:
 ### 2. GitHub Integration Agents
 
 #### PR Manager Agent
-**Command**: `.claude/commands/github/pr-manager.md`
+**Command**: `.openclaw/commands/github/pr-manager.md`
 ```yaml
 ---
 role: github-specialist
@@ -180,10 +180,10 @@ capabilities:
 tools:
   allowed:
     - Bash  # For gh CLI commands
-    - mcp__claude-flow__swarm_init
-    - mcp__claude-flow__agent_spawn
-    - mcp__claude-flow__task_orchestrate
-    - mcp__claude-flow__memory_usage
+    - mcp__ruflo__swarm_init
+    - mcp__ruflo__agent_spawn
+    - mcp__ruflo__task_orchestrate
+    - mcp__ruflo__memory_usage
     - TodoWrite
     - Read
   restricted:
@@ -197,7 +197,7 @@ triggers:
 ```
 
 #### Code Review Swarm Agent
-**Command**: `.claude/commands/github/code-review-swarm.md`
+**Command**: `.openclaw/commands/github/code-review-swarm.md`
 ```yaml
 ---
 role: reviewer
@@ -218,10 +218,10 @@ tools:
     - Bash  # For gh CLI
     - Read
     - Grep
-    - mcp__claude-flow__swarm_init
-    - mcp__claude-flow__agent_spawn
-    - mcp__claude-flow__github_code_review
-    - mcp__claude-flow__memory_usage
+    - mcp__ruflo__swarm_init
+    - mcp__ruflo__agent_spawn
+    - mcp__ruflo__github_code_review
+    - mcp__ruflo__memory_usage
   restricted:
     - Write
     - Edit
@@ -233,7 +233,7 @@ triggers:
 ```
 
 #### Release Manager Agent
-**Command**: `.claude/commands/github/release-manager.md`
+**Command**: `.openclaw/commands/github/release-manager.md`
 ```yaml
 ---
 role: release-coordinator
@@ -253,9 +253,9 @@ tools:
   allowed:
     - Bash
     - Read
-    - mcp__claude-flow__github_release_coord
-    - mcp__claude-flow__swarm_init
-    - mcp__claude-flow__task_orchestrate
+    - mcp__ruflo__github_release_coord
+    - mcp__ruflo__swarm_init
+    - mcp__ruflo__task_orchestrate
     - TodoWrite
   restricted:
     - Write  # Use version control for releases
@@ -270,7 +270,7 @@ triggers:
 ### 3. SPARC Methodology Agents
 
 #### SPARC Orchestrator Agent
-**Command**: `.claude/commands/sparc/orchestrator.md`
+**Command**: `.openclaw/commands/sparc/orchestrator.md`
 ```yaml
 ---
 role: sparc-coordinator
@@ -288,13 +288,13 @@ capabilities:
   - result-synthesis
 tools:
   allowed:
-    - mcp__claude-flow__sparc_mode
-    - mcp__claude-flow__swarm_init
-    - mcp__claude-flow__agent_spawn
-    - mcp__claude-flow__task_orchestrate
+    - mcp__ruflo__sparc_mode
+    - mcp__ruflo__swarm_init
+    - mcp__ruflo__agent_spawn
+    - mcp__ruflo__task_orchestrate
     - TodoWrite
     - TodoRead
-    - mcp__claude-flow__memory_usage
+    - mcp__ruflo__memory_usage
   restricted:
     - Bash
     - Write
@@ -307,7 +307,7 @@ triggers:
 ```
 
 #### SPARC Coder Agent
-**Command**: `.claude/commands/sparc/coder.md`
+**Command**: `.openclaw/commands/sparc/coder.md`
 ```yaml
 ---
 role: implementer
@@ -330,10 +330,10 @@ tools:
     - Edit
     - MultiEdit
     - Bash
-    - mcp__claude-flow__sparc_mode
+    - mcp__ruflo__sparc_mode
     - TodoWrite
   restricted:
-    - mcp__claude-flow__swarm_init  # Focus on implementation
+    - mcp__ruflo__swarm_init  # Focus on implementation
 triggers:
   - pattern: "implement|code|develop|build.*feature"
     priority: high
@@ -342,7 +342,7 @@ triggers:
 ```
 
 #### SPARC Tester Agent
-**Command**: `.claude/commands/sparc/tester.md`
+**Command**: `.openclaw/commands/sparc/tester.md`
 ```yaml
 ---
 role: quality-assurance
@@ -364,11 +364,11 @@ tools:
     - Write
     - Edit
     - Bash
-    - mcp__claude-flow__sparc_mode
+    - mcp__ruflo__sparc_mode
     - TodoWrite
-    - mcp__claude-flow__parallel_execute
+    - mcp__ruflo__parallel_execute
   restricted:
-    - mcp__claude-flow__swarm_init
+    - mcp__ruflo__swarm_init
 triggers:
   - pattern: "test|verify|validate|check.*quality"
     priority: high
@@ -379,7 +379,7 @@ triggers:
 ### 4. Analysis Agents
 
 #### Performance Analyzer Agent
-**Command**: `.claude/commands/analysis/performance-bottlenecks.md`
+**Command**: `.openclaw/commands/analysis/performance-bottlenecks.md`
 ```yaml
 ---
 role: analyst
@@ -397,10 +397,10 @@ capabilities:
   - optimization-planning
 tools:
   allowed:
-    - mcp__claude-flow__bottleneck_analyze
-    - mcp__claude-flow__performance_report
-    - mcp__claude-flow__metrics_collect
-    - mcp__claude-flow__trend_analysis
+    - mcp__ruflo__bottleneck_analyze
+    - mcp__ruflo__performance_report
+    - mcp__ruflo__metrics_collect
+    - mcp__ruflo__trend_analysis
     - Read
     - Grep
   restricted:
@@ -415,7 +415,7 @@ triggers:
 ```
 
 #### Token Efficiency Analyst Agent
-**Command**: `.claude/commands/analysis/token-efficiency.md`
+**Command**: `.openclaw/commands/analysis/token-efficiency.md`
 ```yaml
 ---
 role: analyst
@@ -433,10 +433,10 @@ capabilities:
   - report-generation
 tools:
   allowed:
-    - mcp__claude-flow__token_usage
-    - mcp__claude-flow__cost_analysis
-    - mcp__claude-flow__usage_stats
-    - mcp__claude-flow__memory_analytics
+    - mcp__ruflo__token_usage
+    - mcp__ruflo__cost_analysis
+    - mcp__ruflo__usage_stats
+    - mcp__ruflo__memory_analytics
     - Read
   restricted:
     - Write
@@ -452,7 +452,7 @@ triggers:
 ### 5. Memory Management Agents
 
 #### Memory Coordinator Agent
-**Command**: `.claude/commands/memory/usage.md`
+**Command**: `.openclaw/commands/memory/usage.md`
 ```yaml
 ---
 role: memory-manager
@@ -470,11 +470,11 @@ capabilities:
   - synchronization
 tools:
   allowed:
-    - mcp__claude-flow__memory_usage
-    - mcp__claude-flow__memory_search
-    - mcp__claude-flow__memory_namespace
-    - mcp__claude-flow__memory_compress
-    - mcp__claude-flow__memory_sync
+    - mcp__ruflo__memory_usage
+    - mcp__ruflo__memory_search
+    - mcp__ruflo__memory_namespace
+    - mcp__ruflo__memory_compress
+    - mcp__ruflo__memory_sync
   restricted:
     - Write
     - Edit
@@ -487,7 +487,7 @@ triggers:
 ```
 
 #### Neural Pattern Agent
-**Command**: `.claude/commands/memory/neural.md`
+**Command**: `.openclaw/commands/memory/neural.md`
 ```yaml
 ---
 role: ai-specialist
@@ -505,11 +505,11 @@ capabilities:
   - transfer-learning
 tools:
   allowed:
-    - mcp__claude-flow__neural_train
-    - mcp__claude-flow__neural_patterns
-    - mcp__claude-flow__neural_predict
-    - mcp__claude-flow__cognitive_analyze
-    - mcp__claude-flow__learning_adapt
+    - mcp__ruflo__neural_train
+    - mcp__ruflo__neural_patterns
+    - mcp__ruflo__neural_predict
+    - mcp__ruflo__cognitive_analyze
+    - mcp__ruflo__learning_adapt
   restricted:
     - Write
     - Edit
@@ -524,7 +524,7 @@ triggers:
 ### 6. Automation Agents
 
 #### Smart Agent Coordinator
-**Command**: `.claude/commands/automation/smart-agents.md`
+**Command**: `.openclaw/commands/automation/smart-agents.md`
 ```yaml
 ---
 role: automation-specialist
@@ -542,11 +542,11 @@ capabilities:
   - auto-scaling
 tools:
   allowed:
-    - mcp__claude-flow__daa_agent_create
-    - mcp__claude-flow__daa_capability_match
-    - mcp__claude-flow__daa_resource_alloc
-    - mcp__claude-flow__swarm_scale
-    - mcp__claude-flow__agent_metrics
+    - mcp__ruflo__daa_agent_create
+    - mcp__ruflo__daa_capability_match
+    - mcp__ruflo__daa_resource_alloc
+    - mcp__ruflo__swarm_scale
+    - mcp__ruflo__agent_metrics
   restricted:
     - Write
     - Edit
@@ -559,7 +559,7 @@ triggers:
 ```
 
 #### Self-Healing Coordinator Agent
-**Command**: `.claude/commands/automation/self-healing.md`
+**Command**: `.openclaw/commands/automation/self-healing.md`
 ```yaml
 ---
 role: reliability-engineer
@@ -577,10 +577,10 @@ capabilities:
   - error-analysis
 tools:
   allowed:
-    - mcp__claude-flow__daa_fault_tolerance
-    - mcp__claude-flow__health_check
-    - mcp__claude-flow__error_analysis
-    - mcp__claude-flow__diagnostic_run
+    - mcp__ruflo__daa_fault_tolerance
+    - mcp__ruflo__health_check
+    - mcp__ruflo__error_analysis
+    - mcp__ruflo__diagnostic_run
     - Bash  # For system commands
   restricted:
     - Write  # Prevent accidental file modifications during recovery
@@ -595,7 +595,7 @@ triggers:
 ### 7. Optimization Agents
 
 #### Parallel Execution Optimizer Agent
-**Command**: `.claude/commands/optimization/parallel-execution.md`
+**Command**: `.openclaw/commands/optimization/parallel-execution.md`
 ```yaml
 ---
 role: optimizer
@@ -613,10 +613,10 @@ capabilities:
   - bottleneck-removal
 tools:
   allowed:
-    - mcp__claude-flow__parallel_execute
-    - mcp__claude-flow__load_balance
-    - mcp__claude-flow__batch_process
-    - mcp__claude-flow__performance_report
+    - mcp__ruflo__parallel_execute
+    - mcp__ruflo__load_balance
+    - mcp__ruflo__batch_process
+    - mcp__ruflo__performance_report
     - TodoWrite
   restricted:
     - Write
@@ -629,7 +629,7 @@ triggers:
 ```
 
 #### Auto-Topology Optimizer Agent
-**Command**: `.claude/commands/optimization/auto-topology.md`
+**Command**: `.openclaw/commands/optimization/auto-topology.md`
 ```yaml
 ---
 role: optimizer
@@ -647,11 +647,11 @@ capabilities:
   - adaptive-configuration
 tools:
   allowed:
-    - mcp__claude-flow__topology_optimize
-    - mcp__claude-flow__swarm_monitor
-    - mcp__claude-flow__coordination_sync
-    - mcp__claude-flow__swarm_status
-    - mcp__claude-flow__metrics_collect
+    - mcp__ruflo__topology_optimize
+    - mcp__ruflo__swarm_monitor
+    - mcp__ruflo__coordination_sync
+    - mcp__ruflo__swarm_status
+    - mcp__ruflo__metrics_collect
   restricted:
     - Write
     - Edit
@@ -666,7 +666,7 @@ triggers:
 ### 8. Monitoring Agents
 
 #### Swarm Monitor Agent
-**Command**: `.claude/commands/monitoring/status.md`
+**Command**: `.openclaw/commands/monitoring/status.md`
 ```yaml
 ---
 role: monitor
@@ -684,11 +684,11 @@ capabilities:
   - alert-generation
 tools:
   allowed:
-    - mcp__claude-flow__swarm_status
-    - mcp__claude-flow__swarm_monitor
-    - mcp__claude-flow__agent_metrics
-    - mcp__claude-flow__health_check
-    - mcp__claude-flow__performance_report
+    - mcp__ruflo__swarm_status
+    - mcp__ruflo__swarm_monitor
+    - mcp__ruflo__agent_metrics
+    - mcp__ruflo__health_check
+    - mcp__ruflo__performance_report
   restricted:
     - Write
     - Edit
@@ -718,7 +718,7 @@ triggers:
 - Results are aggregated by coordinator agents
 
 ### 4. Migration Steps
-1. Create `.claude/agents/` directory structure
+1. Create `.openclaw/agents/` directory structure
 2. Convert each command to agent definition format
 3. Update activation patterns for natural language
 4. Test agent interactions and handoffs

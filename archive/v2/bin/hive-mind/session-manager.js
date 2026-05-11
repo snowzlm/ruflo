@@ -83,7 +83,7 @@ export class HiveMindSessionManager {
     if (isWindows()) {
       console.info(`
 Note: Session data will not persist between runs on Windows without SQLite.
-To enable persistence, see: https://github.com/ruvnet/claude-code-flow/docs/windows-installation.md
+To enable persistence, see: https://github.com/ruvnet/openclaw-flow/docs/windows-installation.md
 `);
     }
   }

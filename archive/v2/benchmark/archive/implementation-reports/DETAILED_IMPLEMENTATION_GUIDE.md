@@ -3,10 +3,10 @@
 ## Complete Agent Instructions & Technical Specifications
 
 ### 🎯 Mission Statement
-Transform the benchmark system into a state-of-the-art performance testing suite that leverages Claude Flow's full capabilities, including MLE-STAR ensemble learning, non-interactive automation, CLAUDE.md optimization, and advanced swarm orchestration.
+Transform the benchmark system into a state-of-the-art performance testing suite that leverages Ruflo's full capabilities, including MLE-STAR ensemble learning, non-interactive automation, OPENCLAW.md optimization, and advanced swarm orchestration.
 
 ## 📋 Table of Contents
-1. [CLAUDE.md Optimizer Implementation](#claudemd-optimizer)
+1. [OPENCLAW.md Optimizer Implementation](#claudemd-optimizer)
 2. [MLE-STAR Integration Details](#mle-star-integration)
 3. [Non-Interactive Automation](#non-interactive-automation)
 4. [Advanced Metrics Implementation](#advanced-metrics)
@@ -19,10 +19,10 @@ Transform the benchmark system into a state-of-the-art performance testing suite
 
 ---
 
-## 🔧 CLAUDE.md Optimizer Implementation
+## 🔧 OPENCLAW.md Optimizer Implementation
 
 ### Core Concept
-Create an intelligent system that generates optimized CLAUDE.md configurations for specific use cases, improving Claude Code's performance and accuracy for different development scenarios.
+Create an intelligent system that generates optimized OPENCLAW.md configurations for specific use cases, improving OpenClaw's performance and accuracy for different development scenarios.
 
 ### Implementation Specification
 
@@ -31,10 +31,10 @@ Create an intelligent system that generates optimized CLAUDE.md configurations f
 
 class ClaudeMdOptimizer:
     """
-    Generates optimized CLAUDE.md configurations for specific use cases.
+    Generates optimized OPENCLAW.md configurations for specific use cases.
     
     This optimizer analyzes project requirements and generates tailored
-    CLAUDE.md files that maximize efficiency for different scenarios.
+    OPENCLAW.md files that maximize efficiency for different scenarios.
     """
     
     def __init__(self):
@@ -64,7 +64,7 @@ class ClaudeMdOptimizer:
                                   project_context: Dict,
                                   performance_targets: Dict) -> str:
         """
-        Generate an optimized CLAUDE.md for specific use case.
+        Generate an optimized OPENCLAW.md for specific use case.
         
         Args:
             use_case: Type of development (api, ml, frontend, etc.)
@@ -72,7 +72,7 @@ class ClaudeMdOptimizer:
             performance_targets: Performance goals to optimize for
             
         Returns:
-            Optimized CLAUDE.md content as string
+            Optimized OPENCLAW.md content as string
         """
         # Get base template for use case
         base_config = self.use_case_templates[use_case](project_context)
@@ -92,7 +92,7 @@ class ClaudeMdOptimizer:
                                       claude_md_content: str,
                                       test_tasks: List[str]) -> Dict:
         """
-        Benchmark the effectiveness of a CLAUDE.md configuration.
+        Benchmark the effectiveness of a OPENCLAW.md configuration.
         
         Returns metrics on:
         - Task completion rate
@@ -180,7 +180,7 @@ def _ml_template(self, context: Dict) -> Dict:
 ```python
 class OptimizationRulesEngine:
     """
-    Apply optimization rules to CLAUDE.md configurations.
+    Apply optimization rules to OPENCLAW.md configurations.
     """
     
     def optimize_for_speed(self, config: Dict) -> Dict:
@@ -230,11 +230,11 @@ class OptimizationRulesEngine:
         return config
 ```
 
-### CLAUDE.md Generation Examples
+### OPENCLAW.md Generation Examples
 
 #### Example 1: High-Performance API Development
 ```markdown
-# CLAUDE.md - Optimized for API Development
+# OPENCLAW.md - Optimized for API Development
 
 ## ⚡ Performance Configuration
 - **Execution Mode**: Parallel-first
@@ -278,7 +278,7 @@ class OptimizationRulesEngine:
 
 #### Example 2: ML Pipeline Development
 ```markdown
-# CLAUDE.md - Optimized for ML Pipeline Development
+# OPENCLAW.md - Optimized for ML Pipeline Development
 
 ## 🧠 MLE-STAR Configuration
 - **Ensemble Size**: 5 models
@@ -297,7 +297,7 @@ class OptimizationRulesEngine:
 ### Ensemble Coordination
 ```python
 # Initialize MLE-STAR ensemble
-mcp__claude-flow__swarm_init({ 
+mcp__ruflo__swarm_init({ 
   topology: "mesh", 
   maxAgents: 8,
   mle_star: {
@@ -410,9 +410,9 @@ class MLEStarEnsembleExecutor:
                                  agent_id: str, 
                                  model_config: Dict) -> ModelAgent:
         """Spawn a specialized ML agent for a model."""
-        # Use claude-flow MCP to spawn ML agent
+        # Use ruflo MCP to spawn ML agent
         result = await self._execute_mcp_command(
-            "mcp__claude-flow__agent_spawn",
+            "mcp__ruflo__agent_spawn",
             {
                 "type": "ml-developer",
                 "name": agent_id,
@@ -1159,7 +1159,7 @@ Create comprehensive test suite for all new functionality.
 - [ ] Write tests for automation systems
 - [ ] Build tests for advanced metrics
 - [ ] Create tests for collective intelligence
-- [ ] Write tests for CLAUDE.md optimizer
+- [ ] Write tests for OPENCLAW.md optimizer
 - [ ] Implement performance regression tests
 - [ ] Create load testing scenarios
 - [ ] Build continuous testing pipeline
@@ -1199,7 +1199,7 @@ Create comprehensive documentation and usage examples.
 - [ ] Write integration guide
 - [ ] Build performance tuning guide
 - [ ] Create troubleshooting documentation
-- [ ] Write CLAUDE.md optimization guide
+- [ ] Write OPENCLAW.md optimization guide
 - [ ] Create benchmark interpretation guide
 - [ ] Build best practices documentation
 
@@ -1366,7 +1366,7 @@ def benchmark_function(param1: str, param2: int) -> BenchmarkResult:
 
 ### Step 1: Initialize Swarm
 ```bash
-npx claude-flow@alpha swarm init \
+ruflo swarm init \
   --topology hierarchical \
   --agents 6 \
   --config ./benchmark/ENHANCEMENT_PLAN.md
@@ -1374,7 +1374,7 @@ npx claude-flow@alpha swarm init \
 
 ### Step 2: Execute Enhancement
 ```bash
-npx claude-flow@alpha swarm execute \
+ruflo swarm execute \
   --task "Implement benchmark system enhancements" \
   --parallel true \
   --monitor true
@@ -1389,7 +1389,7 @@ python -m swarm_benchmark validate --comprehensive
 
 ### Step 4: Generate Report
 ```bash
-npx claude-flow@alpha swarm report \
+ruflo swarm report \
   --format comprehensive \
   --output ./benchmark/reports/enhancement_report.md
 ```
@@ -1402,7 +1402,7 @@ npx claude-flow@alpha swarm report \
 - [ ] MLE-STAR integration complete
 - [ ] Automation systems functional
 - [ ] Advanced metrics collecting data
-- [ ] CLAUDE.md optimizer generating configs
+- [ ] OPENCLAW.md optimizer generating configs
 - [ ] Test coverage >95%
 - [ ] Performance targets met
 - [ ] Documentation complete

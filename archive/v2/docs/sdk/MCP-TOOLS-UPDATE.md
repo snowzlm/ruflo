@@ -96,23 +96,23 @@ if (command === 'checkpoint') {
 
 ### Via MCP Server (Recommended)
 
-When the MCP server is running (`claude-flow mcp start`), all 7 tools are available:
+When the MCP server is running (`ruflo mcp start`), all 7 tools are available:
 
 ```typescript
 // Example: Create checkpoint via MCP
-mcp__claude-flow__checkpoint_create({
+mcp__ruflo__checkpoint_create({
   sessionId: "my-session",
   description: "Before deployment"
 })
 
 // Example: Fork session via MCP
-mcp__claude-flow__session_fork({
+mcp__ruflo__session_fork({
   sessionId: "base-session",
   forkOptions: {}
 })
 
 // Example: Pause query via MCP
-mcp__claude-flow__query_pause({
+mcp__ruflo__query_pause({
   sessionId: "active-query"
 })
 ```
@@ -194,7 +194,7 @@ const cpId = await checkpointManager.createCheckpoint('session-id', 'desc');
 
 ```typescript
 // Via MCP tool
-const result = await mcp__claude-flow__checkpoint_create({
+const result = await mcp__ruflo__checkpoint_create({
   sessionId: "prod-deployment",
   description: "Before database migration"
 });
@@ -206,7 +206,7 @@ console.log(`Checkpoint created: ${result.checkpointId}`);
 
 ```typescript
 // Via MCP tool
-const fork = await mcp__claude-flow__session_fork({
+const fork = await mcp__ruflo__session_fork({
   sessionId: "main-session",
   forkOptions: {}
 });
@@ -219,12 +219,12 @@ console.log(`Forked session: ${fork.fork.sessionId}`);
 
 ```typescript
 // Via MCP tool
-await mcp__claude-flow__query_pause({
+await mcp__ruflo__query_pause({
   sessionId: "long-running-analysis"
 });
 
 // Later, resume from exact point
-await mcp__claude-flow__query_resume({
+await mcp__ruflo__query_resume({
   sessionId: "long-running-analysis"
 });
 ```
@@ -239,7 +239,7 @@ To verify MCP tools are available:
 # 1. Start MCP server
 ./bin/claude-flow mcp start
 
-# 2. In Claude Code with MCP connected, list tools:
+# 2. In OpenClaw with MCP connected, list tools:
 # Tools will show: checkpoint/create, checkpoint/list, checkpoint/rollback,
 # session/fork, session/info, query/pause, query/resume
 
@@ -260,11 +260,11 @@ npx tsx scripts/validate-sdk-integration.ts
 - ✅ Full backward compatibility
 - ✅ Production ready
 
-**The claude-flow MCP server now provides complete access to all SDK features through standardized MCP tool interfaces.**
+**The ruflo MCP server now provides complete access to all SDK features through standardized MCP tool interfaces.**
 
 ---
 
 **Next Steps**:
-1. Use MCP tools in Claude Code for SDK features
+1. Use MCP tools in OpenClaw for SDK features
 2. CLI command routing can be added in future if needed
 3. All functionality is accessible via MCP tools NOW

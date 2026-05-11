@@ -617,4 +617,4 @@ The MCP Client provides a clean, type-safe way for CLI commands to call MCP tool
 - **MCP Client**: Tool routing & error handling
 - **MCP Tools**: Business logic & data management
 
-This architecture ensures maintainability, testability, and consistency across all interfaces to the claude-flow system.
+This architecture ensures maintainability, testability, and consistency across all interfaces to the ruflo system.

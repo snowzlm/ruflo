@@ -398,9 +398,9 @@ export interface RuleADR {
  * Guidance Control Plane configuration
  */
 export interface GuidanceControlPlaneConfig {
-  /** Path to root CLAUDE.md */
+  /** Path to root OPENCLAW.md */
   rootGuidancePath: string;
-  /** Path to CLAUDE.local.md (optional) */
+  /** Path to OPENCLAW.local.md (optional) */
   localGuidancePath?: string;
   /** Gate configuration */
   gates: Partial<GateConfig>;

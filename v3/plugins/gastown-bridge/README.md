@@ -7,7 +7,7 @@
 
 ## Introduction
 
-The **Gas Town Bridge Plugin** brings Steve Yegge's powerful [Gas Town](https://github.com/steveyegge/gastown) multi-agent orchestrator to Claude Flow V3. Gas Town introduces battle-tested concepts for durable workflow execution that complement Claude Flow's swarm intelligence.
+The **Gas Town Bridge Plugin** brings Steve Yegge's powerful [Gas Town](https://github.com/steveyegge/gastown) multi-agent orchestrator to Ruflo V3. Gas Town introduces battle-tested concepts for durable workflow execution that complement Ruflo's swarm intelligence.
 
 ### What is Gas Town?
 
@@ -73,7 +73,7 @@ Gas Town is a 75,000-line Go codebase that implements:
 
 ### 🔄 Bidirectional Sync
 
-Seamlessly sync between Gas Town's Beads and Claude Flow's AgentDB:
+Seamlessly sync between Gas Town's Beads and Ruflo's AgentDB:
 
 ```
 ┌──────────────┐     SyncBridge      ┌──────────────┐
@@ -87,9 +87,9 @@ Seamlessly sync between Gas Town's Beads and Claude Flow's AgentDB:
 
 ## Enhancement & Comparison
 
-### Gas Town vs Claude Flow V3
+### Gas Town vs Ruflo V3
 
-| Feature | Gas Town | Claude Flow V3 | With This Plugin |
+| Feature | Gas Town | Ruflo V3 | With This Plugin |
 |---------|----------|----------------|------------------|
 | **Issue Tracking** | Beads (Git-backed) | AgentDB | Unified sync |
 | **Workflows** | TOML Formulas | TypeScript | Both supported |
@@ -120,8 +120,8 @@ Seamlessly sync between Gas Town's Beads and Claude Flow's AgentDB:
 ## Installation
 
 ```bash
-# Install via Claude Flow CLI (recommended)
-npx claude-flow@latest plugins install -n @claude-flow/plugin-gastown-bridge
+# Install via Ruflo CLI (recommended)
+ruflo plugins install -n @claude-flow/plugin-gastown-bridge
 
 # Or install directly via npm
 npm install @claude-flow/plugin-gastown-bridge
@@ -146,7 +146,7 @@ const plugin = new GasTownBridgePlugin({
   wasmEnabled: true,             // Enable WASM acceleration
 });
 
-// Register with Claude Flow
+// Register with Ruflo
 await claudeFlow.registerPlugin(plugin);
 ```
 
@@ -263,8 +263,8 @@ bd --version
 ### Step 2: Initialize Plugin in Your Project
 
 ```typescript
-// claude-flow.config.ts
-import { defineConfig } from 'claude-flow';
+// ruflo.config.ts
+import { defineConfig } from 'ruflo';
 import { GasTownBridgePlugin } from '@claude-flow/plugin-gastown-bridge';
 
 export default defineConfig({
@@ -281,7 +281,7 @@ export default defineConfig({
 ```typescript
 const bead = await claudeFlow.mcp.call('gt_beads_create', {
   title: 'Hello Gas Town',
-  description: 'My first bead from Claude Flow!',
+  description: 'My first bead from Ruflo!',
   priority: 3,
   labels: ['tutorial'],
 });
@@ -593,7 +593,7 @@ See [MCP Tools Documentation](./docs/mcp-tools.md) for complete API reference.
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│                      Claude Flow V3 Plugin Host                      │
+│                      Ruflo V3 Plugin Host                      │
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                      │
 │  ┌─────────────────────┐    ┌─────────────────────────────────────┐ │
@@ -646,4 +646,4 @@ MIT License - see [LICENSE](./LICENSE) for details.
 
 ---
 
-**Built with ❤️ by the Claude Flow Team**
+**Built with ❤️ by the Ruflo Team**

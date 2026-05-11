@@ -13,7 +13,7 @@ description: Show Claude-Flow commands and usage
 
 ## 🌊 Claude-Flow: Agent Orchestration Platform
 
-Claude-Flow is the ultimate multi-terminal orchestration platform that revolutionizes how you work with Claude Code.
+Claude-Flow is the ultimate multi-terminal orchestration platform that revolutionizes how you work with OpenClaw.
 
 ## Core Commands
 
@@ -104,12 +104,12 @@ npx -y claude-flow@latest init --sparc
 - Use background mode for tasks > 30 minutes
 
 ## 📚 Resources
-- Documentation: https://github.com/ruvnet/claude-code-flow/docs
-- Examples: https://github.com/ruvnet/claude-code-flow/examples
-- Issues: https://github.com/ruvnet/claude-code-flow/issues
+- Documentation: https://github.com/ruvnet/openclaw-flow/docs
+- Examples: https://github.com/ruvnet/openclaw-flow/examples
+- Issues: https://github.com/ruvnet/openclaw-flow/issues
 `;
 
-  await fs.writeFile(`${workingDir}/.claude/commands/claude-flow-help.md`, helpCommand, 'utf8');
+  await fs.writeFile(`${workingDir}/.openclaw/commands/claude-flow-help.md`, helpCommand, 'utf8');
   console.log('  ✓ Created slash command: /claude-flow-help');
 
   // Memory command
@@ -222,7 +222,7 @@ The memory system provides persistent storage for cross-session and cross-agent 
 \`\`\`
 `;
 
-  await fs.writeFile(`${workingDir}/.claude/commands/claude-flow-memory.md`, memoryCommand, 'utf8');
+  await fs.writeFile(`${workingDir}/.openclaw/commands/claude-flow-memory.md`, memoryCommand, 'utf8');
   console.log('  ✓ Created slash command: /claude-flow-memory');
 
   // Swarm command
@@ -430,9 +430,9 @@ Swarms automatically use distributed memory for collaboration:
 - Resource-aware
 - Adaptive
 
-For detailed documentation, see: https://github.com/ruvnet/claude-code-flow/docs/swarm-system.md
+For detailed documentation, see: https://github.com/ruvnet/openclaw-flow/docs/swarm-system.md
 `;
 
-  await fs.writeFile(`${workingDir}/.claude/commands/claude-flow-swarm.md`, swarmCommand, 'utf8');
+  await fs.writeFile(`${workingDir}/.openclaw/commands/claude-flow-swarm.md`, swarmCommand, 'utf8');
   console.log('  ✓ Created slash command: /claude-flow-swarm');
 }

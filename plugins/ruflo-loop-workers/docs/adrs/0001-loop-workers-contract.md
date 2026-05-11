@@ -5,13 +5,13 @@ status: Accepted
 date: 2026-05-04
 updated: 2026-05-09
 authors:
-  - reviewer (Claude Code)
+  - reviewer (OpenClaw)
 tags: [plugin, loop-workers, cron, schedule-wakeup, cache-aware, namespace, smoke-test]
 ---
 
 ## Context
 
-`ruflo-loop-workers` (v0.1.0) — cache-aware `/loop` workers + `CronCreate` background automation. Wraps **5 `hooks_worker-*` MCP tools** at `v3/@claude-flow/cli/src/mcp-tools/hooks-tools.ts:3489, 3538, 3656, 3714, 3923` (`worker-list`, `worker-dispatch`, `worker-status`, `worker-detect`, `worker-cancel`) and exposes 12 background worker triggers per CLAUDE.md.
+`ruflo-loop-workers` (v0.1.0) — cache-aware `/loop` workers + `CronCreate` background automation. Wraps **5 `hooks_worker-*` MCP tools** at `v3/@claude-flow/cli/src/mcp-tools/hooks-tools.ts:3489, 3538, 3656, 3714, 3923` (`worker-list`, `worker-dispatch`, `worker-status`, `worker-detect`, `worker-cancel`) and exposes 12 background worker triggers per OPENCLAW.md.
 
 Surface: 1 agent (`loop-worker-coordinator`), 2 skills (`loop-worker`, `cron-schedule`), 2 commands (`/ruflo-loop`, `/ruflo-schedule`).
 

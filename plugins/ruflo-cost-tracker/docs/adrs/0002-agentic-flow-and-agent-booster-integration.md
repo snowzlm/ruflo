@@ -4,7 +4,7 @@ title: ruflo-cost-tracker — agentic-flow + Agent Booster integration, model-ou
 status: Accepted
 date: 2026-05-04
 authors:
-  - planner (Claude Code)
+  - planner (OpenClaw)
 tags: [plugin, cost, tokens, optimization, agentic-flow, agent-booster, tier1-routing, token-optimizer, model-routing, hooks-route, model-outcome, optimize-worker, smoke-test]
 ---
 
@@ -25,15 +25,15 @@ Verified at `v3/@claude-flow/integration/src/token-optimizer.ts:308`. The module
 
 This is the integration shim cost-tracker should be wrapping. The plugin currently does not import, mention, or surface it.
 
-**However** — `getCompactContext` line 141–143 computes savings as `query_tokens - compact_prompt_tokens`. That's a heuristic comparing query length to retrieved-context length, which is not a real "tokens saved vs. baseline" measurement. The CLAUDE.md root claim of "ReasoningBank retrieval: -32% tokens" is **claimed upstream, not yet verified** in this repo. Cost-tracker should consume the optimizer but report its `tokensSaved` as a *bridge-reported* figure, not as a measured saving.
+**However** — `getCompactContext` line 141–143 computes savings as `query_tokens - compact_prompt_tokens`. That's a heuristic comparing query length to retrieved-context length, which is not a real "tokens saved vs. baseline" measurement. The OPENCLAW.md root claim of "ReasoningBank retrieval: -32% tokens" is **claimed upstream, not yet verified** in this repo. Cost-tracker should consume the optimizer but report its `tokensSaved` as a *bridge-reported* figure, not as a measured saving.
 
 ### 2. The Agent Booster bypass marker is real
 
-`hooks_route` emits `[AGENT_BOOSTER_AVAILABLE]` at `v3/@claude-flow/cli/src/mcp-tools/hooks-tools.ts:1228` and `[TASK_MODEL_RECOMMENDATION]` at line 1240. The CLI command surface mirrors this at `v3/@claude-flow/cli/src/commands/hooks.ts:1836, 1848`. CLAUDE.md root documents six booster intents (`var-to-const`, `add-types`, `add-error-handling`, `async-await`, `add-logging`, `remove-console`).
+`hooks_route` emits `[AGENT_BOOSTER_AVAILABLE]` at `v3/@claude-flow/cli/src/mcp-tools/hooks-tools.ts:1228` and `[TASK_MODEL_RECOMMENDATION]` at line 1240. The CLI command surface mirrors this at `v3/@claude-flow/cli/src/commands/hooks.ts:1836, 1848`. OPENCLAW.md root documents six booster intents (`var-to-const`, `add-types`, `add-error-handling`, `async-await`, `add-logging`, `remove-console`).
 
 The plugin's optimization-strategies table (`README.md:62`, `REFERENCE.md:45`) lists "Use Agent Booster (Tier 1) — 100% savings" but provides no implementation guidance, no skill that detects booster-eligible tasks, and no command that reports how often the booster path was taken vs. bypassed. This is the highest-leverage gap: the routing infrastructure is already wired, the savings are real ($0 for Tier 1), and cost-tracker is the natural place to surface the count.
 
-CLAUDE.md root claims the booster is "352x faster, $0". The 352x figure is **claimed upstream, not yet verified** in this repo's source. The $0 cost is structurally correct (no LLM call) and is the only number cost-tracker should report.
+OPENCLAW.md root claims the booster is "352x faster, $0". The 352x figure is **claimed upstream, not yet verified** in this repo's source. The $0 cost is structurally correct (no LLM call) and is the only number cost-tracker should report.
 
 ### 3. The model-routing feedback loop is half-wired
 
@@ -47,7 +47,7 @@ ruflo-intelligence ADR-0001 §"Neutral" already calls out the equivalent intent:
 
 ### 5. Reports break down spend by *model name*, not by *tier*
 
-Today the report shape (`REFERENCE.md:53-73`) groups by model (`Haiku / Sonnet / Opus`) and by agent. With the 3-tier routing reality (CLAUDE.md root §"3-Tier Model Routing"), the actually meaningful breakdown is **by tier**:
+Today the report shape (`REFERENCE.md:53-73`) groups by model (`Haiku / Sonnet / Opus`) and by agent. With the 3-tier routing reality (OPENCLAW.md root §"3-Tier Model Routing"), the actually meaningful breakdown is **by tier**:
 
 - Tier 1 (Agent Booster, $0) — bypass count
 - Tier 2 (Haiku, $0.0002) — small tasks
@@ -66,8 +66,8 @@ Six changes, ranked by leverage. Each is plugin-local; no CLI source modificatio
 - **Inputs:** a task description (or batch of recent task descriptions from `cost-tracking` namespace).
 - **Behavior:** invoke `hooks_route` for each task; partition results by whether the response contains `[AGENT_BOOSTER_AVAILABLE]`. Sum the partition counts and the inferred token spend that *would have* gone through Tier 2/3 if the booster wasn't used.
 - **Output:** a "Booster bypass report" section — `N tasks analyzed, M routed to Tier 1 (booster), avg latency <1ms, $0 cost`.
-- **Allowed tools:** `mcp__claude-flow__hooks_route`, `mcp__claude-flow__memory_search`, `Bash`. No wildcard.
-- **Expected savings:** structurally $0 per Tier 1 routed task. CLAUDE.md root's "352x faster" speedup figure is **claimed upstream, not yet verified** — the skill reports the latency the router actually returns, not the upstream multiplier.
+- **Allowed tools:** `mcp__ruflo__hooks_route`, `mcp__ruflo__memory_search`, `Bash`. No wildcard.
+- **Expected savings:** structurally $0 per Tier 1 routed task. OPENCLAW.md root's "352x faster" speedup figure is **claimed upstream, not yet verified** — the skill reports the latency the router actually returns, not the upstream multiplier.
 - **Verification:** smoke check confirms the skill exists, references `hooks_route` and the `[AGENT_BOOSTER_AVAILABLE]` literal, and has no wildcard tool grant.
 
 ### 2. New skill: `cost-compact-context` (conditional on agentic-flow availability)
@@ -75,18 +75,18 @@ Six changes, ranked by leverage. Each is plugin-local; no CLI source modificatio
 `skills/cost-compact-context/SKILL.md`. Wraps `getTokenOptimizer().getCompactContext()` for retrieval-augmented prompt compression on cost-analysis queries.
 
 - **Inputs:** a natural-language query (e.g. "what optimizations worked last sprint").
-- **Behavior:** import `getTokenOptimizer` from `@claude-flow/integration` via a `Bash`-shelled Node one-liner (or via a new `mcp__claude-flow__token_optimize_compact` tool if/when one is added — see "Riskiest assumption" below). Report the bridge's `tokensSaved` figure plus the `agentBoosterAvailable` flag.
+- **Behavior:** import `getTokenOptimizer` from `@claude-flow/integration` via a `Bash`-shelled Node one-liner (or via a new `mcp__ruflo__token_optimize_compact` tool if/when one is added — see "Riskiest assumption" below). Report the bridge's `tokensSaved` figure plus the `agentBoosterAvailable` flag.
 - **Output:** "Context compacted: N memories retrieved, K tokens saved (per agentic-flow bridge; upstream-reported, not measured against a no-RAG baseline)."
 - **Allowed tools:** `Bash` only (no MCP tool yet exists for this; we explicitly do **not** add one in this ADR).
-- **Expected savings:** the CLAUDE.md root claim "-32% tokens" is **claimed upstream, not yet verified**. The skill MUST surface the bridge's figure as bridge-reported, with the disclaimer copied from `token-optimizer.ts:9-10`.
+- **Expected savings:** the OPENCLAW.md root claim "-32% tokens" is **claimed upstream, not yet verified**. The skill MUST surface the bridge's figure as bridge-reported, with the disclaimer copied from `token-optimizer.ts:9-10`.
 - **Fallback:** if `agentic-flow` isn't installed, the bridge returns `tokensSaved: 0` (line 116–124). Skill reports "agentic-flow not available, no compact-context savings" and exits cleanly.
 - **Verification:** smoke check confirms the skill documents the fallback and tags upstream-reported figures.
 
 ### 3. Extend `cost-optimize/SKILL.md` with a model-outcome feedback step
 
-After the existing step 7 ("Store the optimization pattern"), add step 8: when a downgrade recommendation is *applied* (or its application is logged), call `mcp__claude-flow__hooks_model-outcome` with `{task, fromModel, toModel, outcome: 'success'|'escalated'|'failure'}`. This closes the routing loop documented in ruflo-intelligence ADR-0001.
+After the existing step 7 ("Store the optimization pattern"), add step 8: when a downgrade recommendation is *applied* (or its application is logged), call `mcp__ruflo__hooks_model-outcome` with `{task, fromModel, toModel, outcome: 'success'|'escalated'|'failure'}`. This closes the routing loop documented in ruflo-intelligence ADR-0001.
 
-- **Allowed-tools update:** add `mcp__claude-flow__hooks_model-outcome`.
+- **Allowed-tools update:** add `mcp__ruflo__hooks_model-outcome`.
 - **Cross-link:** ruflo-intelligence ADR-0001 §"Neutral" (migration target).
 - **Expected effect:** the model router's recommendations tighten over time. No direct token saving; this is *the mechanism* through which Decision #1's bypass rate improves.
 - **Verification:** smoke check confirms `cost-optimize/SKILL.md` references `hooks_model-outcome`.
@@ -96,7 +96,7 @@ After the existing step 7 ("Store the optimization pattern"), add step 8: when a
 ruflo-loop-workers README already declares this. Honor it on the cost-tracker side:
 
 - **`agents/cost-analyst.md`** — add a "Background workers" section listing `optimize` (consumed for cost-optimization recommendations) and `benchmark` (consumed for cost-per-benchmark reporting). Cross-link ruflo-loop-workers ADR-0001 §"12-worker trigger map".
-- **`commands/ruflo-cost.md`** — add a `cost workers` subcommand that calls `mcp__claude-flow__hooks_worker-status --worker optimize` and `--worker benchmark` and reports last-run timestamps + outcomes.
+- **`commands/ruflo-cost.md`** — add a `cost workers` subcommand that calls `mcp__ruflo__hooks_worker-status --worker optimize` and `--worker benchmark` and reports last-run timestamps + outcomes.
 - **No new skill** — the existing `loop-worker` skill from `ruflo-loop-workers` is reused.
 - **Expected savings:** none direct. This is contract honoring; failure to wire means cost-tracker ignores ~7 days of optimization recommendations the worker may have produced.
 - **Verification:** smoke check confirms agent + command reference both worker triggers.
@@ -136,7 +136,7 @@ Tier classification at report-time uses two signals: (a) the `[AGENT_BOOSTER_AVA
 **Negative:**
 
 - Adds a transitive dependency surface. `getTokenOptimizer` works without `agentic-flow` installed (graceful fallback), but the `cost-compact-context` skill is effectively inert in that case. We surface this explicitly in the skill.
-- The CLAUDE.md root percentage claims (-32% retrieval, -15% booster edits, 352x speedup, 95% cache hit) are upstream marketing figures, not measured in this repo. Decisions #1 and #2 above MUST tag every percentage as "claimed upstream, not yet verified" to avoid restating them as facts.
+- The OPENCLAW.md root percentage claims (-32% retrieval, -15% booster edits, 352x speedup, 95% cache hit) are upstream marketing figures, not measured in this repo. Decisions #1 and #2 above MUST tag every percentage as "claimed upstream, not yet verified" to avoid restating them as facts.
 - Plugin v0.2.2 → v0.3.0 is a minor jump within a 0.x line, which signals breaking surface change. The breakage is purely additive (new skills, new subcommand, new report row), so consumers reading the existing `cost report` output will see one new section but no removed columns.
 - Two new skills increase the agent-loadable surface. Mitigation: each skill has a tight `allowed-tools` allowlist; no wildcards.
 
@@ -152,7 +152,7 @@ A new smoke contract extends the ADR-0001 smoke from 10 to 16 checks. We don't w
 
 11. `skills/cost-booster-route/SKILL.md` exists with valid frontmatter, references `hooks_route` and the `[AGENT_BOOSTER_AVAILABLE]` literal, and grants no wildcard tools.
 12. `skills/cost-compact-context/SKILL.md` exists with valid frontmatter, references `getTokenOptimizer` (or `@claude-flow/integration`), documents the agentic-flow-unavailable fallback, and tags upstream figures as "claimed upstream, not yet verified".
-13. `cost-optimize/SKILL.md` step list includes a `hooks_model-outcome` invocation step, and `allowed-tools` enumerates `mcp__claude-flow__hooks_model-outcome`.
+13. `cost-optimize/SKILL.md` step list includes a `hooks_model-outcome` invocation step, and `allowed-tools` enumerates `mcp__ruflo__hooks_model-outcome`.
 14. `agents/cost-analyst.md` documents both `optimize` and `benchmark` workers in a "Background workers" section, with a cross-link to ruflo-loop-workers ADR-0001.
 15. `commands/ruflo-cost.md` includes a `cost workers` subcommand referencing `hooks_worker-status` for both `optimize` and `benchmark`.
 16. `cost-report/SKILL.md` step list mentions tier aggregation; `REFERENCE.md` documents the "By tier" report block with Tier 1 / Tier 2 / Tier 3 enumerated.
@@ -179,4 +179,4 @@ The single biggest dependency in this ADR is that **agents reading `cost-compact
 - `v3/@claude-flow/integration/src/token-optimizer.ts` — `getTokenOptimizer()` singleton, `getCompactContext`, `optimizedEdit`, `getOptimalConfig`, `cachedLookup` (line 308 export)
 - `v3/@claude-flow/cli/src/mcp-tools/hooks-tools.ts:1228, 1240` — `[AGENT_BOOSTER_AVAILABLE]` and `[TASK_MODEL_RECOMMENDATION]` recommendation strings
 - `v3/@claude-flow/cli/src/commands/hooks.ts:4689, 4784, 4829` — `model-route` / `model-outcome` / `model-stats` CLI command definitions
-- CLAUDE.md root §"3-Tier Model Routing (ADR-026)" — Tier 1/2/3 definitions; percentage claims tagged in this ADR as upstream-reported
+- OPENCLAW.md root §"3-Tier Model Routing (ADR-026)" — Tier 1/2/3 definitions; percentage claims tagged in this ADR as upstream-reported

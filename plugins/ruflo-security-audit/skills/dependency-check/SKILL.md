@@ -2,7 +2,7 @@
 name: dependency-check
 description: Scan project dependencies for known vulnerabilities and CVEs
 argument-hint: "[--path PATH]"
-allowed-tools: Bash(npx * npm *) mcp__claude-flow__memory_store Read
+allowed-tools: Bash(npx * npm *) mcp__ruflo__memory_store Read
 ---
 Check dependencies for CVEs and outdated packages:
 
@@ -22,4 +22,4 @@ npm audit --json
 Auto-fix: `npx @claude-flow/cli@latest security cve --fix`
 
 For continuous monitoring, dispatch via MCP:
-`mcp__claude-flow__hooks_worker-dispatch({ trigger: "audit" })`
+`mcp__ruflo__hooks_worker-dispatch({ trigger: "audit" })`

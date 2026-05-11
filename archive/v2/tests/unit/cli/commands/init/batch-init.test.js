@@ -33,9 +33,9 @@ jest.mock('../../../../../src/cli/utils.js', () => ({
 
 // Mock template functions
 jest.mock('../../../../../src/cli/simple-commands/init/templates/claude-md.js', () => ({
-  createSparcClaudeMd: jest.fn(() => '# SPARC CLAUDE.md'),
-  createFullClaudeMd: jest.fn(() => '# Full CLAUDE.md'),
-  createMinimalClaudeMd: jest.fn(() => '# Minimal CLAUDE.md'),
+  createSparcClaudeMd: jest.fn(() => '# SPARC OPENCLAW.md'),
+  createFullClaudeMd: jest.fn(() => '# Full OPENCLAW.md'),
+  createMinimalClaudeMd: jest.fn(() => '# Minimal OPENCLAW.md'),
 }));
 
 describe('Batch Initialization', () => {

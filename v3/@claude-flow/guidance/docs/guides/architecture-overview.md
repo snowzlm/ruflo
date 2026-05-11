@@ -1,8 +1,8 @@
 # Architecture Overview
 
-## Starting Point: CLAUDE.md as Memory
+## Starting Point: OPENCLAW.md as Memory
 
-In Claude Code, `CLAUDE.md` and `CLAUDE.local.md` are loaded into the agent's working context as raw text. The agent reads them and tries to follow them. This works for simple rules but breaks down at scale:
+In OpenClaw, `OPENCLAW.md` and `OPENCLAW.local.md` are loaded into the agent's working context as raw text. The agent reads them and tries to follow them. This works for simple rules but breaks down at scale:
 
 - The agent can forget rules mid-session
 - There's no enforcement — violations are silent
@@ -16,11 +16,11 @@ The Guidance Control Plane takes these files and turns them into structured, enf
 
 ```mermaid
 graph TD
-    CWD["Working directory<br/>/repo/packages/api"] -->|search upward| P1["./CLAUDE.md"]
-    CWD -->|search upward| P2["./CLAUDE.local.md"]
-    P1 -->|parent| P3["/repo/packages/CLAUDE.md"]
-    P3 -->|parent| P4["/repo/CLAUDE.md"]
-    P4 -->|"@ import"| P5["~/.claude/my_instructions.md"]
+    CWD["Working directory<br/>/repo/packages/api"] -->|search upward| P1["./OPENCLAW.md"]
+    CWD -->|search upward| P2["./OPENCLAW.local.md"]
+    P1 -->|parent| P3["/repo/packages/OPENCLAW.md"]
+    P3 -->|parent| P4["/repo/OPENCLAW.md"]
+    P4 -->|"@ import"| P5["~/.openclaw/my_instructions.md"]
 
     P4 --> Compiler
     P3 --> Compiler
@@ -31,7 +31,7 @@ graph TD
     Compiler --> Bundle["PolicyBundle<br/>(constitution + shards + manifest)"]
 ```
 
-Claude Code searches upward from the current directory. Each level can add or override rules. `CLAUDE.local.md` overlays at the same level. The `@import` pattern pulls in files from outside the repo.
+OpenClaw searches upward from the current directory. Each level can add or override rules. `OPENCLAW.local.md` overlays at the same level. The `@import` pattern pulls in files from outside the repo.
 
 ## Layer Diagram
 
@@ -208,7 +208,7 @@ These modules operate across all layers:
 
 | Module | Purpose |
 |--------|---------|
-| **GuidanceCompiler** | Parses CLAUDE.md into PolicyBundle |
+| **GuidanceCompiler** | Parses OPENCLAW.md into PolicyBundle |
 | **ShardRetriever** | Similarity-based shard lookup by intent/risk/domain |
 | **RunLedger** | Event logging with 5 built-in evaluators |
 | **OptimizerLoop** | Analyzes ledger to promote/demote rules, generates ADRs |
@@ -221,8 +221,8 @@ These modules operate across all layers:
 ```mermaid
 graph LR
     subgraph "Compile Time (once per session)"
-        MD["CLAUDE.md<br/>(team rules)"] --> C[Compiler]
-        LMD["CLAUDE.local.md<br/>(your overrides)"] --> C
+        MD["OPENCLAW.md<br/>(team rules)"] --> C[Compiler]
+        LMD["OPENCLAW.local.md<br/>(your overrides)"] --> C
         C --> PB[PolicyBundle]
         PB --> R[Retriever: load shards]
         PB --> G[Gates: set active rules]
@@ -243,7 +243,7 @@ graph LR
     end
 ```
 
-The key lifecycle: `CLAUDE.md` is compiled once at session start. Rules are retrieved per task. The optimizer watches run outcomes and proposes changes back to `CLAUDE.md`, generating an ADR for each change. `CLAUDE.local.md` experiments that consistently reduce violations get promoted to the shared root.
+The key lifecycle: `OPENCLAW.md` is compiled once at session start. Rules are retrieved per task. The optimizer watches run outcomes and proposes changes back to `OPENCLAW.md`, generating an ADR for each change. `OPENCLAW.local.md` experiments that consistently reduce violations get promoted to the shared root.
 
 ## ADR Index
 

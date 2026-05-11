@@ -166,7 +166,7 @@ All scripts live in `plugins/ruflo-core/scripts/witness/`. Project-agnostic — 
 | `verify.mjs` | Validate signature + markers (no CLI dep) |
 | `history.mjs` | Query temporal log: `summary`, `regressions`, `timeline`, `list` |
 
-Plus surface area for Claude Code:
+Plus surface area for OpenClaw:
 
 | File | Purpose |
 |---|---|

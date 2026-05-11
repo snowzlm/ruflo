@@ -1,6 +1,6 @@
 # Init Command - Modular Structure
 
-This directory contains the modular implementation of the `claude-flow init` command, which initializes Claude Code integration files for projects.
+This directory contains the modular implementation of the `ruflo init` command, which initializes OpenClaw integration files for projects.
 
 ## Directory Structure
 
@@ -12,7 +12,7 @@ init/
 ├── executable-wrapper.js        # Creates local executable wrappers
 ├── sparc-structure.js          # SPARC environment setup
 ├── templates/                   # Template files
-│   ├── claude-md.js            # CLAUDE.md templates
+│   ├── claude-md.js            # OPENCLAW.md templates
 │   ├── memory-bank-md.js       # memory-bank.md templates
 │   ├── coordination-md.js      # coordination.md templates
 │   └── readme-files.js         # README templates for directories
@@ -20,7 +20,7 @@ init/
 │   ├── roomodes-config.js      # .roomodes configuration
 │   ├── workflows.js            # SPARC workflow templates
 │   └── roo-readme.js           # .roo directory README
-└── claude-commands/             # Claude Code slash commands
+└── claude-commands/             # OpenClaw slash commands
     ├── slash-commands.js        # Main slash command creator
     ├── sparc-commands.js        # SPARC-specific commands
     └── claude-flow-commands.js  # Claude-Flow specific commands
@@ -30,12 +30,12 @@ init/
 
 ### With `--sparc` flag:
 
-1. **Claude Code Configuration**:
+1. **OpenClaw Configuration**:
 
-   - `CLAUDE.md` - SPARC-enhanced project instructions
-   - `.claude/` directory structure
-   - `.claude/commands/` - Slash commands for Claude Code
-   - `.claude/logs/` - Conversation logs directory
+   - `OPENCLAW.md` - SPARC-enhanced project instructions
+   - `.openclaw/` directory structure
+   - `.openclaw/commands/` - Slash commands for OpenClaw
+   - `.openclaw/logs/` - Conversation logs directory
 
 2. **Memory System**:
 
@@ -65,7 +65,7 @@ init/
 
 6. **Local Executable**:
    - `./claude-flow` (Unix/Mac/Linux)
-   - `claude-flow.cmd` (Windows)
+   - `ruflo.cmd` (Windows)
 
 ### With `--minimal` flag:
 
@@ -79,13 +79,13 @@ Overwrites existing files if they already exist.
 
 ```bash
 # Recommended first-time setup with SPARC
-npx claude-flow@latest init --sparc
+ruflo init --sparc
 
 # Minimal setup
-npx claude-flow init --minimal
+npx ruflo init --minimal
 
 # Force overwrite existing files
-npx claude-flow init --force
+npx ruflo init --force
 ```
 
 ## Module Responsibilities
@@ -96,11 +96,11 @@ npx claude-flow init --force
 - **sparc-structure.js**: SPARC environment setup and integration
 - **templates/**: All template content for generated files
 - **sparc/**: SPARC-specific configurations and templates
-- **claude-commands/**: Claude Code slash command generation
+- **claude-commands/**: OpenClaw slash command generation
 
 ## Notes
 
-- The init command detects Claude Code's `.claude/` directory structure
-- Slash commands follow Claude Code's markdown format with YAML frontmatter
+- The init command detects OpenClaw's `.openclaw/` directory structure
+- Slash commands follow OpenClaw's markdown format with YAML frontmatter
 - SPARC modes are fully integrated with Claude-Flow's orchestration system
 - All generated files include comprehensive documentation

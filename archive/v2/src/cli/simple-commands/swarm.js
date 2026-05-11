@@ -164,16 +164,16 @@ EXAMPLES:
   claude-flow swarm "Develop user registration feature" --mode distributed
   claude-flow swarm "Optimize React app performance" --strategy optimization
   claude-flow swarm "Create microservice" --executor  # Use built-in executor
-  claude-flow swarm "Build API" --claude  # Open Claude Code CLI
+  claude-flow swarm "Build API" --claude  # Open OpenClaw CLI
   claude-flow swarm "Build API endpoints" --output-format json  # Get JSON output
   claude-flow swarm "Research AI trends" --output-format json --output-file results.json
 
 DEFAULT BEHAVIOR:
-  Swarm attempts to open Claude Code CLI with comprehensive MCP tool instructions
+  Swarm attempts to open OpenClaw CLI with comprehensive MCP tool instructions
   including memory coordination, agent management, and task orchestration.
   
   If Claude CLI is not available:
-  • Use --claude flag to open Claude Code CLI
+  • Use --claude flag to open OpenClaw CLI
   • Use --executor flag to run with the built-in executor
 
 STRATEGIES:
@@ -220,8 +220,8 @@ OPTIONS:
   --encryption               Enable encryption
   --verbose                  Enable detailed logging
   --dry-run                  Show configuration without executing
-  --executor                 Use built-in executor instead of Claude Code
-  --claude                   Open Claude Code CLI
+  --executor                 Use built-in executor instead of OpenClaw
+  --claude                   Open OpenClaw CLI
   --output-format <format>   Output format: json, text (default: text)
   --output-file <path>       Save output to file instead of stdout
   --no-interactive           Run in non-interactive mode (auto-enabled with --output-format json)
@@ -254,7 +254,7 @@ HEADLESS MODE:
   - Suitable for containerized deployments
 
 For complete documentation and examples:
-https://github.com/ruvnet/claude-code-flow/docs/swarm.md
+https://github.com/ruvnet/openclaw-flow/docs/swarm.md
 `);
 }
 
@@ -360,7 +360,7 @@ export async function swarmCommand(args, flags) {
   if (flags && flags.executor) {
     // Continue with the old swarm executor implementation below
   } else {
-    // Default behavior: spawn Claude Code with comprehensive swarm MCP instructions
+    // Default behavior: spawn OpenClaw with comprehensive swarm MCP instructions
     try {
       const { execSync, spawn } = await import('child_process');
 
@@ -378,11 +378,11 @@ export async function swarmCommand(args, flags) {
         flags.sparc !== false && (strategy === 'development' || strategy === 'auto');
 
       // Build the complete swarm prompt before checking for claude
-      const swarmPrompt = `You are orchestrating a Claude Flow Swarm using Claude Code's Task tool for agent execution.
+      const swarmPrompt = `You are orchestrating a Claude Flow Swarm using OpenClaw's Task tool for agent execution.
 
-🚨 CRITICAL INSTRUCTION: Use Claude Code's Task Tool for ALL Agent Spawning!
+🚨 CRITICAL INSTRUCTION: Use OpenClaw's Task Tool for ALL Agent Spawning!
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-✅ Claude Code's Task tool = Spawns agents that DO the actual work
+✅ OpenClaw's Task tool = Spawns agents that DO the actual work
 ❌ MCP tools = Only for coordination setup, NOT for execution
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -444,7 +444,7 @@ If you need to do X operations, they should be in 1 message, not X messages.
 
 🎯 MANDATORY PATTERNS FOR CLAUDE-FLOW SWARMS:
 
-1️⃣ **SWARM INITIALIZATION** - Use Claude Code's Task Tool for Agents:
+1️⃣ **SWARM INITIALIZATION** - Use OpenClaw's Task Tool for Agents:
 
 Step A: Optional MCP Coordination Setup (Single Message):
 \`\`\`javascript
@@ -456,9 +456,9 @@ Step A: Optional MCP Coordination Setup (Single Message):
   mcp__claude-flow__memory_store {"key": "swarm/config", "value": {"strategy": "${strategy}"}}
 \`\`\`
 
-Step B: REQUIRED - Claude Code Task Tool for ACTUAL Agent Execution (Single Message):
+Step B: REQUIRED - OpenClaw Task Tool for ACTUAL Agent Execution (Single Message):
 \`\`\`javascript
-[Claude Code Task Tool - CONCURRENT Agent Spawning]:
+[OpenClaw Task Tool - CONCURRENT Agent Spawning]:
   // Spawn ALL agents using Task tool in ONE message
   Task("Coordinator", "Lead swarm coordination. Use hooks for memory sharing.", "coordinator")
   Task("Researcher", "Analyze requirements and patterns. Coordinate via hooks.", "researcher")
@@ -480,7 +480,7 @@ Step B: REQUIRED - Claude Code Task Tool for ACTUAL Agent Execution (Single Mess
   ]}
 \`\`\`
 
-⚠️ CRITICAL: Claude Code's Task tool does the ACTUAL work!
+⚠️ CRITICAL: OpenClaw's Task tool does the ACTUAL work!
 - MCP tools = Coordination setup only
 - Task tool = Spawns agents that execute real work
 - ALL agents MUST be spawned in ONE message
@@ -792,9 +792,9 @@ Start by spawning a coordinator agent and creating the initial task structure. U
 
 The swarm should be self-documenting - use memory_store to save all important information, decisions, and results throughout the execution.`;
 
-      // If --claude flag is used, force Claude Code even if CLI not available
+      // If --claude flag is used, force OpenClaw even if CLI not available
       if (flags && flags.claude) {
-        // Inject memory coordination protocol into CLAUDE.md
+        // Inject memory coordination protocol into OPENCLAW.md
         try {
           const { injectMemoryProtocol, enhanceSwarmPrompt } = await import('./inject-memory-protocol.js');
           await injectMemoryProtocol();
@@ -813,8 +813,8 @@ The swarm should be self-documenting - use memory_store to save all important in
         console.log(`🏗️  Mode: ${mode}`);
         console.log(`🤖 Max Agents: ${maxAgents}\n`);
         
-        console.log('🚀 Launching Claude Code with Swarm Coordination');
-        console.log('📝 Memory protocol injected into CLAUDE.md');
+        console.log('🚀 Launching OpenClaw with Swarm Coordination');
+        console.log('📝 Memory protocol injected into OPENCLAW.md');
         console.log('─'.repeat(60));
         
         // Build arguments properly: for interactive mode, prompt can be first
@@ -846,7 +846,7 @@ The swarm should be self-documenting - use memory_store to save all important in
           env: claudeEnv
         });
         
-        console.log('\n✓ Claude Code launched with swarm coordination prompt!');
+        console.log('\n✓ OpenClaw launched with swarm coordination prompt!');
         console.log('  The swarm coordinator will orchestrate all agent tasks');
         console.log('  Use MCP tools for coordination and memory sharing');
         
@@ -882,10 +882,10 @@ The swarm should be self-documenting - use memory_store to save all important in
         // Handle spawn errors (e.g., claude not found)
         claudeProcess.on('error', (err) => {
           if (err.code === 'ENOENT') {
-            console.error('\n❌ Claude Code CLI not found. Please install Claude Code:');
+            console.error('\n❌ OpenClaw CLI not found. Please install OpenClaw:');
             console.error('   https://claude.ai/download');
           } else {
-            console.error('\n❌ Failed to launch Claude Code:', err.message);
+            console.error('\n❌ Failed to launch OpenClaw:', err.message);
           }
           process.exit(1);
         });
@@ -906,19 +906,19 @@ The swarm should be self-documenting - use memory_store to save all important in
         claudeAvailable = true;
       } catch {
         if (!isNonInteractive) {
-          console.log('⚠️  Claude Code CLI not found in PATH');
-          console.log('Install it with: npm install -g @anthropic-ai/claude-code');
-          console.log('Or use --claude flag to open Claude Code CLI');
-          console.log('\nWould spawn Claude Code with swarm objective:');
+          console.log('⚠️  OpenClaw CLI not found in PATH');
+          console.log('Install it with: npm install -g @anthropic-ai/openclaw');
+          console.log('Or use --claude flag to open OpenClaw CLI');
+          console.log('\nWould spawn OpenClaw with swarm objective:');
           console.log(`📋 Objective: ${objective}`);
           console.log('\nOptions:');
           console.log('  • Use --executor flag for built-in executor: claude-flow swarm "objective" --executor');
-          console.log('  • Use --claude flag to open Claude Code CLI: claude-flow swarm "objective" --claude');
+          console.log('  • Use --claude flag to open OpenClaw CLI: claude-flow swarm "objective" --claude');
         } else {
           // In non-interactive mode, output JSON error
           console.error(JSON.stringify({
-            error: 'Claude Code CLI not found',
-            message: 'Install with: npm install -g @anthropic-ai/claude-code',
+            error: 'OpenClaw CLI not found',
+            message: 'Install with: npm install -g @anthropic-ai/openclaw',
             fallback: 'Use --executor flag for built-in executor'
           }));
         }
@@ -974,8 +974,8 @@ The swarm should be self-documenting - use memory_store to save all important in
       });
 
       if (!isNonInteractive) {
-        console.log('✓ Claude Code launched with swarm coordination prompt!');
-        console.log('\n🚀 The swarm coordination instructions have been injected into Claude Code');
+        console.log('✓ OpenClaw launched with swarm coordination prompt!');
+        console.log('\n🚀 The swarm coordination instructions have been injected into OpenClaw');
         console.log('   The prompt includes:');
         console.log('   • Strategy-specific guidance for', strategy);
         console.log('   • Coordination patterns for', mode, 'mode');
@@ -985,13 +985,13 @@ The swarm should be self-documenting - use memory_store to save all important in
 
       // Handle process events
       claudeProcess.on('error', (err) => {
-        console.error('❌ Failed to launch Claude Code:', err.message);
+        console.error('❌ Failed to launch OpenClaw:', err.message);
       });
 
       // Don't wait for completion - let it run
       return;
     } catch (error) {
-      console.error('❌ Failed to spawn Claude Code:', error.message);
+      console.error('❌ Failed to spawn OpenClaw:', error.message);
       console.log('\nFalling back to built-in executor...');
       // Fall through to executor implementation
     }
@@ -1550,8 +1550,8 @@ OPTIONS:
   --encryption               Enable encryption
   --verbose                  Enable detailed logging
   --dry-run                  Show configuration without executing
-  --executor                 Use built-in executor instead of Claude Code
-  --claude                   Open Claude Code CLI
+  --executor                 Use built-in executor instead of OpenClaw
+  --claude                   Open OpenClaw CLI
   --output-format <format>   Output format: json, text (default: text)
   --output-file <path>       Save output to file instead of stdout
   --no-interactive           Run in non-interactive mode (auto-enabled with --output-format json)
@@ -1569,7 +1569,7 @@ ADVANCED OPTIONS:
   --fault-tolerance <type>   Fault tolerance strategy
 
 For complete documentation and examples:
-https://github.com/ruvnet/claude-code-flow/docs/swarm.md
+https://github.com/ruvnet/openclaw-flow/docs/swarm.md
 `);
   }
 }

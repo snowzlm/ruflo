@@ -624,7 +624,7 @@ export class RecoveryManager {
   async identifyCompletedItems() {
     const items = [];
 
-    const checkFiles = ['CLAUDE.md', 'memory-bank.md', 'coordination.md'];
+    const checkFiles = ['OPENCLAW.md', 'memory-bank.md', 'coordination.md'];
 
     for (const file of checkFiles) {
       try {
@@ -641,7 +641,7 @@ export class RecoveryManager {
   async identifyMissingItems() {
     const missing = [];
 
-    const requiredFiles = ['CLAUDE.md', 'memory-bank.md', 'coordination.md', 'claude-flow'];
+    const requiredFiles = ['OPENCLAW.md', 'memory-bank.md', 'coordination.md', 'claude-flow'];
 
     for (const file of requiredFiles) {
       try {

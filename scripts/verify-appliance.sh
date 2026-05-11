@@ -171,8 +171,8 @@ if should_run "init"; then
   TEST_DIR="/tmp/ruflo-verify-$$"
   mkdir -p "$TEST_DIR" && cd "$TEST_DIR"
   check "init --yes" $RUFLO_CMD init --yes
-  check ".claude/settings.json exists" test -f .claude/settings.json
-  check ".claude/helpers/ exists" test -d .claude/helpers
+  check ".openclaw/settings.json exists" test -f .claude/settings.json
+  check ".openclaw/helpers/ exists" test -d .claude/helpers
   check_contains "no TeammateIdle in hooks" "false" sh -c '! grep -q "TeammateIdle" .claude/settings.json && echo false'
   check_contains "no TaskCompleted in hooks" "false" sh -c '! grep -q "\"TaskCompleted\"" .claude/settings.json && echo false'
   check_contains "AGENT_TEAMS env set" "AGENT_TEAMS" cat .claude/settings.json

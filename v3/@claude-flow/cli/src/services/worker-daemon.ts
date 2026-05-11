@@ -197,7 +197,7 @@ export class WorkerDaemon extends EventEmitter {
   }
 
   /**
-   * Initialize headless executor if Claude Code is available
+   * Initialize headless executor if OpenClaw is available
    */
   private async initHeadlessExecutor(): Promise<void> {
     try {
@@ -208,7 +208,7 @@ export class WorkerDaemon extends EventEmitter {
       this.headlessAvailable = await this.headlessExecutor.isAvailable();
 
       if (this.headlessAvailable) {
-        this.log('info', 'Claude Code headless mode available - AI workers enabled');
+        this.log('info', 'OpenClaw headless mode available - AI workers enabled');
 
         // Forward headless executor events. #1855: also snapshot the
         // active child PIDs to disk on every transition so the next
@@ -232,7 +232,7 @@ export class WorkerDaemon extends EventEmitter {
           this.emit('headless:output', data);
         });
       } else {
-        this.log('info', 'Claude Code not found - AI workers will run in local fallback mode');
+        this.log('info', 'OpenClaw not found - AI workers will run in local fallback mode');
       }
     } catch (error) {
       this.log('warn', `Failed to initialize headless executor: ${error}`);
@@ -1048,7 +1048,7 @@ export class WorkerDaemon extends EventEmitter {
     // Check if this is a headless worker type and headless execution is available
     if (isHeadlessWorker(workerConfig.type) && this.headlessAvailable && this.headlessExecutor) {
       try {
-        this.log('info', `Running ${workerConfig.type} in headless mode (Claude Code AI)`);
+        this.log('info', `Running ${workerConfig.type} in headless mode (OpenClaw AI)`);
         const result = await this.headlessExecutor.execute(workerConfig.type as HeadlessWorkerType);
         // #1793: persist the headless result to the same metrics files the
         // local workers write to. Without this, AI-mode runs produced rich
@@ -1207,7 +1207,7 @@ export class WorkerDaemon extends EventEmitter {
       },
       riskLevel: 'low',
       recommendations: [],
-      note: 'Install Claude Code CLI for AI-powered security analysis',
+      note: 'Install OpenClaw CLI for AI-powered security analysis',
     };
 
     writeFileSync(auditFile, JSON.stringify(audit, null, 2));
@@ -1235,7 +1235,7 @@ export class WorkerDaemon extends EventEmitter {
         cacheHitRate: 0.78,
         avgResponseTime: 45,
       },
-      note: 'Install Claude Code CLI for AI-powered optimization suggestions',
+      note: 'Install OpenClaw CLI for AI-powered optimization suggestions',
     };
 
     writeFileSync(optimizeFile, JSON.stringify(perf, null, 2));
@@ -1280,7 +1280,7 @@ export class WorkerDaemon extends EventEmitter {
       hasTestDir: existsSync(join(this.projectRoot, 'tests')) || existsSync(join(this.projectRoot, '__tests__')),
       estimatedCoverage: 'unknown',
       gaps: [],
-      note: 'Install Claude Code CLI for AI-powered test gap analysis',
+      note: 'Install OpenClaw CLI for AI-powered test gap analysis',
     };
 
     writeFileSync(testGapsFile, JSON.stringify(result, null, 2));
@@ -1296,7 +1296,7 @@ export class WorkerDaemon extends EventEmitter {
       mode: 'local',
       predictions: [],
       preloaded: [],
-      note: 'Install Claude Code CLI for AI-powered predictions',
+      note: 'Install OpenClaw CLI for AI-powered predictions',
     };
   }
 
@@ -1309,7 +1309,7 @@ export class WorkerDaemon extends EventEmitter {
       mode: 'local',
       filesDocumented: 0,
       suggestedDocs: [],
-      note: 'Install Claude Code CLI for AI-powered documentation generation',
+      note: 'Install OpenClaw CLI for AI-powered documentation generation',
     };
   }
 
@@ -1322,7 +1322,7 @@ export class WorkerDaemon extends EventEmitter {
       mode: 'local',
       patternsLearned: 0,
       insightsGained: [],
-      note: 'Install Claude Code CLI for AI-powered deep learning',
+      note: 'Install OpenClaw CLI for AI-powered deep learning',
     };
   }
 
@@ -1335,7 +1335,7 @@ export class WorkerDaemon extends EventEmitter {
       mode: 'local',
       suggestions: [],
       duplicatesFound: 0,
-      note: 'Install Claude Code CLI for AI-powered refactoring suggestions',
+      note: 'Install OpenClaw CLI for AI-powered refactoring suggestions',
     };
   }
 
@@ -1348,7 +1348,7 @@ export class WorkerDaemon extends EventEmitter {
       mode: 'local',
       analysisDepth: 'shallow',
       findings: [],
-      note: 'Install Claude Code CLI for AI-powered deep code analysis',
+      note: 'Install OpenClaw CLI for AI-powered deep code analysis',
     };
   }
 

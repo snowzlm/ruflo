@@ -1,4 +1,4 @@
-# Claude Code Configuration - SPARC Development Environment
+# OpenClaw Configuration - SPARC Development Environment
 
 ## 🚨 CRITICAL: CONCURRENT EXECUTION & FILE MANAGEMENT
 
@@ -12,16 +12,16 @@
 
 **MANDATORY PATTERNS:**
 - **TodoWrite**: ALWAYS batch ALL todos in ONE call (5-10+ todos minimum)
-- **Task tool (Claude Code)**: ALWAYS spawn ALL agents in ONE message with full instructions
+- **Task tool (OpenClaw)**: ALWAYS spawn ALL agents in ONE message with full instructions
 - **File operations**: ALWAYS batch ALL reads/writes/edits in ONE message
 - **Bash commands**: ALWAYS batch ALL terminal operations in ONE message
 - **Memory operations**: ALWAYS batch ALL memory store/retrieve in ONE message
 
-### 🎯 CRITICAL: Claude Code Task Tool for Agent Execution
+### 🎯 CRITICAL: OpenClaw Task Tool for Agent Execution
 
-**Claude Code's Task tool is the PRIMARY way to spawn agents:**
+**OpenClaw's Task tool is the PRIMARY way to spawn agents:**
 ```javascript
-// ✅ CORRECT: Use Claude Code's Task tool for parallel agent execution
+// ✅ CORRECT: Use OpenClaw's Task tool for parallel agent execution
 [Single Message]:
   Task("Research agent", "Analyze requirements and patterns...", "researcher")
   Task("Coder agent", "Implement core features...", "coder")
@@ -31,9 +31,9 @@
 ```
 
 **MCP tools are ONLY for coordination setup:**
-- `mcp__claude-flow__swarm_init` - Initialize coordination topology
-- `mcp__claude-flow__agent_spawn` - Define agent types for coordination
-- `mcp__claude-flow__task_orchestrate` - Orchestrate high-level workflows
+- `mcp__ruflo__swarm_init` - Initialize coordination topology
+- `mcp__ruflo__agent_spawn` - Define agent types for coordination
+- `mcp__ruflo__task_orchestrate` - Orchestrate high-level workflows
 
 ### 📁 File Organization Rules
 
@@ -52,15 +52,15 @@ This project uses SPARC (Specification, Pseudocode, Architecture, Refinement, Co
 ## SPARC Commands
 
 ### Core Commands
-- `npx claude-flow sparc modes` - List available modes
-- `npx claude-flow sparc run <mode> "<task>"` - Execute specific mode
-- `npx claude-flow sparc tdd "<feature>"` - Run complete TDD workflow
-- `npx claude-flow sparc info <mode>` - Get mode details
+- `npx ruflo sparc modes` - List available modes
+- `npx ruflo sparc run <mode> "<task>"` - Execute specific mode
+- `npx ruflo sparc tdd "<feature>"` - Run complete TDD workflow
+- `npx ruflo sparc info <mode>` - Get mode details
 
 ### Batchtools Commands
-- `npx claude-flow sparc batch <modes> "<task>"` - Parallel execution
-- `npx claude-flow sparc pipeline "<task>"` - Full pipeline processing
-- `npx claude-flow sparc concurrent <mode> "<tasks-file>"` - Multi-task processing
+- `npx ruflo sparc batch <modes> "<task>"` - Parallel execution
+- `npx ruflo sparc pipeline "<task>"` - Full pipeline processing
+- `npx ruflo sparc concurrent <mode> "<tasks-file>"` - Multi-task processing
 
 ### Build Commands
 - `npm run build` - Build project
@@ -113,9 +113,9 @@ This project uses SPARC (Specification, Pseudocode, Architecture, Refinement, Co
 ### Migration & Planning
 `migration-planner`, `swarm-init`
 
-## 🎯 Claude Code vs MCP Tools
+## 🎯 OpenClaw vs MCP Tools
 
-### Claude Code Handles ALL EXECUTION:
+### OpenClaw Handles ALL EXECUTION:
 - **Task tool**: Spawn and run agents concurrently for actual work
 - File operations (Read, Write, Edit, MultiEdit, Glob, Grep)
 - Code generation and programming
@@ -136,15 +136,15 @@ This project uses SPARC (Specification, Pseudocode, Architecture, Refinement, Co
 - Performance tracking
 - GitHub integration
 
-**KEY**: MCP coordinates the strategy, Claude Code's Task tool executes with real agents.
+**KEY**: MCP coordinates the strategy, OpenClaw's Task tool executes with real agents.
 
 ## 🤖 AUTOMATIC SWARM ORCHESTRATION
 
-**Claude Code MUST automatically invoke swarm orchestration for complex tasks.**
+**OpenClaw MUST automatically invoke swarm orchestration for complex tasks.**
 
 ### 🚨 CRITICAL: MCP + Task Tool in SAME Message
 
-**When user says "spawn swarm" or requests complex work, Claude Code MUST in ONE message:**
+**When user says "spawn swarm" or requests complex work, OpenClaw MUST in ONE message:**
 1. Call MCP tools to initialize coordination
 2. **IMMEDIATELY** call Task tool to spawn REAL working agents
 3. Both MCP and Task calls must be in the SAME response
@@ -153,17 +153,17 @@ This project uses SPARC (Specification, Pseudocode, Architecture, Refinement, Co
 
 ### Auto-Start Swarm Protocol
 
-When Claude Code detects a complex task (multi-file, new feature, or refactoring), it MUST:
+When OpenClaw detects a complex task (multi-file, new feature, or refactoring), it MUST:
 
 ```javascript
 // 🚨 ALL OF THIS IN ONE SINGLE MESSAGE - MCP + Task + TodoWrite together!
 [Single Message - Complete Swarm Spawn]:
 
   // MCP: Initialize coordination topology
-  mcp__claude-flow__swarm_init { topology: "hierarchical-mesh", maxAgents: 15, strategy: "adaptive" }
-  mcp__claude-flow__agent_spawn { type: "coordinator", name: "queen" }
-  mcp__claude-flow__task_orchestrate { task: "[user's task]", strategy: "adaptive", priority: "high" }
-  mcp__claude-flow__memory_usage { action: "store", namespace: "swarm", key: "session", value: "..." }
+  mcp__ruflo__swarm_init { topology: "hierarchical-mesh", maxAgents: 15, strategy: "adaptive" }
+  mcp__ruflo__agent_spawn { type: "coordinator", name: "queen" }
+  mcp__ruflo__task_orchestrate { task: "[user's task]", strategy: "adaptive", priority: "high" }
+  mcp__ruflo__memory_usage { action: "store", namespace: "swarm", key: "session", value: "..." }
 
   // Task Tool: Spawn REAL working agents (THIS IS REQUIRED!)
   Task("Coordinator", "Orchestrate the swarm, manage agent coordination...", "hierarchical-coordinator")
@@ -187,15 +187,15 @@ When Claude Code detects a complex task (multi-file, new feature, or refactoring
 **❌ WRONG - MCP only (no actual work happens):**
 ```javascript
 // This ONLY sets up coordination - no agents actually work!
-mcp__claude-flow__swarm_init { ... }
-mcp__claude-flow__agent_spawn { ... }
+mcp__ruflo__swarm_init { ... }
+mcp__ruflo__agent_spawn { ... }
 // Missing Task tool calls = nothing executes!
 ```
 
 **✅ CORRECT - MCP + Task tool together:**
 ```javascript
 // Same message: coordination + execution
-mcp__claude-flow__swarm_init { ... }
+mcp__ruflo__swarm_init { ... }
 Task("Agent1", "Do actual work...", "agent-type")
 Task("Agent2", "Do actual work...", "agent-type")
 ```
@@ -229,12 +229,12 @@ Task("Agent2", "Do actual work...", "agent-type")
 
 ### Settings Configuration
 
-Claude Code should ensure proper settings via hooks:
+OpenClaw should ensure proper settings via hooks:
 
 ```bash
 # Auto-configure on session start
-npx claude-flow@alpha hooks session-start --auto-configure
-npx claude-flow@alpha memory store --key "session/config" --value '{"topology":"hierarchical-mesh","maxAgents":15}'
+ruflo hooks session-start --auto-configure
+ruflo memory store --key "session/config" --value '{"topology":"hierarchical-mesh","maxAgents":15}'
 ```
 
 ### Swarm Lifecycle Management
@@ -243,11 +243,11 @@ npx claude-flow@alpha memory store --key "session/config" --value '{"topology":"
 ```javascript
 [Auto-Init on Complex Task]:
   // Check task complexity
-  mcp__claude-flow__features_detect { component: "task-analyzer" }
+  mcp__ruflo__features_detect { component: "task-analyzer" }
 
   // Initialize if complex
-  mcp__claude-flow__swarm_init { topology: "hierarchical-mesh" }
-  mcp__claude-flow__memory_usage { action: "store", key: "session/active", value: "true" }
+  mcp__ruflo__swarm_init { topology: "hierarchical-mesh" }
+  mcp__ruflo__memory_usage { action: "store", key: "session/active", value: "true" }
 
   // Spawn initial agents
   Task("Coordinator", "Manage swarm coordination...", "hierarchical-coordinator")
@@ -257,35 +257,35 @@ npx claude-flow@alpha memory store --key "session/config" --value '{"topology":"
 ```javascript
 [During Task - Memory Coordination]:
   // Store decisions in shared memory
-  mcp__claude-flow__memory_usage { action: "store", key: "task/decisions", value: "[decisions]" }
+  mcp__ruflo__memory_usage { action: "store", key: "task/decisions", value: "[decisions]" }
 
   // Track progress
-  mcp__claude-flow__task_status { taskId: "[current-task]" }
+  mcp__ruflo__task_status { taskId: "[current-task]" }
 
   // Neural learning from patterns
-  mcp__claude-flow__neural_patterns { action: "learn", operation: "[what was done]", outcome: "[result]" }
+  mcp__ruflo__neural_patterns { action: "learn", operation: "[what was done]", outcome: "[result]" }
 ```
 
 **Session End (automatic):**
 ```javascript
 [Auto-Cleanup]:
   // Persist learnings
-  mcp__claude-flow__memory_persist { sessionId: "[session-id]" }
+  mcp__ruflo__memory_persist { sessionId: "[session-id]" }
 
   // Export metrics
-  mcp__claude-flow__swarm_status { verbose: true }
+  mcp__ruflo__swarm_status { verbose: true }
 
   // Train neural patterns
-  mcp__claude-flow__neural_train { pattern_type: "coordination", training_data: "[session-summary]" }
+  mcp__ruflo__neural_train { pattern_type: "coordination", training_data: "[session-summary]" }
 ```
 
 ## 🚀 Quick Setup
 
 ```bash
-# Add MCP servers (Claude Flow required, others optional)
-claude mcp add claude-flow npx claude-flow@alpha mcp start
-claude mcp add ruv-swarm npx ruv-swarm mcp start  # Optional: Enhanced coordination
-claude mcp add flow-nexus npx flow-nexus@latest mcp start  # Optional: Cloud features
+# Add MCP servers (Ruflo required, others optional)
+openclaw mcp add ruflo ruflo mcp start
+openclaw mcp add ruv-swarm npx ruv-swarm mcp start  # Optional: Enhanced coordination
+openclaw mcp add flow-nexus npx flow-nexus@latest mcp start  # Optional: Cloud features
 ```
 
 ## MCP Tool Categories
@@ -322,19 +322,19 @@ Flow-Nexus extends MCP capabilities with 70+ cloud-based orchestration tools:
 - Login: `mcp__flow-nexus__user_login` or `npx flow-nexus@latest login`
 - Access 70+ specialized MCP tools for advanced orchestration
 
-## 🚀 Agent Execution Flow with Claude Code
+## 🚀 Agent Execution Flow with OpenClaw
 
 ### The Correct Pattern:
 
 1. **Optional**: Use MCP tools to set up coordination topology
-2. **REQUIRED**: Use Claude Code's Task tool to spawn agents that do actual work
+2. **REQUIRED**: Use OpenClaw's Task tool to spawn agents that do actual work
 3. **REQUIRED**: Each agent runs hooks for coordination
 4. **REQUIRED**: Batch all operations in single messages
 
 ### Example Full-Stack Development:
 
 ```javascript
-// Single message with all agent spawning via Claude Code's Task tool
+// Single message with all agent spawning via OpenClaw's Task tool
 [Parallel Agent Execution]:
   Task("Backend Developer", "Build REST API with Express. Use hooks for coordination.", "backend-dev")
   Task("Frontend Developer", "Create React UI. Coordinate with backend via memory.", "coder")
@@ -358,37 +358,37 @@ Flow-Nexus extends MCP capabilities with 70+ cloud-based orchestration tools:
 
 **1️⃣ BEFORE Work:**
 ```bash
-npx claude-flow@alpha hooks pre-task --description "[task]"
-npx claude-flow@alpha hooks session-restore --session-id "swarm-[id]"
+ruflo hooks pre-task --description "[task]"
+ruflo hooks session-restore --session-id "swarm-[id]"
 ```
 
 **2️⃣ DURING Work:**
 ```bash
-npx claude-flow@alpha hooks post-edit --file "[file]" --memory-key "swarm/[agent]/[step]"
-npx claude-flow@alpha hooks notify --message "[what was done]"
+ruflo hooks post-edit --file "[file]" --memory-key "swarm/[agent]/[step]"
+ruflo hooks notify --message "[what was done]"
 ```
 
 **3️⃣ AFTER Work:**
 ```bash
-npx claude-flow@alpha hooks post-task --task-id "[task]"
-npx claude-flow@alpha hooks session-end --export-metrics true
+ruflo hooks post-task --task-id "[task]"
+ruflo hooks session-end --export-metrics true
 ```
 
 ## 🎯 Concurrent Execution Examples
 
-### ✅ CORRECT WORKFLOW: MCP Coordinates, Claude Code Executes
+### ✅ CORRECT WORKFLOW: MCP Coordinates, OpenClaw Executes
 
 ```javascript
 // Step 1: MCP tools set up coordination (optional, for complex tasks)
 [Single Message - Coordination Setup]:
-  mcp__claude-flow__swarm_init { topology: "mesh", maxAgents: 6 }
-  mcp__claude-flow__agent_spawn { type: "researcher" }
-  mcp__claude-flow__agent_spawn { type: "coder" }
-  mcp__claude-flow__agent_spawn { type: "tester" }
+  mcp__ruflo__swarm_init { topology: "mesh", maxAgents: 6 }
+  mcp__ruflo__agent_spawn { type: "researcher" }
+  mcp__ruflo__agent_spawn { type: "coder" }
+  mcp__ruflo__agent_spawn { type: "tester" }
 
-// Step 2: Claude Code Task tool spawns ACTUAL agents that do the work
+// Step 2: OpenClaw Task tool spawns ACTUAL agents that do the work
 [Single Message - Parallel Agent Execution]:
-  // Claude Code's Task tool spawns real agents concurrently
+  // OpenClaw's Task tool spawns real agents concurrently
   Task("Research agent", "Analyze API requirements and best practices. Check memory for prior decisions.", "researcher")
   Task("Coder agent", "Implement REST endpoints with authentication. Coordinate via hooks.", "coder")
   Task("Database agent", "Design and implement database schema. Store decisions in memory.", "code-analyzer")
@@ -417,7 +417,7 @@ npx claude-flow@alpha hooks session-end --export-metrics true
 
 ### ❌ WRONG (Multiple Messages):
 ```javascript
-Message 1: mcp__claude-flow__swarm_init
+Message 1: mcp__ruflo__swarm_init
 Message 2: Task("agent 1")
 Message 3: TodoWrite { todos: [single todo] }
 Message 4: Write "file.js"
@@ -477,13 +477,13 @@ Message 4: Write "file.js"
 
 ## Support
 
-- Documentation: https://github.com/ruvnet/claude-flow
-- Issues: https://github.com/ruvnet/claude-flow/issues
+- Documentation: https://github.com/snowzlm/ruflo
+- Issues: https://github.com/snowzlm/ruflo/issues
 - Flow-Nexus Platform: https://flow-nexus.ruv.io (registration required for cloud features)
 
 ---
 
-Remember: **Claude Flow coordinates, Claude Code creates!**
+Remember: **Ruflo coordinates, OpenClaw creates!**
 
 # important-instruction-reminders
 Do what has been asked; nothing more, nothing less.

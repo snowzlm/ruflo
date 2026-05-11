@@ -5,7 +5,7 @@
  * PROOF that features are REAL and SDK-powered (not fake)
  */
 
-import { query } from '@anthropic-ai/claude-code';
+import { query } from '@anthropic-ai/openclaw';
 import { RealSessionForking } from '../../src/sdk/session-forking';
 import { RealQueryController } from '../../src/sdk/query-control';
 import { RealCheckpointManager } from '../../src/sdk/checkpoint-manager';

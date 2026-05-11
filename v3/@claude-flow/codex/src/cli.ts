@@ -84,7 +84,7 @@ program
   .option('-t, --template <template>', 'Template to use (minimal, default, full, enterprise)', 'default')
   .option('-s, --skills <skills>', 'Comma-separated list of skills to include')
   .option('-f, --force', 'Overwrite existing files', false)
-  .option('--dual', 'Generate both Codex and Claude Code configurations', false)
+  .option('--dual', 'Generate both Codex and OpenClaw configurations', false)
   .option('-p, --path <path>', 'Project path', process.cwd())
   .option('-q, --quiet', 'Suppress verbose output', false)
   .action(async (options) => {
@@ -113,7 +113,7 @@ program
         console.log(chalk.yellow('  Force:    enabled (will overwrite existing files)'));
       }
       if (options.dual) {
-        console.log(chalk.gray('  Mode:     dual (Codex + Claude Code)'));
+        console.log(chalk.gray('  Mode:     dual (Codex + OpenClaw)'));
       }
 
       const initializer = new CodexInitializer();
@@ -405,8 +405,8 @@ program
 // Migrate command
 program
   .command('migrate')
-  .description('Migrate from Claude Code (CLAUDE.md) to Codex (AGENTS.md)')
-  .option('-f, --from <file>', 'Source CLAUDE.md file', 'CLAUDE.md')
+  .description('Migrate from OpenClaw (OPENCLAW.md) to Codex (AGENTS.md)')
+  .option('-f, --from <file>', 'Source OPENCLAW.md file', 'OPENCLAW.md')
   .option('-o, --output <path>', 'Output directory', process.cwd())
   .option('--analyze-only', 'Only analyze, do not generate files', false)
   .option('--generate-skills', 'Generate skill files from detected patterns', true)
@@ -419,7 +419,7 @@ program
 
       if (!await fs.pathExists(sourcePath)) {
         console.error(chalk.red(`Source file not found: ${sourcePath}`));
-        console.log(chalk.gray('\nLooking for CLAUDE.md in the current directory.'));
+        console.log(chalk.gray('\nLooking for OPENCLAW.md in the current directory.'));
         console.log(chalk.gray('Use --from <path> to specify a different source file.'));
         process.exit(1);
       }
@@ -432,7 +432,7 @@ program
       }
 
       if (options.analyzeOnly) {
-        console.log(chalk.blue('Analyzing CLAUDE.md...'));
+        console.log(chalk.blue('Analyzing OPENCLAW.md...'));
         console.log(chalk.gray(`Source: ${sourcePath}\n`));
 
         const analysis = await analyzeClaudeMd(content);
@@ -688,7 +688,7 @@ program
     }
   });
 
-// Dual-mode command - collaborative Claude Code + Codex execution
+// Dual-mode command - collaborative OpenClaw + Codex execution
 import { createDualModeCommand } from './dual-mode/index.js';
 program.addCommand(createDualModeCommand());
 

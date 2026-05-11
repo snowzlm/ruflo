@@ -21,7 +21,7 @@ This document provides the complete template specifications for all Codex-genera
 ### Default Template (Full)
 
 ```markdown
-# Claude Flow V3
+# Ruflo V3
 
 > Multi-agent orchestration framework for agentic coding
 
@@ -128,7 +128,7 @@ Use `$skill-name` syntax to invoke:
 
 [optional body]
 
-Co-Authored-By: claude-flow <ruv@ruv.net>
+Co-Authored-By: ruflo <ruv@ruv.net>
 ```
 
 Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `chore`
@@ -186,7 +186,7 @@ npm run test:coverage
 
 ### Storing Patterns
 ```bash
-npx claude-flow@v3alpha memory store \
+ruflo memory store \
   --key "pattern-name" \
   --value "pattern description" \
   --namespace patterns
@@ -194,7 +194,7 @@ npx claude-flow@v3alpha memory store \
 
 ### Searching Memory
 ```bash
-npx claude-flow@v3alpha memory search \
+ruflo memory search \
   --query "search terms" \
   --namespace patterns
 ```
@@ -206,11 +206,11 @@ npx claude-flow@v3alpha memory search \
 
 ## MCP Integration
 
-Claude Flow exposes tools via MCP:
+Ruflo exposes tools via MCP:
 
 ```bash
 # Start MCP server
-npx claude-flow@v3alpha mcp start
+ruflo mcp start
 ```
 
 ### Available Tools
@@ -222,7 +222,7 @@ npx claude-flow@v3alpha mcp start
 
 ## Hooks System
 
-Claude Flow uses hooks for automation:
+Ruflo uses hooks for automation:
 
 | Hook | Purpose |
 |------|---------|
@@ -233,14 +233,14 @@ Claude Flow uses hooks for automation:
 
 ### Example
 ```bash
-npx claude-flow@v3alpha hooks pre-task \
+ruflo hooks pre-task \
   --description "implementing authentication"
 ```
 
 ## Links
 
-- Documentation: https://github.com/ruvnet/claude-flow
-- Issues: https://github.com/ruvnet/claude-flow/issues
+- Documentation: https://github.com/snowzlm/ruflo
+- Issues: https://github.com/snowzlm/ruflo/issues
 ```
 
 ### Minimal Template
@@ -332,7 +332,7 @@ Coordinate multiple specialized agents to work on complex tasks in parallel.
 
 ### 1. Initialize Swarm
 ```bash
-npx claude-flow@v3alpha swarm init \
+ruflo swarm init \
   --topology hierarchical \
   --max-agents 8 \
   --strategy specialized
@@ -340,24 +340,24 @@ npx claude-flow@v3alpha swarm init \
 
 ### 2. Route Task
 ```bash
-npx claude-flow@v3alpha hooks route --task "[task description]"
+ruflo hooks route --task "[task description]"
 ```
 
 ### 3. Monitor Status
 ```bash
-npx claude-flow@v3alpha swarm status
+ruflo swarm status
 ```
 
 ## Memory Integration
 
 ### Before Starting
 ```bash
-npx claude-flow@v3alpha memory search --query "[task keywords]"
+ruflo memory search --query "[task keywords]"
 ```
 
 ### After Completion
 ```bash
-npx claude-flow@v3alpha memory store \
+ruflo memory store \
   --key "[pattern-name]" \
   --value "[what worked]" \
   --namespace patterns
@@ -409,7 +409,7 @@ Interact with the AgentDB memory system for pattern storage, retrieval, and sema
 
 ### Store Data
 ```bash
-npx claude-flow@v3alpha memory store \
+ruflo memory store \
   --key "unique-key" \
   --value "data to store" \
   --namespace patterns \
@@ -418,7 +418,7 @@ npx claude-flow@v3alpha memory store \
 
 ### Search Data
 ```bash
-npx claude-flow@v3alpha memory search \
+ruflo memory search \
   --query "semantic search terms" \
   --namespace patterns \
   --limit 10
@@ -426,14 +426,14 @@ npx claude-flow@v3alpha memory search \
 
 ### Retrieve Specific Entry
 ```bash
-npx claude-flow@v3alpha memory retrieve \
+ruflo memory retrieve \
   --key "unique-key" \
   --namespace patterns
 ```
 
 ### List All Entries
 ```bash
-npx claude-flow@v3alpha memory list \
+ruflo memory list \
   --namespace patterns \
   --limit 50
 ```
@@ -497,35 +497,35 @@ Structured development workflow ensuring thorough planning before implementation
 Define requirements and acceptance criteria.
 
 ```bash
-npx claude-flow@v3alpha hooks route --task "specification: [requirements]"
+ruflo hooks route --task "specification: [requirements]"
 ```
 
 ### 2. Pseudocode
 Design algorithm in plain language.
 
 ```bash
-npx claude-flow@v3alpha hooks route --task "pseudocode: [algorithm design]"
+ruflo hooks route --task "pseudocode: [algorithm design]"
 ```
 
 ### 3. Architecture
 Plan system structure and components.
 
 ```bash
-npx claude-flow@v3alpha hooks route --task "architecture: [system design]"
+ruflo hooks route --task "architecture: [system design]"
 ```
 
 ### 4. Refinement
 Iterate and improve implementation.
 
 ```bash
-npx claude-flow@v3alpha hooks route --task "refinement: [improvements]"
+ruflo hooks route --task "refinement: [improvements]"
 ```
 
 ### 5. Completion
 Final validation and documentation.
 
 ```bash
-npx claude-flow@v3alpha hooks route --task "completion: [validation]"
+ruflo hooks route --task "completion: [validation]"
 ```
 
 ## Agent Mapping
@@ -602,22 +602,22 @@ Always invoke for:
 
 ### 1. Input Validation
 ```bash
-npx claude-flow@v3alpha security scan --check input-validation
+ruflo security scan --check input-validation
 ```
 
 ### 2. Path Security
 ```bash
-npx claude-flow@v3alpha security scan --check path-traversal
+ruflo security scan --check path-traversal
 ```
 
 ### 3. Command Injection
 ```bash
-npx claude-flow@v3alpha security scan --check command-injection
+ruflo security scan --check command-injection
 ```
 
 ### 4. Full Audit
 ```bash
-npx claude-flow@v3alpha security scan --depth full
+ruflo security scan --depth full
 ```
 
 ## CVE Monitoring
@@ -664,9 +664,9 @@ await safeExec.run(command, { sanitize: true });
 ### Default Configuration
 
 ```toml
-# Claude Flow V3 - Codex Configuration
-# Generated by: claude-flow init --codex
-# Documentation: https://github.com/ruvnet/claude-flow
+# Ruflo V3 - Codex Configuration
+# Generated by: ruflo init --codex
+# Documentation: https://github.com/snowzlm/ruflo
 
 # =============================================================================
 # Core Settings
@@ -821,7 +821,7 @@ exclude_slash_tmp = false
 ### Minimal Configuration
 
 ```toml
-# Claude Flow V3 - Minimal Codex Configuration
+# Ruflo V3 - Minimal Codex Configuration
 
 model = "gpt-5.3-codex"
 approval_policy = "on-request"
@@ -836,7 +836,7 @@ enabled = true
 ### CI/CD Configuration
 
 ```toml
-# Claude Flow V3 - CI/CD Pipeline Configuration
+# Ruflo V3 - CI/CD Pipeline Configuration
 
 model = "gpt-5.3-codex"
 approval_policy = "never"
@@ -916,8 +916,8 @@ interface:
 dependencies:
   tools:
     - type: "mcp"
-      value: "claude-flow"
-      description: "Claude Flow MCP server for swarm coordination"
+      value: "ruflo"
+      description: "Ruflo MCP server for swarm coordination"
       transport: "stdio"
       command: "npx"
       args: ["-y", "@claude-flow/cli@latest"]
@@ -926,7 +926,7 @@ dependencies:
 ## Generation API
 
 ```typescript
-// Usage in claude-flow CLI or standalone
+// Usage in ruflo CLI or standalone
 // Package: @claude-flow/codex (first step toward coflow rebranding)
 
 import {
@@ -963,7 +963,7 @@ const config = await generateConfigToml({
   approvalPolicy: 'on-request',
   sandboxMode: 'workspace-write',
   mcpServers: [
-    { name: 'claude-flow', command: 'npx', args: ['-y', '@claude-flow/cli@latest'] }
+    { name: 'ruflo', command: 'npx', args: ['-y', '@claude-flow/cli@latest'] }
   ],
   skills: [
     { path: '.agents/skills/swarm-orchestration', enabled: true }
@@ -996,13 +996,13 @@ npx @claude-flow/codex init --template minimal
 # Generate a new skill
 npx @claude-flow/codex generate-skill --name custom-skill
 
-# Migrate from Claude Code to Codex
+# Migrate from OpenClaw to Codex
 npx @claude-flow/codex migrate --from claude.md
 
 # Validate AGENTS.md and skills
 npx @claude-flow/codex validate
 
-# Generate dual-platform setup (Claude Code + Codex)
+# Generate dual-platform setup (OpenClaw + Codex)
 npx @claude-flow/codex init --dual
 ```
 
@@ -1012,10 +1012,10 @@ When using the main CLI, Codex support is available via:
 
 ```bash
 # Initialize with Codex support
-npx claude-flow@v3alpha init --codex
+ruflo init --codex
 
 # Initialize with dual-platform support
-npx claude-flow@v3alpha init --dual
+ruflo init --dual
 
 # Future (after coflow rebrand)
 npx coflow init --codex

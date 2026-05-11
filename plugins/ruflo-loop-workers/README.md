@@ -5,7 +5,7 @@ Cache-aware /loop workers and CronCreate background automation. Substrate plugin
 ## Install
 
 ```
-/plugin marketplace add ruvnet/ruflo
+/plugin marketplace add snowzlm/ruflo
 /plugin install ruflo-loop-workers@ruflo
 ```
 
@@ -15,7 +15,7 @@ Cache-aware /loop workers and CronCreate background automation. Substrate plugin
 - **CronCreate**: Background cron jobs for audit, optimization, and monitoring
 - **12 Background Workers**: ultralearn, optimize, consolidate, predict, audit, map, preload, deepdive, document, refactor, benchmark, testgaps
 - **Daemon Management**: Start, stop, status, trigger, and enable workers
-- **ADR-091 Integration**: Native Claude Code capabilities preferred over daemon polling
+- **ADR-091 Integration**: Native OpenClaw capabilities preferred over daemon polling
 
 ## Requires
 

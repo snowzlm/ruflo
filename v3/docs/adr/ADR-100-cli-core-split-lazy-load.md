@@ -4,15 +4,15 @@
 **Date**: 2026-05-05 · **Updated**: 2026-05-09
 **Version**: `@claude-flow/cli-core@3.7.0-alpha.5` published; `@claude-flow/cli@3.7.0-alpha.1` metapackage released
 **Supersedes**: nothing
-**Related**: ADR-098 (plugin capability sync and optimization), issue [#1748](https://github.com/ruvnet/ruflo/issues/1748) Issue 3 (cold-cache 30s MCP-startup race), [#1747](https://github.com/ruvnet/ruflo/issues/1747) (hooks shell injection — fixed in 3.6.28; orthogonal to this ADR)
+**Related**: ADR-098 (plugin capability sync and optimization), issue [#1748](https://github.com/snowzlm/ruflo/issues/1748) Issue 3 (cold-cache 30s MCP-startup race), [#1747](https://github.com/snowzlm/ruflo/issues/1747) (hooks shell injection — fixed in 3.6.28; orthogonal to this ADR)
 
 ## Context
 
 Issue #1748 from the Liberation of Bajor team's methodical install-study identified a silent failure mode that affects every new user with a cold npx cache:
 
-> **Issue 3:** First-time invocation of `npx -y claude-flow@latest mcp start` from a cold npx cache hits a Claude Code MCP-startup timeout. Logged as `Starting connection with timeout of 30000ms` followed by the server staying in "still connecting" state for the entire session. Zero claude-flow tools register; the model falls through to native tools.
+> **Issue 3:** First-time invocation of `npx -y ruflo@latest mcp start` from a cold npx cache hits a OpenClaw MCP-startup timeout. Logged as `Starting connection with timeout of 30000ms` followed by the server staying in "still connecting" state for the entire session. Zero ruflo tools register; the model falls through to native tools.
 >
-> **Diagnosis:** The `claude-flow@latest` package is roughly 1.8 MB across 999 files. Cold npx download + extraction + spawn can exceed 30 seconds.
+> **Diagnosis:** The `ruflo@latest` package is roughly 1.8 MB across 999 files. Cold npx download + extraction + spawn can exceed 30 seconds.
 
 We confirmed the bug is reproducible. The same cold-cache penalty hits every plugin skill that falls back to `npx @claude-flow/cli ...` for memory/hooks operations when MCP tools aren't registered. Today's reality:
 
@@ -116,7 +116,7 @@ Alpha promotion to `latest` requires:
 **Neutral:**
 
 - **No changes to the published `ruflo` umbrella.** It continues to depend on `@claude-flow/cli` and gets the lazy-load benefits transparently.
-- **No changes to `claude-flow` umbrella.** Same.
+- **No changes to `ruflo` umbrella.** Same.
 - The verification.md witness manifest grows by 1 release entry; no new fix categories.
 
 ## Riskiest assumption

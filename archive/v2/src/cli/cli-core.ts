@@ -251,8 +251,8 @@ ${chalk.bold('EXAMPLES:')}
 For more detailed help on specific commands, use:
   ${this.name} [COMMAND] --help
 
-Documentation: https://github.com/ruvnet/claude-code-flow
-Issues: https://github.com/ruvnet/claude-code-flow/issues
+Documentation: https://github.com/ruvnet/openclaw-flow
+Issues: https://github.com/ruvnet/openclaw-flow/issues
 
 Created by rUv - Built with ❤️ for the Claude community
 `);

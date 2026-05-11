@@ -1,6 +1,6 @@
 # Benchmark Test Suite
 
-Comprehensive test suite for the Claude Flow benchmark enhancement project, providing thorough validation of all new functionality including MLE-STAR integration, automation systems, advanced metrics, collective intelligence, and CLAUDE.md optimization.
+Comprehensive test suite for the Ruflo benchmark enhancement project, providing thorough validation of all new functionality including MLE-STAR integration, automation systems, advanced metrics, collective intelligence, and OPENCLAW.md optimization.
 
 ## 🎯 Test Coverage
 
@@ -11,7 +11,7 @@ The test suite is organized into multiple layers to ensure comprehensive validat
   - Ensemble executor functionality
   - Voting strategies (majority, weighted, stacking, bayesian)
   - Model coordination and performance tracking
-  - Integration with Claude Flow MCP tools
+  - Integration with Ruflo MCP tools
 
 - **Automation Systems** (`test_automation.py`)
   - Batch processor with resource pooling
@@ -31,7 +31,7 @@ The test suite is organized into multiple layers to ensure comprehensive validat
   - Knowledge sharing across agents
   - Emergent behavior detection
 
-- **CLAUDE.md Optimizer** (`test_claude_optimizer.py`)
+- **OPENCLAW.md Optimizer** (`test_claude_optimizer.py`)
   - Configuration generation for different use cases
   - Optimization rules engine
   - Effectiveness benchmarking
@@ -179,7 +179,7 @@ Comprehensive mock implementations for:
 - Batch processing systems
 - Memory profilers
 - Swarm coordination systems
-- CLAUDE.md optimizers
+- OPENCLAW.md optimizers
 
 ### Test Data Generators
 Realistic test data for:

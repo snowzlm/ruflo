@@ -39,7 +39,7 @@ ${
 
 ## Usage
 
-### Option 1: Using MCP Tools (Preferred in Claude Code)
+### Option 1: Using MCP Tools (Preferred in OpenClaw)
 \`\`\`javascript
 mcp__claude-flow__sparc_mode {
   mode: "${mode.slug}",
@@ -169,7 +169,7 @@ ${modeList}
 
 ## Quick Start
 
-### Option 1: Using MCP Tools (Preferred in Claude Code)
+### Option 1: Using MCP Tools (Preferred in OpenClaw)
 \`\`\`javascript
 // Run SPARC orchestrator (default)
 mcp__claude-flow__sparc_mode {

@@ -57,7 +57,7 @@ Implement a hybrid architecture using:
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
 │  ┌─────────────┐     ┌─────────────┐     ┌─────────────┐       │
-│  │ Claude Flow │────▶│   Resolve   │────▶│   Fetch     │       │
+│  │ Ruflo │────▶│   Resolve   │────▶│   Fetch     │       │
 │  │    CLI      │     │    IPNS     │     │    IPFS     │       │
 │  └─────────────┘     └──────┬──────┘     └──────┬──────┘       │
 │                             │                    │              │
@@ -436,7 +436,7 @@ export const DEFAULT_PLUGIN_STORE_CONFIG: PluginStoreConfig = {
   registries: [
     {
       name: 'claude-flow-official',
-      description: 'Official Claude Flow plugin registry',
+      description: 'Official Ruflo plugin registry',
       // Real IPNS name from Pinata
       ipnsName: 'k51qzi5uqu5dl...', // Your actual IPNS key
       gateway: 'https://gateway.pinata.cloud',

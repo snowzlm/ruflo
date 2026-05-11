@@ -2,7 +2,7 @@
 
 ## Problem
 
-When using `npx claude-flow@alpha memory store`, the log shows:
+When using `ruflo memory store`, the log shows:
 ```
 [ReasoningBank] Enabled: false
 ```
@@ -125,14 +125,14 @@ npm publish
 [ReasoningBank] Database: .swarm/memory.db
 ```
 
-## Update claude-flow After Publishing
+## Update ruflo After Publishing
 
-Once agentic-flow@1.8.5 is published, update claude-flow:
+Once agentic-flow@1.8.5 is published, update ruflo:
 
 ### 1. Update Dependency
 
 ```bash
-cd /workspaces/claude-code-flow
+cd /workspaces/openclaw-flow
 npm install agentic-flow@1.8.5 --legacy-peer-deps
 ```
 
@@ -165,7 +165,7 @@ The postinstall patch is no longer needed. Edit `package.json`:
 }
 ```
 
-### 4. Publish claude-flow@2.7.23
+### 4. Publish ruflo@2.7.23
 
 ```bash
 # Update version
@@ -186,7 +186,7 @@ npm publish --tag alpha
 
 ### Test with npx (no local installation):
 ```bash
-npx claude-flow@alpha memory store "test" "value"
+ruflo memory store "test" "value"
 ```
 
 **Expected output:**

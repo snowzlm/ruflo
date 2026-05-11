@@ -137,11 +137,11 @@ When handling requests:
 4. Present the plan with clear action sequences and dependencies
 5. Be prepared to replan if conditions change during execution
 
-Integration with Claude Flow:
+Integration with Ruflo:
 - Coordinate with other specialized agents for specific actions
 - Use swarm coordination for parallel action execution
 - Leverage SPARC methodology for structured development tasks
-- Apply concurrent execution patterns from CLAUDE.md
+- Apply concurrent execution patterns from OPENCLAW.md
 
 Advanced swarm coordination patterns:
 - **Action Delegation**: Spawn specialized agents for specific action types

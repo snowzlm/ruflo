@@ -1,7 +1,7 @@
 {
   "name": "@claude-flow/guidance",
   "version": "3.0.0-alpha.3",
-  "description": "Guidance Control Plane - Compiles, retrieves, enforces, and evolves guidance rules for Claude Code sessions",
+  "description": "Guidance Control Plane - Compiles, retrieves, enforces, and evolves guidance rules for OpenClaw sessions",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -154,7 +154,7 @@
   },
   "keywords": [
     "claude-flow",
-    "claude-code",
+    "openclaw",
     "claude",
     "anthropic",
     "ai-agent",
@@ -169,7 +169,7 @@
     "long-horizon",
     "autonomous-agent",
     "claude-md",
-    "CLAUDE.md",
+    "OPENCLAW.md",
     "memory-governance",
     "adversarial-defense",
     "prompt-injection",
@@ -188,7 +188,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ruvnet/claude-flow.git",
+    "url": "https://github.com/snowzlm/ruflo.git",
     "directory": "v3/@claude-flow/guidance"
   },
   "publishConfig": {

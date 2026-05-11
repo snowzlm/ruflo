@@ -6,7 +6,7 @@
 
 ## Overview
 
-Complete implementation of Event Store Persistence for V3 Claude Flow, providing event sourcing capabilities with SQLite backend and cross-platform compatibility.
+Complete implementation of Event Store Persistence for V3 Ruflo, providing event sourcing capabilities with SQLite backend and cross-platform compatibility.
 
 ## Deliverables
 

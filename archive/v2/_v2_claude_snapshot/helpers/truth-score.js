@@ -11,7 +11,7 @@ const { execSync } = require('child_process');
 
 class TruthScoreCalculator {
   constructor() {
-    this.configPath = '.claude/config/verification.json';
+    this.configPath = '.openclaw/config/verification.json';
     this.memoryPath = '.claude-flow/memory/truth-scores';
     this.config = null;
   }

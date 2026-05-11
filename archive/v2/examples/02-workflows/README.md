@@ -91,13 +91,13 @@ Original AI research pipeline example
 
 ```bash
 # Execute a workflow
-npx claude-flow orchestrate ./claude-workflow.json
+npx ruflo orchestrate ./claude-workflow.json
 
 # With monitoring
-npx claude-flow orchestrate ./research-workflow.json --monitor
+npx ruflo orchestrate ./research-workflow.json --monitor
 
 # In background
-npx claude-flow orchestrate ./claude-workflow.json --background
+npx ruflo orchestrate ./claude-workflow.json --background
 ```
 
 ## Creating Custom Workflows

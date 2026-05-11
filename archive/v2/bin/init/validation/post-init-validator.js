@@ -18,7 +18,7 @@ export class PostInitValidator {
     };
 
     const expectedFiles = [
-      { path: 'CLAUDE.md', minSize: 100 },
+      { path: 'OPENCLAW.md', minSize: 100 },
       { path: 'memory-bank.md', minSize: 50 },
       { path: 'coordination.md', minSize: 50 },
       { path: 'memory/claude-flow-data.json', minSize: 10 },
@@ -100,8 +100,8 @@ export class PostInitValidator {
       'coordination/subtasks',
       'coordination/orchestration',
       '.claude',
-      '.claude/commands',
-      '.claude/logs',
+      '.openclaw/commands',
+      '.openclaw/logs',
     ];
 
     const optionalDirs = [
@@ -110,7 +110,7 @@ export class PostInitValidator {
       '.roo/workflows',
       '.roo/modes',
       '.roo/configs',
-      '.claude/commands/sparc',
+      '.openclaw/commands/sparc',
     ];
 
     // Check required directories
@@ -209,7 +209,7 @@ export class PostInitValidator {
     };
 
     const itemsToCheck = [
-      { path: 'CLAUDE.md', type: 'file', requiredMode: 0o644 },
+      { path: 'OPENCLAW.md', type: 'file', requiredMode: 0o644 },
       { path: 'memory-bank.md', type: 'file', requiredMode: 0o644 },
       { path: 'coordination.md', type: 'file', requiredMode: 0o644 },
       { path: 'claude-flow', type: 'file', requiredMode: 0o755 },
@@ -316,7 +316,7 @@ export class PostInitValidator {
 
     for (const dir of expectedDirs) {
       try {
-        await fs.stat(`${this.workingDir}/.claude/${dir}`);
+        await fs.stat(`${this.workingDir}/.openclaw/${dir}`);
         structure.dirs.push(dir);
       } catch {
         structure.valid = false;
@@ -326,7 +326,7 @@ export class PostInitValidator {
     // Check if there are any command files
     try {
       const entries = [];
-      for await (const entry of fs.readdir(`${this.workingDir}/.claude/commands`)) {
+      for await (const entry of fs.readdir(`${this.workingDir}/.openclaw/commands`)) {
         if (entry.isFile && entry.name.endsWith('.js')) {
           entries.push(entry.name);
         }

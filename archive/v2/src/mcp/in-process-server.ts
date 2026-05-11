@@ -2,7 +2,7 @@
  * In-Process MCP Server Implementation
  *
  * Provides 10-100x performance improvement by eliminating IPC overhead.
- * Uses Claude Code SDK's in-process server API for direct tool registration.
+ * Uses OpenClaw SDK's in-process server API for direct tool registration.
  */
 
 import { EventEmitter } from 'node:events';

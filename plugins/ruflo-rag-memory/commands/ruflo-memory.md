@@ -30,7 +30,7 @@ Deduplicate entries with cosine > 0.92, prune stale (>30 days untouched, zero re
 `npx @claude-flow/cli@latest hooks worker dispatch --trigger consolidate`
 
 **bridge** `[--all-projects]`:
-Import Claude Code auto-memory into AgentDB.
+Import OpenClaw auto-memory into AgentDB.
 See `/memory-bridge` skill for details.
 
 Default namespace is "default". Common namespaces: `patterns`, `tasks`, `solutions`, `feedback`, `security`, `claude-memories`.

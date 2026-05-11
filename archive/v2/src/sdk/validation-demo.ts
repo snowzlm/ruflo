@@ -11,7 +11,7 @@
  * Run: npx tsx src/sdk/validation-demo.ts
  */
 
-import { query, type Query } from '@anthropic-ai/claude-code';
+import { query, type Query } from '@anthropic-ai/openclaw';
 import { RealSessionForking } from './session-forking.js';
 import { RealQueryController } from './query-control.js';
 import { RealCheckpointManager } from './checkpoint-manager.js';

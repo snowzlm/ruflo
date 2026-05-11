@@ -1,19 +1,19 @@
 /**
  * @claude-flow/guidance - Guidance Control Plane
  *
- * Sits beside Claude Code (not inside it) to:
- * 1. Compile CLAUDE.md into constitution + shards + manifest
+ * Sits beside OpenClaw (not inside it) to:
+ * 1. Compile OPENCLAW.md into constitution + shards + manifest
  * 2. Retrieve task-relevant shards at runtime via intent classification
  * 3. Enforce non-negotiables through hook gates
  * 4. Log every run to a ledger with evaluators
  * 5. Evolve the rule set through an optimizer loop
  *
  * Architecture:
- * - Root CLAUDE.md → Repo constitution (rare changes)
- * - CLAUDE.local.md → Overlay / experiment sandbox (frequent changes)
+ * - Root OPENCLAW.md → Repo constitution (rare changes)
+ * - OPENCLAW.local.md → Overlay / experiment sandbox (frequent changes)
  * - Optimizer → Promotes winning local rules to root
  *
- * Integration with Claude Code:
+ * Integration with OpenClaw:
  * - Headless mode (claude -p --output-format json) for automated testing
  * - Hook system for enforcement gates
  * - RuVector/HNSW for semantic shard retrieval
@@ -435,8 +435,8 @@ import type {
 // ============================================================================
 
 const DEFAULT_CONFIG: GuidanceControlPlaneConfig = {
-  rootGuidancePath: './CLAUDE.md',
-  localGuidancePath: './CLAUDE.local.md',
+  rootGuidancePath: './OPENCLAW.md',
+  localGuidancePath: './OPENCLAW.local.md',
   gates: {},
   maxShardsPerTask: 5,
   optimizationCycleDays: 7,
@@ -452,7 +452,7 @@ const DEFAULT_CONFIG: GuidanceControlPlaneConfig = {
  * The main Guidance Control Plane
  *
  * Orchestrates all components:
- * - Compiler: CLAUDE.md → PolicyBundle
+ * - Compiler: OPENCLAW.md → PolicyBundle
  * - Retriever: PolicyBundle → task-relevant shards
  * - Gates: enforcement hooks
  * - Ledger: run logging + evaluation

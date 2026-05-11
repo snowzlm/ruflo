@@ -1,16 +1,16 @@
-# Claude Flow V3 Helper System
+# Ruflo V3 Helper System
 
-The V3 Helper System provides cross-platform automation and development tools for claude-flow v3 users. These helpers enable automatic progress tracking, checkpointing, GitHub integration, and development workflow automation.
+The V3 Helper System provides cross-platform automation and development tools for ruflo v3 users. These helpers enable automatic progress tracking, checkpointing, GitHub integration, and development workflow automation.
 
 ## 🚀 Quick Start
 
 ### Installation
 ```bash
-# Copy helpers to your claude-flow v3 project
-cp -r v3/helpers/ your-project/.claude/helpers/
+# Copy helpers to your ruflo v3 project
+cp -r v3/helpers/ your-project/.openclaw/helpers/
 
 # Make scripts executable (Linux/Mac)
-chmod +x your-project/.claude/helpers/*.sh
+chmod +x your-project/.openclaw/helpers/*.sh
 
 # Windows users: Use PowerShell scripts (.ps1)
 ```
@@ -18,9 +18,9 @@ chmod +x your-project/.claude/helpers/*.sh
 ### Basic Usage
 ```bash
 # Linux/Mac
-./.claude/helpers/claude-flow-v3.sh init
-./.claude/helpers/claude-flow-v3.sh status
-./.claude/helpers/claude-flow-v3.sh update domain 3
+./.openclaw/helpers/claude-flow-v3.sh init
+./.openclaw/helpers/claude-flow-v3.sh status
+./.openclaw/helpers/claude-flow-v3.sh update domain 3
 
 # Windows (PowerShell)
 .\.claude\helpers\claude-flow-v3.ps1 init
@@ -80,14 +80,14 @@ chmod +x your-project/.claude/helpers/*.sh
 ```json
 {
   "helpers": {
-    "directory": ".claude/helpers",
+    "directory": ".openclaw/helpers",
     "enabled": true,
     "platform": "auto-detect",
     "scripts": {
-      "master": ".claude/helpers/claude-flow-v3",
-      "progressManager": ".claude/helpers/progress-manager",
-      "checkpointManager": ".claude/helpers/checkpoint-manager",
-      "configValidator": ".claude/helpers/config-validator"
+      "master": ".openclaw/helpers/claude-flow-v3",
+      "progressManager": ".openclaw/helpers/progress-manager",
+      "checkpointManager": ".openclaw/helpers/checkpoint-manager",
+      "configValidator": ".openclaw/helpers/config-validator"
     }
   },
   "v3Configuration": {
@@ -113,7 +113,7 @@ chmod +x your-project/.claude/helpers/*.sh
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/helpers/checkpoint-manager auto-checkpoint \"File edit: $TOOL_INPUT_file_path\""
+            "command": ".openclaw/helpers/checkpoint-manager auto-checkpoint \"File edit: $TOOL_INPUT_file_path\""
           }
         ]
       }
@@ -125,7 +125,7 @@ chmod +x your-project/.claude/helpers/*.sh
 ## 🎯 Customization Guide
 
 ### Adding Custom Helpers
-1. Create your helper script in `.claude/helpers/custom/`
+1. Create your helper script in `.openclaw/helpers/custom/`
 2. Follow the naming convention: `custom-helper-name.sh/.ps1`
 3. Add to settings.json configuration
 4. Test cross-platform compatibility
@@ -140,7 +140,7 @@ chmod +x your-project/.claude/helpers/*.sh
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/helpers/custom/pre-task-validation.sh \"$TOOL_INPUT_prompt\""
+            "command": ".openclaw/helpers/custom/pre-task-validation.sh \"$TOOL_INPUT_prompt\""
           }
         ]
       }
@@ -180,7 +180,7 @@ chmod +x your-project/.claude/helpers/*.sh
 ### CI/CD Pipeline Integration
 ```yaml
 # GitHub Actions example
-name: Claude Flow V3 Progress
+name: Ruflo V3 Progress
 on: [push]
 jobs:
   update-progress:
@@ -189,8 +189,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: Update V3 Progress
         run: |
-          ./.claude/helpers/claude-flow-v3.sh update-from-ci
-          ./.claude/helpers/checkpoint-manager.sh ci-checkpoint "Automated progress update"
+          ./.openclaw/helpers/claude-flow-v3.sh update-from-ci
+          ./.openclaw/helpers/checkpoint-manager.sh ci-checkpoint "Automated progress update"
 ```
 
 ### VS Code Integration
@@ -200,7 +200,7 @@ jobs:
     {
       "label": "V3 Status",
       "type": "shell",
-      "command": "./.claude/helpers/claude-flow-v3.sh status",
+      "command": "./.openclaw/helpers/claude-flow-v3.sh status",
       "group": "build",
       "presentation": {
         "echo": true,
@@ -230,7 +230,7 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ### Path Issues
 ```bash
 # Add helpers to PATH (optional)
-export PATH="$PATH:$(pwd)/.claude/helpers"
+export PATH="$PATH:$(pwd)/.openclaw/helpers"
 ```
 
 ## 📚 Documentation
@@ -250,4 +250,4 @@ export PATH="$PATH:$(pwd)/.claude/helpers"
 
 ---
 
-*Claude Flow V3 Helper System - Enabling cross-platform development automation*
+*Ruflo V3 Helper System - Enabling cross-platform development automation*

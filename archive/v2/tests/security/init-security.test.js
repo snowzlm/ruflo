@@ -92,8 +92,8 @@ describe('Init Security Tests', () => {
 
       // Check permissions on created files
       const files = [
-        'CLAUDE.md',
-        '.claude/settings.json',
+        'OPENCLAW.md',
+        '.openclaw/settings.json',
         'memory/claude-flow@alpha-data.json',
       ];
 
@@ -112,10 +112,10 @@ describe('Init Security Tests', () => {
 
       // Check executable files (if any are created)
       try {
-        const helperFiles = await fs.readdir('.claude/helpers');
+        const helperFiles = await fs.readdir('.openclaw/helpers');
         for (const helper of helperFiles) {
           if (helper.endsWith('.sh')) {
-            const stats = await fs.stat(`.claude/helpers/${helper}`);
+            const stats = await fs.stat(`.openclaw/helpers/${helper}`);
             const mode = stats.mode & parseInt('777', 8);
 
             // Should be executable by owner
@@ -165,8 +165,8 @@ describe('Init Security Tests', () => {
       ];
 
       const filesToCheck = [
-        'CLAUDE.md',
-        '.claude/settings.json',
+        'OPENCLAW.md',
+        '.openclaw/settings.json',
         '.mcp.json',
       ];
 
@@ -183,7 +183,7 @@ describe('Init Security Tests', () => {
       await initCommand([], {});
 
       const configFiles = [
-        '.claude/settings.json',
+        '.openclaw/settings.json',
         '.mcp.json',
         'memory/claude-flow@alpha-data.json',
       ];
@@ -310,7 +310,7 @@ describe('Init Security Tests', () => {
 
       // Verify the file wasn't created with huge size
       try {
-        const stats = await fs.stat('CLAUDE.md');
+        const stats = await fs.stat('OPENCLAW.md');
         expect(stats.size).toBeLessThan(10 * 1024 * 1024); // 10MB max
       } catch (err) {
         // File might not have been created, which is acceptable
@@ -395,8 +395,8 @@ describe('Init Security Tests', () => {
       await initCommand([], {});
 
       const files = [
-        'CLAUDE.md',
-        '.claude/settings.json',
+        'OPENCLAW.md',
+        '.openclaw/settings.json',
       ];
 
       for (const file of files) {

@@ -23,7 +23,7 @@ The `OptimizerLoop` class in `src/optimizer.ts` implements a weekly optimization
 3. Evaluate changes against baseline metrics
 4. Promote winners, record ADRs
 
-The promotion policy is the critical decision: when does a rule change earn the right to be promoted from `local` (CLAUDE.local.md overlay) to `root` (CLAUDE.md constitution)?
+The promotion policy is the critical decision: when does a rule change earn the right to be promoted from `local` (OPENCLAW.local.md overlay) to `root` (OPENCLAW.md constitution)?
 
 ## Decision
 
@@ -131,7 +131,7 @@ With a weekly optimization cycle and a 2-win requirement:
 
 For a rule that starts as a new local addition:
 
-- **Week 1:** Violation observed, new rule proposed and added to CLAUDE.local.md.
+- **Week 1:** Violation observed, new rule proposed and added to OPENCLAW.local.md.
 - **Week 2:** New rule evaluated, wins. Win count: 1.
 - **Week 3:** Rule re-evaluated, wins. Win count: 2. Promoted to root.
 - **Total:** 3 weeks minimum from first violation to root promotion.
@@ -149,7 +149,7 @@ For the full journey from local experiment to root rule, accounting for the opti
 
 ### Negative
 
-- **Slow reaction.** A critical new rule takes 2-3 weeks to reach root. If a new vulnerability pattern emerges, the rule must wait. Mitigation: teams can manually add critical rules directly to CLAUDE.md, bypassing the optimizer.
+- **Slow reaction.** A critical new rule takes 2-3 weeks to reach root. If a new vulnerability pattern emerges, the rule must wait. Mitigation: teams can manually add critical rules directly to OPENCLAW.md, bypassing the optimizer.
 - **Conservative estimates.** The simulation (`simulateChangeEffect`) uses hardcoded reduction percentages (30-60%) rather than actual A/B test data. In production, the simulation should be replaced with real headless test suite runs.
 - **Win count fragility.** A single bad week (regression unrelated to the rule) resets the counter. Mitigation: the `promotionWins` parameter is configurable; teams can set it to 1 for faster evolution at the cost of stability.
 

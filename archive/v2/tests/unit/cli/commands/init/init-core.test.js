@@ -36,10 +36,10 @@ jest.mock('../../../../../src/cli/utils.js', () => ({
 
 // Mock template functions
 jest.mock('../../../../../src/cli/simple-commands/init/templates/claude-md.js', () => ({
-  createOptimizedSparcClaudeMd: jest.fn(() => '# Mock CLAUDE.md'),
-  createSparcClaudeMd: jest.fn(() => '# Mock SPARC CLAUDE.md'),
-  createFullClaudeMd: jest.fn(() => '# Mock Full CLAUDE.md'),
-  createMinimalClaudeMd: jest.fn(() => '# Mock Minimal CLAUDE.md'),
+  createOptimizedSparcClaudeMd: jest.fn(() => '# Mock OPENCLAW.md'),
+  createSparcClaudeMd: jest.fn(() => '# Mock SPARC OPENCLAW.md'),
+  createFullClaudeMd: jest.fn(() => '# Mock Full OPENCLAW.md'),
+  createMinimalClaudeMd: jest.fn(() => '# Mock Minimal OPENCLAW.md'),
 }));
 
 jest.mock('../../../../../src/cli/simple-commands/init/templates/enhanced-templates.js', () => ({
@@ -73,17 +73,17 @@ describe('initCommand', () => {
 
       // Verify directory creation
       expect(fs.mkdir).toHaveBeenCalledWith('/test/workspace/.claude', { recursive: true });
-      expect(fs.mkdir).toHaveBeenCalledWith('/test/workspace/.claude/commands', { recursive: true });
-      expect(fs.mkdir).toHaveBeenCalledWith('/test/workspace/.claude/helpers', { recursive: true });
+      expect(fs.mkdir).toHaveBeenCalledWith('/test/workspace/.openclaw/commands', { recursive: true });
+      expect(fs.mkdir).toHaveBeenCalledWith('/test/workspace/.openclaw/helpers', { recursive: true });
 
       // Verify file creation
       expect(fs.writeFile).toHaveBeenCalledWith(
-        '/test/workspace/CLAUDE.md',
+        '/test/workspace/OPENCLAW.md',
         expect.any(String),
         'utf8'
       );
       expect(fs.writeFile).toHaveBeenCalledWith(
-        '/test/workspace/.claude/settings.json',
+        '/test/workspace/.openclaw/settings.json',
         expect.any(String),
         'utf8'
       );
@@ -97,7 +97,7 @@ describe('initCommand', () => {
 
       // Should continue with initialization despite existing files
       expect(fs.writeFile).toHaveBeenCalledWith(
-        '/test/workspace/CLAUDE.md',
+        '/test/workspace/OPENCLAW.md',
         expect.any(String),
         'utf8'
       );
@@ -111,7 +111,7 @@ describe('initCommand', () => {
 
       // Should not write files when they exist without force
       expect(fs.writeFile).not.toHaveBeenCalledWith(
-        '/test/workspace/CLAUDE.md',
+        '/test/workspace/OPENCLAW.md',
         expect.any(String),
         'utf8'
       );
@@ -154,7 +154,7 @@ describe('initCommand', () => {
 
       // Should continue initialization even if create-sparc fails
       expect(fs.writeFile).toHaveBeenCalledWith(
-        '/test/workspace/CLAUDE.md',
+        '/test/workspace/OPENCLAW.md',
         expect.any(String),
         'utf8'
       );
@@ -175,16 +175,16 @@ describe('initCommand', () => {
 
       // Should create Flow Nexus specific files
       expect(fs.writeFile).toHaveBeenCalledWith(
-        'CLAUDE.md',
+        'OPENCLAW.md',
         expect.any(String)
       );
     });
   });
 
   describe('MCP Server Setup', () => {
-    it('should setup MCP servers when Claude Code is installed', async () => {
+    it('should setup MCP servers when OpenClaw is installed', async () => {
       const { execSync } = require('child_process');
-      execSync.mockReturnValue(''); // Simulate Claude Code installation
+      execSync.mockReturnValue(''); // Simulate OpenClaw installation
 
       await initCommand([], {});
 
@@ -247,7 +247,7 @@ describe('initCommand', () => {
         '/test/workspace/coordination/orchestration',
         '/test/workspace/.swarm',
         '/test/workspace/.hive-mind',
-        '/test/workspace/.claude/checkpoints',
+        '/test/workspace/.openclaw/checkpoints',
       ];
 
       expectedDirs.forEach(dir => {
@@ -281,7 +281,7 @@ describe('initCommand', () => {
       await initCommand([], {});
 
       expect(fs.writeFile).toHaveBeenCalledWith(
-        '/test/workspace/.claude/settings.local.json',
+        '/test/workspace/.openclaw/settings.local.json',
         expect.stringContaining('permissions'),
         'utf8'
       );

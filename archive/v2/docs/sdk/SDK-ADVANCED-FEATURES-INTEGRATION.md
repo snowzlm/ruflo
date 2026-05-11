@@ -9,7 +9,7 @@
 
 ## 🎯 Overview
 
-This document explores how to integrate two advanced Claude Code SDK features into Claude-Flow's swarm orchestration system:
+This document explores how to integrate two advanced OpenClaw SDK features into Claude-Flow's swarm orchestration system:
 
 1. **Network Request Sandboxing** - Per-agent network isolation and governance
 2. **React DevTools Integration** - Real-time swarm visualization and profiling
@@ -21,7 +21,7 @@ This document explores how to integrate two advanced Claude Code SDK features in
 ### SDK Feature Analysis
 
 ```typescript
-// Discovered in @anthropic-ai/claude-code CLI source
+// Discovered in @anthropic-ai/openclaw CLI source
 interface NetworkPermission {
   hostPattern: { host: string; port: number };
   allow: boolean;
@@ -388,7 +388,7 @@ export class AdaptiveNetworkPolicy {
 ### SDK Feature Analysis
 
 ```typescript
-// Discovered in @anthropic-ai/claude-code CLI source
+// Discovered in @anthropic-ai/openclaw CLI source
 window.__REACT_DEVTOOLS_COMPONENT_FILTERS__
 
 // SDK includes full React DevTools backend for TUI rendering
@@ -685,7 +685,7 @@ export const SwarmMonitorUI: React.FC = () => {
 
 ### Network Policy Configuration
 ```typescript
-// claude-flow.config.ts
+// ruflo.config.ts
 export default {
   swarm: {
     networkPolicies: {

@@ -2,7 +2,7 @@
 ## Agent Help Integration Testing
 
 **Date**: 2025-10-12
-**Test Scope**: All commands listed in `claude-flow agent --help`
+**Test Scope**: All commands listed in `ruflo agent --help`
 **Purpose**: Verify all agentic-flow integration commands function correctly
 
 ---
@@ -302,8 +302,8 @@ Use "agentic-flow agent list" to see all available agents
 ```
 Hierarchy commands: create, show
 Examples:
-  claude-flow agent hierarchy create enterprise
-  claude-flow agent hierarchy show
+  ruflo agent hierarchy create enterprise
+  ruflo agent hierarchy show
 ```
 
 #### ✅ `agent ecosystem`
@@ -373,8 +373,8 @@ Ecosystem commands: status, optimize
 ## Integration Status
 
 ### ✅ Help System Integration
-- Main help (`claude-flow --help`) shows Agent Booster
-- Agent help (`claude-flow agent --help`) shows all 18 commands
+- Main help (`ruflo --help`) shows Agent Booster
+- Agent help (`ruflo agent --help`) shows all 18 commands
 - All NEW commands marked with (NEW) indicator
 - Help formatter correctly displays command metadata
 
@@ -414,7 +414,7 @@ Ecosystem commands: status, optimize
 
 ## Conclusion
 
-✅ **All 18 commands in `claude-flow agent --help` are functional**
+✅ **All 18 commands in `ruflo agent --help` are functional**
 
 - 7 NEW agentic-flow integration commands working
 - 6 original internal agent commands working
@@ -436,6 +436,6 @@ Ecosystem commands: status, optimize
 
 ---
 
-**Test Performed By**: Claude Code
+**Test Performed By**: OpenClaw
 **Test Date**: 2025-10-12
 **Commit**: ba53f7920 - "[feat] Add agentic-flow integration commands to agent --help"

@@ -1,4 +1,4 @@
-# Claude Flow + Claude Code - Browser IDE
+# Ruflo + OpenClaw - Browser IDE
 
 **Browser-based IDE combining swarm orchestration with interactive code editing**
 
@@ -22,7 +22,7 @@
 └─────────────────────────────────────────────────────────────┘
                            ↓ stdio (JSON-RPC 2.0)
 ┌─────────────────────────────────────────────────────────────┐
-│         Claude Flow MCP Server (npx claude-flow mcp)        │
+│         Ruflo MCP Server (npx ruflo mcp)        │
 │  • 90+ MCP tools                                            │
 │  • Swarm orchestration                                      │
 │  • Agent management                                         │
@@ -61,7 +61,7 @@
 ### Start the Server
 
 ```bash
-cd /workspaces/claude-code-flow/examples/browser-dashboard
+cd /workspaces/openclaw-flow/examples/browser-dashboard
 
 # Start the real MCP integration server
 node server-real.js
@@ -168,7 +168,7 @@ await sendMCPCommand('verify_consensus', {
 ## Real vs Simulated Execution
 
 ### ✅ Real Execution (Current)
-- Actual agent spawning via `mcp__claude-flow__agents_spawn_parallel`
+- Actual agent spawning via `mcp__ruflo__agents_spawn_parallel`
 - Real Byzantine consensus with Ed25519 verification
 - Live swarm status from orchestrator
 - Real-time metrics and performance data
@@ -270,7 +270,7 @@ await sendMCPCommand('task_orchestrate', {
 ### MCP Server Not Responding
 ```bash
 # Check if server is running
-ps aux | grep "claude-flow mcp"
+ps aux | grep "ruflo mcp"
 
 # Restart server
 pkill -f "node server-real.js"
@@ -353,4 +353,4 @@ await fn(sandbox.console, sandbox.sendMCPCommand);
 
 ---
 
-**This is a production-ready browser IDE powered by Claude Flow MCP + Monaco Editor!** 🚀
+**This is a production-ready browser IDE powered by Ruflo MCP + Monaco Editor!** 🚀

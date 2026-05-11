@@ -1,6 +1,6 @@
 # Migration Guide: v2 → v3
 
-Complete guide for upgrading from Claude Flow v2 to v3.0.0-alpha.1
+Complete guide for upgrading from Ruflo v2 to v3.0.0-alpha.1
 
 ---
 
@@ -21,7 +21,7 @@ Complete guide for upgrading from Claude Flow v2 to v3.0.0-alpha.1
 ## Overview
 
 ### What's Changed
-Claude Flow v3 is a complete architectural overhaul based on 10 Architecture Decision Records (ADRs). The migration involves:
+Ruflo v3 is a complete architectural overhaul based on 10 Architecture Decision Records (ADRs). The migration involves:
 
 - **Code reduction**: 15,000+ lines → <5,000 lines
 - **Module architecture**: Monolith → 10 @claude-flow modules
@@ -289,7 +289,7 @@ setx CLAUDE_FLOW_MODE "production"
 setx CLAUDE_FLOW_MEMORY_BACKEND "agentdb"
 
 # Update config path
-$env:CLAUDE_FLOW_CONFIG = "$env:APPDATA\claude-flow\config.json"
+$env:CLAUDE_FLOW_CONFIG = "$env:APPDATA\ruflo\config.json"
 ```
 
 #### macOS/Linux Configuration
@@ -805,7 +805,7 @@ CLAUDE_FLOW_SONA_LEARNING=true
 
 # Platform-specific (Windows)
 APPDATA=C:\Users\YourName\AppData\Roaming
-CLAUDE_FLOW_CONFIG=%APPDATA%\claude-flow\config.json
+CLAUDE_FLOW_CONFIG=%APPDATA%\ruflo\config.json
 
 # Platform-specific (macOS/Linux)
 HOME=/home/yourname
@@ -1149,7 +1149,7 @@ npx agentic-flow --list
 
 **Symptoms**:
 ```
-Error: Claude Flow v3 requires Node.js 20.x or higher
+Error: Ruflo v3 requires Node.js 20.x or higher
 Current version: v18.x.x
 ```
 
@@ -1296,7 +1296,7 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 # Solution
 xattr -d com.apple.quarantine /path/to/npx
-spctl --add --label "Claude Flow" /path/to/npx
+spctl --add --label "Ruflo" /path/to/npx
 ```
 
 #### Linux: Permission Denied
@@ -1398,4 +1398,4 @@ If you encounter issues not covered in this guide:
 
 ---
 
-**Happy Migrating! Welcome to Claude Flow v3!** 🚀
+**Happy Migrating! Welcome to Ruflo v3!** 🚀

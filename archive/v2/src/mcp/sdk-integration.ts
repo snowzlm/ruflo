@@ -1,13 +1,13 @@
 /**
  * SDK Integration Layer for In-Process MCP Server
  *
- * Provides seamless integration between Claude Code SDK and Claude-Flow's
+ * Provides seamless integration between OpenClaw SDK and Claude-Flow's
  * in-process MCP server for 10-100x performance improvement.
  */
 
-import { query, type Query, type Options } from '@anthropic-ai/claude-code/sdk';
+import { query, type Query, type Options } from '@anthropic-ai/openclaw/sdk';
 import { createClaudeFlowSdkServer, ClaudeFlowToolRegistry } from './tool-registry.js';
-import type { McpSdkServerConfigWithInstance } from '@anthropic-ai/claude-code/sdk.d.ts';
+import type { McpSdkServerConfigWithInstance } from '@anthropic-ai/openclaw/sdk.d.ts';
 import { logger } from '../core/logger.js';
 
 export interface SDKIntegrationConfig {

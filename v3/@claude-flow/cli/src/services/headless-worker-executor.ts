@@ -1,6 +1,6 @@
 /**
  * Headless Worker Executor
- * Enables workers to invoke Claude Code in headless mode with configurable sandbox profiles.
+ * Enables workers to invoke OpenClaw in headless mode with configurable sandbox profiles.
  *
  * ADR-020: Headless Worker Integration Architecture
  * - Integrates with CLAUDE_CODE_HEADLESS and CLAUDE_CODE_SANDBOX_MODE environment variables
@@ -30,7 +30,7 @@ import type { WorkerType } from './worker-daemon.js';
 // ============================================
 
 /**
- * Headless worker types - workers that use Claude Code AI
+ * Headless worker types - workers that use OpenClaw AI
  */
 export type HeadlessWorkerType =
   | 'audit'
@@ -53,7 +53,7 @@ export type LocalWorkerType = 'map' | 'consolidate' | 'benchmark' | 'preload';
 export type SandboxMode = 'strict' | 'permissive' | 'disabled';
 
 /**
- * Model types for Claude Code
+ * Model types for OpenClaw
  */
 export type ModelType = 'sonnet' | 'opus' | 'haiku';
 
@@ -91,7 +91,7 @@ export interface WorkerConfig {
  * Headless-specific options
  */
 export interface HeadlessOptions {
-  /** Prompt template for Claude Code */
+  /** Prompt template for OpenClaw */
   promptTemplate: string;
 
   /** Sandbox profile: strict, permissive, or disabled */
@@ -157,7 +157,7 @@ export interface HeadlessExecutionResult {
   /** Whether execution completed successfully */
   success: boolean;
 
-  /** Raw output from Claude Code */
+  /** Raw output from OpenClaw */
   output: string;
 
   /** Parsed output (if outputFormat is json or markdown) */
@@ -414,7 +414,7 @@ Provide insights as JSON:
       sandbox: 'strict',
       model: 'opus',
       outputFormat: 'json',
-      contextPatterns: ['**/*.ts', '**/CLAUDE.md', '**/README.md'],
+      contextPatterns: ['**/*.ts', '**/OPENCLAW.md', '**/README.md'],
       timeoutMs: 15 * 60 * 1000,
     },
   },
@@ -586,7 +586,7 @@ export function getWorkerConfig(type: WorkerType): HeadlessWorkerConfig | undefi
 // ============================================
 
 /**
- * HeadlessWorkerExecutor - Executes workers using Claude Code in headless mode
+ * HeadlessWorkerExecutor - Executes workers using OpenClaw in headless mode
  *
  * Features:
  * - Process pool with configurable concurrency limit
@@ -629,7 +629,7 @@ export class HeadlessWorkerExecutor extends EventEmitter {
   // ============================================
 
   /**
-   * Check if Claude Code CLI is available
+   * Check if OpenClaw CLI is available
    */
   async isAvailable(): Promise<boolean> {
     if (this.claudeCodeAvailable !== null) {
@@ -655,7 +655,7 @@ export class HeadlessWorkerExecutor extends EventEmitter {
   }
 
   /**
-   * Get Claude Code version
+   * Get OpenClaw version
    */
   async getVersion(): Promise<string | null> {
     await this.isAvailable();
@@ -679,7 +679,7 @@ export class HeadlessWorkerExecutor extends EventEmitter {
     if (!available) {
       const result = this.createErrorResult(
         workerType,
-        'Claude Code CLI not available. Install with: npm install -g @anthropic-ai/claude-code'
+        'OpenClaw CLI not available. Install with: npm install -g @anthropic-ai/openclaw'
       );
       this.emit('error', result);
       return result;
@@ -873,7 +873,7 @@ export class HeadlessWorkerExecutor extends EventEmitter {
       // Log prompt for debugging
       this.logExecution(executionId, 'prompt', fullPrompt);
 
-      // Execute Claude Code headlessly
+      // Execute OpenClaw headlessly
       const result = await this.executeClaudeCode(fullPrompt, {
         sandbox: headless.sandbox,
         model: headless.model || 'sonnet',
@@ -1125,7 +1125,7 @@ Analyze the above codebase context and provide your response following the forma
   }
 
   /**
-   * Execute Claude Code in headless mode
+   * Execute OpenClaw in headless mode
    */
   private executeClaudeCode(
     prompt: string,
@@ -1142,8 +1142,8 @@ Analyze the above codebase context and provide your response following the forma
         ...(process.env as Record<string, string>),
         CLAUDE_CODE_HEADLESS: 'true',
         CLAUDE_CODE_SANDBOX_MODE: options.sandbox,
-        // Fix #1395 Bug 2: Workers fail inside active Claude Code session.
-        // Claude Code detects nested sessions and exits immediately.
+        // Fix #1395 Bug 2: Workers fail inside active OpenClaw session.
+        // OpenClaw detects nested sessions and exits immediately.
         // Setting CLAUDE_ENTRYPOINT=worker bypasses the nested-session check,
         // and unsetting CLAUDE_SESSION_ID prevents parent session detection.
         CLAUDE_ENTRYPOINT: 'worker',
@@ -1278,7 +1278,7 @@ Analyze the above codebase context and provide your response following the forma
   }
 
   /**
-   * Parse JSON output from Claude Code
+   * Parse JSON output from OpenClaw
    */
   private parseJsonOutput(output: string): unknown {
     try {

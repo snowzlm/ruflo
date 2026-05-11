@@ -1,5 +1,5 @@
 # LiteLLM Multi-Tenant Gateway Configuration
-# This config enables Claude Code to route to multiple LLM providers
+# This config enables OpenClaw to route to multiple LLM providers
 
 general_settings:
   master_key: ${LITELLM_MASTER_KEY}
@@ -28,7 +28,7 @@ router_settings:
     requests_per_minute: 100
     requests_per_day: 10000
 
-# Model list with aliases for Claude Code
+# Model list with aliases for OpenClaw
 model_list:
   # OpenAI Models
   - model_name: "codex-mini"
@@ -68,8 +68,8 @@ model_list:
       timeout: 120
       stream: true
       extra_headers:
-        HTTP-Referer: "https://github.com/ruvnet/claude-flow"
-        X-Title: "Claude Code Gateway"
+        HTTP-Referer: "https://github.com/snowzlm/ruflo"
+        X-Title: "OpenClaw Gateway"
     model_info:
       mode: code
       cost_per_token: 0.00001

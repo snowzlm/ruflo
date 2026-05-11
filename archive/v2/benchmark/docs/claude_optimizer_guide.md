@@ -1,8 +1,8 @@
-# CLAUDE.md Optimizer Guide
+# OPENCLAW.md Optimizer Guide
 
 ## Overview
 
-The CLAUDE.md Optimizer is an intelligent system that generates optimized CLAUDE.md configurations for specific development use cases. It analyzes project requirements, performance targets, and team context to create tailored configurations that maximize Claude Code's effectiveness.
+The OPENCLAW.md Optimizer is an intelligent system that generates optimized OPENCLAW.md configurations for specific development use cases. It analyzes project requirements, performance targets, and team context to create tailored configurations that maximize OpenClaw's effectiveness.
 
 ## Table of Contents
 
@@ -63,7 +63,7 @@ with open("claude.md", "w") as f:
 ### CLI Usage
 
 ```bash
-# Generate optimized CLAUDE.md for API development
+# Generate optimized OPENCLAW.md for API development
 python -m swarm_benchmark optimize \
   --use-case api_development \
   --team-size 4 \
@@ -676,4 +676,4 @@ logging.basicConfig(level=logging.DEBUG)
 optimizer.export_benchmark_history("debug_metrics.json")
 ```
 
-This guide provides comprehensive information for using the CLAUDE.md optimizer effectively. For additional examples and advanced usage patterns, refer to the examples directory and API reference documentation.
+This guide provides comprehensive information for using the OPENCLAW.md optimizer effectively. For additional examples and advanced usage patterns, refer to the examples directory and API reference documentation.

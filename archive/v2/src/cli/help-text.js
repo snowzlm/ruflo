@@ -14,7 +14,7 @@ export const MAIN_HELP = `
 🎯 ENTERPRISE FEATURES:
   • Complete ruv-swarm integration with 90+ MCP tools
   • Flow Nexus cloud platform with distributed sandboxes
-  • Claude Code SDK integration for maximum performance
+  • OpenClaw SDK integration for maximum performance
   • Production-ready infrastructure with enterprise reliability
 
 USAGE:
@@ -27,7 +27,7 @@ USAGE:
   claude-flow <command> --help    # Get detailed help for any command
 
 🚀 QUICK START:
-  # First time setup (creates CLAUDE.md & .claude/commands)
+  # First time setup (creates OPENCLAW.md & .claude/commands)
   npx claude-flow init
   
   # 🌐 FLOW NEXUS CLOUD (NEW!):
@@ -38,12 +38,12 @@ USAGE:
   # 🐝 HIVE MIND QUICK START:
   claude-flow hive-mind wizard          # Interactive setup wizard
   claude-flow hive-mind spawn "objective"  # Create intelligent swarm
-  claude-flow hive-mind spawn "Build API" --claude  # Open Claude Code CLI
+  claude-flow hive-mind spawn "Build API" --claude  # Open OpenClaw CLI
   
   # After setup, use without npx:
   claude-flow start --swarm              # Start with swarm intelligence
   claude-flow swarm "build REST API"     # Deploy multi-agent workflow
-  claude-flow swarm "create service" --claude  # Open Claude Code CLI with swarm
+  claude-flow swarm "create service" --claude  # Open OpenClaw CLI with swarm
 
 🐝 HIVE MIND COMMANDS (NEW!):
   hive-mind wizard         🎯 Interactive setup wizard (RECOMMENDED)
@@ -53,7 +53,7 @@ USAGE:
   hive-mind metrics        Advanced performance analytics
 
 📋 CORE COMMANDS:
-  init                     Initialize Claude Flow v2.0.0 (creates CLAUDE.md & .claude/commands)
+  init                     Initialize Claude Flow v2.0.0 (creates OPENCLAW.md & .claude/commands)
                           --monitoring enables token usage tracking
   start [--swarm]          Start orchestration system
   swarm <objective>        Multi-agent swarm coordination
@@ -86,7 +86,7 @@ USAGE:
   analysis <command>       Performance & token usage analytics (real tracking!)
   automation <command>     Intelligent agent & workflow management (3 commands)
   hooks <command>          Lifecycle event management (5 commands)
-  migrate-hooks            Migrate settings.json to Claude Code 1.0.51+ format
+  migrate-hooks            Migrate settings.json to OpenClaw 1.0.51+ format
   monitoring <command>     Real-time system monitoring (3 commands)
   optimization <command>   Performance & topology optimization (3 commands)
   
@@ -98,7 +98,7 @@ USAGE:
   stream-chain <workflow>  Stream-JSON chaining for multi-agent pipelines
 
 🔥 NEW MCP TOOLS (v2.5.0-alpha.130):
-  Available via Claude Code after installing:
+  Available via OpenClaw after installing:
     claude mcp add claude-flow npx claude-flow@alpha mcp start
 
   mcp__claude-flow__agents_spawn_parallel    Spawn agents in parallel (10-20x faster)
@@ -125,10 +125,10 @@ USAGE:
   npx claude-flow hive-mind wizard     # Start here! Interactive guided setup
   npx claude-flow init                 # Initialize Claude Flow
   npx claude-flow help hive-mind       # Learn about Hive Mind features
-  npx claude-flow swarm "Build API" --claude  # Quick start with Claude Code CLI
+  npx claude-flow swarm "Build API" --claude  # Quick start with OpenClaw CLI
 
-📚 Documentation: https://github.com/ruvnet/claude-flow
-🐝 Hive Mind Guide: https://github.com/ruvnet/claude-flow/tree/main/docs/hive-mind
+📚 Documentation: https://github.com/snowzlm/ruflo
+🐝 Hive Mind Guide: https://github.com/snowzlm/ruflo/tree/main/docs/hive-mind
 🐝 ruv-swarm: https://github.com/ruvnet/ruv-FANN/tree/main/ruv-swarm
 💬 Discord Community: https://discord.agentics.org
 
@@ -239,8 +239,8 @@ OPTIONS:
   --parallel           Enable parallel execution (2.8-4.4x speed improvement)
   --monitor            Real-time swarm monitoring
   --background         Run in background with progress tracking
-  --claude             Open Claude Code CLI
-  --executor           Use built-in executor instead of Claude Code
+  --claude             Open OpenClaw CLI
+  --executor           Use built-in executor instead of OpenClaw
   --analysis           Enable analysis/read-only mode (no code changes)
   --read-only          Enable read-only mode (alias for --analysis)
 
@@ -249,7 +249,7 @@ EXAMPLES:
   claude-flow swarm "Research cloud architecture patterns" --strategy research
   claude-flow swarm "Optimize database queries" --max-agents 3 --parallel
   claude-flow swarm "Develop feature X" --strategy development --monitor
-  claude-flow swarm "Build API" --claude  # Open Claude Code CLI
+  claude-flow swarm "Build API" --claude  # Open OpenClaw CLI
   claude-flow swarm "Create service" --executor  # Use built-in executor
   claude-flow swarm "Analyze codebase for security issues" --analysis
   claude-flow swarm "Review architecture patterns" --read-only --strategy research
@@ -446,14 +446,14 @@ OPTIONS:
   --template <t>   Use specific project template
 
 WHAT claude-flow init CREATES (DEFAULT):
-  📄 CLAUDE.md          AI-readable project instructions & context
+  📄 OPENCLAW.md          AI-readable project instructions & context
   📁 .claude/           Enterprise configuration directory containing:
     └── commands/       Custom commands and automation scripts
     └── settings.json   Advanced configuration and hooks
     └── hooks/          Pre/post operation automation
   📋 .roomodes          17 specialized SPARC development modes
   
-  CLAUDE.md CONTENTS:
+  OPENCLAW.md CONTENTS:
   • Project overview and objectives
   • Technology stack and architecture
   • Development guidelines and patterns
@@ -463,7 +463,7 @@ WHAT claude-flow init CREATES (DEFAULT):
   .claude/commands INCLUDES:
   • Custom project-specific commands
   • Automated workflow scripts
-  • Integration hooks for Claude Code
+  • Integration hooks for OpenClaw
   • Team collaboration tools
   
   Features enabled:
@@ -1026,7 +1026,7 @@ export function getMainHelp(plain = false) {
       {
         flags: '--config <path>',
         description: 'Configuration file path',
-        defaultValue: '.claude/config.json',
+        defaultValue: '.openclaw/config.json',
       },
       {
         flags: '--verbose',

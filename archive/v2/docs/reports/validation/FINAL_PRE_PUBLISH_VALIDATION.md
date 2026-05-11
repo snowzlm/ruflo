@@ -333,10 +333,10 @@ and are immediately clear in their intent.
 **Output:**
 ```
 NAME
-    claude-flow agent - Manage individual agents
+    ruflo agent - Manage individual agents
 
 SYNOPSIS
-    claude-flow agent <action> [options]
+    ruflo agent <action> [options]
 
 COMMANDS
     spawn                      Create a new agent
@@ -353,8 +353,8 @@ OPTIONS
     --json                     Output in JSON format
 
 EXAMPLES
-    claude-flow agent spawn researcher --name "Research Bot"
-    claude-flow agent list --json
+    ruflo agent spawn researcher --name "Research Bot"
+    ruflo agent list --json
 ```
 
 **Validation:**
@@ -378,10 +378,10 @@ EXAMPLES
 **Output:**
 ```
 NAME
-    claude-flow memory - Manage persistent memory operations
+    ruflo memory - Manage persistent memory operations
 
 SYNOPSIS
-    claude-flow memory <action> [key] [value] [options]
+    ruflo memory <action> [key] [value] [options]
 
 COMMANDS
     store                      Store data in memory
@@ -397,9 +397,9 @@ OPTIONS
     --format <type>            Export format
 
 EXAMPLES
-    claude-flow memory store "api_design" "REST endpoints specification"
-    claude-flow memory query "authentication"
-    claude-flow memory export backup.json
+    ruflo memory store "api_design" "REST endpoints specification"
+    ruflo memory query "authentication"
+    ruflo memory export backup.json
 ```
 
 **Validation:**
@@ -815,7 +815,7 @@ The system demonstrates:
 ---
 
 **Validation Completed:** 2025-10-11
-**Validator:** Claude Code Pre-Publish Validation System
+**Validator:** OpenClaw Pre-Publish Validation System
 **Method:** Real-world CLI testing with `./bin/claude-flow`
 **Tests Executed:** 14
 **Pass Rate:** 100%

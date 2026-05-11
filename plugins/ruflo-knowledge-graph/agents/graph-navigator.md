@@ -46,14 +46,14 @@ The pathfinder traversal algorithm finds relevant subgraphs:
 
 ### Tools
 
-- `mcp__claude-flow__agentdb_causal-edge` -- create/query causal edges between entities
-- `mcp__claude-flow__agentdb_hierarchical-store` -- store entity metadata in hierarchical structure
-- `mcp__claude-flow__agentdb_hierarchical-recall` -- recall entities by path or query
-- `mcp__claude-flow__agentdb_semantic-route` -- semantic similarity routing for graph search
-- `mcp__claude-flow__agentdb_pattern-store` -- store discovered graph patterns
-- `mcp__claude-flow__agentdb_pattern-search` -- search for similar graph structures
-- `mcp__claude-flow__agentdb_context-synthesize` -- synthesize context from multiple graph nodes
-- `mcp__claude-flow__embeddings_generate` -- generate embeddings for entity descriptions
+- `mcp__ruflo__agentdb_causal-edge` -- create/query causal edges between entities
+- `mcp__ruflo__agentdb_hierarchical-store` -- store entity metadata in hierarchical structure
+- `mcp__ruflo__agentdb_hierarchical-recall` -- recall entities by path or query
+- `mcp__ruflo__agentdb_semantic-route` -- semantic similarity routing for graph search
+- `mcp__ruflo__agentdb_pattern-store` -- store discovered graph patterns
+- `mcp__ruflo__agentdb_pattern-search` -- search for similar graph structures
+- `mcp__ruflo__agentdb_context-synthesize` -- synthesize context from multiple graph nodes
+- `mcp__ruflo__embeddings_generate` -- generate embeddings for entity descriptions
 
 ### Neural Learning
 

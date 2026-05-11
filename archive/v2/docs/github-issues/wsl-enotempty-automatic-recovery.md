@@ -25,7 +25,7 @@
 
 ### Original Error
 
-Users on Windows Subsystem for Linux (WSL) encountered this error when running `npx claude-flow@alpha init --force`:
+Users on Windows Subsystem for Linux (WSL) encountered this error when running `ruflo init --force`:
 
 ```
 [Error: ENOTEMPTY: directory not empty, rmdir '/home/username/.npm/_npx/7cfa166e65244432/node_modules/better-sqlite3']
@@ -121,7 +121,7 @@ Implemented comprehensive automatic error recovery that handles this issue **wit
 Simply run the init command - recovery is automatic:
 
 ```bash
-npx claude-flow@alpha init --force
+ruflo init --force
 ```
 
 **What happens automatically:**
@@ -195,7 +195,7 @@ docker run -it ubuntu:22.04 bash -c "
   apt-get install -y curl build-essential python3 git &&
   curl -fsSL https://deb.nodesource.com/setup_20.x | bash - &&
   apt-get install -y nodejs &&
-  npx claude-flow@alpha init --force
+  ruflo init --force
 "
 
 # Results:
@@ -220,18 +220,18 @@ docker run -it ubuntu:22.04 bash -c "
 
 **Before (Manual Fix):**
 ```bash
-$ npx claude-flow@alpha init --force
+$ ruflo init --force
 # Error occurs...
 
 # Manual steps required:
 $ npm cache clean --force
 $ rm -rf ~/.npm/_npx
-$ npx claude-flow@alpha init --force
+$ ruflo init --force
 ```
 
 **After (v2.7.35+):**
 ```bash
-$ npx claude-flow@alpha init --force
+$ ruflo init --force
 # Automatic recovery handles everything!
 ```
 
@@ -349,7 +349,7 @@ Related:
 
 ### Before (Error State)
 ```
-$ npx claude-flow@alpha init --force
+$ ruflo init --force
 [Error: ENOTEMPTY: directory not empty, rmdir '/home/user/.npm/_npx/xxx/node_modules/better-sqlite3']
 errno: -39
 ❌ Installation failed
@@ -357,7 +357,7 @@ errno: -39
 
 ### After (Automatic Recovery)
 ```
-$ npx claude-flow@alpha init --force
+$ ruflo init --force
 
 🔍 WSL environment detected
 ✅ WSL environment optimized

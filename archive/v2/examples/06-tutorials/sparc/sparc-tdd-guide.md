@@ -1,6 +1,6 @@
 # SPARC Test-Driven Development Guide
 
-Learn how to use SPARC methodology for systematic TDD with Claude Flow.
+Learn how to use SPARC methodology for systematic TDD with Ruflo.
 
 ## What is SPARC?
 
@@ -13,7 +13,7 @@ SPARC stands for:
 
 ## Prerequisites
 
-- Claude Flow with SPARC modes configured
+- Ruflo with SPARC modes configured
 - Understanding of TDD principles
 - Basic programming knowledge
 

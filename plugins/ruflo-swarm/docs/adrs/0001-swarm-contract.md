@@ -5,7 +5,7 @@ status: Accepted
 date: 2026-05-04
 updated: 2026-05-09
 authors:
-  - reviewer (Claude Code)
+  - reviewer (OpenClaw)
 tags: [plugin, swarm, agents, monitor, namespace, smoke-test]
 ---
 
@@ -20,18 +20,18 @@ Wraps **12 MCP tools** across two families:
 | `swarm_*` | 4 (`init`, `status`, `shutdown`, `health`) | `v3/@claude-flow/cli/src/mcp-tools/swarm-tools.ts:71, 145, 208, 270` |
 | `agent_*` | 8 (`spawn`, `execute`, `terminate`, `status`, `list`, `pool`, `health`, `update`) | `v3/@claude-flow/cli/src/mcp-tools/agent-tools.ts:182, 287, 319, 356, 395, 451, 573, 651` |
 
-Plus the Monitor + Task tools from Claude Code (built-in: `Task`, `TaskList`, `TaskGet`, `TaskUpdate`, `Monitor`, etc.) which pair with this plugin for live streaming.
+Plus the Monitor + Task tools from OpenClaw (built-in: `Task`, `TaskList`, `TaskGet`, `TaskUpdate`, `Monitor`, etc.) which pair with this plugin for live streaming.
 
 ## Decision
 
 1. Add this ADR (Proposed).
-2. README augment: Compatibility (pin v3.6); 12-tool MCP surface table; Monitor/Task built-in cross-reference; Anti-drift guidance (hierarchical topology, max 8 agents per CLAUDE.md); Namespace coordination (claims `swarm-state`); Verification + Architecture Decisions sections.
+2. README augment: Compatibility (pin v3.6); 12-tool MCP surface table; Monitor/Task built-in cross-reference; Anti-drift guidance (hierarchical topology, max 8 agents per OPENCLAW.md); Namespace coordination (claims `swarm-state`); Verification + Architecture Decisions sections.
 3. Bump `0.1.0 → 0.2.0`. Keywords add `mcp`, `topologies`, `worktree-isolation`, `monitor-stream`.
 4. `scripts/smoke.sh` — 11 structural checks: version + keywords; both skills + 2 agents + 2 commands; all 4 `swarm_*` tools referenced; all 8 `agent_*` tools referenced; v3.6 pin; namespace coordination; anti-drift defaults documented (hierarchical/specialized/raft); Monitor/Task built-in cross-reference; ADR Proposed; no wildcard tools.
 
 ## Consequences
 
-**Positive:** plugin joins the cadence. The 12-tool surface is now contractually documented. Anti-drift defaults from CLAUDE.md are smoke-checked.
+**Positive:** plugin joins the cadence. The 12-tool surface is now contractually documented. Anti-drift defaults from OPENCLAW.md are smoke-checked.
 
 **Negative:** none material.
 

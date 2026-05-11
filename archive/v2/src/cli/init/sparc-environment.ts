@@ -7,10 +7,10 @@ export async function createSparcEnvironment(): Promise<void> {
   await fs.writeFile('.roomodes', JSON.stringify(roomodes, null, 2));
   console.log('  ✅ Created .roomodes file with 17 pre-configured modes');
 
-  // Create comprehensive CLAUDE.md with batch tools integration
+  // Create comprehensive OPENCLAW.md with batch tools integration
   const claudeMd = createClaudeMd();
-  await fs.writeFile('CLAUDE.md', claudeMd);
-  console.log('  ✅ Created CLAUDE.md with batch tools and swarm orchestration');
+  await fs.writeFile('OPENCLAW.md', claudeMd);
+  console.log('  ✅ Created OPENCLAW.md with batch tools and swarm orchestration');
 
   console.log('  ✅ SPARC environment configured with batch tools integration');
 }
@@ -123,10 +123,10 @@ function createRoomodes() {
 }
 
 function createClaudeMd(): string {
-  return `# Claude Code Configuration for Your Project
+  return `# OpenClaw Configuration for Your Project
 
 ## 🎯 Purpose of This Configuration
-This CLAUDE.md file configures Claude Code to help you BUILD YOUR OWN APPLICATIONS using the claude-flow orchestration system. Claude-flow is a tool to help you develop software - it is NOT the project you should be modifying.
+This OPENCLAW.md file configures OpenClaw to help you BUILD YOUR OWN APPLICATIONS using the claude-flow orchestration system. Claude-flow is a tool to help you develop software - it is NOT the project you should be modifying.
 
 **IMPORTANT**: 
 - Use claude-flow commands to BUILD YOUR APPLICATION
@@ -323,10 +323,10 @@ Prepare YOUR application for production:
 ./claude-flow sparc run optimizer "Optimize for production deployment"
 \`\`\`
 
-## 🛠️ How Claude Code Helps Build YOUR Application
+## 🛠️ How OpenClaw Helps Build YOUR Application
 
 ### 🤖 AI-Powered Development Assistance
-When you use claude-flow commands, Claude Code will help you:
+When you use claude-flow commands, OpenClaw will help you:
 - **Write code** for YOUR application (not for claude-flow itself)
 - **Design architecture** for YOUR project requirements
 - **Create tests** for YOUR features
@@ -335,10 +335,10 @@ When you use claude-flow commands, Claude Code will help you:
 - **Document** YOUR project
 
 ### 📋 Task Management for YOUR Project
-Claude Code uses TodoWrite and TodoRead to manage YOUR development tasks:
+OpenClaw uses TodoWrite and TodoRead to manage YOUR development tasks:
 
 \`\`\`javascript
-// Example: Claude Code will create tasks for YOUR application development
+// Example: OpenClaw will create tasks for YOUR application development
 TodoWrite([
   {
     id: "create_user_model",
@@ -409,7 +409,7 @@ Use swarm mode when building complex features that benefit from multiple special
 
 ## 💻 Code Style for YOUR Project
 
-When Claude Code writes code for YOUR application, it will follow these best practices:
+When OpenClaw writes code for YOUR application, it will follow these best practices:
 - Modern ES6+ JavaScript/TypeScript
 - Clean, readable code with proper naming
 - Comprehensive error handling

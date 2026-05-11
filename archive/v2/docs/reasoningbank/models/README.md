@@ -12,7 +12,7 @@ cd safla  # or google-research, code-reasoning, problem-solving, domain-expert
 cp memory.db ~/.swarm/memory.db
 
 # Try it!
-npx claude-flow@alpha memory query "your question here" --reasoningbank
+ruflo memory query "your question here" --reasoningbank
 ```
 
 **That's it!** You now have expert-level patterns ready to use.
@@ -200,17 +200,17 @@ cp code-reasoning/.swarm/memory.db ./my-project/.swarm/
 export CLAUDE_FLOW_DB_PATH=./my-project/.swarm/memory.db
 
 # Or use --db-path flag
-npx claude-flow@alpha memory query "test" --db-path ./my-project/.swarm/memory.db
+ruflo memory query "test" --db-path ./my-project/.swarm/memory.db
 ```
 
 ### Query Examples
 
 ```bash
 # Find patterns by domain
-npx claude-flow@alpha memory query "API authentication" --namespace security
+ruflo memory query "API authentication" --namespace security
 
 # High confidence only
-npx claude-flow@alpha memory query "database optimization" --min-confidence 0.8
+ruflo memory query "database optimization" --min-confidence 0.8
 
 # Specific domain
 sqlite3 ~/.swarm/memory.db "SELECT * FROM patterns WHERE domain = 'api-development' LIMIT 5"
@@ -273,13 +273,13 @@ const agent = new AgenticFlow('coder', {
 await agent.execute({ task: 'Implement JWT auth' });
 ```
 
-### With Claude Code
+### With OpenClaw
 
 ```bash
 # Load patterns as context
-npx claude-flow@alpha memory query "authentication patterns" > context.json
+ruflo memory query "authentication patterns" > context.json
 
-# Use in Claude Code
+# Use in OpenClaw
 claude code --context context.json "Implement auth"
 ```
 
@@ -335,7 +335,7 @@ Want to contribute a model? See [HOW-TO-TRAIN.md](./HOW-TO-TRAIN.md) and submit 
 ## 💡 Support
 
 - **Documentation**: See HOW-TO-USE.md and HOW-TO-TRAIN.md
-- **Issues**: [GitHub Issues](https://github.com/ruvnet/claude-flow/issues)
+- **Issues**: [GitHub Issues](https://github.com/snowzlm/ruflo/issues)
 - **Examples**: Check each model's README.md
 
 ---

@@ -301,7 +301,7 @@ description: "Brief description of what this skill does and when Claude should u
 
 4. **Create skill directory structure**:
 ```
-.claude/skills/
+`.openclaw/skills/
   ├── skill-builder/
   │   └── SKILL.md
   ├── pair-programming/
@@ -317,8 +317,8 @@ description: "Brief description of what this skill does and when Claude should u
 ## 🚫 Preventing Duplicates
 
 ### Current State
-- **Commands**: 150 files in `.claude/commands/`
-- **Skills**: 1 file in `.claude/skills/` (skill-builder)
+- **Commands**: 150 files in `.openclaw/commands/`
+- **Skills**: 1 file in `.openclaw/skills/` (skill-builder)
 
 ### After Migration
 - **Commands**: ~115 files (simple CLI operations)
@@ -329,7 +329,7 @@ description: "Brief description of what this skill does and when Claude should u
 1. **Complex workflows** → **Skills** (with YAML frontmatter, progressive disclosure)
 2. **Simple CLI triggers** → **Commands** (without YAML, concise reference)
 3. **Clear separation of concerns**:
-   - Commands: Execute operations (`npx claude-flow swarm "task"`)
+   - Commands: Execute operations (`npx ruflo swarm "task"`)
    - Skills: Teach workflows (Claude learns patterns and best practices)
 4. **Different discovery mechanisms**:
    - Commands: CLI help, documentation
@@ -355,7 +355,7 @@ description: "Brief description of what this skill does and when Claude should u
    - [ ] Create `pair-programming` skill
    - [ ] Create `verification-quality` skill
    - [ ] Create `github-code-review` skill
-4. Test each skill with Claude Code
+4. Test each skill with OpenClaw
 5. Remove consolidated command files
 6. Update documentation and references
 7. Update `skills-copier.js` to handle new skills
@@ -379,4 +379,4 @@ description: "Brief description of what this skill does and when Claude should u
 - **DO NOT** duplicate content between commands and skills
 - **DO** ensure skills have complete, standalone workflows
 - **DO** keep commands as lightweight CLI triggers
-- **DO** test each skill in Claude Code before removing commands
+- **DO** test each skill in OpenClaw before removing commands

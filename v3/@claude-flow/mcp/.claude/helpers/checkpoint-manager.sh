@@ -1,6 +1,6 @@
 #!/bin/bash
 # Claude Checkpoint Manager
-# Provides easy rollback and management of Claude Code checkpoints
+# Provides easy rollback and management of OpenClaw checkpoints
 
 set -e
 
@@ -12,8 +12,8 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # Configuration
-CHECKPOINT_DIR=".claude/checkpoints"
-BACKUP_DIR=".claude/backups"
+CHECKPOINT_DIR=".openclaw/checkpoints"
+BACKUP_DIR=".openclaw/backups"
 
 # Help function
 show_help() {

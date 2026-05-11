@@ -163,6 +163,10 @@ export {
   createSamplingManager,
   createMockProvider,
   createAnthropicProvider,
+  createOpenAIProvider,
+  createGeminiProvider,
+  createOpenClawProvider,
+  createProvidersFromEnv,
 } from './sampling.js';
 export type { LLMProvider, SamplingConfig, SamplingContext } from './sampling.js';
 

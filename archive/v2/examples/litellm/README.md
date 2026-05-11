@@ -1,6 +1,6 @@
-# LiteLLM Multi-Tenant Gateway for Claude Code
+# LiteLLM Multi-Tenant Gateway for OpenClaw
 
-A production-ready, multi-tenant LiteLLM proxy that enables Claude Code to seamlessly route requests across multiple LLM providers (OpenAI, Azure, OpenRouter, Bedrock, Ollama, etc.) with enterprise features.
+A production-ready, multi-tenant LiteLLM proxy that enables OpenClaw to seamlessly route requests across multiple LLM providers (OpenAI, Azure, OpenRouter, Bedrock, Ollama, etc.) with enterprise features.
 
 ## 🚀 Quick Start
 
@@ -15,7 +15,7 @@ A production-ready, multi-tenant LiteLLM proxy that enables Claude Code to seaml
 
 ```bash
 # Clone the repository
-git clone https://github.com/ruvnet/claude-flow.git
+git clone https://github.com/snowzlm/ruflo.git
 cd claude-flow/examples/litellm
 
 # Copy environment template
@@ -28,14 +28,14 @@ nano .env
 ./scripts/deploy.sh start
 ```
 
-### 3. Configure Claude Code
+### 3. Configure OpenClaw
 
 ```bash
 # Set environment variables
 export ANTHROPIC_BASE_URL=http://localhost:4000
 export ANTHROPIC_AUTH_TOKEN=<your-litellm-master-key>
 
-# Use Claude Code with different models
+# Use OpenClaw with different models
 claude --model codex-mini "Write a Python function"
 claude --model o3-pro "Explain quantum computing"
 claude --model deepseek-coder "Refactor this code"
@@ -45,7 +45,7 @@ claude --model deepseek-coder "Refactor this code"
 
 ```
 ┌─────────────┐     ┌──────────────┐     ┌─────────────┐
-│ Claude Code │────▶│ Load Balancer│────▶│  LiteLLM    │
+│ OpenClaw │────▶│ Load Balancer│────▶│  LiteLLM    │
 └─────────────┘     └──────────────┘     │  Proxies    │
                                          └─────┬───────┘
                                                │
@@ -332,16 +332,16 @@ MIT License - see [LICENSE](../../LICENSE) for details.
 ## 🔗 Resources
 
 - [LiteLLM Documentation](https://docs.litellm.ai)
-- [Claude Code Guide](https://docs.anthropic.com/en/docs/claude-code)
+- [OpenClaw Guide](https://docs.anthropic.com/en/docs/openclaw)
 - [OpenRouter Models](https://openrouter.ai/models)
 - [Docker Compose Reference](https://docs.docker.com/compose/)
 
 ## 💬 Support
 
-- GitHub Issues: [Report bugs](https://github.com/ruvnet/claude-flow/issues)
-- Discussions: [Ask questions](https://github.com/ruvnet/claude-flow/discussions)
-- Wiki: [Documentation](https://github.com/ruvnet/claude-flow/wiki)
+- GitHub Issues: [Report bugs](https://github.com/snowzlm/ruflo/issues)
+- Discussions: [Ask questions](https://github.com/snowzlm/ruflo/discussions)
+- Wiki: [Documentation](https://github.com/snowzlm/ruflo/wiki)
 
 ---
 
-Built with ❤️ by the Claude Flow team
+Built with ❤️ by the Ruflo team

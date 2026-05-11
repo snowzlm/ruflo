@@ -1,7 +1,7 @@
 /**
  * Hook Safety System - Prevents recursive hook execution and financial damage
  *
- * This system protects against infinite loops where Claude Code hooks call
+ * This system protects against infinite loops where OpenClaw hooks call
  * 'claude' commands, which could bypass rate limits and cost thousands of dollars.
  *
  * Critical protections:
@@ -192,7 +192,7 @@ export class HookCommandValidator {
     // Match various forms of claude command invocation
     const claudePatterns = [
       /\bclaude\b/, // Direct claude command
-      /claude-code\b/, // claude-code command
+      /openclaw\b/, // openclaw command
       /npx\s+claude\b/, // NPX claude
       /\.\/claude\b/, // Local claude wrapper
       /claude\.exe\b/, // Windows executable
@@ -277,11 +277,11 @@ export class HookCircuitBreaker {
  */
 export class HookConfigValidator {
   /**
-   * Validate Claude Code settings.json for dangerous hook configurations
+   * Validate OpenClaw settings.json for dangerous hook configurations
    */
   static validateClaudeCodeConfig(configPath = null) {
     if (!configPath) {
-      // Try to find Claude Code settings
+      // Try to find OpenClaw settings
       const possiblePaths = [
         path.join(process.env.HOME || '.', '.claude', 'settings.json'),
         path.join(process.cwd(), '.claude', 'settings.json'),
@@ -291,7 +291,7 @@ export class HookConfigValidator {
       configPath = possiblePaths.find((p) => existsSync(p));
 
       if (!configPath) {
-        return { safe: true, message: 'No Claude Code configuration found.' };
+        return { safe: true, message: 'No OpenClaw configuration found.' };
       }
     }
 
@@ -375,7 +375,7 @@ export class HookConfigValidator {
 // Use this SAFE pattern:
 {
   "Stop": [{
-    "hooks": [{"type": "command", "command": "touch ~/.claude/needs_update"}]
+    "hooks": [{"type": "command", "command": "touch ~/.openclaw/needs_update"}]
   }]
 }
 
@@ -392,7 +392,7 @@ export class HookConfigValidator {
 {
   "PostToolUse": [{
     "matcher": "Write|Edit|MultiEdit",
-    "hooks": [{"type": "command", "command": "echo 'File modified' >> ~/.claude/changes.log"}]
+    "hooks": [{"type": "command", "command": "echo 'File modified' >> ~/.openclaw/changes.log"}]
   }]
 }
         `,
@@ -596,17 +596,17 @@ COMMANDS:
   safe-mode     Enable/disable safe mode (skips all hooks)
 
 VALIDATE OPTIONS:
-  --config, -c <path>     Path to Claude Code settings.json
+  --config, -c <path>     Path to OpenClaw settings.json
 
 SAFE-MODE OPTIONS:
   --disable, --off        Disable safe mode
 
 EXAMPLES:
-  # Check your Claude Code hooks for dangerous patterns
+  # Check your OpenClaw hooks for dangerous patterns
   claude-flow hook-safety validate
 
   # Check specific configuration file
-  claude-flow hook-safety validate --config ~/.claude/settings.json
+  claude-flow hook-safety validate --config ~/.openclaw/settings.json
 
   # View current safety status
   claude-flow hook-safety status
@@ -632,7 +632,7 @@ SAFE ALTERNATIVES:
 • Use 'claude --skip-hooks' for manual updates
 • Create conditional execution scripts
 
-For more information: https://github.com/ruvnet/claude-flow/issues/166
+For more information: https://github.com/snowzlm/ruflo/issues/166
 `);
 }
 

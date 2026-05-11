@@ -59,7 +59,7 @@ export class ConfigValidator {
   }
 
   /**
-   * Validate CLAUDE.md configuration
+   * Validate OPENCLAW.md configuration
    */
   async validateClaudeMd() {
     const result = {
@@ -69,7 +69,7 @@ export class ConfigValidator {
       content: null,
     };
 
-    const claudeMdPath = `${this.workingDir}/CLAUDE.md`;
+    const claudeMdPath = `${this.workingDir}/OPENCLAW.md`;
 
     try {
       const content = await fs.readFile(claudeMdPath, 'utf8');
@@ -77,7 +77,7 @@ export class ConfigValidator {
 
       // Check for required sections
       const requiredSections = [
-        '# Claude Code Configuration',
+        '# OpenClaw Configuration',
         '## Project Overview',
         '## SPARC Development Commands',
       ];
@@ -100,11 +100,11 @@ export class ConfigValidator {
       // Check file size
       if (content.length < 100) {
         result.success = false;
-        result.errors.push('CLAUDE.md appears to be too short or empty');
+        result.errors.push('OPENCLAW.md appears to be too short or empty');
       }
     } catch (error) {
       result.success = false;
-      result.errors.push(`Could not read CLAUDE.md: ${error.message}`);
+      result.errors.push(`Could not read OPENCLAW.md: ${error.message}`);
     }
 
     return result;

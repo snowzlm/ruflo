@@ -231,16 +231,16 @@ The `bin/rg` file uses [dotslash](https://dotslash-cli.com/) format:
 }
 ```
 
-## Integration with Claude Flow
+## Integration with Ruflo
 
 ### Parallels
 
-| Claude Flow | Codex | Notes |
+| Ruflo | Codex | Notes |
 |-------------|-------|-------|
-| `CLAUDE.md` | `AGENTS.md` | Project instructions |
-| `CLAUDE.local.md` | `AGENTS.override.md` | Local overrides |
-| `.claude/skills/*.md` | `.agents/skills/*/SKILL.md` | Skills |
-| `.claude/settings.json` | `~/.codex/config.toml` | Configuration |
+| `OPENCLAW.md` | `AGENTS.md` | Project instructions |
+| `OPENCLAW.local.md` | `AGENTS.override.md` | Local overrides |
+| `.openclaw/skills/*.md` | `.agents/skills/*/SKILL.md` | Skills |
+| `.openclaw/settings.json` | `~/.codex/config.toml` | Configuration |
 | `.mcp.json` | `config.toml [mcp_servers]` | MCP config |
 | Hooks system | Automations | Background tasks |
 | `claude -p` | `codex exec` | Non-interactive |
@@ -250,11 +250,11 @@ The `bin/rg` file uses [dotslash](https://dotslash-cli.com/) format:
 
 1. **MCP Server Mode**
    - Codex can run as MCP server (`codex mcp-server`)
-   - Claude Flow can connect to Codex as MCP client
+   - Ruflo can connect to Codex as MCP client
    - Enables cross-platform agent orchestration
 
 2. **Skills Conversion**
-   - Convert `.claude/skills/*.md` to `.agents/skills/*/SKILL.md`
+   - Convert `.openclaw/skills/*.md` to `.agents/skills/*/SKILL.md`
    - Maintain bidirectional sync
 
 3. **Configuration Translation**
@@ -263,7 +263,7 @@ The `bin/rg` file uses [dotslash](https://dotslash-cli.com/) format:
 
 4. **Session Interop**
    - Codex sessions use `codex resume`/`codex fork`
-   - Claude Flow uses session persistence
+   - Ruflo uses session persistence
    - Consider session format translation
 
 ## Security Considerations
@@ -303,7 +303,7 @@ This flag bypasses ALL safety checks. Only use in:
 1. **Generate AGENTS.md** from project analysis
 2. **Create `.agents/skills/`** directory with converted skills
 3. **Generate `config.toml`** with:
-   - MCP server configuration for claude-flow
+   - MCP server configuration for ruflo
    - Skill enablement
    - Default approval policy (`on-request`)
    - Default sandbox mode (`workspace-write`)
@@ -320,7 +320,7 @@ This flag bypasses ALL safety checks. Only use in:
 ### For MCP Integration
 
 ```toml
-# Claude Flow as MCP server for Codex
+# Ruflo as MCP server for Codex
 [mcp_servers.claude-flow]
 command = "npx"
 args = ["-y", "@claude-flow/cli@latest"]
@@ -334,7 +334,7 @@ The following features were discovered through binary string analysis and are no
 
 ### Undocumented Environment Variables
 
-| Variable | Purpose | Claude Flow Use Case |
+| Variable | Purpose | Ruflo Use Case |
 |----------|---------|---------------------|
 | `CODEX_HOME` | Override config directory (default: `~/.codex`) | Custom config locations |
 | `CODEX_API_KEY` | Alternative to `OPENAI_API_KEY` | API key management |
@@ -480,7 +480,7 @@ Available models include:
 - `gpt-5.2-codex`
 - `gpt-5-codex`
 
-## Claude Flow Integration Opportunities
+## Ruflo Integration Opportunities
 
 ### Using Undocumented Features
 
@@ -512,7 +512,7 @@ Available models include:
    Via JSON-RPC: `thread/fork` with collaboration mode for multi-agent workflows.
 
 6. **Dynamic Tools**
-   Register claude-flow tools at runtime via the MCP protocol.
+   Register ruflo tools at runtime via the MCP protocol.
 
 ### Programmatic Control via JSON-RPC
 
@@ -561,7 +561,7 @@ The undocumented features provide significant opportunities for deep integration
 - **Ghost snapshots** for state management
 - **Dynamic tools** for runtime extensibility
 
-The package architecture is similar to Claude Code's approach, making it straightforward to create a compatible Codex integration in claude-flow.
+The package architecture is similar to OpenClaw's approach, making it straightforward to create a compatible Codex integration in ruflo.
 
 ## @claude-flow/codex Package
 
@@ -588,7 +588,7 @@ v3/@claude-flow/codex/
     ├── validators/
     │   └── index.ts          # Validation functions
     └── migrations/
-        └── index.ts          # Claude Code → Codex migration
+        └── index.ts          # OpenClaw → Codex migration
 ```
 
 ### Key Features
@@ -598,9 +598,9 @@ v3/@claude-flow/codex/
 | AGENTS.md Generator | Full/default/minimal/enterprise templates |
 | SKILL.md Generator | 6 built-in skills + custom skill support |
 | config.toml Generator | Profile support, MCP servers, features |
-| Migration Tools | Claude Code to Codex migration with analysis |
+| Migration Tools | OpenClaw to Codex migration with analysis |
 | Validators | Validate AGENTS.md, SKILL.md, config.toml |
-| Dual Mode | Generate both Claude Code and Codex configs |
+| Dual Mode | Generate both OpenClaw and Codex configs |
 
 ### CLI Commands
 
@@ -614,8 +614,8 @@ npx @claude-flow/codex generate-skill --name my-skill
 # Validate configuration
 npx @claude-flow/codex validate
 
-# Migrate from Claude Code
-npx @claude-flow/codex migrate --from CLAUDE.md
+# Migrate from OpenClaw
+npx @claude-flow/codex migrate --from OPENCLAW.md
 
 # List available templates
 npx @claude-flow/codex templates
@@ -626,7 +626,7 @@ npx @claude-flow/codex skills
 
 ### Future: coflow Umbrella
 
-This package is the first step in transitioning from `claude-flow` to `coflow`:
+This package is the first step in transitioning from `ruflo` to `coflow`:
 
 ```bash
 # Current

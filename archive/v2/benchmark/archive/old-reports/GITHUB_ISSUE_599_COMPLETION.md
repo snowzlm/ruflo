@@ -90,5 +90,5 @@ The reorganized structure is now ready for:
 
 **Completed by:** Agent 1 - Structure Analyst  
 **Date:** 2025-08-06  
-**Working Directory:** `/workspaces/claude-code-flow/benchmark/`  
+**Working Directory:** `/workspaces/openclaw-flow/benchmark/`  
 **Report:** Full details in `REORGANIZATION_REPORT.md`

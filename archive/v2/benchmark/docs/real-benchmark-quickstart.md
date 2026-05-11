@@ -2,15 +2,15 @@
 
 ## Overview
 
-The Real Benchmark Engine executes actual `claude-flow` commands and captures comprehensive performance metrics, resource usage, and quality assessments. This guide helps you get started quickly.
+The Real Benchmark Engine executes actual `ruflo` commands and captures comprehensive performance metrics, resource usage, and quality assessments. This guide helps you get started quickly.
 
 ## Installation
 
-1. Ensure `claude-flow` is installed and accessible:
+1. Ensure `ruflo` is installed and accessible:
 ```bash
-which claude-flow
+which ruflo
 # or
-claude-flow --version
+ruflo --version
 ```
 
 2. Install benchmark dependencies:
@@ -251,10 +251,10 @@ asyncio.run(profile_task())
 
 ## Troubleshooting
 
-### Issue: claude-flow not found
+### Issue: ruflo not found
 ```bash
 # Check installation
-which claude-flow
+which ruflo
 
 # Add to PATH if needed
 export PATH="$PATH:/path/to/claude-flow"

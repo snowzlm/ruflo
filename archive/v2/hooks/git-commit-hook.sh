@@ -67,7 +67,7 @@ else
   FORMATTING_NOTE="[Auto-formatted with conventional commit type]"
 fi
 
-# 4. ADD Co-Authored-By for Claude Code
+# 4. ADD Co-Authored-By for OpenClaw
 if ! echo "$COMMAND" | grep -q "Co-Authored-By: Claude"; then
   # Check if message already has heredoc format
   if echo "$COMMAND" | grep -q '<<'; then
@@ -77,7 +77,7 @@ if ! echo "$COMMAND" | grep -q "Co-Authored-By: Claude"; then
     # Convert to heredoc format for multi-line commit
     HEREDOC_MSG="${MODIFIED_MSG}
 
-🤖 Generated with Claude Code
+🤖 Generated with OpenClaw
 Co-Authored-By: Claude <noreply@anthropic.com>"
 
     # Replace the commit message with heredoc format

@@ -11,7 +11,7 @@ echo "============================================="
 echo ""
 
 # Configuration
-BENCHMARK_DIR="/workspaces/claude-code-flow/benchmark"
+BENCHMARK_DIR="/workspaces/openclaw-flow/benchmark"
 OUTPUT_DIR="$BENCHMARK_DIR/examples/output/cli_results"
 mkdir -p "$OUTPUT_DIR"
 

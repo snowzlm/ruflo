@@ -187,7 +187,7 @@
           },
           {
             "type": "command",
-            "command": "npx claude-flow@alpha memory backup --namespace \"all\" --destination \".claude/memory-backup-$CLAUDE_SESSION_ID.json\""
+            "command": "npx claude-flow@alpha memory backup --namespace \"all\" --destination \".openclaw/memory-backup-$CLAUDE_SESSION_ID.json\""
           },
           {
             "type": "command",

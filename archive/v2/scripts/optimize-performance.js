@@ -381,11 +381,11 @@ ${report.nextSteps.map(s => `1. ${s}`).join('\n')}
 ## 🔧 Configuration Files
 
 All optimization configurations have been saved to:
-- \`.claude/cache/optimized-hooks.json\`
-- \`.claude/cache/memory-optimization.json\`
-- \`.claude/cache/neural-optimization.json\`
-- \`.claude/cache/agent-pool.json\`
-- \`.claude/cache/parallel-processing.json\`
+- \`.openclaw/cache/optimized-hooks.json\`
+- \`.openclaw/cache/memory-optimization.json\`
+- \`.openclaw/cache/neural-optimization.json\`
+- \`.openclaw/cache/agent-pool.json\`
+- \`.openclaw/cache/parallel-processing.json\`
 
 To apply these optimizations, run:
 \`\`\`bash

@@ -12,7 +12,7 @@
 Semantic search queries would always return 0 results despite data being stored correctly:
 
 ```bash
-$ npx claude-flow@alpha memory query "configuration" --namespace semantic --reasoningbank
+$ ruflo memory query "configuration" --namespace semantic --reasoningbank
 [INFO] No memory candidates found
 ⚠️ No results found
 ```
@@ -147,14 +147,14 @@ $ ./claude-flow memory status --reasoningbank
 
 ### Before (alpha.9)
 ```bash
-$ npx claude-flow@alpha memory query "config" --namespace semantic --reasoningbank
+$ ruflo memory query "config" --namespace semantic --reasoningbank
 [INFO] No memory candidates found
 ⚠️ No results found
 ```
 
 ### After (alpha.10)
 ```bash
-$ npx claude-flow@alpha memory query "config" --namespace semantic --reasoningbank
+$ ruflo memory query "config" --namespace semantic --reasoningbank
 [INFO] Found 3 candidates
 [INFO] Retrieval complete: 3 memories in 2ms
 ✅ Found 3 results (semantic search):
@@ -188,20 +188,20 @@ $ sqlite3 .swarm/memory.db "SELECT COUNT(*) FROM patterns WHERE json_extract(pat
 ### Update to Latest Alpha
 ```bash
 # NPM
-npm install -g claude-flow@alpha
+npm install -g github:snowzlm/ruflo
 
 # Or use npx (always latest)
-npx claude-flow@alpha --version
+ruflo --version
 # Output: v2.7.0-alpha.10
 ```
 
 ### Verify Semantic Search Works
 ```bash
 # Store a test memory
-npx claude-flow@alpha memory store test "semantic search validation" --namespace semantic --reasoningbank
+ruflo memory store test "semantic search validation" --namespace semantic --reasoningbank
 
 # Query it back
-npx claude-flow@alpha memory query "semantic search" --namespace semantic --reasoningbank
+ruflo memory query "semantic search" --namespace semantic --reasoningbank
 # Should return the stored memory ✅
 ```
 
@@ -230,7 +230,7 @@ All existing commands continue to work as before, but now return correct results
 
 ### From alpha.9
 ```bash
-npm install -g claude-flow@alpha
+npm install -g github:snowzlm/ruflo
 # Automatic update, no migration needed
 ```
 
@@ -270,7 +270,7 @@ All core functionality now working:
 ## 📝 Next Steps
 
 Users should:
-1. ✅ Update to alpha.10: `npm install -g claude-flow@alpha`
+1. ✅ Update to alpha.10: `npm install -g github:snowzlm/ruflo`
 2. ✅ Test semantic search: Store and query memories
 3. ✅ Verify data persistence: Check `.swarm/memory.db` exists
 4. ✅ Confirm commands exit properly (no hanging)
@@ -280,8 +280,8 @@ Users should:
 ## 🙏 Credits
 
 **Issue Reported By**: @ruvnet
-**Root Cause Analysis**: Claude Code
-**Fixed By**: Claude Code
+**Root Cause Analysis**: OpenClaw
+**Fixed By**: OpenClaw
 **Validation**: Full cycle testing (store → query → verify)
 
 ---
@@ -304,6 +304,6 @@ Users should:
 ---
 
 **Status**: ✅ **PRODUCTION READY**
-**Recommendation**: Safe to deploy `claude-flow@2.7.0-alpha.10` for production use.
+**Recommendation**: Safe to deploy `ruflo@2.7.0-alpha.10` for production use.
 
 **Semantic search is now fully operational! 🎉**

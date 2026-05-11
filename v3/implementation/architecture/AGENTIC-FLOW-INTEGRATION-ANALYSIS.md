@@ -1153,7 +1153,7 @@ Nightly  → FlashAttention Consolidation + A/B Experiments + Transfer Learning
 
 ```bash
 # Minimal install - works on all platforms
-npm install claude-flow@3 --save
+npm install ruflo@3 --save
 # ~2MB, no native dependencies, pure JavaScript
 ```
 
@@ -1167,37 +1167,37 @@ npm install claude-flow@3 --save
 
 ```bash
 # Install components as needed
-npx claude-flow install <component>
+npx ruflo install <component>
 
 # Available components:
-npx claude-flow install learning      # RL + trajectory tracking
-npx claude-flow install memory        # Persistent memory (SQLite/WASM)
-npx claude-flow install attention     # Flash/MoE attention mechanisms
-npx claude-flow install transport     # QUIC transport layer
-npx claude-flow install neural        # Neural pattern training
-npx claude-flow install gnn           # GNN query enhancement
+npx ruflo install learning      # RL + trajectory tracking
+npx ruflo install memory        # Persistent memory (SQLite/WASM)
+npx ruflo install attention     # Flash/MoE attention mechanisms
+npx ruflo install transport     # QUIC transport layer
+npx ruflo install neural        # Neural pattern training
+npx ruflo install gnn           # GNN query enhancement
 ```
 
 ### 16.4 Platform-Specific Installation
 
 #### Linux (Fastest)
 ```bash
-npm install claude-flow@3
-npx claude-flow install native   # NAPI bindings (50-200x faster)
+npm install ruflo@3
+npx ruflo install native   # NAPI bindings (50-200x faster)
 # Total: ~15MB with native bindings
 ```
 
 #### macOS (Apple Silicon + Intel)
 ```bash
-npm install claude-flow@3
-npx claude-flow install native   # Universal binary
+npm install ruflo@3
+npx ruflo install native   # Universal binary
 # Fallback: WASM if Rosetta issues
 ```
 
 #### Windows
 ```bash
-npm install claude-flow@3
-npx claude-flow install wasm     # WASM backend (recommended)
+npm install ruflo@3
+npx ruflo install wasm     # WASM backend (recommended)
 # Note: NAPI optional but requires build tools
 ```
 
@@ -1287,19 +1287,19 @@ const platform = {
 
 ```bash
 # Minimal CLI usage
-npm install -g claude-flow@3
+npm install -g ruflo@3
 
 # Basic swarm coordination
-npm install claude-flow@3
+npm install ruflo@3
 
 # With persistent memory
-npm install claude-flow@3 && npx claude-flow install memory
+npm install ruflo@3 && npx ruflo install memory
 
 # Full learning system
-npm install claude-flow@3 && npx claude-flow install learning memory
+npm install ruflo@3 && npx ruflo install learning memory
 
 # Maximum performance (Linux/Mac)
-npm install claude-flow@3 && npx claude-flow install --all --native
+npm install ruflo@3 && npx ruflo install --all --native
 ```
 
 ---
@@ -1334,17 +1334,17 @@ npm install claude-flow@3 && npx claude-flow install --all --native
 
 ```bash
 # Run performance benchmarks
-npx claude-flow benchmark
+npx ruflo benchmark
 
 # Specific component benchmarks
-npx claude-flow benchmark memory --iterations 1000
-npx claude-flow benchmark learning --episodes 100
-npx claude-flow benchmark attention --batch-size 32
+npx ruflo benchmark memory --iterations 1000
+npx ruflo benchmark learning --episodes 100
+npx ruflo benchmark attention --batch-size 32
 
 # Compare runtimes
-npx claude-flow benchmark --runtime napi
-npx claude-flow benchmark --runtime wasm
-npx claude-flow benchmark --runtime js
+npx ruflo benchmark --runtime napi
+npx ruflo benchmark --runtime wasm
+npx ruflo benchmark --runtime js
 ```
 
 ### 17.4 Regression Detection
@@ -1416,11 +1416,11 @@ const learningConfig = {
 
 ```bash
 # View real-time metrics
-npx claude-flow metrics
+npx ruflo metrics
 
 # Export metrics for external systems
-npx claude-flow metrics --format prometheus
-npx claude-flow metrics --format json > metrics.json
+npx ruflo metrics --format prometheus
+npx ruflo metrics --format json > metrics.json
 ```
 
 ### 19.2 Key Metrics
@@ -1460,10 +1460,10 @@ npx claude-flow metrics --format json > metrics.json
 
 ```bash
 # Audit before install
-npm audit claude-flow@3
+npm audit ruflo@3
 
 # Verify checksums
-npx claude-flow verify --checksums
+npx ruflo verify --checksums
 ```
 
 ### 20.2 Data Privacy

@@ -6,7 +6,7 @@ Mermaid diagrams for the Guidance Control Plane. Render with any Mermaid-compati
 
 ```mermaid
 graph TB
-    CLAUDE["CLAUDE.md + CLAUDE.local.md"]
+    CLAUDE["OPENCLAW.md + OPENCLAW.local.md"]
 
     subgraph "Compile Time"
         C[GuidanceCompiler]
@@ -246,7 +246,7 @@ sequenceDiagram
     participant Opt as Optimizer
 
     Dev->>CP: initialize()
-    CP->>Comp: compile(CLAUDE.md)
+    CP->>Comp: compile(OPENCLAW.md)
     Comp-->>CP: PolicyBundle
     CP->>Ret: loadBundle(bundle)
     CP->>G: setActiveRules(rules)

@@ -96,17 +96,17 @@ $ node --experimental-wasm-modules test-wasm-import.mjs
 
 **NPM Install**:
 ```bash
-npm install -g claude-flow@alpha
+npm install -g github:snowzlm/ruflo
 ```
 
 **NPX Direct**:
 ```bash
-npx claude-flow@alpha memory store test "value" --reasoningbank
+ruflo memory store test "value" --reasoningbank
 ```
 
 **Docker**:
 ```bash
-docker run -v /app node:20 npx claude-flow@alpha --help
+docker run -v /app node:20 ruflo --help
 ```
 
 ### Configuration Required
@@ -180,8 +180,8 @@ Add Node flag to scripts:
 
 ## 📞 Support
 
-- **Issues**: https://github.com/ruvnet/claude-code-flow/issues
-- **Documentation**: https://github.com/ruvnet/claude-code-flow
+- **Issues**: https://github.com/ruvnet/openclaw-flow/issues
+- **Documentation**: https://github.com/ruvnet/openclaw-flow
 - **Version**: v2.7.0-alpha.7
 - **Integration**: agentic-flow@1.5.12
 

@@ -1,6 +1,6 @@
 # AgentDB Integration Test Suite
 
-Comprehensive test suite for AgentDB v1.3.9 integration into claude-flow.
+Comprehensive test suite for AgentDB v1.3.9 integration into ruflo.
 
 ## Overview
 
@@ -455,7 +455,7 @@ When adding new tests:
 
 ## License
 
-MIT - Same as claude-flow
+MIT - Same as ruflo
 
 ## Support
 

@@ -7,13 +7,13 @@ type: command
 
 # Agent List Command
 
-List all active agents in the Claude Flow system with filtering options.
+List all active agents in the Ruflo system with filtering options.
 
 ## Usage
 
 ```bash
-npx claude-flow agent list [options]
-npx claude-flow agent ls [options]  # Alias
+npx ruflo agent list [options]
+npx ruflo agent ls [options]  # Alias
 ```
 
 ## Options
@@ -29,22 +29,22 @@ npx claude-flow agent ls [options]  # Alias
 
 ```bash
 # List all active agents
-npx claude-flow agent list
+npx ruflo agent list
 
 # List all agents including inactive
-npx claude-flow agent list --all
+npx ruflo agent list --all
 
 # Filter by type
-npx claude-flow agent list -t coder
+npx ruflo agent list -t coder
 
 # Filter by status
-npx claude-flow agent list -s idle
+npx ruflo agent list -s idle
 
 # JSON output for scripting
-npx claude-flow agent list --format json
+npx ruflo agent list --format json
 
 # Combined filters
-npx claude-flow agent list -t researcher -s active
+npx ruflo agent list -t researcher -s active
 ```
 
 ## Output

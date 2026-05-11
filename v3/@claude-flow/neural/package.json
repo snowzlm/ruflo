@@ -24,7 +24,7 @@
     "claude-flow",
     "ruflo",
     "claude",
-    "claude-code",
+    "openclaw",
     "anthropic",
     "neural",
     "neural-network",
@@ -106,14 +106,14 @@
     "url": "https://github.com/ruvnet"
   },
   "license": "MIT",
-  "homepage": "https://github.com/ruvnet/ruflo",
+  "homepage": "https://github.com/snowzlm/ruflo",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ruvnet/ruflo.git",
+    "url": "https://github.com/snowzlm/ruflo.git",
     "directory": "v3/@claude-flow/neural"
   },
   "bugs": {
-    "url": "https://github.com/ruvnet/ruflo/issues"
+    "url": "https://github.com/snowzlm/ruflo/issues"
   },
   "files": [
     "dist/",

@@ -284,7 +284,7 @@ async function listMcpTools(subArgs, flags) {
 
     log('\n  🔗 INTEGRATION CAPABILITIES:');
     log('    • Full ruv-swarm feature parity (rebranded)');
-    log('    • Claude Code native tool integration');
+    log('    • OpenClaw native tool integration');
     log('    • GitHub Actions workflow automation');
     log('    • SPARC methodology with 17 modes');
     log('    • MCP protocol compatibility');
@@ -359,7 +359,7 @@ async function showMcpConfig(subArgs, flags) {
 
   log('\n🔐 Security Settings:');
   log('   TLS: Enabled in production');
-  log('   CORS: Configured for Claude Code');
+  log('   CORS: Configured for OpenClaw');
   log('   API Key Rotation: 30 days');
   log('   Audit Logging: Enabled');
 

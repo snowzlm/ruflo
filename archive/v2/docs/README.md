@@ -59,7 +59,7 @@ Test reports and validation results
 
 ### 📚 [User Guides](./guides/)
 Tutorials and learning resources
-- [Skills Tutorial](./guides/skills-tutorial.md) - Complete guide to 25 Claude Flow skills
+- [Skills Tutorial](./guides/skills-tutorial.md) - Complete guide to 25 Ruflo skills
 
 ### 🔌 [Integrations](./integrations/)
 Third-party platform integrations
@@ -114,7 +114,7 @@ Third-party platform integrations
 
 ## 📞 Support
 
-- **GitHub Issues**: https://github.com/ruvnet/claude-flow/issues
+- **GitHub Issues**: https://github.com/snowzlm/ruflo/issues
 - **Discord**: Join our community for real-time help
 - **Documentation Updates**: PRs welcome!
 

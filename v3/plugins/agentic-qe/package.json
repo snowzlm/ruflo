@@ -43,12 +43,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ruvnet/ruflo.git",
+    "url": "https://github.com/snowzlm/ruflo.git",
     "directory": "v3/plugins/agentic-qe"
   },
-  "homepage": "https://github.com/ruvnet/ruflo/tree/main/v3/plugins/agentic-qe",
+  "homepage": "https://github.com/snowzlm/ruflo/tree/main/v3/plugins/agentic-qe",
   "bugs": {
-    "url": "https://github.com/ruvnet/ruflo/issues"
+    "url": "https://github.com/snowzlm/ruflo/issues"
   },
   "dependencies": {
     "zod": "^3.23.0"

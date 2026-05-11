@@ -351,7 +351,7 @@ async function determineAgentModel(
 }
 ```
 
-### 5. CLAUDE.md Instructions Update
+### 5. OPENCLAW.md Instructions Update
 
 ```markdown
 ### 🤖 AGENT BOOSTER INTEGRATION (AUTOMATIC)
@@ -439,7 +439,7 @@ v3/@claude-flow/cli/src/
 ## References
 
 - ADR-017: RuVector Integration Architecture
-- ADR-018: Claude Code Integration
+- ADR-018: OpenClaw Integration
 - Agent Booster: https://github.com/anthropics/agent-booster
 - agentic-flow: https://github.com/ruvnet/agentic-flow
 - tiny-dancer: Neural model router

@@ -119,7 +119,7 @@ Options:
 
 Environment:
   CLAUDE_FLOW_HEADLESS=true   Enable headless mode
-  CLAUDE_CODE_HEADLESS=true   Enable Claude Code headless
+  CLAUDE_CODE_HEADLESS=true   Enable OpenClaw headless
 
 Examples:
   headless --worker audit --timeout 120000

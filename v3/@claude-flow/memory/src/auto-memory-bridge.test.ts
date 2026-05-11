@@ -2,7 +2,7 @@
  * Tests for AutoMemoryBridge
  *
  * TDD London School (mock-first) tests for the bidirectional bridge
- * between Claude Code auto memory and AgentDB.
+ * between OpenClaw auto memory and AgentDB.
  */
 
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
@@ -86,7 +86,7 @@ function createTestInsight(overrides: Partial<MemoryInsight> = {}): MemoryInsigh
 describe('resolveAutoMemoryDir', () => {
   it('should derive path from working directory', () => {
     const result = resolveAutoMemoryDir('/workspaces/my-project');
-    expect(result).toContain('.claude/projects/');
+    expect(result).toContain('.openclaw/projects/');
     expect(result).toContain('memory');
     expect(result).not.toContain('//');
   });
@@ -666,7 +666,7 @@ Already in DB
 
     // #1556: curateIndex() used to overwrite a hand-curated MEMORY.md with a
     // single-line stub when none of the files in memoryDir matched the
-    // hardcoded DEFAULT_TOPIC_MAPPING filenames (as happens when Claude Code's
+    // hardcoded DEFAULT_TOPIC_MAPPING filenames (as happens when OpenClaw's
     // native `<type>_<topic>.md` convention is used). The fix is to skip the
     // write entirely when there's nothing to curate.
     it('should not overwrite hand-curated MEMORY.md when no topic files match (#1556)', async () => {
@@ -674,7 +674,7 @@ Already in DB
       const handCurated = '# My Hand-Curated Memory\n\n## Section 1\nImportant notes\n\n## Section 2\nMore notes\n';
       fsSync.writeFileSync(indexPath, handCurated, 'utf-8');
 
-      // Write files using Claude Code's native <type>_<topic>.md convention —
+      // Write files using OpenClaw's native <type>_<topic>.md convention —
       // none of these filenames appear in DEFAULT_TOPIC_MAPPING.
       fsSync.writeFileSync(path.join(testDir, 'user_role.md'), '# user role\ndata scientist', 'utf-8');
       fsSync.writeFileSync(path.join(testDir, 'session_foo.md'), '# session\nfoo bar', 'utf-8');

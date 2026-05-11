@@ -5,7 +5,7 @@
 
 ## Context
 
-Issue [#1425](https://github.com/ruvnet/ruflo/issues/1425) identified systemic quality problems in the codebase, independently confirmed by an external audit. After initial fixes in v3.5.43 (PR #1435, ADR-067) and v3.5.69, the following items remain unresolved in v3:
+Issue [#1425](https://github.com/snowzlm/ruflo/issues/1425) identified systemic quality problems in the codebase, independently confirmed by an external audit. After initial fixes in v3.5.43 (PR #1435, ADR-067) and v3.5.69, the following items remain unresolved in v3:
 
 1. **~19 `any` types in v3 CLI commands** — TypeScript type safety gaps
 2. **3 websocket implementations** — CLI, hooks, and MCP bridge each have separate WS logic with different auth and reconnection behavior
@@ -29,7 +29,7 @@ Create `v3/@claude-flow/shared/src/ws/` shared websocket module with unified aut
 Create shared `AgentRegistry` in `@claude-flow/shared` that AgentManager, WorkerPool, and MCP agent tools all use. Single source of truth for agent lifecycle.
 
 ### 4. Wire providers to config
-`providers list` reads from `claude-flow.config.json` or environment. `providers test` makes real API health check calls (with timeout).
+`providers list` reads from `ruflo.config.json` or environment. `providers test` makes real API health check calls (with timeout).
 
 ### 5. Expand input validation to all command handlers
 Add `validateIdentifier`/`validatePath`/`validateText` calls to all 43 command handlers that accept user input. Focus on boundary inputs: file paths, identifiers, command arguments.

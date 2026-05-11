@@ -4,7 +4,7 @@ Comprehensive performance testing and optimization tools for AgentDB v1.3.9 inte
 
 ## Overview
 
-This suite validates the claimed performance improvements of AgentDB over the current claude-flow memory system:
+This suite validates the claimed performance improvements of AgentDB over the current ruflo memory system:
 - **150x faster** search with HNSW indexing
 - **500x faster** batch inserts
 - **12,500x faster** large-scale queries

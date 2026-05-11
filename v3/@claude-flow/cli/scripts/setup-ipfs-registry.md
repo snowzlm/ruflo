@@ -44,7 +44,7 @@ curl -X POST "https://api.pinata.cloud/v3/ipfs/keys" \
 
 ```bash
 # Create new project
-gcloud projects create claude-flow-registry --name="Claude Flow Registry"
+gcloud projects create claude-flow-registry --name="Ruflo Registry"
 
 # Set as active project
 gcloud config set project claude-flow-registry
@@ -309,7 +309,7 @@ gcloud scheduler jobs create http publish-registry-daily \
   --http-method=POST
 ```
 
-## Step 6: Update Claude Flow CLI
+## Step 6: Update Ruflo CLI
 
 Update `DEFAULT_PLUGIN_STORE_CONFIG` in `discovery.ts`:
 
@@ -318,7 +318,7 @@ export const DEFAULT_PLUGIN_STORE_CONFIG: PluginStoreConfig = {
   registries: [
     {
       name: 'claude-flow-official',
-      description: 'Official Claude Flow plugin registry',
+      description: 'Official Ruflo plugin registry',
       // Use the CID from your first publish
       ipnsName: 'YOUR_IPNS_KEY_OR_CID',
       gateway: 'https://gateway.pinata.cloud',

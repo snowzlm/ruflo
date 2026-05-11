@@ -1,21 +1,21 @@
 #!/usr/bin/env npx tsx
 /**
- * Analyze and auto-optimize the project's CLAUDE.md
+ * Analyze and auto-optimize the project's OPENCLAW.md
  *
  * Produces:
  * 1. A detailed before-analysis report
  * 2. Auto-optimized content
  * 3. A before/after benchmark
- * 4. The optimized CLAUDE.md content
+ * 4. The optimized OPENCLAW.md content
  */
 
 import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { analyze, benchmark, autoOptimize, formatReport, formatBenchmark } from '../src/analyzer.js';
 
-// Analyze both the root CLAUDE.md and v3/CLAUDE.md
-const ROOT_CLAUDE_MD = resolve(import.meta.dirname!, '../../../../CLAUDE.md');
-const V3_CLAUDE_MD = resolve(import.meta.dirname!, '../../../CLAUDE.md');
+// Analyze both the root OPENCLAW.md and v3/OPENCLAW.md
+const ROOT_CLAUDE_MD = resolve(import.meta.dirname!, '../../../../OPENCLAW.md');
+const V3_CLAUDE_MD = resolve(import.meta.dirname!, '../../../OPENCLAW.md');
 
 const CLAUDE_MD_PATH = ROOT_CLAUDE_MD;
 
@@ -23,7 +23,7 @@ const CLAUDE_MD_PATH = ROOT_CLAUDE_MD;
 const original = readFileSync(CLAUDE_MD_PATH, 'utf-8');
 
 console.log('='.repeat(80));
-console.log('  CLAUDE.md ANALYSIS & OPTIMIZATION REPORT');
+console.log('  OPENCLAW.md ANALYSIS & OPTIMIZATION REPORT');
 console.log('  Target: ' + CLAUDE_MD_PATH);
 console.log('  Date: ' + new Date().toISOString());
 console.log('='.repeat(80));
@@ -150,11 +150,11 @@ writeFileSync(outputPath, optimized.optimized, 'utf-8');
 console.log('  Optimized file saved to: ' + outputPath);
 console.log();
 
-// Also analyze v3/CLAUDE.md if it exists
+// Also analyze v3/OPENCLAW.md if it exists
 try {
   const v3Content = readFileSync(V3_CLAUDE_MD, 'utf-8');
   console.log('='.repeat(80));
-  console.log('  BONUS: v3/CLAUDE.md ANALYSIS');
+  console.log('  BONUS: v3/OPENCLAW.md ANALYSIS');
   console.log('  Target: ' + V3_CLAUDE_MD);
   console.log('='.repeat(80));
   console.log();
@@ -170,5 +170,5 @@ try {
   writeFileSync(v3OutputPath, v3Optimized.optimized, 'utf-8');
   console.log('  v3 optimized file saved to: ' + v3OutputPath);
 } catch {
-  // v3/CLAUDE.md may not exist
+  // v3/OPENCLAW.md may not exist
 }

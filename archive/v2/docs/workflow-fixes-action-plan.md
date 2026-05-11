@@ -11,7 +11,7 @@
 ### Issue #1: Duplicate "test" Key in package.json
 
 **Impact**: ALL tests failing in CI/CD pipeline
-**Location**: `/workspaces/claude-code-flow/package.json`
+**Location**: `/workspaces/openclaw-flow/package.json`
 **Time to Fix**: 5 minutes
 
 #### Current Problem:
@@ -362,7 +362,7 @@ jq empty package-lock.json && echo "Valid JSON" || echo "Invalid JSON"
 
 If these fixes don't resolve the issues:
 
-1. **Check the detailed analysis report**: `/workspaces/claude-code-flow/docs/github-workflows-analysis-report.md`
+1. **Check the detailed analysis report**: `/workspaces/openclaw-flow/docs/github-workflows-analysis-report.md`
 2. **Review workflow logs**: `gh run view <run-id> --log-failed`
 3. **Check git status**: Ensure no uncommitted changes
 4. **Verify branch**: Make sure you're on the correct branch

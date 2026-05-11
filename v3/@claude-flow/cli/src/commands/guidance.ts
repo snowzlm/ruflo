@@ -21,20 +21,20 @@ interface GateResult {
 // compile subcommand
 const compileCommand: Command = {
   name: 'compile',
-  description: 'Compile CLAUDE.md into a policy bundle (constitution + shards + manifest)',
+  description: 'Compile OPENCLAW.md into a policy bundle (constitution + shards + manifest)',
   options: [
-    { name: 'root', short: 'r', type: 'string', description: 'Root guidance file path', default: './CLAUDE.md' },
+    { name: 'root', short: 'r', type: 'string', description: 'Root guidance file path', default: './OPENCLAW.md' },
     { name: 'local', short: 'l', type: 'string', description: 'Local guidance overlay file path' },
     { name: 'output', short: 'o', type: 'string', description: 'Output directory for compiled bundle' },
     { name: 'json', type: 'boolean', description: 'Output as JSON', default: 'false' },
   ],
   examples: [
-    { command: 'claude-flow guidance compile', description: 'Compile default CLAUDE.md' },
-    { command: 'claude-flow guidance compile -r ./CLAUDE.md -l ./CLAUDE.local.md', description: 'Compile with local overlay' },
+    { command: 'claude-flow guidance compile', description: 'Compile default OPENCLAW.md' },
+    { command: 'claude-flow guidance compile -r ./OPENCLAW.md -l ./OPENCLAW.local.md', description: 'Compile with local overlay' },
     { command: 'claude-flow guidance compile --json', description: 'Output compiled bundle as JSON' },
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
-    const rootPath = ctx.flags.root as string || './CLAUDE.md';
+    const rootPath = ctx.flags.root as string || './OPENCLAW.md';
     const localPath = ctx.flags.local as string | undefined;
     const jsonOutput = ctx.flags.json === true;
 
@@ -103,7 +103,7 @@ const retrieveCommand: Command = {
   description: 'Retrieve task-relevant guidance shards for a given task description',
   options: [
     { name: 'task', short: 't', type: 'string', description: 'Task description', required: true },
-    { name: 'root', short: 'r', type: 'string', description: 'Root guidance file path', default: './CLAUDE.md' },
+    { name: 'root', short: 'r', type: 'string', description: 'Root guidance file path', default: './OPENCLAW.md' },
     { name: 'local', short: 'l', type: 'string', description: 'Local overlay file path' },
     { name: 'max-shards', short: 'n', type: 'number', description: 'Maximum number of shards to retrieve', default: '5' },
     { name: 'intent', short: 'i', type: 'string', description: 'Override detected intent' },
@@ -115,7 +115,7 @@ const retrieveCommand: Command = {
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const task = ctx.flags.task as string;
-    const rootPath = ctx.flags.root as string || './CLAUDE.md';
+    const rootPath = ctx.flags.root as string || './OPENCLAW.md';
     const localPath = ctx.flags.local as string | undefined;
     const maxShards = parseInt(ctx.flags['max-shards'] as string || '5', 10);
     const intentOverride = ctx.flags.intent as string | undefined;
@@ -302,8 +302,8 @@ const statusCommand: Command = {
 
     try {
 
-      const rootExists = existsSync('./CLAUDE.md');
-      const localExists = existsSync('./CLAUDE.local.md');
+      const rootExists = existsSync('./OPENCLAW.md');
+      const localExists = existsSync('./OPENCLAW.local.md');
 
       const statusData = {
         rootGuidance: rootExists ? 'found' : 'not found',
@@ -314,14 +314,14 @@ const statusCommand: Command = {
       if (jsonOutput) {
         output.writeln(JSON.stringify(statusData, null, 2));
       } else {
-        output.writeln(`  Root guidance:  ${rootExists ? output.success('CLAUDE.md found') : output.warning('CLAUDE.md not found')}`);
-        output.writeln(`  Local overlay:  ${localExists ? output.success('CLAUDE.local.md found') : output.dim('not configured')}`);
+        output.writeln(`  Root guidance:  ${rootExists ? output.success('OPENCLAW.md found') : output.warning('OPENCLAW.md not found')}`);
+        output.writeln(`  Local overlay:  ${localExists ? output.success('OPENCLAW.local.md found') : output.dim('not configured')}`);
         output.writeln(`  Data directory: ${statusData.dataDir === 'exists' ? output.success('exists') : output.dim('not created')}`);
 
         if (rootExists) {
           const { readFile } = await import('node:fs/promises');
           const { GuidanceCompiler } = await import('@claude-flow/guidance/compiler');
-          const rootContent = await readFile('./CLAUDE.md', 'utf-8');
+          const rootContent = await readFile('./OPENCLAW.md', 'utf-8');
           const compiler = new GuidanceCompiler();
           const bundle = compiler.compile(rootContent);
 
@@ -346,9 +346,9 @@ const statusCommand: Command = {
 // optimize subcommand
 const optimizeCommand: Command = {
   name: 'optimize',
-  description: 'Analyze and optimize a CLAUDE.md file for structure, coverage, and enforceability',
+  description: 'Analyze and optimize a OPENCLAW.md file for structure, coverage, and enforceability',
   options: [
-    { name: 'root', short: 'r', type: 'string', description: 'Root guidance file path', default: './CLAUDE.md' },
+    { name: 'root', short: 'r', type: 'string', description: 'Root guidance file path', default: './OPENCLAW.md' },
     { name: 'local', short: 'l', type: 'string', description: 'Local overlay file path' },
     { name: 'apply', short: 'a', type: 'boolean', description: 'Apply optimizations to the file', default: 'false' },
     { name: 'context-size', short: 's', type: 'string', description: 'Target context size: compact, standard, full', default: 'standard' },
@@ -357,13 +357,13 @@ const optimizeCommand: Command = {
     { name: 'json', type: 'boolean', description: 'Output as JSON', default: 'false' },
   ],
   examples: [
-    { command: 'claude-flow guidance optimize', description: 'Analyze current CLAUDE.md and show suggestions' },
-    { command: 'claude-flow guidance optimize --apply', description: 'Apply optimizations to CLAUDE.md' },
+    { command: 'claude-flow guidance optimize', description: 'Analyze current OPENCLAW.md and show suggestions' },
+    { command: 'claude-flow guidance optimize --apply', description: 'Apply optimizations to OPENCLAW.md' },
     { command: 'claude-flow guidance optimize -s compact --apply', description: 'Optimize for compact context window' },
     { command: 'claude-flow guidance optimize --target-score 95', description: 'Optimize until score reaches 95' },
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
-    const rootPath = ctx.flags.root as string || './CLAUDE.md';
+    const rootPath = ctx.flags.root as string || './OPENCLAW.md';
     const localPath = ctx.flags.local as string | undefined;
     const applyChanges = ctx.flags.apply === true;
     const contextSize = (ctx.flags['context-size'] as string || 'standard') as 'compact' | 'standard' | 'full';
@@ -443,7 +443,7 @@ const optimizeCommand: Command = {
       // Step 3: Apply if requested
       if (applyChanges) {
         await writeFile(rootPath, result.optimized, 'utf-8');
-        output.writeln(output.success(`Optimized CLAUDE.md written to ${rootPath}`));
+        output.writeln(output.success(`Optimized OPENCLAW.md written to ${rootPath}`));
         output.writeln(`  Before: ${analysis.compositeScore}/100 (${analysis.grade})`);
         output.writeln(`  After:  ${result.benchmark.after.compositeScore}/100 (${result.benchmark.after.grade})`);
         output.writeln(`  Delta:  ${result.benchmark.delta >= 0 ? '+' : ''}${result.benchmark.delta}`);
@@ -464,23 +464,23 @@ const optimizeCommand: Command = {
 // ab-test subcommand
 const abTestCommand: Command = {
   name: 'ab-test',
-  description: 'Run A/B behavioral comparison between two CLAUDE.md versions',
+  description: 'Run A/B behavioral comparison between two OPENCLAW.md versions',
   options: [
-    { name: 'config-a', short: 'a', type: 'string', description: 'Path to Config A (baseline CLAUDE.md). Defaults to no guidance.' },
-    { name: 'config-b', short: 'b', type: 'string', description: 'Path to Config B (candidate CLAUDE.md)', default: './CLAUDE.md' },
+    { name: 'config-a', short: 'a', type: 'string', description: 'Path to Config A (baseline OPENCLAW.md). Defaults to no guidance.' },
+    { name: 'config-b', short: 'b', type: 'string', description: 'Path to Config B (candidate OPENCLAW.md)', default: './OPENCLAW.md' },
     { name: 'tasks', short: 't', type: 'string', description: 'Path to custom task JSON file (array of ABTask objects)' },
     { name: 'work-dir', short: 'w', type: 'string', description: 'Working directory for test execution' },
     { name: 'json', type: 'boolean', description: 'Output as JSON', default: 'false' },
   ],
   examples: [
-    { command: 'claude-flow guidance ab-test', description: 'Run default A/B test (no guidance vs ./CLAUDE.md)' },
-    { command: 'claude-flow guidance ab-test -a old.md -b new.md', description: 'Compare two CLAUDE.md versions' },
+    { command: 'claude-flow guidance ab-test', description: 'Run default A/B test (no guidance vs ./OPENCLAW.md)' },
+    { command: 'claude-flow guidance ab-test -a old.md -b new.md', description: 'Compare two OPENCLAW.md versions' },
     { command: 'claude-flow guidance ab-test --tasks custom-tasks.json', description: 'Run with custom test tasks' },
     { command: 'claude-flow guidance ab-test --json', description: 'Output full report as JSON' },
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const configAPath = ctx.flags['config-a'] as string | undefined;
-    const configBPath = ctx.flags['config-b'] as string || './CLAUDE.md';
+    const configBPath = ctx.flags['config-b'] as string || './OPENCLAW.md';
     const tasksPath = ctx.flags.tasks as string | undefined;
     const workDir = ctx.flags['work-dir'] as string | undefined;
     const jsonOutput = ctx.flags.json === true;
@@ -597,11 +597,11 @@ export const guidanceCommand: Command = {
   ],
   options: [],
   examples: [
-    { command: 'claude-flow guidance compile', description: 'Compile CLAUDE.md into policy bundle' },
+    { command: 'claude-flow guidance compile', description: 'Compile OPENCLAW.md into policy bundle' },
     { command: 'claude-flow guidance retrieve -t "Fix auth bug"', description: 'Retrieve relevant guidance' },
     { command: 'claude-flow guidance gates -c "rm -rf /"', description: 'Check enforcement gates' },
     { command: 'claude-flow guidance status', description: 'Show control plane status' },
-    { command: 'claude-flow guidance optimize', description: 'Analyze and optimize CLAUDE.md' },
+    { command: 'claude-flow guidance optimize', description: 'Analyze and optimize OPENCLAW.md' },
     { command: 'claude-flow guidance ab-test', description: 'Run A/B behavioral comparison' },
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
@@ -610,11 +610,11 @@ export const guidanceCommand: Command = {
     output.writeln(output.dim('─'.repeat(50)));
     output.writeln();
     output.writeln('Available subcommands:');
-    output.writeln(`  ${output.bold('compile')}   Compile CLAUDE.md into policy bundle`);
+    output.writeln(`  ${output.bold('compile')}   Compile OPENCLAW.md into policy bundle`);
     output.writeln(`  ${output.bold('retrieve')}  Retrieve task-relevant guidance shards`);
     output.writeln(`  ${output.bold('gates')}     Evaluate enforcement gates`);
     output.writeln(`  ${output.bold('status')}    Show control plane status`);
-    output.writeln(`  ${output.bold('optimize')}  Analyze and optimize CLAUDE.md`);
+    output.writeln(`  ${output.bold('optimize')}  Analyze and optimize OPENCLAW.md`);
     output.writeln(`  ${output.bold('ab-test')}   Run A/B behavioral comparison`);
     output.writeln();
     output.writeln(output.dim('Use claude-flow guidance <subcommand> --help for details'));

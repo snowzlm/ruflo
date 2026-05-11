@@ -57,10 +57,10 @@
       "agent_id": "claude-flow",
       "status": "success",
       "output": {
-        "raw_output": "\u274c SPARC configuration file (.roomodes) not found\nPlease ensure .roomodes file exists in: /workspaces/claude-code-flow/benchmark/examples\n\nTo enable SPARC development modes, run:\n  npx claude-flow@latest init --sparc",
+        "raw_output": "\u274c SPARC configuration file (.roomodes) not found\nPlease ensure .roomodes file exists in: /workspaces/openclaw-flow/benchmark/examples\n\nTo enable SPARC development modes, run:\n  npx claude-flow@latest init --sparc",
         "lines": [
           "\u274c SPARC configuration file (.roomodes) not found",
-          "Please ensure .roomodes file exists in: /workspaces/claude-code-flow/benchmark/examples",
+          "Please ensure .roomodes file exists in: /workspaces/openclaw-flow/benchmark/examples",
           "",
           "To enable SPARC development modes, run:",
           "  npx claude-flow@latest init --sparc"

@@ -321,7 +321,7 @@ const insights = await reasoningBank.multiPatternQuery(
 );
 ```
 
-### Claude Code Agent Integration
+### OpenClaw Agent Integration
 ```json
 {
   "agents": {
@@ -512,7 +512,7 @@ The Problem Solving ReasoningBank model is **production-ready** and exceeds all 
 **Validation Status**: ✅ ALL CHECKS PASSED
 **Next Review**: 2025-11-15 (30 days)
 
-**Location**: `/workspaces/claude-code-flow/docs/reasoningbank/models/problem-solving/`
+**Location**: `/workspaces/openclaw-flow/docs/reasoningbank/models/problem-solving/`
 
 **Key Files**:
 - `memory.db` - ReasoningBank database (5.85 MB)
@@ -521,4 +521,4 @@ The Problem Solving ReasoningBank model is **production-ready** and exceeds all 
 - `validation-report.md` - Validation results (9.8 KB)
 - `TRAINING_SUMMARY.md` - This summary (current file)
 
-🚀 **Ready for integration with agentic-flow, claude-flow, and Claude Code agents!**
+🚀 **Ready for integration with agentic-flow, ruflo, and OpenClaw agents!**

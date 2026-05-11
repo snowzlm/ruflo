@@ -5,7 +5,7 @@ Optimize search operations with caching and intelligent filtering.
 ## Usage
 
 ```bash
-npx claude-flow hook pre-search [options]
+npx ruflo hook pre-search [options]
 ```
 
 ## Options
@@ -21,25 +21,25 @@ npx claude-flow hook pre-search [options]
 ### Basic pre-search hook
 
 ```bash
-npx claude-flow hook pre-search --query "authentication implementation"
+npx ruflo hook pre-search --query "authentication implementation"
 ```
 
 ### With caching
 
 ```bash
-npx claude-flow hook pre-search -q "React hooks usage" --cache-results
+npx ruflo hook pre-search -q "React hooks usage" --cache-results
 ```
 
 ### Memory check first
 
 ```bash
-npx claude-flow hook pre-search -q "previous bug fixes" --check-memory
+npx ruflo hook pre-search -q "previous bug fixes" --check-memory
 ```
 
 ### Query expansion
 
 ```bash
-npx claude-flow hook pre-search -q "auth" --expand-query --suggest-filters
+npx ruflo hook pre-search -q "auth" --expand-query --suggest-filters
 ```
 
 ## Features
@@ -74,7 +74,7 @@ npx claude-flow hook pre-search -q "auth" --expand-query --suggest-filters
 
 ## Integration
 
-This hook is automatically called by Claude Code when:
+This hook is automatically called by OpenClaw when:
 
 - Using Grep tool
 - Using Glob tool
@@ -85,7 +85,7 @@ Manual usage in agents:
 
 ```bash
 # Before searching
-npx claude-flow hook pre-search --query "your search" --cache-results --check-memory
+npx ruflo hook pre-search --query "your search" --cache-results --check-memory
 ```
 
 ## Output

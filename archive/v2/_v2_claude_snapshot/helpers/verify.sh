@@ -11,7 +11,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 # Check if verification is enabled
-VERIFY_CONFIG=".claude/config/verification.json"
+VERIFY_CONFIG=".openclaw/config/verification.json"
 if [ ! -f "$VERIFY_CONFIG" ]; then
     # Verification not configured - exit silently for compatibility
     exit 0

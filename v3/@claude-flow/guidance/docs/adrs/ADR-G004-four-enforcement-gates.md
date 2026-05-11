@@ -8,14 +8,14 @@ Accepted
 
 ## Context
 
-Claude Code can execute arbitrary tool calls: bash commands, file edits, file writes, MCP tool invocations, and task spawns. When operating autonomously (in swarms, long daemon sessions, or headless mode), the model may:
+OpenClaw can execute arbitrary tool calls: bash commands, file edits, file writes, MCP tool invocations, and task spawns. When operating autonomously (in swarms, long daemon sessions, or headless mode), the model may:
 
 - Run destructive commands (`rm -rf /`, `git push --force origin main`, `DROP DATABASE`)
 - Use tools that were not intended for the current task
 - Produce massive diffs that are difficult to review and likely to contain errors
 - Leak secrets by writing API keys, passwords, or private keys into committed files
 
-The model's adherence to `CLAUDE.md` rules is probabilistic. Rules in the context window are suggestions -- the model can and does ignore them, especially in long sessions where attention degrades. We need gates that are **synchronous**, **mandatory**, and **non-bypassable** by the model.
+The model's adherence to `OPENCLAW.md` rules is probabilistic. Rules in the context window are suggestions -- the model can and does ignore them, especially in long sessions where attention degrades. We need gates that are **synchronous**, **mandatory**, and **non-bypassable** by the model.
 
 The gates must be configurable (teams have different risk tolerances), produce structured results (for ledger logging), and reference active guidance rules (for traceability).
 

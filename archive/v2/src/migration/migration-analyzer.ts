@@ -103,11 +103,11 @@ export class MigrationAnalyzer {
     projectPath: string,
     analysis: MigrationAnalysis,
   ): Promise<void> {
-    // Check for CLAUDE.md
-    const claudeMdPath = path.join(projectPath, 'CLAUDE.md');
+    // Check for OPENCLAW.md
+    const claudeMdPath = path.join(projectPath, 'OPENCLAW.md');
     if (await fs.pathExists(claudeMdPath)) {
       const content = await fs.readFile(claudeMdPath, 'utf-8');
-      analysis.customConfigurations['CLAUDE.md'] = {
+      analysis.customConfigurations['OPENCLAW.md'] = {
         exists: true,
         size: content.length,
         hasCustomContent: !content.includes('SPARC Development Environment'),
@@ -140,8 +140,8 @@ export class MigrationAnalyzer {
   private async detectConflicts(projectPath: string, analysis: MigrationAnalysis): Promise<void> {
     // Check for files that might conflict with migration
     const potentialConflicts = [
-      '.claude/commands/sparc.md',
-      '.claude/BATCHTOOLS_GUIDE.md',
+      '.openclaw/commands/sparc.md',
+      '.openclaw/BATCHTOOLS_GUIDE.md',
       'memory/memory-store.json',
       'coordination/config.json',
     ];

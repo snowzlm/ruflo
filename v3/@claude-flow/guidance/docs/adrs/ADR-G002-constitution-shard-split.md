@@ -8,7 +8,7 @@ Accepted
 
 ## Context
 
-A typical `CLAUDE.md` file for a production project contains 100-500 rules covering security, testing, architecture, deployment, performance, and coding style. Loading all rules into the context window on every turn has two costs:
+A typical `OPENCLAW.md` file for a production project contains 100-500 rules covering security, testing, architecture, deployment, performance, and coding style. Loading all rules into the context window on every turn has two costs:
 
 1. **Token waste.** A 400-rule file at ~5 tokens per rule consumes ~2,000 tokens per turn. Over a 50-turn session, that is 100,000 tokens of repeated context that is mostly irrelevant to any single task.
 
@@ -81,7 +81,7 @@ The `ShardRetriever.retrieve()` method returns a `RetrievalResult` containing th
 ## Alternatives Considered
 
 ### 1. Load everything, rely on model attention
-Load the full `CLAUDE.md` on every turn. Rejected because of the measured ~2,000 token cost and attention degradation on long documents. In testing, models skip rules beyond the first 100 lines with increasing probability.
+Load the full `OPENCLAW.md` on every turn. Rejected because of the measured ~2,000 token cost and attention degradation on long documents. In testing, models skip rules beyond the first 100 lines with increasing probability.
 
 ### 2. Keyword-based retrieval (no embeddings)
 Match shards by keyword overlap with the task description. Rejected because keyword matching misses synonyms and paraphrases. "Fix the auth issue" would not match a rule about "authentication vulnerability" without semantic similarity.

@@ -64,10 +64,10 @@ fi
 # Check subdirectories
 EXPECTED_DIRS=("agents" "commands" "skills" "checkpoints" "cache")
 for dir in "${EXPECTED_DIRS[@]}"; do
-    if [ -d ".claude/$dir" ]; then
-        pass ".claude/$dir directory created"
+    if [ -d ".openclaw/$dir" ]; then
+        pass ".openclaw/$dir directory created"
     else
-        fail ".claude/$dir directory not created"
+        fail ".openclaw/$dir directory not created"
     fi
 done
 
@@ -91,7 +91,7 @@ CRITICAL_SKILLS=(
 )
 
 for skill in "${CRITICAL_SKILLS[@]}"; do
-    if [ -f ".claude/skills/$skill" ]; then
+    if [ -f ".openclaw/skills/$skill" ]; then
         pass "Critical skill exists: $skill"
     else
         fail "Missing critical skill: $skill"
@@ -169,7 +169,7 @@ section "Test 8: File Structure Validation"
 
 # Check that important files exist
 IMPORTANT_FILES=(
-    ".claude/settings.json"
+    ".openclaw/settings.json"
 )
 
 for file in "${IMPORTANT_FILES[@]}"; do

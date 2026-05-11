@@ -1,6 +1,6 @@
 /**
  * Claude Flow Chat Interface
- * Claude Code-style chat with integrated swarm orchestration
+ * OpenClaw-style chat with integrated swarm orchestration
  */
 
 class ClaudeFlowChat {

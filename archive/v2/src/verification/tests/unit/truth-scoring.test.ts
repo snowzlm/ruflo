@@ -14,7 +14,7 @@ import * as path from 'path';
 import * as os from 'os';
 
 // Import the truth scoring system
-import TruthScoreCalculator from '../../../../.claude/helpers/truth-score.js';
+import TruthScoreCalculator from '../../../../.openclaw/helpers/truth-score.js';
 
 describe('Truth Scoring System', () => {
   let calculator: any;

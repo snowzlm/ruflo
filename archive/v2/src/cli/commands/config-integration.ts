@@ -2,7 +2,7 @@
  * Configuration integration commands for ruv-swarm
  *
  * These commands provide enhanced configuration management
- * specifically for ruv-swarm integration with Claude Code.
+ * specifically for ruv-swarm integration with OpenClaw.
  */
 
 import { success, error, warning, info } from '../cli-core.js';

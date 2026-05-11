@@ -1,12 +1,12 @@
 # Architecture Documentation - GitHub Workflows Optimization
 
-**Comprehensive documentation for optimizing claude-code-flow GitHub Actions workflows**
+**Comprehensive documentation for optimizing openclaw-flow GitHub Actions workflows**
 
 ---
 
 ## 📚 Document Index
 
-This directory contains the complete architectural strategy for optimizing the GitHub Actions workflows in claude-code-flow. The documentation is organized into three main documents:
+This directory contains the complete architectural strategy for optimizing the GitHub Actions workflows in openclaw-flow. The documentation is organized into three main documents:
 
 ### 1. **Strategy Document** (Main Reference)
 **File:** `github-workflows-optimization-strategy.md`
@@ -172,7 +172,7 @@ This directory contains the complete architectural strategy for optimizing the G
 **Commands:**
 ```bash
 # See implementation guide for detailed steps
-cd /workspaces/claude-code-flow
+cd /workspaces/openclaw-flow
 # Follow Phase 1 section in workflow-optimization-implementation-guide.md
 ```
 
@@ -544,7 +544,7 @@ Use this checklist to ensure you've reviewed all necessary documentation:
 
 ## 📄 License
 
-This documentation is part of the claude-code-flow project and is licensed under the MIT License. See the LICENSE file in the root directory for details.
+This documentation is part of the openclaw-flow project and is licensed under the MIT License. See the LICENSE file in the root directory for details.
 
 ---
 

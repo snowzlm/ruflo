@@ -539,13 +539,13 @@ jobs:
         run: npm ci
       
       - name: Run capability verification
-        run: npx claude-flow verification check-capabilities
+        run: npx ruflo verification check-capabilities
       
       - name: Validate agent configurations
-        run: npx claude-flow verification validate-agents
+        run: npx ruflo verification validate-agents
       
       - name: Check system prerequisites
-        run: npx claude-flow verification check-prerequisites
+        run: npx ruflo verification check-prerequisites
 
   truth_scoring:
     name: Truth Score Validation
@@ -561,12 +561,12 @@ jobs:
         run: npm run test:integration
       
       - name: Run cross-agent tests
-        run: npx claude-flow verification run-cross-agent-tests
+        run: npx ruflo verification run-cross-agent-tests
       
       - name: Calculate truth score
         id: truth_score
         run: |
-          SCORE=$(npx claude-flow verification calculate-truth-score)
+          SCORE=$(npx ruflo verification calculate-truth-score)
           echo "score=$SCORE" >> $GITHUB_OUTPUT
       
       - name: Validate truth threshold
@@ -584,16 +584,16 @@ jobs:
       - uses: actions/checkout@v4
       
       - name: Create test checkpoint
-        run: npx claude-flow verification create-checkpoint "ci_test"
+        run: npx ruflo verification create-checkpoint "ci_test"
       
       - name: Simulate state changes
-        run: npx claude-flow verification simulate-changes
+        run: npx ruflo verification simulate-changes
       
       - name: Test rollback capability
-        run: npx claude-flow verification test-rollback "ci_test"
+        run: npx ruflo verification test-rollback "ci_test"
       
       - name: Validate state consistency
-        run: npx claude-flow verification validate-consistency
+        run: npx ruflo verification validate-consistency
 
   deployment_verification:
     name: Deployment Verification
@@ -604,16 +604,16 @@ jobs:
       - uses: actions/checkout@v4
       
       - name: Deploy to staging
-        run: npx claude-flow deploy staging
+        run: npx ruflo deploy staging
       
       - name: Run end-to-end verification
-        run: npx claude-flow verification run-e2e-tests staging
+        run: npx ruflo verification run-e2e-tests staging
       
       - name: Validate production readiness
-        run: npx claude-flow verification validate-production-readiness
+        run: npx ruflo verification validate-production-readiness
       
       - name: Generate verification report
-        run: npx claude-flow verification generate-report
+        run: npx ruflo verification generate-report
         
       - name: Upload verification artifacts
         uses: actions/upload-artifact@v4

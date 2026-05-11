@@ -115,7 +115,7 @@ v3/@claude-flow/memory/benchmarks/longmemeval/
 #### Phase 4: Publication (Week 3)
 1. Commit results to `results/` directory
 2. Create GitHub issue with findings
-3. Update CLAUDE.md and README with verified scores
+3. Update OPENCLAW.md and README with verified scores
 4. If score >= 95%, create dedicated benchmark page
 
 ### Key Metrics to Report
@@ -194,7 +194,7 @@ Phases 1–3 executed. Phase 4 (publication) deferred — Content@1 peaked at 26
 | **Phase 2** — Retrieval parameter tuning (efSearch, M, top-k, recency weighting, BM25+RRF hybrid) | Implemented | `v3/@claude-flow/memory/benchmarks/longmemeval/` (session files + run artifacts) | `6bbbdbe2a bench(adr-088): BM25 + RRF hybrid retrieval` · `f88e99ba1 docs(adr-088): add 2026-05-01 run results` |
 | **Phase 3** — Comparative evaluation: n=500, all modes, per-category breakdown, ablations, SOTA config | Implemented | `v3/docs/adr/ADR-088-longmemeval-benchmark.md` (Run Results + Optimization Roadmap sections) | `edf5c6ed1 bench(adr-088): smart-pipeline ablations + bge-large hybrid; metric ceiling reached` · `b6ca2dd5d docs(adr-088): record smart+hybrid SOTA (C@1=26.8%, MRR=0.3269)` |
 | **Phase 3 — QA eval harness** (RAG + LLM judge, comparable to leaderboard) | Implemented | `v3/@claude-flow/memory/benchmarks/longmemeval/evaluate-qa.ts` | `cd198a5c6 bench(adr-088): wire LongMemEval QA eval harness (RAG + LLM judge)` |
-| **Phase 4** — Publish results, GitHub issue, README/CLAUDE.md update, benchmark page | **Deferred** | — | — |
+| **Phase 4** — Publish results, GitHub issue, README/OPENCLAW.md update, benchmark page | **Deferred** | — | — |
 
 ### Key results (SOTA config: smart hybrid hash+BM25, n=500)
 

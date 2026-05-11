@@ -35,7 +35,7 @@ export VERIFICATION_MODE=strict
 export VERIFICATION_ROLLBACK=true
 
 # Run swarm with verification hooks
-claude-flow swarm "Build REST API" --verify
+ruflo swarm "Build REST API" --verify
 
 # The swarm will:
 # 1. Run pre-task verification
@@ -48,7 +48,7 @@ claude-flow swarm "Build REST API" --verify
 
 ```bash
 # Non-interactive with verification
-claude-flow swarm "Build feature" \
+ruflo swarm "Build feature" \
   -p \
   --output-format stream-json \
   --verify \

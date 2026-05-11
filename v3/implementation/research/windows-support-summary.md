@@ -140,14 +140,14 @@ Fallback:      JSON (compatibility)
 
 **Before** (Windows):
 ```bash
-$ npm install claude-flow@alpha
+$ npm install ruflo@alpha
 ⚠️  Warning: Use pnpm on Windows
 ❌ Error: better-sqlite3 compilation failed
 ```
 
 **After** (Windows):
 ```bash
-$ npm install claude-flow@alpha
+$ npm install ruflo@alpha
 ✅ Installed successfully
 ℹ️  Using sql.js (cross-platform mode)
 ```

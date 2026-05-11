@@ -1,6 +1,6 @@
 /**
  * V3 Init System Types
- * Configuration options for initializing Claude Code integration
+ * Configuration options for initializing OpenClaw integration
  */
 
 import os from 'os';
@@ -26,13 +26,13 @@ export interface InitComponents {
   mcp: boolean;
   /** Create .claude-flow/ directory (V3 runtime) */
   runtime: boolean;
-  /** Create CLAUDE.md with swarm guidance */
+  /** Create OPENCLAW.md with swarm guidance */
   claudeMd: boolean;
 }
 
 /**
  * Hook configuration options
- * Valid Claude Code hook events (23 total):
+ * Valid OpenClaw hook events (23 total):
  *   PreToolUse, PostToolUse, PostToolUseFailure, UserPromptSubmit,
  *   SessionStart, SessionEnd, Stop, SubagentStart, SubagentStop,
  *   PreCompact, PostCompact, Notification, ConfigChange,
@@ -80,7 +80,7 @@ export interface SkillsConfig {
   browser: boolean;
   /** Include V3 implementation skills */
   v3: boolean;
-  /** Include dual-mode skills (Claude Code + Codex hybrid) */
+  /** Include dual-mode skills (OpenClaw + Codex hybrid) */
   dualMode: boolean;
   /** Include all available skills */
   all: boolean;
@@ -134,7 +134,7 @@ export interface AgentsConfig {
   optimization: boolean;
   /** Include testing agents */
   testing: boolean;
-  /** Include dual-mode agents (Claude Code + Codex hybrid) */
+  /** Include dual-mode agents (OpenClaw + Codex hybrid) */
   dualMode: boolean;
   /** Include all agents */
   all: boolean;
@@ -196,11 +196,11 @@ export interface RuntimeConfig {
   enableMemoryGraph?: boolean;
   /** Enable AgentMemoryScope (ADR-049) - 3-scope agent memory */
   enableAgentScopes?: boolean;
-  /** CLAUDE.md template variant */
+  /** OPENCLAW.md template variant */
   claudeMdTemplate?: ClaudeMdTemplate;
 }
 
-/** Template variants for generated CLAUDE.md files */
+/** Template variants for generated OPENCLAW.md files */
 export type ClaudeMdTemplate = 'minimal' | 'standard' | 'full' | 'security' | 'performance' | 'solo';
 
 /**
@@ -311,13 +311,13 @@ export interface InitOptions {
   /** Embeddings configuration */
   embeddings: EmbeddingsConfig;
   /**
-   * Skip the user-global ~/.claude/CLAUDE.md "Ruflo Integration" pointer block.
+   * Skip the user-global ~/.openclaw/OPENCLAW.md "Ruflo Integration" pointer block.
    * Defaults to false (current behavior — block is appended once, idempotent).
    * Set true via --no-global to keep the global Claude rules file pristine (#1744).
    */
   skipGlobalClaudeMd?: boolean;
   /**
-   * #1670 — opt in to writing the `attribution` block in `.claude/settings.json`
+   * #1670 — opt in to writing the `attribution` block in `.openclaw/settings.json`
    * (Co-Authored-By trailer + PR footer). Defaults to false: most users do not
    * want a third-party Co-Authored-By line silently added to their commits and
    * GitHub contributor graph. Pass `--attribution` to opt in.

@@ -38,27 +38,27 @@ Train and optimize neural patterns using SONA, MoE, and EWC++ systems.
 
 ### Train Patterns
 ```bash
-npx claude-flow neural train --model-type moe --epochs 10
+npx ruflo neural train --model-type moe --epochs 10
 ```
 
 ### Check Status
 ```bash
-npx claude-flow neural status
+npx ruflo neural status
 ```
 
 ### View Patterns
 ```bash
-npx claude-flow neural patterns --type all
+npx ruflo neural patterns --type all
 ```
 
 ### Predict
 ```bash
-npx claude-flow neural predict --input "task description"
+npx ruflo neural predict --input "task description"
 ```
 
 ### Optimize
 ```bash
-npx claude-flow neural optimize --target latency
+npx ruflo neural optimize --target latency
 ```
 
 ## Best Practices

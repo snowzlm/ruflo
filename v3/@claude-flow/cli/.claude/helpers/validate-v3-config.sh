@@ -41,7 +41,7 @@ log_info() {
 echo "📁 Checking Directory Structure..."
 required_dirs=(
   ".claude"
-  ".claude/helpers"
+  ".openclaw/helpers"
   ".claude-flow/metrics"
   ".claude-flow/security"
   "src"
@@ -60,9 +60,9 @@ done
 echo ""
 echo "📄 Checking Required Files..."
 required_files=(
-  ".claude/settings.json"
-  ".claude/statusline.sh"
-  ".claude/helpers/update-v3-progress.sh"
+  ".openclaw/settings.json"
+  ".openclaw/statusline.sh"
+  ".openclaw/helpers/update-v3-progress.sh"
   ".claude-flow/metrics/v3-progress.json"
   ".claude-flow/metrics/performance.json"
   ".claude-flow/security/audit-status.json"
@@ -82,7 +82,7 @@ for file in "${required_files[@]}"; do
           log_warning "agentic-flow@alpha dependency not found in package.json"
         fi
         ;;
-      ".claude/helpers/update-v3-progress.sh")
+      ".openclaw/helpers/update-v3-progress.sh")
         if [ -x "$file" ]; then
           log_success "Helper script is executable"
         else
@@ -180,8 +180,8 @@ done
 echo ""
 echo "🔐 Checking Permissions..."
 test_files=(
-  ".claude/statusline.sh"
-  ".claude/helpers/update-v3-progress.sh"
+  ".openclaw/statusline.sh"
+  ".openclaw/helpers/update-v3-progress.sh"
 )
 
 for file in "${test_files[@]}"; do

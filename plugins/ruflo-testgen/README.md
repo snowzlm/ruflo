@@ -5,7 +5,7 @@ Test gap detection, coverage analysis, and automated test generation. SPARC Refi
 ## Install
 
 ```
-/plugin marketplace add ruvnet/ruflo
+/plugin marketplace add snowzlm/ruflo
 /plugin install ruflo-testgen@ruflo
 ```
 

@@ -7,7 +7,7 @@
 
 ## Context
 
-Claude Flow V3's neural learning system generates valuable patterns, trajectories, and learned behaviors during operation. These patterns are currently isolated to individual installations, preventing knowledge sharing across:
+Ruflo V3's neural learning system generates valuable patterns, trajectories, and learned behaviors during operation. These patterns are currently isolated to individual installations, preventing knowledge sharing across:
 
 1. **Team collaboration** - Developers can't share optimized routing patterns
 2. **Organizational standards** - Companies can't distribute approved patterns
@@ -67,26 +67,26 @@ Implement a **Transfer Hook System** with:
 
 ```bash
 # Basic export to file
-npx claude-flow@v3alpha hooks transfer export \
+ruflo hooks transfer export \
   --output ./patterns/my-patterns.cfp \
   --format cbor
 
 # Export with anonymization
-npx claude-flow@v3alpha hooks transfer export \
+ruflo hooks transfer export \
   --output ./patterns/team-patterns.cfp \
   --anonymize standard \
   --redact-pii true \
   --strip-paths true
 
 # Export to IPFS
-npx claude-flow@v3alpha hooks transfer export \
+ruflo hooks transfer export \
   --to-ipfs \
   --anonymize strict \
   --pin true \
   --gateway https://w3s.link
 
 # Export specific pattern types
-npx claude-flow@v3alpha hooks transfer export \
+ruflo hooks transfer export \
   --types routing,complexity,coverage \
   --min-confidence 0.7 \
   --since "2026-01-01"
@@ -96,21 +96,21 @@ npx claude-flow@v3alpha hooks transfer export \
 
 ```bash
 # Import from file
-npx claude-flow@v3alpha hooks transfer import \
+ruflo hooks transfer import \
   --input ./patterns/team-patterns.cfp
 
 # Import from IPFS
-npx claude-flow@v3alpha hooks transfer import \
+ruflo hooks transfer import \
   --from-ipfs bafybeigdyrzt5sfp7udm7hu76uh7y26nf3efuylqabf3oclgtqy55fbzdi \
   --verify-signature true
 
 # Import from Pattern Store
-npx claude-flow@v3alpha hooks transfer import \
+ruflo hooks transfer import \
   --from-store typescript-routing-patterns \
   --version latest
 
 # Import with merge strategy
-npx claude-flow@v3alpha hooks transfer import \
+ruflo hooks transfer import \
   --input ./patterns.cfp \
   --strategy merge \
   --conflict-resolution highest-confidence
@@ -120,13 +120,13 @@ npx claude-flow@v3alpha hooks transfer import \
 
 ```bash
 # Browse pattern store
-npx claude-flow@v3alpha hooks transfer store list \
+ruflo hooks transfer store list \
   --category routing \
   --language typescript \
   --min-downloads 100
 
 # Publish to store
-npx claude-flow@v3alpha hooks transfer store publish \
+ruflo hooks transfer store publish \
   --input ./patterns.cfp \
   --name "react-component-patterns" \
   --description "Optimized routing for React projects" \
@@ -134,7 +134,7 @@ npx claude-flow@v3alpha hooks transfer store publish \
   --anonymize strict
 
 # Download from store
-npx claude-flow@v3alpha hooks transfer store download \
+ruflo hooks transfer store download \
   --name "enterprise-security-patterns" \
   --output ./patterns/
 ```
@@ -297,7 +297,7 @@ interface RedactionConfig {
 
 ## Export Format Specification
 
-### Claude Flow Pattern (.cfp) Format
+### Ruflo Pattern (.cfp) Format
 
 ```typescript
 interface CFPFormat {
@@ -305,7 +305,7 @@ interface CFPFormat {
   magic: 'CFP1';                    // Magic bytes
   version: SemVer;                  // Format version
   createdAt: ISO8601;
-  generatedBy: string;              // Claude Flow version
+  generatedBy: string;              // Ruflo version
 
   // Metadata
   metadata: {
@@ -426,27 +426,27 @@ class IPFSPatternStore {
 
 ```bash
 # Upload to IPFS with pinning
-npx claude-flow@v3alpha hooks transfer ipfs upload \
+ruflo hooks transfer ipfs upload \
   --input ./patterns.cfp \
   --pin pinata \
   --name "my-patterns"
 
 # Download from IPFS
-npx claude-flow@v3alpha hooks transfer ipfs download \
+ruflo hooks transfer ipfs download \
   --cid bafybeigdyrzt5sfp7udm7hu76uh7y26nf3efuylqabf3oclgtqy55fbzdi \
   --output ./patterns.cfp
 
 # List pinned patterns
-npx claude-flow@v3alpha hooks transfer ipfs list \
+ruflo hooks transfer ipfs list \
   --service pinata
 
 # Publish to IPNS (mutable name)
-npx claude-flow@v3alpha hooks transfer ipfs publish \
+ruflo hooks transfer ipfs publish \
   --cid bafybeigdyrzt5sfp7udm7hu76uh7y26nf3efuylqabf3oclgtqy55fbzdi \
   --key my-patterns-key
 
 # Resolve IPNS name
-npx claude-flow@v3alpha hooks transfer ipfs resolve \
+ruflo hooks transfer ipfs resolve \
   --name my-patterns
 ```
 
@@ -458,7 +458,7 @@ npx claude-flow@v3alpha hooks transfer ipfs resolve \
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                    Claude Flow Pattern Store                     │
+│                    Ruflo Pattern Store                     │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                  │
 │  ┌──────────────────┐    ┌──────────────────┐                   │
@@ -537,34 +537,34 @@ interface Category {
 
 ```bash
 # Search patterns
-npx claude-flow@v3alpha hooks transfer store search \
+ruflo hooks transfer store search \
   --query "react hooks optimization" \
   --category routing \
   --min-rating 4.0
 
 # Get pattern info
-npx claude-flow@v3alpha hooks transfer store info \
+ruflo hooks transfer store info \
   --name react-routing-patterns
 
 # Install pattern
-npx claude-flow@v3alpha hooks transfer store install \
+ruflo hooks transfer store install \
   --name react-routing-patterns \
   --version ^1.0.0
 
 # Publish pattern
-npx claude-flow@v3alpha hooks transfer store publish \
+ruflo hooks transfer store publish \
   --input ./patterns.cfp \
   --name my-patterns \
   --category routing \
   --license MIT
 
 # Update published pattern
-npx claude-flow@v3alpha hooks transfer store update \
+ruflo hooks transfer store update \
   --name my-patterns \
   --input ./patterns-v2.cfp
 
 # Rate pattern
-npx claude-flow@v3alpha hooks transfer store rate \
+ruflo hooks transfer store rate \
   --name react-routing-patterns \
   --rating 5 \
   --comment "Excellent for large React projects"
@@ -621,7 +621,7 @@ interface ImportSandbox {
 
 ```typescript
 type TrustLevel =
-  | 'verified'      // Signed by Claude Flow team
+  | 'verified'      // Signed by Ruflo team
   | 'community'     // Community verified, high ratings
   | 'unverified'    // No verification
   | 'untrusted'     // Flagged or low trust
@@ -727,7 +727,7 @@ v3/@claude-flow/cli/src/
 
 ## Configuration
 
-### claude-flow.config.json
+### ruflo.config.json
 
 ```json
 {
@@ -1640,10 +1640,10 @@ const verification = await mcp__claude_flow__transfer_verify({
 
 ### Windows Requirements
 
-On Windows, MCP servers require a `cmd /c` wrapper to execute npx commands. Without this wrapper, Claude Code will display the warning:
+On Windows, MCP servers require a `cmd /c` wrapper to execute npx commands. Without this wrapper, OpenClaw will display the warning:
 
 ```
-[Warning] [claude-flow] mcpServers.claude-flow: Windows requires 'cmd /c' wrapper to execute npx
+[Warning] [ruflo] mcpServers.claude-flow: Windows requires 'cmd /c' wrapper to execute npx
 ```
 
 ### Platform-Specific .mcp.json Configuration
@@ -1653,7 +1653,7 @@ On Windows, MCP servers require a `cmd /c` wrapper to execute npx commands. With
 ```json
 {
   "mcpServers": {
-    "claude-flow": {
+    "ruflo": {
       "command": "cmd",
       "args": ["/c", "npx", "@claude-flow/cli@latest", "mcp", "start"],
       "env": {
@@ -1669,7 +1669,7 @@ On Windows, MCP servers require a `cmd /c` wrapper to execute npx commands. With
 ```json
 {
   "mcpServers": {
-    "claude-flow": {
+    "ruflo": {
       "command": "npx",
       "args": ["@claude-flow/cli@latest", "mcp", "start"],
       "env": {
@@ -1705,7 +1705,7 @@ function generateMcpConfig(): MCPConfig {
   if (isWindows) {
     return {
       mcpServers: {
-        'claude-flow': {
+        'ruflo': {
           command: 'cmd',
           args: ['/c', 'npx', '@claude-flow/cli@latest', 'mcp', 'start'],
           env: {
@@ -1718,7 +1718,7 @@ function generateMcpConfig(): MCPConfig {
 
   return {
     mcpServers: {
-      'claude-flow': {
+      'ruflo': {
         command: 'npx',
         args: ['@claude-flow/cli@latest', 'mcp', 'start'],
         env: {
@@ -1735,7 +1735,7 @@ function generateMcpConfig(): MCPConfig {
 ```json
 {
   "mcpServers": {
-    "claude-flow": {
+    "ruflo": {
       "command": "cmd",
       "args": ["/c", "npx", "@claude-flow/cli@latest", "mcp", "start"],
       "tools": [
@@ -1834,7 +1834,7 @@ Pre-configured trusted registries for initial discovery:
 const BOOTSTRAP_REGISTRIES: KnownRegistry[] = [
   {
     name: 'claude-flow-official',
-    description: 'Official Claude Flow pattern registry',
+    description: 'Official Ruflo pattern registry',
     ipnsName: 'k51qzi5uqu5dj0w8q1xvqn8ql2g4p7x8qpk9vz3xm1y2n3o4p5q6r7s8t9u0v',
     gateway: 'https://w3s.link',
     publicKey: 'ed25519:claude-flow-registry-key',

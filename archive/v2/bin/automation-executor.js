@@ -154,7 +154,7 @@ export class WorkflowExecutor {
     
     // Check if Claude CLI is available
     if (!await this.isClaudeAvailable()) {
-      throw new Error('Claude CLI not found. Please install Claude Code: https://claude.ai/code');
+      throw new Error('Claude CLI not found. Please install OpenClaw: https://claude.ai/code');
     }
 
     if (this.options.nonInteractive) {

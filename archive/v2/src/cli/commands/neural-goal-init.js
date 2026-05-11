@@ -20,7 +20,7 @@ export async function registerNeuralGoalCommands(program) {
     .command('init')
     .description('Initialize SAFLA neural module')
     .option('--force', 'Overwrite existing module')
-    .option('--target <dir>', 'Target directory', '.claude/agents/neural')
+    .option('--target <dir>', 'Target directory', '.openclaw/agents/neural')
     .action(async (options) => {
       await initNeuralModule(options);
     });
@@ -32,14 +32,14 @@ export async function registerNeuralGoalCommands(program) {
     .command('init')
     .description('Initialize GOAP goal module')
     .option('--force', 'Overwrite existing module')
-    .option('--target <dir>', 'Target directory', '.claude/agents/goal')
+    .option('--target <dir>', 'Target directory', '.openclaw/agents/goal')
     .action(async (options) => {
       await initGoalModule(options);
     });
 }
 
 async function initNeuralModule(options) {
-  const targetDir = path.resolve(process.cwd(), options.target || '.claude/agents/neural');
+  const targetDir = path.resolve(process.cwd(), options.target || '.openclaw/agents/neural');
   
   console.log(chalk.cyan('🧠 Initializing Claude Flow Neural Module...'));
   
@@ -106,7 +106,7 @@ mcp__claude-flow__neural_train {
 }
 
 async function initGoalModule(options) {
-  const targetDir = path.resolve(process.cwd(), options.target || '.claude/agents/goal');
+  const targetDir = path.resolve(process.cwd(), options.target || '.openclaw/agents/goal');
   
   console.log(chalk.magenta('🎯 Initializing Claude Flow Goal Module...'));
   

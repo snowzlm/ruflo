@@ -6,9 +6,9 @@
 
 ## Overview
 
-Successfully implemented MCP-first API design for Claude Flow V3. CLI commands now call MCP tools rather than implementing functionality directly, following the principle:
+Successfully implemented MCP-first API design for Ruflo V3. CLI commands now call MCP tools rather than implementing functionality directly, following the principle:
 
-> **"MCP coordinates, Claude Code creates!"**
+> **"MCP coordinates, OpenClaw creates!"**
 
 ## Implementation Details
 
@@ -494,10 +494,10 @@ All MCP tools now exposed via CLI commands in `@claude-flow/cli@3.0.0-alpha.7`:
    - Affected: 3 functions in `executor.ts` (lines 465, 584, 778)
    - Result: Init now correctly populates 91 agents, 29 skills, 10 commands, 38 helpers
 
-4. **Mac Settings Validation** (alpha.89) - Fixed Claude Code settings.json validation errors on macOS
+4. **Mac Settings Validation** (alpha.89) - Fixed OpenClaw settings.json validation errors on macOS
    - Issue: `PermissionRequest` hook type not recognized; permission patterns required `:*` syntax
-   - Fix: Removed `PermissionRequest` hook block; changed patterns from `*` to `:*` (e.g., `Bash(npx claude-flow:*)`)
-   - Affected: `settings-generator.ts`, `types.ts`, `.claude/settings.json`
+   - Fix: Removed `PermissionRequest` hook block; changed patterns from `*` to `:*` (e.g., `Bash(npx ruflo:*)`)
+   - Affected: `settings-generator.ts`, `types.ts`, `.openclaw/settings.json`
 
 #### Testing Results
 
@@ -526,7 +526,7 @@ node bin/cli.js hive-mind broadcast -m "Hello"  # ✅ Works
 | alpha.7 | 2026-01-07 | Initial CLI MCP tool integration |
 | alpha.89 | 2026-01-13 | Mac settings validation fix |
 | alpha.90 | 2026-01-13 | Init path calculation fix (empty folders bug) |
-| alpha.91-92 | 2026-01-13 | `hierarchical-mesh` topology validation + CLAUDE.md template update |
+| alpha.91-92 | 2026-01-13 | `hierarchical-mesh` topology validation + OPENCLAW.md template update |
 | alpha.93 | 2026-01-13 | README.md sync with prepublishOnly script |
 | alpha.94-95 | 2026-01-13 | MCP auto-restart for stdio transport |
 
@@ -546,7 +546,7 @@ node bin/cli.js hive-mind broadcast -m "Hello"  # ✅ Works
 - `coordination-tools.ts` - TopologyConfig interface/enum
 - `config-adapter.ts` - normalizeTopology/denormalizeTopology functions
 
-**CLAUDE.md Template Update:** Updated generated CLAUDE.md to document all 6 valid topologies:
+**OPENCLAW.md Template Update:** Updated generated OPENCLAW.md to document all 6 valid topologies:
 - `hierarchical` - Queen controls workers (anti-drift for small teams)
 - `hierarchical-mesh` - V3 queen + peer communication (recommended for 10+ agents)
 - `mesh` - Fully connected peer network
@@ -611,11 +611,11 @@ Added automatic dist-tag updates to `scripts/publish.sh`:
 npm dist-tag add @claude-flow/cli@$VERSION alpha
 npm dist-tag add @claude-flow/cli@$VERSION latest
 npm dist-tag add @claude-flow/cli@$VERSION v3alpha
-npm dist-tag add claude-flow@$VERSION alpha
-npm dist-tag add claude-flow@$VERSION latest
-npm dist-tag add claude-flow@$VERSION v3alpha
+npm dist-tag add ruflo@$VERSION alpha
+npm dist-tag add ruflo@$VERSION latest
+npm dist-tag add ruflo@$VERSION v3alpha
 ```
 
-This ensures `npx claude-flow@alpha` always gets the latest version.
+This ensures `ruflo` always gets the latest version.
 
-**Published**: `@claude-flow/cli@3.0.0-alpha.95`, `claude-flow@3.0.0-alpha.46`
+**Published**: `@claude-flow/cli@3.0.0-alpha.95`, `ruflo@3.0.0-alpha.46`

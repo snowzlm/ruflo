@@ -43,7 +43,7 @@ mkdir -p "$TEST_DIR"
 cd "$TEST_DIR"
 
 # Copy checkpoint files
-cp -r /workspaces/claude-code-flow/.claude .
+cp -r /workspaces/openclaw-flow/.claude .
 chmod +x .claude/helpers/*.sh
 
 # Initialize git
@@ -75,7 +75,7 @@ test_checkpoint "Checkpoint hooks executable" \
 
 # Test 3: Pre-edit checkpoint
 test_checkpoint "Pre-edit checkpoint" \
-    ".claude/helpers/checkpoint-hooks.sh pre-edit '{\"file_path\": \"test.txt\"}' 2>&1 | grep -q 'Created checkpoint'" \
+    ".openclaw/helpers/checkpoint-hooks.sh pre-edit '{\"file_path\": \"test.txt\"}' 2>&1 | grep -q 'Created checkpoint'" \
     ""
 
 # Test 4: Verify checkpoint branch created
@@ -86,7 +86,7 @@ test_checkpoint "Checkpoint branch exists" \
 # Test 5: Post-edit checkpoint
 echo "modified content" > test.txt
 test_checkpoint "Post-edit checkpoint" \
-    ".claude/helpers/checkpoint-hooks.sh post-edit '{\"file_path\": \"test.txt\"}' 2>&1 | grep -q 'Created checkpoint'" \
+    ".openclaw/helpers/checkpoint-hooks.sh post-edit '{\"file_path\": \"test.txt\"}' 2>&1 | grep -q 'Created checkpoint'" \
     ""
 
 # Test 6: Verify checkpoint tag created
@@ -103,12 +103,12 @@ test_checkpoint "Checkpoint tag exists" \
 
 # Test 7: Task checkpoint
 test_checkpoint "Task checkpoint" \
-    ".claude/helpers/checkpoint-hooks.sh task 'Test task description' 2>&1 | grep -q 'Created task checkpoint'" \
+    ".openclaw/helpers/checkpoint-hooks.sh task 'Test task description' 2>&1 | grep -q 'Created task checkpoint'" \
     ""
 
 # Test 8: Session end checkpoint
 test_checkpoint "Session end checkpoint" \
-    ".claude/helpers/checkpoint-hooks.sh session-end 2>&1 | grep -q 'Session summary saved'" \
+    ".openclaw/helpers/checkpoint-hooks.sh session-end 2>&1 | grep -q 'Session summary saved'" \
     ""
 
 # Test 9: Checkpoint metadata files
@@ -123,14 +123,14 @@ test_checkpoint "Checkpoint manager executable" \
 
 # Test 11: List checkpoints
 test_checkpoint "List checkpoints" \
-    ".claude/helpers/checkpoint-manager.sh list 2>&1 | grep -q 'checkpoint-'" \
+    ".openclaw/helpers/checkpoint-manager.sh list 2>&1 | grep -q 'checkpoint-'" \
     ""
 
 # Test 12: Show checkpoint details
 CHECKPOINT=$(git tag -l 'checkpoint-*' | head -1)
 if [ -n "$CHECKPOINT" ]; then
     test_checkpoint "Show checkpoint details" \
-        ".claude/helpers/checkpoint-manager.sh show $CHECKPOINT 2>&1 | grep -q 'Checkpoint:'" \
+        ".openclaw/helpers/checkpoint-manager.sh show $CHECKPOINT 2>&1 | grep -q 'Checkpoint:'" \
         ""
 fi
 

@@ -4191,7 +4191,7 @@ const statuslineCommand: Command = {
         // Check for key project files/dirs
         if (fs.existsSync(path.join(process.cwd(), '.claude'))) maturityScore += 15;
         if (fs.existsSync(path.join(process.cwd(), '.claude-flow'))) maturityScore += 15;
-        if (fs.existsSync(path.join(process.cwd(), 'CLAUDE.md'))) maturityScore += 10;
+        if (fs.existsSync(path.join(process.cwd(), 'OPENCLAW.md'))) maturityScore += 10;
         if (fs.existsSync(path.join(process.cwd(), 'claude-flow.config.json'))) maturityScore += 10;
         if (fs.existsSync(path.join(process.cwd(), '.swarm'))) maturityScore += 10;
         // Check for test files

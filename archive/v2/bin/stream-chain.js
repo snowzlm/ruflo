@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Stream Chain Command - Working implementation for Claude Code
+ * Stream Chain Command - Working implementation for OpenClaw
  * Uses stream-json output but regular prompt input for compatibility
  */
 
@@ -213,8 +213,8 @@ export async function streamChainCommand(args, flags) {
   }
   
   if (!checkClaudeAvailable()) {
-    console.error('❌ Claude Code not found');
-    console.log('Please ensure Claude Code is installed and available');
+    console.error('❌ OpenClaw not found');
+    console.log('Please ensure OpenClaw is installed and available');
     return;
   }
   
@@ -253,7 +253,7 @@ function showHelp() {
     Stream chaining enables multi-step Claude workflows where each step receives the full
     output from the previous step, creating powerful agent pipelines with context preservation.
     
-    Uses Claude Code's --output-format stream-json to capture structured responses and
+    Uses OpenClaw's --output-format stream-json to capture structured responses and
     chains them together by injecting previous outputs into subsequent prompts.
 
 📚 SUBCOMMANDS
@@ -345,13 +345,13 @@ function showHelp() {
     - Timeout: Default 30s per step, configurable
 
 📋 REQUIREMENTS
-    - Claude Code must be installed and available in PATH
+    - OpenClaw must be installed and available in PATH
     - Valid Claude API configuration
     - Sufficient API credits for multiple Claude calls
 
 🔍 TROUBLESHOOTING
     "Command not found"
-    → Ensure Claude Code is installed: npm install -g @anthropic-ai/claude-code
+    → Ensure OpenClaw is installed: npm install -g @anthropic-ai/openclaw
     
     "Step timed out"
     → Increase timeout with --timeout flag
@@ -373,7 +373,7 @@ function showHelp() {
 📖 DOCUMENTATION
     Full docs: ./claude-flow-wiki/Stream-Chain-Command.md
     Stream spec: ./docs/stream-chaining.md
-    GitHub: https://github.com/ruvnet/claude-flow
+    GitHub: https://github.com/snowzlm/ruflo
 
 🏷️ VERSION
     Claude Flow Alpha 89 - Stream Chain v2.0.0

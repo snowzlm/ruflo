@@ -14,10 +14,10 @@ interface InitOptions {
 }
 
 export class NeuralInitCommand {
-  private readonly sourcePath = path.resolve(__dirname, '../../../.claude/agents/neural');
+  private readonly sourcePath = path.resolve(__dirname, '../../../.openclaw/agents/neural');
   
   async execute(options: InitOptions = {}): Promise<void> {
-    const targetDir = options.targetDir || '.claude/agents/neural';
+    const targetDir = options.targetDir || '.openclaw/agents/neural';
     const absoluteTarget = path.resolve(process.cwd(), targetDir);
     
     logger.info(chalk.cyan('🧠 Initializing Claude Flow Neural Module...'));

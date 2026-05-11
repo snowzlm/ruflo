@@ -2,14 +2,14 @@
 
 ## Overview
 
-This document defines the Domain-Driven Design (DDD) architecture for integrating OpenAI Codex support into claude-flow via the `@claude-flow/codex` package. The design follows the existing V3 architecture patterns while introducing new bounded contexts for Codex-specific functionality.
+This document defines the Domain-Driven Design (DDD) architecture for integrating OpenAI Codex support into ruflo via the `@claude-flow/codex` package. The design follows the existing V3 architecture patterns while introducing new bounded contexts for Codex-specific functionality.
 
 ## Package Information
 
 - **Package Name**: `@claude-flow/codex`
 - **Location**: `v3/@claude-flow/codex/`
 - **Future Umbrella**: `coflow` (npm/npx coflow)
-- **Compatibility**: Maintains `claude-flow` branding during transition
+- **Compatibility**: Maintains `ruflo` branding during transition
 
 ## Strategic Design
 
@@ -17,7 +17,7 @@ This document defines the Domain-Driven Design (DDD) architecture for integratin
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                           Claude Flow V3 Core Domain                         │
+│                           Ruflo V3 Core Domain                         │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │                                                                              │
 │  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────────────────┐ │
@@ -32,9 +32,9 @@ This document defines the Domain-Driven Design (DDD) architecture for integratin
 │  │                     Platform Adaptation Layer                           ││
 │  ├─────────────────────────────────────────────────────────────────────────┤│
 │  │  ┌─────────────────────────┐    ┌─────────────────────────────────────┐││
-│  │  │   Claude Code Context   │    │       Codex Context (NEW)          │││
+│  │  │   OpenClaw Context   │    │       Codex Context (NEW)          │││
 │  │  │                         │    │                                     │││
-│  │  │  - CLAUDE.md Generator  │    │  - AGENTS.md Generator             │││
+│  │  │  - OPENCLAW.md Generator  │    │  - AGENTS.md Generator             │││
 │  │  │  - Skills (.md format)  │    │  - Skills (SKILL.md format)        │││
 │  │  │  - settings.json        │    │  - config.toml                      │││
 │  │  │  - Hooks System         │    │  - Automations                      │││
@@ -52,8 +52,8 @@ This document defines the Domain-Driven Design (DDD) architecture for integratin
 **Purpose**: Abstract platform-specific configurations behind a unified interface.
 
 **Ubiquitous Language**:
-- **Platform**: Target CLI tool (Claude Code or Codex)
-- **Manifest**: Platform-specific project instructions file (CLAUDE.md or AGENTS.md)
+- **Platform**: Target CLI tool (OpenClaw or Codex)
+- **Manifest**: Platform-specific project instructions file (OPENCLAW.md or AGENTS.md)
 - **Skill**: Reusable task-specific instruction set
 - **Configuration**: Platform settings (JSON or TOML)
 - **Automation**: Scheduled or triggered background tasks
@@ -75,9 +75,9 @@ This document defines the Domain-Driven Design (DDD) architecture for integratin
 - **Sandbox Mode**: Filesystem access restrictions
 - **Progressive Disclosure**: Lazy loading of skill instructions
 
-#### 3. Claude Code Adapter Context (Existing)
+#### 3. OpenClaw Adapter Context (Existing)
 
-**Purpose**: Handle all Claude Code-specific generation (already implemented).
+**Purpose**: Handle all OpenClaw-specific generation (already implemented).
 
 #### 4. Init Context (Extended)
 
@@ -111,7 +111,7 @@ interface PlatformConfiguration {
 }
 
 enum Platform {
-  CLAUDE_CODE = 'claude-code',
+  CLAUDE_CODE = 'openclaw',
   CODEX = 'codex',
   DUAL = 'dual'
 }
@@ -280,7 +280,7 @@ class ManifestPath {
     if (this.platform === Platform.CODEX) {
       return this.isOverride ? 'AGENTS.override.md' : 'AGENTS.md';
     }
-    return this.isOverride ? 'CLAUDE.local.md' : 'CLAUDE.md';
+    return this.isOverride ? 'OPENCLAW.local.md' : 'OPENCLAW.md';
   }
 
   get fullPath(): string {
@@ -429,7 +429,7 @@ class PlatformDetectionService {
   detect(projectPath: string): DetectedPlatform {
     const hasClaudeDir = fs.existsSync(path.join(projectPath, '.claude'));
     const hasAgentsDir = fs.existsSync(path.join(projectPath, '.agents'));
-    const hasClaudeMd = fs.existsSync(path.join(projectPath, 'CLAUDE.md'));
+    const hasClaudeMd = fs.existsSync(path.join(projectPath, 'OPENCLAW.md'));
     const hasAgentsMd = fs.existsSync(path.join(projectPath, 'AGENTS.md'));
 
     if (hasClaudeDir && hasAgentsDir) {
@@ -538,7 +538,7 @@ class ConfigurationMigrationService {
   }
 
   private mapApprovalPolicy(settings: ClaudeSettings): ApprovalPolicy {
-    // Map Claude Code permission mode to Codex approval policy
+    // Map OpenClaw permission mode to Codex approval policy
     const hooks = settings.hooks || {};
     if (hooks.preToolUse?.autoApprove) {
       return ApprovalPolicy.NEVER;
@@ -728,7 +728,7 @@ class InitializationApplicationService {
   }
 
   async convertToCodex(projectPath: string): Promise<ConversionResult> {
-    // Load existing Claude Code configuration
+    // Load existing OpenClaw configuration
     const claudeManifest = await this.loadClaudeManifest(projectPath);
     const claudeSkills = await this.loadClaudeSkills(projectPath);
     const claudeSettings = await this.loadClaudeSettings(projectPath);
@@ -760,7 +760,7 @@ class InitializationApplicationService {
   }
 
   async initializeDualMode(options: DualModeInitOptions): Promise<DualModeResult> {
-    // Initialize for Claude Code
+    // Initialize for OpenClaw
     const claudeResult = await this.initializeForClaude(options);
 
     // Initialize for Codex
@@ -935,19 +935,19 @@ const initCommand: Command = {
     },
     {
       name: 'dual',
-      description: 'Initialize for both Claude Code and Codex',
+      description: 'Initialize for both OpenClaw and Codex',
       type: 'boolean',
       default: false,
     },
     {
       name: 'from-claude',
-      description: 'Convert existing Claude Code setup to Codex',
+      description: 'Convert existing OpenClaw setup to Codex',
       type: 'boolean',
       default: false,
     },
     {
       name: 'from-codex',
-      description: 'Convert existing Codex setup to Claude Code',
+      description: 'Convert existing Codex setup to OpenClaw',
       type: 'boolean',
       default: false,
     },
@@ -968,7 +968,7 @@ const initCommand: Command = {
       await converter.convertToCodex(ctx.cwd);
     }
 
-    // ... existing Claude Code init logic
+    // ... existing OpenClaw init logic
   }
 };
 ```
@@ -977,7 +977,7 @@ const initCommand: Command = {
 
 This DDD design provides:
 
-1. **Clear Bounded Contexts** - Platform Adapter, Codex Adapter, Claude Code Adapter
+1. **Clear Bounded Contexts** - Platform Adapter, Codex Adapter, OpenClaw Adapter
 2. **Rich Domain Model** - Entities, Value Objects, Aggregates for each concept
 3. **Domain Services** - Platform detection, skill conversion, config migration
 4. **Repository Pattern** - Abstract persistence for manifests, skills, configurations

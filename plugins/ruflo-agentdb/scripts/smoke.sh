@@ -49,13 +49,13 @@ grep -q "## Namespace convention" "$ROOT/README.md" \
 
 # 1. Plugin version + new keywords
 step "1. plugin.json declares version 0.3.0 with rabitq + namespace-convention keywords"
-v=$(grep -E '"version"[[:space:]]*:' "$ROOT/.claude-plugin/plugin.json" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -1)
+v=$(grep -E '"version"[[:space:]]*:' "$ROOT/.openclaw-plugin/plugin.json" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -1)
 if [[ "$v" != "0.3.0" ]]; then
   bad "expected 0.3.0, got '$v'"
 else
   miss=""
   for k in rabitq quantization namespace-convention controller-bridge; do
-    grep -q "\"$k\"" "$ROOT/.claude-plugin/plugin.json" || miss="$miss $k"
+    grep -q "\"$k\"" "$ROOT/.openclaw-plugin/plugin.json" || miss="$miss $k"
   done
   [[ -z "$miss" ]] && ok || bad "missing keywords:$miss"
 fi
@@ -150,10 +150,10 @@ grep -qE "SHOULD NOT contain.+:.+colon|colon.+delimiter" "$F" || \
 grep -qE "200 chars|≤200" "$F" || miss="$miss length-cap"
 [[ -z "$miss" ]] && ok || bad "guardrail set incomplete:$miss"
 
-# 11. Auto-memory bridge mechanics documented (Claude Code populates claude-memories)
+# 11. Auto-memory bridge mechanics documented (OpenClaw populates claude-memories)
 step "11. auto-memory bridge mechanics documented (memory_import_claude + auto-memory-hook.mjs)"
 F="$ROOT/README.md"
-if grep -q "How Claude Code populates AgentDB" "$F" \
+if grep -q "How OpenClaw populates AgentDB" "$F" \
    && grep -q "memory_import_claude" "$F" \
    && grep -q "auto-memory-hook.mjs" "$F" \
    && grep -q "memory_bridge_status" "$F" \

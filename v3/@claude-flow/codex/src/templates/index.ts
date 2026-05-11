@@ -139,7 +139,7 @@ export const ALL_AVAILABLE_SKILLS: string[] = [
   'worker-benchmarks',
   'worker-integration',
   'workflow-automation',
-  // Agent skills (converted from Claude Code agents)
+  // Agent skills (converted from OpenClaw agents)
   'agent-payments',
   'agent-challenges',
   'agent-sandbox',
@@ -238,12 +238,12 @@ export const DIRECTORY_STRUCTURE = {
 };
 
 /**
- * Feature mapping between Claude Code and Codex
+ * Feature mapping between OpenClaw and Codex
  */
 export const PLATFORM_MAPPING = {
   claudeCode: {
-    configFile: 'CLAUDE.md',
-    localConfig: 'CLAUDE.local.md',
+    configFile: 'OPENCLAW.md',
+    localConfig: 'OPENCLAW.local.md',
     settingsFormat: 'JSON (settings.json)',
     skillInvocation: '/skill-name',
     approvalLevels: 3,

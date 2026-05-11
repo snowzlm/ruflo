@@ -154,12 +154,12 @@
           "description": "agentic-flow alpha integration",
           "source": "agentic-flow"
         },
-        "claude-code": {
+        "openclaw": {
           "enabled_by_default": false,
-          "display_name": "Claude Code",
-          "endpoint": "/mcp/claude-code",
-          "description": "Claude Code CLI tools",
-          "source": "claude-code"
+          "display_name": "OpenClaw",
+          "endpoint": "/mcp/openclaw",
+          "description": "OpenClaw CLI tools",
+          "source": "openclaw"
         },
         "gemini": {
           "enabled_by_default": false,
@@ -247,7 +247,7 @@
     "ruvector_integration": true,
     "ruflo_integration": true,
     "agentic_flow_integration": true,
-    "external_mcp_backends": ["ruvector", "ruflo", "agentic-flow", "claude-code", "gemini", "codex"],
+    "external_mcp_backends": ["ruvector", "ruflo", "agentic-flow", "openclaw", "gemini", "codex"],
     "test_harness": true
   }
 }

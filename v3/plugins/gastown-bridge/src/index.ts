@@ -974,7 +974,7 @@ export class GasTownBridgePlugin extends EventEmitter implements IPlugin {
       description: this.description,
       author: 'rUv',
       license: 'MIT',
-      repository: 'https://github.com/ruvnet/claude-flow',
+      repository: 'https://github.com/snowzlm/ruflo',
       keywords: [
         'claude-flow',
         'plugin',

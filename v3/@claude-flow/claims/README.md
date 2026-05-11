@@ -17,10 +17,10 @@ This package provides a complete system for coordinating work between humans and
 npm install @claude-flow/claims
 ```
 
-Or install via Claude Flow CLI:
+Or install via Ruflo CLI:
 
 ```bash
-npx claude-flow plugins install @claude-flow/claims
+npx ruflo plugins install @claude-flow/claims
 ```
 
 ---
@@ -220,19 +220,19 @@ All claim operations are event-sourced (ADR-007):
 
 ```bash
 # Claim an issue
-npx claude-flow claims claim --issue ISSUE-123 --claimant "human:alice"
+npx ruflo claims claim --issue ISSUE-123 --claimant "human:alice"
 
 # Release a claim
-npx claude-flow claims release --issue ISSUE-123
+npx ruflo claims release --issue ISSUE-123
 
 # View claims board
-npx claude-flow claims board
+npx ruflo claims board
 
 # List stealable issues
-npx claude-flow claims stealable
+npx ruflo claims stealable
 
 # Rebalance workload
-npx claude-flow claims rebalance --dry-run
+npx ruflo claims rebalance --dry-run
 ```
 
 ---
@@ -240,7 +240,7 @@ npx claude-flow claims rebalance --dry-run
 ## Configuration
 
 ```yaml
-# claude-flow.config.yaml
+# ruflo.config.yaml
 claims:
   autoExpiration:
     enabled: true

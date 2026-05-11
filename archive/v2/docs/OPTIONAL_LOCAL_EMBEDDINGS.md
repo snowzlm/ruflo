@@ -8,14 +8,14 @@ By default, the memory system works perfectly **without any embeddings** using d
 
 **Already works out of the box:**
 ```bash
-npx claude-flow@alpha memory store "api-design" "REST with JWT"
-npx claude-flow@alpha memory list
+ruflo memory store "api-design" "REST with JWT"
+ruflo memory list
 # ✅ Works perfectly - no setup required!
 ```
 
 **Memory query uses database fallback:**
 ```bash
-npx claude-flow@alpha memory query "api"
+ruflo memory query "api"
 # ✅ Works with pattern matching (exact/partial text search)
 ```
 
@@ -31,7 +31,7 @@ Add AI-powered semantic similarity for better query results.
 # In agentic-flow repository
 npm install @xenova/transformers --save-optional
 
-# Or in claude-flow
+# Or in ruflo
 npm install @xenova/transformers --save-optional
 ```
 
@@ -42,7 +42,7 @@ npm install @xenova/transformers --save-optional
 npm install -g @xenova/transformers
 
 # Or with npx:
-npx -p @xenova/transformers -p claude-flow@alpha claude-flow memory query "api"
+npx -p @xenova/transformers -p ruflo@alpha ruflo memory query "api"
 ```
 
 **Option 3: Environment Variable Flag**
@@ -52,7 +52,7 @@ npx -p @xenova/transformers -p claude-flow@alpha claude-flow memory query "api"
 export CLAUDE_FLOW_SEMANTIC_SEARCH=true
 
 # Run memory commands
-npx claude-flow@alpha memory query "authentication patterns"
+ruflo memory query "authentication patterns"
 ```
 
 ---
@@ -284,7 +284,7 @@ async function handleQueryCommand(query, options) {
 ### Default Experience (No Setup)
 
 ```bash
-$ npx claude-flow@alpha memory query "api"
+$ ruflo memory query "api"
 
 ℹ️  🧠 Using ReasoningBank mode...
 [ReasoningBank] Initializing...
@@ -303,7 +303,7 @@ $ npx claude-flow@alpha memory query "api"
 ```bash
 $ npm install -g @xenova/transformers
 $ export CLAUDE_FLOW_SEMANTIC_SEARCH=true
-$ npx claude-flow@alpha memory query "authentication patterns"
+$ ruflo memory query "authentication patterns"
 
 ℹ️  🧠 Using ReasoningBank mode...
 [ReasoningBank] Initializing...
@@ -342,7 +342,7 @@ npm install -g @xenova/transformers
 export CLAUDE_FLOW_SEMANTIC_SEARCH=true
 
 # Now queries use semantic similarity
-npx claude-flow@alpha memory query "authentication"
+ruflo memory query "authentication"
 ```
 
 **Benefits:**
@@ -422,8 +422,8 @@ if (fs.existsSync(transformersPath)) {
 ### Test 1: Default (No Semantic Search)
 ```bash
 # Fresh install
-npx claude-flow@alpha memory store "test" "value"
-npx claude-flow@alpha memory query "test"
+ruflo memory store "test" "value"
+ruflo memory query "test"
 # ✅ Should work with database pattern matching
 ```
 
@@ -433,7 +433,7 @@ npx claude-flow@alpha memory query "test"
 npm install -g @xenova/transformers
 export CLAUDE_FLOW_SEMANTIC_SEARCH=true
 
-npx claude-flow@alpha memory query "test"
+ruflo memory query "test"
 # ✅ Should use semantic similarity
 ```
 
@@ -443,7 +443,7 @@ npx claude-flow@alpha memory query "test"
 export CLAUDE_FLOW_SEMANTIC_SEARCH=true
 unset npm_config_prefix  # Ensure transformers not available
 
-npx claude-flow@alpha memory query "test"
+ruflo memory query "test"
 # ✅ Should show helpful message and fall back to database search
 ```
 

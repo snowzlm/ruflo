@@ -1,7 +1,7 @@
 # GitHub Sync Coordinator
 
 ## Purpose
-Multi-package synchronization and version alignment with ruv-swarm coordination for seamless integration between claude-code-flow and ruv-swarm packages.
+Multi-package synchronization and version alignment with ruv-swarm coordination for seamless integration between openclaw-flow and ruv-swarm packages.
 
 ## Capabilities
 - **Package synchronization** with intelligent dependency resolution
@@ -16,7 +16,7 @@ Multi-package synchronization and version alignment with ruv-swarm coordination 
 - `mcp__github__get_file_contents`
 - `mcp__github__create_pull_request`
 - `mcp__github__search_repositories`
-- `mcp__claude-flow__*` (all swarm coordination tools)
+- `mcp__ruflo__*` (all swarm coordination tools)
 - `TodoWrite`, `TodoRead`, `Task`, `Bash`, `Read`, `Write`, `Edit`, `MultiEdit`
 
 ## Usage Patterns
@@ -24,14 +24,14 @@ Multi-package synchronization and version alignment with ruv-swarm coordination 
 ### 1. Synchronize Package Dependencies
 ```javascript
 // Initialize sync coordination swarm
-mcp__claude-flow__swarm_init { topology: "hierarchical", maxAgents: 5 }
-mcp__claude-flow__agent_spawn { type: "coordinator", name: "Sync Coordinator" }
-mcp__claude-flow__agent_spawn { type: "analyst", name: "Dependency Analyzer" }
-mcp__claude-flow__agent_spawn { type: "coder", name: "Integration Developer" }
-mcp__claude-flow__agent_spawn { type: "tester", name: "Validation Engineer" }
+mcp__ruflo__swarm_init { topology: "hierarchical", maxAgents: 5 }
+mcp__ruflo__agent_spawn { type: "coordinator", name: "Sync Coordinator" }
+mcp__ruflo__agent_spawn { type: "analyst", name: "Dependency Analyzer" }
+mcp__ruflo__agent_spawn { type: "coder", name: "Integration Developer" }
+mcp__ruflo__agent_spawn { type: "tester", name: "Validation Engineer" }
 
 // Analyze current package states
-Read("/workspaces/ruv-FANN/claude-code-flow/claude-code-flow/package.json")
+Read("/workspaces/ruv-FANN/openclaw-flow/openclaw-flow/package.json")
 Read("/workspaces/ruv-FANN/ruv-swarm/npm/package.json")
 
 // Synchronize versions and dependencies using gh CLI
@@ -39,15 +39,15 @@ Read("/workspaces/ruv-FANN/ruv-swarm/npm/package.json")
 Bash("gh api repos/:owner/:repo/git/refs -f ref='refs/heads/sync/package-alignment' -f sha=$(gh api repos/:owner/:repo/git/refs/heads/main --jq '.object.sha')")
 
 // Update file using gh CLI
-Bash(`gh api repos/:owner/:repo/contents/claude-code-flow/claude-code-flow/package.json \
+Bash(`gh api repos/:owner/:repo/contents/openclaw-flow/openclaw-flow/package.json \
   --method PUT \
   -f message="feat: Align Node.js version requirements across packages" \
   -f branch="sync/package-alignment" \
   -f content="$(echo '{ updated package.json with aligned versions }' | base64)" \
-  -f sha="$(gh api repos/:owner/:repo/contents/claude-code-flow/claude-code-flow/package.json?ref=sync/package-alignment --jq '.sha')")`)
+  -f sha="$(gh api repos/:owner/:repo/contents/openclaw-flow/openclaw-flow/package.json?ref=sync/package-alignment --jq '.sha')")`)
 
 // Orchestrate validation
-mcp__claude-flow__task_orchestrate {
+mcp__ruflo__task_orchestrate {
   task: "Validate package synchronization and run integration tests",
   strategy: "parallel",
   priority: "high"
@@ -56,27 +56,27 @@ mcp__claude-flow__task_orchestrate {
 
 ### 2. Documentation Synchronization
 ```javascript
-// Synchronize CLAUDE.md files across packages using gh CLI
+// Synchronize OPENCLAW.md files across packages using gh CLI
 // Get file contents
-CLAUDE_CONTENT=$(Bash("gh api repos/:owner/:repo/contents/ruv-swarm/docs/CLAUDE.md --jq '.content' | base64 -d"))
+CLAUDE_CONTENT=$(Bash("gh api repos/:owner/:repo/contents/ruv-swarm/docs/OPENCLAW.md --jq '.content' | base64 -d"))
 
-// Update claude-code-flow CLAUDE.md to match using gh CLI
+// Update openclaw-flow OPENCLAW.md to match using gh CLI
 // Create or update branch
 Bash("gh api repos/:owner/:repo/git/refs -f ref='refs/heads/sync/documentation' -f sha=$(gh api repos/:owner/:repo/git/refs/heads/main --jq '.object.sha') 2>/dev/null || gh api repos/:owner/:repo/git/refs/heads/sync/documentation --method PATCH -f sha=$(gh api repos/:owner/:repo/git/refs/heads/main --jq '.object.sha')")
 
 // Update file
-Bash(`gh api repos/:owner/:repo/contents/claude-code-flow/claude-code-flow/CLAUDE.md \
+Bash(`gh api repos/:owner/:repo/contents/openclaw-flow/openclaw-flow/OPENCLAW.md \
   --method PUT \
-  -f message="docs: Synchronize CLAUDE.md with ruv-swarm integration patterns" \
+  -f message="docs: Synchronize OPENCLAW.md with ruv-swarm integration patterns" \
   -f branch="sync/documentation" \
-  -f content="$(echo '# Claude Code Configuration for ruv-swarm\n\n[synchronized content]' | base64)" \
-  -f sha="$(gh api repos/:owner/:repo/contents/claude-code-flow/claude-code-flow/CLAUDE.md?ref=sync/documentation --jq '.sha' 2>/dev/null || echo '')")`)
+  -f content="$(echo '# OpenClaw Configuration for ruv-swarm\n\n[synchronized content]' | base64)" \
+  -f sha="$(gh api repos/:owner/:repo/contents/openclaw-flow/openclaw-flow/OPENCLAW.md?ref=sync/documentation --jq '.sha' 2>/dev/null || echo '')")`)
 
 // Store sync state in memory
-mcp__claude-flow__memory_usage {
+mcp__ruflo__memory_usage {
   action: "store",
   key: "sync/documentation/status",
-  value: { timestamp: Date.now(), status: "synchronized", files: ["CLAUDE.md"] }
+  value: { timestamp: Date.now(), status: "synchronized", files: ["OPENCLAW.md"] }
 }
 ```
 
@@ -89,11 +89,11 @@ mcp__github__push_files {
   branch: "feature/github-commands",
   files: [
     {
-      path: "claude-code-flow/claude-code-flow/.claude/commands/github/github-modes.md",
+      path: "openclaw-flow/openclaw-flow/.openclaw/commands/github/github-modes.md",
       content: "[GitHub modes documentation]"
     },
     {
-      path: "claude-code-flow/claude-code-flow/.claude/commands/github/pr-manager.md", 
+      path: "openclaw-flow/openclaw-flow/.openclaw/commands/github/pr-manager.md", 
       content: "[PR manager documentation]"
     },
     {
@@ -121,7 +121,7 @@ Bash(`gh pr create \
 ### Integration Points
 - Claude-code-flow: GitHub command modes in .claude/commands/github/
 - ruv-swarm: GitHub coordination hooks and utilities
-- Documentation: Synchronized CLAUDE.md instructions
+- Documentation: Synchronized OPENCLAW.md instructions
 
 ### Testing
 - [x] Package dependency verification
@@ -137,7 +137,7 @@ This integration uses ruv-swarm agents for:
 - Memory-based state management
 
 ---
-🤖 Generated with Claude Code using ruv-swarm coordination`
+🤖 Generated with OpenClaw using ruv-swarm coordination`
 }
 ```
 
@@ -147,33 +147,33 @@ This integration uses ruv-swarm agents for:
 ```javascript
 [Single Message - Complete Synchronization]:
   // Initialize comprehensive sync swarm
-  mcp__claude-flow__swarm_init { topology: "mesh", maxAgents: 6 }
-  mcp__claude-flow__agent_spawn { type: "coordinator", name: "Master Sync Coordinator" }
-  mcp__claude-flow__agent_spawn { type: "analyst", name: "Package Analyzer" }
-  mcp__claude-flow__agent_spawn { type: "coder", name: "Integration Coder" }
-  mcp__claude-flow__agent_spawn { type: "tester", name: "Validation Tester" }
-  mcp__claude-flow__agent_spawn { type: "reviewer", name: "Quality Reviewer" }
+  mcp__ruflo__swarm_init { topology: "mesh", maxAgents: 6 }
+  mcp__ruflo__agent_spawn { type: "coordinator", name: "Master Sync Coordinator" }
+  mcp__ruflo__agent_spawn { type: "analyst", name: "Package Analyzer" }
+  mcp__ruflo__agent_spawn { type: "coder", name: "Integration Coder" }
+  mcp__ruflo__agent_spawn { type: "tester", name: "Validation Tester" }
+  mcp__ruflo__agent_spawn { type: "reviewer", name: "Quality Reviewer" }
   
   // Read current state of both packages
-  Read("/workspaces/ruv-FANN/claude-code-flow/claude-code-flow/package.json")
+  Read("/workspaces/ruv-FANN/openclaw-flow/openclaw-flow/package.json")
   Read("/workspaces/ruv-FANN/ruv-swarm/npm/package.json")
-  Read("/workspaces/ruv-FANN/claude-code-flow/claude-code-flow/CLAUDE.md")
-  Read("/workspaces/ruv-FANN/ruv-swarm/docs/CLAUDE.md")
+  Read("/workspaces/ruv-FANN/openclaw-flow/openclaw-flow/OPENCLAW.md")
+  Read("/workspaces/ruv-FANN/ruv-swarm/docs/OPENCLAW.md")
   
   // Synchronize multiple files simultaneously
   mcp__github__push_files {
     branch: "sync/complete-integration",
     files: [
-      { path: "claude-code-flow/claude-code-flow/package.json", content: "[aligned package.json]" },
-      { path: "claude-code-flow/claude-code-flow/CLAUDE.md", content: "[synchronized CLAUDE.md]" },
-      { path: "claude-code-flow/claude-code-flow/.claude/commands/github/github-modes.md", content: "[GitHub modes]" }
+      { path: "openclaw-flow/openclaw-flow/package.json", content: "[aligned package.json]" },
+      { path: "openclaw-flow/openclaw-flow/OPENCLAW.md", content: "[synchronized OPENCLAW.md]" },
+      { path: "openclaw-flow/openclaw-flow/.openclaw/commands/github/github-modes.md", content: "[GitHub modes]" }
     ],
     message: "feat: Complete package synchronization with GitHub integration"
   }
   
   // Run validation tests
-  Bash("cd /workspaces/ruv-FANN/claude-code-flow/claude-code-flow && npm install")
-  Bash("cd /workspaces/ruv-FANN/claude-code-flow/claude-code-flow && npm test")
+  Bash("cd /workspaces/ruv-FANN/openclaw-flow/openclaw-flow && npm install")
+  Bash("cd /workspaces/ruv-FANN/openclaw-flow/openclaw-flow && npm test")
   Bash("cd /workspaces/ruv-FANN/ruv-swarm/npm && npm test")
   
   // Track synchronization progress
@@ -186,12 +186,12 @@ This integration uses ruv-swarm agents for:
   ]}
   
   // Store comprehensive sync state
-  mcp__claude-flow__memory_usage {
+  mcp__ruflo__memory_usage {
     action: "store",
     key: "sync/complete/status",
     value: {
       timestamp: Date.now(),
-      packages_synced: ["claude-code-flow", "ruv-swarm"],
+      packages_synced: ["openclaw-flow", "ruv-swarm"],
       version_alignment: "completed",
       documentation_sync: "completed",
       github_integration: "completed",
@@ -222,13 +222,13 @@ const syncStrategy = {
 ```javascript
 // Keep documentation consistent across packages
 const docSyncPattern = {
-  sourceOfTruth: "ruv-swarm/docs/CLAUDE.md",
+  sourceOfTruth: "ruv-swarm/docs/OPENCLAW.md",
   targets: [
-    "claude-code-flow/claude-code-flow/CLAUDE.md",
-    "CLAUDE.md"  // Root level
+    "openclaw-flow/openclaw-flow/OPENCLAW.md",
+    "OPENCLAW.md"  // Root level
   ],
   customSections: {
-    "claude-code-flow": "GitHub Commands Integration",
+    "openclaw-flow": "GitHub Commands Integration",
     "ruv-swarm": "MCP Tools Reference"
   }
 }
@@ -238,7 +238,7 @@ const docSyncPattern = {
 ```javascript
 // Comprehensive testing across synchronized packages
 const testMatrix = {
-  packages: ["claude-code-flow", "ruv-swarm"],
+  packages: ["openclaw-flow", "ruv-swarm"],
   tests: [
     "unit_tests",
     "integration_tests", 

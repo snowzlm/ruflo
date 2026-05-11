@@ -125,13 +125,13 @@ The old documentation stated:
 
 ### Before (v2.7.0-alpha.6)
 ```bash
-$ npx claude-flow@alpha memory store test "value" --reasoningbank
+$ ruflo memory store test "value" --reasoningbank
 ❌ Error: Cannot find module 'reasoningbank_wasm'
 ```
 
 ### After (v2.7.0-alpha.7)
 ```bash
-$ npx claude-flow@alpha memory store test "value" --reasoningbank
+$ ruflo memory store test "value" --reasoningbank
 ✅ Stored successfully in ReasoningBank
 🧠 Memory ID: 6e27c6bc-c99a-46e9-8f9e-14ebe46cbee8
 ```

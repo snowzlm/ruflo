@@ -10,7 +10,7 @@
  * VERIFIED: Real integration of SDK + MCP tools
  */
 
-import { query, type Query, type Options } from '@anthropic-ai/claude-code';
+import { query, type Query, type Options } from '@anthropic-ai/openclaw';
 import { RealSessionForking } from './session-forking';
 import { RealQueryController } from './query-control';
 import { RealCheckpointManager } from './checkpoint-manager';
@@ -309,7 +309,7 @@ claude mcp add ruv-swarm npx ruv-swarm mcp start
 # Now use SDK features WITH MCP tools:
 
 ## 1. Session Forking + Swarm Coordination
-import { query } from '@anthropic-ai/claude-code';
+import { query } from '@anthropic-ai/openclaw';
 import { RealSessionForking } from './sdk/session-forking';
 
 const forking = new RealSessionForking();

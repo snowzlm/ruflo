@@ -1074,12 +1074,12 @@ export class PluginDiscoveryService {
           issues: [],
         },
       },
-      // Teammate Plugin - Claude Code v2.1.19+ integration
+      // Teammate Plugin - OpenClaw v2.1.19+ integration
       {
         id: '@claude-flow/teammate-plugin',
         name: '@claude-flow/teammate-plugin',
         displayName: 'Teammate Plugin',
-        description: 'Native TeammateTool integration for Claude Code v2.1.19+. Multi-agent team orchestration with plan approval workflows, delegation, messaging, and BMSSP-optimized topology routing. 21 MCP tools.',
+        description: 'Native TeammateTool integration for OpenClaw v2.1.19+. Multi-agent team orchestration with plan approval workflows, delegation, messaging, and BMSSP-optimized topology routing. 21 MCP tools.',
         version: '1.0.0-alpha.1',
         cid: 'bafybeiteammateplugin2026',
         size: 387000,
@@ -1087,8 +1087,8 @@ export class PluginDiscoveryService {
         author: officialAuthor,
         license: 'MIT',
         categories: ['agents', 'integrations'],
-        tags: ['teammate', 'claude-code', 'multi-agent', 'swarm', 'orchestration', 'bmssp'],
-        keywords: ['teammate', 'claude-code', 'multi-agent'],
+        tags: ['teammate', 'openclaw', 'multi-agent', 'swarm', 'orchestration', 'bmssp'],
+        keywords: ['teammate', 'openclaw', 'multi-agent'],
         downloads: 0,
         rating: 0,
         ratingCount: 0,

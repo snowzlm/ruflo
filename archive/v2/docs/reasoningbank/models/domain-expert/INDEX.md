@@ -36,7 +36,7 @@ A pre-trained ReasoningBank model with **1500 expert-level patterns** covering:
 
 ### Test the Model
 ```bash
-cd /workspaces/claude-code-flow/docs/reasoningbank/models/domain-expert
+cd /workspaces/openclaw-flow/docs/reasoningbank/models/domain-expert
 
 # Run validation
 node validate.js
@@ -156,16 +156,16 @@ npx agentic-flow agent data-engineer "Build ETL pipeline" --model claude-sonnet-
 
 ## 🔗 Related Resources
 
-- **Claude Flow**: https://github.com/ruvnet/claude-flow
+- **Ruflo**: https://github.com/snowzlm/ruflo
 - **Agentic-Flow**: https://www.npmjs.com/package/agentic-flow
 - **ReasoningBank Docs**: ../../../docs/reasoningbank/
 - **Training Models**: ../README.md
 
 ## 📞 Support
 
-- **Issues**: https://github.com/ruvnet/claude-flow/issues
-- **Documentation**: https://github.com/ruvnet/claude-flow
-- **Community**: Claude Flow Discord
+- **Issues**: https://github.com/snowzlm/ruflo/issues
+- **Documentation**: https://github.com/snowzlm/ruflo
+- **Community**: Ruflo Discord
 
 ## 📝 Version History
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Claude Flow CLI - Umbrella entry point
- * Proxies to @claude-flow/cli bin for cross-platform compatibility.
+ * Ruflo CLI - Umbrella entry point
+ * Proxies to @claude-flow/cli bin (preserved npm path) for cross-platform compatibility.
  */
 import { pathToFileURL, fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';

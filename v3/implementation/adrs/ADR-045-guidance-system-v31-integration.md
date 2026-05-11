@@ -1,38 +1,38 @@
-# ADR-045: Guidance System Integration — Claude Flow v3.1
+# ADR-045: Guidance System Integration — Ruflo v3.1
 
 **Status:** Accepted
 **Date:** 2026-02-02
-**Author:** Claude Flow Architecture
+**Author:** Ruflo Architecture
 **Version:** 3.1.0-alpha.1
 
 ## Context
 
-The `@claude-flow/guidance` package (published as `3.0.0-alpha.1`) provides a governance control plane for Claude Code sessions:
+The `@claude-flow/guidance` package (published as `3.0.0-alpha.1`) provides a governance control plane for OpenClaw sessions:
 
-- **Compile**: CLAUDE.md → Constitution + Rule Shards + Rule Manifest
+- **Compile**: OPENCLAW.md → Constitution + Rule Shards + Rule Manifest
 - **Enforce**: 4 enforcement gates (ingestion, retrieval, generation, emission)
 - **Prove**: Proof envelopes with cryptographic audit trail
 - **Evolve**: Automatic rule evolution and optimization
 - **Analyze**: 6-dimension scoring (Structure, Coverage, Enforceability, Compilability, Clarity, Completeness)
 - **A/B Test**: Headless comparative testing of governance configurations
-- **Templates**: 6 CLAUDE.md templates (minimal, standard, full, security, performance, solo)
+- **Templates**: 6 OPENCLAW.md templates (minimal, standard, full, security, performance, solo)
 
 Currently, `@claude-flow/guidance` is:
 1. A standalone package at `v3/@claude-flow/guidance/`
 2. Used by `@claude-flow/cli` via dynamic `import()` — but NOT declared as a dependency
-3. Not included in the umbrella `claude-flow` package's `files` array
-4. Not available to end users running `npx claude-flow@alpha`
+3. Not included in the umbrella `ruflo` package's `files` array
+4. Not available to end users running `ruflo`
 
 This means the `guidance` CLI commands silently fail at runtime when installed from npm.
 
 ## Decision
 
-Integrate `@claude-flow/guidance` as a **first-class dependency** in both `@claude-flow/cli` and the `claude-flow` umbrella package, making it a core component of Claude Flow v3.1.
+Integrate `@claude-flow/guidance` as a **first-class dependency** in both `@claude-flow/cli` and the `ruflo` umbrella package, making it a core component of Ruflo v3.1.
 
 ### 1. Dependency Graph
 
 ```
-claude-flow (umbrella v3.1.0-alpha.1)
+ruflo (umbrella v3.1.0-alpha.1)
   └── @claude-flow/cli (v3.1.0-alpha.1)
         ├── @claude-flow/guidance (v3.0.0-alpha.1)  ← NEW
         ├── @claude-flow/shared
@@ -68,16 +68,16 @@ The `guidance` command becomes a top-level CLI command with 6 subcommands:
 
 | Subcommand | Description |
 |------------|-------------|
-| `guidance compile` | Compile CLAUDE.md into constitution + shards + manifest |
+| `guidance compile` | Compile OPENCLAW.md into constitution + shards + manifest |
 | `guidance retrieve` | Query compiled rule shards by semantic similarity |
 | `guidance gates` | Run enforcement gates against tool calls |
 | `guidance evolve` | Evolve rules based on session outcomes |
-| `guidance optimize` | Analyze and optimize CLAUDE.md for higher governance score |
+| `guidance optimize` | Analyze and optimize OPENCLAW.md for higher governance score |
 | `guidance ab-test` | Run A/B comparative benchmark between configurations |
 
 ### 4. Init System Integration
 
-The CLAUDE.md generator (`claudemd-generator.ts`) now:
+The OPENCLAW.md generator (`claudemd-generator.ts`) now:
 - Produces analyzer-validated A-grade templates (91-95/100)
 - Supports 6 template variants via `runtime.claudeMdTemplate` option
 - Uses enforceable bullet-format rules (100% enforceability score)
@@ -87,7 +87,7 @@ The CLAUDE.md generator (`claudemd-generator.ts`) now:
 
 | Package | Current | v3.1 |
 |---------|---------|------|
-| `claude-flow` (umbrella) | 3.0.0-alpha.185 | 3.1.0-alpha.1 |
+| `ruflo` (umbrella) | 3.0.0-alpha.185 | 3.1.0-alpha.1 |
 | `@claude-flow/cli` | 3.0.0-alpha.185 | 3.1.0-alpha.1 |
 | `@claude-flow/guidance` | 3.0.0-alpha.1 | 3.0.0-alpha.1 (unchanged) |
 
@@ -97,7 +97,7 @@ The guidance package itself stays at 3.0.0-alpha.1 since its API is stable. The 
 
 ### Positive
 - `guidance` commands work out-of-the-box for all users
-- CLAUDE.md quality is measurable and enforceable
+- OPENCLAW.md quality is measurable and enforceable
 - A/B testing enables data-driven governance improvement
 - Template system gives users appropriate defaults for their use case
 - Init wizard can offer template selection

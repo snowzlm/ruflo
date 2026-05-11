@@ -2,13 +2,13 @@
 
 **Status:** Proposed
 **Date:** 2026-02-25
-**Authors:** RuvNet, Claude Flow Team
+**Authors:** RuvNet, Ruflo Team
 **Version:** 1.0.0
 **Related:** ADR-053 (Controller Activation), ADR-006 (Unified Memory), ADR-009 (Hybrid Memory Backend), ADR-049 (Self-Learning Memory GNN), ADR-050 (Intelligence Loop)
 
 ## Context
 
-The Claude Flow plugin ecosystem currently comprises 20 plugins distributed via IPFS (Pinata), discovered through a static JSON registry (`QmXbfEAaR7D2Ujm4GAkbwcGZQMHqAMpwDoje4583uNP834`), and searched via keyword substring matching. While functional, this approach has critical limitations as the ecosystem grows:
+The Ruflo plugin ecosystem currently comprises 20 plugins distributed via IPFS (Pinata), discovered through a static JSON registry (`QmXbfEAaR7D2Ujm4GAkbwcGZQMHqAMpwDoje4583uNP834`), and searched via keyword substring matching. While functional, this approach has critical limitations as the ecosystem grows:
 
 1. **Search is keyword-only** — `searchPlugins()` in `search.ts` does case-insensitive substring matching across name, description, tags, keywords. A query like "I need permission management" won't find `@claude-flow/claims` unless the user knows the exact term "claims."
 
@@ -217,16 +217,16 @@ async function buildPluginGraph(plugins: PluginEntry[]): Promise<void> {
 
 ```bash
 # Show transitive dependencies
-npx claude-flow plugins deps @claude-flow/security --transitive
+npx ruflo plugins deps @claude-flow/security --transitive
 
 # Find plugin ecosystems (community detection)
-npx claude-flow plugins ecosystems
+npx ruflo plugins ecosystems
 
 # Show hub plugins (highest PageRank)
-npx claude-flow plugins hubs
+npx ruflo plugins hubs
 
 # Check for conflicts
-npx claude-flow plugins conflicts @claude-flow/plugin-a @claude-flow/plugin-b
+npx ruflo plugins conflicts @claude-flow/plugin-a @claude-flow/plugin-b
 ```
 
 3. **Graph-enhanced search ranking.** Blend vector similarity with PageRank:
@@ -314,9 +314,9 @@ async function consolidatePluginPatterns(): Promise<void> {
 
 **New CLI Features:**
 ```bash
-npx claude-flow plugins recommend          # Based on installed plugins + context
-npx claude-flow plugins trending           # Real-time trending (not static)
-npx claude-flow plugins why @claude-flow/X # "Why is this recommended?"
+npx ruflo plugins recommend          # Based on installed plugins + context
+npx ruflo plugins trending           # Real-time trending (not static)
+npx ruflo plugins why @claude-flow/X # "Why is this recommended?"
 ```
 
 **Files Modified:**
@@ -363,11 +363,11 @@ async function registerPluginSkills(plugin: PluginEntry): Promise<void> {
 2. **Intent-to-plugin routing.** Developer describes what they need, system finds which plugin provides it:
 
 ```bash
-npx claude-flow plugins find-for "validate user input with schemas"
+npx ruflo plugins find-for "validate user input with schemas"
 # → @claude-flow/security (InputValidator — Zod-based validation)
 # → @claude-flow/claims (claims-based authorization)
 
-npx claude-flow plugins find-for "train neural patterns from code"
+npx ruflo plugins find-for "train neural patterns from code"
 # → @claude-flow/neural (SONA, MoE, EWC++)
 # → @claude-flow/plugin-neural-coordinator
 ```
@@ -479,9 +479,9 @@ async function verifyPlugin(plugin: PluginEntry): Promise<VerificationResult> {
 | `/api/plugins/:id/why` | GET | Explainable recommendation |
 
 **Deployment Options:**
-- **Self-hosted**: `npx claude-flow marketplace start --port 3001`
+- **Self-hosted**: `npx ruflo marketplace start --port 3001`
 - **Serverless**: Deploy as Cloudflare Worker / Vercel Edge Function with SQLite (D1/Turso)
-- **MCP Server**: Expose as MCP tool for Claude Code integration
+- **MCP Server**: Expose as MCP tool for OpenClaw integration
 
 ## Performance Targets
 

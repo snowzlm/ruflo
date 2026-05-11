@@ -2,15 +2,15 @@
 
 ## Summary
 
-We've researched and implemented real token tracking capabilities for Claude API calls. The implementation provides infrastructure for capturing actual token usage from Claude Code CLI, though there are limitations due to how Claude Code handles telemetry in interactive mode.
+We've researched and implemented real token tracking capabilities for Claude API calls. The implementation provides infrastructure for capturing actual token usage from OpenClaw CLI, though there are limitations due to how OpenClaw handles telemetry in interactive mode.
 
 ## What Was Implemented
 
 ### 1. Research Findings
-- Claude Code has native OpenTelemetry support for telemetry
+- OpenClaw has native OpenTelemetry support for telemetry
 - Token usage is tracked via `CLAUDE_CODE_ENABLE_TELEMETRY=1` 
 - Claude emits metrics including `input_tokens`, `output_tokens`, `cache_read_tokens`, `cache_creation_tokens`
-- Open source tools exist (ccusage, Claude-Code-Usage-Monitor, claude-code-otel) that parse JSONL files
+- Open source tools exist (ccusage, Claude-Code-Usage-Monitor, openclaw-otel) that parse JSONL files
 
 ### 2. Created Components
 
@@ -50,7 +50,7 @@ We've researched and implemented real token tracking capabilities for Claude API
 
 ## The Core Challenge
 
-The fundamental issue is that Claude Code's telemetry system outputs to console when `OTEL_METRICS_EXPORTER=console` (or any valid exporter), which interferes with the interactive CLI experience. Setting it to an invalid value like "none" causes Claude to throw an error.
+The fundamental issue is that OpenClaw's telemetry system outputs to console when `OTEL_METRICS_EXPORTER=console` (or any valid exporter), which interferes with the interactive CLI experience. Setting it to an invalid value like "none" causes Claude to throw an error.
 
 ## Solutions Available
 
@@ -100,4 +100,4 @@ To fully enable real token tracking, consider:
 
 ## Conclusion
 
-Real token tracking infrastructure is implemented and functional. The main constraint is Claude Code's telemetry system outputting to console in interactive mode. The solution currently disables telemetry for interactive sessions to ensure proper Claude operation. For production token tracking, implementing a local OTLP collector would be the ideal solution.
+Real token tracking infrastructure is implemented and functional. The main constraint is OpenClaw's telemetry system outputting to console in interactive mode. The solution currently disables telemetry for interactive sessions to ensure proper Claude operation. For production token tracking, implementing a local OTLP collector would be the ideal solution.

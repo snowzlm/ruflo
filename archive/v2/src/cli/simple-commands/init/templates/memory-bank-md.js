@@ -254,6 +254,6 @@ npx claude-flow memory analyze --batchtools --verbose
 npx claude-flow memory index-validate --parallel --repair
 \`\`\`
 
-For more information about memory system optimization, see: https://github.com/ruvnet/claude-code-flow/docs/memory-batchtools.md
+For more information about memory system optimization, see: https://github.com/ruvnet/openclaw-flow/docs/memory-batchtools.md
 `;
 }

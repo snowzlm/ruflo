@@ -8,7 +8,7 @@ Accepted
 
 ## Context
 
-In a multi-agent swarm, agents share state through a memory subsystem (AgentDB with HNSW indexing in Claude Flow V3). Without governance, agents can:
+In a multi-agent swarm, agents share state through a memory subsystem (AgentDB with HNSW indexing in Ruflo V3). Without governance, agents can:
 
 1. **Overwrite critical state.** A coder agent overwrites the architect's design decisions. A tester overwrites the coordinator's task assignments.
 2. **Flood memory.** An agent in a loop writes thousands of entries, degrading search performance and consuming storage.
@@ -29,7 +29,7 @@ Rules in the guidance file can specify which agent types have write access to wh
 - The `toolClasses` field uses `mcp` to target memory operations (memory store/search are MCP tool calls)
 - The `riskClass` determines the gate behavior: `critical` rules block unauthorized writes, `high` rules require confirmation
 
-Example rule in `CLAUDE.md`:
+Example rule in `OPENCLAW.md`:
 ```
 [R050] Only coordinator agents may write to swarm/task-assignments namespace @security [mcp] #general scope:swarm/task-assignments priority:90 (critical)
 ```
@@ -82,7 +82,7 @@ Memory writes flow through the existing gate infrastructure:
 ### Negative
 
 - **Indirect enforcement.** Memory writes go through MCP tools, so gating depends on the MCP layer invoking the guidance control plane. If an agent bypasses MCP (direct database access), the gates are ineffective.
-- **Rule authoring burden.** Teams must write memory-specific rules in their `CLAUDE.md`. Without these rules, memory writes are ungoverned. Mitigation: the optimizer can propose memory rules based on observed conflicts.
+- **Rule authoring burden.** Teams must write memory-specific rules in their `OPENCLAW.md`. Without these rules, memory writes are ungoverned. Mitigation: the optimizer can propose memory rules based on observed conflicts.
 - **No built-in TTL engine.** The current implementation governs TTL through rules and evaluators, not through an automatic expiration mechanism in the storage layer. True TTL requires integration with AgentDB's storage engine.
 
 ## Alternatives Considered
@@ -94,10 +94,10 @@ Add a `memory-write` gate alongside the four existing gates. Rejected because it
 Implement a full role-based access control system with cryptographic agent identity. Rejected as over-engineered for the current use case. The rule-based approach achieves authority separation without a token infrastructure. RBAC can be layered on if multi-tenant scenarios require it.
 
 ### 3. CRDT-based conflict resolution for memory writes
-Use Conflict-free Replicated Data Types to automatically resolve write conflicts. Rejected because CRDTs solve a different problem (convergence under partition) and do not address authorization or staleness. CRDTs are available in the broader Claude Flow hive-mind system for distributed consensus, but memory governance is about policy, not data structures.
+Use Conflict-free Replicated Data Types to automatically resolve write conflicts. Rejected because CRDTs solve a different problem (convergence under partition) and do not address authorization or staleness. CRDTs are available in the broader Ruflo hive-mind system for distributed consensus, but memory governance is about policy, not data structures.
 
 ### 4. No memory governance, rely on agent prompts
-Instruct agents via their prompts to "only write to your assigned namespace." Rejected for the same reason as relying on CLAUDE.md rules: prompts are advisory. Agents can and do ignore them, especially in long sessions.
+Instruct agents via their prompts to "only write to your assigned namespace." Rejected for the same reason as relying on OPENCLAW.md rules: prompts are advisory. Agents can and do ignore them, especially in long sessions.
 
 ## References
 

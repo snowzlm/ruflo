@@ -85,19 +85,19 @@
 
 ### Swarm Memory
 
-All agents used claude-flow hooks for coordination:
+All agents used ruflo hooks for coordination:
 
 ```bash
 # Pre-task
-npx claude-flow@alpha hooks pre-task --description "[task]"
+ruflo hooks pre-task --description "[task]"
 
 # During work
-npx claude-flow@alpha hooks post-edit --file "[file]" --memory-key "swarm/[agent]/[step]"
-npx claude-flow@alpha hooks notify --message "[status]"
+ruflo hooks post-edit --file "[file]" --memory-key "swarm/[agent]/[step]"
+ruflo hooks notify --message "[status]"
 
 # Post-task
-npx claude-flow@alpha hooks post-task --task-id "[task-id]"
-npx claude-flow@alpha hooks session-end --export-metrics true
+ruflo hooks post-task --task-id "[task-id]"
+ruflo hooks session-end --export-metrics true
 ```
 
 ### Memory Store
