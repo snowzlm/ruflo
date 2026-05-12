@@ -162,3 +162,6 @@ hive-mind-prompt-*.txt
 .env.*
 !.env.example
 !.env.*.example
+# Ruflo GitHub installs need the vendored compiled CLI runtime.
+!v3/@claude-flow/cli/dist/
+!v3/@claude-flow/cli/dist/**
